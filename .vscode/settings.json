@@ -1,0 +1,8 @@
+{
+	"esbonio.sphinx.confDir": "",
+	"myst.preview.extensions": [
+		"dollarmath",
+		"deflist",
+		"colon_fence"
+	]
+}

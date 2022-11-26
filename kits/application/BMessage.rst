@@ -8,7 +8,7 @@ BMessage
 Data Members
 ------------
 
-:cpp:expr:`what`::
+.. cpp:member:: what:
 
 	public uint32 what;
 
@@ -36,7 +36,7 @@ See also: :cpp:func:`BLooper::DetachCurrentMessage()`
 
 Frees all memory allocated to hold message data. If the message sender is
 expecting a reply but hasn't received one, a default reply (with
-:cpp:enum:`B_NO_REPLY` as the :cpp:expr:`what` data member) is sent before the
+:cpp:enum:`B_NO_REPLY` as the :cpp:member:`what` data member) is sent before the
 message is destroyed.
 
 The system retains ownership of the messages it delivers to you. Each message
@@ -45,6 +45,8 @@ is finished responding to them.
 
 Member Functions
 ----------------
+
+.. cpp:functions:: AddData(); AddBool(); AddInt8(); 
 
 :cpp:func:`AddData(), AddBool(), AddInt8(), AddInt16(), AddInt32(), AddInt64(),
 AddFloat(), AddDouble(), AddString(), AddPoint(), AddRect(), AddRef(),

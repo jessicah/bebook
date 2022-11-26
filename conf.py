@@ -16,11 +16,10 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
 
-project = 'The Be Book'
-copyright = '2021, Haiku'
+project = 'The Haiku Book'
+copyright = '2022, Haiku'
 author = 'Haiku'
 
 # The short X.Y version
@@ -39,6 +38,13 @@ release = ''
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "myst_parser",
+]
+
+myst_enable_extensions = [
+    "colon_fence",
+    "deflist",
+    "substitution"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -101,7 +107,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'TheBeBookdoc'
+htmlhelp_basename = 'TheHaikuBookdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -128,7 +134,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'TheBeBook.tex', 'The Be Book Documentation',
+    (master_doc, 'TheHaikuBook.tex', 'The Haiku Book Documentation',
      'Haiku', 'manual'),
 ]
 
@@ -138,7 +144,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'thebebook', 'The Be Book Documentation',
+    (master_doc, 'thehaikubook', 'The Haiku Book Documentation',
      [author], 1)
 ]
 
@@ -149,8 +155,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'TheBeBook', 'The Be Book Documentation',
-     author, 'TheBeBook', 'One line description of project.',
+    (master_doc, 'TheHaikuBook', 'The Haiku Book Documentation',
+     author, 'TheHaikuBook', 'One line description of project.',
      'Miscellaneous'),
 ]
 
@@ -177,8 +183,6 @@ epub_exclude_files = ['search.html']
 
 smartquotes = True
 
-highlight_language = 'cpp'
-
 html_css_files = [
     'css/code.css',
     'css/hide.css'
@@ -198,11 +202,13 @@ class MyFancyStyle(Style):
         Text:                      "#253555",
         Other:                     "#253555",
         Whitespace:                "#434357",
-        Comment:                   "#dc3c01",
+        Comment:                   "italic #dc3c01",
         Comment.Preproc:           "#409090",
         Comment.PreprocFile:       "bg:#404040 #ffcd8b",
         Comment.Special:           "#808bed",
-        Name.Class:                "#c30200",
+        Name:                      "#000000",
+        Name.Class:                "bold #006400",
+        Name.Function:             "bold #800080"
         # ... snip (just more colors, you get the idea) ...
     }
 
@@ -222,3 +228,48 @@ def pygments_monkeypatch_style(mod_name, cls):
 pygments_monkeypatch_style("my_fancy_style", MyFancyStyle)
 pygments_style = "my_fancy_style"
 # END MONKEY-PATCH
+
+def setup(app):
+    from sphinx.highlighting import lexers
+    from pygments.lexers import CppLexer
+    from pygments.filters import Filter
+    from pygments.token import Name
+
+    class ApiFilter(Filter):
+        def __init__(self, **options):
+            Filter.__init__(self, **options)
+
+            with open("classes.txt") as classes:
+                self.classes=[]
+                for line in classes:
+                    self.classes.append(line.strip())
+
+        def filter(self, lexer, stream):
+            is_arrow=False
+            is_hyphen=False
+            for ttype, value in stream:
+                if value in self.classes:
+                    ttype = Name.Class
+                if is_arrow:
+                    if ttype == Name:
+                        ttype = Name.Function
+                    is_arrow=False
+                if value == '-':
+                    is_hyphen=True
+                elif value == '>':
+                    if is_hyphen:
+                        is_arrow=True
+                        is_hyphen=False
+                else:
+                    is_hyphen=False
+                
+                yield ttype, value
+    
+    class ApiLexer(CppLexer):
+        def __init__(self, **options):
+            CppLexer.__init__(self, **options)
+            self.add_filter(ApiFilter())
+
+    app.add_lexer('beapi', ApiLexer)
+
+highlight_language = 'beapi'

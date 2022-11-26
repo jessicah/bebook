@@ -36,3 +36,30 @@ High-Performance Audio
 ======================
 
 Several classes are provided for high-performance audio playback:
+
+:cpp:class:`BGameSound`
+	Is a base class and isn't used directly; it's the foundation for all the
+	other audio classes in the Game Kit
+
+:cpp:class:`BFileGameSound`
+	Is used to represent a sound effect stored in a disk file, and provides
+	functions for playing the sound. It can be used for playing music loops from
+	audio files, or for playing the occasional large sound effect.
+
+:cpp:class:`BSimpleGameSdoun`
+	On the other hand, preloads the sound into memory, so that it can be played
+	back with extremely low latency and low overhead (at the expensive of memory
+	space).
+
+:cpp:class:`BPushGameSound`
+	These are used to let you fill buffers flowing to the speakers (or
+	headphones, or whatever audio output device is being used). Their mission is
+	the same, but their methods are different; :cpp:class:`BPushGameSound` also
+	provides a way to play sound in a cyclic loop, keeping ahead of the playback
+	point in the buffer. This is the extreme in high-performance, low-latency
+	audio, but does require some extra work on the programmer's part.
+
+:cpp:class:`BStreamingGameSound`
+	Requires magic powers to use; it's functionality is closely tied to the
+	implementation of the Kit, especially when hardware sound acceleration is
+	involved. So don't touch it, we beg you.
