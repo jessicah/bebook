@@ -144,7 +144,7 @@ the sender, extracts the desired data, and uses it in whatever way it wants.
 This sounds more complex than it is. A picture is worth a thousand words, so here is a simplified
 schematic of the process:
 
-![Drag And Drop Schematic](/kits/interface/drag_drop_schematic.png)
+![Drag And Drop Schematic](/system-overview/interface/images/drag_drop_schematic.png)
 
 ## Example: Simple Drag'n'Drop
 

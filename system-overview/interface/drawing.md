@@ -39,7 +39,7 @@ with left, top, right, and bottom coordinates at 90.0, 60.0, 270.0, and 195.0. B
 the inside, in the view's own coordinate system, it has a bounds rectangle with coordinates at 0.0,
 0.0, 180.0, and 135.0:
 
-![Frame Bounds](/kits/interface//frame_bounds.png)
+![Frame Bounds](/system-overview/interface/images/frame_bounds.png)
 
 When a view moves to a new location in its parent, its frame rectangle changes but not its bounds
 rectangle. When a view scrolls its contents, its bounds rectangle changes, but not its frame. The
@@ -70,7 +70,7 @@ covers one more pixel in each direction that its coordinate dimensions would ind
 
 Imaging an implausibly tiny frame rectangle like the one in the following diagram:
 
-![Tiny Frame Rectangle](/kits/interface//tiny_frame.png)
+![Tiny Frame Rectangle](/system-overview/interface/images/tiny_frame.png)
 
 Since the pixels on the edges of this 2.0 * 3.0 rectangle are treated as being inside the rectangle,
 the view covers a 3 pixel * 4 pixel area.
@@ -91,7 +91,7 @@ originally displayed in the bottom half of the view, would be shifted to the top
 y-coordinate values from 200.0 to 250.0, previously unseen, would become visible at the bottom of
 the view, as shown in the following illustration:
 
-![Scrolling The View](/kits/interface//scrolling.png)
+![Scrolling The View](/system-overview/interface/images/scrolling.png)
 
 Scrolling doesn't move the view---it doesn't alter the frame rectangle---it moves only what's
 displayed inside the view. In the illustration above, a "data rectangle" encloses everything the
@@ -123,7 +123,7 @@ The visible region of view Y is colored dark gray; it omits the part of the view
 its parent. View Z has no visible region, for it lies outside the bounds rectangle of its ancestor,
 view X:
 
-![View Clipping Outside The Parent](/kits/interface//drawing4.png)
+![View Clipping Outside The Parent](/system-overview/interface/images/drawing4.png)
 
 The visible region of a view might be further restricted if its window is obscured by another window
 or if the window it's in lies partially off-screen. The visible region includes only those areas
@@ -131,7 +131,7 @@ that are actually visible to the user. For example, if the three views in the pr
 were in a window that was partially blocked by another window, their visible regions might be
 considerably smaller. This is shown in the next figure:
 
-![Clipping Areas For Covered Windows](/kits/interface//drawing5.png)
+![Clipping Areas For Covered Windows](/system-overview/interface/images/drawing5.png)
 
 Note that in this case, view X has a discontinuous visible region.
 
@@ -404,7 +404,7 @@ pattern stripes = { 0xc7, 0x8f, 0x1f, 0x3e,
 Patterns repeat themselves across the screen, like tiles laid side by side. The pattern defined
 above looks like this:
 
-![Fill Patterns](/kits/interface//fill_pattern.png)
+![Fill Patterns](/system-overview/interface/images/fill_pattern.png)
 
 The dotted lines in this illustration show the separation of the screen into pixels. The thicker
 black line outlines one 8 * 8 square that the pattern defines.
@@ -415,7 +415,7 @@ stroking or filling allowed some of it to show through. For example, stroking a 
 horizontal path in the pattern illustrated above would result in a dotted line, with the dashes (in
 the high color) slightly longer than the spaces between (in the low color):
 
-![Line Patterns](/kits/interface/line_pattern.png)
+![Line Patterns](/system-overview/interface/images/line_pattern.png)
 
 When stroking a line or filling a shape, the pattern serves as the source image for
 the current drawing mode, as explained in "Drawing Modes" next. The nature of the mode determines
