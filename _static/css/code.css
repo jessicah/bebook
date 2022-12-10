@@ -9,3 +9,48 @@
 .cm {
 	color: green;
 }
+
+.no-background {
+	background: inherit;
+}
+
+.key {
+	border: 1px solid #c7c7c7;
+	border-radius: 3px;
+	padding: 0 2px;
+	background-color: #e8e8e8;
+	font-family: serif;
+	font-variant: small-caps;
+}
+
+dl.cpp {
+	overflow: hidden;
+	display: inline;
+	width: 0;
+	height: 0;
+	position: absolute
+}
+
+.hclass {
+	color: #006400;
+	font-weight: bold;
+	font-family: monospace;
+}
+
+.hmethod {
+	color: purple;
+	font-weight: bold;
+	font-family: monospace;
+}
+
+.hparameter {
+	color: #991122;
+	font-weight: bold;
+	font-family: monospace;
+}
+
+.hfield {
+	color: #000080;
+	font-weight: bold;
+	font-family: monospace;
+}

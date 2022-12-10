@@ -1,3 +1,8 @@
+```{role} nc
+```
+```{role} key
+```
+
 # Introduction
 
 Welcome to the Haiku Book.
@@ -32,7 +37,8 @@ add-ons for the Tracker, create device drivers, etc.
 
 The following conventions are used in this book:
 
-- Class names are shown as classname.
+```{rst-class} highlight no-background
+- Class names are shown as {nc}`classname`.
 - Method names are shown as methodname().
 - Function names are shown as function().
 - Method and function parameters are shown as parameter.
@@ -40,6 +46,7 @@ The following conventions are used in this book:
 - Constants as constant.
 - Variable names are shown as name.
 - Keys are shown as keyname.
-- Key combinations are shown as key1+key2, which means you should press the indicated keys at the
+- Key combinations are shown as {key}`key1`+{key}`key2`, which means you should press the indicated keys at the
   same time.
 - Filenames are shown as filename.
+```
