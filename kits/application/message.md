@@ -699,6 +699,15 @@ See also: {cpp:func}`~BMessage::SendReply()`, {cpp:func}`~BMessage::WasDelivered
 
 ### SendReply()
 
+```{cpp:function} BMessage::SendReply()
+```
+:::{code} cpp
+status_t SendReply(BMessage* message, BMessage* reply, bigtime_t sendTimeout = B_INFINITE_TIMEOUT, bigtime_t replyTimeout = B_INFINITE_TIMEOUT);
+status_t SendReply(BMessage* message, BHandler* replyHandler = NULL, bigtime_t sendTimeout = B_INFINITE_TIMEOUT);
+status_t SendReply(uint32 command, BMessage* reply);
+status_t SendReply(uint32 command, BHandler* replyHandler = NULL);
+:::
+
 Sends a reply {hparameter}`message` back to the sender of the {hclass}`BMessage` (in the case of a
 synchronous reply) or to a target {cpp:class}`BHandler` (in the case of an asynchronous reply).
 Whether the reply is synchronous or asynchronous depends on how the {hclass}`BMessage` that's
@@ -789,3 +798,146 @@ See also: {cpp:func}`BMessenger::SendMessage()`, {cpp:func}`BMessenger::DetachCu
 
 ### WasDelivered(), IsSourceRemote(), IsSourceWaiting(), IsReply(), Previous()
 
+```{cpp:function} BMessage::WasDelivered()
+```
+:::{code} cpp
+bool WasDelivered() const;
+:::
+```{cpp:function} BMessage::IsSourceRemote()
+```
+:::{code} cpp
+bool IsSourceRemote() const;
+:::
+```{cpp:function} BMessage::IsSourceWaiting()
+```
+:::{code} cpp
+bool IsSourceWaiting() const;
+:::
+```{cpp:function} BMessage::IsReply()
+```
+:::{code} cpp
+bool IsReply() const;
+:::
+```{cpp:function} BMessage::Previous()
+```
+:::{code} cpp
+const BMessage* Previous() const;
+:::
+
+These functions can help if you're engaged in an exchange of messages or managing an ongoing
+communication.
+
+{hmethod}`WasDelivered()` indicates whether it's possible to send a reply to a message. It returns
+{cpp:enum}`true` for a {hclass}`BMessage` that was posted, sent, or dropped -- that is, one that has
+been processed through a message loop---and {cpp:enum}`false` for a message that has not yet been
+delivered by any means.
+
+{hmethod}`IsSourceRemote()` returns {cpp:enum}`true` if the message had its source in another
+application, and {cpp:enum}`false` if the source is local or the message hasn't been delivered yet.
+
+{hmethod}`IsSourceWaiting()` returns {cpp:enum}`true` if the message source is waiting for a
+synchronous reply, and {cpp:enum}`false` if not. The source thread can request and wait for a reply
+when calling either {cpp:class}`BMessenger`'s {cpp:func}`~BMessenger::SendMessage()` or
+{hclass}`BMessage`'s {cpp:func}`~BMessage::SendReply()` function.
+
+{hmethod}`IsReply()` returns {cpp:enum}`true` if the {hclass}`BMessage` is a reply to a previous
+message (if it was sent by the {cpp:func}`~BMessage::SendReply()` function), and {cpp:enum}`false`
+if not.
+
+{hmethod}`Previous()` returns the previous message -- the message to which the current
+{hclass}`BMessage` is a reply. It works only for a {hclass}`BMessage` that's received as an
+asynchronous reply to a previous message. A synchronous reply is received in the context of the
+previous message, so it's not necessary to call a function to get it. But when an asynchronous reply
+is received, the context of the original message is lost; this function can provide it.
+{hmethod}`Previous()` returns {cpp:enum}`NULL` if the {hclass}`BMessage` isn't an asynchronous reply
+to another message.
+
+See also: {cpp:func}`BMessenger::SendMessage()`, {cpp:func}`~BMessage::SendReply()`,
+{cpp:func}`~BMessage::ReturnAddress()`.
+
+### WasDropped(), DropPoint()
+
+```{cpp:function} BMessage::WasDropped()
+```
+:::{code} cpp
+bool WasDropped() const;
+:::
+```{cpp:function} BMessage::DropPoint()
+```
+:::{code} cpp
+BPoint DropPoint(BPoint* offset = NULL) const;
+:::
+
+{hmethod}`WasDropped()` returns {cpp:enum}`true` if the user delivered the {hclass}`BMessage` by
+dragging and dropping it, and {cpp:enum}`false` if the message was posted or sent in application
+code or if it hasn't yet been delivered at all.
+
+{hmethod}`DropPoint()` reports the point where the cursor was located when the message was dropped
+(when the user released the mouse button). It directly returns the point in the screen coordinate
+system and, if an {hparameter}`offset` argument is provided, returns it by reference in coordinates
+based on the image or rectangle the user dragged. The {hparameter}`offset` assumes a coordinate
+system with (0.0, 0.0) at the left top corner of the dragged rectangle or image.
+
+Since any value can be a valid coordinate, {hmethod}`DropPoint()` produces reliable results only if
+{hmethod}`WasDropped()` returns {cpp:enum}`true`.
+
+See also: {cpp:func}`BView::DragMessage()`.
+
+## Operators
+
+### = (assignment)
+
+```{cpp:function} BMessage BMessage::operator=(const BMessage&);
+```
+:::{code} cpp
+BMessage operator=(const BMessage&);
+:::
+
+Assigns one {hclass}`BMessage` object to another. After the assignment, the two objects are
+duplicates of each other without shared data.
+
+### new
+
+```{cpp:function} void* BMessage::operator new(size_t numBytes);
+```
+:::{code} cpp
+void* operator new(size_t numBytes);
+:::
+
+Alloctes memory for a {hclass}`BMessage` object, or takes the memory from a previously allocated
+cache. The caching mechanism is an efficient way of managing memory for objects that are created
+frequently and used for short periods of time, as {hclass}`BMessage`s typically are.
+
+### delete
+```{cpp:function} void BMessage::operator delete(void* memory, size_t numBytes);
+```
+:::{code} cpp
+void operator delete(void* memory, size_t numBytes);
+:::
+
+Frees memory allocates by the {hclass}`BMessage` version of {hmethod}`new`, which may mean restoring
+the memory to the cache.
+
+## Constants
+
+### Message Specifiers
+
+:::{code} cpp
+B_NO_SPECIFIER
+B_DIRECT_SPECIFIER
+B_INDEX_SPECIFIER
+B_REVERSE_INDEX_SPECIFIER
+B_RANGE_SPECIFIER
+B_REVERSE_RANGE_SPECIFIER
+B_NAME_SPECIFIER
+B_ID_SPECIFIER
+B_SPECIFIERS_END = 128
+:::
+
+These constants fill the {hfield}`what` slot of specifier {hclass}`BMessage`s. Each constant indicates
+what other information the specifier contains, and how it should be interpreted. For example, a
+{cpp:enum}`B_REVERSE_INDEX_SPECIFER` message has an {hfield}`index` field with an index that counts
+backwards from the end of a list. A {cpp:enum}`B_NAME_SPECIFIER` message includes a {hfield}`name`
+field that names the requested item.
+
+See also: {cpp:func}`~BMessage::AddSpecifier()`, the "Scripting" chapter.
