@@ -23,34 +23,41 @@
 	font-variant: small-caps;
 }
 
-dl.cpp {
-	overflow: hidden;
-	display: inline;
-	width: 0;
-	height: 0;
-	position: absolute
-}
-
 .hclass {
 	color: #006400;
 	font-weight: bold;
 	font-family: monospace;
+	font-size: 120%;
 }
 
 .hmethod {
 	color: purple;
 	font-weight: bold;
 	font-family: monospace;
+	font-size: 120%;
 }
 
 .hparameter {
 	color: #991122;
 	font-weight: bold;
 	font-family: monospace;
+	font-size: 120%;
 }
 
 .hfield {
 	color: #000080;
 	font-weight: bold;
 	font-family: monospace;
+	font-size: 120%;
+}
+
+div.wrapper {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+div.highlight {
+	margin-left: 30px;
+	margin-right: 30px;
+	background: #efefef;
 }

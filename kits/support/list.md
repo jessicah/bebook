@@ -180,14 +180,14 @@ See also: {cpp:func}`~BList::IsEmpty()`, {cpp:func}`~BList::RemoveItem()`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} bool RemoveItem(void* item)
+:::{cpp:function} bool BList::RemoveItem(void* item)
 :::
-:::{cpp:function} void* RemoveItem(int32 index)
+:::{cpp:function} void* BList::RemoveItem(int32 index)
 :::
-:::{cpp:function} bool RemoveItems(int32 index, int32 count)
+:::{cpp:function} bool BList::RemoveItems(int32 index, int32 count)
 :::
 
-{hmethod}`RemoveItem()` removes an item from the list. If passed an {hparam}`item`, the function
+{hmethod}`RemoveItem()` removes an item from the list. If passed an {hparameter}`item`, the function
 looks for the item in the list, removes it, and returns {cpp:expr}`true`. If it can't find the item,
 it returns {cpp:expr}`false`. If the item is in the list more than once, this function removes only
 its first occurrence.
@@ -215,7 +215,7 @@ See also: {cpp:func}`~BList::MakeEmpty()`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void* BList::SortItems(int (*compareFunc)(const void*, const void*))
+:::{cpp:function} void* BList::SortItems(int (*compareFunc)(const void* first, const void* second))
 :::
 
 Rearranges the items in the list. The items are sorted using the {hparam}`compareFunc` comparison
