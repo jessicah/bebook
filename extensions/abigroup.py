@@ -1,5 +1,5 @@
 from docutils import nodes
-from docutils.nodes import Element, inline
+from docutils.nodes import Element, inline, Inline, TextElement
 from docutils.parsers.rst import Directive, directives
 
 from sphinx.application import Sphinx
@@ -83,16 +83,39 @@ class CustomHTMLTranslator(HTML5Translator):
         
         self.body.append('</pre>')
     
+    def visit_desc_content(self, node):
+        if not self.in_abi_group:
+            super().visit_desc_content(node)
+        
+        # at this point, can we collapse pre?
+    
+    def depart_desc_content(self, node):
+        if not self.in_abi_group:
+            super().depart_desc_content(node)
+    
     def visit_desc_name(self, node: Element) -> None:
         if not self.in_abi_group:
             super().visit_desc_name(node)
             return
         
-        self.signature_names.append(node)
+        #self.signature_names.append(node)
+        name = ''.join(str(c) for c in node[0].children)
+        self.signature_names.append(name)
     
     def depart_desc_name(self, node):
         if not self.in_abi_group:
             super().depart_desc_name(node)
+            return
+        
+        # if the previous name == this name, then...
+        # we want to either a) omit the pre tag
+        try:
+            previous = self.signature_names[-2]
+            current = self.signature_names[-1]
+            if previous == current:
+                logger.warning('have duplicate name definitions to join... how?')
+        except IndexError:
+            pass
     
     def visit_abigroup(self, node):
         self.in_abi_group = True
@@ -105,20 +128,43 @@ class CustomHTMLTranslator(HTML5Translator):
         node.attributes['ids'] = self.signature_ids
         
         names = set()
-        for child in self.signature_names:
-            names.add(''.join(str(c) for c in child[0].children))
+        for name in self.signature_names:
+            names.add(name)
         
-        self.body = self.saved_body + [self.starttag(node, 'h3') + ', '.join(names) + '</h3>\n\n'] + self.body
+        self.body = self.saved_body + [self.starttag(node, 'h3') + ', '.join(names) + '</h3>\n\n'] + ['<div class="wrapper">'] + self.body + ['</div>\n\n']
 
         self.in_abi_group = False
         self.signature_ids = None
         self.signature_names = None
         self.saved_body = None
+    
+    def visit_highlight(self, node):
+        logger.warning(node)
+        logger.warning(node.classes)
+        self.body.append('<span class="' + node.classes + '">')
+    
+    def depart_highlight(self, node):
+        self.body.append('</span>')
+
+class highlight(Inline, TextElement): pass
+
+class highlightMethod(highlight):
+    classes = 'hmethod'
+
+class highlightClass(highlight):
+    classes = 'hclass'
+
+class highlightParameter(highlight):
+    classes = 'hparameter'
+
+class highlightField(highlight):
+    classes = 'hfield'
 
 def setup(app):
     app.add_directive('abi-group', AbiGroupDirective)
-    app.add_generic_role('hmethod', inline)
-    app.add_generic_role('hclass', inline)
-    app.add_generic_role('hparameter', inline)
-    app.add_generic_role('hfield', inline)
+    app.add_generic_role('hmethod', highlightMethod)
+    app.add_generic_role('hclass', highlightClass)
+    app.add_generic_role('hparameter', highlightParameter)
+    app.add_generic_role('hparam', highlightParameter)
+    app.add_generic_role('hfield', highlightField)
     app.set_translator('html', CustomHTMLTranslator, True)
