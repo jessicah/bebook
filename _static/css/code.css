@@ -61,3 +61,45 @@ div.highlight {
 	margin-right: 30px;
 	background: #efefef;
 }
+
+div.admonition {
+	border: 2px solid;
+	border-radius: 0;
+}
+
+div.warning {
+	border-color: orange
+}
+
+h1, h2, h3 {
+	font-weight: bold;
+	color: #336699;
+}
+
+h1 {
+	font-size: 1.4em
+}
+
+h2 {
+	font-size: 1.3em
+}
+
+.n.sig-param {
+	color: #991122
+}
+.kt {
+	color: #5c5f05
+}
+.n {
+	color: purple
+}
+.k {
+	color: #5c5f05
+}
+div.highlight {
+	background: white
+}
+div.highlight > pre {
+	border: none;
+	border-left: orange solid
+}
