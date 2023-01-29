@@ -99,7 +99,7 @@ class CustomHTMLTranslator(HTML5Translator):
             return
         
         #self.signature_names.append(node)
-        name = ''.join(str(c) for c in node[0].children)
+        name = ''.join(str(c) for c in node[0].children) + '()'
         self.signature_names.append(name)
     
     def depart_desc_name(self, node):
