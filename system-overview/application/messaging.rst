@@ -43,9 +43,11 @@ The other messaging classes are:
 The rest of this chapter looks at...
 
 * The essential features of the four fundamental classes. ("Features of the
-fundamental Classes")
+  fundamental Classes")
+
 * How a BLooper decides which BHandler should handle an incoming message. ("From
-Looper to Handler")
+  Looper to Handler")
+
 * The different methods for sending messages and receiving replies. ("Sending a Message")
 
 and describes how the classes fit together in the messaging system with an
@@ -64,7 +66,7 @@ The BMessage Class
 In the BMessage class, there's one essential data member, and two essential
 functions:
 
-* The what data member is an arbitrary uint32 value that describes
+The what data member is an arbitrary uint32 value that describes
 (symbolically) what the message is about. You can set and exame what
 directly--you don't have to use functions to get to it. The what value is called
 the object's command constant. The BeOS defines some number of command constants
@@ -73,17 +75,17 @@ constants of your own. Keep in mind that the constant's value is
 meaningless--it's just a code that identifies the "intent" of the message (and
 it's only meaningful if the receiver recognizes the constant).
 
-* The two essential functions are :cpp:expr:`AddData()` and :cpp:expr:`FindData()`. These functions add
+The two essential functions are :cpp:expr:`AddData()` and :cpp:expr:`FindData()`. These functions add
 data to a message you're about to send, and retrieve it from a message you just
 received. A :cpp:class:`BMessage` can hold any amount of data; each data item (or "field") is
 identified by name, type, and index. For example, you can ask a message for the
 third boolean value named "IsEnabled" that it contains. In general, you use
 type-specific functions such as :cpp:expr:`Add/FindString()` and :cpp:expr:`Add/FindInt32()` rather than
 :cpp:expr:`Add/FindData()`. The query we just posed would actually look like this::
-	/* The args are: name, index, value (returned by
-	   reference) */
-	bool returnValue;
-	aMessage.FindBool("IsEnabled", 2, &returnValue);
+/* The args are: name, index, value (returned by
+reference) */
+bool returnValue;
+aMessage.FindBool("IsEnabled", 2, &returnValue);
 
 In summary, a :cpp:class:`BMessage` contains (1) a command constant and (2) a set of data
 fields. Every :cpp:class:`BMessage` that's used in the messaging system must have a command
@@ -104,3 +106,5 @@ The BLooper Class
 
 BLooper's role is to receive messages and figure out what to do with them. There
 are four parts to this job, embodied in these functions:
+
+And a link to :cpp:func:`~BMessage::AddBool()`.

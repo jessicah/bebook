@@ -49,38 +49,49 @@ Constructor and Destructor
 Member Functions
 ----------------
 
-:cpp:func:`AddData(), AddBool(), AddInt8(), AddInt16(), AddInt32(), AddInt64(), AddFloat(), AddDouble(), AddString(), AddPoint(), AddRect(), AddRef(), AddMessage(), AddMessenger(), AddPointer(), AddFlat()`
-	::
+.. cpp:function:: status_t AddData(const char* name, type_code type, const void* data, ssize_t numBytes, bool fixedSize = true, int32 numItems = 1)
+.. cpp:function:: status_t BMessage::AddBool(const char* name, bool aBool)
+.. cpp:function:: AddInt8()
+.. cpp:function:: AddInt16()
+.. cpp:function:: AddInt32()
+.. cpp:function:: AddInt64()
+.. cpp:function:: AddFloat()
+.. cpp:function:: AddDouble()
+.. cpp:function:: AddString()
+.. cpp:function:: AddPoint()
+.. cpp:function:: AddRect()
+.. cpp:function:: AddRef()
+.. cpp:function:: AddMessage()
+.. cpp:function:: AddMessenger()
+.. cpp:function:: AddPointer()
+.. cpp:function:: AddFlat()
 
-		status_t AddData(const char* name,
-						type_code type,
-						const void* data,
-						ssize_t numBytes,
-						bool fixedSize = true,
-						int32 numItems = 1);
 
-	::
+status_t AddData(const char* name,
+				type_code type,
+				const void* data,
+				ssize_t numBytes,
+				bool fixedSize = true,
+				int32 numItems = 1);
 
-		status_t AddBool(const char* name,
-						bool aBool);
+status_t AddBool(const char* name,
+				bool aBool);
 
-	::
+status_t AddInt8(const char* name,
+				int8 anInt8);
 
-		status_t AddInt8(const char* name,
-						int8 anInt8);
+These functions add data to the field named :cpp:expr:`name` and assign a data
+type to the field. Field names can be no longer than 255 characters. If more
+than one item of data is added under the same name, the :cpp:class:`BMessage`
+creates an array of data for that name. Each time you add another value (to the
+same name), the value is added to the end of the array--you can't add a value at
+a specific index. A given field can only store one type of data.
 
-	These functions add data to the field named :cpp:expr:`name` and assign a data
-	type to the field. Field names can be no longer than 255 characters. If more
-	than one item of data is added under the same name, the :cpp:class:`BMessage`
-	creates an array of data for that name. Each time you add another value (to the
-	same name), the value is added to the end of the array--you can't add a value at
-	a specific index. A given field can only store one type of data.
-
-	:cpp:func:`AddData()` copies :cpp:expr:`numBytes` of :cpp:expr:`data` into the
-	field, and assigns the data a :cpp:expr:`type` code. It copies whatever the
-	:cpp:expr:`data` pointer points to. For example, if you want to add a string of
-	characters to the message, :cpp:expr:`data` should be the string pointer
-	(:cpp:expr:`char \*`). If you want to add only the string pointer, not the
-	characters themselves, :cpp:expr:`data` should be a pointer to the pointer
-	(:cpp:expr:`char \*\*`). The assigned :cpp:expr:`type` must be a specific data
-	type; it should not be :cpp:enum:`B_ANY_TYPE`.
+:cpp:func:`AddData()` copies :cpp:expr:`numBytes` of :cpp:expr:`data` into the
+field, and assigns the data a :cpp:expr:`type` code. It copies whatever the
+:cpp:expr:`data` pointer points to. For example, if you want to add a string of
+characters to the message, :cpp:expr:`data` should be the string pointer
+(:cpp:expr:`char \*`). If you want to add only the string pointer, not the
+characters themselves, :cpp:expr:`data` should be a pointer to the pointer
+(:cpp:expr:`char \*\*`). The assigned :cpp:expr:`type` must be a specific data
+type; it should not be :cpp:enum:`B_ANY_TYPE`.
