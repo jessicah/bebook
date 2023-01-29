@@ -73,11 +73,15 @@ class CustomHTMLTranslator(HTML5Translator):
         if not self.in_abi_group:
             super().visit_desc_signature_line(node)
         
+        self.body.append('<pre style="background: #f3f3f3">')
+        
     def depart_desc_signature_line(self, node):
         # probably still want the entire signature line
         # for copying into the ABI group later
         if not self.in_abi_group:
             super().depart_desc_signature_line(node)
+        
+        self.body.append('</pre>')
     
     def visit_desc_name(self, node: Element) -> None:
         if not self.in_abi_group:
