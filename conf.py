@@ -12,9 +12,9 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0, os.path.abspath('extensions'))
 
 # -- Project information -----------------------------------------------------
 
@@ -39,6 +39,7 @@ release = ''
 # ones.
 extensions = [
     "myst_parser",
+    "abigroup",
 ]
 
 myst_enable_extensions = [
@@ -64,7 +65,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -104,88 +105,13 @@ html_static_path = ['_static']
 # html_sidebars = {}
 
 
-# -- Options for HTMLHelp output ---------------------------------------------
-
-# Output file base name for HTML help builder.
-htmlhelp_basename = 'TheHaikuBookdoc'
-
-
-# -- Options for LaTeX output ------------------------------------------------
-
-latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #
-    # 'papersize': 'letterpaper',
-
-    # The font size ('10pt', '11pt' or '12pt').
-    #
-    # 'pointsize': '10pt',
-
-    # Additional stuff for the LaTeX preamble.
-    #
-    # 'preamble': '',
-
-    # Latex figure (float) alignment
-    #
-    # 'figure_align': 'htbp',
-}
-
-# Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title,
-#  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    (master_doc, 'TheHaikuBook.tex', 'The Haiku Book Documentation',
-     'Haiku', 'manual'),
-]
-
-
-# -- Options for manual page output ------------------------------------------
-
-# One entry per manual page. List of tuples
-# (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'thehaikubook', 'The Haiku Book Documentation',
-     [author], 1)
-]
-
-
-# -- Options for Texinfo output ----------------------------------------------
-
-# Grouping the document tree into Texinfo files. List of tuples
-# (source start file, target name, title, author,
-#  dir menu entry, description, category)
-texinfo_documents = [
-    (master_doc, 'TheHaikuBook', 'The Haiku Book Documentation',
-     author, 'TheHaikuBook', 'One line description of project.',
-     'Miscellaneous'),
-]
-
-
-# -- Options for Epub output -------------------------------------------------
-
-# Bibliographic Dublin Core info.
-epub_title = project
-
-# The unique identifier of the text. This can be a ISBN number
-# or the project homepage.
-#
-# epub_identifier = ''
-
-# A unique identification for the text.
-#
-# epub_uid = ''
-
-# A list of files that should not be packed into the epub file.
-epub_exclude_files = ['search.html']
-
-
 # -- Additional configuration ------------------------------------------------
 
 smartquotes = True
 
 html_css_files = [
     'css/code.css',
-    'css/hide.css'
+    #'css/hide.css'
 ]
 
 #pygments_style = 'haiku'
@@ -229,47 +155,47 @@ pygments_monkeypatch_style("my_fancy_style", MyFancyStyle)
 pygments_style = "my_fancy_style"
 # END MONKEY-PATCH
 
-def setup(app):
-    from sphinx.highlighting import lexers
-    from pygments.lexers import CppLexer
-    from pygments.filters import Filter
-    from pygments.token import Name
+# def setup(app):
+#     from sphinx.highlighting import lexers
+#     from pygments.lexers import CppLexer
+#     from pygments.filters import Filter
+#     from pygments.token import Name
 
-    class ApiFilter(Filter):
-        def __init__(self, **options):
-            Filter.__init__(self, **options)
+#     class ApiFilter(Filter):
+#         def __init__(self, **options):
+#             Filter.__init__(self, **options)
 
-            with open("classes.txt") as classes:
-                self.classes=[]
-                for line in classes:
-                    self.classes.append(line.strip())
+#             with open("classes.txt") as classes:
+#                 self.classes=[]
+#                 for line in classes:
+#                     self.classes.append(line.strip())
 
-        def filter(self, lexer, stream):
-            is_arrow=False
-            is_hyphen=False
-            for ttype, value in stream:
-                if value in self.classes:
-                    ttype = Name.Class
-                if is_arrow:
-                    if ttype == Name:
-                        ttype = Name.Function
-                    is_arrow=False
-                if value == '-':
-                    is_hyphen=True
-                elif value == '>':
-                    if is_hyphen:
-                        is_arrow=True
-                        is_hyphen=False
-                else:
-                    is_hyphen=False
+#         def filter(self, lexer, stream):
+#             is_arrow=False
+#             is_hyphen=False
+#             for ttype, value in stream:
+#                 if value in self.classes:
+#                     ttype = Name.Class
+#                 if is_arrow:
+#                     if ttype == Name:
+#                         ttype = Name.Function
+#                     is_arrow=False
+#                 if value == '-':
+#                     is_hyphen=True
+#                 elif value == '>':
+#                     if is_hyphen:
+#                         is_arrow=True
+#                         is_hyphen=False
+#                 else:
+#                     is_hyphen=False
                 
-                yield ttype, value
+#                 yield ttype, value
     
-    class ApiLexer(CppLexer):
-        def __init__(self, **options):
-            CppLexer.__init__(self, **options)
-            self.add_filter(ApiFilter())
+#     class ApiLexer(CppLexer):
+#         def __init__(self, **options):
+#             CppLexer.__init__(self, **options)
+#             self.add_filter(ApiFilter())
 
-    app.add_lexer('beapi', ApiLexer)
+#     app.add_lexer('beapi', ApiLexer)
 
-highlight_language = 'beapi'
+# highlight_language = 'beapi'
