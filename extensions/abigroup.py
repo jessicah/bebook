@@ -1,5 +1,5 @@
 from docutils import nodes
-from docutils.nodes import Element
+from docutils.nodes import Element, inline
 from docutils.parsers.rst import Directive, directives
 
 from sphinx.application import Sphinx
@@ -29,7 +29,7 @@ class AbiGroupDirective(Directive):
         text = '\n'.join(self.content)
         node = abigroup(text)
         self.add_name(node)
-        self.state_nested_parse(self.content, self.content_offset, node)
+        self.state.nested_parse(self.content, self.content_offset, node)
         return [node]
 
 class CustomHTMLTranslator(HTML5Translator):
@@ -39,7 +39,16 @@ class CustomHTMLTranslator(HTML5Translator):
         self.in_abi_group = False
     
     # override descriptor nodes to omit content generation in
-    # an abi group
+    # an abi group...
+    #
+    # although... perhaps it would be nice to reuse the code for
+    # an abi group, and also a single function description, to get
+    # the same output.
+    # i.e. still generating an H3 if it's not in an ABI group, and
+    # then adding the code block of the whole signature, as would
+    # be done in an ABI group. And then an ABI group would be a
+    # specialisation of combining multiple signatures into a single
+    # header (and separate code blocks)
     def visit_desc(self, node):
         if not self.in_abi_group:
             super().visit_desc(node)
@@ -91,11 +100,11 @@ class CustomHTMLTranslator(HTML5Translator):
     def depart_abigroup(self, node):
         node.attributes['ids'] = self.signature_ids
         
-        names = []
+        names = set()
         for child in self.signature_names:
-            names.append(''.join(str(c) for c in child[0].children))
+            names.add(''.join(str(c) for c in child[0].children))
         
-        self.body = self.saved_body + [', '.join(names) + '</h3>\n\n'] + self.body
+        self.body = self.saved_body + [self.starttag(node, 'h3') + ', '.join(names) + '</h3>\n\n'] + self.body
 
         self.in_abi_group = False
         self.signature_ids = None
@@ -104,4 +113,8 @@ class CustomHTMLTranslator(HTML5Translator):
 
 def setup(app):
     app.add_directive('abi-group', AbiGroupDirective)
+    app.add_generic_role('hmethod', inline)
+    app.add_generic_role('hclass', inline)
+    app.add_generic_role('hparameter', inline)
+    app.add_generic_role('hfield', inline)
     app.set_translator('html', CustomHTMLTranslator, True)
