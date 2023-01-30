@@ -1,5 +1,34 @@
 # BMessage
 
+A container that can be sent and received using the Haiku messaging subsystem.
+
+This class is at the center of the web of messaging classes, in the sense that it defines the actual
+structure of the messages. Messages have two **important elements**: the `what` identifier, and the
+data members. The first can be directly manipulated, the latter can be manipulated through
+{cpp:func}`~BMessage::AddData()`, {cpp:func}`~BMessage::FindData()` and
+{cpp:func}`~BMessage::ReplaceData()` and their derivatives. Neither of these elements are mandatory.
+
+The second important role of {cpp:class}`BMessage` is that it stores **metadata**: who sent the
+message and with what intention? The methods of {cpp:class}`BMessage` will disclose if the message
+was a reply ({cpp:func}`~BMessage::IsReply()`), where it came from
+({cpp:func}`~BMessage::IsSourceRemote()`), whether a reply is expected
+({cpp:func}`~BMessage::IsSourceWaiting()`), and in case the message is a reply, what it's a reply to
+({cpp:func}`~BMessage::Previous()`).
+
+Mostly, messages are used to pass information between the objects in your application, but because
+messages ae such flexible data containers, they are also often used for other **data storage
+purposes**. Many applications store their settings as messages. Because messages can be flattened to
+data streams (such as files), they provide an easy but powerful tool for data storage.
+
+All methods can be classified in these areas:
+
+- Adding, Finding, Replacing and Removing data.
+- Statistics and miscellaneous information.
+- Delivery information.
+- Utilities to reply to messages.
+
+To see how messages fit in with the greater picture, have a look at the "Messaging Introduction".
+
 ## Data Members
 
 ::::{abi-group}
@@ -184,6 +213,16 @@ See also: {cpp:func}`~BMessage::GetInfo()`.
 ::::
 
 ::::{abi-group}
+
+:::{admonition} Deprecated Methods
+:class: warning
+These methods are likely to be removed in Haiku/R2, as they have been replaced by safer and more
+powerful methods. The replacements return a `bool` of whether the data could be found, and a default
+value to return if it wasn't found, as well as other convenience functions.
+
+These are implemented for the purpose of binary compatibility.
+:::
+
 :::{cpp:function} status_t BMessage::FindData(const char* name, type_code type, int32 index, const void** data, ssize_t* numBytes) const
 :::
 :::{cpp:function} status_t BMessage::FindData(const char* name, type_code type, const void** data, ssize_t* numBytes) const
@@ -379,6 +418,14 @@ See also: {cpp:func}`~BMessage::GetInfo()`, {cpp:func}`~BMessage::AddData()`.
 ::::
 
 ::::{abi-group}
+:::{admonition} ABI
+:class: info
+Because of historical reasons and for binary compatibility, this class provides a flattening API
+without inheriting the {cpp:class}`BFlattenable` class. The API is more or less the same, but you
+are inconvenienced when you want to use messages in methods that handle {cpp:class}`BFlattenable`
+objects.
+:::
+
 :::{cpp:function} status_t BMessage::Flatten(BDataIO* object, ssize_t* numBytes = NULL) const
 :::
 :::{cpp:function} status_t BMessage::Flatten(char* address, ssize_t* numBytes = NULL) const
