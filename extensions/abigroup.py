@@ -22,15 +22,19 @@ class abigroup(Element): pass
 #   directives that are used to generate a combined header
 class AbiGroupDirective(Directive):
     has_content = True
-    required_arguments = 0
+    required_arguments = 1
 
     def run(self):
-        # nested parsing of content added to an abigroup node
-        text = '\n'.join(self.content)
-        node = abigroup(text)
-        self.add_name(node)
-        self.state.nested_parse(self.content, self.content_offset, node)
-        return [node]
+        abinode = abigroup('\n'.join(self.content))
+        id = self.arguments[0].strip()
+        
+        sectionnode = nodes.section(ids=[id])
+        sectionnode += nodes.title(text=id)
+        sectionnode += abinode
+        
+        self.add_name(abinode)
+        self.state.nested_parse(self.content, self.content_offset, abinode)
+        return [sectionnode]
 
 class CustomHTMLTranslator(HTML5Translator):
     def __init__(self, document: nodes.document, builder: Builder) -> None:
@@ -112,8 +116,6 @@ class CustomHTMLTranslator(HTML5Translator):
         try:
             previous = self.signature_names[-2]
             current = self.signature_names[-1]
-            if previous == current:
-                logger.warning('have duplicate name definitions to join... how?')
         except IndexError:
             pass
     
@@ -126,6 +128,17 @@ class CustomHTMLTranslator(HTML5Translator):
     
     def depart_abigroup(self, node):
         node.attributes['ids'] = self.signature_ids
+
+        logger.warning(' **** DEPART ABI GROUP .....')
+        saved_link = ''
+        while True:
+            item = self.saved_body.pop()
+            logger.warning('item = {}'.format(item))
+            if item.startswith('<a'):
+                saved_link = item
+            if item.startswith('<h3>'):
+                break
+        logger.warning(' ===========================')
         
         names = []
         for name in self.signature_names:
@@ -140,8 +153,6 @@ class CustomHTMLTranslator(HTML5Translator):
         self.saved_body = None
     
     def visit_highlight(self, node):
-        logger.warning(node)
-        logger.warning(node.classes)
         self.body.append('<span class="' + node.classes + '">')
     
     def depart_highlight(self, node):

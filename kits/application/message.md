@@ -31,7 +31,7 @@ To see how messages fit in with the greater picture, have a look at the "Messagi
 
 ## Data Members
 
-::::{abi-group}
+::::{abi-group} what
 :::{cpp:member} uint32 BMessage::what
 :::
 
@@ -40,7 +40,7 @@ A coded constant that captures what the message is about.
 
 ## Constructor and Destructor
 
-::::{abi-group}
+::::{abi-group} BMessage()
 :::{cpp:function} BMessage::BMessage(uint32 command)
 :::
 :::{cpp:function} BMessage::BMessage(const BMessage& message)
@@ -55,7 +55,7 @@ Creates a new `BMessage` object that has the given `command` constant, or that's
 See also: {cpp:func}`BLooper::DetachCurrentMessage()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} ~BMessage()
 :::{cpp:function} virtual BMessage::~BMessage()
 :::
 
@@ -69,7 +69,7 @@ delivered `BMessage`s after the application is finished responding to them.
 
 ## Member Functions
 
-::::{abi-group}
+::::{abi-group} AddData()
 
 :::{cpp:function} status_t BMessage::AddData(const char* name, type_code type, const void* data, ssize_t numBytes, bool fixedSize = true, int32 numItems = 1)
 :::
@@ -166,7 +166,7 @@ refer to it in the message.
 See also: {cpp:func}`~BMessage::FindData()`, {cpp:func}`~BMessage::GetInfo()`
 ::::
 
-::::{abi-group}
+::::{abi-group} AddSpecifier()
 :::{cpp:function} status_t BMessage::AddSpecifier(const BMessage* message)
 :::
 :::{cpp:function} status_t BMessage::AddSpecifier(const char* property)
@@ -198,7 +198,7 @@ See also: {cpp:func}`~BMessage::GetCurrentSpecifier()`, {cpp:func}`~BMessage::Ha
 {cpp:func}`~BMessage::PopSpecifier()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} CountNames()
 :::{cpp:function} int32 BMessage::CountNames(type_code type) const
 :::
 
@@ -212,7 +212,7 @@ type, it counts only fields that store data registered as that type.
 See also: {cpp:func}`~BMessage::GetInfo()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} FindData()
 
 :::{admonition} Deprecated Methods
 :class: warning
@@ -396,7 +396,7 @@ object (`AddFlat()`).
 `FindFlat()` assigns the object stored in the `BMessage` to the `object` passed as an argument, it
 calls the `object`'s {cpp:func}`~BMessage::Unflatten()` function and passes it the flat data from
 the message, provided that the two objects have compatible types. The argument object's
-`AllowTypeCode()` function must return {cpp:enum}`true` when tested with the type code stored in the
+`AllowTypeCode()` function must return {cpp:expr}`true` when tested with the type code stored in the
 message; if not, `FindFlat()` fails and returns {cpp:enum}`B_BAD_VALUE`.
 
 If these functions can't find any data associated with `name`, they return a
@@ -417,7 +417,7 @@ directly. These versions don't report errors and may not be supported in the fut
 See also: {cpp:func}`~BMessage::GetInfo()`, {cpp:func}`~BMessage::AddData()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} Flatten()
 :::{admonition} ABI
 :class: info
 Because of historical reasons and for binary compatibility, this class provides a flattening API
@@ -463,7 +463,7 @@ to recreate the whole message, it returns {cpp:enum}`B_NO_MEMORY`. Otherwise, it
 See also: the {cpp:class}`BDataIO` class in the "Support Kit".
 ::::
 
-::::{abi-group}
+::::{abi-group} GetCurrentSpecifier()
 :::{cpp:function} status_t BMessage::GetCurrentSpecifier(int32* index, BMessage* specifier = NULL, int32* what = NULL, const char** property = NULL) const
 :::
 :::{cpp:function} status_t BMessage::PopSpecifier()
@@ -508,7 +508,7 @@ See also: {cpp:func}`~BMessage::AddSpecifier()`, {cpp:func}`~BMessage:HasSpecifi
 {cpp:func}`BHandler::ResolveSpecifier()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} GetInfo()
 :::{cpp:function} status_t BMessage::GetInfo(const char* name, type_code* typeFound, int32* countFound = NULL) const
 :::
 :::{cpp:function} status_t BMessage::GetInfo(const char* name, type_code* typeFound, bool* fixedSize) const
@@ -526,8 +526,8 @@ referred to by {hparameter}`countFound`. It then returns {cpp:enum}`B_OK`. If it
 0, and returns {cpp:enum}`B_NAME_NOT_FOUND` (without modifying the {hparameter}`typeFound` variable).
 
 When the {hparameter}`fixedSize` argument is specified, the bool referenced by {hparameter}`fixedSize`
-is set to {cpp:enum}`true` if all items in the array specified by {hparameter}`name` must be the same
-size, and {cpp:enum}`false` if the items can be of different sizes (see
+is set to {cpp:expr}`true` if all items in the array specified by {hparameter}`name` must be the same
+size, and {cpp:expr}`false` if the items can be of different sizes (see
 {cpp:func}`~BMessage::AddData()`).
 
 When passed a {hparameter}`type` and an {hparameter}`index`, {hmethod}`GetInfo()` looks only at fields
@@ -582,25 +582,25 @@ when {hmethod}`GetInfo()` returns {cpp:enum}`B_NAME_NOT_FOUND`. If the requested
 See also: {cpp:func}`~BMessage::AddData()`, {cpp:func}`~BMessage::FindData()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} HasSpecifiers()
 :::{cpp:function} bool BMessage::HasSpecifiers() const
 :::
 
-Returns {cpp:enum}`true` if the {hclass}`BMessage` has specifiers added by
-{cpp:func}`~BMessage::AddSpecifier()` function, and {cpp:enum}`false` if not.
+Returns {cpp:expr}`true` if the {hclass}`BMessage` has specifiers added by
+{cpp:func}`~BMessage::AddSpecifier()` function, and {cpp:expr}`false` if not.
 
 See also: {cpp:func}`~BMessage::AddSpecifier()`, {cpp:func}`~BMessage::GetCurrentSpecifier()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} IsSystem()
 :::{cpp:function} bool BMessage::IsSystem() const
 :::
 
-Returns {cpp:enum}`true` if the {hfield}`what` data member of the {hclass}`BMessage` object
-identifies it as a system-defined message, and {cpp:enum}`false` if not.
+Returns {cpp:expr}`true` if the {hfield}`what` data member of the {hclass}`BMessage` object
+identifies it as a system-defined message, and {cpp:expr}`false` if not.
 ::::
 
-::::{abi-group}
+::::{abi-group} MakeEmpty(), IsEmpty()
 :::{cpp:function} status_t BMessage::MakeEmpty()
 :::
 :::{cpp:function} bool BMessage::IsEmpty() const
@@ -610,13 +610,13 @@ identifies it as a system-defined message, and {cpp:enum}`false` if not.
 without altering the {hfield}`what` constant. It returns {cpp:enum}`B_OK`, unless the message can't
 be altered (as it can't if it's being dragged), in which case it returns {cpp:enum}`B_ERROR`.
 
-{hmethod}`IsEmpty()` returns {cpp:enum}`true` if the {hclass}`BMessage` has no data (whether or not
-is was emptied by {hmethod}`MakeEmpty()`), and {cpp:enum}`false` if it has some.
+{hmethod}`IsEmpty()` returns {cpp:expr}`true` if the {hclass}`BMessage` has no data (whether or not
+is was emptied by {hmethod}`MakeEmpty()`), and {cpp:expr}`false` if it has some.
 
 See also: {cpp:func}`~BMessage::RemoveName()`
 ::::
 
-::::{abi-group}
+::::{abi-group} PrintToStream()
 :::{cpp:function} void BMessage::PrintToStream() const
 :::
 
@@ -631,7 +631,7 @@ where _name_ is the name that the data is registered under, _type_ is the consta
 what type of data it is, and _count_ is the number of data items in the named array.
 ::::
 
-::::{abi-group}
+::::{abi-group} RemoveName(), RemoveData()
 :::{cpp:function} status_t BMessage::RemoveName(const char* name)
 :::
 :::{cpp:function} status_t BMessage::RemoveData(const char* name, int32 index = 0)
@@ -652,7 +652,7 @@ index is too high), or {cpp:enum}`B_BAD_VALUE` (the value passed is a negative n
 See also: {cpp:func}`~BMessage::MakeEmpty()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} ReplaceData()
 :::{cpp:function} status_t BMessage::ReplaceData(const char* name, type_code type, const void* data, ssize_t numBytes)
 :::
 :::{cpp:function} status_t BMessage::ReplaceData(const char* name, type_code type, int32 index, const void* data, ssize_t numBytes)
@@ -752,7 +752,7 @@ data of the specified type.
 See also: {cpp:func}`~BMessage::AddData()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} ReturnAddress()
 :::{cpp:function} BMessenger BMessage::ReturnAddress()
 :::
 
@@ -768,7 +768,7 @@ reply, you must do so before the {hclass}`BMessage` is deleted and a default rep
 See also: {cpp:func}`~BMessage::SendReply()`, {cpp:func}`~BMessage::WasDelivered()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} SendReply()
 :::{cpp:function} status_t BMessage::SendReply(BMessage* message, BMessage* reply, bigtime_t sendTimeout = B_INFINITE_TIMEOUT, bigtime_t replyTimeout = B_INFINITE_TIMEOUT)
 :::
 :::{cpp:function} status_t BMessage::SendReply(BMessage* message, BHandler* replyHandler = NULL, bigtime_t sendTimeout = B_INFINITE_TIMEOUT)
@@ -868,7 +868,7 @@ See also: {cpp:func}`BMessenger::SendMessage()`, {cpp:func}`BMessenger::DetachCu
 {cpp:func}`~BMessage::ReturnAddress()`.
 ::::
 
-::::{abi-group}
+::::{abi-group} WasDelivered() IsSourceRemote() IsSourceWaiting()
 :::{cpp:function} bool BMessage::WasDelivered() const
 :::
 :::{cpp:function} bool BMessage::IsSourceRemote() const
@@ -884,20 +884,20 @@ These functions can help if you're engaged in an exchange of messages or managin
 communication.
 
 {hmethod}`WasDelivered()` indicates whether it's possible to send a reply to a message. It returns
-{cpp:enum}`true` for a {hclass}`BMessage` that was posted, sent, or dropped -- that is, one that has
-been processed through a message loop---and {cpp:enum}`false` for a message that has not yet been
+{cpp:expr}`true` for a {hclass}`BMessage` that was posted, sent, or dropped -- that is, one that has
+been processed through a message loop---and {cpp:expr}`false` for a message that has not yet been
 delivered by any means.
 
-{hmethod}`IsSourceRemote()` returns {cpp:enum}`true` if the message had its source in another
-application, and {cpp:enum}`false` if the source is local or the message hasn't been delivered yet.
+{hmethod}`IsSourceRemote()` returns {cpp:expr}`true` if the message had its source in another
+application, and {cpp:expr}`false` if the source is local or the message hasn't been delivered yet.
 
-{hmethod}`IsSourceWaiting()` returns {cpp:enum}`true` if the message source is waiting for a
-synchronous reply, and {cpp:enum}`false` if not. The source thread can request and wait for a reply
+{hmethod}`IsSourceWaiting()` returns {cpp:expr}`true` if the message source is waiting for a
+synchronous reply, and {cpp:expr}`false` if not. The source thread can request and wait for a reply
 when calling either {cpp:class}`BMessenger`'s {cpp:func}`~BMessenger::SendMessage()` or
 {hclass}`BMessage`'s {cpp:func}`~BMessage::SendReply()` function.
 
-{hmethod}`IsReply()` returns {cpp:enum}`true` if the {hclass}`BMessage` is a reply to a previous
-message (if it was sent by the {cpp:func}`~BMessage::SendReply()` function), and {cpp:enum}`false`
+{hmethod}`IsReply()` returns {cpp:expr}`true` if the {hclass}`BMessage` is a reply to a previous
+message (if it was sent by the {cpp:func}`~BMessage::SendReply()` function), and {cpp:expr}`false`
 if not.
 
 {hmethod}`Previous()` returns the previous message -- the message to which the current
@@ -918,8 +918,8 @@ See also: {cpp:func}`BMessenger::SendMessage()`, {cpp:func}`~BMessage::SendReply
 :::{cpp:function} BPoint BMessage::DropPoint(BPoint* offset = NULL) const
 :::
 
-{hmethod}`WasDropped()` returns {cpp:enum}`true` if the user delivered the {hclass}`BMessage` by
-dragging and dropping it, and {cpp:enum}`false` if the message was posted or sent in application
+{hmethod}`WasDropped()` returns {cpp:expr}`true` if the user delivered the {hclass}`BMessage` by
+dragging and dropping it, and {cpp:expr}`false` if the message was posted or sent in application
 code or if it hasn't yet been delivered at all.
 
 {hmethod}`DropPoint()` reports the point where the cursor was located when the message was dropped
@@ -929,7 +929,7 @@ based on the image or rectangle the user dragged. The {hparameter}`offset` assum
 system with (0.0, 0.0) at the left top corner of the dragged rectangle or image.
 
 Since any value can be a valid coordinate, {hmethod}`DropPoint()` produces reliable results only if
-{hmethod}`WasDropped()` returns {cpp:enum}`true`.
+{hmethod}`WasDropped()` returns {cpp:expr}`true`.
 
 See also: {cpp:func}`BView::DragMessage()`.
 ::::
