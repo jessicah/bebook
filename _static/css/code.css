@@ -103,3 +103,8 @@ div.highlight > pre {
 	border: none;
 	border-left: orange solid
 }
+
+div.sphinxsidebar {
+	position: fixed;
+	margin-left: -230px;
+}

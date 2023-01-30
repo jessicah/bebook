@@ -1,0 +1,103 @@
+{#
+    haiku/layout.html
+    ~~~~~~~~~~~~~~~~~
+
+    Sphinx layout template for the haiku theme.
+
+    :copyright: Copyright 2007-2023 by the Sphinx team, see AUTHORS.
+    :license: BSD, see LICENSE for details.
+#}
+{%- extends "basic/layout.html" %}
+
+{# do not display relbars #}
+{% block relbar1 %}{% endblock %}
+{% block relbar2 %}{% endblock %}
+
+{% macro nav() %}
+        <p>
+        {%- block haikurel1 %}
+        {%- endblock %}
+        {%- if prev %}
+        «&#160;&#160;<a href="{{ prev.link|e }}">{{ prev.title }}</a>
+        &#160;&#160;::&#160;&#160;
+        {%- endif %}
+        <a class="uplink" href="{{ pathto(root_doc)|e }}">{{ _('Contents') }}</a>
+        {%- if next %}
+        &#160;&#160;::&#160;&#160;
+        <a href="{{ next.link|e }}">{{ next.title }}</a>&#160;&#160;»
+        {%- endif %}
+        {%- block haikurel2 %}
+        {%- endblock %}
+        </p>
+{% endmacro %}
+
+{%- macro sidebar() %}
+      {%- if render_sidebar %}
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+          {%- block sidebarlogo %}
+          {%- if logo_url %}
+            <p class="logo"><a href="{{ pathto(root_doc)|e }}">
+              <img class="logo" src="{{ logo_url|e }}" alt="Logo"/>
+            </a></p>
+          {%- endif %}
+          {%- endblock %}
+          {%- if sidebars != None %}
+            {#- new style sidebar: explicitly include/exclude templates #}
+            {%- for sidebartemplate in sidebars %}
+            {%- include sidebartemplate %}
+            {%- endfor %}
+          {%- else %}
+            {#- old style sidebars: using blocks -- should be deprecated #}
+            {%- block sidebartoc %}
+            {%- include "localtoc.html" %}
+            {%- endblock %}
+          {%- endif %}
+        </div>
+        {%- block sidebarextra %}{%- endblock %}
+      </div>
+      {%- endif %}
+{%- endmacro %}
+
+{% block content %}
+      <div class="header" role="banner">
+        {%- block haikuheader %}
+        {%- if theme_full_logo != "false" %}
+        <a href="{{ pathto('index') }}">
+          <img class="logo" src="{{ logo_url|e }}" alt="Logo"/>
+        </a>
+        {%- else %}
+        {%- if logo -%}
+          <img class="rightlogo" src="{{ logo_url|e }}" alt="Logo"/>
+        {%- endif -%}
+        <h1 class="heading"><a href="{{ pathto('index') }}">
+          <span>{{ shorttitle|e }}</span></a></h1>
+        <h2 class="heading"><span>{{ title|striptags|e }}</span></h2>
+        {%- endif %}
+        {%- endblock %}
+      </div>
+      <div class="topnav" role="navigation" aria-label="top navigation">
+      {{ nav() }}
+      </div>
+        {#{%- if display_toc %}
+        <div id="toc">
+          <h3>{{ _('Table of Contents') }}</h3>
+          {{ toc }}
+        </div>
+        {%- endif %}#}
+        {%- block sidebar2 %}{{ sidebar() }}{% endblock %}
+        {%- if render_sidebar %}
+          <div class="bodywrapper">
+        {%- endif %}
+      <div class="content" role="main">
+        {% block body %}{% endblock %}
+        <div class="clearer"></div>
+      </div>
+        {%- if render_sidebar %}
+          </div>
+        {%- endif %}
+      <div class="bottomnav" role="navigation" aria-label="bottom navigation">
+      {{ nav() }}
+      </div>
+{% endblock %}
+
