@@ -278,6 +278,7 @@ methods and search for named data of a particular type, as described below:
 :::{list-table}
 ---
 header-rows: 1
+align: left
 ---
 -
     - Function
@@ -791,6 +792,7 @@ informative return values are as follows:
 :::{list-table}
 ---
 header-rows: 0
+align: left
 ---
 
 -
