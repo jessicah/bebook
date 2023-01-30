@@ -26,5 +26,5 @@ Unlocks the target {cpp:class}`BLooper` or {cpp:class}`BLocker`.
 :::{cpp:function} inline bool IsLocked()
 :::
 
-Returns {cpp:enum}`true` if the target {cpp:class}`BLooper` or {cpp:class}`BLocker` is locked, and {cpp:enum}`false` if not.
+Returns {cpp:expr}`true` if the target {cpp:class}`BLooper` or {cpp:class}`BLocker` is locked, and {cpp:expr}`false` if not.
 ::::
