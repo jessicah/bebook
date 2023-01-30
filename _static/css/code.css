@@ -108,3 +108,19 @@ div.sphinxsidebar {
 	position: fixed;
 	margin-left: -230px;
 }
+
+@media screen and (min-width: calc(79em + 230px)) {
+	div.content {
+		margin-left: 0
+	}
+}
+
+@media screen and (max-width: calc(79em + 230px)) {
+	div.sphinxsidebar {
+		margin-left: 0;
+	}
+
+	div.content {
+		margin-left: 230px;
+	}
+}
