@@ -183,7 +183,75 @@ type, it counts only fields that store data registered as that type.
 See also: {cpp:func}`~BMessage::GetInfo()`.
 ::::
 
-### FindData(), FindBool(), FindInt8(), FindInt16(), FindInt32(), FindInt64(), FindFloat(), FindDouble(), FindString(), FindPoint(), FindRect(), FindRef(), FindMessage(), FindMessenger(), FindPointer(), FindFlat()
+::::{abi-group}
+:::{cpp:function} status_t BMessage::FindData(const char* name, type_code type, int32 index, const void** data, ssize_t* numBytes) const
+:::
+:::{cpp:function} status_t BMessage::FindData(const char* name, type_code type, const void** data, ssize_t* numBytes) const
+:::
+:::{cpp:function} status_t BMessage::FindBool(const char* name, int32 index, bool* aBool) const
+:::
+:::{cpp:function} status_t BMessage::FindBool(const char* name, bool* aBool) const
+:::
+:::{cpp:function} status_t BMessage::FindInt8(const char* name, int32 index, int8* anInt8) const
+:::
+:::{cpp:function} status_t BMessage::FindInt8(const char* name, int8* anInt8) const
+:::
+:::{cpp:function} status_t BMessage::FindInt16(const char* name, int32 index, int16* anInt16) const
+:::
+:::{cpp:function} status_t BMessage::FindInt16(const char* name, int16* anInt16) const
+:::
+:::{cpp:function} status_t BMessage::FindInt32(const char* name, int32 index, int32* anInt32) const
+:::
+:::{cpp:function} status_t BMessage::FindInt32(const char* name, int32* anInt32) const
+:::
+:::{cpp:function} status_t BMessage::FindInt64(const char* name, int32 index, int64* anInt64) const
+:::
+:::{cpp:function} status_t BMessage::FindInt64(const char* name, int64* anInt64) const
+:::
+:::{cpp:function} status_t BMessage::FindFloat(const char* name, int32 index, float* aFloat) const
+:::
+:::{cpp:function} status_t BMessage::FindFloat(const char* name, float* aFloat) const
+:::
+:::{cpp:function} status_t BMessage::FindDouble(const char* name, int32 index, double* aDouble) const
+:::
+:::{cpp:function} status_t BMessage::FindDouble(const char* name, double* aDouble) const
+:::
+:::{cpp:function} status_t BMessage::FindString(const char* name, int32 index, const char** string) const
+:::
+:::{cpp:function} status_t BMessage::FindString(const char* name, const char** string) const
+:::
+:::{cpp:function} status_t BMessage::FindString(const char* name, int32 index, BString* string) const
+:::
+:::{cpp:function} status_t BMessage::FindString(const char* name, BString* string) const
+:::
+:::{cpp:function} status_t BMessage::FindPoint(const char* name, int32 index, BPoint* point) const
+:::
+:::{cpp:function} status_t BMessage::FindPoint(const char* name, BPoint* point) const
+:::
+:::{cpp:function} status_t BMessage::FindRect(const char* name, int32 index, BRect* rect) const
+:::
+:::{cpp:function} status_t BMessage::FindRect(const char* name, BRect* rect) const
+:::
+:::{cpp:function} status_t BMessage::FindRef(const char* name, int32 index, entry_ref* ref) const
+:::
+:::{cpp:function} status_t BMessage::FindRef(const char* name, entry_ref* ref) const
+:::
+:::{cpp:function} status_t BMessage::FindMessage(const char* name, int32 index, BMessage* message) const
+:::
+:::{cpp:function} status_t BMessage::FindMessage(const char* name, BMessage* message) const
+:::
+:::{cpp:function} status_t BMessage::FindMessenger(const char* name, int32 index, BMessenger* messenger) const
+:::
+:::{cpp:function} status_t BMessage::FindMessenger(const char* name, BMessenger* messenger) const
+:::
+:::{cpp:function} status_t BMessage::FindPointer(const char* name, int32 index, void** pointer) const
+:::
+:::{cpp:function} status_t BMessage::FindPointer(const char* name, void** pointer) const
+:::
+:::{cpp:function} status_t BMessage::FindFlat(const char* name, int32 index, BFlattenable* object) const
+:::
+:::{cpp:function} status_t BMessage::FindFlat(const char* name, BFlattenable* object) const
+:::
 
 These functions retrieve data from the `BMessage`. Each looks for data stored under the specified
 `name`. If more than one data item has the same name, an `index` can be provided to tell the
@@ -307,6 +375,7 @@ Find a data item doesn't remove it from the `BMessage`.
 directly. These versions don't report errors and may not be supported in the future.)
 
 See also: {cpp:func}`~BMessage::GetInfo()`, {cpp:func}`~BMessage::AddData()`.
+::::
 
 ::::{abi-group}
 :::{cpp:function} status_t BMessage::Flatten(BDataIO* object, ssize_t* numBytes = NULL) const
@@ -535,7 +604,75 @@ index is too high), or {cpp:enum}`B_BAD_VALUE` (the value passed is a negative n
 See also: {cpp:func}`~BMessage::MakeEmpty()`.
 ::::
 
-### ReplaceData(), ReplaceBool(), ReplaceInt8(), ReplaceInt16(), ReplaceInt32(), ReplaceInt64(), ReplaceFloat(), ReplaceDouble(), ReplaceString(), ReplacePoint(), ReplaceRect(), ReplaceRef(), ReplaceMessage(), ReplaceMessenger(), ReplacePointer(), ReplaceFlat()
+::::{abi-group}
+:::{cpp:function} status_t BMessage::ReplaceData(const char* name, type_code type, const void* data, ssize_t numBytes)
+:::
+:::{cpp:function} status_t BMessage::ReplaceData(const char* name, type_code type, int32 index, const void* data, ssize_t numBytes)
+:::
+:::{cpp:function} status_t BMessage::ReplaceBool(const char* name, bool aBool)
+:::
+:::{cpp:function} status_t BMessage::ReplaceBool(const char* name, int32 index, bool aBool)
+:::
+:::{cpp:function} status_t BMessage::ReplaceInt8(const char* name, int8 anInt8)
+:::
+:::{cpp:function} status_t BMessage::ReplaceInt8(const char* name, int32 index, int8 anInt8)
+:::
+:::{cpp:function} status_t BMessage::ReplaceInt16(const char* name, int16 anInt16)
+:::
+:::{cpp:function} status_t BMessage::ReplaceInt16(const char* name, int32 index, int16 anInt16)
+:::
+:::{cpp:function} status_t BMessage::ReplaceInt32(const char* name, int32 anInt32)
+:::
+:::{cpp:function} status_t BMessage::ReplaceInt32(const char* name, int32 index, int32 anInt32)
+:::
+:::{cpp:function} status_t BMessage::ReplaceInt64(const char* name, int64 anInt64)
+:::
+:::{cpp:function} status_t BMessage::ReplaceInt64(const char* name, int32 index, int64 anInt64)
+:::
+:::{cpp:function} status_t BMessage::ReplaceFloat(const char* name, float aFloat)
+:::
+:::{cpp:function} status_t BMessage::ReplaceFloat(const char* name, int32 index, float aFloat)
+:::
+:::{cpp:function} status_t BMessage::ReplaceDouble(const char* name, double aDouble)
+:::
+:::{cpp:function} status_t BMessage::ReplaceDouble(const char* name, int32 index, double aDouble)
+:::
+:::{cpp:function} status_t BMessage::ReplaceString(const char* name, const char* aString)
+:::
+:::{cpp:function} status_t BMessage::ReplaceString(const char* name, int32 index, const char* aString)
+:::
+:::{cpp:function} status_t BMessage::ReplaceString(const char* name, BString& aString)
+:::
+:::{cpp:function} status_t BMessage::ReplaceString(const char* name, int32 index, BString& aString)
+:::
+:::{cpp:function} status_t BMessage::ReplacePoint(const char* name, BPoint point)
+:::
+:::{cpp:function} status_t BMessage::ReplacePoint(const char* name, int32 index, BPoint point)
+:::
+:::{cpp:function} status_t BMessage::ReplaceRect(const char* name, BRect rect)
+:::
+:::{cpp:function} status_t BMessage::ReplaceRect(const char* name, int32 index, BRect rect)
+:::
+:::{cpp:function} status_t BMessage::ReplaceRef(const char* name, entry_ref* ref)
+:::
+:::{cpp:function} status_t BMessage::ReplaceRef(const char* name, int32 index, entry_ref* ref)
+:::
+:::{cpp:function} status_t BMessage::ReplaceMessage(const char* name, BMessage* message)
+:::
+:::{cpp:function} status_t BMessage::ReplaceMessage(const char* name, int32 index, BMessage* message)
+:::
+:::{cpp:function} status_t BMessage::ReplaceMessenger(const char* name, BMessenger messenger)
+:::
+:::{cpp:function} status_t BMessage::ReplaceMessenger(const char* name, int32 index, BMessenger messenger)
+:::
+:::{cpp:function} status_t BMessage::ReplacePointer(const char* name, const void* pointer)
+:::
+:::{cpp:function} status_t BMessage::ReplacePointer(const char* name, int32 index, const void* pointer)
+:::
+:::{cpp:function} status_t BMessage::ReplaceFlat(const char* name, BFlattenable* object)
+:::
+:::{cpp:function} status_t BMessage::ReplaceFlat(const char* name, int32 index, BFlattenable* object)
+:::
 
 These functions replace a data item in the {hparameter}`name` field with another item passed as an
 argument. If an {hparameter}`index` is provided, they replace the item in the {hparameter}`name`
@@ -565,6 +702,7 @@ the {hparameter}`name` field doesn't exist, or {cpp:enum}`B_BAD_TYPE` if the fie
 data of the specified type.
 
 See also: {cpp:func}`~BMessage::AddData()`.
+::::
 
 ::::{abi-group}
 :::{cpp:function} BMessenger BMessage::ReturnAddress()
