@@ -127,9 +127,10 @@ class CustomHTMLTranslator(HTML5Translator):
     def depart_abigroup(self, node):
         node.attributes['ids'] = self.signature_ids
         
-        names = set()
+        names = []
         for name in self.signature_names:
-            names.add(name)
+            if name not in names:
+                names.append(name)
         
         self.body = self.saved_body + [self.starttag(node, 'h3') + ', '.join(names) + '</h3>\n\n'] + ['<div class="wrapper">'] + self.body + ['</div>\n\n']
 
