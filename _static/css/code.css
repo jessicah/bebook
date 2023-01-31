@@ -130,3 +130,29 @@ code {
 	background: none;
 	font-size: 1.2em
 }
+
+h1.heading {
+	background: url('../haiku_logo_black.png') no-repeat scroll 0 0 transparent
+}
+
+/* some temporary hackage */
+div.header {
+	font: 400 14px/22px "Noto Sans",Arial,sans-serif
+}
+h1.heading {
+	height: 100%
+}
+h1.heading > a {
+	position: relative;
+	top: 40px;
+	left: 272px;
+	color: #333;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-family: "Myriad Pro","Lucida Grande","Geneva","Trebuchet MS",sans-serif;
+	font-weight: normal;
+	font-size: 75%;
+}
+h2.heading {
+	display: none
+}

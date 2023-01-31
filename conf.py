@@ -27,6 +27,8 @@ version = ''
 # The full version, including alpha/beta/rc tags
 release = ''
 
+html_short_title = "API Documentation"
+
 
 # -- General configuration ---------------------------------------------------
 
