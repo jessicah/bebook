@@ -8,7 +8,10 @@ SOURCEDIR     = .
 BUILDDIR      = _build
 
 all:
+	# always clean first
+	rm -r _build
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
