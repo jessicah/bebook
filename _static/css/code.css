@@ -109,7 +109,7 @@ div.sphinxsidebar {
 	position: fixed;
 	margin-left: -230px;
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
 	height: calc(100vh - 105px)
 }
 
