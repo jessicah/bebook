@@ -1,5 +1,59 @@
 # BMessage
 
+Documentation Organisation in Haiku Book:
+
+- Public Member Functions (ctor/dtor here)
+- Allocation Operations
+    - operator=
+    - operator new
+    - operator delete
+- Statistics and Miscellaneous Information
+    - GetInfo
+    - CountNames
+    - IsEmpty
+    - IsSystem -- really?
+    - IsReply -- one of the others seems better to me...
+    - PrintToStream
+    - Rename -- uh?
+- Delivery Information
+    - WasDelivered
+    - IsSourceWaiting
+    - IsSourceRemote
+    - ReturnAddress
+    - Previous
+    - WasDropped
+    - DropPoint
+- Replying
+    - SendReply
+- Flattening
+    - FlattenedSize
+    - Flatten
+    - Unflatten
+- Specifiers (Scripting)
+    - AddSpecifier
+    - SetCurrentSpecifier
+    - GetCurrentSpecifier
+    - HasSpecifiers
+- Adding Data
+    - Add...
+- Removing Data
+    - RemoveData
+    - RemoveName
+    - MakeEmpty
+- Finding Data
+    - Find... returning status_t
+- Replacing Data
+    - Replace...
+- Message Comparison
+    - HasSameData
+- Finding Data (Deprecated)
+    - Has...
+    - Find... returning value
+- Getting Data
+    - Get...
+- Setting Data
+    - Set...
+
 A container that can be sent and received using the Haiku messaging subsystem.
 
 This class is at the center of the web of messaging classes, in the sense that it defines the actual
@@ -31,7 +85,7 @@ To see how messages fit in with the greater picture, have a look at the "Messagi
 
 ## Data Members
 
-::::{abi-group} what
+::::{abi-group}
 :::{cpp:member} uint32 BMessage::what
 :::
 
@@ -40,7 +94,7 @@ A coded constant that captures what the message is about.
 
 ## Constructor and Destructor
 
-::::{abi-group} BMessage()
+::::{abi-group}
 :::{cpp:function} BMessage::BMessage(uint32 command)
 :::
 :::{cpp:function} BMessage::BMessage(const BMessage& message)
@@ -55,7 +109,7 @@ Creates a new {hclass}`BMessage` object that has the given {hparam}`command` con
 See also: {cpp:func}`BLooper::DetachCurrentMessage()`.
 ::::
 
-::::{abi-group} ~BMessage()
+::::{abi-group}
 :::{cpp:function} virtual BMessage::~BMessage()
 :::
 
@@ -69,11 +123,11 @@ delivered {hclass}`BMessage`s after the application is finished responding to th
 
 ## Member Functions
 
-::::{abi-group} AddData()
+::::{abi-group}
 
 :::{cpp:function} status_t BMessage::AddData(const char* name, type_code type, const void* data, ssize_t numBytes, bool fixedSize = true, int32 numItems = 1)
 :::
-:::{cpp:function} status_t BMessage::BMessage::AddBool(const char* name, bool data)
+:::{cpp:function} status_t BMessage::AddBool(const char* name, bool data)
 :::
 :::{cpp:function} status_t BMessage::AddInt8(const char* name, int8 data)
 :::
@@ -166,7 +220,7 @@ refer to it in the message.
 See also: {cpp:func}`~BMessage::FindData()`, {cpp:func}`~BMessage::GetInfo()`
 ::::
 
-::::{abi-group} AddSpecifier()
+::::{abi-group}
 :::{cpp:function} status_t BMessage::AddSpecifier(const BMessage* message)
 :::
 :::{cpp:function} status_t BMessage::AddSpecifier(const char* property)
@@ -198,7 +252,7 @@ See also: {cpp:func}`~BMessage::GetCurrentSpecifier()`, {cpp:func}`~BMessage::Ha
 {cpp:func}`~BMessage::PopSpecifier()`.
 ::::
 
-::::{abi-group} CountNames()
+::::{abi-group}
 :::{cpp:function} int32 BMessage::CountNames(type_code type) const
 :::
 
@@ -212,7 +266,7 @@ type, it counts only fields that store data registered as that type.
 See also: {cpp:func}`~BMessage::GetInfo()`.
 ::::
 
-::::{abi-group} FindData()
+::::{abi-group}
 
 :::{admonition} Deprecated Methods
 :class: warning
@@ -417,7 +471,7 @@ directly. These versions don't report errors and may not be supported in the fut
 See also: {cpp:func}`~BMessage::GetInfo()`, {cpp:func}`~BMessage::AddData()`.
 ::::
 
-::::{abi-group} Flatten()
+::::{abi-group}
 :::{admonition} ABI
 :class: info
 Because of historical reasons and for binary compatibility, this class provides a flattening API
@@ -463,7 +517,7 @@ to recreate the whole message, it returns {cpp:enum}`B_NO_MEMORY`. Otherwise, it
 See also: the {cpp:class}`BDataIO` class in the "Support Kit".
 ::::
 
-::::{abi-group} GetCurrentSpecifier()
+::::{abi-group}
 :::{cpp:function} status_t BMessage::GetCurrentSpecifier(int32* index, BMessage* specifier = NULL, int32* what = NULL, const char** property = NULL) const
 :::
 :::{cpp:function} status_t BMessage::PopSpecifier()
@@ -504,11 +558,11 @@ message loop. When it fails, {hmethod}`GetCurrentSpecifier()` returns
 {cpp:enum}`B_BAD_SCRIPT_SYNTAX`, but {hmethod}`PopSpecifier()` returns {cpp:enum}`B_BAD_VALUE`. On
 success, both functions return {cpp:enum}`B_OK`.
 
-See also: {cpp:func}`~BMessage::AddSpecifier()`, {cpp:func}`~BMessage:HasSpecifier()`,
+See also: {cpp:func}`~BMessage::AddSpecifier()`, {cpp:func}`~BMessage::HasSpecifiers()`,
 {cpp:func}`BHandler::ResolveSpecifier()`.
 ::::
 
-::::{abi-group} GetInfo()
+::::{abi-group}
 :::{cpp:function} status_t BMessage::GetInfo(const char* name, type_code* typeFound, int32* countFound = NULL) const
 :::
 :::{cpp:function} status_t BMessage::GetInfo(const char* name, type_code* typeFound, bool* fixedSize) const
@@ -582,7 +636,7 @@ when {hmethod}`GetInfo()` returns {cpp:enum}`B_NAME_NOT_FOUND`. If the requested
 See also: {cpp:func}`~BMessage::AddData()`, {cpp:func}`~BMessage::FindData()`.
 ::::
 
-::::{abi-group} HasSpecifiers()
+::::{abi-group}
 :::{cpp:function} bool BMessage::HasSpecifiers() const
 :::
 
@@ -592,7 +646,7 @@ Returns {cpp:expr}`true` if the {hclass}`BMessage` has specifiers added by
 See also: {cpp:func}`~BMessage::AddSpecifier()`, {cpp:func}`~BMessage::GetCurrentSpecifier()`.
 ::::
 
-::::{abi-group} IsSystem()
+::::{abi-group}
 :::{cpp:function} bool BMessage::IsSystem() const
 :::
 
@@ -600,7 +654,7 @@ Returns {cpp:expr}`true` if the {hfield}`what` data member of the {hclass}`BMess
 identifies it as a system-defined message, and {cpp:expr}`false` if not.
 ::::
 
-::::{abi-group} MakeEmpty(), IsEmpty()
+::::{abi-group}
 :::{cpp:function} status_t BMessage::MakeEmpty()
 :::
 :::{cpp:function} bool BMessage::IsEmpty() const
@@ -616,7 +670,7 @@ is was emptied by {hmethod}`MakeEmpty()`), and {cpp:expr}`false` if it has some.
 See also: {cpp:func}`~BMessage::RemoveName()`
 ::::
 
-::::{abi-group} PrintToStream()
+::::{abi-group}
 :::{cpp:function} void BMessage::PrintToStream() const
 :::
 
@@ -631,7 +685,7 @@ where _name_ is the name that the data is registered under, _type_ is the consta
 what type of data it is, and _count_ is the number of data items in the named array.
 ::::
 
-::::{abi-group} RemoveName(), RemoveData()
+::::{abi-group}
 :::{cpp:function} status_t BMessage::RemoveName(const char* name)
 :::
 :::{cpp:function} status_t BMessage::RemoveData(const char* name, int32 index = 0)
@@ -652,7 +706,7 @@ index is too high), or {cpp:enum}`B_BAD_VALUE` (the value passed is a negative n
 See also: {cpp:func}`~BMessage::MakeEmpty()`.
 ::::
 
-::::{abi-group} ReplaceData()
+::::{abi-group}
 :::{cpp:function} status_t BMessage::ReplaceData(const char* name, type_code type, const void* data, ssize_t numBytes)
 :::
 :::{cpp:function} status_t BMessage::ReplaceData(const char* name, type_code type, int32 index, const void* data, ssize_t numBytes)
@@ -752,7 +806,7 @@ data of the specified type.
 See also: {cpp:func}`~BMessage::AddData()`.
 ::::
 
-::::{abi-group} ReturnAddress()
+::::{abi-group}
 :::{cpp:function} BMessenger BMessage::ReturnAddress()
 :::
 
@@ -768,7 +822,7 @@ reply, you must do so before the {hclass}`BMessage` is deleted and a default rep
 See also: {cpp:func}`~BMessage::SendReply()`, {cpp:func}`~BMessage::WasDelivered()`.
 ::::
 
-::::{abi-group} SendReply()
+::::{abi-group}
 :::{cpp:function} status_t BMessage::SendReply(BMessage* message, BMessage* reply, bigtime_t sendTimeout = B_INFINITE_TIMEOUT, bigtime_t replyTimeout = B_INFINITE_TIMEOUT)
 :::
 :::{cpp:function} status_t BMessage::SendReply(BMessage* message, BHandler* replyHandler = NULL, bigtime_t sendTimeout = B_INFINITE_TIMEOUT)
@@ -868,7 +922,7 @@ See also: {cpp:func}`BMessenger::SendMessage()`, {cpp:func}`BMessenger::DetachCu
 {cpp:func}`~BMessage::ReturnAddress()`.
 ::::
 
-::::{abi-group} WasDelivered() IsSourceRemote() IsSourceWaiting()
+::::{abi-group}
 :::{cpp:function} bool BMessage::WasDelivered() const
 :::
 :::{cpp:function} bool BMessage::IsSourceRemote() const
@@ -877,7 +931,7 @@ See also: {cpp:func}`BMessenger::SendMessage()`, {cpp:func}`BMessenger::DetachCu
 :::
 :::{cpp:function} bool BMessage::IsReply() const
 :::
-:::{cpp:function} const BMessage::BMessage* Previous() const
+:::{cpp:function} const BMessage* BMessage::Previous() const
 :::
 
 These functions can help if you're engaged in an exchange of messages or managing an ongoing
