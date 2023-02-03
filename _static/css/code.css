@@ -108,6 +108,13 @@ div.highlight > pre {
 div.sphinxsidebar {
 	position: fixed;
 	margin-left: -230px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: calc(100vh - 105px)
+}
+
+div.sphinxsidebar a:link {
+	font-weight: normal
 }
 
 @media screen and (min-width: calc(79em + 230px)) {

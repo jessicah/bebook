@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('extensions'))
 # -- Project information -----------------------------------------------------
 
 project = 'The Haiku Book'
-copyright = '2022, Haiku'
+copyright = '2023, Haiku, Inc.'
 author = 'Haiku'
 
 # The short X.Y version
