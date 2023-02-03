@@ -473,7 +473,7 @@ See also: {cpp:func}`~BMessage::GetInfo()`, {cpp:func}`~BMessage::AddData()`.
 
 ::::{abi-group}
 :::{admonition} ABI
-:class: info
+:class: note
 Because of historical reasons and for binary compatibility, this class provides a flattening API
 without inheriting the {cpp:class}`BFlattenable` class. The API is more or less the same, but you
 are inconvenienced when you want to use messages in methods that handle {cpp:class}`BFlattenable`
