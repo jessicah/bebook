@@ -1037,4 +1037,5 @@ what other information the specifier contains, and how it should be interpreted.
 backwards from the end of a list. A {cpp:enum}`B_NAME_SPECIFIER` message includes a {hfield}`name`
 field that names the requested item.
 
-See also: {cpp:func}`~BMessage::AddSpecifier()`, the "Scripting" chapter.
+See also: {cpp:func}`~BMessage::AddSpecifier()`, the
+["Scripting"](/system-overview//application/scripting) chapter.
