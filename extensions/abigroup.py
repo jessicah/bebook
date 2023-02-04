@@ -47,10 +47,9 @@ class AbiGroupDirective(Directive):
         subsections = []
 
         for (index, descriptor) in zip(indices, descriptors):
-            descriptor.ismethod = True if self.search(descriptor, addnodes.desc_parameterlist) else False
+            descriptor.ismethod = descriptor.attributes['desctype'] != 'member'
             name = self.search(descriptor, addnodes.desc_name)
-            signature_line = self.search(descriptor, addnodes.desc_signature_line)
-
+            
             assert name, 'abi-group: unable to find a function/member'
             ix = name.first_child_matching_class(addnodes.desc_sig_name)
             if ix == None or ix < 0:
@@ -60,7 +59,7 @@ class AbiGroupDirective(Directive):
             title = name[ix].astext() + ('()' if descriptor.ismethod else '')
             if title not in header_text:
                 header_text.append(title)
-                signature_line.issame = False
+                descriptor.issame = False
 
                 id = index.attributes['entries'][0][2]
 
@@ -70,7 +69,7 @@ class AbiGroupDirective(Directive):
                 subsectionnode += subsectiontitle
                 subsections.append(subsectionnode)
             else:
-                signature_line.issame = True
+                descriptor.issame = True
 
         sectiontitle = abigrouptitle()
         sectiontitle.text = ', '.join(header_text)
@@ -82,6 +81,10 @@ class CustomHTMLTranslator(HTML5Translator):
     def __init__(self, document: nodes.document, builder: Builder) -> None:
         super().__init__(document, builder)
         self.in_abi_group = False
+    
+    def visit_document(self, node):
+        if 'functions' in node.attributes['source'] or 'message' in node.attributes['source']:
+            print(node)
 
     def visit_abigrouptitle(self, node):
         heading = f'h{self.section_level + 1}'
@@ -106,22 +109,6 @@ class CustomHTMLTranslator(HTML5Translator):
         super().depart_title(node)
 
     def visit_desc(self, node):
-        if not self.in_abi_group:
-            super().visit_desc(node)
-
-    def depart_desc(self, node):
-        if not self.in_abi_group:
-            super().depart_desc(node)
-
-    def visit_desc_signature(self, node: Element) -> None:
-        if not self.in_abi_group:
-            super().visit_desc_signature(node)
-
-    def depart_desc_signature(self, node):
-        if not self.in_abi_group:
-            super().depart_desc_signature(node)
-
-    def visit_desc_signature_line(self, node):
         omittag = self.in_abi_group and hasattr(node, 'issame') and node.issame == True
 
         if omittag:
@@ -130,8 +117,24 @@ class CustomHTMLTranslator(HTML5Translator):
         else:
             self.body.append('<pre style="background: #f3f3f3; line-height: 2em">')
 
-    def depart_desc_signature_line(self, node):
+    def depart_desc(self, node):
         self.body.append('</pre>')
+
+    def visit_desc_signature(self, node: Element) -> None:
+        if not self.in_abi_group:
+            super().visit_desc_signature(node)
+
+    def depart_desc_signature(self, node):
+        if not self.in_abi_group:
+            super().depart_desc_signature(node)        
+
+    def visit_desc_signature_line(self, node):
+        if not self.in_abi_group:
+            super().visit_desc_signature_line(node)
+
+    def depart_desc_signature_line(self, node):
+        if not self.in_abi_group:
+            super().depart_desc_signature_line(node)
 
     def visit_desc_content(self, node):
         if not self.in_abi_group:
