@@ -112,7 +112,7 @@ See also: {cpp:func}`~BList::LastItem()`, {cpp:func}`~BList::ItemAt()`
 ::::
 
 ::::{abi-group}
-:::{cpp:func} bool BList::HasItem() const
+:::{cpp:function} bool BList::HasItem() const
 :::
 
 Returns {cpp:expr}`true` if item is in the list, and {cpp:expr}`false` if not.
