@@ -94,12 +94,11 @@ in this kit and {cpp:class}`BFile` in the "Storage Kit" implement {hmethod}`SetS
 that override this default.
 ::::
 
-::::{abi-group} "Write(), WriteAt()"
+::::{abi-group}
 
 :::{cpp:function} virtual ssize_t BPositionIO::Write(const void* buffer, size_t numBytes)
 :::
-:::{cpp:function} virtual ssize_t BPositionIO::WriteAt(off_t position, const void* buffer, size_t
-numBytes) = 0
+:::{cpp:function} virtual ssize_t BPositionIO::WriteAt(off_t position, const void* buffer, size_t numBytes) = 0
 :::
 
 {hmethod}`Write()` copies {hparam}`numBytes` bytes of data from the object into the
