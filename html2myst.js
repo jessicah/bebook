@@ -1,10 +1,8 @@
 
 var contents = '';
 
-// start of the tree to parse
 var mainSection = document.querySelector('body > div.section');
 
-// first instance is the class name
 var className = document.querySelector('body > div.section > div.titlepage').innerText;
 
 contents += `# ${className}\n\n`;
@@ -31,24 +29,20 @@ for (var ix = 0; ix < sections.length; ++ix)
 		{
 			var child = subSection.children[iz];
 
-			//console.log(child);
-			//console.log(child.innerText);
-
 			if (child.matches('div.titlepage'))
 				continue;
 			
 			if (child.matches('code')) {
-				// probably the function...
-				var text = child.innerText
-					.replaceAll('\n', ' ')
-					.replaceAll(/[\t \xa0]+/g, ' ') // tab, space, nbsp
-					.replace(/;$/, '');
-				text = text.replace(/([a-zA-Z0-9_]+)\(/,
-						(match, name, offset, string, groups) => {
-							return `${className}::${name}(`;
-						});
-				contents += `:::{cpp:function} ${text}\n:::\n`;
+				dumpDeclaration(child);
 				continue;
+			}
+
+			if (child.matches('div.synopsisgroup')) {
+				for (var iw = 0; iw < child.children.length; ++iw) {
+					if (child.children[iw].matches('code')) {
+						dumpDeclaration(child.children[iw]);
+					}
+				}
 			}
 
 			contents += '\n';
@@ -59,17 +53,65 @@ for (var ix = 0; ix < sections.length; ++ix)
 	}
 }
 
+function dumpDeclaration(code)
+{
+	var text = code.innerText
+		.replaceAll('\n', ' ')
+		.replaceAll(/[\t \xa0]+/g, ' ') // tab, space, nbsp
+		.replace(/;$/, '');
+	if (text.startsWith('global') && text.indexOf('operator') >= 0) {
+		// global operator overloading... return as-is
+		contents += `:::{cpp:function} ${text.replace(/^global/, '')}\n:::\n`;
+	} else {
+		let isGlobal = text.endsWith('global');
+		if (isGlobal) {
+			// non-member functions, in the global namespace
+			contents += `:::{cpp:function} ${text.replace(/global$/, '')}\n:::\n`;
+		} else {
+			text = text.replace(/([a-zA-Z0-9_]+)\(/,
+					(match, name, offset, string, groups) => {
+						return `${className}::${name}(`;
+					})
+					.replace(/(operator[+\-*\/%^&|~!=<>!,()[\]]{1,3})\(/,
+					(match, name, offset, string, groups) => {
+						return `${className}::${name}(`;
+					});
+			contents += `:::{cpp:function} ${text}\n:::\n`;
+		}
+	}
+}
+
 function dumpNode(element)
 {
 	if (element.matches('p'))
 	{
-		// paragraph, with possible nested formatting...
 		dumpParagraph(element);
+	}
+	else if (element.matches('div') && element.className.indexOf('admonition') >= 0)
+	{
+		let paragraphs = element.querySelectorAll('p');
+		let title = element.querySelector('div.title');
+		let type = element.className.replace('admonition', '').trim();
+
+		contents += `:::{admonition} ${title.innerText}\n`;
+		contents += `:class: ${type}\n`;
+
+		for (let ix = 0; ix < paragraphs.length; ++ix) {
+			dumpParagraph(paragraphs[ix]);
+		}
+
+		contents += '\n:::\n\n';
+	}
+	else if (element.matches('pre'))
+	{
+		contents += ':::{code}\n';
+		contents += element.textContent;
+		contents += '\n:::\n';
 	}
 
 	if (element.matches('table'))
 	{
-		// output a table
+		// output a table... should be able to automate this too...
 		contents += ':::{list-table}\n:::\n\n';
 	}
 }
@@ -139,6 +181,26 @@ function dumpInline(node)
 			contents += `{${type}}\`${codeNode.textContent}\``;
 		}
 	}
+	else if (node.matches('span'))
+	{
+		if (node.className == 'code')
+			contents += `\`${node.textContent}\``;
+		else
+			contents += node.textContent;
+	}
+	else
+	{
+		contents += node.textContent;
+	}
 }
 
-console.log(contents.replace(/[\n\t \xa0]+::::/, '::::'));
+var lines = contents.split('\n');
+for (let ix = 0; ix < lines.length; ++ix)
+{
+	lines[ix] = lines[ix].trimEnd();
+}
+
+contents = lines.join('\n')
+	.replaceAll(/[\n]+\n/g, '\n\n');
+
+console.log(contents);
