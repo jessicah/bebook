@@ -14,7 +14,7 @@
 	background: inherit;
 }
 
-.key {
+.hkey {
 	border: 1px solid #c7c7c7;
 	border-radius: 3px;
 	padding: 0 2px;
@@ -60,6 +60,10 @@ div.highlight {
 	margin-left: 30px;
 	margin-right: 30px;
 	background: none;
+}
+
+table {
+	margin-left: 30px
 }
 
 div.admonition {

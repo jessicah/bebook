@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from bs4 import BeautifulSoup
 from bs4.builder import XMLParsedAsHTMLWarning
 import warnings
@@ -118,9 +120,19 @@ def process_content(node):
 						content += f'{{cpp:enum}}`{text(grandchild)}`'
 					else:
 						content += text(grandchild)
+			elif 'type' in child['class']:
+				content += f'{{htype}}`{text(child)}`'
+			elif 'keycap' in child['class']:
+				content += f'{{hkey}}`{text(child)}`'
+				print('keycap', text(child))
 			else:
+				print('WARNING: unable to handle span with classes:', child['class'])
+				print('    ', text(child))
 				content += text(child)
+		elif child.name == 'div' or child.name == 'table':
+			content += '\n'.join(process_block(child))
 		else:
+			print('WARNING: unable to handle child of type:', child.name)
 			content += text(child)
 	
 	return content
@@ -147,6 +159,8 @@ def process_block(node):
 		lines.append(':::{list-table}')
 		lines.append('---')
 		lines.append('header-rows: 1')
+		lines.append('align: left')
+		lines.append('widths: auto')
 		lines.append('---')
 		lines.append('')
 		rows = node.select('tr')
@@ -173,9 +187,14 @@ def main():
 	with open(sys.argv[1]) as file:
 		soup = BeautifulSoup(file, 'lxml')
 
+	print(f'Processing {sys.argv[1]}...')
+
 	mainSection = soup.select_one('body > div.section')
 
 	className += text(mainSection.select_one(':scope > div.titlepage'))
+	lines.append(f':::{{cpp:class}} {className}')
+	lines.append(':::')
+	lines.append('')
 	#print(className)
 	lines.append(f'# {className}')
 

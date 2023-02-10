@@ -52,11 +52,18 @@ class AbiGroupDirective(Directive):
             
             assert name, 'abi-group: unable to find a function/member'
             ix = name.first_child_matching_class(addnodes.desc_sig_name)
+            title = ''
             if ix == None or ix < 0:
+                # this might be a C macro, which is weirder...
+                for item in name.children:
+                    logger.warning(item)
+                    logger.warning(item.__class__)
+                logger.warning(descriptor)
                 logger.warning('abi-group: unable to find the name of the function/member')
                 continue
+            else:
+                title = name[ix].astext() + ('()' if descriptor.ismethod else '')
 
-            title = name[ix].astext() + ('()' if descriptor.ismethod else '')
             if title not in header_text:
                 header_text.append(title)
                 descriptor.issame = False
@@ -83,8 +90,9 @@ class CustomHTMLTranslator(HTML5Translator):
         self.in_abi_group = False
     
     def visit_document(self, node):
-        if 'functions' in node.attributes['source'] or 'message' in node.attributes['source']:
-            print(node)
+        if 'window' in node.attributes['source'] or 'functions' in node.attributes['source'] or 'message' in node.attributes['source']:
+            with open(node.attributes['source'] + '.xml', 'w') as file:
+                print(node, file=file)
 
     def visit_abigrouptitle(self, node):
         heading = f'h{self.section_level + 1}'
@@ -96,6 +104,10 @@ class CustomHTMLTranslator(HTML5Translator):
         self.body.append(heading)
 
     def visit_title(self, node):
+        if self.section_level == 1:
+            title = node.children[0]
+            node.attributes['ids'].append(f'CPPv4{len(title)}{title}')
+
         if hasattr(node.parent, 'omit_titles') and node.parent.omit_titles:
             node.children = []
             return
@@ -109,6 +121,11 @@ class CustomHTMLTranslator(HTML5Translator):
         super().depart_title(node)
 
     def visit_desc(self, node):
+        if 'cpp' in node.attributes['classes'] and 'class' in node.attributes['classes']:
+            # this is the class descriptor, we don't want to output it
+            node.children = []
+            return
+
         omittag = self.in_abi_group and hasattr(node, 'issame') and node.issame == True
 
         if omittag:
@@ -118,6 +135,9 @@ class CustomHTMLTranslator(HTML5Translator):
             self.body.append('<pre style="background: #f3f3f3; line-height: 2em">')
 
     def depart_desc(self, node):
+        if 'cpp' in node.attributes['classes'] and 'class' in node.attributes['classes']:
+            return
+
         self.body.append('</pre>')
 
     def visit_desc_signature(self, node: Element) -> None:
@@ -180,6 +200,12 @@ class highlightParameter(highlight):
 class highlightField(highlight):
     classes = 'hfield'
 
+class highlightType(highlight):
+    classes = 'htype'
+
+class highlightKey(highlight):
+    classes = 'hkey'
+
 def setup(app):
     app.add_directive('abi-group', AbiGroupDirective)
     app.add_generic_role('hmethod', highlightMethod)
@@ -187,4 +213,6 @@ def setup(app):
     app.add_generic_role('hparameter', highlightParameter)
     app.add_generic_role('hparam', highlightParameter)
     app.add_generic_role('hfield', highlightField)
+    app.add_generic_role('htype', highlightType)
+    app.add_generic_role('hkey', highlightKey)
     app.set_translator('html', CustomHTMLTranslator, True)
