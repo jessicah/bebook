@@ -11,7 +11,7 @@ warnings.filterwarnings('ignore', category=XMLParsedAsHTMLWarning)
 # Regular Expressions for transforms
 combine_ws = re.compile(r'\s+')
 function_re = re.compile(r'([a-zA-Z0-9_~]+)\(')
-operator_re = re.compile(r'(operator[+\-*\/%^&|~!=<>,()[\]]{1,3})\(')
+operator_re = re.compile(r'(operator([+\-*\/%^&|~!=<>,()[\]]{1,3}|\s+new|\s+delete))\(')
 reference_re = re.compile(r'#([^_]+)_([^_]+)')
 
 def text_content(element, clean=True):
@@ -44,7 +44,16 @@ class Item:
 
 class Text(Item):
 	def __init__(self, content=''):
-		self.content = content.replace('\n', ' ')
+		# could we do some line wrapping here?
+		lines = ['']
+		for token in content.replace('\n', ' ').split(' '):
+			last = lines[-1]
+			if (len(last) + len(token) + 1) > 75:
+				lines.append(token)
+			else:
+				lines[-1] += ' ' + token
+		#self.content = content.replace('\n', ' ')
+		self.content = '\n'.join(list(map(str.strip, lines)))
 	
 	def __str__(self):
 		return str(self.content)
@@ -121,6 +130,7 @@ class SectionContainer(BlockContainer):
 class Document:
 	def __init__(self, infile, outfile, debugfile):
 		with open(infile) as file:
+			print(f'Processing {infile} => {outfile}...')
 			self.soup = BeautifulSoup(file, 'lxml')
 		self.outfile = outfile
 		self.debugfile = debugfile
@@ -226,8 +236,10 @@ class Document:
 		elif declaration.endswith('global'):
 			declaration = declaration[0:-len('global')].strip()
 		else:
-			declaration = function_re.sub(self.add_class_name, declaration)
-			declaration = operator_re.sub(self.add_class_name, declaration)
+			if 'operator' in declaration:
+				declaration = operator_re.sub(self.add_class_name, declaration)
+			else:
+				declaration = function_re.sub(self.add_class_name, declaration)
 		
 		declaration = declaration.replace(';', '').strip()
 
@@ -279,9 +291,9 @@ class Document:
 			unordered_list = BlockContainer()
 			for item in element.select(':scope > li'):
 				if len(list(item.select(':scope > p'))) == 1:
-					unordered_list += f'\t- {self.process_block(list(item.children)[0])}'
+					unordered_list += f'- {self.process_block(list(item.children)[0])}'
 				else:
-					unordered_list += f'\t- {self.process_inline(item)}'
+					unordered_list += f'- {self.process_inline(item)}'
 			return unordered_list
 		
 		if element.name == 'div' and has_class(element, 'informaltable'):
@@ -289,6 +301,16 @@ class Document:
 			for child in element.children:
 				wrapper += self.process_block(child)
 			return wrapper
+		
+		if element.name == 'div' and has_class(element, 'section'):
+			title = text_content(element.select_one(':scope > div.titlepage'))
+			section = SectionContainer(title, 4)
+			for child in element.children:
+				if child.name == 'div' and has_class(child, 'titlepage'):
+					continue
+				else:
+					section += self.process_block(child)
+			return section
 
 		print('unhandled block:', element.name)
 		print(element)
@@ -345,7 +367,6 @@ class Document:
 					content += f'{{htype}}`{text_content(child)}`'
 				elif 'keycap' in child['class']:
 					content += f'{{hkey}}`{text_content(child)}`'
-					print('keycap', text_content(child))
 				else:
 					print('WARNING: unable to handle span with classes:', child['class'])
 					print('    ', text_content(child))
@@ -354,6 +375,10 @@ class Document:
 			# 	content += '\n'.join(str(self.process_block(child)))
 			elif child.name == 'em':
 				content += f'_{self.process_inline(child)}_'
+			elif child.name == 'acronym':
+				# no acronym support in markdown...
+				print('WARNING: missing acronym support in markdown')
+				content += text_content(child)
 			else:
 				print('WARNING: unable to handle child of type:', child.name)
 				print('    ', child.parent)
