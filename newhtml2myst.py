@@ -5,6 +5,9 @@ from bs4.builder import XMLParsedAsHTMLWarning
 import warnings
 import re
 import sys
+from sty import fg
+
+reset = fg.rs
 
 warnings.filterwarnings('ignore', category=XMLParsedAsHTMLWarning)
 
@@ -230,6 +233,7 @@ class Document:
 	# doesn't work correctly for fieldsynopsis
 	def process_declaration(self, element):
 		declaration = text_content(element)
+		print(declaration)
 		
 		if declaration.startswith('global') and 'operator' in declaration:
 			declaration = declaration[len('global'):].strip()
@@ -242,6 +246,8 @@ class Document:
 				declaration = function_re.sub(self.add_class_name, declaration)
 		
 		declaration = declaration.replace(';', '').strip()
+
+		print('  ', declaration)
 
 		# this should do the right thing... check BMessage
 		if has_class(element, 'fieldsynopsis'):
@@ -295,8 +301,21 @@ class Document:
 				else:
 					unordered_list += f'- {self.process_inline(item)}'
 			return unordered_list
+		if element.name == 'ol':
+			ordered_list = BlockContainer()
+			for index, item in enumerate(element.select(':scope > li'), start=1):
+				if len(list(item.select(':scope > p'))) == 1:
+					ordered_list += f'{index}. {self.process_block(list(item.children)[0])}'
+				else:
+					ordered_list == f'{index}. {self.process_inline(item)}'
+			return ordered_list
 		
-		if element.name == 'div' and has_class(element, 'informaltable'):
+		classes = [
+			'mediaobject',
+			'orderedlist',
+			'informaltable',
+		]
+		if element.name == 'div' and has_any_classes(element, classes):
 			wrapper = BlockContainer()
 			for child in element.children:
 				wrapper += self.process_block(child)
@@ -311,9 +330,11 @@ class Document:
 				else:
 					section += self.process_block(child)
 			return section
+		
+		# for non-class pages, there are a lot of div wrappers
 
-		print('unhandled block:', element.name)
-		print(element)
+		print(fg.li_red, 'unhandled block:', element.name, reset)
+		print(fg.li_cyan, element, reset)
 		
 		#return self.process_inline(element)
 		return Text()
@@ -368,7 +389,7 @@ class Document:
 				elif 'keycap' in child['class']:
 					content += f'{{hkey}}`{text_content(child)}`'
 				else:
-					print('WARNING: unable to handle span with classes:', child['class'])
+					print(fg.li_red, 'WARNING:', reset, 'unable to handle span with classes:', fg.li_cyan, child['class'], reset)
 					print('    ', text_content(child))
 					content += text_content(child)
 			# elif child.name == 'div' or child.name == 'table':
@@ -377,10 +398,10 @@ class Document:
 				content += f'_{self.process_inline(child)}_'
 			elif child.name == 'acronym':
 				# no acronym support in markdown...
-				print('WARNING: missing acronym support in markdown')
+				print(fg.li_yellow, 'WARNING: missing acronym support in markdown', reset)
 				content += text_content(child)
 			else:
-				print('WARNING: unable to handle child of type:', child.name)
+				print(fg.li_red, 'WARNING: unable to handle child of type:', fg.li_cyan, child.name, reset)
 				print('    ', child.parent)
 				content += text_content(child)
 	
