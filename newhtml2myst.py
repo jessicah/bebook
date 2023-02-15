@@ -16,6 +16,7 @@ combine_ws = re.compile(r'\s+')
 function_re = re.compile(r'([a-zA-Z0-9_~]+)\(')
 operator_re = re.compile(r'(operator([+\-*\/%^&|~!=<>,()[\]]{1,3}|\s+new|\s+delete))\(')
 reference_re = re.compile(r'#([^_]+)_([^_]+)')
+enum_re = re.compile(r'^([A-Z0-9_]+)$')
 
 def text_content(element, clean=True):
 	if clean:
@@ -140,6 +141,37 @@ class SectionContainer(BlockContainer):
 		else:
 			return body
 
+class TableRow(Item): pass
+
+class Table(BlockContainer):
+	def __init__(self, num_headers=1):
+		directive = [
+				'{list-table}',
+				'---',
+				f'header-rows: {num_headers}',
+				'align: left',
+				'widths: auto',
+				'---'
+			]
+		super().__init__('\n'.join(directive))
+
+	def __str__(self):
+		# need to generate the self.content...
+		self.content = ''
+		for block in self.blocks:
+			if isinstance(block, TableRow):
+				self.content += '-\n'
+			elif isinstance(block, BlockContainer):
+				lines = str(block).split('\n')
+				for index, line in enumerate(lines):
+					if index == 0:
+						self.content += f'\t- {line}\n'
+					else:
+						self.content += f'\t\t{line}\n'
+			else:
+				self.content += f'\t- {str(block)}\n\n'
+		return super().wrap_content()
+
 class Document:
 	def __init__(self, infile, outfile, debugfile):
 		with open(infile) as file:
@@ -218,6 +250,14 @@ class Document:
 			'funcsynopis'
 		]
 
+		maybe_enum = element.select_one(':scope > div.titlepage h4.title > a')
+		if maybe_enum:
+			match = enum_re.search(maybe_enum['id'])
+			if match:
+				print(fg.li_cyan, 'WARNING: section for enum:', reset, match.group(1))
+				section += Block(f'{{cpp:enumerator}} {match.group(1)}')
+				needs_abi_group = True
+
 		for child in element.children:
 			if child.name == 'div' and has_class(child, 'titlepage'):
 				continue
@@ -266,9 +306,9 @@ class Document:
 			return Block(f'{{cpp:function}} {declaration}')
 	
 	# not 100% sure on the return type...
-	def process_block(self, element):
+	def process_block(self, element, indent=''):
 		if element.name == 'p':
-			return self.process_inline(element)
+			return f'{indent}{self.process_inline(element)}'
 		if element.name == 'div' and has_class(element, 'admonition'):
 			title = text_content(element.select_one(':scope > div.title'))
 			# this is terrible... but works...
@@ -277,64 +317,63 @@ class Document:
 			admonition = BlockContainer(f'{{admonition}} {title}\n:class: {kind}')
 			# what about other children?
 			for child in element.select(':scope p'):
-				admonition += self.process_block(child)			
+				admonition += self.process_block(child, indent)
 			return admonition
 		if element.name == 'pre':
-			code = Block('{code}')
+			if has_class(element, 'cpp'):
+				code = Block('{code} cpp')
+			elif has_class(element, 'c'):
+				code = Block('{code} c')
+			elif has_class(element, 'screen'):
+				code = Block('{code} sh')
+			else:
+				print(fg.li_red, 'Unknown code listing:', fg.li_cyan, element['class'], reset)
+				code = Block('{code}')
 			code += text_content(element, clean=False)
 			return code
 		if element.name == 'table':
 			num_headers = len(list(element.select(':scope > thead > tr')))
-			directive = [
-				'{list-table}',
-				'---',
-				f'header-rows: {num_headers}',
-				'align: left',
-				'widths: auto',
-				'---'
-			]
-			directive = '\n'.join(directive)
-			table = BlockContainer(f'{directive}')
+			table = Table(num_headers)
 			for row in element.select('tr'):
-				for index, column in enumerate(row.select('th, td')):
-					prefix = ''
-					if index == 0:
-						prefix = '-\n'
-					# this is wrong...
-					# almost need a `process_block_or_inline` variant...
-					# e.g. <td><p>..</p><dl>...</dl><p>...</p></td> exists
+				table += TableRow()
+				for column in row.select(':scope > th, :scope > td'):
 					if contains_blocks(column):
-						for sub_index, block in enumerate(column):
-							if sub_index == 0:
-								table += f'{prefix}\t- {self.process_block(block)}'
-							else:
-								table += f'\t{self.process_block(block)}'
+						cell = BlockContainer()
+						for block in column.children:
+							cell += self.process_block(block)
+						table += cell
 					else:
-						table += f'{prefix}\t- {self.process_inline(column)}'
+						table += self.process_inline(column)
 			return table
 		if element.name == 'ul':
 			unordered_list = BlockContainer()
 			for item in element.select(':scope > li'):
 				if contains_blocks(item):
+					#unordered_list.set_indent('  ')
+					new_indent = indent + '  '
+					list_item = BlockContainer()
 					for sub_index, block in enumerate(item.children):
 						if sub_index == 0:
-							unordered_list += f'- {self.process_block(block)}'
+							list_item += f'- {self.process_block(block, new_indent)}'
 						else:
-							unordered_list += f'  {self.process_block(block)}'
+							list_item += f'  {self.process_block(block, new_indent)}'
+					unordered_list += list_item
 				else:
-					unordered_list += f'- {self.process_inline(item)}'
+					unordered_list += f'- {self.process_inline(item, indent)}'
 			return unordered_list
 		if element.name == 'ol':
 			ordered_list = BlockContainer()
 			for index, item in enumerate(element.select(':scope > li'), start=1):
 				if contains_blocks(item):
+					#ordered_list.set_indent('   ')
+					new_indent = indent + '   '
 					for sub_index, block in enumerate(item.children):
 						if sub_index == 0:
-							ordered_list += f'{index}. {self.process_block(block)}'
+							ordered_list += f'{index}. {self.process_block(block, new_indent)}'
 						else:
-							ordered_list += f'   {self.process_block(block)}'
+							ordered_list += f'   {self.process_block(block, new_indent)}'
 				else:
-					ordered_list == f'{index}. {self.process_inline(item)}'
+					ordered_list == f'{index}. {self.process_inline(item, indent)}'
 			return ordered_list
 		
 		classes = [
@@ -346,7 +385,7 @@ class Document:
 		if element.name == 'div' and has_any_classes(element, classes):
 			wrapper = BlockContainer()
 			for child in element.children:
-				wrapper += self.process_block(child)
+				wrapper += self.process_block(child, indent)
 			return wrapper
 		
 		if element.name == 'div' and has_class(element, 'section'):
@@ -356,7 +395,7 @@ class Document:
 				if child.name == 'div' and has_class(child, 'titlepage'):
 					continue
 				else:
-					section += self.process_block(child)
+					section += self.process_block(child, indent)
 			return section
 		
 		if element.name == 'img':
@@ -383,10 +422,11 @@ class Document:
 					deflist += f'{self.process_inline(child)}'
 				else:
 					if contains_blocks(child):
+						new_indent = indent + ': '
 						for block in child.children:
-							deflist += f': {self.process_block(block)}'
+							deflist += f'{self.process_block(block, new_indent)}'
 					else:
-						deflist += f': {self.process_inline(child)}'
+						deflist += f': {self.process_inline(child, indent)}'
 			return deflist
 		
 		# for non-class pages, there are a lot of div wrappers
@@ -410,6 +450,7 @@ class Document:
 			elif child.name == 'code':
 				highlight = None
 				is_enum = False
+				is_expr = False
 				className = ''
 				if child.has_attr('class'):
 					className = child['class'][0]
@@ -419,10 +460,17 @@ class Document:
 					highlight = 'hclass'
 				elif className == 'parameter':
 					highlight = 'hparam'
+				elif className == 'varname':
+					highlight = 'hparam'
 				elif className == 'constant':
 					is_enum = True
+					enum = text_content(child)
+					if enum == 'NULL' or enum == 'true' or enum == 'false':
+						is_expr = True
 				
-				if is_enum:
+				if is_expr:
+					content += f'{{cpp:expr}}`{text_content(child)}`'
+				elif is_enum:
 					content += f'{{cpp:enum}}`{text_content(child)}`'
 				elif highlight != None:
 					content += f'{{{highlight}}}`{text_content(child)}`'
@@ -479,6 +527,8 @@ class Document:
 				ref_type = 'cpp:func'
 			elif has_class(code, 'classname'):
 				ref_type = 'cpp:class'
+			elif has_class(code, 'constant'):
+				ref_type = 'cpp:enumerator'
 				
 		content = text_content(element)
 
