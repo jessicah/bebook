@@ -83,120 +83,106 @@ align: left
 widths: auto
 ---
 -
-
 	- Field
 
 	- Description
 
 -
-
 	- buffer_state
 
-	- Indicates what change is occurring in the direct buffer access privileges.
-It can have one of the following values:B_DIRECT_STARTYou will always
-receive a B_DIRECT_START notification when your BDirectWindow is first
-connected to the screenB_DIRECT_MODIFYAny number of B_DIRECT_MODIFY
-notifications follow (it's possible you won't receive any at all). When you
-return from DirectConnected() after handling B_DIRECT_START or
-B_DIRECT_MODIFY, your application guarantees to the application server that
-your code will abide by the frame buffer configuration specified by the
-direct_buffer_info structure until another B_DIRECT_MODIFY notification is
-received (or B_DIRECT_STOP occurs).B_DIRECT_STOPYou'll receive a
-B_DIRECT_STOP notification when the window is closed, hidden, or if moved,
-or if a resolution or color depth change occurs. Once your
-DirectConnected() function returns from handling this notification, you
-guarantee to the application server that your code won't touch the frame
-buffer anymore.For any of these notifications, your DirectConnected()
-function shouldn't return until you can guarantee to the application server
-that your code will abide by the frame buffer configuration it received.You
-can get further information about what changed by testing against other
-flags in the buffer_state field:B_BUFFER_MOVEDThe content of your window
-has been moved, either by a call to MoveTo() or MoveBy() or by the user
+	- {cpp:enum}`B_BUFFER_MOVED`
+
+	   : The content of your window has been moved, either by a call to
+{cpp:func}`~BWindow::MoveTo` or {cpp:func}`~BWindow::MoveBy` or by the user
 manually dragging the window. The contents of the window are always moved
-relative to the top-left corner of the window.B_BUFFER_RESETThe entire
-direct access buffer has been reset. This can happen if the user changes
-the depth or resolution of the screen, or if the window had previously been
-hidden and has been made visible again.B_BUFFER_RESIZEDThe content area of
-your window has been resized.B_CLIPPING_MODIFIEDThe visible region of the
-content area of your window changed. This doesn't imply anything about the
-position of the window or the size of the content area of the window—it
-simply means that the part of the window that's visible has changed shape.
+relative to the top-left corner of the window.
+
+      {cpp:enum}`B_BUFFER_RESET`
+
+	   : The entire direct access buffer has been reset. This can happen if the
+user changes the depth or resolution of the screen, or if the window had
+previously been hidden and has been made visible again.
+
+      {cpp:enum}`B_BUFFER_RESIZED`
+
+	   : The content area of your window has been resized.
+
+      {cpp:enum}`B_CLIPPING_MODIFIED`
+
+	   : The visible region of the content area of your window changed. This
+doesn't imply anything about the position of the window or the size of the
+content area of the window—it simply means that the part of the window
+that's visible has changed shape.
 
 -
-
 	- driver_state
 
-	- Indicates changes in the state of the graphics card on which your direct
-window is displayed. There are two possible values:
+	- {cpp:enum}`B_MODE_CHANGED`
+
+	   : The resolution or depth of the graphics card has changed.
+
+      {cpp:enum}`B_DRIVER_CHANGED`
+
+	   : The window was moved onto another monitor.
 
 -
+	- 	bits
 
-	- bits
-
-	- Is a pointer to the frame buffer in your own team's memory space.
+	- 	Is a pointer to the frame buffer in your own team's memory space.
 
 -
+	- 	pci_bits
 
-	- pci_bits
-
-	- Is a pointer to the frame buffer in the PCI memory space; this value is
+	- 	Is a pointer to the frame buffer in the PCI memory space; this value is
 typically needed to control DMA.
 
 -
+	- 	bytes_per_row
 
-	- bytes_per_row
-
-	- Is the number of bytes used to represent a single row of pixels in the
+	- 	Is the number of bytes used to represent a single row of pixels in the
 frame buffer.
 
 -
+	- 	bits_per_pixel
 
-	- bits_per_pixel
-
-	- Is the number of bits actually used to store a single pixel, including
+	- 	Is the number of bits actually used to store a single pixel, including
 reserved, unused, or alpha channel bits. This value is usually a multiple
 of eight.
 
 -
+	- 	pixel_format
 
-	- pixel_format
-
-	- Is the format used to encode a pixel, as defined in the
+	- 	Is the format used to encode a pixel, as defined in the
 {htype}`color_space` type in GraphicsDefs.h.
 
 -
+	- 	layout,orientation,_reserved,_dd_type_, and_dd_token_
 
-	- layout,orientation,_reserved,_dd_type_, and_dd_token_
-
-	- Are all reserved for future use and must not be used.
+	- 	Are all reserved for future use and must not be used.
 
 -
+	- 	window_bounds
 
-	- window_bounds
-
-	- Is a rectangle that defines the full content area of the window, in screen
+	- 	Is a rectangle that defines the full content area of the window, in screen
 coordinates. You can convert these coordinates into frame buffer addresses
 using the values in the bits , bytes_per_row , and bits_per_pixel fields.
 
 -
+	- 	clip_bounds
 
-	- clip_bounds
-
-	- Is the bounding rectangle of the visible part of the content area of the
+	- 	Is the bounding rectangle of the visible part of the content area of the
 window, in screen coordinates. This rectangle is the smallest rectangle
 that contains all the rectangles in the clip_list, described below.
 
 -
+	- 	clip_list_count
 
-	- clip_list_count
-
-	- Is the number of rectangles in the clip_list.
+	- 	Is the number of rectangles in the clip_list.
 
 -
+	- 	clip_list
 
-	- clip_list
-
-	- Is a list of rectangles that together define the visible region of the
+	- 	Is a list of rectangles that together define the visible region of the
 content area of the window, in screen coordinates
 :::
 
@@ -315,81 +301,69 @@ align: left
 widths: auto
 ---
 -
-
 	- Field
 
 	- Description
 
 -
+	- 	fBits
 
-	- fBits
-
-	- Will contain a pointer to the frame buffer's bitmap.
-
--
-
-	- fRowBytes
-
-	- Will contain the number of bytes per row of screen data.
+	- 	Will contain a pointer to the frame buffer's bitmap.
 
 -
+	- 	fRowBytes
 
-	- fFormat
+	- 	Will contain the number of bytes per row of screen data.
 
-	- Will contain the pixel format (such as {cpp:enum}`B_CMAP8` for 8-bit
+-
+	- 	fFormat
+
+	- 	Will contain the pixel format (such as {cpp:enum}`B_CMAP8` for 8-bit
 indexed color graphics mode). Our sample program will only work in this
 mode.
 
 -
+	- 	fBounds
 
-	- fBounds
-
-	- will contain the bounds rectangle for the window.
-
--
-
-	- fNumClipRects
-
-	- Will contain the number of rectangles in the clip rectangle list.
+	- 	will contain the bounds rectangle for the window.
 
 -
+	- 	fNumClipRects
 
-	- fClipList
+	- 	Will contain the number of rectangles in the clip rectangle list.
 
-	- Is the actual list of clip rectangles, and will be allocated on-the-fly as
+-
+	- 	fClipList
+
+	- 	Is the actual list of clip rectangles, and will be allocated on-the-fly as
 needed.
 
 -
+	- 	fDirty
 
-	- fDirty
-
-	- Will be {cpp:enum}`true` if the window needs to be redrawn.
-
--
-
-	- fConnected
-
-	- Is {cpp:enum}`true` if the window is connected to the frame buffer.
+	- 	Will be {cpp:enum}`true` if the window needs to be redrawn.
 
 -
+	- 	fConnected
 
-	- fConnectionDisabled
-
-	- Is {cpp:enum}`true` if the window is in the process of being closed.
+	- 	Is {cpp:enum}`true` if the window is connected to the frame buffer.
 
 -
+	- 	fConnectionDisabled
 
-	- locker
+	- 	Is {cpp:enum}`true` if the window is in the process of being closed.
 
-	- Is a {cpp:class}`BLocker` that will be used to ensure mutual exclusion
+-
+	- 	locker
+
+	- 	Is a {cpp:class}`BLocker` that will be used to ensure mutual exclusion
 when the frame buffer or buffer information data we've cached is being
 manipulated.
 
 -
+	- 	fDrawThreadID
 
-	- fDrawThreadID
-
-	- Contains the {htype}`thread_id` of the drawing thread, which is
+	- 	Contains the {htype}`thread_id` of the drawing thread, which is
 responsible for drawing the contents of the window.
 :::
 
