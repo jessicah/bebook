@@ -38,6 +38,16 @@ def has_any_classes(element, names):
 			return True
 	return False
 
+def contains_blocks(element):
+	for child in element.children:
+		if child.name == 'p':
+			return True
+		if child.name == 'dl':
+			return True
+		if child.name == 'pre':
+			return True
+	return False
+
 class Item:
 	def __init__(self):
 		pass
@@ -233,7 +243,7 @@ class Document:
 	# doesn't work correctly for fieldsynopsis
 	def process_declaration(self, element):
 		declaration = text_content(element)
-		print(declaration)
+		#print(declaration)
 		
 		if declaration.startswith('global') and 'operator' in declaration:
 			declaration = declaration[len('global'):].strip()
@@ -247,7 +257,7 @@ class Document:
 		
 		declaration = declaration.replace(';', '').strip()
 
-		print('  ', declaration)
+		#print('  ', declaration)
 
 		# this should do the right thing... check BMessage
 		if has_class(element, 'fieldsynopsis'):
@@ -293,24 +303,36 @@ class Document:
 					# this is wrong...
 					# almost need a `process_block_or_inline` variant...
 					# e.g. <td><p>..</p><dl>...</dl><p>...</p></td> exists
-					if len(list(column.select(':scope > p'))) == 1:
-						table += f'{prefix}\t- {self.process_block(list(column.children)[0])}'
+					if contains_blocks(column):
+						for sub_index, block in enumerate(column):
+							if sub_index == 0:
+								table += f'{prefix}\t- {self.process_block(block)}'
+							else:
+								table += f'\t{self.process_block(block)}'
 					else:
 						table += f'{prefix}\t- {self.process_inline(column)}'
 			return table
 		if element.name == 'ul':
 			unordered_list = BlockContainer()
 			for item in element.select(':scope > li'):
-				if len(list(item.select(':scope > p'))) == 1:
-					unordered_list += f'- {self.process_block(list(item.children)[0])}'
+				if contains_blocks(item):
+					for sub_index, block in enumerate(item.children):
+						if sub_index == 0:
+							unordered_list += f'- {self.process_block(block)}'
+						else:
+							unordered_list += f'  {self.process_block(block)}'
 				else:
 					unordered_list += f'- {self.process_inline(item)}'
 			return unordered_list
 		if element.name == 'ol':
 			ordered_list = BlockContainer()
 			for index, item in enumerate(element.select(':scope > li'), start=1):
-				if len(list(item.select(':scope > p'))) == 1:
-					ordered_list += f'{index}. {self.process_block(list(item.children)[0])}'
+				if contains_blocks(item):
+					for sub_index, block in enumerate(item.children):
+						if sub_index == 0:
+							ordered_list += f'{index}. {self.process_block(block)}'
+						else:
+							ordered_list += f'   {self.process_block(block)}'
 				else:
 					ordered_list == f'{index}. {self.process_inline(item)}'
 			return ordered_list
@@ -349,6 +371,8 @@ class Document:
 				image += f'![{alt_text}]({src})'
 			return image
 		
+		# also have instances where a definition list is
+		# within a table cell, so this isn't quite right either...
 		if element.name == 'dl':
 			# a term...
 			# an indented definition starting with : or ~
@@ -358,7 +382,11 @@ class Document:
 				if child.name == 'dt':
 					deflist += f'{self.process_inline(child)}'
 				else:
-					deflist += f': {self.process_inline(child)}'
+					if contains_blocks(child):
+						for block in child.children:
+							deflist += f': {self.process_block(block)}'
+					else:
+						deflist += f': {self.process_inline(child)}'
 			return deflist
 		
 		# for non-class pages, there are a lot of div wrappers
@@ -432,6 +460,8 @@ class Document:
 				# no acronym support in markdown...
 				print(fg.li_yellow, 'WARNING: missing acronym support in markdown', reset)
 				content += text_content(child)
+			elif child.name == 'br':
+				content += '\n\n'
 			else:
 				print(fg.li_red, 'WARNING: unable to handle child of type:', fg.li_cyan, child.name, reset)
 				print('    ', child.parent)
