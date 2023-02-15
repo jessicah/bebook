@@ -290,6 +290,9 @@ class Document:
 					prefix = ''
 					if index == 0:
 						prefix = '-\n'
+					# this is wrong...
+					# almost need a `process_block_or_inline` variant...
+					# e.g. <td><p>..</p><dl>...</dl><p>...</p></td> exists
 					if len(list(column.select(':scope > p'))) == 1:
 						table += f'{prefix}\t- {self.process_block(list(column.children)[0])}'
 					else:
@@ -316,6 +319,7 @@ class Document:
 			'mediaobject',
 			'orderedlist',
 			'informaltable',
+			'calloutlist',
 		]
 		if element.name == 'div' and has_any_classes(element, classes):
 			wrapper = BlockContainer()
@@ -332,6 +336,30 @@ class Document:
 				else:
 					section += self.process_block(child)
 			return section
+		
+		if element.name == 'img':
+			alt_text = None
+			if element.has_attr('alt'):
+				alt_text = element['alt']
+			src = element['src']
+			image = Block()
+			if alt_text is None:
+				image += f'![]({src})'
+			else:
+				image += f'![{alt_text}]({src})'
+			return image
+		
+		if element.name == 'dl':
+			# a term...
+			# an indented definition starting with : or ~
+			# and repeat... tricky with embedded styling though...
+			deflist = BlockContainer()
+			for child in element.select(':scope > dt, :scope > dd'):
+				if child.name == 'dt':
+					deflist += f'{self.process_inline(child)}'
+				else:
+					deflist += f': {self.process_inline(child)}'
+			return deflist
 		
 		# for non-class pages, there are a lot of div wrappers
 
@@ -390,6 +418,8 @@ class Document:
 					content += f'{{htype}}`{text_content(child)}`'
 				elif 'keycap' in child['class']:
 					content += f'{{hkey}}`{text_content(child)}`'
+				elif has_any_classes(child, ['emphasis', 'italic']):
+					content += f'_{self.process_inline(child)}_'
 				else:
 					print(fg.li_red, 'WARNING:', reset, 'unable to handle span with classes:', fg.li_cyan, child['class'], reset)
 					print('    ', text_content(child))
