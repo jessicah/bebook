@@ -5,3 +5,11 @@ This contains the work of creating the Be Book documentation in reStructuredText
 formats with Sphinx and MyST-Parser, and merging the Haiku Book documentation into the Be Book.
 
 It is hoped that this will result in much more complete API documentation.
+
+# install
+
+```
+pip install beautifulsoup4
+pip install lxml
+pip install sty
+```
