@@ -286,12 +286,14 @@ class Document:
 			directive = '\n'.join(directive)
 			table = BlockContainer(f'{directive}')
 			for row in element.select('tr'):
-				table += '-'
-				for column in row.select('th, td'):
+				for index, column in enumerate(row.select('th, td')):
+					prefix = ''
+					if index == 0:
+						prefix = '-\n'
 					if len(list(column.select(':scope > p'))) == 1:
-						table += f'\t- {self.process_block(list(column.children)[0])}'
+						table += f'{prefix}\t- {self.process_block(list(column.children)[0])}'
 					else:
-						table += f'\t- {self.process_inline(column)}'
+						table += f'{prefix}\t- {self.process_inline(column)}'
 			return table
 		if element.name == 'ul':
 			unordered_list = BlockContainer()
