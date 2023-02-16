@@ -36,7 +36,7 @@ Overview`".
 ::::{abi-group}
 Declared in: kernel/scheduler.h
 
-:::{cpp:function} bigtime_t Threads And Teams::estimate_max_scheduling_latency(thread_id thread = -1)
+:::{cpp:function} bigtime_t estimate_max_scheduling_latency(thread_id thread = -1)
 :::
 
 Returns the scheduling latency, in microseconds, of the specified thread.
@@ -45,13 +45,13 @@ current thread.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void Threads And Teams::exit_thread(status_t return_value)
+:::{cpp:function} void exit_thread(status_t return_value)
 :::
 
-:::{cpp:function} status_t Threads And Teams::kill_thread(thread_id thread)
+:::{cpp:function} status_t kill_thread(thread_id thread)
 :::
 
-:::{cpp:function} status_t Threads And Teams::kill_team(team_id team)
+:::{cpp:function} status_t kill_team(team_id team)
 :::
 
 :::{code} c
@@ -137,7 +137,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} thread_id Threads And Teams::find_thread(const char* name)
+:::{cpp:function} thread_id find_thread(const char* name)
 :::
 
 Finds and returns the thread with the given {hparam}`name`. A
@@ -169,10 +169,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Threads And Teams::get_team_info(team_id team, team_info* info)
+:::{cpp:function} status_t get_team_info(team_id team, team_info* info)
 :::
 
-:::{cpp:function} status_t Threads And Teams::get_next_team_info(int32* cookie, team_info* info)
+:::{cpp:function} status_t get_next_team_info(int32* cookie, team_info* info)
 :::
 
 The functions copy, into the {hparam}`info` argument, the
@@ -221,10 +221,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Threads And Teams::get_thread_info(thread_id thread, thread_info* info)
+:::{cpp:function} status_t get_thread_info(thread_id thread, thread_info* info)
 :::
 
-:::{cpp:function} status_t Threads And Teams::get_next_thread_info(team_id team, int32* cookie, thread_info* info)
+:::{cpp:function} status_t get_next_thread_info(team_id team, int32* cookie, thread_info* info)
 :::
 
 These functions copy, into the {hparam}`info` argument, the
@@ -283,7 +283,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Threads And Teams::rename_thread(thread_id thread, const char* name)
+:::{cpp:function} status_t rename_thread(thread_id thread, const char* name)
 :::
 
 Changes the name of the given thread to {hparam}`name`. The name can be no
@@ -311,7 +311,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Threads And Teams::resume_thread(thread_id thread)
+:::{cpp:function} status_t resume_thread(thread_id thread)
 :::
 
 Tells a new or suspended thread to begin executing instructions. If the
@@ -353,7 +353,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} int32 Threads And Teams::receive_data(thread_id sender, void* buffer, size_t buffer_size)
+:::{cpp:function} int32 receive_data(thread_id sender, void* buffer, size_t buffer_size)
 :::
 
 Retrieves a message from the thread's message cache. The message will have
@@ -420,7 +420,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Threads And Teams::send_data(thread_id sender, void* buffer, size_t buffer_size)
+:::{cpp:function} status_t send_data(thread_id sender, void* buffer, size_t buffer_size)
 :::
 
 send_data() copies a message into thread's message cache. The target
@@ -516,7 +516,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} bool Threads And Teams::has_data(thread_id thread)
+:::{cpp:function} bool has_data(thread_id thread)
 :::
 
 has_data() returns {cpp:expr}`true` if {hparam}`thread` has a message in
@@ -541,10 +541,10 @@ the interim.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Threads And Teams::set_thread_priority(thread_id thread, int32 new_priority)
+:::{cpp:function} status_t set_thread_priority(thread_id thread, int32 new_priority)
 :::
 
-:::{cpp:function} int32 Threads And Teams::suggest_thread_priority(uint32 what = B_DEFAULT_MEDIA_PRIORITY, int32 period = 0, bigtime_t jitter = 0, bigtime_t length = 0)
+:::{cpp:function} int32 suggest_thread_priority(uint32 what = B_DEFAULT_MEDIA_PRIORITY, int32 period = 0, bigtime_t jitter = 0, bigtime_t length = 0)
 :::
 
 Declared in:  kernel/scheduler.h
@@ -613,10 +613,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Threads And Teams::snooze(bigtime_t microseconds, int32 new_priority)
+:::{cpp:function} status_t snooze(bigtime_t microseconds, int32 new_priority)
 :::
 
-:::{cpp:function} status_t Threads And Teams::snooze_until(bigtime_t microseconds, int timebase)
+:::{cpp:function} status_t snooze_until(bigtime_t microseconds, int timebase)
 :::
 
 snooze() blocks the calling thread for the given number of
@@ -652,7 +652,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} thread_id Threads And Teams::spawn_thread(thread_func func, const char* name, int32 priority, void* data)
+:::{cpp:function} thread_id spawn_thread(thread_func func, const char* name, int32 priority, void* data)
 :::
 
 Creates a new thread and returns its {htype}`thread_id` identifier (a
@@ -719,7 +719,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Threads And Teams::suspend_thread(thread_id thread)
+:::{cpp:function} status_t suspend_thread(thread_id thread)
 :::
 
 Halts the execution of the given thread, but doesn't kill the thread
@@ -767,7 +767,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Threads And Teams::wait_for_thread(thread_id thread, status_t* exit_value)
+:::{cpp:function} status_t wait_for_thread(thread_id thread, status_t* exit_value)
 :::
 
 This function causes the calling thread to wait until thread (the "target

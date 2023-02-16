@@ -34,10 +34,10 @@ Overview`".
 ## Image Functions
 
 ::::{abi-group}
-:::{cpp:function} status_t Images::get_image_info(image_id image, image_info* info)
+:::{cpp:function} status_t get_image_info(image_id image, image_info* info)
 :::
 
-:::{cpp:function} status_t Images::get_next_image_info(team_id team, int32* cookie, image_info* info)
+:::{cpp:function} status_t get_next_image_info(team_id team, int32* cookie, image_info* info)
 :::
 
 :::{code} c
@@ -165,10 +165,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Images::get_image_symbol(image_id image, char* symbol_name, int32 symbol_type, void** location)
+:::{cpp:function} status_t get_image_symbol(image_id image, char* symbol_name, int32 symbol_type, void** location)
 :::
 
-:::{cpp:function} status_t Images::get_nth_image_symbol(image_id image, int32 n, int32* name_length, int32* symbol_type, void** location)
+:::{cpp:function} status_t get_nth_image_symbol(image_id image, int32 n, int32* name_length, int32* symbol_type, void** location)
 :::
 
 get_image_symbol() returns, in {hparam}`location`, a pointer to the
@@ -238,10 +238,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} image_id Images::load_add_on(const char* pathname)
+:::{cpp:function} image_id load_add_on(const char* pathname)
 :::
 
-:::{cpp:function} status_t Images::unload_add_on(image_id image)
+:::{cpp:function} status_t unload_add_on(image_id image)
 :::
 
 load_add_on() loads an add-on image, identified by {hparam}`pathname`,
@@ -288,7 +288,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} thread_id Images::load_image(int argc, const char** argv, const char ** env)
+:::{cpp:function} thread_id load_image(int argc, const char** argv, const char ** env)
 :::
 
 Loads an app image into the system (it doesn't load the image into the

@@ -32,7 +32,7 @@ For examples of creating and sharing areas, see "{cpp:func}`Area Examples
 ## Area Functions
 
 ::::{abi-group}
-:::{cpp:function} area_id Areas::area_for(void* addr)
+:::{cpp:function} area_id area_for(void* addr)
 :::
 
 Returns the area that contains the given address (within your own team's
@@ -65,7 +65,7 @@ See also: {cpp:func}`find_area() <find::area>`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} area_id Areas::clone_area(const char* clone_name, void** clone_addr, uint32 clone_addr_spec, uint32 clone_protection, area_id source_area)
+:::{cpp:function} area_id clone_area(const char* clone_name, void** clone_addr, uint32 clone_addr_spec, uint32 clone_protection, area_id source_area)
 :::
 
 Creates a new area (the clone area) that maps to the same physical memory
@@ -168,7 +168,7 @@ identify an existing area.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} area_id Areas::create_area(const char* name, void** addr, uint32 addr_spec, uint32 size, uint32 lock, uint32 protection)
+:::{cpp:function} area_id create_area(const char* name, void** addr, uint32 addr_spec, uint32 size, uint32 lock, uint32 protection)
 :::
 
 Creates a new area and returns its {htype}`area_id`.
@@ -391,7 +391,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Areas::delete_area(area_id area)
+:::{cpp:function} status_t delete_area(area_id area)
 :::
 
 Deletes the designated area. If no one other area maps to the physical
@@ -428,7 +428,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} area_id Areas::find_area(const char* name)
+:::{cpp:function} area_id find_area(const char* name)
 :::
 
 Returns an area that has a name that matches the argument. Area names
@@ -465,10 +465,10 @@ See also: {cpp:func}`area_for() <area::for>`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Areas::get_area_info(area_id area, area_info* info)
+:::{cpp:function} status_t get_area_info(area_id area, area_info* info)
 :::
 
-:::{cpp:function} status_t Areas::get_next_area_info(team_id team, int32* cookie, area_info* info)
+:::{cpp:function} status_t get_next_area_info(team_id team, int32* cookie, area_info* info)
 :::
 
 :::{code} c
@@ -617,7 +617,7 @@ identify an existing team, or there are no more areas to visit.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Areas::resize_area(area_id area, size_t new_size)
+:::{cpp:function} status_t resize_area(area_id area, size_t new_size)
 :::
 
 Sets the size of the designated area to {hparam}`new_size`, measured in
@@ -665,7 +665,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Areas::set_area_protection(area_id area, uint32 new_protection)
+:::{cpp:function} status_t set_area_protection(area_id area, uint32 new_protection)
 :::
 
 Sets the given area's read and write protection. The new_protection

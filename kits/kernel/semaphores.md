@@ -37,10 +37,10 @@ For the full story about semaphores, see "{ref}`Semaphore Overview`".
 ## Semaphore Functions
 
 ::::{abi-group}
-:::{cpp:function} status_t Semaphores::acquire_sem(sem_id sem)
+:::{cpp:function} status_t acquire_sem(sem_id sem)
 :::
 
-:::{cpp:function} status_t Semaphores::acquire_sem_etc(sem_id sem, uint32 count, uint32 flags, bigtime_t timeout)
+:::{cpp:function} status_t acquire_sem_etc(sem_id sem, uint32 count, uint32 flags, bigtime_t timeout)
 :::
 
 These functions attempt to acquire the semaphore identified by the
@@ -160,7 +160,7 @@ available.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} sem_id Semaphores::create_sem(uint32 thread_count, const char * name)
+:::{cpp:function} sem_id create_sem(uint32 thread_count, const char * name)
 :::
 
 Creates a new semaphore and returns a system-wide {htype}`sem_id` number
@@ -231,7 +231,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Semaphores::delete_sem(sem_id sem)
+:::{cpp:function} status_t delete_sem(sem_id sem)
 :::
 
 Deletes the semaphore identified by the argument. If there are any threads
@@ -266,7 +266,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Semaphores::get_sem_count(sem_id sem, int32* thread_count)
+:::{cpp:function} status_t get_sem_count(sem_id sem, int32* thread_count)
 :::
 
 :::{admonition} Warning
@@ -316,10 +316,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Semaphores::get_sem_info(sem_id sem, sem_info* info)
+:::{cpp:function} status_t get_sem_info(sem_id sem, sem_info* info)
 :::
 
-:::{cpp:function} status_t Semaphores::get_next_sem_info(team_id team, uint32* cookie, sem_info* info)
+:::{cpp:function} status_t get_next_sem_info(team_id team, uint32* cookie, sem_info* info)
 :::
 
 Copies information about a particular semaphore into the {htype}`sem_info`
@@ -368,10 +368,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Semaphores::release_sem(sem_id sem)
+:::{cpp:function} status_t release_sem(sem_id sem)
 :::
 
-:::{cpp:function} status_t Semaphores::release_sem_etc(sem_id sem, int32 count, uint32 flags)
+:::{cpp:function} status_t release_sem_etc(sem_id sem, int32 count, uint32 flags)
 :::
 
 The release_sem() function de-queues the thread that's waiting at the head
@@ -415,7 +415,7 @@ See also: {cpp:func}`acquire_sem() <acquire::sem>`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Semaphores::set_sem_owner(sem_id sem, team_id team)
+:::{cpp:function} status_t set_sem_owner(sem_id sem, team_id team)
 :::
 
 Transfers ownership of the designated semaphore to {hparam}`team`. A

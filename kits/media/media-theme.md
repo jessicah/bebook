@@ -229,7 +229,7 @@ view should try to occupy, and is passed to {hmethod}`MakeViewFor()`.
 ## Global C Functions
 
 ::::{abi-group}
-:::{cpp:function} status_t BMediaTheme::get_theme_at(int32 n, const char** outName, int32* outID)
+:::{cpp:function} status_t get_theme_at(int32 n, const char** outName, int32* outID)
 :::
 
 This function is called after the theme add-on is loaded, to determine
@@ -244,7 +244,7 @@ your add-on to distinguish among the themes it supports.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} BMediaTheme* BMediaTheme::make_theme(int32 themeID, image_id imageID)
+:::{cpp:function} BMediaTheme* make_theme(int32 themeID, image_id imageID)
 :::
 
 If you're writing a theme to be loaded from an add-on file, you must

@@ -26,10 +26,10 @@ This section describes the global mouse and keyboard functions.
 ::::{abi-group}
 Declared in:  interface/InterfaceDefs.h
 
-:::{cpp:function} status_t Functions::set_click_speed(bigtime_t interval)
+:::{cpp:function} status_t set_click_speed(bigtime_t interval)
 :::
 
-:::{cpp:function} status_t Functions::get_click_speed(bigtime_t* interval)
+:::{cpp:function} status_t get_click_speed(bigtime_t* interval)
 :::
 
 These functions set and report the timing for multiple-clicks. For
@@ -47,28 +47,28 @@ unsuccessful, they return an error code, which may be just
 ::::{abi-group}
 Declared in:  interface/InterfaceDefs.h
 
-:::{cpp:function} status_t Functions::set_mouse_map(mouse_map map)
+:::{cpp:function} status_t set_mouse_map(mouse_map map)
 :::
 
-:::{cpp:function} status_t Functions::get_mouse_map(mouse_map* map)
+:::{cpp:function} status_t get_mouse_map(mouse_map* map)
 :::
 
-:::{cpp:function} status_t Functions::set_mouse_type( numButtons)
+:::{cpp:function} status_t set_mouse_type( numButtons)
 :::
 
-:::{cpp:function} status_t Functions::get_mouse_type(int32* numButtons)
+:::{cpp:function} status_t get_mouse_type(int32* numButtons)
 :::
 
-:::{cpp:function} status_t Functions::set_mouse_speed(int32 speed)
+:::{cpp:function} status_t set_mouse_speed(int32 speed)
 :::
 
-:::{cpp:function} status_t Functions::get_mouse_speed(int32* speed)
+:::{cpp:function} status_t get_mouse_speed(int32* speed)
 :::
 
-:::{cpp:function} status_t Functions::set_mouse_acceleration(int32 acceleration)
+:::{cpp:function} status_t set_mouse_acceleration(int32 acceleration)
 :::
 
-:::{cpp:function} status_t Functions::get_mouse_acceleration(int32* acceleration)
+:::{cpp:function} status_t get_mouse_acceleration(int32* acceleration)
 :::
 
 These functions configure the mouse and supply information about the
@@ -146,7 +146,7 @@ error code, typically {cpp:enumerator}`B_ERROR`, if not.
 ::::{abi-group}
 Declared in:  interface/InterfaceDefs.h
 
-:::{cpp:function} status_t Functions::get_key_info(key_info* keyInfo)
+:::{cpp:function} status_t get_key_info(key_info* keyInfo)
 :::
 
 Writes information about the state of the keyboard into the
@@ -188,7 +188,7 @@ See also: {cpp:func}`BView::KeyDown`, {ref}`modifiers()`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void Functions::get_key_map(key_map** keys, char** chars)
+:::{cpp:function} void get_key_map(key_map** keys, char** chars)
 :::
 
 Declared in: interface/InterfaceDefs.h
@@ -745,7 +745,7 @@ Information appendix, {ref}`set_modifier_key()`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Functions::get_keyboard_id(uint16* id)
+:::{cpp:function} status_t get_keyboard_id(uint16* id)
 :::
 
 Declared in:  interface/InterfaceDefs.h
@@ -763,7 +763,7 @@ If unsuccessful for any reason, get_keyboard_id() returns
 ::::
 
 ::::{abi-group}
-:::{cpp:function} uint32 Functions::modifiers()
+:::{cpp:function} uint32 modifiers()
 :::
 
 Declared in: interface/InterfaceDefs.h
@@ -821,16 +821,16 @@ configuration with the /bin/keymap application.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Functions::set_key_repeat_rate(int32 rate)
+:::{cpp:function} status_t set_key_repeat_rate(int32 rate)
 :::
 
-:::{cpp:function} status_t Functions::get_key_repeat_rate(int32* rate)
+:::{cpp:function} status_t get_key_repeat_rate(int32* rate)
 :::
 
-:::{cpp:function} status_t Functions::set_key_repeat_delay(bigtime_t delay)
+:::{cpp:function} status_t set_key_repeat_delay(bigtime_t delay)
 :::
 
-:::{cpp:function} status_t Functions::get_key_repeat_delay(bigtime_t* delay)
+:::{cpp:function} status_t get_key_repeat_delay(bigtime_t* delay)
 :::
 
 Declared in: interface/InterfaceDefs.h
@@ -862,7 +862,7 @@ isn't one of the listed four values).
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void Functions::set_keyboard_locks(uint32 modifiers)
+:::{cpp:function} void set_keyboard_locks(uint32 modifiers)
 :::
 
 Declared in: interface/InterfaceDefs.h
@@ -883,7 +883,7 @@ See also: {ref}`get_key_map()`, {ref}`modifiers()`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void Functions::set_modifier_key(uint32 modifier, uint32 key)
+:::{cpp:function} void set_modifier_key(uint32 modifier, uint32 key)
 :::
 
 Declared in: interface/InterfaceDefs.h

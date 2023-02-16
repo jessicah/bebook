@@ -26,7 +26,7 @@ was built, what time it is now and whether your computer is on fire.
 ## System Info Functions and Structures
 
 ::::{abi-group}
-:::{cpp:function} status_t System Information::get_system_info(system_info* info)
+:::{cpp:function} status_t get_system_info(system_info* info)
 :::
 
 :::{code} c
@@ -217,7 +217,7 @@ get_system_info() always returns {cpp:enumerator}`B_OK`.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} int32 System Information::is_computer_on()
+:::{cpp:function} int32 is_computer_on()
 :::
 
 Returns 1 if the computer is on. If the computer isn't on, the value
@@ -225,7 +225,7 @@ returned by this function is undefined.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} double System Information::is_computer_on_fire()
+:::{cpp:function} double is_computer_on_fire()
 :::
 
 Returns the temperature of the motherboard if the computer is currently on

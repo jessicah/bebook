@@ -203,17 +203,17 @@ Subtracts two {hclass}`BTimeCode` values, returning a new one.
 ## Global C Functions
 
 ::::{abi-group}
-:::{cpp:function} status_t BTimeCode::count_timecodes()
+:::{cpp:function} status_t count_timecodes()
 :::
 
 Returns the number of recognized time code types.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t BTimeCode::frames_to_timecode(int32 linearFrames, int* hours, int* minutes, int* seconds, int* frames, const timecode_info code = NULL)
+:::{cpp:function} status_t frames_to_timecode(int32 linearFrames, int* hours, int* minutes, int* seconds, int* frames, const timecode_info code = NULL)
 :::
 
-:::{cpp:function} status_t BTimeCode::timecode_to_frames(int hours, int minutes, int seconds, int frames, const timecode_info code = NULL)
+:::{cpp:function} status_t timecode_to_frames(int hours, int minutes, int seconds, int frames, const timecode_info code = NULL)
 :::
 
 frames_to_timecode() converts the frame offset {hparam}`linearFrames` into
@@ -234,7 +234,7 @@ the future, wouldn't you?
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t BTimeCode::get_timecode_description(timecode_type type, timecode_info* outTimeCode)
+:::{cpp:function} status_t get_timecode_description(timecode_type type, timecode_info* outTimeCode)
 :::
 
 Fills out the {htype}`timecode_info` structure specified by
@@ -263,10 +263,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t BTimeCode::us_to_timecode(bigtime_t micros, int* hours, int* minutes, int* seconds, int* frames, const timecode_info code = NULL)
+:::{cpp:function} status_t us_to_timecode(bigtime_t micros, int* hours, int* minutes, int* seconds, int* frames, const timecode_info code = NULL)
 :::
 
-:::{cpp:function} status_t BTimeCode::timecode_to_us(int hours, int minutes, int seconds, int frames, bigtime_t* micros, const timecode_info code = NULL)
+:::{cpp:function} status_t timecode_to_us(int hours, int minutes, int seconds, int frames, bigtime_t* micros, const timecode_info code = NULL)
 :::
 
 us_to_timecode() converts the time {hparam}`micros`, which is specified in

@@ -22,7 +22,7 @@ widths: auto
 ## Functions
 
 ::::{abi-group}
-:::{cpp:function} void Miscellaneous Functions And Constants::clear_caches(void* addr, size_t len, uint32 flags)
+:::{cpp:function} void clear_caches(void* addr, size_t len, uint32 flags)
 :::
 
 Declared in: kernel/image.h
@@ -67,7 +67,7 @@ out to the cache.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void Miscellaneous Functions And Constants::debugger(const char* string)
+:::{cpp:function} void debugger(const char* string)
 :::
 
 Throws the calling thread into the debugger. The {hparam}`string` argument
@@ -75,7 +75,7 @@ becomes the debugger's first utterance.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} int Miscellaneous Functions And Constants::disable_debugger(int state)
+:::{cpp:function} int disable_debugger(int state)
 :::
 
 Instructs the kernel to send a signal for all exceptions, even those that
@@ -86,7 +86,7 @@ or 0 to turn it off.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} bigtime_t Miscellaneous Functions And Constants::set_alarm(bigtime_t time, uint32 mode)
+:::{cpp:function} bigtime_t set_alarm(bigtime_t time, uint32 mode)
 :::
 
 Tells the kernel to send the SIGALRM signal at some point in the future,
@@ -143,7 +143,7 @@ This cancels the previous alarm request regardless of the type of alarm.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void Miscellaneous Functions And Constants::set_signal_stack(void* ptr, size_t size)
+:::{cpp:function} void set_signal_stack(void* ptr, size_t size)
 :::
 
 Declared in: posix/signal.be.h

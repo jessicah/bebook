@@ -41,7 +41,7 @@ For more information on ports, see "{ref}`Ports Overview`".
 ## Port Functions
 
 ::::{abi-group}
-:::{cpp:function} port_id Ports::create_port(int32 queue_length, const char* name)
+:::{cpp:function} port_id create_port(int32 queue_length, const char* name)
 :::
 
 Creates a new port and returns its {htype}`port_id` number. The port's
@@ -87,7 +87,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Ports::close_port(port_id port)
+:::{cpp:function} status_t close_port(port_id port)
 :::
 
 Closes the port so no more messages can be written to it. After you close
@@ -121,7 +121,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Ports::delete_port(port_id port)
+:::{cpp:function} status_t delete_port(port_id port)
 :::
 
 Deletes the given {hparam}`port`. The port's message queue doesn't have to
@@ -155,7 +155,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} port_id Ports::find_port(const char* port_name)
+:::{cpp:function} port_id find_port(const char* port_name)
 :::
 
 Returns the {htype}`port_id` of the named port. {hparam}`port_name` should
@@ -180,10 +180,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Ports::get_port_info(port_id port, port_info* info)
+:::{cpp:function} status_t get_port_info(port_id port, port_info* info)
 :::
 
-:::{cpp:function} status_t Ports::get_next_port_info(team_id team, uint32* cookie, port_info* info)
+:::{cpp:function} status_t get_next_port_info(team_id team, uint32* cookie, port_info* info)
 :::
 
 Copies information about a particular {hparam}`port` into the
@@ -235,10 +235,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} ssize_t Ports::port_buffer_size(port_id port)
+:::{cpp:function} ssize_t port_buffer_size(port_id port)
 :::
 
-:::{cpp:function} ssize_t Ports::port_buffer_size_etc(port_id port, uint32 flags, bigtime_t timeout)
+:::{cpp:function} ssize_t port_buffer_size_etc(port_id port, uint32 flags, bigtime_t timeout)
 :::
 
 These functions return the length (in bytes) of the message buffer that's
@@ -283,7 +283,7 @@ See also: {cpp:func}`read_port() <read::port>`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} int32 Ports::port_count(port_id port)
+:::{cpp:function} int32 port_count(port_id port)
 :::
 
 Returns the number of messages that are currently in port's message queue.
@@ -321,10 +321,10 @@ See also: {ref}`get_port_info()`
 ::::
 
 ::::{abi-group}
-:::{cpp:function} ssize_t Ports::read_port(port_id port, int32* msg_code, void* msg_buffer, size_t buffer_size)
+:::{cpp:function} ssize_t read_port(port_id port, int32* msg_code, void* msg_buffer, size_t buffer_size)
 :::
 
-:::{cpp:function} ssize_t Ports::read_port_etc(port_id port, int32* msg_code, void* msg_buffer, size_t buffer_size, uint32 flags, bigtime_t timeout)
+:::{cpp:function} ssize_t read_port_etc(port_id port, int32* msg_code, void* msg_buffer, size_t buffer_size, uint32 flags, bigtime_t timeout)
 :::
 
 These functions remove the message at the head of {hparam}`port`'s message
@@ -375,7 +375,7 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Ports::set_port_owner(port_id port, team_id team)
+:::{cpp:function} status_t set_port_owner(port_id port, team_id team)
 :::
 
 Transfers ownership of the designated port to team. A port can only be
@@ -420,10 +420,10 @@ widths: auto
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Ports::write_port(port_id port, int32 msg_code, void* msg_buffer, size_t buffer_size)
+:::{cpp:function} status_t write_port(port_id port, int32 msg_code, void* msg_buffer, size_t buffer_size)
 :::
 
-:::{cpp:function} status_t Ports::write_port_etc(port_id port, int32 msg_code, void* msg_buffer, size_t buffer_size, uint32 flags, bigtime_t timeout)
+:::{cpp:function} status_t write_port_etc(port_id port, int32 msg_code, void* msg_buffer, size_t buffer_size, uint32 flags, bigtime_t timeout)
 :::
 
 These functions place a message at the tail of port's message queue. The
