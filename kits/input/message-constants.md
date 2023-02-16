@@ -1,31 +1,28 @@
+:::{cpp:class} Message Constants
+:::
 # Message Constants
 ## Input Device Event Messages
-::::{abi-group}
-
+### Pointing Device Event Messages
 - {cpp:func}`~B::MOUSE`
 - {cpp:func}`~B::MOUSE`
 - {cpp:func}`~B::MOUSE`
 
 Note that a pointing device isn't expected to send the
 {cpp:enum}`B_MOUSE_ENTER_EXIT` message.
-::::
-
-::::{abi-group}
-
+### Keyboard Device Event Messages
 - {cpp:enum}`B_KEY_DOWN`
 - {cpp:enum}`B_UNMAPPED_KEY_DOWN`
 - {cpp:enum}`B_KEY_UP`
 - {cpp:enum}`B_UMAPPED_KEY_UP`
 - {cpp:enum}`B_MODIFIERS_CHANGED`
 
-::::
-
 ## Input Device Control Messages
-::::{abi-group}
-
+### Pointing Device Control Messages
 :::{list-table}
 ---
 header-rows: 1
+align: left
+widths: auto
 ---
 -
 	- Constant
@@ -43,13 +40,12 @@ header-rows: 1
 	- {cpp:enum}`B_MOUSE_TYPE_CHANGED`
 	- Requests that the receiver change the mouse type (the number of buttons) to the type retrieved through {cpp:func}`~get::mouse`.
 :::
-::::
-
-::::{abi-group}
-
+### Keyboard Device Control Messages
 :::{list-table}
 ---
 header-rows: 1
+align: left
+widths: auto
 ---
 -
 	- Constant
@@ -67,10 +63,7 @@ header-rows: 1
 	- {cpp:enum}`B_KEY_REPEAT_RATE_CHANGED`
 	- Requests that the receiver change the speed at which a held key generates repeated characters to the value retrieved through {cpp:func}`~get::key`.
 :::
-::::
-
-::::{abi-group}
-
+### Device Monitoring
 The {cpp:func}`~watch::input`
 function lets you ask the Input Server to send
 you a message when a device starts or stops, or when the set of
@@ -81,6 +74,8 @@ The be:opcode field will be one of:
 :::{list-table}
 ---
 header-rows: 1
+align: left
+widths: auto
 ---
 -
 	- Constant
@@ -98,10 +93,7 @@ header-rows: 1
 	- {cpp:enum}`B_INPUT_DEVICE_STOPPED`
 	- An input device has been stopped.
 :::
-::::
-
-::::{abi-group}
-
+### Input Method Events
 Active input methods send input method events
 ({cpp:enum}`B_INPUT_METHOD_EVENT`
 messages) downstream to application views to help integrate the method's
@@ -112,6 +104,8 @@ input method event:
 :::{list-table}
 ---
 header-rows: 1
+align: left
+widths: auto
 ---
 -
 	- Constant
@@ -129,4 +123,3 @@ header-rows: 1
 	- {cpp:enum}`B_INPUT_METHOD_STOPPED`
 	- Sent when an input transaction is completed.
 :::
-::::

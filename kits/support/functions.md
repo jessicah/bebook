@@ -240,7 +240,41 @@ The first argument passed to these functions names the other encoding: the sourc
 {hmethod}`convert_to_utf8()` and the destination encoding for {hmethod}`convert_from_utf8()`. it can
 be any of the following constants:
 
-. . . . . .
+:::{list-table}
+---
+header-rows: 0
+---
+-
+	- {cpp:enum}`B_ISO1_CONVERSION`
+	- {cpp:enum}`B_MAC_ROMAN_CONVERSION`
+-
+	- {cpp:enum}`B_ISO2_CONVERSION`
+	- {cpp:enum}`B_SJIS_CONVERSION`
+-
+	- {cpp:enum}`B_ISO3_CONVERSION`
+	- {cpp:enum}`B_EUC_CONVERSION`
+-
+	- {cpp:enum}`B_ISO4_CONVERSION`
+	- {cpp:enum}`B_JIS_CONVERSION`
+-
+	- {cpp:enum}`B_ISO5_CONVERSION`
+	- {cpp:enum}`B_MS_WINDOWS_CONVERSION`
+-
+	- {cpp:enum}`B_ISO6_CONVERSION`
+	- {cpp:enum}`B_UNICODE_CONVERSION`
+-
+	- {cpp:enum}`B_ISO7_CONVERSION`
+	- {cpp:enum}`B_KOI8R_CONVERSION`
+-
+	- {cpp:enum}`B_ISO8_CONVERSION`
+	- {cpp:enum}`B_MS_WINDOWS_1251_CONVERSION`
+-
+	- {cpp:enum}`B_ISO9_CONVERSION`
+	- {cpp:enum}`B_MS_DOS_866_CONVERSION`
+-
+	- {cpp:enum}`B_ISO10_CONVERSION`
+	-
+:::
 
 Most of these constants designate encoding schemes that are supported by the {cpp:class}`BFont`
 class in the Interface Kit and its {cpp:func}`~BFont::SetEncoding()` function. They parallel the
@@ -250,7 +284,6 @@ extended ASCII encoding defined in part one of ISO 8859 (Latin 1). Similarly,
 {cpp:enum}`B_ISO2_CONVERSION` matches {cpp:enum}`B_ISO_8859_2`, {cpp:enum}`B_ISO3_CONVERSION`
 matches {cpp:enum}`B_ISO_8859_3`, and so on. {cpp:enum}`B_MAC_ROMAN_CONVERSION` matches
 {cpp:enum}`B_MACINTOSH_ROMAN`. ({cpp:enum}`B_ISO10_CONVERSION` is not implemented in this release.)
--- Need to check
 
 {cpp:enum}`B_SJIS_CONVERSION` stands for the Shift-JIS (Japanese Industrial Standard) encoding of
 Japanese and {cpp:enum}`B_EUC_CONVERSION` stands for the EUC (Extended UNIX Code) encoding of

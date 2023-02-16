@@ -1,25 +1,50 @@
 # System Information
+
+:::{list-table}
+---
+header-rows: 0
+align: left
+widths: auto
+---
+-
+	- Declared in:
+
+	- kernel/OS.h
+
+-
+	- Library:
+
+	- libroot.so
+
+
+:::
+
+The following functions, types, and structures are used to convey basic
+information about the system, such as the number of CPUs, when the kernel
+was built, what time it is now and whether your computer is on fire.
+
 ## System Info Functions and Structures
+
 ::::{abi-group}
-
-
-
-
-
-
 :::{cpp:function} status_t System Information::get_system_info(system_info* info)
 :::
-:::{code}
+
+:::{code} c
 struct {} system_info
+
 struct {} cpu_info
+
 enum cpu_type
+
 enum platform_type
 :::
+
 The get_system_info() function tells you more than you want to know about
-the physical capacities and other statistics of your operating system.
-The function takes a pointer to an allocated system_info structure and
+the physical capacities and other statistics of your operating system. The
+function takes a pointer to an allocated {htype}`system_info` structure and
 fills it in.
-:::{code}
+
+:::{code} c
 typedef struct {
    machine_id  id;
    bigtime_t  boot_time;
@@ -47,21 +72,29 @@ typedef struct {
    int64  kernel_version;
 } system_info
 :::
-The system_info structure holds information about the machine and the
-state of the kernel. The structure's fields are:
+
+The {htype}`system_info` structure holds information about the machine and
+the state of the kernel. The structure's fields are:
+
 :::{list-table}
 ---
 header-rows: 1
+align: left
+widths: auto
 ---
 -
 	- Field
+
 	- Description
+
 -
 	- id.
-	- The 64-bit number (encoded as two int32s) that uniquely identifies this machine.
+	- The 64-bit number (encoded as two {htype}`int32`s) that uniquely
+		identifies this machine.
 -
 	- boot_time.
-	- The time at which the computer was last booted, measured in microseconds since January 1st, 1970.
+	- The time at which the computer was last booted, measured in microseconds
+		since January 1st, 1970.
 -
 	- cpu_count.
 	- The number of CPUs.
@@ -70,7 +103,7 @@ header-rows: 1
 	- The type constant and revision number of the CPUs.
 -
 	- cpu_infos.
-	- An array of cpu_info structures, one for each CPU.
+	- An array of {htype}`cpu_info` structures, one for each CPU.
 -
 	- cpu_clock_speed.
 	- The speed (in Hz) at which the CPUs operate.
@@ -82,10 +115,13 @@ header-rows: 1
 	- One of the platform type constants.
 -
 	- max_resourcesandused_resources.
-	- The five pairs of max/used fields give the total number of RAM pages, semaphores, and so on, that the system can create, and the number that are currently in use.
+	- The five pairs of max/used fields give the total number of RAM pages,
+		semaphores, and so on, that the system can create, and the number that are
+		currently in use.
 -
 	- page_faults.
-	- The number of times the system a read a page of memory into RAM due to a page fault.
+	- The number of times the system a read a page of memory into RAM due to a
+		page fault.
 -
 	- kernel_name.
 	- The (leaf) name of the kernel.
@@ -95,31 +131,46 @@ header-rows: 1
 -
 	- kernel_version.
 	- A number that identifies the kernel version.
+
 :::
-The cpu_info structure is:
-:::{code}
+
+The {htype}`cpu_info` structure is:
+
+:::{code} c
 typedef struct {
       bigtime_t active_time;
 } cpu_info;
 :::
+
 :::{list-table}
 ---
 header-rows: 1
+align: left
+widths: auto
 ---
 -
 	- Field
+
 	- Description
+
 -
 	- active_time
-	- Is the number of microseconds spent doing useful work since the machine was booted.
+	- Is the number of microseconds spent doing useful work since the machine
+		was booted.
+
 :::
-Relatedly, {cpp:enum}`B_MAX_CPU_COUNT` is currently 8.
-The machine_id type is:
-:::{code}
+
+Relatedly, {cpp:enumerator}`B_MAX_CPU_COUNT` is currently 8.
+
+The {htype}`machine_id` type is:
+
+:::{code} c
 typedef int32 machine_id[2];
 :::
-The cpu_type constants are:
-:::{code}
+
+The {htype}`cpu_type` constants are:
+
+:::{code} c
 typedef enum {
     B_CPU_PPC_601 = 1,
     B_CPU_PPC_603 = 2,
@@ -140,8 +191,10 @@ typedef enum {
     B_CPU_SPARC
 } cpu_type;
 :::
-The platform_type constants are:
-:::{code}
+
+The {htype}`platform_type` constants are:
+
+:::{code} c
 typedef enum {
     B_BEBOX_PLATFORM = 0,
     B_MAC_PLATFORM,
@@ -156,28 +209,26 @@ typedef enum {
     B_HAL_PLATFORM
 } platform_type;
 :::
+
 I haven't tried it, but I really don't think the BeOS would work at all
-well on a Timex Sinclair (see
-{cpp:func}`~is::computer`).
-get_system_info() always returns
-{cpp:enum}`B_OK`.
+well on a Timex Sinclair (see {ref}`is_computer_on_fire()`).
+
+get_system_info() always returns {cpp:enumerator}`B_OK`.
 ::::
 
 ::::{abi-group}
-
-
 :::{cpp:function} int32 System Information::is_computer_on()
 :::
+
 Returns 1 if the computer is on. If the computer isn't on, the value
 returned by this function is undefined.
 ::::
 
 ::::{abi-group}
-
-
 :::{cpp:function} double System Information::is_computer_on_fire()
 :::
-Returns the temperature of the motherboard if the computer is currently
-on fire. Smoldering doesn't count. If the computer isn't on fire, the
-function returns some other value.
+
+Returns the temperature of the motherboard if the computer is currently on
+fire. Smoldering doesn't count. If the computer isn't on fire, the function
+returns some other value.
 ::::
