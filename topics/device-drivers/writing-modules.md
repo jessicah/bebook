@@ -112,7 +112,7 @@ details on how modules are accessed by other drivers or modules.
 ## Module Functions
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Modules::get_module(const char* path, module_info** info)
+:::{cpp:function} status_t get_module(const char* path, module_info** info)
 :::
 
 Declared in: drivers/module.h
@@ -123,7 +123,7 @@ count.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Modules::put_module(const char* path)
+:::{cpp:function} status_t put_module(const char* path)
 :::
 
 Declared in: drivers/module.h
