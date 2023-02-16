@@ -75,7 +75,7 @@ div.warning {
 	border-color: orange
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
 	font-weight: bold;
 	color: #336699;
 }
@@ -175,4 +175,8 @@ h2.heading {
 div.note {
 	background-color: #efefff;
 	border-color: darkblue
+}
+
+td > p {
+	text-align: left
 }
