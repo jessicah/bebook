@@ -285,16 +285,20 @@ class Document:
 	# doesn't work correctly for fieldsynopsis
 	def process_declaration(self, element):
 		declaration = text_content(element)
-		#print(declaration)
-		
+
+		if has_class(element, 'c'):
+			add_class_name = False
+		else:
+			add_class_name = True
+
 		if declaration.startswith('global') and 'operator' in declaration:
 			declaration = declaration[len('global'):].strip()
 		elif declaration.endswith('global'):
 			declaration = declaration[0:-len('global')].strip()
 		else:
-			if 'operator' in declaration:
+			if 'operator' in declaration and add_class_name:
 				declaration = operator_re.sub(self.add_class_name, declaration)
-			else:
+			elif add_class_name:
 				declaration = function_re.sub(self.add_class_name, declaration)
 		
 		declaration = declaration.replace(';', '').strip()
