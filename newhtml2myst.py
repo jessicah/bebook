@@ -15,7 +15,7 @@ warnings.filterwarnings('ignore', category=XMLParsedAsHTMLWarning)
 combine_ws = re.compile(r'\s+')
 function_re = re.compile(r'([a-zA-Z0-9_~]+)\(')
 operator_re = re.compile(r'(operator([+\-*\/%^&|~!=<>,()[\]]{1,3}|\s+new|\s+delete))\(')
-reference_re = re.compile(r'#([^_]+)_([^_]+)')
+reference_re = re.compile(r'#([^_]+)_([^_]+)$')
 enum_re = re.compile(r'^([A-Z0-9_]+)$')
 
 def text_content(element, clean=True):
@@ -164,7 +164,9 @@ class Table(BlockContainer):
 			elif isinstance(block, BlockContainer):
 				lines = str(block).split('\n')
 				for index, line in enumerate(lines):
-					if index == 0:
+					if len(line) == 0:
+						self.content += '\n'
+					elif index == 0:
 						self.content += f'\t- {line}\n'
 					else:
 						self.content += f'\t\t{line}\n'
@@ -471,7 +473,7 @@ class Document:
 				if is_expr:
 					content += f'{{cpp:expr}}`{text_content(child)}`'
 				elif is_enum:
-					content += f'{{cpp:enum}}`{text_content(child)}`'
+					content += f'{{cpp:enumerator}}`{text_content(child)}`'
 				elif highlight != None:
 					content += f'{{{highlight}}}`{text_content(child)}`'
 				else:
@@ -487,7 +489,7 @@ class Document:
 							content += text_content(grandchild)
 						elif grandchild.name == 'code' and 'constant' in grandchild['class']:
 							# cpp:epxr for `true`, `false`, etc.
-							content += f'{{cpp:enum}}`{text_content(grandchild)}`'
+							content += f'{{cpp:enumerator}}`{text_content(grandchild)}`'
 						else:
 							content += text_content(grandchild)
 				elif 'type' in child['class']:
@@ -529,17 +531,31 @@ class Document:
 				ref_type = 'cpp:class'
 			elif has_class(code, 'constant'):
 				ref_type = 'cpp:enumerator'
+			elif has_class(code, 'varname'):
+				ref_type = 'cpp:var'
 				
 		content = text_content(element)
 
-		if match:
+		if match and not (code is not None and has_any_classes(code, ['constant', 'varname'])):
+			# if element.has_attr('title') == False:
+			# 	print(fg.li_cyan, 'missing title', reset, element)
+			# else:
+			# 	print(fg.li_green, element['title'], reset)
 			ref_class = match.group(1)
 			ref_method = match.group(2)
-			if '::' in content:
-				return f'{{cpp:func}}`{ref_class}::{ref_method}`'
+			content_matches = content.replace('()', '') == f'{ref_class}::{ref_method}' or content == ref_method
+			if ref_method == 'Constructor':
+				ref_method = f'{ref_class}()'
+			if content_matches:
+				if '::' in content:
+					return f'{{cpp:func}}`{ref_class}::{ref_method}`'
+				else:
+					return f'{{cpp:func}}`~{ref_class}::{ref_method}`'
 			else:
-				return f'{{cpp:func}}`~{ref_class}::{ref_method}`'
+					return f'{{cpp:func}}`{content} <{ref_class}::{ref_method}>`'
 		else:
+			if ref_type == 'ref':
+				print(fg.li_red, 'WARNING:', reset, 'unable to parse reference:', reset, fg.li_green, element, reset)
 			return f'{{{ref_type}}}`{content}`'
 	
 if __name__ == '__main__':
