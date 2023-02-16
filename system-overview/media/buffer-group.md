@@ -8,7 +8,7 @@ that you produce into before you send the buffer on to its destination.
 
 You can create a new {cpp:class}`BBufferGroup` by simply calling:
 
-:::{code}
+:::{code} cpp
 new BBufferGroup;
 :::
 
@@ -21,17 +21,17 @@ data. A possible exception is if your node is a filter that simply
 processes buffers it receives and passes them along.
 
 A {cpp:class}`BBufferGroup` instance runs a thread that reclaims
-{cpp:class}`BBuffer`s whose {cpp:func}`~BBuffer::Recycle` function has been
-called. If the group is temporarily out of free buffers, a request for a
-buffer may block until one is available, or until the request times out, if
-a timeout is specified when the request is made.
+{cpp:class}`BBuffer`s whose {cpp:func}`Recycle() <BBuffer::Recycle>`
+function has been called. If the group is temporarily out of free buffers,
+a request for a buffer may block until one is available, or until the
+request times out, if a timeout is specified when the request is made.
 
 ## Using BBitmaps as Buffers
 
 If you're doing video processing, you might want your buffers to be
 {cpp:class}`BBitmap`s. Here's how you can accomplish this:
 
-:::{code}
+:::{code} cpp
 BBufferGroup *my_group = new BBufferGroup;
 BBitmap *my_bitmap = new BBitmap(BRect(0,0,639,479), B_BITMAP_IS_AREA,
             B_RGB32, 640*4);
@@ -56,9 +56,10 @@ status_t err = my_group->AddBuffer(bc_info, &out_buffer);
 /* out_buffer is now set to use the BBitmap's memory */
 :::
 
-This code takes advantage of the {cpp:enum}`B_BITMAP_IS_AREA` flag when
-creating the bitmap. This forces the bitmap to be in a memory area of its
-very own, which you can then use when creating the {cpp:class}`BBuffer`.
+This code takes advantage of the {cpp:enumerator}`B_BITMAP_IS_AREA` flag
+when creating the bitmap. This forces the bitmap to be in a memory area of
+its very own, which you can then use when creating the
+{cpp:class}`BBuffer`.
 
 If you need to do real-time accesses to the {cpp:class}`BBuffer`, you
 should lock it down. In addition, if you use DMA, you'll need to specify
@@ -67,5 +68,5 @@ for the buffer to be contiguous (you can do this using the
 
 Before deleting any {cpp:class}`BBitmap`s used in this way, be sure the
 buffer group has been deleted first and (if
-{cpp:func}`~BBufferConsumer::SetOutputBuffersFor` has been used) all
-buffers have been reclaimed.
+{cpp:func}`SetOutputBuffersFor() <BBufferConsumer::SetOutputBuffersFor>`
+has been used) all buffers have been reclaimed.

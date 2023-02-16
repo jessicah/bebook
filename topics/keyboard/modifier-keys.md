@@ -7,7 +7,7 @@ comparing {ref}`modifiers()` with the constants listed in the table below.
 For example, here's how you can see if the user is holding down one of the
 {hkey}`Shift` keys:
 
-:::{code}
+:::{code} c
 if (modifiers() | B_SHIFT_KEY) {
    /* a shift key is down */
 }
@@ -26,65 +26,42 @@ align: left
 widths: auto
 ---
 -
-
 	- Constant
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_SHIFT_KEY`
-
+	- {cpp:enumerator}`B_SHIFT_KEY`
 	- Maps character keys to their uppercase or alternative versions.
-
 -
-
-	- {cpp:enum}`B_COMMAND_KEY`
-
+	- {cpp:enumerator}`B_COMMAND_KEY`
 	- In combination with a character key, performs a keyboard shortcut.
-
 -
-
-	- {cpp:enum}`B_CONTROL_KEY`
-
+	- {cpp:enumerator}`B_CONTROL_KEY`
 	- Turns alphabetic keys into control characters.
-
 -
-
-	- {cpp:enum}`B_OPTION_KEY`
-
+	- {cpp:enumerator}`B_OPTION_KEY`
 	- Maps keys to alternative characters, typically characters in an extended
-set—multibyte UTF-8 characters.
-
+		set—multibyte UTF-8 characters.
 -
-
-	- {cpp:enum}`B_MENU_KEY`
-
+	- {cpp:enumerator}`B_MENU_KEY`
 	- Pops open a menu.
-
 -
-
-	- {cpp:enum}`B_CAPS_LOCK`
-
+	- {cpp:enumerator}`B_CAPS_LOCK`
 	- Reverses the effect of the {hkey}`Shift` key on alphabetic characters.
-
 -
-
-	- {cpp:enum}`B_NUM_LOCK`
-
+	- {cpp:enumerator}`B_NUM_LOCK`
 	- Reverses the effect of the {hkey}`Shift` key on numeric characters.
-
 -
-
-	- {cpp:enum}`B_SCROLL_LOCK`
-
+	- {cpp:enumerator}`B_SCROLL_LOCK`
 	- Stops the display from scrolling.
+
 :::
 
 If you're interested in whether the left or right modifer key of a given
 type was pressed, you can check against these additional values:
 
-:::{code}
+:::{code} sh
 B_LEFT_SHIFT_KEY   B_RIGHT_SHIFT_KEY
 B_LEFT_CONTROL_KEY B_RIGHT_CONTROL_KEY
 B_LEFT_OPTION_KEY  B_RIGHT_OPTION_KEY

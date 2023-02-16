@@ -8,13 +8,13 @@ message, change the message's designated handler, or whatever else it wants
 to do—the implementation of the filter function isn't restricted.
 
 To define a message filter, you have to provide a message-filtering
-function. You do this by implementing the
-{cpp:func}`~BMessageFilter::Filter` hook function in a
-{cpp:class}`BMessageFilter` subclass, or by supplying a
-{cpp:func}`~filter::hook` function to the {cpp:class}`BMessageFilter`
-constructor. Only one filter function per object is called. If you
-implement {cpp:func}`~BMessageFilter::Filter` and provide a filter_hook
-function, the filter_hook will win.
+function. You do this by implementing the {cpp:func}`Filter()
+<BMessageFilter::Filter>` hook function in a {cpp:class}`BMessageFilter`
+subclass, or by supplying a {cpp:func}`filter_hook <filter::hook>` function
+to the {cpp:class}`BMessageFilter` constructor. Only one filter function
+per object is called. If you implement {cpp:func}`Filter()
+<BMessageFilter::Filter>` and provide a filter_hook function, the
+filter_hook will win.
 
 To attach a message filter to a looper, call
 {cpp:func}`BLooper::AddCommonFilter`. To add it to a handler, call

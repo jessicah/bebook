@@ -9,9 +9,9 @@ functions, and directly manipulate the frame buffer.
 ## Screen Access
 
 Like all windows, a {cpp:class}`BWindowScreen` is hidden (off-screen) when
-it's constructed. By calling {cpp:func}`~BWindowScreen::Show` to put it
-on-screen and make it the active window, an application takes over the
-whole screen. While the {cpp:class}`BWindowScreen` is active, the
+it's constructed. By calling {cpp:func}`Show() <BWindowScreen::Show>` to
+put it on-screen and make it the active window, an application takes over
+the whole screen. While the {cpp:class}`BWindowScreen` is active, the
 Application Server's graphics operations are suspended—this means that you
 can't use any {cpp:class}`BView` functions, nor any functions in classes
 derived from {cpp:class}`BView`; you have to draw directly into the
@@ -33,9 +33,9 @@ loop continues to function. It gets messages reporting the user's actions
 on the keyboard and mouse, just like any other active window. Because it
 covers the whole screen, it's notified of all mouse and keyboard events.
 You can attach filters to the window to get the messages as they arrive. Or
-you can call the Interface Kit's {cpp:func}`~get::key` function to poll the
+you can call the Interface Kit's {ref}`get_key_info()` function to poll the
 state of the keyboard and construct a nominal {cpp:class}`BView` so that
-you can call {cpp:func}`~BView::GetMouse` to poll the mouse.
+you can call {cpp:func}`GetMouse() <BView::GetMouse>` to poll the mouse.
 
 ## Workspaces
 
@@ -49,5 +49,6 @@ which it's the active window.
 A {cpp:class}`BWindowScreen` object can be constructed in a debugging mode
 that lets you switch back and forth between the workspace in which the game
 is running and a workspace where error messages are printed. See the
-{cpp:func}`~BWindowScreen::Constructor` and the
-{cpp:func}`~BWindowScreen::RegisterThread` function for details.
+{cpp:func}`constructor <BWindowScreen::BWindowScreen()>` and the
+{cpp:func}`RegisterThread() <BWindowScreen::RegisterThread>` function for
+details.

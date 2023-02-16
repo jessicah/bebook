@@ -61,7 +61,7 @@ service. For example, the BeOS provides shelf items that monitor and
 control the input method mechanism, PPP, and the mail daemon (the date/time
 view is not a shelf replicant):
 
-
+![The BDeskbar Shelf](./images/TheDeskbar/Shelf.png)
 
 {hmethod}`AddItem()` puts a new item on the Deskbar's shelf.
 {hparam}`view`, the {cpp:class}`BView` that will be displayed on the shelf,
@@ -80,7 +80,7 @@ You can also add an item to the Deskbar by passing an {htype}`entry_ref`,
 {hmethod}`CountItems()` returns the number of items currently on the shelf
 (keep in mind that it doesn't count the date/time view).
 
-{hmethod}`HasItem()` returns {cpp:enum}`true` if the Deskbar shelf
+{hmethod}`HasItem()` returns {cpp:expr}`true` if the Deskbar shelf
 contains the item identified by {hparam}`name` or {hparam}`id`.
 
 {hmethod}`GetItemInfo()` points *{hparam}`found_name` to the name of the
@@ -99,30 +99,22 @@ align: left
 widths: auto
 ---
 -
-
 	- Return Code
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_OK`.
-
+	- {cpp:enumerator}`B_OK`.
 	- The request to add, remove, or get info on the item was successfully
-communicated to the Deskbar. Note that this doesn't mean that the function
-actually did what it was supposed to do.
-
+		communicated to the Deskbar. Note that this doesn't mean that the function
+		actually did what it was supposed to do.
 -
-
-	- {cpp:enum}`B_BAD_VALUE`.
-
-	- ({hmethod}`GetItemInfo()`) *{hparam}`found_name` is {cpp:enum}`NULL`.
-
+	- {cpp:enumerator}`B_BAD_VALUE`.
+	- ({hmethod}`GetItemInfo()`) *{hparam}`found_name` is {cpp:expr}`NULL`.
 -
-
 	- Negative values.
-
 	- A message-sending error occurred.
+
 :::
 ::::
 
@@ -147,13 +139,13 @@ Returns the Deskbar's frame in screen coordinates.
 :::
 
 {hmethod}`Location()` returns a symbolic description of the Deskbar's
-current location; see {cpp:func}`~Types::deskbar` for the list of
-pre-defined locations. {hparam}`isExpanded` (if supplied) is set to
-{cpp:enum}`true` if the Deskbar is expanded, and {cpp:enum}`false` if it's
-contracted; {hmethod}`IsExpanded()` returns the expansion value directly.
-Expansion and contraction is variable only if the Deskbar's location is
-left-top or right-top; for all other locations, the expansion state is
-hard-wired. See {cpp:func}`~Types::deskbar` for illustrations.
+current location; see {ref}`deskbar_location` for the list of pre-defined
+locations. {hparam}`isExpanded` (if supplied) is set to {cpp:expr}`true` if
+the Deskbar is expanded, and {cpp:expr}`false` if it's contracted;
+{hmethod}`IsExpanded()` returns the expansion value directly. Expansion and
+contraction is variable only if the Deskbar's location is left-top or
+right-top; for all other locations, the expansion state is hard-wired. See
+{ref}`deskbar_location` for illustrations.
 
 {hmethod}`SetLocation()` sets the Deskbar's location and expands/contracts
 the Deskbar; for some locations, the expansion/contraction is hard-wired.
@@ -171,23 +163,18 @@ align: left
 widths: auto
 ---
 -
-
 	- Return Code
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_OK`.
-
+	- {cpp:enumerator}`B_OK`.
 	- The new location or expansion request was successfully communicated to the
-Deskbar. Whether the parameters were actually enforced isn't indicated.
-
+		Deskbar. Whether the parameters were actually enforced isn't indicated.
 -
-
 	- Negative values.
-
 	- The Deskbar isn't running, or some other message-sending error occurred.
+
 :::
 ::::
 
@@ -195,7 +182,7 @@ Deskbar. Whether the parameters were actually enforced isn't indicated.
 
 ### Deskbar Location
 
-:::{code}
+:::{code} cpp
 enum deskbar_location;
 :::
 
@@ -206,60 +193,56 @@ align: left
 widths: auto
 ---
 -
-
 	- Constant
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_DESKBAR_TOP`
+	- {cpp:enumerator}`B_DESKBAR_TOP`
 
 	- Expanded (only) along the top.
 
 -
-
-	- {cpp:enum}`B_DESKBAR_BOTTOM`
+	- {cpp:enumerator}`B_DESKBAR_BOTTOM`
 
 	- Expanded (only) along the bottom.
 
 -
-
-	- {cpp:enum}`B_DESKBAR_LEFT_BOTTOM`
+	- {cpp:enumerator}`B_DESKBAR_LEFT_BOTTOM`
 
 	- Contracted (only) in bottom left corner.
 
 -
-
-	- {cpp:enum}`B_DESKBAR_RIGHT_BOTTOM`
+	- {cpp:enumerator}`B_DESKBAR_RIGHT_BOTTOM`
 
 	- Contracted (only) in bottom right corner.
 
 -
-
-	- {cpp:enum}`B_DESKBAR_LEFT_TOP`
+	- {cpp:enumerator}`B_DESKBAR_LEFT_TOP`
 
 	- In the top left corner (expanded or contracted).
 
 -
-
-	- {cpp:enum}`B_DESKBAR_RIGHT_TOP`
+	- {cpp:enumerator}`B_DESKBAR_RIGHT_TOP`
 
 	- In the top right corner (expanded or contracted).
+
+
 :::
 
 The {htype}`deskbar_location` constants are used to set and return the
-Deskbar's location (see {cpp:func}`~BDeskbar::Location`). The six locations
-are shown in the two illustrations below:
+Deskbar's location (see {cpp:func}`Location() <BDeskbar::Location>`). The
+six locations are shown in the two illustrations below:
 
+![BDeskbar At Top And Bottom](./images/TheDeskbar/TopBottom.png)
 
-
-
+![BDeskbar At Left And Right](./images/TheDeskbar/Corners.png)
 
 The {htype}`deskbar_location` value affects the Deskbar's expanded state:
-The Deskbar can be expanded or contracted in {cpp:enum}`B_DESKBAR_LEFT_TOP`
-and {cpp:enum}`B_DESKBAR_RIGHT_TOP` locations only. In the other locations,
-the expansion/contraction is hard-wired. The illustration below shows a
-left-top Deskbar in its expanded and contracted states:
+The Deskbar can be expanded or contracted in
+{cpp:enumerator}`B_DESKBAR_LEFT_TOP` and
+{cpp:enumerator}`B_DESKBAR_RIGHT_TOP` locations only. In the other
+locations, the expansion/contraction is hard-wired. The illustration below
+shows a left-top Deskbar in its expanded and contracted states:
 
 

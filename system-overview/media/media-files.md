@@ -12,19 +12,20 @@ interface.
 ## Identifying an Entry
 
 Each entry in the media files registry consists of three elements: a type,
-an item name, and an {cpp:func}`~entry::ref`. The type is the type of media
-data the entry represents. For example, this could be "sound" or "bitmap."
-The item name is the actual name of the entry in the registry, such as
-"Startup" or "desktop image." The {cpp:func}`~entry::ref` identifies the
-file that's been assigned to that particular entry.
+an item name, and an {cpp:func}`entry_ref <entry::ref>`. The type is the
+type of media data the entry represents. For example, this could be "sound"
+or "bitmap." The item name is the actual name of the entry in the registry,
+such as "Startup" or "desktop image." The {cpp:func}`entry_ref
+<entry::ref>` identifies the file that's been assigned to that particular
+entry.
 
 An application can instantiate a {cpp:class}`BMediaFiles` object and then
-use the {cpp:func}`~BMediaFiles::GetRefFor` function to find out what file
-is assigned to a particular registry entry. For instance, if your
-application needs to access the desktop image file, you can get this
+use the {cpp:func}`GetRefFor() <BMediaFiles::GetRefFor>` function to find
+out what file is assigned to a particular registry entry. For instance, if
+your application needs to access the desktop image file, you can get this
 information as follows:
 
-:::{code}
+:::{code} cpp
 entry_ref ref;
 
 if (GetRefFor("bitmap", "desktop image", &ref) == B_OK) {

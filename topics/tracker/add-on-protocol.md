@@ -18,10 +18,10 @@ Declared in:  add-ons/tracker/TrackerAddOn.h
 
 
 The Tracker calls this function when the user invokes the add-on. The
-current directory is found in {hparam}`dir_ref`.msg is a standard
-{cpp:enum}`B_REFS_RECEIVED` {hclass}`BMessage` with the refs array
-containing the {htype}`entry_ref`s of the files selected by the user. The
-third argument is currently unused.
+current directory is found in {hparam}`dir_ref`.{hparam}`msg` is a standard
+{cpp:enumerator}`B_REFS_RECEIVED` {hclass}`BMessage` with the
+{hparam}`refs` array containing the {htype}`entry_ref`s of the files
+selected by the user. The third argument is currently unused.
 
 process_refs() runs in a separate thread within the Tracker's team, so if
 your add-on crashes, the Tracker goes too.
@@ -29,7 +29,7 @@ your add-on crashes, the Tracker goes too.
 A simple Tracker Add-On follows. It simply takes the contents of the
 arguments to process_refs() and outputs them in a window.
 
-:::{code}
+:::{code} cpp
 #include <Application.h>
 #include <InterfaceKit.h>
 #include <StorageKit.h>

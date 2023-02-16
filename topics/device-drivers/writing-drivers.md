@@ -34,67 +34,50 @@ align: left
 widths: auto
 ---
 -
-
 	- Symbol
 
 	- Description
 
 -
-
 	- api_version
-
 	- This exported value tells the kernel what version of the driver API it was
-written to, and should always be set to
-{cpp:enum}`B_CUR_DRIVER_API_VERSION` in your source code.
-
+		written to, and should always be set to
+		{cpp:enumerator}`B_CUR_DRIVER_API_VERSION` in your source code.
 -
-
 	- init_hardware()
-
 	- Called when the system is booted, to let the driver detect and reset the
-hardware.
-
+		hardware.
 -
-
 	- init_driver()
-
 	- Called when the driver is loaded, so it can allocate needed system
-resources.
-
+		resources.
 -
-
 	- uninit_driver()
-
 	- Called just before the driver is unloaded, so it can free allocated
-resources.
-
+		resources.
 -
-
 	- publish_devices()
-
 	- Called to obtain a list of device names supported by the driver.
-
 -
-
 	- find_device()
-
 	- Called to obtain a list of pointers to the hook functions for a specified
-device.
+		device.
+
 :::
 
 ## Constants
 
 ### api_version
 
-:::{code}
+:::{code} c
 int32 api_version;
 :::
 
 This variable defines the API version to which the driver was written, and
-should be set to {cpp:enum}`B_CUR_DRIVER_API_VERSION` at compile time. The
-value of this variable will be changed with every revision to the driver
-API; the value with which your driver was compiled will tell devfs how it
-can communicate with the driver.
+should be set to {cpp:enumerator}`B_CUR_DRIVER_API_VERSION` at compile
+time. The value of this variable will be changed with every revision to the
+driver API; the value with which your driver was compiled will tell devfs
+how it can communicate with the driver.
 
 ## Functions
 
@@ -104,7 +87,7 @@ can communicate with the driver.
 
 This function is called when the system is booted, which lets the driver
 detect and reset the hardware it controls. The function should return
-{cpp:enum}`B_OK` if the initialization is successful; otherwise, an
+{cpp:enumerator}`B_OK` if the initialization is successful; otherwise, an
 appropriate error code should be returned. If this function returns an
 error, the driver won't be used.
 ::::
@@ -115,7 +98,7 @@ error, the driver won't be used.
 
 Drivers are loaded and unloaded on an as-needed basis. When a driver is
 loaded by devfs, this function is called to let the driver allocate memory
-and other needed system resources. Return {cpp:enum}`B_OK` if
+and other needed system resources. Return {cpp:enumerator}`B_OK` if
 initialization succeeds, otherwise return an appropriate error code.
 
 :::{admonition} TODO
@@ -139,11 +122,11 @@ it allocated.
 
 Devfs calls publish_devices() to learn the names, relative to /dev, of the
 devices the driver supports. The driver should return a
-{cpp:enum}`NULL`-terminated array of strings indicating all the installed
+{cpp:expr}`NULL`-terminated array of strings indicating all the installed
 devices the driver supports. For example, an ethernet device driver might
 return:
 
-:::{code}
+:::{code} c
 static char*devices[] = {
    "net/ether",
    NULL
@@ -158,7 +141,7 @@ multiple devices of the same type is desired, the driver must be capable of
 supporting them. If the driver senses (and supports) two ethernet cards, it
 might return:
 
-:::{code}
+:::{code} c
 static char*devices[] = {
    "net/ether1",
    "net/ether2",
@@ -184,13 +167,13 @@ next section.
 ## Device Hooks
 
 The hook functions specified in the device_hooks function returned by the
-driver's {cpp:func}`~find::device` function handle requests made by devfs
-(and through devfs, from user applications). These are described in this
-section.
+driver's {cpp:func}`find_device() <find::device>` function handle requests
+made by devfs (and through devfs, from user applications). These are
+described in this section.
 
 The structure itself looks like this:
 
-:::{code}
+:::{code} c
 typedef struct {
    device_open_hook open;
    device_close_hook close;
@@ -205,8 +188,8 @@ typedef struct {
 } device_hooks;
 :::
 
-In all cases, return {cpp:enum}`B_OK` if the operation is successfully
-completed, or an appropriate error code if not.
+In all cases, return {cpp:enumerator}`B_OK` if the operation is
+successfully completed, or an appropriate error code if not.
 
 ::::{abi-group}
 :::{cpp:function} status_t Writing Drivers::open_hook(const char* name, uint32 flags, void** cookie)
@@ -214,12 +197,12 @@ completed, or an appropriate error code if not.
 
 This hook function is called when a program opens one of the devices
 supported by the driver. The name of the device (as returned by
-{cpp:func}`~publish::devices`) is passed in name, along with the flags
-passed to the Posix open() function. {hparam}`cookie` points to space large
-enough for you to store a single pointer. You can use this to store state
-information specific to the open() instance. If you need to track
-information on a per-open() basis, allocate the memory you need and store a
-pointer to it in *{hparam}`cookie`.
+{cpp:func}`publish_devices() <publish::devices>`) is passed in name, along
+with the flags passed to the Posix open() function. {hparam}`cookie` points
+to space large enough for you to store a single pointer. You can use this
+to store state information specific to the open() instance. If you need to
+track information on a per-open() basis, allocate the memory you need and
+store a pointer to it in *{hparam}`cookie`.
 ::::
 
 ::::{abi-group}
@@ -231,8 +214,8 @@ the close() Posix function. Note that because of the multithreaded nature
 of the BeOS, it's possible there may still be transactions pending, and you
 may receive more calls on the device. For that reason, you shouldn't free
 instance-wide system resources here. Instead, you should do this in
-{cpp:func}`~free::hook`. However, if there are any blocked transactions
-pending, you should unblock them here.
+{cpp:func}`free_hook() <free::hook>`. However, if there are any blocked
+transactions pending, you should unblock them here.
 ::::
 
 ::::{abi-group}
@@ -257,9 +240,9 @@ would read from the specified offset on the disk, but a graphics driver
 might have some other interpretation of this request).
 
 Before returning, you should set {hparam}`len` to the actual number of
-bytes read into the buffer. Return {cpp:enum}`B_OK` if data was read (even
-if the number of returned bytes is less than requested), otherwise return
-an appropriate error.
+bytes read into the buffer. Return {cpp:enumerator}`B_OK` if data was read
+(even if the number of returned bytes is less than requested), otherwise
+return an appropriate error.
 ::::
 
 ::::{abi-group}
@@ -273,8 +256,8 @@ destination buffers, your implementation should fill each successive buffer
 with bytes, up to a total of {hparam}`len` bytes. The {hparam}`vec` array
 has {hparam}`count` items in it.
 
-As with {cpp:func}`~read::hook`, set {hparam}`len` to the actual number of
-bytes read, and return an appropriate result code.
+As with {cpp:func}`read_hook() <read::hook>`, set {hparam}`len` to the
+actual number of bytes read, and return an appropriate result code.
 ::::
 
 ::::{abi-group}
@@ -288,8 +271,9 @@ by {hparam}`data`. Exactly what this does is device-specific (disk devices
 would write to the specified offset on the disk, but a graphics driver
 might have some other interpretation of this request).
 
-Return {cpp:enum}`B_OK` if data was read (even if the number of returned
-bytes is less than requested), otherwise return an appropriate error.
+Return {cpp:enumerator}`B_OK` if data was read (even if the number of
+returned bytes is less than requested), otherwise return an appropriate
+error.
 ::::
 
 ::::{abi-group}
@@ -336,24 +320,24 @@ space; the kernel always sets it to 0.
 :::
 
 These hooks are reserved for future use. Set the corresponding entries in
-your {htype}`device_hooks` structure to {cpp:enum}`NULL`.
+your {htype}`device_hooks` structure to {cpp:expr}`NULL`.
 ::::
 
 ## Driver Rules
 
 Keep the following rules in mind for each instance of your driver:
 
-- open() will be called first, and no other hooks will be called until
+-   open() will be called first, and no other hooks will be called until
 open() returns.
 
-- close() may be called while other requests are pending. As previously
+-   close() may be called while other requests are pending. As previously
 mentioned, if you have blocked transactions, you must unblock them when
 close() is called. Further calls to other driver hooks my continue to occur
 after close() is called; however, you should return an error to any such
 requests.
 
-- free() isn't called until all pending transactions for the open instance
+-   free() isn't called until all pending transactions for the open instance
 are completed.
 
-- Multiple threads may be accessing the driver's hooks simultaneously, so be
+-   Multiple threads may be accessing the driver's hooks simultaneously, so be
 sure to lock and unlock where appropriate.

@@ -30,7 +30,13 @@ products.
 
 There are three types of kernel add-on:
 
+1.    Device drivers are add-ons that communicate directly with devices.
 
+2.    Modules are kernel space add-ons that export an API for use by drivers (or
+by other modules).
+
+3.    File systems are add-ons that support specific file systems, such as BFS,
+DOSFS, HFS, and so forth.
 
 Device drivers and file systems, while extending the functionality of the
 kernel, are still accessible from user space: Applications can open and
@@ -82,11 +88,11 @@ using other file system.
 The kernel provides a number of services that drivers and modules can use.
 These include:
 
-- Enabling and disabling interrupts.
+-   Enabling and disabling interrupts.
 
-- Setting up memory for DMA transactions.
+-   Setting up memory for DMA transactions.
 
-- Access to other devices and modules.
+-   Access to other devices and modules.
 
 The kernel also provides, at the user level, a Posix-like API for
 accessing devices. An application can open a device through open(), and use
@@ -159,9 +165,9 @@ however, you can't acquire a semaphore while handling an interrupt. So if
 you need to synchronize code while handling an interrupt, you must use a
 spinlock. Put simply:
 
-- Use spinlocks to protect critical sections in interrupt-handling code.
+-   Use spinlocks to protect critical sections in interrupt-handling code.
 
-- Use semaphores in any other situation that calls for code synchronization.
+-   Use semaphores in any other situation that calls for code synchronization.
 
 Anywhere you use a spinlock to protect a critical section, you should
 disable interrupts. Of course, in an interrupt handler, you know that
@@ -175,15 +181,15 @@ add_timer().
 While your spinlock is running, you can perform the following actions. If
 it's not on this list, you can't do it.
 
-- You can examine and alter hardware registers by using the appropriate bus
+-   You can examine and alter hardware registers by using the appropriate bus
 manager hooks.
 
-- You can examine and alter any locked-down memory.
+-   You can examine and alter any locked-down memory.
 
-- You can call the following kernel functions: system_time(), atomic_add(),
+-   You can call the following kernel functions: system_time(), atomic_add(),
 atomic_or(), atomic_and().
 
-- You can call the following bus manager functions: read_io_*() and
+-   You can call the following bus manager functions: read_io_*() and
 write_io*().
 
 If you do anything else inside your spinlock, you're breaking the rules,
@@ -221,10 +227,10 @@ If you have interrupts disabled and aren't in a spinlock, you can do the
 following things in addition to those listed above in "Functions Available
 During Spinlocks":
 
-- You can call release_sem_etc() with the {cpp:enum}`B_DO_NOT_RESCHEDULE`
-flag set.
+-   You can call release_sem_etc() with the
+{cpp:enumerator}`B_DO_NOT_RESCHEDULE` flag set.
 
-- You can call get_sem_count(), add_timer(), cancel_timer(), and dprintf().
+-   You can call get_sem_count(), add_timer(), cancel_timer(), and dprintf().
 
 If you feel that you need to call a function not explicitly listed as
 permitted here, please contact Be Developer Support at devsupport@be.com
@@ -248,38 +254,39 @@ listed in this section as one you can use, don't call it.
 
 Your interrupt handler or spinlock section can't be preempted. Preemption
 could occur if you call release_sem() or release_sem_etc() without
-specifying the {cpp:enum}`B_DO_NOT_RESCHEDULE` flag. Normally,
+specifying the {cpp:enumerator}`B_DO_NOT_RESCHEDULE` flag. Normally,
 release_sem() lets the scheduler preempt your thread to allow other threads
 to acquire the semaphore as fast as possible. By specifying
-{cpp:enum}`B_DO_NOT_RESCHEDULE`, you tell the scheduler to allow your
+{cpp:enumerator}`B_DO_NOT_RESCHEDULE`, you tell the scheduler to allow your
 thread to continue running after it releases the semaphore.
 
 If your interrupt handler wants to ensure that any preemption is handled
-immediately, it should specify {cpp:enum}`B_DO_NOT_RESCHEDULE` when calling
-release_sem(), then return {cpp:enum}`B_INVOKE_SCHEDULER`. This causes the
-scheduler to immediately handle preemption after your interrupt handler
-returns, instead of resuming the interrupted task. This is especially
-useful if your code called release_sem_etc() to release a semaphore that
-will allow other code to run elsewhere (such as in your driver's
-corresponding user-space code).
+immediately, it should specify {cpp:enumerator}`B_DO_NOT_RESCHEDULE` when
+calling release_sem(), then return {cpp:enumerator}`B_INVOKE_SCHEDULER`.
+This causes the scheduler to immediately handle preemption after your
+interrupt handler returns, instead of resuming the interrupted task. This
+is especially useful if your code called release_sem_etc() to release a
+semaphore that will allow other code to run elsewhere (such as in your
+driver's corresponding user-space code).
 
 :::{admonition} Warning
 :class: warning
 Again, when you call release_sem_etc(), be sure to specify the
-{cpp:enum}`B_DO_NOT_RESCHEDULE` flag to avoid any chance of preemption.
+{cpp:enumerator}`B_DO_NOT_RESCHEDULE` flag to avoid any chance of
+preemption.
 :::
 
 In summary, the order in which you should do things is this:
 
-- Disable interrupts.
+-   Disable interrupts.
 
-- Acquire the spinlock.
+-   Acquire the spinlock.
 
-- Perform your tasks.
+-   Perform your tasks.
 
-- Release the spinlock.
+-   Release the spinlock.
 
-- Restore the original interrupt state.
+-   Restore the original interrupt state.
 
 #### File I/O
 
@@ -298,7 +305,7 @@ the file and do your thing.
 Two Posix extensions that might be helpful when you're writing code to
 perform file I/O from a device driver: readv() and writev().
 
-:::{code}
+:::{code} c
 int readv(int fd, const struct iovec*vector, size_t count);
 
 int writev(int fd, const struct iovec*vector, size_t count);
@@ -320,7 +327,7 @@ When successful, readv() returns the number of bytes read.
 For example, if your code needs to write two separate 1k buffers into a
 file, one after the other, you might do something like this:
 
-:::{code}
+:::{code} c
 struct iovec v[2];
 v[0].iov_base = &buffer1;
 v[0].iov_len = 1024;

@@ -3,16 +3,16 @@
 A {cpp:class}`BTextView` object displays text on-screen, and provides
 these text manipulating features:
 
-- It lets the user enter, select, and edit text from the keyboard and mouse.
+-   It lets the user enter, select, and edit text from the keyboard and mouse.
 
-- It supports standard Cut, Copy, Paste, Delete, and Select All editing
+-   It supports standard Cut, Copy, Paste, Delete, and Select All editing
 commands
 
-- It provides an Undo mechanism.
+-   It provides an Undo mechanism.
 
 By default, a {cpp:class}`BTextView` displays all its text in a single
-font and color. The {cpp:func}`~BTextView::SetStylable` turns on support
-for multiple character formats.
+font and color. The {cpp:func}`SetStylable() <BTextView::SetStylable>`
+turns on support for multiple character formats.
 
 Paragraph formats—such as alignment and tab widths—are uniform for all
 text the BTextView displays. These properties can be set, but the setting
@@ -39,16 +39,17 @@ up to, but not including, the last offset are part of the group.
 For example, suppose the {cpp:class}`BTextView` contains the following
 text in Unicode UTF-8 encoding,
 
-:::{code}
+:::{code} sh
 The BeOS(TM) is . . .
 :::
 
-and "BeOS(TM)" is selected. {cpp:func}`~BTextView::GetSelection` would
-return 4 and 11 as the offsets that enclose the selection. The character
-'B' occupies the fourth byte of text and the space following the trademark
-symbol is the eleventh byte of text. The characters in "BeOS" are each
-encoded in one byte, but '(TM) ' takes up three bytes in UTF-8. Thus the
-five-character selection occupies 7 bytes (and offsets) of text.
+and "BeOS(TM)" is selected. {cpp:func}`GetSelection()
+<BTextView::GetSelection>` would return 4 and 11 as the offsets that
+enclose the selection. The character 'B' occupies the fourth byte of text
+and the space following the trademark symbol is the eleventh byte of text.
+The characters in "BeOS" are each encoded in one byte, but '(TM) ' takes up
+three bytes in UTF-8. Thus the five-character selection occupies 7 bytes
+(and offsets) of text.
 
 Although offsets count bytes, they can also be thought of as designating
 positions between characters. The position at the beginning of the text is
@@ -68,21 +69,23 @@ uses the graphics primitives it inherits from the {cpp:class}`"BView`
 class. However, it largely presents its own API for determining the
 appearance of the text it draws. You should not attempt to affect the
 {cpp:class}`BTextView` by calling primitive {cpp:class}`BView` functions
-like {cpp:func}`~BView::MovePenTo`, {cpp:func}`~BView::SetFont`, or
-{cpp:func}`~BView::SetHighColor`. Instead, use {cpp:class}`BTextView`
-functions like {cpp:func}`~BTextView::SetFontAndColor` and let the object
-take care of formatting and drawing the text.
+like {cpp:func}`MovePenTo() <BView::MovePenTo>`, {cpp:func}`SetFont()
+<BView::SetFont>`, or {cpp:func}`SetHighColor() <BView::SetHighColor>`.
+Instead, use {cpp:class}`BTextView` functions like
+{cpp:func}`SetFontAndColor() <BTextView::SetFontAndColor>` and let the
+object take care of formatting and drawing the text.
 
 The one inherited function that can influence the {cpp:class}`BTextView`
-is {cpp:func}`~BView::SetViewColor`. This function determines the
-background against which the text is drawn and the color that is used in
-antialiasing calculations.
+is {cpp:func}`SetViewColor() <BView::SetViewColor>`. This function
+determines the background against which the text is drawn and the color
+that is used in antialiasing calculations.
 
 ## Resizing
 
 A {cpp:class}`BTextView` can be made to resize itself to exactly fit the
 text that the user enters. This is sometimes appropriate for small one-line
-text fields. See the {cpp:func}`~BTextView::MakeResizable` function.
+text fields. See the {cpp:func}`MakeResizable() <BTextView::MakeResizable>`
+function.
 
 ## BTextView and BScrollBars
 
@@ -106,16 +109,16 @@ me.
 When it's the focus view for its window, a {cpp:class}`BTextView`
 automatically responds to a set of keyboard shortcuts:
 
-- {hkey}`Command`+{hkey}`x` cuts text and copies it to the clipboard
+-   {hkey}`Command`+{hkey}`x` cuts text and copies it to the clipboard
 
-- {hkey}`Command`+{hkey}`c` copies text to the clipboard without cutting it
+-   {hkey}`Command`+{hkey}`c` copies text to the clipboard without cutting it
 
-- {hkey}`Command`+{hkey}`v` pastes text taken from the clipboard
+-   {hkey}`Command`+{hkey}`v` pastes text taken from the clipboard
 
-- {hkey}`Command`+{hkey}`a` selects all of the text in the
+-   {hkey}`Command`+{hkey}`a` selects all of the text in the
 {cpp:class}`BTextView`
 
-- {hkey}`Command`+{hkey}`z` undoes the previous action
+-   {hkey}`Command`+{hkey}`z` undoes the previous action
 
 If you create menu items for these actions, you have to assign the
 {cpp:class}`BMenuItem` shortcuts and command constants yourself:
@@ -127,7 +130,6 @@ align: left
 widths: auto
 ---
 -
-
 	- Action
 
 	- Constant
@@ -135,42 +137,39 @@ widths: auto
 	- Shortcut
 
 -
-
 	- Select all
 
-	- {cpp:enum}`B_SELECT_ALL`
+	- {cpp:enumerator}`B_SELECT_ALL`
 
 	- {hkey}`Command`+{hkey}`a`
 
 -
-
 	- Cut
 
-	- {cpp:enum}`B_CUT`
+	- {cpp:enumerator}`B_CUT`
 
 	- {hkey}`Command`+{hkey}`x`
 
 -
-
 	- Copy
 
-	- {cpp:enum}`B_COPY`
+	- {cpp:enumerator}`B_COPY`
 
 	- {hkey}`Command`+{hkey}`c`
 
 -
-
 	- Paste
 
-	- {cpp:enum}`B_PASTE`
+	- {cpp:enumerator}`B_PASTE`
 
 	- {hkey}`Command`+{hkey}`v`
 
 -
-
 	- Undo
 
-	- {cpp:enum}`B_UNDO`
+	- {cpp:enumerator}`B_UNDO`
 
 	- {hkey}`Command`+{hkey}`z`
+
+
 :::

@@ -13,22 +13,22 @@ The {cpp:class}`BShapeIterator` class provides a means for utilizing
 A {cpp:class}`BShape` is essentially a list of graphics commands, of which
 there are four types:
 
-- MoveTo. This sets the BShape's coordinates to a specified point in the
+-   MoveTo. This sets the BShape's coordinates to a specified point in the
 shape's space.
 
-- LineTo. This represents a line from the current point to the next point in
+-   LineTo. This represents a line from the current point to the next point in
 the shape.
 
-- BeziérTo. This represents a Bezier curve, connecting the current point to
+-   BeziérTo. This represents a Bezier curve, connecting the current point to
 a new point, with other points serving to control the shape of the curve.
 
-- Close. This indicates the end of the shape's command list.
+-   Close. This indicates the end of the shape's command list.
 
 Functions by the same names are used to add the corresponding commands to
 the BShape object. For example, to create a BShape that represents two
 vertical lines, the following code might be used:
 
-:::{code}
+:::{code} cpp
 BShape shape;
 shape.MoveTo(0,0);
 shape.LineTo(0,100);

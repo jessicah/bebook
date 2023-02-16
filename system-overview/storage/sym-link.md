@@ -23,8 +23,8 @@ named fido in the new directory.
 
 The {hclass}`BSymLink` class creates objects that know how to read a
 symlink's data. The class does not create new symlinks; to create a
-symlink, you use {cpp:class}`BDirectory`'s
-{cpp:func}`~BDirectory::CreateSymLink` function.
+symlink, you use {cpp:class}`BDirectory`'s {cpp:func}`CreateSymLink()
+<BDirectory::CreateSymLink>` function.
 
 :::{admonition} Note
 :class: note
@@ -34,9 +34,9 @@ themselves. For example, {hclass}`BSymLinks` can't resolve the fido/rover
 :::
 
 The only really useful {hclass}`BSymLink` function is
-{cpp:func}`~BSymLink::ReadLink`. This function returns the data that the
-symlink contains. The other functions are convenient, but they're not
-essential.
+{cpp:func}`ReadLink() <BSymLink::ReadLink>`. This function returns the data
+that the symlink contains. The other functions are convenient, but they're
+not essential.
 
 ## Initialization and File Descriptors
 
@@ -50,13 +50,13 @@ the (node of the) linked-to entry. Furthermore, you can't ask a
 If you want the {cpp:class}`BEntry` of the linked-to entry, simply
 initialize a {cpp:class}`BEntry` object with the ref (or whatever) to the
 symlink and tell it to traverse (set the trailing argument to
-{cpp:enum}`true`).
+{cpp:expr}`true`).
 
-For example, in the following code, link is a {hclass}`BSymLink` to the
-symlink /boot/home/fidoLink and entry is a {cpp:class}`BEntry` to the entry
-that the symlink links-to:
+For example, in the following code, {hparam}`link` is a {hclass}`BSymLink`
+to the symlink /boot/home/fidoLink and {hparam}`entry` is a
+{cpp:class}`BEntry` to the entry that the symlink links-to:
 
-:::{code}
+:::{code} cpp
 BSymLink link("/boot/home/fidoLink");
 BEntry entry("/boot/home/fidoLink", true);
 :::

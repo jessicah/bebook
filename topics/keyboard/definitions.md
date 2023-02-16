@@ -22,10 +22,11 @@ makes sense, since not every key generates a character.
 
 For example, the left {hkey}`Shift` key has the key code value of 0x4B,
 and the right {hkey}`Shift` key has the key code of 0x56. Neither of these
-generates a {cpp:enum}`B_KEY_UP` event (although they do generate a
-{cpp:enum}`B_MODIFIERS_CHANGED` event). The additional implication here is
-clear: software can actually tell the difference between these two keys—and
-any other keys that generate the same Unicode value—if they need to do so.
+generates a {cpp:enumerator}`B_KEY_UP` event (although they do generate a
+{cpp:enumerator}`B_MODIFIERS_CHANGED` event). The additional implication
+here is clear: software can actually tell the difference between these two
+keys—and any other keys that generate the same Unicode value—if they need
+to do so.
 
 It's also important to note that key codes don't differentiate between
 shifted and unshifted keys. Pressing {hkey}`A` generates the key code 0x27
@@ -47,7 +48,7 @@ on which modifier keys are currently engaged, the UTF-8 bytes that should
 be generated. It also defines which keys are treated as modifier keys.
 
 BeOS maintains a keymap for use by all applications. Applications that
-want to look up key codes in the keymap can call {cpp:func}`~get::key` to
+want to look up key codes in the keymap can call {ref}`get_key_map()` to
 get a copy of it. The Keymap preference panel can be used to configure the
 system keymap.
 
@@ -58,11 +59,12 @@ sequence. For example, in the standard American keymap, the key labeled
 {hkey}`A` is mapped to the letter "a" when pressed with no modifier keys
 down, "A" when the {hkey}`Caps Lock` or a {hkey}`Shift` key is down, and
 {hkey}`control`+{hkey}`A` (UTF-8 code 0x01) when the {hkey}`Control` key is
-down. Mapped character keys generate {cpp:enum}`B_KEY_DOWN` and
-{cpp:enum}`B_KEY_UP` messages when they're pressed and released.
+down. Mapped character keys generate {cpp:enumerator}`B_KEY_DOWN` and
+{cpp:enumerator}`B_KEY_UP` messages when they're pressed and released.
 
 Keys that aren't mapped to characters generate
-{cpp:enum}`B_UNMAPPED_KEY_DOWN` and {cpp:enum}`B_UNMAPPED_KEY_UP` messages.
+{cpp:enumerator}`B_UNMAPPED_KEY_DOWN` and
+{cpp:enumerator}`B_UNMAPPED_KEY_UP` messages.
 
 ## Modifier Keys
 
@@ -82,16 +84,17 @@ Server add-on, it both generates a character and sets a modifier state.
 ## Repeating Keys
 
 When a key is pressed and held down, it produces a continuous series of
-{cpp:enum}`B_KEY_DOWN` or {cpp:enum}`B_UNMAPPED_KEY_DOWN` messages, as long
-as the key is still held down and doesn't press another key. After the
-first message, there's a slight delay before the key begins repeating. This
-delay can be determined by calling {cpp:func}`~get::key` and can be changed
-by calling {cpp:func}`~set::key` (although you should leave the user's
+{cpp:enumerator}`B_KEY_DOWN` or {cpp:enumerator}`B_UNMAPPED_KEY_DOWN`
+messages, as long as the key is still held down and doesn't press another
+key. After the first message, there's a slight delay before the key begins
+repeating. This delay can be determined by calling
+{ref}`get_key_repeat_delay()` and can be changed by calling
+{ref}`set_key_repeat_delay()` (although you should leave the user's
 preference for this alone).
 
-After the key begins to repeat, the {cpp:enum}`B_KEY_DOWN` or
-{cpp:enum}`B_UNMAPPED_KEY_DOWN` messages are sent at a fixed rate; this
-rate can be determined by calling {cpp:func}`~get::key`.
+After the key begins to repeat, the {cpp:enumerator}`B_KEY_DOWN` or
+{cpp:enumerator}`B_UNMAPPED_KEY_DOWN` messages are sent at a fixed rate;
+this rate can be determined by calling {ref}`get_key_repeat_rate()`.
 
 All keys repeat except {hkey}`Pause`, {hkey}`Break`, {hkey}`Caps Lock`,
 {hkey}`Num Lock`, and {hkey}`Scroll Lock`.

@@ -3,10 +3,10 @@
 Declared in: drivers/area_malloc.h
 
 The area_malloc module provides a means for your driver to allocate memory
-in areas instead of on the heap. It provides {cpp:func}`~area::malloc`,
-{cpp:func}`~area::malloc`, {cpp:func}`~area::malloc`, and
-{cpp:func}`~area::malloc` functions that work just like their POSIX
-counterparts, except they require a pool argument as their first input.
+in areas instead of on the heap. It provides {ref}`malloc()`,
+{ref}`calloc()`, {ref}`realloc()`, and {ref}`free()` functions that work
+just like their POSIX counterparts, except they require a pool argument as
+their first input.
 
 :::{admonition} Warning
 :class: warning
@@ -15,10 +15,11 @@ block on semaphores.
 :::
 
 The area_malloc functions are thread-safe in relation to one another, but
-not in relation to {cpp:func}`~delete::pool`. Be sure you don't call
-{cpp:func}`~delete::pool` on the pool you're using until you know none of
-the other functions might be called. {cpp:func}`~create::pool` and
-{cpp:func}`~delete::pool` are safe in relation to each other.
+not in relation to {cpp:func}`delete_pool() <delete::pool>`. Be sure you
+don't call {cpp:func}`delete_pool() <delete::pool>` on the pool you're
+using until you know none of the other functions might be called.
+{cpp:func}`create_pool() <create::pool>` and {cpp:func}`delete_pool()
+<delete::pool>` are safe in relation to each other.
 
 When the last user of the module puts it away, any remaining pools are
 automatically deleted.
@@ -33,16 +34,17 @@ automatically deleted.
 :::
 
 create_pool() creates a new pool of memory from which to allocate. The
-parameters are the same as those used by {cpp:func}`~create::area`, so you
-have complete control over the area's characteristics (except for its
-name). Returns an opaque pool idenfityer, or {cpp:enum}`NULL` if the
-creation failed. The ability to share resources allocated from the pool is
-determined by the permissions and protections used to create the area.
+parameters are the same as those used by {cpp:func}`create_area()
+<create::area>`, so you have complete control over the area's
+characteristics (except for its name). Returns an opaque pool idenfityer,
+or {cpp:expr}`NULL` if the creation failed. The ability to share resources
+allocated from the pool is determined by the permissions and protections
+used to create the area.
 
 delete_pool() deletes the pool specified by the opaque {hparam}`poolID`
 given. Any pointers returned by the other functions in the module are
-immediately invalid. Returns {cpp:enum}`B_OK` if the pool was deleted,
-otherwise {cpp:enum}`B_ERROR`.
+immediately invalid. Returns {cpp:enumerator}`B_OK` if the pool was
+deleted, otherwise {cpp:enumerator}`B_ERROR`.
 ::::
 
 ::::{abi-group}
@@ -69,7 +71,7 @@ Each of these operations functions in the pool specified by
 {hparam}`poolID`.
 
 If there's not enough memory to allocate the requested block, these
-functions return {cpp:enum}`NULL`.
+functions return {cpp:expr}`NULL`.
 ::::
 
 ::::{abi-group}
@@ -82,11 +84,14 @@ specified by {hparam}`poolID`.
 
 ## Constants
 
-### B_AREA_MALLOC_MODULE_NAME
+::::{abi-group}
+:::{cpp:enumerator} B_AREA_MALLOC_MODULE_NAME
+:::
 
-:::{code}
+:::{code} cpp
 #define B_AREA_MALLOC_MODULE_NAME "generic/area_malloc/v1"
 :::
 
-The {cpp:enum}`B_AREA_MALLOC_MODULE_NAME` constant identifies the
+The {cpp:enumerator}`B_AREA_MALLOC_MODULE_NAME` constant identifies the
 area_malloc module; use this constant to open the module.
+::::

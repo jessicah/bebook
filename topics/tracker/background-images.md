@@ -15,11 +15,11 @@ window is in icon (or mini-icon) view mode.
 
 Information about the background image for a folder is stored as a
 flattened {cpp:class}`BMessage` in the folder's
-{cpp:enum}`B_BACKGROUND_INFO` file attribute. The
-{cpp:enum}`B_DESKTOP_FOLDER` directory holds the background info for the
-workspaces (one flattened message per workspace).
+{cpp:enumerator}`B_BACKGROUND_INFO` file attribute. The
+{cpp:enumerator}`B_DESKTOP_FOLDER` directory holds the background info for
+the workspaces (one flattened message per workspace).
 
-The {cpp:enum}`B_BACKGROUND_INFO` attribute's data is a flattened
+The {cpp:enumerator}`B_BACKGROUND_INFO` attribute's data is a flattened
 {cpp:class}`BMessage` with these fields:
 
 :::{list-table}
@@ -29,7 +29,6 @@ align: left
 widths: auto
 ---
 -
-
 	- Name
 
 	- Type
@@ -37,55 +36,53 @@ widths: auto
 	- Description
 
 -
+	- {cpp:enumerator}`B_BACKGROUND_IMAGE`
 
-	- {cpp:enum}`B_BACKGROUND_IMAGE`
-
-	- {cpp:enum}`B_STRING_TYPE`
+	- {cpp:enumerator}`B_STRING_TYPE`
 
 	- The full path to the image. The image needs to be in a format understood
 by one of the translators (see the Translation Kit) installed on the
 system.
 
 -
+	- {cpp:enumerator}`B_BACKGROUND_MODE`
 
-	- {cpp:enum}`B_BACKGROUND_MODE`
-
-	- {cpp:enum}`B_INT32_TYPE`
+	- {cpp:enumerator}`B_INT32_TYPE`
 
 	- Specifies how the background is placed (tiled, centered, etc). See the
 list of mode constants after this table.
 
 -
+	- {cpp:enumerator}`B_BACKGROUND_ORIGIN`
 
-	- {cpp:enum}`B_BACKGROUND_ORIGIN`
+	- {cpp:enumerator}`B_POINT_TYPE`
 
-	- {cpp:enum}`B_POINT_TYPE`
-
-	- If {cpp:enum}`B_BACKGROUND_MODE` is
-{cpp:enum}`B_BACKGROUND_MODE_USE_ORIGIN`, the image will be drawn with the
-upper left corner at this point (which can be anything, even negative).
+	- If {cpp:enumerator}`B_BACKGROUND_MODE` is
+{cpp:enumerator}`B_BACKGROUND_MODE_USE_ORIGIN`, the image will be drawn
+with the upper left corner at this point (which can be anything, even
+negative).
 
 -
+	- {cpp:enumerator}`B_BACKGROUND_ERASE_TEXT`
 
-	- {cpp:enum}`B_BACKGROUND_ERASE_TEXT`
+	- {cpp:enumerator}`B_BOOL_TYPE`
 
-	- {cpp:enum}`B_BOOL_TYPE`
-
-	- If {cpp:enum}`true` the icon label will have its background erased to the
+	- If {cpp:expr}`true` the icon label will have its background erased to the
 window's background color, otherwise the label will be drawn on top of the
 image (which could make it difficult to read).
 
 -
+	- {cpp:enumerator}`B_BACKGROUND_WORKSPACES`
 
-	- {cpp:enum}`B_BACKGROUND_WORKSPACES`
-
-	- {cpp:enum}`B_UINT32_TYPE`
+	- {cpp:enumerator}`B_UINT32_TYPE`
 
 	- A bitmask indicating which workspaces the image should be drawn on. This
 only applies to Desktop images.
+
+
 :::
 
-The {cpp:enum}`B_BACKGROUND_MODE` values are:
+The {cpp:enumerator}`B_BACKGROUND_MODE` values are:
 
 :::{list-table}
 ---
@@ -94,47 +91,36 @@ align: left
 widths: auto
 ---
 -
-
 	- Constant
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_BACKGROUND_MODE_USE_ORIGIN`.
-
+	- {cpp:enumerator}`B_BACKGROUND_MODE_USE_ORIGIN`.
 	- Draw the image once at the location specified by
-{cpp:enum}`B_BACKGROUND_ORIGIN`, relative to the upper-left corner of the
-window or Desktop.
-
+		{cpp:enumerator}`B_BACKGROUND_ORIGIN`, relative to the upper-left corner of
+		the window or Desktop.
 -
-
-	- {cpp:enum}`B_BACKGROUND_MODE_CENTERED`
-
+	- {cpp:enumerator}`B_BACKGROUND_MODE_CENTERED`
 	- Center the image (only works on Desktop.)
-
 -
-
-	- {cpp:enum}`B_BACKGROUND_MODE_SCALED`
-
+	- {cpp:enumerator}`B_BACKGROUND_MODE_SCALED`
 	- Scale the image to fit (only works on Desktop.)
-
 -
-
-	- {cpp:enum}`B_BACKGROUND_MODE_TILED`
-
+	- {cpp:enumerator}`B_BACKGROUND_MODE_TILED`
 	- Tile the image to cover the entire window/Desktop.
+
 :::
 
 You can write multiple sets of these message fields into the Desktop's
-{cpp:enum}`B_BACKGROUND_INFO` attribute message in order to put different
-images on different workspaces. The fields are correlated by index. Don't
-put different {cpp:enum}`B_BACKGROUND_IMAGE` paths onto the same workspace
-though, the behavior is undefined.
+{cpp:enumerator}`B_BACKGROUND_INFO` attribute message in order to put
+different images on different workspaces. The fields are correlated by
+index. Don't put different {cpp:enumerator}`B_BACKGROUND_IMAGE` paths onto
+the same workspace though, the behavior is undefined.
 
 For example, this is OK:
 
-:::{code}
+:::{code} cpp
 ...
 /* ALMOST_ALL_WORKSPACES is every workspace except the first */
 const int32 ALMOST_ALL_WORKSPACES = 0xffffffff - 0x00000001;
@@ -158,9 +144,9 @@ backgrounds.AddBool( B_BACKGROUND_ERASE_TEXT, true );
 ...
 :::
 
-This is not OK, and results in undefined behaviour:
+This is __not__ OK, and results in undefined behaviour:
 
-:::{code}
+:::{code} cpp
 ...
 const int32 ALL_WORKSPACES = 0xffffffff;
 ...
@@ -178,10 +164,11 @@ backgrounds.AddInt32( B_BACKGROUND_WORKSPACES, ALL_WORKSPACES );
 
 :::{admonition} Note
 :class: note
-The {cpp:enum}`B_BACKGROUND_INFO` attribute's contents might be extended
-in the future (but will remain compatible with the existing attribute
-data). Be prepared to preserve any data you don't recognize by reading in
-the existing {cpp:enum}`B_BACKGROUND_INFO` attribute (if one exists).
+The {cpp:enumerator}`B_BACKGROUND_INFO` attribute's contents might be
+extended in the future (but will remain compatible with the existing
+attribute data). Be prepared to preserve any data you don't recognize by
+reading in the existing {cpp:enumerator}`B_BACKGROUND_INFO` attribute (if
+one exists).
 :::
 
 ## Special Folders
@@ -195,39 +182,36 @@ align: left
 widths: auto
 ---
 -
-
 	- Constant
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_DESKTOP_DIRECTORY`
-
-	- Applying the {cpp:enum}`B_BACKGROUND_INFO` attribute to
-{cpp:enum}`B_DESKTOP_DIRECTORY` (see {cpp:func}`~find::directory` in the
-Storage Kit) will change the Desktop's background image (but see below to
-find out how to tell the Tracker to update the image).
-
+	- {cpp:enumerator}`B_DESKTOP_DIRECTORY`
+	- Applying the {cpp:enumerator}`B_BACKGROUND_INFO` attribute to
+		{cpp:enumerator}`B_DESKTOP_DIRECTORY` (see {cpp:func}`find_directory()
+		<find::directory>` in the Storage Kit) will change the Desktop's background
+		image (but see below to find out how to tell the Tracker to update the
+		image).
 -
+	- Tracker/DefaultFolderTemplate
+		inside{cpp:enumerator}`B_USER_SETTINGS_DIRECTORY`
+	- Applying the {cpp:enumerator}`B_BACKGROUND_INFO` attribute to this
+		directory sets the default folder background. Any folder that doesn't have
+		its own {cpp:enumerator}`B_BACKGROUND_INFO` will display this image.
 
-	- Tracker/DefaultFolderTemplate inside{cpp:enum}`B_USER_SETTINGS_DIRECTORY`
-
-	- Applying the {cpp:enum}`B_BACKGROUND_INFO` attribute to this directory
-sets the default folder background. Any folder that doesn't have its own
-{cpp:enum}`B_BACKGROUND_INFO` will display this image.
 :::
 
 ## Notifying Tracker
 
-Once you've written an appropriate {cpp:enum}`B_BACKGROUND_INFO`
+Once you've written an appropriate {cpp:enumerator}`B_BACKGROUND_INFO`
 attribute, you'll want to tell the Tracker to pick up the new background
 image.
 
 Send the Tracker's main looper (remember, the Tracker's signature is
-"application/x-vnd.Be-TRAK") a {hclass}`BMessage` with a what of
-{cpp:enum}`B_RESTORE_BACKGROUND_IMAGE` to tell it to reload the desktop
-background image.
+"application/x-vnd.Be-TRAK") a {hclass}`BMessage` with a {hparam}`what` of
+{cpp:enumerator}`B_RESTORE_BACKGROUND_IMAGE` to tell it to reload the
+desktop background image.
 
 Sending the same message to the looper for a specific Tracker window will
 tell that window to reload its background image. This is a little trickier
@@ -241,10 +225,10 @@ to repaint their backgrounds by using Tracker scripting (see
 change the default folder background image.
 
 This code asks the Tracker for windows that have a "Poses" property and
-sends them a {cpp:enum}`B_RESTORE_BACKGROUND_IMAGE`. This updates every
-Tracker window that's displaying a folder's contents.
+sends them a {cpp:enumerator}`B_RESTORE_BACKGROUND_IMAGE`. This updates
+every Tracker window that's displaying a folder's contents.
 
-:::{code}
+:::{code} cpp
 BMessenger tracker( "application/x-vnd.Be-TRAK" );
 
 int32 i = 0;
@@ -297,15 +281,15 @@ do {
 If want to refresh the background of the folder you've changed, you scan
 through the open folders using code similar to the above, until you find
 the folder with the "Path" you're interested in. Once you've got the right
-window, you send it a {cpp:enum}`B_RESTORE_BACKGROUND_IMAGE` message. Using
-this technique is nicer (from the user's point of view) because only one
-Tracker window gets updated.
+window, you send it a {cpp:enumerator}`B_RESTORE_BACKGROUND_IMAGE` message.
+Using this technique is nicer (from the user's point of view) because only
+one Tracker window gets updated.
 
 Here's the same code, modified to target a specific path. Assume you've
 still got the path in question in the_path (you just used it as a
-{cpp:enum}`B_BACKGROUND_IMAGE`):
+{cpp:enumerator}`B_BACKGROUND_IMAGE`):
 
-:::{code}
+:::{code} cpp
 BMessenger tracker( "application/x-vnd.Be-TRAK" );
 
 /* CHANGE: we'll increment "i" at the start of the loop

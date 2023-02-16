@@ -15,7 +15,7 @@ To send an e-mail, you simply construct a new {cpp:class}`BMailMessage`
 object, add a "To" header field, add the content, and send the message on
 its way. For example:
 
-:::{code}
+:::{code} cpp
 BMailMessage *mail;
 char *message;
 
@@ -33,14 +33,14 @@ You can add other fields, including carbon-copy (CC) and blind-carbon-copy
 (BCC) fields, and you can add attachments. For example, if you want to also
 attach a file called /boot/home/file.zip, you can do the following:
 
-:::{code}
+:::{code} cpp
 mail->AddEnclosure("/boot/home/file.zip");
 :::
 
 Once your message has been constructed, you can send it by calling
-{cpp:func}`~BMailMessage::Send`:
+{cpp:func}`Send() <BMailMessage::Send>`:
 
-:::{code}
+:::{code} cpp
 mail->Send();
 :::
 

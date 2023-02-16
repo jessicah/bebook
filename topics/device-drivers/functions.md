@@ -20,7 +20,7 @@ symbols in the current kernel when the driver is loaded.
 
 
 
-:::{code}
+:::{code} c
 typedef vlong spinlock
 :::
 
@@ -34,7 +34,7 @@ disabled).
 To create a spinlock, simply declare a spinlock variable and initialize it
 0:
 
-:::{code}
+:::{code} c
 spinlock lock = 0;
 :::
 
@@ -42,7 +42,7 @@ The functions acquire and release the lock spinlock. When you acquire and
 release a spinlock, you must have interrupts disabled; the structure of
 your code will look like this:
 
-:::{code}
+:::{code} c
 cpu_status former = disable_interrupts();
 acquire_spinlock(&lock);
 
@@ -77,11 +77,11 @@ number of CPUs in the system.
 
 
 
-:::{code}
+:::{code} c
 typedef int32 (*timer_hook)(timer*)
 :::
 
-:::{code}
+:::{code} c
 struct quent {
     int64 key;
     qent* next;
@@ -89,7 +89,7 @@ struct quent {
 }
 :::
 
-:::{code}
+:::{code} c
 struct timer {
     qent   entry;
     uint16   flags;
@@ -116,33 +116,25 @@ align: left
 widths: auto
 ---
 -
-
 	- Constant
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_ONE_SHOT_ABSOLUTE_TIMER`
-
+	- {cpp:enumerator}`B_ONE_SHOT_ABSOLUTE_TIMER`
 	- The timer will fire once at the system time specified by {hparam}`period`.
-
 -
-
-	- {cpp:enum}`B_ONE_SHOT_RELATIVE_TIMER`
-
+	- {cpp:enumerator}`B_ONE_SHOT_RELATIVE_TIMER`
 	- The timer will fire once in approximately {hparam}`period` microseconds.
-
 -
-
-	- {cpp:enum}`B_PERIODIC_TIMER`
-
+	- {cpp:enumerator}`B_PERIODIC_TIMER`
 	- The timer will fire every {hparam}`period` microseconds, starting in
-{hparam}`period` microseconds.
+		{hparam}`period` microseconds.
+
 :::
 
 cancel_timer() cancels the specified timer. If it's already fired, it
-returns {cpp:enum}`true`; otherwise {cpp:enum}`false` is returned. It's
+returns {cpp:expr}`true`; otherwise {cpp:expr}`false` is returned. It's
 guaranteed that once cancel_timer() returns, if the timer was in the
 process of running when cancel_timer() was called, the timer function will
 be finished executing. The only exception to this is if cancel_timer() was
@@ -156,24 +148,19 @@ align: left
 widths: auto
 ---
 -
-
 	- Return Code
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_OK`.
-
+	- {cpp:enumerator}`B_OK`.
 	- The timer was installed (add_timer() only).
-
 -
-
-	- {cpp:enum}`B_BAD_VALUE`.
-
+	- {cpp:enumerator}`B_BAD_VALUE`.
 	- The timer couldn't be installed because the period was invalid (probably
-because a relative time or period was negative; unfortunately, Be hasn't
-mastered the intricacies of installing timers to fire in the past).
+		because a relative time or period was negative; unfortunately, Be hasn't
+		mastered the intricacies of installing timers to fire in the past).
+
 :::
 
 ## call_all_cpus()
@@ -199,7 +186,7 @@ Calls the function specified by {hparam}`func` on all CPUs. The
 
 
 
-:::{code}
+:::{code} c
 typedef ulong cpu_status
 :::
 
@@ -211,7 +198,7 @@ is currently running on. disable_interrupts() returns its previous state
 restore_interrupts() restores the previous status of the CPU, which should
 be the value that disable_interrupts() returned:
 
-:::{code}
+:::{code} c
 cpu_status former = disable_interrupts();
 ...
 restore_interrupts(former);
@@ -220,7 +207,7 @@ restore_interrupts(former);
 As long as the CPU state is properly restored (as shown here), the
 disable/restore functions can be nested.
 
-See also: {cpp:func}`~install::io`
+See also: {ref}`install_io_interrupt_handler()`
 
 ## dprintf(), set_dprintf_enabled(), panic()
 
@@ -245,10 +232,10 @@ a data rate of 19,200 bits per second. The output is sent to
 on Intel machines. By default, dprintf() is disabled.
 
 set_dprintf_enabled() enables dprintf() if the {hparam}`enabled` flag is
-{cpp:enum}`true`, and disables it if the flag is {cpp:enum}`false`. It
+{cpp:expr}`true`, and disables it if the flag is {cpp:expr}`false`. It
 returns the previous enabled state, thus permitting intelligent nesting:
 
-:::{code}
+:::{code} c
 /* Turn on dprintf */
 bool former = set_dprintf_enabled(true);
 ...
@@ -267,7 +254,7 @@ printing the message.
 
 
 
-:::{code}
+:::{code} c
 typedef struct {
     void*address;
     ulong size;
@@ -284,7 +271,7 @@ allocate yourself). {hparam}`numEntries` is the number of elements in the
 array that you're passing in. As shown in the example, you should lock the
 memory that you're about to inspect:
 
-:::{code}
+:::{code} c
 physical_entry table[count];
 lock_memory(addr, extent, 0);
 get_memory_map(addr, extent, table, count);
@@ -292,9 +279,9 @@ get_memory_map(addr, extent, table, count);
 unlock_memory(someAddress, someNumberOfBytes, 0);
 :::
 
-The end of the table array is indicated by (size == 0):
+The end of the table array is indicated by ({hparam}`size` == 0):
 
-:::{code}
+:::{code} c
 long k;
 while (table[k].size > 0) {
    /* A legitimate entry */
@@ -307,9 +294,9 @@ while (table[k].size > 0) {
 If all of the entries have non-zero sizes, then table wasn't big enough;
 call get_memory_map() again with more table entries.
 
-The function always returns {cpp:enum}`B_OK`.
+The function always returns {cpp:enumerator}`B_OK`.
 
-See also: {cpp:func}`~lock::memory`, start_isa_dma()
+See also: {cpp:func}`lock_memory() <lock::memory>`, start_isa_dma()
 
 ## has_signals_pending()
 
@@ -320,7 +307,7 @@ See also: {cpp:func}`~lock::memory`, start_isa_dma()
 Declared in: drivers/KernelExport.h
 
 Returns a bitmask of the currently pending signals for the current thread.
-{hparam}`thr` should always be {cpp:enum}`NULL`; passing other values will
+{hparam}`thr` should always be {cpp:expr}`NULL`; passing other values will
 yield meaningless results. has_signals_pending() returns 0 if no signals
 are pending.
 
@@ -340,13 +327,13 @@ install_io_interrupt_handler() adds the handler function to the chain of
 functions that will be called each time the specified interrupt occurs.
 This function should have the following syntax:
 
-:::{code}
+:::{code} c
 int32 handler(void*data)
 :::
 
 The data passed to install_io_interrupt_handler() will be passed to the
 handler function each time it's called. It can be anything that might be of
-use to the {hparam}`handler`, or {cpp:enum}`NULL`. If the interrupt handler
+use to the {hparam}`handler`, or {cpp:expr}`NULL`. If the interrupt handler
 must return one of the following values:
 
 :::{list-table}
@@ -356,56 +343,48 @@ align: left
 widths: auto
 ---
 -
-
 	- Constant
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_UNHANDLED_INTERRUPT`
-
+	- {cpp:enumerator}`B_UNHANDLED_INTERRUPT`
 	- The interrupt handler didn't handle the interrupt; the kernel will keep
-looking for someone to handle it.
-
+		looking for someone to handle it.
 -
-
-	- {cpp:enum}`B_HANDLED_INTERRUPT`
-
+	- {cpp:enumerator}`B_HANDLED_INTERRUPT`
 	- The interrupt handler handled the interrupt. The kernel won't keep looking
-for a handler to handle it.
-
+		for a handler to handle it.
 -
-
-	- {cpp:enum}`B_INVOKE_SCHEDULER`
-
+	- {cpp:enumerator}`B_INVOKE_SCHEDULER`
 	- The interrupt handler handled the interrupt. This tells the kernel to
-invoke the scheduler immediately after the handler returns.
+		invoke the scheduler immediately after the handler returns.
+
 :::
 
-If {cpp:enum}`B_INVOKE_SCHEDULER` is returned by the interrupt handler,
-the kernel will immediately invoke the scheduler, to dispatch processor
-time to tasks that need handling. This is especially useful if your
-interrupt handler has released a semaphore (see {cpp:func}`~release::sem`
-in the Kernel Kit).
+If {cpp:enumerator}`B_INVOKE_SCHEDULER` is returned by the interrupt
+handler, the kernel will immediately invoke the scheduler, to dispatch
+processor time to tasks that need handling. This is especially useful if
+your interrupt handler has released a semaphore (see
+{ref}`release_sem_etc()` in the Kernel Kit).
 
 The {hparam}`flags` parameter is a bitmask of options. The only option
-currently defined is {cpp:enum}`B_NO_ENABLE_COUNTER`. By default, the OS
-keeps track of the number of functions handling a given interrupt. If this
-counter changes from 0 to 1, then the system enables the irq for that
+currently defined is {cpp:enumerator}`B_NO_ENABLE_COUNTER`. By default, the
+OS keeps track of the number of functions handling a given interrupt. If
+this counter changes from 0 to 1, then the system enables the irq for that
 interrupt. Conversely, if the counter changes from 1 to 0, the system
-disables the irq. Setting the {cpp:enum}`B_NO_ENABLE_COUNTER` flag
+disables the irq. Setting the {cpp:enumerator}`B_NO_ENABLE_COUNTER` flag
 instructs the OS to ignore the handler for the purpose of enabling and
 disabling the irq.
 
-install_io_interrupt_handler() returns {cpp:enum}`B_OK` if successful in
-installing the handler, and {cpp:enum}`B_ERROR` if not. An error occurs
-when either the {hparam}`interrupt_number` is out of range or there is not
-enough room left in the interrupt chain to add the handler.
+install_io_interrupt_handler() returns {cpp:enumerator}`B_OK` if
+successful in installing the handler, and {cpp:enumerator}`B_ERROR` if not.
+An error occurs when either the {hparam}`interrupt_number` is out of range
+or there is not enough room left in the interrupt chain to add the handler.
 
 remove_io_interrupt() removes the named interrupt from the interrupt
-chain. It returns {cpp:enum}`B_OK` if successful in removing the handler,
-and {cpp:enum}`B_ERROR` if not.
+chain. It returns {cpp:enumerator}`B_OK` if successful in removing the
+handler, and {cpp:enumerator}`B_ERROR` if not.
 
 ## kernel_debugger(), add_debugger_command(), remove_debugger_command(), load_driver_symbols(), kprintf(), parse_expression()
 
@@ -438,7 +417,7 @@ Declared in: drivers/KernelExport.h
 kernel_debugger() drops the calling thread into a debugger that writes its
 output to the serial port at 19,200 bits per second, just as
 {ref}`dprintf()` does. This debugger produces string as its first message;
-it's not affected by {cpp:func}`~set::dprintf`.
+it's not affected by {ref}`set_dprintf_enabled()`.
 
 kernel_debugger() is identical to the {ref}`debugger()` function
 documented in the Kernel Kit, except that it works in the kernel and
@@ -447,16 +426,17 @@ engages a different debugger. Drivers should use it instead of
 
 add_debugger_command() registers a new command with the kernel debugger.
 When the user types in the command name, the kernel debugger calls
-{hparam}`func` with the remainder of the command line as argc/argv-style
-arguments. The {hparam}`help` string for the command is set to help.
+{hparam}`func` with the remainder of the command line as
+{hparam}`argc`/{hparam}`argv`-style arguments. The {hparam}`help` string
+for the command is set to help.
 
 remove_debugger_command() removes the specified kernel debugger command.
 
 load_driver_symbols() loads symbols from the specified kernel driver into
 the kernel debugger. {hparam}`driver_name` is the path-less name of the
 driver which must be located in one of the standard kernel driver
-directories. The function returns {cpp:enum}`B_OK` on success and
-{cpp:enum}`B_ERROR` on failure.
+directories. The function returns {cpp:enumerator}`B_OK` on success and
+{cpp:enumerator}`B_ERROR` on failure.
 
 kprintf() outputs messages to the serial port. It should be used instead
 of {ref}`dprintf()` from new debugger commands because {ref}`dprintf()`
@@ -490,22 +470,22 @@ called. It pages in any of the memory that isn't resident at the time it's
 called. It is typically used in preparation for a DMA transaction.
 
 The {hparam}`flags` field contains a bitmask of options. Currently, two
-options, {cpp:enum}`B_DMA_IO` and {cpp:enum}`B_READ_DEVICE`, are defined.
-{cpp:enum}`B_DMA_IO` should be set if any part of the memory range will be
-modified by something other than the CPU while it's locked, since that
-change won't otherwise be noticed by the system and the modified pages may
-not be written to disk by the virtual memory system. Typically, this sort
-of change is performed through DMA. {cpp:enum}`B_READ_DEVICE`, if set,
-indicates that the caller intends to fill the memory (read from the
-device). If cleared, it indicates the memory will be written to the device
-and will not be altered.
+options, {cpp:enumerator}`B_DMA_IO` and {cpp:enumerator}`B_READ_DEVICE`,
+are defined. {cpp:enumerator}`B_DMA_IO` should be set if any part of the
+memory range will be modified by something other than the CPU while it's
+locked, since that change won't otherwise be noticed by the system and the
+modified pages may not be written to disk by the virtual memory system.
+Typically, this sort of change is performed through DMA.
+{cpp:enumerator}`B_READ_DEVICE`, if set, indicates that the caller intends
+to fill the memory (read from the device). If cleared, it indicates the
+memory will be written to the device and will not be altered.
 
 unlock_memory() releases locked memory and should be called with the same
 flags as passed into the corresponding lock_memory() call.
 
-Each of these functions returns {cpp:enum}`B_OK` if successful and
-{cpp:enum}`B_ERROR` if not. The main reason that lock_memory() would fail
-is that you're attempting to lock more memory than can be paged in.
+Each of these functions returns {cpp:enumerator}`B_OK` if successful and
+{cpp:enumerator}`B_ERROR` if not. The main reason that lock_memory() would
+fail is that you're attempting to lock more memory than can be paged in.
 
 ## map_physical_memory()
 
@@ -520,22 +500,24 @@ This function allows you to map the memory in physical memory starting at
 your team's address space. The kernel creates an area named
 {hparam}`areaName` mapped into the memory address {hparam}`virtualAddress`
 and returns its {htype}`area_id` to the caller. {hparam}`numBytes` must be
-a multiple of {cpp:enum}`B_PAGE_SIZE` (4096).
+a multiple of {cpp:enumerator}`B_PAGE_SIZE` (4096).
 
-{hparam}`spec` must be either {cpp:enum}`B_ANY_KERNEL_ADDRESS` or
-{cpp:enum}`B_ANY_KERNEL_BLOCK_ADDRESS`. If {hparam}`spec` is
-{cpp:enum}`B_ANY_KERNEL_ADDRESS`, the memory will begin at an arbitrary
-location in the kernel address space. If spec is
-{cpp:enum}`B_ANY_KERNEL_BLOCK_ADDRESS`, then the memory will be mapped into
-a memory location aligned on a multiple of {cpp:enum}`B_PAGE_SIZE`.
+{hparam}`spec` must be either {cpp:enumerator}`B_ANY_KERNEL_ADDRESS` or
+{cpp:enumerator}`B_ANY_KERNEL_BLOCK_ADDRESS`. If {hparam}`spec` is
+{cpp:enumerator}`B_ANY_KERNEL_ADDRESS`, the memory will begin at an
+arbitrary location in the kernel address space. If spec is
+{cpp:enumerator}`B_ANY_KERNEL_BLOCK_ADDRESS`, then the memory will be
+mapped into a memory location aligned on a multiple of
+{cpp:enumerator}`B_PAGE_SIZE`.
 
 {hparam}`protection` is a bitmask consisting of the fields
-{cpp:enum}`B_READ_AREA` and {cpp:enum}`B_WRITE_AREA`, as discussed in
-{cpp:func}`~create::area`.
+{cpp:enumerator}`B_READ_AREA` and {cpp:enumerator}`B_WRITE_AREA`, as
+discussed in {cpp:func}`create_area() <create::area>`.
 
-{cpp:func}`~create::area` returns an {htype}`area_id` for the
-newly-created memory if successful or an error code on failure. The error
-codes are the same as those for {cpp:func}`~create::area`.
+{cpp:func}`create_area() <create::area>` returns an {htype}`area_id` for
+the newly-created memory if successful or an error code on failure. The
+error codes are the same as those for {cpp:func}`create_area()
+<create::area>`.
 
 ## motherboard_version(), io_card_version()
 
@@ -604,24 +586,19 @@ align: left
 widths: auto
 ---
 -
-
 	- Constant
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_CHECK_PERMISSION`
-
+	- {cpp:enumerator}`B_CHECK_PERMISSION`
 	- The signal will only be sent if the destination thread's uid and euid are
-the same as the caller's.
-
+		the same as the caller's.
 -
-
-	- {cpp:enum}`B_DO_NOT_RESCHEDULE`
-
+	- {cpp:enumerator}`B_DO_NOT_RESCHEDULE`
 	- The kernel won't call the scheduler after sending the signal. You should
-specify this flag when calling send_signal_etc() from an interrupt handler.
+		specify this flag when calling send_signal_etc() from an interrupt handler.
+
 :::
 
 :::{list-table}
@@ -631,35 +608,24 @@ align: left
 widths: auto
 ---
 -
-
 	- Return Code
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_OK`.
-
+	- {cpp:enumerator}`B_OK`.
 	- The signal was sent.
-
 -
-
-	- {cpp:enum}`B_BAD_VALUE`.
-
+	- {cpp:enumerator}`B_BAD_VALUE`.
 	- The signal type is invalid.
-
 -
-
-	- {cpp:enum}`B_BAD_THREAD_ID`.
-
+	- {cpp:enumerator}`B_BAD_THREAD_ID`.
 	- The thread ID is invalid.
-
 -
+	- {cpp:enumerator}`B_NOT_ALLOWED`.
+	- The permission check failed (if {cpp:enumerator}`B_CHECK_PERMISSION` was
+		specified).
 
-	- {cpp:enum}`B_NOT_ALLOWED`.
-
-	- The permission check failed (if {cpp:enum}`B_CHECK_PERMISSION` was
-specified).
 :::
 
 ## spawn_kernel_thread()
@@ -670,10 +636,10 @@ specified).
 
 Declared in:  drivers/KernelExport.h
 
-This function is a counterpart to {cpp:func}`~spawn::thread` in the Kernel
-Kit, which is not exported for drivers. It has the same syntax as the
-Kernel Kit function, but is able to spawn threads in the kernel's memory
-space.
+This function is a counterpart to {cpp:func}`spawn_thread()
+<spawn::thread>` in the Kernel Kit, which is not exported for drivers. It
+has the same syntax as the Kernel Kit function, but is able to spawn
+threads in the kernel's memory space.
 
 ## spin()
 

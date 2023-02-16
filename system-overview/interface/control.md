@@ -13,10 +13,10 @@ the message it posts when invoked and the target object that should handle
 the message.
 
 Controls also register a current value, stored as an {htype}`int32`
-integer that's typically set to {cpp:enum}`B_CONTROL_ON` or
-{cpp:enum}`B_CONTROL_OFF`. The value is changed only by calling
-{cpp:func}`~BControl::SetValue`, a virtual function that derived classes
-can implement to be notified of the change.
+integer that's typically set to {cpp:enumerator}`B_CONTROL_ON` or
+{cpp:enumerator}`B_CONTROL_OFF`. The value is changed only by calling
+{cpp:func}`SetValue() <BControl::SetValue>`, a virtual function that
+derived classes can implement to be notified of the change.
 
 ## Derived Classes
 

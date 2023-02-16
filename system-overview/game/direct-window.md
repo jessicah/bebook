@@ -9,17 +9,17 @@ frame buffer.
 
 In addition,  {cpp:class}`BDirectWindow` lets you switch between
 full-screen exclusive mode and windowed modes without breaking down and
-rebuilding the object. A simple call to the
-{cpp:func}`~BDirectWindow::SetFullScreen` function does the job.
+rebuilding the object. A simple call to the {cpp:func}`SetFullScreen()
+<BDirectWindow::SetFullScreen>` function does the job.
 
 :::{admonition} Note
 :class: note
 if you want your direct window to be full-screen but don't want exclusive
 mode, just resize the window to fill the entire screen; since full-screen
-exclusive mode (as set by calling
-{cpp:func}`~BDirectWindow::SetFullScreen`) won't let other windows draw in
-front of your direct window, you can't have menus in a full-screen
-exclusive mode direct window.
+exclusive mode (as set by calling {cpp:func}`SetFullScreen()
+<BDirectWindow::SetFullScreen>`) won't let other windows draw in front of
+your direct window, you can't have menus in a full-screen exclusive mode
+direct window.
 :::
 
 Another difference between  {cpp:class}`BDirectWindow` and
@@ -33,29 +33,30 @@ caveats:
 Don't draw into the direct window from its own thread; you should spawn
 another thread for drawing into the direct window.
 
-And use the {cpp:func}`~BDirectWindow::DirectConnected` function to
-synchronize the interaction between  {cpp:class}`BDirectWindow` and your
-drawing thread. Also, if you choose to use {cpp:class}`BWindow` or
+And use the {cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>`
+function to synchronize the interaction between  {cpp:class}`BDirectWindow`
+and your drawing thread. Also, if you choose to use {cpp:class}`BWindow` or
 {cpp:class}`BView` API inside a  {cpp:class}`BDirectWindow`, be sure you
-don't block the {cpp:func}`~BDirectWindow::DirectConnected` function.
+don't block the {cpp:func}`DirectConnected()
+<BDirectWindow::DirectConnected>` function.
 :::
 
 Not all video cards support window mode; use the
-{cpp:func}`~BDirectWindow::SupportsWindowMode` function if you need to know
-whether or not window mode is available.
+{cpp:func}`SupportsWindowMode() <BDirectWindow::SupportsWindowMode>`
+function if you need to know whether or not window mode is available.
 
 ## Getting Connected (and Staying That Way)
 
 The key to the  {cpp:class}`BDirectWindow` class is the
-{cpp:func}`~BDirectWindow::DirectConnected` function, which your code must
-implement. This function is called whenever a change that your drawing code
-may need to be aware of occurs.
+{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` function,
+which your code must implement. This function is called whenever a change
+that your drawing code may need to be aware of occurs.
 
-When your {cpp:func}`~BDirectWindow::DirectConnected` function is called,
-it's passed a pointer to a {htype}`direct_buffer_info` structure, as
-follows:
+When your {cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>`
+function is called, it's passed a pointer to a {htype}`direct_buffer_info`
+structure, as follows:
 
-:::{code}
+:::{code} c
 typedef struct {
    direct_buffer_state   buffer_state;
    direct_driver_state   driver_state;
@@ -89,106 +90,127 @@ widths: auto
 
 -
 	- buffer_state
+	- Indicates what change is occurring in the direct buffer access privileges.
+		It can have one of the following values:
 
-	- {cpp:enum}`B_BUFFER_MOVED`
+		{cpp:enumerator}`B_DIRECT_START`
 
-	   : The content of your window has been moved, either by a call to
-{cpp:func}`~BWindow::MoveTo` or {cpp:func}`~BWindow::MoveBy` or by the user
-manually dragging the window. The contents of the window are always moved
-relative to the top-left corner of the window.
+		: You will always receive a {cpp:enumerator}`B_DIRECT_START` notification
+		when your {cpp:class}`BDirectWindow` is first connected to the screen
 
-      {cpp:enum}`B_BUFFER_RESET`
+		{cpp:enumerator}`B_DIRECT_MODIFY`
 
-	   : The entire direct access buffer has been reset. This can happen if the
-user changes the depth or resolution of the screen, or if the window had
-previously been hidden and has been made visible again.
+		: Any number of {cpp:enumerator}`B_DIRECT_MODIFY` notifications follow (it's
+		possible you won't receive any at all). When you return from
+		{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` after
+		handling {cpp:enumerator}`B_DIRECT_START` or
+		{cpp:enumerator}`B_DIRECT_MODIFY`, your application guarantees to the
+		application server that your code will abide by the frame buffer
+		configuration specified by the {htype}`direct_buffer_info` structure until
+		another {cpp:enumerator}`B_DIRECT_MODIFY` notification is received (or
+		{cpp:enumerator}`B_DIRECT_STOP` occurs).
 
-      {cpp:enum}`B_BUFFER_RESIZED`
+		{cpp:enumerator}`B_DIRECT_STOP`
 
-	   : The content area of your window has been resized.
+		: You'll receive a {cpp:enumerator}`B_DIRECT_STOP` notification when the
+		window is closed, hidden, or if moved, or if a resolution or color depth
+		change occurs. Once your {cpp:func}`DirectConnected()
+		<BDirectWindow::DirectConnected>` function returns from handling this
+		notification, you guarantee to the application server that your code won't
+		touch the frame buffer anymore.
 
-      {cpp:enum}`B_CLIPPING_MODIFIED`
+		For any of these notifications, your {cpp:func}`DirectConnected()
+		<BDirectWindow::DirectConnected>` function shouldn't return until you can
+		guarantee to the application server that your code will abide by the frame
+		buffer configuration it received.
 
-	   : The visible region of the content area of your window changed. This
-doesn't imply anything about the position of the window or the size of the
-content area of the window—it simply means that the part of the window
-that's visible has changed shape.
+		You can get further information about what changed by testing against
+		other flags in the {hparam}`buffer_state` field:
 
+		{cpp:enumerator}`B_BUFFER_MOVED`
+
+		: The content of your window has been moved, either by a call to
+		{cpp:func}`MoveTo() <BWindow::MoveTo>` or {cpp:func}`MoveBy()
+		<BWindow::MoveBy>` or by the user manually dragging the window. The
+		contents of the window are always moved relative to the top-left corner of
+		the window.
+
+		{cpp:enumerator}`B_BUFFER_RESET`
+
+		: The entire direct access buffer has been reset. This can happen if the
+		user changes the depth or resolution of the screen, or if the window had
+		previously been hidden and has been made visible again.
+
+		{cpp:enumerator}`B_BUFFER_RESIZED`
+
+		: The content area of your window has been resized.
+
+		{cpp:enumerator}`B_CLIPPING_MODIFIED`
+
+		: The visible region of the content area of your window changed. This
+		doesn't imply anything about the position of the window or the size of the
+		content area of the window—it simply means that the part of the window
+		that's visible has changed shape.
 -
 	- driver_state
+	- Indicates changes in the state of the graphics card on which your direct
+		window is displayed. There are two possible values:
 
-	- {cpp:enum}`B_MODE_CHANGED`
+		{cpp:enumerator}`B_MODE_CHANGED`
 
-	   : The resolution or depth of the graphics card has changed.
+		: The resolution or depth of the graphics card has changed.
 
-      {cpp:enum}`B_DRIVER_CHANGED`
+		{cpp:enumerator}`B_DRIVER_CHANGED`
 
-	   : The window was moved onto another monitor.
-
+		: The window was moved onto another monitor.
 -
-	- 	bits
-
-	- 	Is a pointer to the frame buffer in your own team's memory space.
-
+	- bits
+	- Is a pointer to the frame buffer in your own team's memory space.
 -
-	- 	pci_bits
-
-	- 	Is a pointer to the frame buffer in the PCI memory space; this value is
-typically needed to control DMA.
-
+	- pci_bits
+	- Is a pointer to the frame buffer in the PCI memory space; this value is
+		typically needed to control DMA.
 -
-	- 	bytes_per_row
-
-	- 	Is the number of bytes used to represent a single row of pixels in the
-frame buffer.
-
+	- bytes_per_row
+	- Is the number of bytes used to represent a single row of pixels in the
+		frame buffer.
 -
-	- 	bits_per_pixel
-
-	- 	Is the number of bits actually used to store a single pixel, including
-reserved, unused, or alpha channel bits. This value is usually a multiple
-of eight.
-
+	- bits_per_pixel
+	- Is the number of bits actually used to store a single pixel, including
+		reserved, unused, or alpha channel bits. This value is usually a multiple
+		of eight.
 -
-	- 	pixel_format
-
-	- 	Is the format used to encode a pixel, as defined in the
-{htype}`color_space` type in GraphicsDefs.h.
-
+	- pixel_format
+	- Is the format used to encode a pixel, as defined in the
+		{htype}`color_space` type in GraphicsDefs.h.
 -
-	- 	layout,orientation,_reserved,_dd_type_, and_dd_token_
-
-	- 	Are all reserved for future use and must not be used.
-
+	- layout,orientation,_reserved,_dd_type_, and_dd_token_
+	- Are all reserved for future use and must not be used.
 -
-	- 	window_bounds
-
-	- 	Is a rectangle that defines the full content area of the window, in screen
-coordinates. You can convert these coordinates into frame buffer addresses
-using the values in the bits , bytes_per_row , and bits_per_pixel fields.
-
+	- window_bounds
+	- Is a rectangle that defines the full content area of the window, in screen
+		coordinates. You can convert these coordinates into frame buffer addresses
+		using the values in the {hparam}`bits` , {hparam}`bytes_per_row` , and
+		{hparam}`bits_per_pixel` fields.
 -
-	- 	clip_bounds
-
-	- 	Is the bounding rectangle of the visible part of the content area of the
-window, in screen coordinates. This rectangle is the smallest rectangle
-that contains all the rectangles in the clip_list, described below.
-
+	- clip_bounds
+	- Is the bounding rectangle of the visible part of the content area of the
+		window, in screen coordinates. This rectangle is the smallest rectangle
+		that contains all the rectangles in the {hparam}`clip_list`, described
+		below.
 -
-	- 	clip_list_count
-
-	- 	Is the number of rectangles in the clip_list.
-
+	- clip_list_count
+	- Is the number of rectangles in the {hparam}`clip_list`.
 -
-	- 	clip_list
+	- clip_list
+	- Is a list of rectangles that together define the visible region of the
+		content area of the window, in screen coordinates
 
-	- 	Is a list of rectangles that together define the visible region of the
-content area of the window, in screen coordinates
 :::
 
 The {htype}`clipping_rect` structure is:
 
-:::{code}
+:::{code} c
 typedef struct {
    int32      left;
    int32      top;
@@ -206,10 +228,11 @@ the information later, you should make a copy of the fields you need.
 
 :::{admonition} Warning
 :class: warning
-If your {cpp:func}`~BDirectWindow::DirectConnected` implementation doesn't
-handle a request within three seconds, the Application Server will
-intentionally crash your application under the assumption that it's
-deadlocked. Be sure to handle requests as quickly as possible.
+If your {cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>`
+implementation doesn't handle a request within three seconds, the
+Application Server will intentionally crash your application under the
+assumption that it's deadlocked. Be sure to handle requests as quickly as
+possible.
 :::
 
 ## Window Mode vs. Full Screen Mode
@@ -220,20 +243,21 @@ depending on whether it's in window mode or full-screen exclusive mode.
 In window mode, the {cpp:class}`BDirectWindow` behaves almost exactly like
 a {cpp:class}`BWindow`—so much so that you can use a
 {cpp:class}`BDirectWindow` in any situation you'd normally use a
-{cpp:class}`BWindow`. The window_bounds rectangles are the same size and
-shape as the window itself, as you'd expect. If exclusive window mode is
-available ( {cpp:func}`~BDirectWindow::SupportsWindowMode` returns
-{cpp:enum}`true`), {cpp:func}`~BDirectWindow::DirectConnected` will be
+{cpp:class}`BWindow`. The {hparam}`window_bounds` rectangles are the same
+size and shape as the window itself, as you'd expect. If exclusive window
+mode is available ( {cpp:func}`SupportsWindowMode()
+<BDirectWindow::SupportsWindowMode>` returns {cpp:expr}`true`),
+{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` will be
 called as described above, thereby providing the means to directly access
 the frame buffer. If the graphics card doesn't support exclusive access to
-the frame buffer while in window mode,
-{cpp:func}`~BDirectWindow::DirectConnected` will never be called, and you
-can only use {cpp:class}`BWindow` and {cpp:class}`BView` APIs to work in
-the window.
+the frame buffer while in window mode, {cpp:func}`DirectConnected()
+<BDirectWindow::DirectConnected>` will never be called, and you can only
+use {cpp:class}`BWindow` and {cpp:class}`BView` APIs to work in the window.
 
-In full-screen exclusive mode, the window_bounds are actually the size and
-shape of the entire screen, even if the screen isn't the same size as the
-direct window you created. You have to handle the difference yourself.
+In full-screen exclusive mode, the {hparam}`window_bounds` are actually
+the size and shape of the entire screen, even if the screen isn't the same
+size as the direct window you created. You have to handle the difference
+yourself.
 
 Full-screen exclusive mode also guarantees that your window will always be
 the focus, always be in front, and will always stay full-screen (the
@@ -246,7 +270,7 @@ If you want your {cpp:class}`BDirectWindow` to be full-screen, but still
 compatible with menus or other windows, create it as a non-exclusive
 window, then use the following code:
 
-:::{code}
+:::{code} cpp
 BScreen screen(this);
 MoveTo(0,0);
 ResizeTo(screen.width, screen.height);
@@ -263,7 +287,7 @@ Let's put together a simple class, derived from
 {cpp:class}`BDirectWindow`, that demonstrates the basics of drawing into a
 direct window.
 
-:::{code}
+:::{code} cpp
 class DirectSample : public BDirectWindow {
 public:
                    DirectSample(BRect frame);
@@ -288,8 +312,8 @@ public:
 :::
 
 The {hclass}`DirectSample` class implements a constructor as well as the
-{cpp:func}`~BApplication::QuitRequested` and
-{cpp:func}`~BDirectWindow::DirectConnected` functions.
+{cpp:func}`QuitRequested() <BApplication::QuitRequested>` and
+{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` functions.
 
 Some variables are added to the class for cacheing information about the
 frame buffer.
@@ -306,75 +330,55 @@ widths: auto
 	- Description
 
 -
-	- 	fBits
-
-	- 	Will contain a pointer to the frame buffer's bitmap.
-
+	- fBits
+	- Will contain a pointer to the frame buffer's bitmap.
 -
-	- 	fRowBytes
-
-	- 	Will contain the number of bytes per row of screen data.
-
+	- fRowBytes
+	- Will contain the number of bytes per row of screen data.
 -
-	- 	fFormat
-
-	- 	Will contain the pixel format (such as {cpp:enum}`B_CMAP8` for 8-bit
-indexed color graphics mode). Our sample program will only work in this
-mode.
-
+	- fFormat
+	- Will contain the pixel format (such as {cpp:enumerator}`B_CMAP8` for 8-bit
+		indexed color graphics mode). Our sample program will only work in this
+		mode.
 -
-	- 	fBounds
-
-	- 	will contain the bounds rectangle for the window.
-
+	- fBounds
+	- will contain the bounds rectangle for the window.
 -
-	- 	fNumClipRects
-
-	- 	Will contain the number of rectangles in the clip rectangle list.
-
+	- fNumClipRects
+	- Will contain the number of rectangles in the clip rectangle list.
 -
-	- 	fClipList
-
-	- 	Is the actual list of clip rectangles, and will be allocated on-the-fly as
-needed.
-
+	- fClipList
+	- Is the actual list of clip rectangles, and will be allocated on-the-fly as
+		needed.
 -
-	- 	fDirty
-
-	- 	Will be {cpp:enum}`true` if the window needs to be redrawn.
-
+	- fDirty
+	- Will be {cpp:expr}`true` if the window needs to be redrawn.
 -
-	- 	fConnected
-
-	- 	Is {cpp:enum}`true` if the window is connected to the frame buffer.
-
+	- fConnected
+	- Is {cpp:expr}`true` if the window is connected to the frame buffer.
 -
-	- 	fConnectionDisabled
-
-	- 	Is {cpp:enum}`true` if the window is in the process of being closed.
-
+	- fConnectionDisabled
+	- Is {cpp:expr}`true` if the window is in the process of being closed.
 -
-	- 	locker
-
-	- 	Is a {cpp:class}`BLocker` that will be used to ensure mutual exclusion
-when the frame buffer or buffer information data we've cached is being
-manipulated.
-
+	- locker
+	- Is a {cpp:class}`BLocker` that will be used to ensure mutual exclusion
+		when the frame buffer or buffer information data we've cached is being
+		manipulated.
 -
-	- 	fDrawThreadID
+	- fDrawThreadID
+	- Contains the {htype}`thread_id` of the drawing thread, which is
+		responsible for drawing the contents of the window.
 
-	- 	Contains the {htype}`thread_id` of the drawing thread, which is
-responsible for drawing the contents of the window.
 :::
 
 The specifics of what these variables are and why the information
 contained in them is maintained will be discussed when we get to the
-{cpp:func}`~BDirectWindow::DirectConnected` and {hmethod}`DrawingThread()`
-functions.
+{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` and
+{hmethod}`DrawingThread()` functions.
 
 The constructor for the {hclass}`DirectSample` class looks like this:
 
-:::{code}
+:::{code} cpp
 DirectSample::DirectSample(BRect frame)
              : BDirectWindow(frame, "DirectWindow Sample",
                              B_TITLED_WINDOW,
@@ -401,41 +405,41 @@ DirectSample::DirectSample(BRect frame)
 :::
 
 This code establishes the direct window by deferring to
-{cpp:class}`BDirectWindow`. Then the fConnected and fConnectionDisabled
-flags are initialized to indicate that the window isn't connected yet, but
-the connection isn't in the process of being torn down by the
-{hclass}`DirectSample` destructor. The locker is created, and the clip
-rectangle list is initialized to a {cpp:enum}`NULL` pointer, with a count
-of 0.
+{cpp:class}`BDirectWindow`. Then the {hparam}`fConnected` and
+{hparam}`fConnectionDisabled` flags are initialized to indicate that the
+window isn't connected yet, but the connection isn't in the process of
+being torn down by the {hclass}`DirectSample` destructor. The locker is
+created, and the clip rectangle list is initialized to a {cpp:expr}`NULL`
+pointer, with a count of 0.
 
 Then it adds a child view that occupies the entire window. The primary
 purpose of this view in this sample is to set the view color to
-{cpp:enum}`B_TRANSPARENT_32_BIT`, to prevent the application server from
-erasing the window with a default color.
+{cpp:enumerator}`B_TRANSPARENT_32_BIT`, to prevent the application server
+from erasing the window with a default color.
 
 If the video card doesn't support window mode, we call
-{cpp:func}`~BDirectWindow::SetFullScreen` to switch the direct window into
-full-screen exclusive mode. This guarantees that you'll get connected with
-direct screen access (in a window if possible, otherwise in full-screen
-exclusive mode). If you don't use
-{cpp:func}`~BDirectWindow::SetFullScreen`, and window mode isn't supported,
-{cpp:func}`~BDirectWindow::DirectConnected` will never be called, and you
-won't have direct screen access.
+{cpp:func}`SetFullScreen() <BDirectWindow::SetFullScreen>` to switch the
+direct window into full-screen exclusive mode. This guarantees that you'll
+get connected with direct screen access (in a window if possible, otherwise
+in full-screen exclusive mode). If you don't use {cpp:func}`SetFullScreen()
+<BDirectWindow::SetFullScreen>`, and window mode isn't supported,
+{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` will never
+be called, and you won't have direct screen access.
 
-Then the fDirty flag is set to {cpp:enum}`true`, which indicates that the
-window needs to be updated, and the drawing thread is started; the drawing
-thread will handle all actual drawing into the window. The argument passed
-to the drawing thread is a pointer to the {hclass}`DirectSample` window
-itself. You should always use a separate thread for drawing into a
+Then the {hparam}`fDirty` flag is set to {cpp:expr}`true`, which indicates
+that the window needs to be updated, and the drawing thread is started; the
+drawing thread will handle all actual drawing into the window. The argument
+passed to the drawing thread is a pointer to the {hclass}`DirectSample`
+window itself. You should always use a separate thread for drawing into a
 {cpp:class}`BDirectWindow`.
 
-Finally, {cpp:func}`~BWindow::Show` is called to make the direct window
-visible.
+Finally, {cpp:func}`Show() <BWindow::Show>` is called to make the direct
+window visible.
 
 The destructor needs to make sure there's no chance someone will try to
 draw while the window is being destructed:
 
-:::{code}
+:::{code} cpp
 DirectSample::~DirectSample() {
    int32 result;
 
@@ -448,28 +452,28 @@ DirectSample::~DirectSample() {
 }
 :::
 
-The first thing the destructor does is set the fConnectionDisabled flag to
-{cpp:enum}`true`, which indicates that the window is in the process of
-being destroyed, and that future calls to
-{cpp:func}`~BDirectWindow::DirectConnected` or the drawing thread should be
-ignored. The window is then hidden by calling {cpp:func}`~BWindow::Hide`.
-Finally, {cpp:func}`~BWindow::Sync` is called to block until the window is
-actually hidden.
+The first thing the destructor does is set the
+{hparam}`fConnectionDisabled` flag to {cpp:expr}`true`, which indicates
+that the window is in the process of being destroyed, and that future calls
+to {cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` or the
+drawing thread should be ignored. The window is then hidden by calling
+{cpp:func}`Hide() <BWindow::Hide>`. Finally, {cpp:func}`Sync()
+<BWindow::Sync>` is called to block until the window is actually hidden.
 
-{cpp:func}`~wait::for` waits until the drawing thread terminates. The
+{ref}`wait_for_thread()` waits until the drawing thread terminates. The
 drawing thread (as we'll see shortly) is designed to terminate when the
-fConnectionDisabled flag is {cpp:enum}`true`.
+{hparam}`fConnectionDisabled` flag is {cpp:expr}`true`.
 
 Then the clip rectangle list is freed and the locker deleted.
 
-The {cpp:func}`~BApplication::QuitRequested` function is implemented as
-usual.
+The {cpp:func}`QuitRequested() <BApplication::QuitRequested>` function is
+implemented as usual.
 
-The {cpp:func}`~BDirectWindow::DirectConnected` function is called
-whenever a change occurs that affects how your code should access the frame
-buffer:
+The {cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>`
+function is called whenever a change occurs that affects how your code
+should access the frame buffer:
 
-:::{code}
+:::{code} cpp
 void DirectSample::DirectConnected(direct_buffer_info *info) {
    if (!fConnected && fConnectionDisabled) {
       return;
@@ -512,35 +516,37 @@ void DirectSample::DirectConnected(direct_buffer_info *info) {
 }
 :::
 
-{cpp:func}`~BDirectWindow::DirectConnected` begins by checking the
-fConnected and fConnectionDisabled flags; the code in
-{cpp:func}`~BDirectWindow::DirectConnected` is only run if the connection
-is opened (fConnected is {cpp:enum}`true`) or if we want to start it again
-(fConnectionDisabled is {cpp:enum}`false`). This arrangement prevents the
-{cpp:func}`~BDirectWindow::DirectConnected` function from trying to
-reconnect if the destructor has started running. Otherwise, the locker is
-locked, to prevent {cpp:func}`~BDirectWindow::DirectConnected` and the
-drawing thread from colliding.
+{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` begins by
+checking the {hparam}`fConnected` and {hparam}`fConnectionDisabled` flags;
+the code in {cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>`
+is only run if the connection is opened ({hparam}`fConnected` is
+{cpp:expr}`true`) or if we want to start it again
+({hparam}`fConnectionDisabled` is {cpp:expr}`false`). This arrangement
+prevents the {cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>`
+function from trying to reconnect if the destructor has started running.
+Otherwise, the locker is locked, to prevent {cpp:func}`DirectConnected()
+<BDirectWindow::DirectConnected>` and the drawing thread from colliding.
 
-If the buffer state is {cpp:enum}`B_DIRECT_START`, the fConnected flag is
-set to {cpp:enum}`true`. This keeps track of the fact that the application
-server has given permission to draw directly into the region of the frame
-buffer controlled by the direct window.
+If the buffer state is {cpp:enumerator}`B_DIRECT_START`, the
+{hparam}`fConnected` flag is set to {cpp:expr}`true`. This keeps track of
+the fact that the application server has given permission to draw directly
+into the region of the frame buffer controlled by the direct window.
 
-If the buffer state is {cpp:enum}`B_DIRECT_START` or
-{cpp:enum}`B_DIRECT_MODIFY` (in which case the {htype}`direct_buffer_info`
-structure describes changes to the frame buffer), any previously-existing
-clip rectangle list is deleted, then we cache the information that
-interests us and set the fDirty flag to {cpp:enum}`true` (to indicate that
-the display needs to be redrawn to reflect the changed graphics settings).
+If the buffer state is {cpp:enumerator}`B_DIRECT_START` or
+{cpp:enumerator}`B_DIRECT_MODIFY` (in which case the
+{htype}`direct_buffer_info` structure describes changes to the frame
+buffer), any previously-existing clip rectangle list is deleted, then we
+cache the information that interests us and set the {hparam}`fDirty` flag
+to {cpp:expr}`true` (to indicate that the display needs to be redrawn to
+reflect the changed graphics settings).
 
 The clip list is also cached by saving the number of rectangles in the
-list in the fNumClipRects field and by making a copy of the clip list into
-a newly malloc()d block of memory.
+list in the {hparam}`fNumClipRects` field and by making a copy of the clip
+list into a newly malloc()d block of memory.
 
-If the state is {cpp:enum}`B_DIRECT_STOP`, the fConnected flag is set to
-{cpp:enum}`false`, to indicate that we shouldn't draw into the frame buffer
-anymore.
+If the state is {cpp:enumerator}`B_DIRECT_STOP`, the {hparam}`fConnected`
+flag is set to {cpp:expr}`false`, to indicate that we shouldn't draw into
+the frame buffer anymore.
 
 Finally, the locker is unlocked, which lets the drawing thread start
 running again.
@@ -548,7 +554,7 @@ running again.
 Now let's have a look at {hmethod}`DrawingThread()`; this function serves
 as the drawing thread, and is a global function:
 
-:::{code}
+:::{code} cpp
 int32 DrawingThread(void* data) {
    DirectSample* w;
 
@@ -594,67 +600,68 @@ into a pointer to the {hclass}`DirectSample` window into which it will be
 drawing.
 
 The `while` loop that follows will continue to run as long as the
-fConnectionDisabled flag is {cpp:enum}`true`—in other words, it will keep
-looping as long as the connection is enabled.
+{hparam}`fConnectionDisabled` flag is {cpp:expr}`true`—in other words, it
+will keep looping as long as the connection is enabled.
 
 The drawing loop itself begins by locking the locker to ensure that
-{cpp:func}`~BDirectWindow::DirectConnected` doesn't change anything while
-we're working, then checking to be sure the connection is opened
-(fConnected is {cpp:enum}`true`). If the connection is open, we verify that
-format of the window is still 8-bit color and that the display needs to be
-updated. If the display needs updating and the pixel format is still
-{cpp:enum}`B_CMAP8`, the drawing code begins.
+{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` doesn't
+change anything while we're working, then checking to be sure the
+connection is opened ({hparam}`fConnected` is {cpp:expr}`true`). If the
+connection is open, we verify that format of the window is still 8-bit
+color and that the display needs to be updated. If the display needs
+updating and the pixel format is still {cpp:enumerator}`B_CMAP8`, the
+drawing code begins.
 
-The fRowBytes field of the {hclass}`DirectSample` window is cached in a
-local variable called adder. Then each rectangle in the clip list is drawn,
-one at a time, using a `for` loop.
+The {hparam}`fRowBytes` field of the {hclass}`DirectSample` window is
+cached in a local variable called {hparam}`adder`. Then each rectangle in
+the clip list is drawn, one at a time, using a `for` loop.
 
-A pointer to the clip rectangle to be drawn is stored in clip, and the
-width and height of the rectangle are computed. Then p is set to be a
-pointer to the first pixel in the frame buffer that's contained by the clip
-rectangle. Since 8-bit color pixels each occupy exactly one byte of video
-memory, this pixel's address can be computed by taking the base fBits
-pointer, adding the number of bytes per row times the number of rows
-between the top of the screen and the first row in the clip rectangle, then
-adding the number of bytes between the left edge of the screen and the left
-edge of the clip rectangle, as seen in the line:
+A pointer to the clip rectangle to be drawn is stored in {hparam}`clip`,
+and the width and height of the rectangle are computed. Then {hparam}`p` is
+set to be a pointer to the first pixel in the frame buffer that's contained
+by the clip rectangle. Since 8-bit color pixels each occupy exactly one
+byte of video memory, this pixel's address can be computed by taking the
+base {hparam}`fBits` pointer, adding the number of bytes per row times the
+number of rows between the top of the screen and the first row in the clip
+rectangle, then adding the number of bytes between the left edge of the
+screen and the left edge of the clip rectangle, as seen in the line:
 
-:::{code}
+:::{code} cpp
 p = w->fBits+(clip->top*w->fRowBytes)+clip->left;
 :::
 
 Then a `while` loop is used to iterate over each line in the clip
-rectangle, by ranging the variable y from 0 to the height of the clip
-rectangle. memset() is used to clear the row to black, which is represented
-by the byte value 0x00. y is incremented by one for each pass through the
-loop, to count the rows being drawn for each iteration, and the pointer p
-is incremented by adder to move down to the beginning of the next row in
-the clip rectangle.
+rectangle, by ranging the variable {hparam}`y` from 0 to the height of the
+clip rectangle. memset() is used to clear the row to black, which is
+represented by the byte value 0x00. {hparam}`y` is incremented by one for
+each pass through the loop, to count the rows being drawn for each
+iteration, and the pointer {hparam}`p` is incremented by adder to move down
+to the beginning of the next row in the clip rectangle.
 
 Once each clip rectangle has been drawn, the `for` loop exits, and the
-fDirty flag is set to {cpp:enum}`false` to indicate that the screen is
-up-to-date. Once that's done, the locker is unlocked, which lets
-{cpp:func}`~BDirectWindow::DirectConnected` do its thing if it's called. To
-avoid using an unreasonable amount of processing time, {ref}`snooze()` is
-called to give up CPU time to other threads.
+{hparam}`fDirty` flag is set to {cpp:expr}`false` to indicate that the
+screen is up-to-date. Once that's done, the locker is unlocked, which lets
+{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` do its thing
+if it's called. To avoid using an unreasonable amount of processing time,
+{ref}`snooze()` is called to give up CPU time to other threads.
 
 If you want to use calls to {cpp:class}`BWindow` or {cpp:class}`BView` API
 in your drawing thread, you should do so just after unlocking the window.
 
 When the thread terminates (which will only happen when the connection is
-disabled), the drawing thread returns {cpp:enum}`B_OK`.
+disabled), the drawing thread returns {cpp:enumerator}`B_OK`.
 
 This drawing function is designed to draw nothing unless it's necessary;
-{cpp:func}`~BDirectWindow::DirectConnected` will set the fDirty flag when
-something happens to cause the screen to need a refresh, and other code
-elsewhere in the application could also set the fDirty flag to indicate
-that the screen should be redrawn.
+{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` will set the
+{hparam}`fDirty` flag when something happens to cause the screen to need a
+refresh, and other code elsewhere in the application could also set the
+{hparam}`fDirty` flag to indicate that the screen should be redrawn.
 
 Since we're taking over drawing the contents of the window, we need to
 tell the application server not to draw anything. This is done by adding
 the following line to the constructor for the SampleView:
 
-:::{code}
+:::{code} cpp
 SetViewColor(B_TRANSPARENT_32_BIT);
 :::
 
@@ -665,9 +672,10 @@ drawing code try to draw into the window at the same time.
 Note that this sample code doesn't really do anything useful (if all you
 want to do is have a black window moving around, don't use
 {cpp:class}`BDirectWindow`—use a regular {cpp:class}`BWindow`, throw a
-{cpp:class}`BView` into it, and use {cpp:func}`~BView::SetViewColor` to
-make the view black; it'll be faster and more efficient because it will use
-hardware graphics acceleration if it's available). However, it serves as a
-simple example of how to establish a connection to let your own drawing
-code directly access the screen. Just replace the code inside the drawing
-loop with something more useful (like a nifty real-time animation).
+{cpp:class}`BView` into it, and use {cpp:func}`SetViewColor()
+<BView::SetViewColor>` to make the view black; it'll be faster and more
+efficient because it will use hardware graphics acceleration if it's
+available). However, it serves as a simple example of how to establish a
+connection to let your own drawing code directly access the screen. Just
+replace the code inside the drawing loop with something more useful (like a
+nifty real-time animation).

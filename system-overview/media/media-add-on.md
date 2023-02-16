@@ -23,9 +23,9 @@ and MPEG-2, but might only be able to output AVI. This is information that
 the Media Kit needs to know. For this reason, the {cpp:class}`BMediaAddOn`
 needs to provide information about the media flavors it supports.
 
-This is done using the {cpp:func}`~flavor::info` structure:
+This is done using the {cpp:func}`flavor_info <flavor::info>` structure:
 
-:::{code}
+:::{code} cpp
 struct flavor_info {
    char *name;
    char *info;
@@ -56,107 +56,83 @@ align: left
 widths: auto
 ---
 -
-
 	- Field
 
 	- Description
 
 -
-
 	- nameandinfo
-
 	- These fields provide a human-readable name, and information about the
-flavor.
-
+		flavor.
 -
-
 	- kinds
-
 	- Should indicate all the relevant kinds that the node matches; this is a
-bit field, and it's possible that more than one flag may be relevant. See
-{cpp:func}`~Enums::node`.
-
+		bit field, and it's possible that more than one flag may be relevant. See
+		{ref}`node_kind`.
 -
-
 	- flavor_flags
+	- Contains flags providing additional information about the flavor.
 
-	- Contains flags providing additional information about the
-flavor.B_FLAVOR_IS_GLOBALThe flavor will be forced into the Media Add-on
-Server, and only one instance of it will exist.B_FLAVOR_IS_LOCALThe flavor
-will be forced into the loading application, and many instances of it may
-exist.If neither flag is specified, the Media Kit will decide what to do
-with the flavor.
+		{cpp:enumerator}`B_FLAVOR_IS_GLOBAL`
 
+		: The flavor will be forced into the Media Add-on Server, and only one
+		instance of it will exist.
+
+		{cpp:enumerator}`B_FLAVOR_IS_LOCAL`
+
+		: The flavor will be forced into the loading application, and many instances
+		of it may exist.
+
+		If neither flag is specified, the Media Kit will decide what to do with
+		the flavor.
 -
-
 	- internal_id
-
 	- Is an internal ID number that your add-on can use to identify the flavor;
-the flavor will be requested by the Media Kit using this ID number.
-
+		the flavor will be requested by the Media Kit using this ID number.
 -
-
 	- possible_count
-
 	- Specifies to the Media Kit the maximum number of instances of your node
-can be in existence at the same time. For example, if your node provides
-support for a particular sound card, this value should be equal to the
-number of cards you support that are currently installed in the computer.
-
+		can be in existence at the same time. For example, if your node provides
+		support for a particular sound card, this value should be equal to the
+		number of cards you support that are currently installed in the computer.
 -
-
 	- in_format_count
-
 	- Specifies how many input formats the flavor supports
-
 -
-
 	- in_formats
-
 	- Is a list of all the input formats supported by the flavor.
-
 -
-
 	- in_format_flags
-
 	- Provides informational flags about the flavor's inputs. There aren't any
-defined values for this field yet; be sure to set it to 0.
-
+		defined values for this field yet; be sure to set it to 0.
 -
-
 	- out_format_count
-
 	- Specifies how many output formats the flavor supports.
-
 -
-
 	- out_formats
-
 	- Is a list of all the output formats supported by the flavor.
-
 -
-
 	- out_format_flags
-
 	- Provides informational flags about the flavor's outputs. There aren't any
-defined values for this field yet; be sure to set it to 0.
+		defined values for this field yet; be sure to set it to 0.
+
 :::
 
 If your node is a physical input, such as a sound card, your node's kinds
-field should include {cpp:enum}`B_PHYSICAL_INPUT` among the flags set
+field should include {cpp:enumerator}`B_PHYSICAL_INPUT` among the flags set
 therein. Likewise, if your node is a physical output, or a system mixer,
-you should include {cpp:enum}`B_PHYSICAL_OUTPUT` or
-{cpp:enum}`B_SYSTEM_MIXER`.
+you should include {cpp:enumerator}`B_PHYSICAL_OUTPUT` or
+{cpp:enumerator}`B_SYSTEM_MIXER`.
 
-Your node's constructor should also call
-{cpp:func}`~BMediaNode::AddNodeKind` to add these kind flags; the base
-classes only add {cpp:enum}`B_BUFFER_CONSUMER`,
-{cpp:enum}`B_BUFFER_PRODUCER`, and so forth; the flags indicating that the
-node represents a physical input, physical output, or system mixer aren't
-added automatically. For example, a sound digitizer node's constructor
-might have the following form:
+Your node's constructor should also call {cpp:func}`AddNodeKind()
+<BMediaNode::AddNodeKind>` to add these kind flags; the base classes only
+add {cpp:enumerator}`B_BUFFER_CONSUMER`,
+{cpp:enumerator}`B_BUFFER_PRODUCER`, and so forth; the flags indicating
+that the node represents a physical input, physical output, or system mixer
+aren't added automatically. For example, a sound digitizer node's
+constructor might have the following form:
 
-:::{code}
+:::{code} cpp
 MyBufferProducer::MyBufferProducer(const char *name) :
          BMediaNode(name),
          BBufferProducer() {

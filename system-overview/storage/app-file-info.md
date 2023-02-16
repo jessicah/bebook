@@ -5,7 +5,7 @@ types, icons, app flags, and version info that's stored in an executable
 file's attributes and/or resources. The object also knows how to write
 certain particles of information into the File Type database and, if the
 executable is the progenitor of a running application, into the app roster
-({cpp:func}`~BRoster::be`).
+({cpp:var}`be_roster`).
 
 :::{admonition} Warning
 :class: warning
@@ -34,9 +34,9 @@ it; in particular, deleting a {cpp:class}`BAppFileInfo` doesn't cause the
 underlying {cpp:class}`BFile` to be deleted.
 
 To initialize a {cpp:class}`BAppFileInfo` to point to the executable of
-{cpp:func}`~BApplication::be`, you do this:
+{cpp:var}`be_app`, you do this:
 
-:::{code}
+:::{code} cpp
 /* To get app file info for be_app. */
 app_info appInfo;
 BFile file;
@@ -53,23 +53,38 @@ When you ask a {cpp:class}`BAppFileInfo` object to get some information,
 it looks in its {cpp:class}`BFile`'s attributes; if the information isn't
 there, it then looks in the file's resources. When you ask it to set some
 information, the info is written as an attribute and also stored as a
-resource. You can modify this behavior through
-{cpp:func}`~BAppFileInfo::SetInfoLocation`: You can tell the object to only
-access the file's attributes, or to only access the resources.
+resource. You can modify this behavior through {cpp:func}`SetInfoLocation()
+<BAppFileInfo::SetInfoLocation>`: You can tell the object to only access
+the file's attributes, or to only access the resources.
 
 The signature, icons, and supported types that you set through the
-functions provided here ( {cpp:func}`~BAppFileInfo::SetSignature`,
-{cpp:func}`~BAppFileInfo::SetIcon`,
-{cpp:func}`~BAppFileInfo::SetIconForType`,
-{cpp:func}`~BAppFileInfo::SetSupportedTypes`) are also recorded in the File
-Types database, as described in the various functions.
+functions provided here ( {cpp:func}`SetSignature()
+<BAppFileInfo::SetSignature>`, {cpp:func}`SetIcon()
+<BAppFileInfo::SetIcon>`, {cpp:func}`SetIconForType()
+<BAppFileInfo::SetIconForType>`, {cpp:func}`SetSupportedTypes()
+<BAppFileInfo::SetSupportedTypes>`) are also recorded in the File Types
+database, as described in the various functions.
 
 ## Functions Inherited From BNodeInfo
 
 You should take care when using the following functions (inherited from
 {cpp:class}`BNodeInfo`):
 
+SetPreferredApp()
 
+: Never set an application's preferred app; an application is automatically
+set to be its own preferred app&mdash;it won't work otherwise. An add-on's
+preferred app is usually itself, but it doesn't have to be. For example,
+you could set an add-on's preferred app to be the server or application
+that loads the add-on.
+
+SetType()
+
+: Never set the type of an application or add-on. The type is automatically
+set to be {cpp:enumerator}`B_APP_MIME_TYPE` (a platform-dependent value).
+If you change the type, your application or add-on will still run
+(probably), but other parts of the system (double-clicked documents, for
+example) may have a hard time finding it.
 
 ## Errors
 
@@ -87,30 +102,22 @@ align: left
 widths: auto
 ---
 -
-
 	- Constant
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_OK`
-
+	- {cpp:enumerator}`B_OK`
 	- Success.
-
 -
-
-	- {cpp:enum}`B_NO_INIT`
-
+	- {cpp:enumerator}`B_NO_INIT`
 	- The {cpp:class}`BAppFileInfo` is uninitialized, or its {cpp:class}`BFile`
-isn't open for writing.
-
+		isn't open for writing.
 -
-
-	- {cpp:enum}`B_ERROR`
-
+	- {cpp:enumerator}`B_ERROR`
 	- The {cpp:class}`BFile` was locked when you initialized the
-{cpp:class}`BAppFileInfo`.
+		{cpp:class}`BAppFileInfo`.
+
 :::
 
 The info-reading and -writing functions may also return the error codes

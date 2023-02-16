@@ -6,12 +6,13 @@ two-dimensional coordinate system. The rectangles needn't overlap; a single
 one over yonder, and another that lives somewhere to the left of Baden
 Baden.
 
-You define and modify the contents of a region through to
-{cpp:func}`~BRegion::Set`, {cpp:func}`~BRegion::Include`,
-{cpp:func}`~BRegion::Exclude`, and {cpp:func}`~BRegion::IntersectWith`. You
-can examine a region's rectangle's through {cpp:func}`~BRegion::RectAt`,
-but note that the object coalesces rectangles when it can, so the
-rectangles that you retrieve may not match the ones that you passed in.
+You define and modify the contents of a region through to {cpp:func}`Set()
+<BRegion::Set>`, {cpp:func}`Include() <BRegion::Include>`,
+{cpp:func}`Exclude() <BRegion::Exclude>`, and {cpp:func}`IntersectWith()
+<BRegion::IntersectWith>`. You can examine a region's rectangle's through
+{cpp:func}`RectAt() <BRegion::RectAt>`, but note that the object coalesces
+rectangles when it can, so the rectangles that you retrieve may not match
+the ones that you passed in.
 
 :::{admonition} Warning
 :class: warning

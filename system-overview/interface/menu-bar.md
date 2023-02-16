@@ -23,11 +23,11 @@ The user should be able to operate this menu bar from the keyboard (using
 the arrow keys and Enter). There are two ways that the user can put the
 {cpp:class}`BMenuBar` and its hierarchy in focus for keyboard events:
 
-- Clicking an item in the menu bar. If the "click to open" preference is not
+-   Clicking an item in the menu bar. If the "click to open" preference is not
 turned off, this opens the submenu the item controls so that it stays
 visible on-screen and puts the submenu in focus.
 
-- Pressing the {hkey}`Menu` key or {hkey}`Command`+{hkey}`Escape`. This puts
+-   Pressing the {hkey}`Menu` key or {hkey}`Command`+{hkey}`Escape`. This puts
 the {cpp:class}`BMenuBar` in focus and selects its first item.
 
 Either method opens the entire menu hierarchy to keyboard navigation.
@@ -35,24 +35,24 @@ Either method opens the entire menu hierarchy to keyboard navigation.
 If a window's view hierarchy includes more than one {cpp:class}`BMenuBar`
 object, the {hkey}`Menu` key (or {hkey}`Command`+{hkey}`Escape`) must
 choose one of them to put in focus. By default, it picks the last one that
-was attached to the window. However, the
-{cpp:func}`~BWindow::SetKeyMenuBar` function defined in the
-{cpp:class}`BWindow` class can be called to designate a different
-{cpp:class}`BMenuBar` object as the "key" menu bar for the window.
+was attached to the window. However, the {cpp:func}`SetKeyMenuBar()
+<BWindow::SetKeyMenuBar>` function defined in the {cpp:class}`BWindow`
+class can be called to designate a different {cpp:class}`BMenuBar` object
+as the "key" menu bar for the window.
 
 ## A Kind of BMenu
 
 {cpp:class}`BMenuBar` inherits most of its functions from the
-{cpp:class}`BMenu` class. It reimplements the
-{cpp:func}`~BMenuBar::AttachedToWindow`, {cpp:func}`~BMenuBar::Draw`, and
-{cpp:func}`~BMenuBar::MouseDown`, functions that set up the object and
-respond to messages, but these aren't functions that you'd call from
-application code; they're called for you.
+{cpp:class}`BMenu` class. It reimplements the {cpp:func}`AttachedToWindow()
+<BMenuBar::AttachedToWindow>`, {cpp:func}`Draw() <BMenuBar::Draw>`, and
+{cpp:func}`MouseDown() <BMenuBar::MouseDown>`, functions that set up the
+object and respond to messages, but these aren't functions that you'd call
+from application code; they're called for you.
 
 The only real function (other than the constructor) that the
 {cpp:class}`BMenuBar` class adds to those it inherits is
-{cpp:func}`~BMenuBar::SetBorder`, which determines how the list of items is
-bordered.
+{cpp:func}`SetBorder() <BMenuBar::SetBorder>`, which determines how the
+list of items is bordered.
 
 Therefore, for most {cpp:class}`BMenuBar` operations—adding submenus,
 finding items, temporarily disabling the menu bar, and so on—you must call

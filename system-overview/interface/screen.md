@@ -3,15 +3,15 @@
 A {cpp:class}`BScreen` object represents a single display screen that's
 connected to the computer. With a {cpp:class}`BScreen` object you can…
 
-- Get and set the screen's size and pixel depth.
+-   Get and set the screen's size and pixel depth.
 
-- Get the screen's color map.
+-   Get the screen's color map.
 
-- Make a screen shot.
+-   Make a screen shot.
 
-- Set the desktop color.
+-   Set the desktop color.
 
-- Synchronize your code with the screen's retrace event.
+-   Synchronize your code with the screen's retrace event.
 
 You can't copy a {cpp:class}`BScreen` object—the copy constructor and
 assignment operators are private.
@@ -28,5 +28,5 @@ A {cpp:class}`BScreen` object represents one screen. An application can
 have more than one object referring to the same screen.
 
 When multiple screens are supported, a screen_id identifier will be
-assigned to each one. Currently, {cpp:enum}`B_MAIN_SCREEN_ID` is the only
-identifier.
+assigned to each one. Currently, {cpp:enumerator}`B_MAIN_SCREEN_ID` is the
+only identifier.

@@ -15,9 +15,11 @@ user interface for a {cpp:class}`BControllable` node.
 :::
 
 The {cpp:class}`BParameter` class is an abstract class; you'll normally
-use the {cpp:func}`~BParameterGroup::MakeNullParameter`,
-{cpp:func}`~BParameterGroup::MakeDiscreteParameter`, and
-{cpp:func}`~BParameterGroup::MakeContinuousParameter` functions in the
+use the {cpp:func}`MakeNullParameter()
+<BParameterGroup::MakeNullParameter>`, {cpp:func}`MakeDiscreteParameter()
+<BParameterGroup::MakeDiscreteParameter>`, and
+{cpp:func}`MakeContinuousParameter()
+<BParameterGroup::MakeContinuousParameter>` functions in the
 {cpp:class}`BParameterGroup` class to actually create parameters and add
 them to a {cpp:class}`BParameterWeb`. For more detailed information on
 parameters and how to create a {cpp:class}`BParameterWeb`, see the

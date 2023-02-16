@@ -13,9 +13,9 @@ regular data file—use attributes instead.
 
 The data that a file contains is either "flat," or it's "structured." To
 read a flat file, you simply open it (through a {cpp:class}`BFile` object)
-and start {cpp:func}`~BFile::Read`'ing. Structured data requires that you
-understand the structure. Typically, an application understands the
-structure either because it's a well-known format, or because the
+and start {cpp:func}`Read() <BFile::Read>`'ing. Structured data requires
+that you understand the structure. Typically, an application understands
+the structure either because it's a well-known format, or because the
 application itself wrote the file in the first place.
 
 The {hclass}`BResources` class defines a simple design for storing
@@ -27,12 +27,12 @@ an unlimited amount of data.
 Resources are sort of like attributes in that they store chunks of data
 that are looked up through the use of a key. But note these differences:
 
-- Resources are stored in the file itself, such that if you copy the file,
+-   Resources are stored in the file itself, such that if you copy the file,
 you copy the resources, as well.
 
-- Resources can't be queried.
+-   Resources can't be queried.
 
-- Only plain files can have resources. (In other words, directories and
+-   Only plain files can have resources. (In other words, directories and
 symbolic links can't have resources.)
 
 ## Initializing a BResources Object
@@ -41,30 +41,30 @@ The {hclass}`BResources` class provides the means for reading and writing
 a file's resources, but it doesn't let you access the file directly.
 Instead, you must initialize the {hclass}`BResources` object by passing it
 a valid {cpp:class}`BFile` object, either in the constructor or the
-{cpp:func}`~BResources::SetTo` function. Note the following:
+{cpp:func}`SetTo() <BResources::SetTo>` function. Note the following:
 
-- The {cpp:class}`BFile` that you pass in is copied by the
+-   The {cpp:class}`BFile` that you pass in is copied by the
 {hclass}`BResources` object. Thus, initializing a {hclass}`BResources`
 object opens a new file descriptor into the file. You can delete the
 "original" {cpp:class}`BFile` immediately after you use it to initialize
 the {hclass}`BResources` object.
 
-- Care must be taken to avoid writing to a {cpp:class}`BFile` that other
+-   Care must be taken to avoid writing to a {cpp:class}`BFile` that other
 applications have open for reading. {hclass}`BResources` can't enforce this
 rule, but if you're not careful to abide by it, problems can (and will)
 occur. Likewise, multiple applications mustn't open the same file for
 writing at the same time.
 
-- If you want to write resources, the {cpp:class}`BFile` must not be locked
+-   If you want to write resources, the {cpp:class}`BFile` must not be locked
 when you pass it in. The {hclass}`BResources` needs to be able to lock its
 copy of your object.
 
-- The {cpp:class}`BFile` must be open for reading (at least).
+-   The {cpp:class}`BFile` must be open for reading (at least).
 
-- Unfortunately, {hclass}`BResources` lacks an {hmethod}`InitCheck()`
+-   Unfortunately, {hclass}`BResources` lacks an {hmethod}`InitCheck()`
 function. If you want to check initialization errors, you should always
-initialize through {cpp:func}`~BResources::SetTo`, rather than through the
-constructor.
+initialize through {cpp:func}`SetTo() <BResources::SetTo>`, rather than
+through the constructor.
 
 ### Identifying and Creating Resource Files
 
@@ -76,7 +76,7 @@ clobber the existing file.
 
 For example, this initialization fails:
 
-:::{code}
+:::{code} cpp
 /* "fido" exists, but isn't a resource file. */
 BFile file("/boot/home/fido", B_READ_WRITE);
 BResources res;
@@ -88,7 +88,7 @@ if ((err = res.SetTo(&file)) != B_OK)
 
 And this one succeeds…
 
-:::{code}
+:::{code} cpp
 /* The second arg to SetTo() is the "clobber?" flag. */
 if ((err = res.SetTo(&file, true)) != B_OK)
 ...
@@ -112,7 +112,7 @@ The only files that are naturally resource-ful are application
 executables. For example, here we initialize a {hclass}`BResources` object
 with the IconWorld executable:
 
-:::{code}
+:::{code} cpp
 BPath path;
 BFile file;
 BResources res;
@@ -137,23 +137,24 @@ FiddleResource() functions to examine and manipulate the file's resources:
 
 ### Generative Functions
 
-- {cpp:func}`~BResources::AddResource` adds a new resource to the file.
-
-- {cpp:func}`~BResources::RemoveResource` removes an existing resource from
+-   {cpp:func}`AddResource() <BResources::AddResource>` adds a new resource to
 the file.
+
+-   {cpp:func}`RemoveResource() <BResources::RemoveResource>` removes an
+existing resource from the file.
 
 ### Data Function
 
-- {cpp:func}`~BResources::LoadResource` loads a resource from disk and
-returns a pointer to it.
+-   {cpp:func}`LoadResource() <BResources::LoadResource>` loads a resource
+from disk and returns a pointer to it.
 
 ### Info Functions
 
-- {cpp:func}`~BResources::HasResource` tells you if the file contains a
-specified resource.
+-   {cpp:func}`HasResource() <BResources::HasResource>` tells you if the file
+contains a specified resource.
 
-- {cpp:func}`~BResources::GetResourceInfo` returns information about a
-resource.
+-   {cpp:func}`GetResourceInfo() <BResources::GetResourceInfo>` returns
+information about a resource.
 
 As mentioned earlier, the {cpp:class}`BFile` that you use to initialize a
 {hclass}`BResources` object must be open for reading. If you also want to
@@ -165,17 +166,18 @@ modify the resources (by adding, removing, or writing) the
 A single resource within a resource file is tagged with a data type, an
 ID, and a name:
 
-- The data type is one of the {htype}`type_code` types
-({cpp:enum}`B_INT32_TYPE`, {cpp:enum}`B_STRING_TYPE`, and so on) that
-characterize different types of data. The data type that you assign to a
-resource doesn't restrict the type of data that the resource can contain,
-it simply serves as a way to label the type of data that you're putting
-into the resource so you'll know how to cast it when you retrieve it.
+-   The data type is one of the {htype}`type_code` types
+({cpp:enumerator}`B_INT32_TYPE`, {cpp:enumerator}`B_STRING_TYPE`, and so
+on) that characterize different types of data. The data type that you
+assign to a resource doesn't restrict the type of data that the resource
+can contain, it simply serves as a way to label the type of data that
+you're putting into the resource so you'll know how to cast it when you
+retrieve it.
 
-- The ID is an arbitrary integer that you invent yourself. It need only be
+-   The ID is an arbitrary integer that you invent yourself. It need only be
 meaningful to the application that uses the resource file.
 
-- The name is optional, but can be useful: You can look up a resource by its
+-   The name is optional, but can be useful: You can look up a resource by its
 name, if it has one.
 
 Taken singly, none of these tags needs to be unique: Any number of
@@ -187,15 +189,15 @@ type or with the ID.
 
 Some functions also provide the option to use a pointer to a resource's
 data to identify the resource; once a resource has been loaded into memory
-by calling {cpp:func}`~BResources::LoadResource`, you can use the resulting
-pointer to identify it.
+by calling {cpp:func}`LoadResource() <BResources::LoadResource>`, you can
+use the resulting pointer to identify it.
 
 ### Data Format
 
 All resource data is assumed to be "raw": If you want to store a
-{cpp:enum}`NULL`-terminated string in a resource, for example, you have to
-write the {cpp:enum}`NULL` as part of the string data, or the application
-that reads the resource from the resource must apply the {cpp:enum}`NULL`
+{cpp:expr}`NULL`-terminated string in a resource, for example, you have to
+write the {cpp:expr}`NULL` as part of the string data, or the application
+that reads the resource from the resource must apply the {cpp:expr}`NULL`
 itself. Put more generally, the data in a resource doesn't assume any
 particular structure or format, it's simply a vector of bytes.
 
@@ -205,7 +207,7 @@ Resource data that you retrieve from a {hclass}`BResources` object belongs
 to the {hclass}`BResources` object. You mustn't free() these pointers.
 
 Individual changes that you make to the resource file are cached in memory
-until you call the {cpp:func}`~BResources::Sync` function. Other
+until you call the {cpp:func}`Sync() <BResources::Sync>` function. Other
 applications won't see the changes until then.
 
 ## Reading and Writing a Resource File as a Plain File

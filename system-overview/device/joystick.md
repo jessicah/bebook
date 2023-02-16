@@ -16,16 +16,18 @@ built-in game ports.
 Unlike the event and message-driven interface to the mouse and keyboard,
 the interface to a joystick is strictly demand-driven. An application must
 repeatedly poll the state of the joystick by calling the
-{cpp:class}`BJoystick` object's {cpp:func}`~BJoystick::Update` function.
-{cpp:func}`~BJoystick::Update` queries the port and updates the object's
-data members to reflect the current state of the joystick.
+{cpp:class}`BJoystick` object's {cpp:func}`Update() <BJoystick::Update>`
+function. {cpp:func}`Update() <BJoystick::Update>` queries the port and
+updates the object's data members to reflect the current state of the
+joystick.
 
 There are two modes available. Standard mode supports only two axes per
 joystick, and two buttons per joystick. This mode has been available since
 the early days of the BeOS. You read the joystick in standard mode by
-looking at the {cpp:class}`BJoystick` member variables vertical and
-horizontal to determine the joystick's axis values, and button1 and button2
-to determine the state of the buttons.
+looking at the {cpp:class}`BJoystick` member variables {hparam}`vertical`
+and {hparam}`horizontal` to determine the joystick's axis values, and
+{hparam}`button1` and {hparam}`button2` to determine the state of the
+buttons.
 
 Enhanced mode supports up to 32 buttons per joystick, and an indefinite
 number of axes and hats (thumb controls, usually located at the top of a

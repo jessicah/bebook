@@ -42,8 +42,8 @@ real time, while as a {cpp:class}`BBufferProducer` or
 time.
 
 Real time refers to the actual passage of time, as reported by
-{cpp:func}`~system::time` or the {cpp:func}`BTimeSource::RealTime`
-function. It's measured in microseconds.
+{cpp:func}`system_time() <system::time>` or the
+{cpp:func}`BTimeSource::RealTime` function. It's measured in microseconds.
 
 Performance time runs in "time units" which aren't necessarily directly
 related to real time. Since your code will have to deal with both kinds of
@@ -60,6 +60,6 @@ bigtime_t timeout = TimeSource()->RealTimeFor(performance_time,
          estimated_latency) - TimeSource()->RealTime();
 :::
 
-This code converts the performance_time into the driving time source's
-units, then subtracts the current real time, which results in the desired
-timeout value.
+This code converts the {hparam}`performance_time` into the driving time
+source's units, then subtracts the current real time, which results in the
+desired timeout value.

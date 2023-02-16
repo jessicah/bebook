@@ -6,8 +6,9 @@ some situations. Also, if you want to call
 {cpp:func}`BApplication::SetCursor` without forcing an immediate sync of
 the Application Server, you have to use a {cpp:class}`BCursor`.
 
-The default {cpp:class}`BCursor`s are {cpp:func}`~B::CURSOR` for the hand
-cursor and {cpp:func}`~B::CURSOR` for the I-beam text editing cursor.
+The default {cpp:class}`BCursor`s are
+{cpp:enumerator}`B_CURSOR_SYSTEM_DEFAULT` for the hand cursor and
+{cpp:enumerator}`B_CURSOR_I_BEAM` for the I-beam text editing cursor.
 
 ## Cursor Data Format
 
@@ -20,28 +21,21 @@ align: left
 widths: auto
 ---
 -
-
 	- Byte 1
-
 	- Size in pixels-per-side. Cursors are always square; currently, only
-16-by-16 cursors are allowed.
-
+		16-by-16 cursors are allowed.
 -
-
 	- Byte 2
-
 	- Color depth in bits-per-pixel. Currently, only one-bit monochrome is
-allowed.
-
+		allowed.
 -
-
 	- Bytes 3 & 4
-
 	- Hot spot coordinates. Given in "cursor coordinates" where (0,0) is the
-upper left corner of the cursor grid, byte 3 is the hot spot's y
-coordinate, and byte 4 is its x coordinate. The hot spot is a single pixel
-that's "activated" when the user clicks the mouse. To push a button, for
-example, the hot spot must be within the button's bounds.
+		upper left corner of the cursor grid, byte 3 is the hot spot's y
+		coordinate, and byte 4 is its x coordinate. The hot spot is a single pixel
+		that's "activated" when the user clicks the mouse. To push a button, for
+		example, the hot spot must be within the button's bounds.
+
 :::
 
 Next comes an array of pixel color data. Pixels are specified from left to

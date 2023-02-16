@@ -3,12 +3,12 @@
 {hclass}`BNodeInfo` provides file type information about a particular
 node; specifically:
 
-- The (MIME) file type.
+-   The (MIME) file type.
 
-- The node's icons, including the node-specific icon that the Tracker
+-   The node's icons, including the node-specific icon that the Tracker
 displays.
 
-- The "preferred app"; this is the application that's used to access the
+-   The "preferred app"; this is the application that's used to access the
 node's contents.
 
 Except for the Tracker icon, all this information can also be set through
@@ -42,11 +42,13 @@ attributes for the information it sets or gets. The attribute names for the
 various information particles are given in the function descriptions,
 below. If you want, you can bypass {hclass}`BNodeInfo` and get the node
 information directly by passing the attribute names to {cpp:class}`BNode`'s
-{cpp:func}`~BNode::ReadAttr` and {cpp:func}`~BNode::WriteAttr` functions.
+{cpp:func}`ReadAttr() <BNode::ReadAttr>` and {cpp:func}`WriteAttr()
+<BNode::WriteAttr>` functions.
 
-The one exception to this is {cpp:func}`~BNodeInfo::GetTrackerIcon`: This
-function starts by looking in the node's attributes, but then it goes out
-hunting if it has to (if the icon isn't found in the attributes).
+The one exception to this is {cpp:func}`GetTrackerIcon()
+<BNodeInfo::GetTrackerIcon>`: This function starts by looking in the node's
+attributes, but then it goes out hunting if it has to (if the icon isn't
+found in the attributes).
 
 ## BAppFileInfo
 

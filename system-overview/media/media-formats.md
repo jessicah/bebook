@@ -17,59 +17,34 @@ align: left
 widths: auto
 ---
 -
-
 	- BeOS
-
-	- BeOS uses a constant within the {cpp:func}`~media::format` structure to
-indicate the kind of media being handled.
-
+	- BeOS uses a constant within the {cpp:func}`media_format <media::format>`
+		structure to indicate the kind of media being handled.
 -
-
 	- QuickTime
-
 	- QuickTime uses a two-word vendor/codec pair to indicate the type of media.
-
 -
-
 	- AVI
-
 	- The media format is indicated by a one-word constant.
-
 -
-
 	- AVR
-
 	- The media format is indicated by a one-word constant.
-
 -
-
 	- ASF
-
 	- The media format is indicated by a 128-bit UUID value.
-
 -
-
 	- MPEG
-
 	- The media format is specified by a word that indicates the MPEG version
-and layer.
-
+		and layer.
 -
-
 	- AIFF
-
 	- The media format is specified by a codec ID word.
-
 -
-
 	- WAV
-
 	- The media format is specified by a codec ID word.
-
 -
-
 	- Miscellaneous
-
 	- The media format is indicated by a one-word file format value and a
-one-word codec ID.
+		one-word codec ID.
+
 :::

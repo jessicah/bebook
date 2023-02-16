@@ -2,14 +2,14 @@
 
 {cpp:class}`BPropertyInfo` is a simple class that manages scripting. A
 program describes its scripting interface to a {cpp:class}`BPropertyInfo`
-object through an array of {cpp:func}`~property::info` structures, with
-each entry describing a piece of the scripting suite.
+object through an array of {cpp:func}`property_info <property::info>`
+structures, with each entry describing a piece of the scripting suite.
 
 A {cpp:class}`BPropertyInfo` is instantiated by passing a zero-terminated
-array of {cpp:func}`~property::info` to its constructor. A typical
-initialization looks like:
+array of {cpp:func}`property_info <property::info>` to its constructor. A
+typical initialization looks like:
 
-:::{code}
+:::{code} cpp
 static property_info prop_list[] = {
     { "duck",
       { B_GET_PROPERTY, B_SET_PROPERTY, 0 },
@@ -47,9 +47,9 @@ for your particular object.
 {cpp:class}`BPropertyInfo` is a descendant of {cpp:class}`BFlattenable`,
 and can therefore be used to store a description of an object's supported
 scripting suite. This is particularly useful when overriding
-{cpp:func}`~BApplication::GetSupportedSuites`:
+{cpp:func}`GetSupportedSuites() <BApplication::GetSupportedSuites>`:
 
-:::{code}
+:::{code} cpp
 status_t MyHandler::GetSupportedSuites(BMessage *msg)
 {
     msg->AddString("suites", "suite/vnd.Me-my_handler");
@@ -62,14 +62,14 @@ status_t MyHandler::GetSupportedSuites(BMessage *msg)
 Naturally, {cpp:class}`BPropertyInfo` is equally as useful in interpreting
 the results obtained from querying an object for its supported suites.
 
-{cpp:class}`BPropertyInfo` defines the
-{cpp:func}`~BPropertyInfo::FindMatch` method designed to simplify the
-implementation of {cpp:func}`~BHandler::ResolveSpecifier`. It returns the
-index of the property info matching the description given to it, or -1 if
-none match. This reduces {cpp:func}`~BHandler::ResolveSpecifier` in the
-simplest cases to:
+{cpp:class}`BPropertyInfo` defines the {cpp:func}`FindMatch()
+<BPropertyInfo::FindMatch>` method designed to simplify the implementation
+of {cpp:func}`ResolveSpecifier() <BHandler::ResolveSpecifier>`. It returns
+the index of the property info matching the description given to it, or -1
+if none match. This reduces {cpp:func}`ResolveSpecifier()
+<BHandler::ResolveSpecifier>` in the simplest cases to:
 
-:::{code}
+:::{code} cpp
 BHandler*
 MyHandler::ResolveSpecifier(BMessage* msg, int32 index,
                             BMessage* spec, int32 form,
@@ -84,9 +84,9 @@ MyHandler::ResolveSpecifier(BMessage* msg, int32 index,
 }
 :::
 
-Of course, for more complicated objects,
-{cpp:func}`~BHandler::ResolveSpecifier` may need to set the target handler
-to an object other than itself, so more processing may be required. In
-those cases, the object can use the index returned by
-{cpp:func}`~BPropertyInfo::FindMatch` to help it determine the target of
-the scripting message.
+Of course, for more complicated objects, {cpp:func}`ResolveSpecifier()
+<BHandler::ResolveSpecifier>` may need to set the target handler to an
+object other than itself, so more processing may be required. In those
+cases, the object can use the index returned by {cpp:func}`FindMatch()
+<BPropertyInfo::FindMatch>` to help it determine the target of the
+scripting message.

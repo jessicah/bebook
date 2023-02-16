@@ -16,8 +16,8 @@ information about a buffer consumer.
 :::
 
 A {cpp:class}`BBufferConsumer` publishes certain inputs, identified by
-{cpp:func}`~media::destination` structures, on which connections may be
-requested by a client application.
+{cpp:func}`media_destination <media::destination>` structures, on which
+connections may be requested by a client application.
 
 ## Dealing With Multiple Time Sources
 
@@ -26,7 +26,7 @@ Sometimes you'll find that the producer that's sending buffers to your
 It's relatively easy to cope with this situation—you just have to be aware
 that it can occur and compensate when it does:
 
-:::{code}
+:::{code} cpp
 bigtime_t time;
 media_node producerNode;
 BTimeSource *producerTimeSource;
@@ -47,5 +47,5 @@ After this code has executed, time contains the start time for the buffer,
 in your node's time base.
 
 You should probably, for performance's sake, cache the producer's time
-source the first time {cpp:func}`~BBufferConsumer::BufferReceived` is
-called.
+source the first time {cpp:func}`BufferReceived()
+<BBufferConsumer::BufferReceived>` is called.

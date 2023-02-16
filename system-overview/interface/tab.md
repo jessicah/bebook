@@ -5,9 +5,9 @@ The {cpp:class}`BTab` class defines the tabs used by the
 {cpp:class}`BTab` object, which is called to render and manage the tab.
 
 When a tab is created, a target view is specified as a parameter to the
-{cpp:class}`BTab` {cpp:func}`~BTab::Constructor`, or by calling
-{cpp:func}`~BTab::SetView`. The target view is the view that will be
-displayed in the {cpp:class}`BTabView`'s container view when the
+{cpp:class}`BTab` {cpp:func}`constructor <BTab::BTab()>`, or by calling
+{cpp:func}`SetView() <BTab::SetView>`. The target view is the view that
+will be displayed in the {cpp:class}`BTabView`'s container view when the
 {cpp:class}`BTab` is selected.
 
 Users select tabs by clicking on them, or by using keyboard navigation to
@@ -20,24 +20,25 @@ section.
 ## Customizing the Appearance of a BTab
 
 Customizing the appearance of your tabs is achieved by overriding the
-{cpp:func}`~BTab::DrawTab`, {cpp:func}`~BTab::DrawFocusMark`, and/or
-{cpp:func}`~BTab::DrawLabel` functions.
+{cpp:func}`DrawTab() <BTab::DrawTab>`, {cpp:func}`DrawFocusMark()
+<BTab::DrawFocusMark>`, and/or {cpp:func}`DrawLabel() <BTab::DrawLabel>`
+functions.
 
 These functions are responsible for all drawing of the {cpp:class}`BTab`.
-{cpp:func}`~BTab::DrawTab` renders the entire tab, excluding the focus
-mark: it draws the borders and calls {cpp:func}`~BTab::DrawLabel` to render
-the text of the label.
+{cpp:func}`DrawTab() <BTab::DrawTab>` renders the entire tab, excluding the
+focus mark: it draws the borders and calls {cpp:func}`DrawLabel()
+<BTab::DrawLabel>` to render the text of the label.
 
-{cpp:func}`~BTab::DrawFocusMark` draws the indicator that shows which tab
-is the current focus for keyboard navigation.
+{cpp:func}`DrawFocusMark() <BTab::DrawFocusMark>` draws the indicator that
+shows which tab is the current focus for keyboard navigation.
 
 By default, tabs have a beveled, rounded look. Let's look at an example in
 which we replace this appearance with a square shape:
 
 To do this, we create a new class, derived from {cpp:class}`BTab`, that
-overrides the {cpp:func}`~BTab::DrawTab` function.
+overrides the {cpp:func}`DrawTab() <BTab::DrawTab>` function.
 
-:::{code}
+:::{code} cpp
 class CustomTab : public BTab {
    public:
       virtual void      DrawTab(BView *owner, BRect frame,
@@ -45,9 +46,10 @@ class CustomTab : public BTab {
 };
 :::
 
-The {cpp:func}`~BTab::DrawTab` function is implemented as follows:
+The {cpp:func}`DrawTab() <BTab::DrawTab>` function is implemented as
+follows:
 
-:::{code}
+:::{code} cpp
 const rgb_color kWhite = {255,255,255,255};
 const rgb_color kGray = {219,219,219,255};
 const rgb_color kMedGray = {180,180,180,255};
@@ -133,35 +135,27 @@ align: left
 widths: auto
 ---
 -
-
 	- Constant
 
 	- Description
 
 -
-
-	- {cpp:enum}`B_TAB_FIRST`
-
+	- {cpp:enumerator}`B_TAB_FIRST`
 	- The tab is the leftmost tab (the one with index 0 in the
-{cpp:class}`BTabView`).
-
+		{cpp:class}`BTabView`).
 -
-
-	- {cpp:enum}`B_TAB_FRONT`
-
+	- {cpp:enumerator}`B_TAB_FRONT`
 	- The tab is the frontmost tab.
-
 -
-
-	- {cpp:enum}`B_TAB_ANY`
-
+	- {cpp:enumerator}`B_TAB_ANY`
 	- The tab neither the frontmost nor the leftmost tab.
+
 :::
 
 This is a fairly trivial example, and is self-explanatory—with two
 caveats:
 
-:::{code}
+:::{code} cpp
 // Do the bottom left corner, visible
 // only on the frontmost tab.
 
@@ -178,10 +172,10 @@ bottom left corner of the frame upward and inward slightly.
 
 However, this portion of the tab is only visible on the first or frontmost
 tab, so we only draw this segment if its position isn't
-{cpp:enum}`B_TAB_ANY` (in other words, if its position is either
-{cpp:enum}`B_TAB_FRONT` or {cpp:enum}`B_TAB_FIRST`).
+{cpp:enumerator}`B_TAB_ANY` (in other words, if its position is either
+{cpp:enumerator}`B_TAB_FRONT` or {cpp:enumerator}`B_TAB_FIRST`).
 
-:::{code}
+:::{code} cpp
 // Bottom-right corner, only visible if the tab
 // is either frontmost or the rightmost tab.
 
@@ -195,5 +189,5 @@ if (full) {
 
 This code, which draws the lower-right corner of the tab (where it meets
 back up with the box surrounding the container view), only runs if the
-{hparam}`full` parameter is {cpp:enum}`true`. This is because the right
+{hparam}`full` parameter is {cpp:expr}`true`. This is because the right
 edge of a tab can be obscured by the tab to its left.

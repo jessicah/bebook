@@ -13,7 +13,7 @@ let you customize the appearance and behavior of your slider controls.
 
 Creating a basic BSlider is very simple:
 
-:::{code}
+:::{code} cpp
 r.Set(5,5,255,55);
 slider = new BSlider(r, "const:slider1",
                      "Construct Speed (%)", NULL,
@@ -27,32 +27,32 @@ Speed (%)" above it. The range of possible values for the slider is 0 to
 You can add a splash of color to the slider, too. For example, if you want
 the slider bar to be light blue, you might add:
 
-:::{code}
+:::{code} cpp
 slider->SetBarColor(color);
 :::
 
 You can also add hash marks to the slider:
 
-:::{code}
+:::{code} cpp
 slider->SetHashMarks(B_HASH_MARKS_BOTTOM);
 slider->SetHashMarkCount(10);
 :::
 
 In this example, {hmethod}`SetHashMarks()` is used to specify that the
 hash marks should be below the slider; you can also specify
-{cpp:enum}`B_HASH_MARKS_TOP` to put them above the slider,
-{cpp:enum}`B_HASH_MARKS_BOTH` to put them both above and below the slider,
-and {cpp:enum}`B_HASH_MARKS_NONE` to omit them entirely (which is the
-default).
+{cpp:enumerator}`B_HASH_MARKS_TOP` to put them above the slider,
+{cpp:enumerator}`B_HASH_MARKS_BOTH` to put them both above and below the
+slider, and {cpp:enumerator}`B_HASH_MARKS_NONE` to omit them entirely
+(which is the default).
 
 {hmethod}`SetHashMarkCount()` is called to indicate that you want 10 hash
 marks spaced evenly across the slider.
 
 Finally, if you want to add labels at the ends of the slider, to indicate
-the minimum and maximum values, you can use the
-{cpp:func}`~BSlider::SetLimitLabels` function:
+the minimum and maximum values, you can use the {cpp:func}`SetLimitLabels()
+<BSlider::SetLimitLabels>` function:
 
-:::{code}
+:::{code} cpp
 slider->SetLimitLabels("Slow", "Fast");
 :::
 
@@ -60,7 +60,7 @@ This sets the label for the minimum value (the left end of the slider) to
 "Slow" and the label for the maximum to "Fast".
 
 The result is the "Construct Speed (%)" slider in the window pictured
-below. An example of a slider with the {cpp:enum}`B_TRIANGLE_THUMB`
+below. An example of a slider with the {cpp:enumerator}`B_TRIANGLE_THUMB`
 thumbType and hash marks above and below the slider is also shown.
 
 ## Customizing a BSlider
@@ -71,10 +71,11 @@ drawing the slider bar, thumb, focus mark, and hash marks.
 
 For example, let's say you want your slider's thumb to be round. Just
 create a new class—let's call it CustomSlider—derived from
-{cpp:class}`BSlider`, and override the {cpp:func}`~BSlider::DrawThumb`
-function with code that might look something like this:
+{cpp:class}`BSlider`, and override the {cpp:func}`DrawThumb()
+<BSlider::DrawThumb>` function with code that might look something like
+this:
 
-:::{code}
+:::{code} cpp
 const rgb_color kWhite = {255,255,255,255};
 const rgb_color kWhiteGray = {235,235,235,255);
 const rgb_color kDarkGray = {100,100,100,255};
@@ -113,16 +114,16 @@ void CustomSlider::DrawThumb(void) {
 :::
 
 All rendering of a {cpp:class}`BSlider` is done into an offscreen view,
-which you can get a pointer to by calling the
-{cpp:func}`~BSlider::OffscreenView` function. This improves performance and
-makes drawing the slider—especially complicated ones—look much smoother to
-the user.
+which you can get a pointer to by calling the {cpp:func}`OffscreenView()
+<BSlider::OffscreenView>` function. This improves performance and makes
+drawing the slider—especially complicated ones—look much smoother to the
+user.
 
 This code gets a pointer to the offscreen view, then renders a round,
 beveled thumb into the offscreen view, filling the thumb's frame rectangle
-as returned by the {cpp:func}`~BSlider::ThumbFrame` function.
+as returned by the {cpp:func}`ThumbFrame() <BSlider::ThumbFrame>` function.
 
 The result is a round thumb that looks like the one in the "Totality of
 Damage" slider in the picture below:
 
-
+![Slider With Rounded Thumb](./images/TheInterfaceKit/slider_round.png)

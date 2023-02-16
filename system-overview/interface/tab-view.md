@@ -17,12 +17,12 @@ view is visible. The target view for the "Construct" tab contains two
 {cpp:class}`BSlider` objects (these sliders are used as an example in the
 {cpp:class}`BSlider` section and you can learn more about them there).
 
-
+![A BTabView](./images/TheInterfaceKit/slider.png)
 
 The {cpp:class}`BTabView` in this window is constructed using the
 following code, which can be used in the constructor of the parent window:
 
-:::{code}
+:::{code} cpp
 BRect r;
 BTabView *tabView;
 BTab *tab;
@@ -65,4 +65,4 @@ contained in those panels).
 When the user clicks the "Obliterate" tab, the window will change to look
 like this:
 
-
+![Obliterated Tab](./images/TheInterfaceKit/obliterate.png)

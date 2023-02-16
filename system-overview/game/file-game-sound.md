@@ -11,20 +11,20 @@ Using {cpp:class}`BFileGameSound` is easy, and it supports automatically
 looping sounds. The following code snippet starts up the theme music for
 the hot new game "Mystery Warriors From the Doomed Planet Z":
 
-:::{code}
+:::{code} cpp
 BFileGameSound themeSong("music/theme.aif", true);
 themeSong.StartPlaying();
 :::
 
 This starts up a looped sound from the file music/theme.aif. If you want
-the theme to only play through once, just specify {cpp:enum}`false` instead
-of {cpp:enum}`true` for the looping argument to the
+the theme to only play through once, just specify {cpp:expr}`false` instead
+of {cpp:expr}`true` for the looping argument to the
 {cpp:class}`BFileGameSound` constructor.
 
 You can pause the {cpp:class}`BFileGameSound` by calling
-{cpp:func}`~BFileGameSound::SetPaused`:
+{cpp:func}`SetPaused() <BFileGameSound::SetPaused>`:
 
-:::{code}
+:::{code} cpp
 themeSong.SetPaused(true, 0);
 :::
 
@@ -32,7 +32,7 @@ This pauses the sound, effective immediately. The pause can optionally be
 ramped, so that the sound slows down or speeds up to reach the new setting.
 For example:
 
-:::{code}
+:::{code} cpp
 themeSong.SetPaused(true, 2);
 :::
 
@@ -41,7 +41,7 @@ it's stopped.
 
 The inverse is also possible:
 
-:::{code}
+:::{code} cpp
 themeSong.SetPaused(false, 0);
 :::
 

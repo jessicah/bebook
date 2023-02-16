@@ -10,8 +10,8 @@ Only one radio button in the group can be on at a time; when the user
 clicks a button to turn it on, the button that's currently on is turned
 off. One button in the group must be on at all times; the user can turn a
 button off only by turning another one on. The button that's on has a value
-of 1 ({cpp:enum}`B_CONTROL_ON`); the others have a value of 0
-({cpp:enum}`B_CONTROL_OFF`).
+of 1 ({cpp:enumerator}`B_CONTROL_ON`); the others have a value of 0
+({cpp:enumerator}`B_CONTROL_OFF`).
 
 The {cpp:class}`BRadioButton` class handles the interaction between radio
 buttons in the following way: A direct user action can only turn on a radio

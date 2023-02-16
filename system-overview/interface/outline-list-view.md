@@ -4,11 +4,11 @@ A {cpp:class}`BOutlineListView` displays a list of items that can be
 structured like an outline, with items grouped under other items. The
 levels of the outline are indicated by successive levels of indentation.
 
-
+![Outline ListView](./images/TheInterfaceKit/outlinelist.png)
 
 The outline list view shown above was created using the following code:
 
-:::{code}
+:::{code} cpp
 BOutlineListView *outline;
 BListItem *region;
 BListItem *state;
@@ -26,10 +26,10 @@ outline = new BOutlineListView(r, "cities_list",
 
 First, the {cpp:class}`BOutlineListView` is created, with a rectangle
 computed by insetting from the parent view's bounds rectangle. The
-{cpp:enum}`B_MULTIPLE_SELECTION_LIST` flag is specified to indicate that
-the user should be allowed to choose more than one item in the list.
+{cpp:enumerator}`B_MULTIPLE_SELECTION_LIST` flag is specified to indicate
+that the user should be allowed to choose more than one item in the list.
 
-:::{code}
+:::{code} cpp
 region = new BStringItem("United States of America")
 outline->AddItem(region);
 :::
@@ -40,14 +40,15 @@ The United States is then divided into states, which comprise level 1 of
 the outline list. This line of code adds California to the list, placing it
 "under" the region (United States of America):
 
-:::{code}
+:::{code} cpp
 state = new BStringItem("California")
 outline->AddUnder(state, region);
 :::
 
-a pointer to the new item for California is saved in the variable state.
+a pointer to the new item for California is saved in the variable
+{hparam}`state`.
 
-:::{code}
+:::{code} cpp
 outline->AddUnder(new BStringItem("Menlo Park"), state);
 outline->AddUnder(new BStringItem("Los Angeles"), state);
 :::
@@ -55,12 +56,12 @@ outline->AddUnder(new BStringItem("Los Angeles"), state);
 California is then further divided into cities: Menlo Park and Los
 Angeles, which reside at level 2 of our outline list. These are inserted
 under the California item by specifying the pointer to that item (locality)
-when calling {cpp:func}`~BOutlineListView::AddUnder`.
+when calling {cpp:func}`AddUnder() <BOutlineListView::AddUnder>`.
 
 This process is repeated for New York state, which has three cities
 available in our list:
 
-:::{code}
+:::{code} cpp
 locality = new BStringItem("New York")
 outline->AddUnder(locality, region);
 outline->AddUnder(new BStringItem("Albany"), locality);
@@ -72,7 +73,7 @@ Then the Europe region is added (in level 0), and the nations of France,
 Germany, and Italy are added as localities (level 1). Each of those three
 localities has cities, which are added into level 2.
 
-:::{code}
+:::{code} cpp
 region = new BStringItem("Europe")
 outline->AddItem(region);
 locality = new BStringItem("France")
@@ -94,7 +95,7 @@ Once the list has been completely constructed, a {cpp:class}`BScrollView`
 is created to contain the outline list view, and is then added to the list.
 See the {cpp:class}`BScrollView` class for details on how this works:
 
-:::{code}
+:::{code} cpp
 AddChild(new BScrollView("scroll_cities", outline,
          B_FOLLOW_LEFT|B_FOLLOW_TOP, 0, false, true));
 :::
@@ -102,7 +103,7 @@ AddChild(new BScrollView("scroll_cities", outline,
 Finally, a {cpp:class}`BStringView` is created to label the list with a
 prompt indicating that you should "Select the Cities to Attack:".
 
-:::{code}
+:::{code} cpp
 r = Bounds();
 r.InsetBy(5,5);
 r.bottom = r.top + 12;
@@ -132,9 +133,10 @@ concerned only with the expanded sections of the list, not with sections
 that are hidden because they're collapsed. If an inherited function returns
 an index or takes an index as an argument, the index counts just the items
 that are shown on-screen (or could be shown on-screen if they were scrolled
-into the visible region of the view). {cpp:func}`~BListView::DoForEach`
-skips items that can't be displayed. {cpp:func}`~BListView::CountItems`
-counts items only in the expanded sections of the list.
+into the visible region of the view). {cpp:func}`DoForEach()
+<BListView::DoForEach>` skips items that can't be displayed.
+{cpp:func}`CountItems() <BListView::CountItems>` counts items only in the
+expanded sections of the list.
 
 However, the functions that the {cpp:class}`BOutlineListView` class itself
 defines are concerned with all sections of the list, expanded or collapsed.
@@ -143,16 +145,16 @@ or not.
 
 The class defines some functions that match those it inherits, but its
 versions prefix {hmethod}`FullList…()` to the function name and don't
-ignore any items. For example,
-{cpp:func}`~BOutlineListView::FullListCountItems` counts every item in the
-list and {cpp:func}`~BOutlineListView::FullListDoForEach` doesn't skip
-items in collapsed sections.
+ignore any items. For example, {cpp:func}`FullListCountItems()
+<BOutlineListView::FullListCountItems>` counts every item in the list and
+{cpp:func}`FullListDoForEach() <BOutlineListView::FullListDoForEach>`
+doesn't skip items in collapsed sections.
 
 In some cases, {cpp:class}`BOutlineListView` simply overrides an inherited
 function without adding the {hmethod}`FullList…()` prefix. You should
 always use the {cpp:class}`BOutlineListView` versions of these functions,
 not the {cpp:class}`BListView` versions. For example,
-{cpp:class}`BOutlineListView`'s version of
-{cpp:func}`~BOutlineListView::MakeEmpty` truly empties the list;
+{cpp:class}`BOutlineListView`'s version of {cpp:func}`MakeEmpty()
+<BOutlineListView::MakeEmpty>` truly empties the list;
 {cpp:class}`BListView`'s version would remove items from the screen, but
 not from the real list.

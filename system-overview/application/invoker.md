@@ -5,15 +5,15 @@ you need to create a handy message-sending package.
 
 The {cpp:class}`BInvoker` contains:
 
-- a {cpp:class}`BMessage`
+-   a {cpp:class}`BMessage`
 
-- a {cpp:class}`BMessenger` (that identifies a target handler), and
+-   a {cpp:class}`BMessenger` (that identifies a target handler), and
 
-- an optional {cpp:class}`BHandler` that handles replies.
+-   an optional {cpp:class}`BHandler` that handles replies.
 
-You set these ingredients, invoke {cpp:func}`~BInvoker::Invoke`, and off
-goes the message to the target. Replies are sent to the reply handler
-(be_app by default).
+You set these ingredients, invoke {cpp:func}`Invoke() <BInvoker::Invoke>`,
+and off goes the message to the target. Replies are sent to the reply
+handler ({hparam}`be_app` by default).
 
 {cpp:class}`BInvoker` uses {cpp:func}`BMessenger::SendMessage` to send its
 messages. The invocation is asynchronous, and there's no time limit on the

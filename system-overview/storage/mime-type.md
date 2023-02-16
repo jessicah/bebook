@@ -2,15 +2,15 @@
 
 The {hclass}`BMimeType` class provides three services:
 
-- It can parse a MIME string. It can tell you whether the string is valid,
+-   It can parse a MIME string. It can tell you whether the string is valid,
 what it's supertype component is, and whether it has a subtype component.
 (The MIME string format is described in "Valid MIME Strings."
 
-- It gives you access to the File Type database. Given a MIME type, it can
+-   It gives you access to the File Type database. Given a MIME type, it can
 look in the database and retrieve that type's icon(s), "preferred handler"
 application, the filename extensions that correspond to it, and so on.
 
-- It can regard a MIME string as an application signature, and so get and
+-   It can regard a MIME string as an application signature, and so get and
 set the executable file, the file types, and the document icons that
 correspond to that signature.
 
@@ -24,53 +24,54 @@ signature, from the header of an e-mail message, you can even make them up.
 
 A valid MIME string takes the form…
 
-:::{code}
+:::{code} sh
 supertype/[subtype]
 :::
 
 …where supertype is one of the seven "media" strings:
 
-- text
+-   text
 
-- application
+-   application
 
-- image
+-   image
 
-- audio
+-   audio
 
-- video
+-   video
 
-- multipart
+-   multipart
 
-- message
+-   message
 
 …and (the optional) subtype can be just about anything… Except it can't
 include spaces or any of these forbidden characters:
 
-:::{code}
+:::{code} sh
 * / < > @ , ; : " ( ) [ ] ? =
 :::
 
 When you initialize a {hclass}`BMimeType` object (through the constructor
-or {cpp:func}`~BMimeType::SetTo` function), you have to tell it what MIME
-string you want it to represent:
+or {cpp:func}`SetTo() <BMimeType::SetTo>` function), you have to tell it
+what MIME string you want it to represent:
 
-- The string can be supertype-only, or it can be supertype/subtype.
+-   The string can be supertype-only, or it can be supertype/subtype.
 
-- Currently, the supertype is not restricted to the seven types listed
+-   Currently, the supertype is not restricted to the seven types listed
 above, but you're probably making a mistake if you make up a new,
 unrecognized supertype.
 
-- Neither the supertype nor the subtype can include any of the forbidden
+-   Neither the supertype nor the subtype can include any of the forbidden
 characters.
 
-- The entire string must be no longer than {cpp:enum}`B_MIME_TYPE_LENGTH`
-characters long. (That's about 240 characters. More than enough.)
+-   The entire string must be no longer than
+{cpp:enumerator}`B_MIME_TYPE_LENGTH` characters long. (That's about 240
+characters. More than enough.)
 
 You can check the validity of a MIME string without constructing a
-{hclass}`BMimeType` object by calling the static
-{cpp:func}`~BMimeType::IsValid` function:
+{hclass}`BMimeType` object by calling the static {cpp:func}`IsValid()
+<BMimeType::IsValid>` function:
 
-:::{code}
+:::{code} cpp
 BMimeType::IsValid("text/qwerty");
 :::

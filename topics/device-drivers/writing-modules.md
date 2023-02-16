@@ -12,7 +12,7 @@ information about the module. You do this by expanding upon the basic
 module definition in drivers/module.h. For example, you might define your
 module information structure like this:
 
-:::{code}
+:::{code} c
 #define MY_MODULE_NAME "generic/mymodule/v1"
 
 struct my_module_info {
@@ -26,7 +26,7 @@ struct my_module_info {
 Note that the first field in your module information structure is a
 {htype}`module_info`, which looks like this:
 
-:::{code}
+:::{code} c
 struct module_info {
    const char*name;
    uint32 flags;
@@ -34,26 +34,29 @@ struct module_info {
 };
 :::
 
-The name field should be a pointer to the driver's name as indicated in
-your module's header file (in this example, {cpp:enum}`MY_MODULE_NAME`).
+The {hparam}`name` field should be a pointer to the driver's name as
+indicated in your module's header file (in this example,
+{cpp:enumerator}`MY_MODULE_NAME`).
 
-The flags field specifies which flags should be in effect for your module.
-Currently, the {cpp:enum}`B_KEEP_LOADED` flag is the only one available; as
-expected, it tells the kernel not to unload your module when nobody is
-using it; normally, the first time your module is requested by someone
-calling {cpp:func}`~get::module`, the kernel loads it. With each subsequent
-call to {cpp:func}`~get::module`, a reference count is incremented. Every
-time {cpp:func}`~put::module` is called to release the module, the
+The {hparam}`flags` field specifies which flags should be in effect for
+your module. Currently, the {cpp:enumerator}`B_KEEP_LOADED` flag is the
+only one available; as expected, it tells the kernel not to unload your
+module when nobody is using it; normally, the first time your module is
+requested by someone calling {cpp:func}`get_module() <get::module>`, the
+kernel loads it. With each subsequent call to {cpp:func}`get_module()
+<get::module>`, a reference count is incremented. Every time
+{cpp:func}`put_module() <put::module>` is called to release the module, the
 reference count is decremented. When the counter reaches zero, the module
-is unloaded. {cpp:enum}`B_KEEP_LOADED` prevents unloading from taking
+is unloaded. {cpp:enumerator}`B_KEEP_LOADED` prevents unloading from taking
 place.
 
-std_ops is a pointer to a function that your module must provide. This
-function is called to handle standard module operations. Currently, there
-are only two of these operations (initialization and uninitialization).
-Your module's std_ops() function will probably look something like this:
+{hparam}`std_ops` is a pointer to a function that your module must
+provide. This function is called to handle standard module operations.
+Currently, there are only two of these operations (initialization and
+uninitialization). Your module's std_ops() function will probably look
+something like this:
 
-:::{code}
+:::{code} c
 static status_t std_ops(int32 op, ...) {
    switch(op) {
       case B_MODULE_INIT:
@@ -69,15 +72,16 @@ static status_t std_ops(int32 op, ...) {
 }
 :::
 
-It's important to return {cpp:enum}`B_ERROR` for any unknown operations,
-in case future versions of the kernel define additional operations.
+It's important to return {cpp:enumerator}`B_ERROR` for any unknown
+operations, in case future versions of the kernel define additional
+operations.
 
 Exporting your module to the outside world is similar to publishing device
 driver hooks, but since you define the hooks yourself, it's slightly more
 involved. Your module needs to have a filled-out version of your module's
 information structure, like this:
 
-:::{code}
+:::{code} c
 static struct my_module_info my_module {
    {
       MY_MODULE_NAME,   /* module name */
@@ -92,9 +96,9 @@ static struct my_module_info my_module {
 
 When loading your module, the kernel looks for a symbol called "modules"
 that contains a list of pointers to the modules you export, terminated by a
-{cpp:enum}`NULL`:
+{cpp:expr}`NULL`:
 
-:::{code}
+:::{code} c
 _EXPORT module_info*modules[] = {
    (module_info*) &my_module,
    NULL

@@ -10,8 +10,8 @@ Roster are not visible to other applications.
 
 Note that the {cpp:class}`BTranslator` destructor is protected; you never
 delete a {cpp:class}`BTranslator` from outside the class. Insead, you
-{cpp:func}`~BTranslator::Release` it. See {cpp:func}`~BTranslator::Acquire`
-for details.
+{cpp:func}`Release() <BTranslator::Release>` it. See {cpp:func}`Acquire()
+<BTranslator::Acquire>` for details.
 
 The primary {cpp:class}`BTranslator` functions are similar to the
 functions and data that a translator add-on supplies. Most of the
