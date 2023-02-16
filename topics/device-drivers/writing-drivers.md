@@ -82,7 +82,7 @@ how it can communicate with the driver.
 ## Functions
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::init_hardware()
+:::{cpp:function} status_t init_hardware()
 :::
 
 This function is called when the system is booted, which lets the driver
@@ -93,7 +93,7 @@ error, the driver won't be used.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::init_driver()
+:::{cpp:function} status_t init_driver()
 :::
 
 Drivers are loaded and unloaded on an as-needed basis. When a driver is
@@ -108,7 +108,7 @@ what happens if this returns an error?
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void Writing Drivers::uninit_driver()
+:::{cpp:function} void uninit_driver()
 :::
 
 This function is called by devfs just before the driver is unloaded from
@@ -117,7 +117,7 @@ it allocated.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} const char** Writing Drivers::publish_devices()
+:::{cpp:function} const char** publish_devices()
 :::
 
 Devfs calls publish_devices() to learn the names, relative to /dev, of the
@@ -151,7 +151,7 @@ static char*devices[] = {
 ::::
 
 ::::{abi-group}
-:::{cpp:function} device_hooks* Writing Drivers::find_device(const char* name)
+:::{cpp:function} device_hooks* find_device(const char* name)
 :::
 
 When a device published by the driver is accessed, devfs communicates with
@@ -192,7 +192,7 @@ In all cases, return {cpp:enumerator}`B_OK` if the operation is
 successfully completed, or an appropriate error code if not.
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::open_hook(const char* name, uint32 flags, void** cookie)
+:::{cpp:function} status_t open_hook(const char* name, uint32 flags, void** cookie)
 :::
 
 This hook function is called when a program opens one of the devices
@@ -206,7 +206,7 @@ store a pointer to it in *{hparam}`cookie`.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::close_hook(void** cookie)
+:::{cpp:function} status_t close_hook(void** cookie)
 :::
 
 This hook is called when an open instance of the driver is closed using
@@ -219,7 +219,7 @@ transactions pending, you should unblock them here.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::free_hook(void** cookie)
+:::{cpp:function} status_t free_hook(void** cookie)
 :::
 
 This hook is called once all pending transactions on an open (but closing)
@@ -229,7 +229,7 @@ any Posix function.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::read_hook(void* cookie, off_t position, void* data, size_t* len)
+:::{cpp:function} status_t read_hook(void* cookie, off_t position, void* data, size_t* len)
 :::
 
 This hook handles the Posix read() function for an open instance of your
@@ -246,7 +246,7 @@ return an appropriate error.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::readv_hook(void* cookie, off_t position, const struct iovec* vec, size_t count, size_t* len)
+:::{cpp:function} status_t readv_hook(void* cookie, off_t position, const struct iovec* vec, size_t count, size_t* len)
 :::
 
 This hook handles the Posix readv() function for an open instance of your
@@ -261,7 +261,7 @@ actual number of bytes read, and return an appropriate result code.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::write_hook(void* cookie, off_t position, void* data, size_t* len)
+:::{cpp:function} status_t write_hook(void* cookie, off_t position, void* data, size_t* len)
 :::
 
 This hook handles the Posix write() function for an open instance of your
@@ -277,7 +277,7 @@ error.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::writev_hook(void* cookie, off_t position, const struct iovec* vec, size_t count, size_t* len)
+:::{cpp:function} status_t writev_hook(void* cookie, off_t position, const struct iovec* vec, size_t count, size_t* len)
 :::
 
 This hook handles the Posix writev() function for an open instance of your
@@ -292,7 +292,7 @@ and return an appropriate result code.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::control_hook(void* cookie, uint32 op, void* data, size_t* len)
+:::{cpp:function} status_t control_hook(void* cookie, uint32 op, void* data, size_t* len)
 :::
 
 This hook handles the ioctl() function for an open instance of your
@@ -313,10 +313,10 @@ space; the kernel always sets it to 0.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} status_t Writing Drivers::select_hook(uint8 event, uint32 ref, selectsync* sync)
+:::{cpp:function} status_t select_hook(uint8 event, uint32 ref, selectsync* sync)
 :::
 
-:::{cpp:function} status_t Writing Drivers::deselect_hook(uint8 event, uint32 ref, selectsync* sync)
+:::{cpp:function} status_t deselect_hook(uint8 event, uint32 ref, selectsync* sync)
 :::
 
 These hooks are reserved for future use. Set the corresponding entries in

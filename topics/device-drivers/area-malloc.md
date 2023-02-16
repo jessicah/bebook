@@ -27,10 +27,10 @@ automatically deleted.
 ## Module Functions
 
 ::::{abi-group}
-:::{cpp:function} const void* The area_malloc Module::create_pool(uint32 addressSpec, size_t size, uint32 lockSpec, uint32 protection)
+:::{cpp:function} const void* create_pool(uint32 addressSpec, size_t size, uint32 lockSpec, uint32 protection)
 :::
 
-:::{cpp:function} status_t The area_malloc Module::delete_pool(const void* poolID)
+:::{cpp:function} status_t delete_pool(const void* poolID)
 :::
 
 create_pool() creates a new pool of memory from which to allocate. The
@@ -48,13 +48,13 @@ deleted, otherwise {cpp:enumerator}`B_ERROR`.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void* The area_malloc Module::malloc(const void* poolID, size_t size)
+:::{cpp:function} void* malloc(const void* poolID, size_t size)
 :::
 
-:::{cpp:function} void* The area_malloc Module::calloc(const void* poolID, size_t numMembers, size_t size)
+:::{cpp:function} void* calloc(const void* poolID, size_t numMembers, size_t size)
 :::
 
-:::{cpp:function} void* The area_malloc Module::realloc(const void* poolID, void* ptr, size_t size)
+:::{cpp:function} void* realloc(const void* poolID, void* ptr, size_t size)
 :::
 
 malloc() allocates a block of {hparam}`size` bytes and returns a pointer
@@ -75,7 +75,7 @@ functions return {cpp:expr}`NULL`.
 ::::
 
 ::::{abi-group}
-:::{cpp:function} void* The area_malloc Module::free(const void* poolID, void* ptr)
+:::{cpp:function} void* free(const void* poolID, void* ptr)
 :::
 
 Releases the memory block pointed to by {hparam}`ptr` from the pool
