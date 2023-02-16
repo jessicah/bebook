@@ -49,7 +49,8 @@ class AbiGroupDirective(Directive):
         subsections = []
 
         for (index, descriptor) in zip(indices, descriptors):
-            descriptor.ismethod = descriptor.attributes['desctype'] != 'member'
+            descriptor.ismethod = descriptor.attributes['desctype'] != 'member' and descriptor.attributes['desctype'] != 'enumerator' and descriptor.attributes['desctype'] != 'var'
+            descriptor.isenum = descriptor.attributes['desctype'] == 'enumerator'
             name = self.search(descriptor, addnodes.desc_name)
             
             assert name, 'abi-group: unable to find a function/member'
@@ -131,6 +132,9 @@ class CustomHTMLTranslator(HTML5Translator):
     def visit_desc(self, node):
         if 'cpp' in node.attributes['classes'] and 'class' in node.attributes['classes']:
             # this is the class descriptor, we don't want to output it
+            node.children = []
+            return
+        elif self.in_abi_group and hasattr(node, 'isenum') and node.isenum == True:
             node.children = []
             return
 
