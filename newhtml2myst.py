@@ -365,7 +365,7 @@ class Document:
 							list_item += f'  {self.process_block(block, new_indent)}'
 					unordered_list += list_item
 				else:
-					unordered_list += f'- {self.process_inline(item, indent)}'
+					unordered_list += f'- {self.process_inline(item)}'
 			return unordered_list
 		if element.name == 'ol':
 			ordered_list = BlockContainer()
