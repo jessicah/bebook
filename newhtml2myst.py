@@ -537,24 +537,35 @@ class Document:
 				ref_type = 'cpp:enumerator'
 			elif has_class(code, 'varname'):
 				ref_type = 'cpp:var'
+			elif has_class(code, 'function'):
+				# a global function, perhaps this should be `c:func` instead?
+				ref_type = 'cpp:func'
+		else:
+			span = element.select_one(':scope > span')
+			if span is not None:
+				if has_class(span, 'type'):
+					# don't actually know the specific kind of type here...
+					# could be an enum, or a struct, or maybe even a
+					# typedef?
+					ref_type = 'cpp:any'
 				
 		content = text_content(element)
 
-		if match and not (code is not None and has_any_classes(code, ['constant', 'varname'])):
+		if match and not (code is not None and has_any_classes(code, ['constant', 'varname', 'function'])):
 			# if element.has_attr('title') == False:
 			# 	print(fg.li_cyan, 'missing title', reset, element)
 			# else:
 			# 	print(fg.li_green, element['title'], reset)
 			ref_class = match.group(1)
 			ref_method = match.group(2)
-			content_matches = content.replace('()', '') == f'{ref_class}::{ref_method}' or content == ref_method
+			content_matches = content.replace('()', '') == f'{ref_class}::{ref_method}' or content.replace('()', '') == ref_method
 			if ref_method == 'Constructor':
 				ref_method = f'{ref_class}()'
 			if content_matches:
 				if '::' in content:
-					return f'{{cpp:func}}`{ref_class}::{ref_method}`'
+					return f'{{cpp:func}}`{ref_class}::{ref_method}()`'
 				else:
-					return f'{{cpp:func}}`~{ref_class}::{ref_method}`'
+					return f'{{cpp:func}}`~{ref_class}::{ref_method}()`'
 			else:
 					return f'{{cpp:func}}`{content} <{ref_class}::{ref_method}>`'
 		else:
