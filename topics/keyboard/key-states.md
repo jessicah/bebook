@@ -6,7 +6,8 @@ moment in time. This information is captured and reported in two ways:
 1.    As the {hparam}`states` field in every {cpp:enumerator}`B_KEY_DOWN`
 message, and
 
-2.    As the {hparam}`key_states` bitfield reported by {ref}`get_key_info()`.
+2.    As the {hparam}`key_states` bitfield reported by
+{cpp:func}`get_key_info()`.
 
 In both cases, the bitfield is an array of 16 bytes,
 
@@ -18,7 +19,7 @@ with one bit standing for each key on the keyboard. Bits are numbered from
 left to right, beginning with the first byte in the array, as illustrated
 below:
 
-![Info Icon](./images/TheKeyboard/KeyboardKeyStates-2.png)
+![Info Icon](./_static/images/KeyboardKeyStates-2.png)
 
 Bit numbers start with 0 and match key codes. For example, bit 0x3c
 corresponds to the {hkey}`a` key, 0x3d to the {hkey}`s` key, 0x3e to the

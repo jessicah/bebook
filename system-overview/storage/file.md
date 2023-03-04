@@ -1,9 +1,9 @@
 # BFile
 
 A {hclass}`BFile` lets you read and write the data portion of a file. It
-does this by implementing the {cpp:func}`Read() <BFile::Read>` /
-{cpp:func}`Write() <BFile::Write>` and {cpp:func}`ReadAt() <BFile::ReadAt>`
-/ {cpp:func}`WriteAt() <BFile::WriteAt>` functions that are declared by the
+does this by implementing the {cpp:func}`~BFile::Read()` /
+{cpp:func}`~BFile::Write()` and {cpp:func}`~BFile::ReadAt()` /
+{cpp:func}`~BFile::WriteAt()` functions that are declared by the
 {cpp:class}`BPositionIO` class.
 
 ## Initializing and Opening
@@ -18,11 +18,11 @@ and/or write the file, create it if it doesn't exist, truncate it, and so
 on.
 
 You can also initialize a BFile, and create a new file at the same time,
-through {cpp:class}`BDirectory`'s {cpp:func}`CreateFile()
-<BDirectory::CreateFile>` function. In this case, you don't have to supply
-an open mode—the {hclass}`BFile` that's returned to you will automatically
-be open for reading and writing. (You are asked if you want the creation to
-fail if the named file already exists.)
+through {cpp:class}`BDirectory`'s {cpp:func}`~BDirectory::CreateFile()`
+function. In this case, you don't have to supply an open mode—the
+{hclass}`BFile` that's returned to you will automatically be open for
+reading and writing. (You are asked if you want the creation to fail if the
+named file already exists.)
 
 ## Access to Directories and Symbolic Links
 

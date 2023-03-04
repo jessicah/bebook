@@ -20,7 +20,7 @@ view—when the tab is selected, its target view is activated. See the
 If an {hparam}`archive` message is specified, the message's contents are
 used to duplicate the archived {hclass}`BTab` object.
 
-See also: {cpp:func}`SetView() <BTab::SetView>`
+See also: {cpp:func}`~BTab::SetView()`
 ::::
 
 ::::{abi-group}
@@ -71,12 +71,11 @@ should be eliminated or truncated as necessary.
 :::{cpp:function} virtual status_t BTab::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive()
-<BArchivable::Archive>` and stores the {hclass}`BTab` in the
-{cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BArchivable::Archive()` and
+stores the {hclass}`BTab` in the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BTab::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BTab::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -110,7 +109,7 @@ selected, {cpp:expr}`false` if it's not.
 
 {hmethod}`Deselect()` is called to deselect the tab. This removes the
 tab's target view from the owner window by calling the target view's
-{cpp:func}`RemoveSelf() <BView::RemoveSelf>` function.
+{cpp:func}`~BView::RemoveSelf()` function.
 
 {hmethod}`Select()` is called to select the tab. This also adds the tab's
 target view to the specified owner view. This is called after the
@@ -133,9 +132,9 @@ the target view's name to match the tab's label, if a target view exists.
 :::{admonition} Note
 :class: note
 If the tab doesn't have a target view, {hmethod}`SetLabel()` does nothing.
-Make sure a target view has been set (by calling {cpp:func}`SetView()
-<BTab::SetView>`, {cpp:func}`BTabView::AddTab` with a valid target view
-argument, or in the {hclass}`BTab` constructor) before you call
+Make sure a target view has been set (by calling
+{cpp:func}`~BTab::SetView()`, {cpp:func}`BTabView::AddTab()` with a valid
+target view argument, or in the {hclass}`BTab` constructor) before you call
 {hmethod}`SetLabel()`.
 :::
 ::::
@@ -179,15 +178,14 @@ version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the message doesn't contain archived data for a {hclass}`BTab`,
 {hmethod}`Instantiate()` returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BTab::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BTab::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BTab::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BTab::Archive()` function adds the following fields to its
+{cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

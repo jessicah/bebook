@@ -11,8 +11,8 @@
 
 Creates a new {hclass}`BInputServerFilter` object. You can initialize the
 object—set initial values, spawn threads, etc.—either here or in the
-{cpp:func}`InitCheck() <BInputServerFilter::InitCheck>` function, which is
-called immediately after the constructor.
+{cpp:func}`InitCheck()` function, which is called immediately after the
+constructor.
 ::::
 
 ::::{abi-group}

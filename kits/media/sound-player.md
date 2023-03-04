@@ -82,11 +82,11 @@ the sound should be played, and also uses a {ref}`media_multi_audio_format`
 to specify the sound's format, instead of the older
 {ref}`media_raw_audio_format`.
 
-You should call {cpp:func}`InitCheck() <BSoundPlayer::InitCheck>` before
-using your {hclass}`BSoundPlayer` object; this will let you determine
-whether or not the object was successfully constructed. One situation in
-which {cpp:func}`InitCheck() <BSoundPlayer::InitCheck>` might indicate an
-error is if the user doesn't have a sound card installed.
+You should call {cpp:func}`~BSoundPlayer::InitCheck()` before using your
+{hclass}`BSoundPlayer` object; this will let you determine whether or not
+the object was successfully constructed. One situation in which
+{cpp:func}`~BSoundPlayer::InitCheck()` might indicate an error is if the
+user doesn't have a sound card installed.
 ::::
 
 ::::{abi-group}
@@ -255,8 +255,8 @@ function, and the cookie all in one atomic operation.
 :::{cpp:function} void BSoundPlayer::SetInitError(status_t inError)
 :::
 
-Sets the status code that will be returned by {cpp:func}`InitCheck()
-<BSoundPlayer::InitCheck>`.
+Sets the status code that will be returned by
+{cpp:func}`~BSoundPlayer::InitCheck()`.
 ::::
 
 ::::{abi-group}
@@ -304,8 +304,8 @@ widths: auto
 	- The sound playback was started.
 -
 	- Other errors.
-	- As returned by the {hclass}`BMediaRoster`'s {cpp:func}`StartNode()
-		<BMediaRoster::StartNode>` function.
+	- As returned by the {hclass}`BMediaRoster`'s
+		{cpp:func}`~BMediaRoster::StartNode()` function.
 
 :::
 ::::
@@ -385,8 +385,8 @@ maximum loudness.
 :::
 
 If you'd rather handle the volume using decibels instead of the percentage
-range, you can use the {cpp:func}`VolumeDB() <BSoundPlayer::VolumeDB>` and
-{cpp:func}`SetVolumeDB() <BSoundPlayer::SetVolumeDB>` functions.
+range, you can use the {cpp:func}`~BSoundPlayer::VolumeDB()` and
+{cpp:func}`~BSoundPlayer::SetVolumeDB()` functions.
 ::::
 
 ::::{abi-group}
@@ -402,17 +402,17 @@ range, you can use the {cpp:func}`VolumeDB() <BSoundPlayer::VolumeDB>` and
 
 This volume is the overall volume of all the sounds being played by the
 {hclass}`BSoundPlayer`. To control the volumes of individual sounds, use
-the {cpp:func}`SetSoundVolume() <BSoundPlayer::SetSoundVolume>` function.
+the {cpp:func}`~BSoundPlayer::SetSoundVolume()` function.
 
 :::{admonition} Note
 :class: note
 The possible range of volumes can be obtained by calling
-{cpp:func}`GetVolumeInfo() <BSoundPlayer::GetVolumeInfo>`.
+{cpp:func}`~BSoundPlayer::GetVolumeInfo()`.
 :::
 
 If you'd rather handle the volume using a percentage range instead of
-decibels, you can use the {cpp:func}`Volume() <BSoundPlayer::Volume>` and
-{cpp:func}`SetVolume() <BSoundPlayer::SetVolume>` functions.
+decibels, you can use the {cpp:func}`~BSoundPlayer::Volume()` and
+{cpp:func}`~BSoundPlayer::SetVolume()` functions.
 ::::
 
 ## Constants
@@ -454,5 +454,5 @@ typedef int32 play_id;
 :::
 
 Identifies a particular sound that's being played by the
-{hclass}`BSoundPlayer`; {cpp:func}`StartPlaying()
-<BSoundPlayer::StartPlaying>` returns values of this type.
+{hclass}`BSoundPlayer`; {cpp:func}`~BSoundPlayer::StartPlaying()` returns
+values of this type.

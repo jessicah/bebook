@@ -46,9 +46,9 @@ The {hparam}`name` argument assigns a name to the object as a
 {cpp:class}`BView` constructor.
 
 If a model {hparam}`message` is supplied, the {hclass}`BColorControl` will
-announce every change in color value by calling {cpp:func}`Invoke()
-<BControl::Invoke>` (defined in the {cpp:class}`BControl` class) to post a
-copy of the message to a designated target.
+announce every change in color value by calling
+{cpp:func}`~BControl::Invoke()` (defined in the {cpp:class}`BControl`
+class) to post a copy of the message to a designated target.
 
 If the {hparam}`bufferedDrawing` flag is {cpp:expr}`true`, all changes to
 the on-screen display will first be made in an off-screen bitmap and then
@@ -58,7 +58,7 @@ memory.
 The initial value of the new object is 0, which when translated to an
 {htype}`rgb_color` structure, means black.
 
-See also: {cpp:func}`BHandler::SetName`
+See also: {cpp:func}`BHandler::SetName()`
 ::::
 
 ::::{abi-group}
@@ -83,7 +83,7 @@ where the user can type red, green, and blue color values. If the object
 uses buffered drawing, this function makes sure the offscreen images are
 displayed on-screen.
 
-See also: {cpp:func}`BView::SetViewColor`
+See also: {cpp:func}`BView::SetViewColor()`
 ::::
 
 ::::{abi-group}
@@ -102,16 +102,16 @@ Calculates how large the color control needs to be given its layout, cell
 size, and current font; the results are reported in the variables that the
 {hparam}`width` and {hparam}`height` arguments refer to.
 
-See also: {cpp:func}`BView::GetPreferredSize`
+See also: {cpp:func}`BView::GetPreferredSize()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BColorControl::KeyDown(const char* bytes, int32 numBytes)
 :::
 
-Augments the {cpp:class}`BControl` version of {cpp:func}`KeyDown()
-<BControl::KeyDown>` to allow the user to navigate within the color control
-using the arrow keys.
+Augments the {cpp:class}`BControl` version of
+{cpp:func}`~BControl::KeyDown()` to allow the user to navigate within the
+color control using the arrow keys.
 ::::
 
 ::::{abi-group}
@@ -120,16 +120,16 @@ using the arrow keys.
 
 Responds to internal messages that change the color.
 
-See also: {cpp:func}`BHandler::MessageReceived`
+See also: {cpp:func}`BHandler::MessageReceived()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BColorControl::MouseDown(BPoint point)
 :::
 
-Overrides the {cpp:class}`BView` version of {cpp:func}`MouseDown()
-<BView::MouseDown>` to allow the user to operate the color control with the
-mouse.
+Overrides the {cpp:class}`BView` version of
+{cpp:func}`~BView::MouseDown()` to allow the user to operate the color
+control with the mouse.
 ::::
 
 ## Member Functions
@@ -138,12 +138,12 @@ mouse.
 :::{cpp:function} virtual status_t BColorControl::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive() <BControl::Archive>` ,
-then adds the layout, cell size, and whether the object uses buffered
-drawing to the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BControl::Archive()` , then
+adds the layout, cell size, and whether the object uses buffered drawing to
+the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BColorControl::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BColorControl::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -164,10 +164,10 @@ These functions set and return the size of a single cell in the
 :::{cpp:function} virtual void BColorControl::SetEnabled(bool enabled)
 :::
 
-Auguments the {cpp:class}`BControl` version of {cpp:func}`SetEnabled()
-<BControl::SetEnabled>` to disable and re-enable the text fields for
-setting the color components as the {hclass}`BColorControl` is disabled and
-re-enabled. The inherited {cpp:func}`IsEnabled() <BControl::IsEnabled>`
+Auguments the {cpp:class}`BControl` version of
+{cpp:func}`~BControl::SetEnabled()` to disable and re-enable the text
+fields for setting the color components as the {hclass}`BColorControl` is
+disabled and re-enabled. The inherited {cpp:func}`~BControl::IsEnabled()`
 function doesn't need augmenting and therefore isn't reimplemented.
 ::::
 
@@ -217,12 +217,12 @@ hides all versions of the function. For continued access to the
 specifying the "{hclass}`BColorControl`::" prefix, copy the inline code
 from interface/ColorControl.h to the derived class.)
 
-{hmethod}`ValueAsColor()` is an alternative to the {cpp:func}`Value()
-<BControl::Value>` function inherited from the {cpp:class}`BControl` class.
-It returns the object's current value as an {htype}`rgb_color`;
-{hmethod}`Value()` returns it as an {htype}`int32.`
+{hmethod}`ValueAsColor()` is an alternative to the
+{cpp:func}`~BControl::Value()` function inherited from the
+{cpp:class}`BControl` class. It returns the object's current value as an
+{htype}`rgb_color`; {hmethod}`Value()` returns it as an {htype}`int32.`
 
-See also: {cpp:func}`BControl::SetValue`
+See also: {cpp:func}`BControl::SetValue()`
 ::::
 
 ## Static Functions
@@ -236,9 +236,8 @@ with the version of the constructor that takes a {cpp:class}`BMessage`
 archive. However, if the archive doesn't contain data for a
 {hclass}`BColorControl` object, this function returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BColorControl::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BColorControl::Archive()`
 ::::
 
 ## Defined Types
@@ -253,8 +252,8 @@ Determines the layout of the {hclass}`BColorControl`
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BColorControl::Archive>` function adds the
-following fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BColorControl::Archive()` function adds the following
+fields to its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

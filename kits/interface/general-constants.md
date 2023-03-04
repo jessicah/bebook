@@ -15,7 +15,7 @@ These constants define the {htype}`alignment` data type. They determine
 how lines of text and labels are aligned by {cpp:class}`BTextView`,
 {cpp:class}`BStringView`, and {cpp:class}`BMenuField` objects.
 
-See also: {cpp:func}`BTextView::SetAlignment`
+See also: {cpp:func}`BTextView::SetAlignment()`
 
 ## border_style Constants
 
@@ -517,7 +517,7 @@ widths: auto
 
 These constants define the bipolar states of a typical control device.
 
-See also: {cpp:func}`BControl::SetValue`
+See also: {cpp:func}`BControl::SetValue()`
 
 ## Cursor Transit Constants
 
@@ -553,9 +553,9 @@ widths: auto
 :::
 
 These constants describe the cursor's transit through a view. Each
-{cpp:func}`MouseMoved() <BView::MouseMoved>` notification includes one of
-these constants as an argument, to inform the {cpp:class}`BView` whether
-the cursor has entered the view, moved while inside the view, or exited the
+{cpp:func}`~BView::MouseMoved()` notification includes one of these
+constants as an argument, to inform the {cpp:class}`BView` whether the
+cursor has entered the view, moved while inside the view, or exited the
 view.
 
 ## Dead-Key Mapping
@@ -604,7 +604,7 @@ widths: auto
 These constants determine which combinations of modifiers can cause a key
 to be the "dead" member of a two-key combination.
 
-See also: {ref}`get_key_map()`
+See also: {cpp:func}`get_key_map()`
 
 ## drawing_mode Constants
 
@@ -631,7 +631,7 @@ image being drawn interacts with the image already in place in the area
 where it's drawn. The various modes are explained under "{ref}`Drawing
 Modes`" in the "{ref}`Drawing`" section of this chapter.
 
-See also: {cpp:func}`BView::SetDrawingMode`
+See also: {cpp:func}`BView::SetDrawingMode()`
 
 ## Function Key Constants
 
@@ -854,7 +854,7 @@ widths: auto
 :::
 
 These constants can be passed as an argument to {cpp:class}`BMenuBar`'s
-{cpp:func}`SetBorder() <BMenuBar::SetBorder>` function.
+{cpp:func}`~BMenuBar::SetBorder()` function.
 
 ## menu_layout Constants
 
@@ -973,7 +973,7 @@ as one that lumps both together. For example, if the user is holding the
 left {hkey}`Control` key down, both {cpp:enumerator}`B_CONTROL_KEY` and
 {cpp:enumerator}`B_LEFT_CONTROL_KEY` will be set in the mask.
 
-See also: {ref}`modifiers()`, {cpp:func}`BWindow::AddShortcut`, the
+See also: {cpp:func}`modifiers()`, {cpp:func}`BWindow::AddShortcut()`, the
 {cpp:class}`BMenu` constructor
 
 ## Mouse Buttons
@@ -1005,7 +1005,7 @@ These constants name the mouse buttons. Buttons are identified, not by
 their physical positions on the mouse, but by their roles in the user
 interface.
 
-See also: {cpp:func}`BView::GetMouse`, {ref}`set_mouse_map()`
+See also: {cpp:func}`BView::GetMouse()`, {cpp:func}`set_mouse_map()`
 
 ## Orientation Constants
 
@@ -1119,7 +1119,7 @@ These constants are used to set the behavior of a view when its parent is
 resized. They're explained under the {hclass}`BView` {cpp:func}`constructor
 <BView::BView()>`.
 
-See also: {cpp:func}`BView::SetResizingMode`
+See also: {cpp:func}`BView::SetResizingMode()`
 
 ## Screen Spaces
 
@@ -1151,7 +1151,7 @@ depth and the size of the pixel grid it displays—as well as to report which
 configurations are possible. However, they may not be supported in the
 future. 15-bit depths are not currently supported
 
-See also: {ref}`set_screen_space()`, get_screen_info().
+See also: {cpp:func}`set_screen_space()`, get_screen_info().
 
 ## ScrollBar Constants
 
@@ -1210,7 +1210,7 @@ widths: auto
 These constants instruct a {cpp:class}`BFont` where it should remove
 characters from a set of strings to shorten them.
 
-See also: {cpp:func}`BFont::GetTruncatedStrings`
+See also: {cpp:func}`BFont::GetTruncatedStrings()`
 
 ## tint_color() Constants
 
@@ -1297,9 +1297,9 @@ selected data.
 
 :::
 
-These constants are used when calling {cpp:func}`tint_color()
-<tint::color>` to alter an existing color, especially for creating disabled
-objects or highlighting backgrounds.
+These constants are used when calling {cpp:func}`tint_color()` to alter an
+existing color, especially for creating disabled objects or highlighting
+backgrounds.
 
 ## Transparency Constants
 
@@ -1321,7 +1321,7 @@ section of this chapter. Drawing modes other than B_OP_COPY preserve the
 destination image where a source bitmap is transparent.
 
 See also: "{ref}`Drawing Modes`" in the "{ref}`Drawing`" section of this
-chapter, the {cpp:class}`BBitmap` class, {cpp:func}`BView::SetViewColor`
+chapter, the {cpp:class}`BBitmap` class, {cpp:func}`BView::SetViewColor()`
 
 ## color_which Constants
 
@@ -1382,9 +1382,8 @@ keyboard navigation.
 
 :::
 
-When calling {cpp:func}`ui_color() <ui::color>` to obtain the color for a
-user interface element, these constants are used to select the desired
-element.
+When calling {cpp:func}`ui_color()` to obtain the color for a user
+interface element, these constants are used to select the desired element.
 
 ## View Flags
 
@@ -1437,8 +1436,7 @@ widths: auto
 These constants can be combined to form a mask that sets the behavior of a
 {cpp:class}`BView` object. They're explained in more detail under the class
 constructor. The mask is passed to the {cpp:func}`constructor
-<BView::BView()>`, or to the {cpp:func}`SetFlags() <BView::SetFlags>`
-function.
+<BView::BView()>`, or to the {cpp:func}`~BView::SetFlags()` function.
 
 ## Window Flags
 
@@ -1554,4 +1552,4 @@ These constants are used—along with designations of specific workspaces—to
 associate a set of one or more workspaces with a {cpp:class}`BWindow`.
 
 See also: The {hclass}`BWindow` {cpp:func}`constructor
-<BWindow::BWindow()>`, {cpp:func}`BWindow::SetWorkspaces`
+<BWindow::BWindow()>`, {cpp:func}`BWindow::SetWorkspaces()`

@@ -25,11 +25,11 @@
 :::
 
 Creates a new {hclass}`BPath` object that represents the path that's
-created from the arguments. See the analogous {cpp:func}`SetTo()
-<BPath::SetTo>` functions for descriptions of the flavorful constructors.
+created from the arguments. See the analogous {cpp:func}`~BPath::SetTo()`
+functions for descriptions of the flavorful constructors.
 
 -   The default constructor does nothing; it should be followed by a call to
-{cpp:func}`SetTo() <BPath::SetTo>`.
+{cpp:func}`~BPath::SetTo()`.
 
 -   The copy constructor makes a copy of the argument's pathname.
 
@@ -37,7 +37,7 @@ The constructor automatically allocates memory for the object's stored
 pathname. The memory is freed when the object is deleted.
 
 To check to see if an initialization was successful, call
-{cpp:func}`InitCheck() <BPath::InitCheck>`.
+{cpp:func}`~BPath::InitCheck()`.
 ::::
 
 ::::{abi-group}
@@ -71,7 +71,7 @@ path.SetTo(path.Path(), "subdir/file");
 :::
 
 The {hmethod}`Append()` return value is picked up from the
-{cpp:func}`SetTo() <BPath::SetTo>` call.
+{cpp:func}`~BPath::SetTo()` call.
 
 :::{list-table}
 ---
@@ -94,7 +94,7 @@ widths: auto
 
 :::
 
-See {cpp:func}`SetTo() <BPath::SetTo>` for other return values.
+See {cpp:func}`~BPath::SetTo()` for other return values.
 ::::
 
 ::::{abi-group}
@@ -113,8 +113,8 @@ path.GetParent(&path);
 
 Other details…
 
--   {hmethod}`GetParent()` makes a call to {cpp:func}`SetTo() <BPath::SetTo>`,
-but it's guaranteed not to tickle the normalization machine.
+-   {hmethod}`GetParent()` makes a call to {cpp:func}`~BPath::SetTo()`, but
+it's guaranteed not to tickle the normalization machine.
 
 -   You can't get the parent of "/".
 
@@ -145,16 +145,15 @@ widths: auto
 :::
 
 If the initialization isn't successful, the argument's
-{cpp:func}`InitCheck() <BPath::InitCheck>` is set to
-{cpp:enumerator}`B_NO_INIT`.
+{cpp:func}`~BPath::InitCheck()` is set to {cpp:enumerator}`B_NO_INIT`.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} status_t BPath::InitCheck() const
 :::
 
-Returns the status of the most recent construction or {cpp:func}`SetTo()
-<BPath::SetTo>` call.
+Returns the status of the most recent construction or
+{cpp:func}`~BPath::SetTo()` call.
 
 :::{list-table}
 ---
@@ -172,11 +171,10 @@ widths: auto
 	- The initialization was successful.
 -
 	- {cpp:enumerator}`B_NO_INIT`.
-	- The object is uninitialized (this includes {cpp:func}`Unset()
-		<BPath::Unset>`).
+	- The object is uninitialized (this includes {cpp:func}`~BPath::Unset()`).
 -
 	- For other errors.
-	- See {cpp:func}`SetTo() <BPath::SetTo>`
+	- See {cpp:func}`~BPath::SetTo()`
 
 :::
 ::::
@@ -275,8 +273,7 @@ path.SetTo(path.Path(), ...);
 it has to normalize.
 
 {hmethod}`Unset()` frees the object's pathname storage and sets the
-{cpp:func}`InitCheck() <BPath::InitCheck>` value to
-{cpp:enumerator}`B_NO_INIT`.
+{cpp:func}`~BPath::InitCheck()` value to {cpp:enumerator}`B_NO_INIT`.
 
 :::{list-table}
 ---
@@ -308,8 +305,7 @@ widths: auto
 
 :::
 
-The return value is also recorded in {cpp:func}`InitCheck()
-<BPath::InitCheck>`.
+The return value is also recorded in {cpp:func}`~BPath::InitCheck()`.
 ::::
 
 ### BFlattenable Functions
@@ -413,7 +409,7 @@ widths: auto
 :::
 
 The {hmethod}`Unflatten()` return value is recorded in
-{cpp:func}`InitCheck() <BPath::InitCheck>`.
+{cpp:func}`~BPath::InitCheck()`.
 ::::
 
 ## Operators
@@ -426,7 +422,7 @@ The {hmethod}`Unflatten()` return value is recorded in
 :::
 
 Initializes this with a copy of the pathname that's gotten from the
-argument. Also sets {cpp:func}`InitCheck() <BPath::InitCheck>`.
+argument. Also sets {cpp:func}`~BPath::InitCheck()`.
 ::::
 
 ::::{abi-group}

@@ -40,19 +40,11 @@ Releases any resources used by the cursor.
 
 Not currently implemented; always returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`BArchivable::Archive`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`BArchivable::Archive()`
 ::::
 
 ## Constants
-
-
-
-
-
-
-
-
 
 Declared in: app/AppDefs.h
 
@@ -72,4 +64,4 @@ const BCursor* B_CURSOR_I_BEAM
 The second two constants are {cpp:class}`BCursor` objects and produce the
 same cursors the first two constants.
 
-See also: {cpp:func}`BApplication::SetCursor`
+See also: {cpp:func}`BApplication::SetCursor()`

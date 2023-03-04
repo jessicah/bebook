@@ -9,8 +9,8 @@
 :::{cpp:function} BMediaFormats::BMediaFormats()
 :::
 
-Constructor. Call {cpp:func}`InitCheck() <BMediaFormats::InitCheck>` to
-ensure that the object was initialized properly after you instantiate it.
+Constructor. Call {cpp:func}`~BMediaFormats::InitCheck()` to ensure that
+the object was initialized properly after you instantiate it.
 ::::
 
 ::::{abi-group}
@@ -221,9 +221,9 @@ you're done with it; be sure to call it when you've finished your work.
 :::{admonition} Note
 :class: note
 You only need to {hmethod}`Lock()` and {hmethod}`Unlock()` the
-{hclass}`BMediaFormats` object when you're using {cpp:func}`RewindFormats()
-<BMediaFormats::RewindFormats>` and {cpp:func}`GetNextFormat()
-<BMediaFormats::GetNextFormat>`.
+{hclass}`BMediaFormats` object when you're using
+{cpp:func}`~BMediaFormats::RewindFormats()` and
+{cpp:func}`~BMediaFormats::GetNextFormat()`.
 :::
 ::::
 
@@ -274,8 +274,8 @@ widths: auto
 :::
 
 Resets format scanning to the first supported format; this causes
-{cpp:func}`GetNextFormat() <BMediaFormats::GetNextFormat>` to start at the
-beginning of the list.
+{cpp:func}`~BMediaFormats::GetNextFormat()` to start at the beginning of
+the list.
 
 :::{list-table}
 ---
@@ -417,7 +417,8 @@ Systems, Inc."), and the {hparam}`short_name` is a short-form version of
 the encoder's name (such as "SuperSqueeze").
 
 The {hparam}`id` is an opaque ID number that gets passed to
-{cpp:func}`BMediaFile::CreateTrack` so the track can identify the encoder.
+{cpp:func}`BMediaFile::CreateTrack()` so the track can identify the
+encoder.
 
 The padding is reserved space for future expansion of the structure.
 
@@ -662,5 +663,6 @@ widths: auto
 
 :::
 
-See also: {ref}`get_next_file_format()` in the global C functions section.
+See also: {cpp:func}`get_next_file_format()` in the global C functions
+section.
 ::::

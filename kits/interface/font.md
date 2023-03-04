@@ -24,8 +24,8 @@ The system {hclass}`BFont` objects, including
 default settings of {hclass}`BFont` objects constructed before the
 {cpp:class}`BApplication` object will be invalid.
 
-See also: {cpp:func}`BView::SetFont`,
-{cpp:func}`BTextView::SetFontAndColor`
+See also: {cpp:func}`BView::SetFont()`,
+{cpp:func}`BTextView::SetFontAndColor()`
 ::::
 
 ## Member Functions
@@ -62,10 +62,10 @@ describes the direction in which the object's text is meant to be read:
 This is an inherent property of the font and cannot be set.
 
 The direction of the font affects the direction in which
-{cpp:func}`DrawString() <BView::DrawString>` draws the characters in a
-string, but not the direction in which it moves the pen.
+{cpp:func}`~BView::DrawString()` draws the characters in a string, but not
+the direction in which it moves the pen.
 
-See also: {cpp:func}`BView::DrawString`
+See also: {cpp:func}`BView::DrawString()`
 ::::
 
 ::::{abi-group}
@@ -170,22 +170,22 @@ from its neighbors. The illustration below shows the approximate
 escapements for the letters 'l' and 'p'; the escapement for each character
 is the distance between the vertical lines:
 
-![Font Escapements](./images/TheInterfaceKit/font_escapement.png)
+![Font Escapements](./_static/images/font_escapement.png)
 
 {hmethod}`GetEscapements()` measures the same space that functions such as
-{cpp:func}`StringWidth() <BFont::StringWidth>` and {cpp:class}`BTextView`'s
-{cpp:func}`LineWidth() <BTextView::LineWidth>` do, but it measures each
-character individually and records its width in per-point-size escapement
-units. To translate the escapement value to the width of the character, you
-must multiply by the point size of the font:
+{cpp:func}`~BFont::StringWidth()` and {cpp:class}`BTextView`'s
+{cpp:func}`~BTextView::LineWidth()` do, but it measures each character
+individually and records its width in per-point-size escapement units. To
+translate the escapement value to the width of the character, you must
+multiply by the point size of the font:
 
 :::{code} cpp
 float width = escapementArray[i] * font.Size();
 :::
 
 Because of rounding errors, there may be some difference between the value
-returned by {cpp:func}`StringWidth() <BFont::StringWidth>` and the width
-calculated from the individual escapements of the characters in the string.
+returned by {cpp:func}`~BFont::StringWidth()` and the width calculated from
+the individual escapements of the characters in the string.
 
 The versions of {hmethod}`GetEscapements()` that use {cpp:class}`BPoint`s
 for the escapement value use the {cpp:class}`BPoint`
@@ -241,8 +241,8 @@ widths: auto
 :::
 
 A similar argument can be passed to {hclass}`BView`'s
-{cpp:func}`DrawString() <BView::DrawString>`  to adjust the spacing of the
-characters as they're drawn.
+{cpp:func}`~BView::DrawString()`  to adjust the spacing of the characters
+as they're drawn.
 
 #### Edges
 
@@ -286,8 +286,8 @@ no matter what letter followed. Edge values therefore aren't sufficient to
 decide how character pairs can be kerned. Kerning is contextually dependent
 on the combination of two particular characters.
 
-See also: {cpp:func}`StringWidth() <BFont::StringWidth>`,
-{cpp:func}`SetSpacing() <BFont::SetSpacing>`
+See also: {cpp:func}`~BFont::StringWidth()`,
+{cpp:func}`~BFont::SetSpacing()`
 ::::
 
 ::::{abi-group}
@@ -380,7 +380,7 @@ integral value (to figure the spacing between lines of text on-screen, for
 example), you should always round them up to reduce the amount of vertical
 character overlap.
 
-See also: {cpp:func}`BView::GetFontHeight`
+See also: {cpp:func}`BView::GetFontHeight()`
 ::::
 
 ::::{abi-group}
@@ -454,7 +454,7 @@ null terminator for the third byte.
 The output strings are null-terminated. The input strings should likewise
 be null-terminated.
 
-See also: {cpp:func}`StringWidth() <BFont::StringWidth>`
+See also: {cpp:func}`~BFont::StringWidth()`
 ::::
 
 ::::{abi-group}
@@ -484,8 +484,8 @@ Because it's a bitmap font, a tuned font captures a specific configuration
 of font attributes, including size, style, shear, and rotation. A tuned
 font is a counterpart to an outline font with the same settings. If a
 {cpp:class}`BView`'s current font has a tuned counterpart,
-{cpp:func}`DrawString() <BView::DrawString>` automatically chooses it when
-drawing on-screen. Tuned fonts are not used for printing.
+{cpp:func}`~BView::DrawString()` automatically chooses it when drawing
+on-screen. Tuned fonts are not used for printing.
 
 {hmethod}`CountTuned()` returns how many tuned fonts there are for the
 family and style represented by the {hclass}`BFont` object.
@@ -585,10 +585,10 @@ ISO/IEC 8859 family of character codes that extend the ASCII set.
 by the Mac OS™.
 
 The encoding affects both input and output functions of the
-{cpp:class}`BView`. It determines how {cpp:func}`DrawString()
-<BView::DrawString>` interprets the character values it's passed and also
-how {cpp:func}`KeyDown() <BView::KeyDown>` encodes character values for the
-keys the user pressed.
+{cpp:class}`BView`. It determines how {cpp:func}`~BView::DrawString()`
+interprets the character values it's passed and also how
+{cpp:func}`~BView::KeyDown()` encodes character values for the keys the
+user pressed.
 
 UTF-8 is the preferred encoding and the one that's most compatible with
 objects defined in the software kits. For example, a {cpp:class}`BTextView`
@@ -597,8 +597,8 @@ message to be UTF-8 encoded. If it isn't, the results are not defined. The
 more that applications stick with UTF-8 encoding, the more freely they'll
 be able to exchange data.
 
-See also: "{ref}`Character Encoding`" {ref}`convert_to_utf8()`,
-{cpp:func}`BView::DrawString`, {cpp:func}`BView::KeyDown`()
+See also: "{ref}`Character Encoding`" {cpp:func}`convert_to_utf8()`,
+{cpp:func}`BView::DrawString()`, {cpp:func}`BView::KeyDown()`()
 ::::
 
 ::::{abi-group}
@@ -658,8 +658,8 @@ widths: auto
 Sets the family and face of the font. The {hparam}`family` passed to this
 function must be one of the families enumerated by the
 {cpp:func}`get_font_family()` global function and {hparam}`face` must be a
-combination of the face values described under {cpp:func}`SetFace()
-<BFont::SetFace>`. If the family is {cpp:expr}`NULL`,
+combination of the face values described under
+{cpp:func}`~BFont::SetFace()`. If the family is {cpp:expr}`NULL`,
 {hmethod}`SetFamilyAndFace()` sets only the face.
 ::::
 
@@ -688,7 +688,7 @@ typedef char font_style[B_FONT_STYLE_LENGTH + 1]
 {hparam}`family` passed to this function must be one of the families
 enumerated by the {cpp:func}`get_font_family()` global function and
 {hparam}`style` must be one of the styles associated with that family, as
-reported by {ref}`get_font_style()`. If the {hparam}`family` is
+reported by {cpp:func}`get_font_style()`. If the {hparam}`family` is
 {cpp:expr}`NULL`, {hmethod}`SetFamilyAndStyle()` sets only the style; if
 {hparam}`style` is {cpp:expr}`NULL`, it sets only the family.
 
@@ -768,7 +768,7 @@ outside this range, it will be adjusted to the closest value within range.
 These functions set and return the size of the font in points. Valid sizes
 range from less than 1.0 point through 10,000 points.
 
-See also: {cpp:func}`BView::SetFontSize`
+See also: {cpp:func}`BView::SetFontSize()`
 ::::
 
 ::::{abi-group}
@@ -781,7 +781,7 @@ See also: {cpp:func}`BView::SetFontSize`
 These functions set and return the mode that determines how characters are
 horizontally spaced relative to each other when they're drawn. The mode
 also affects the width or "escapement" of each character as reported by
-{cpp:func}`GetEscapements() <BFont::GetEscapements>`.
+{cpp:func}`~BFont::GetEscapements()`.
 
 There are four spacing modes:
 
@@ -868,8 +868,8 @@ produce significantly different results, so again
 In addition, {cpp:enumerator}`B_CHAR_SPACING` is always used for rotated
 or sheared text and when antialiasing is disabled.
 
-See also: {cpp:func}`BView::DrawString`, {cpp:func}`GetEscapements()
-<BFont::GetEscapements>`
+See also: {cpp:func}`BView::DrawString()`,
+{cpp:func}`~BFont::GetEscapements()`
 ::::
 
 ::::{abi-group}
@@ -898,7 +898,7 @@ the string in the {hparam}`widthArray` at the same index.
 These functions take all the attributes of the font—including family,
 style, size, and spacing—into account.
 
-See also: {cpp:func}`BView::StringWidth`
+See also: {cpp:func}`BView::StringWidth()`
 ::::
 
 ## Operators
@@ -1005,8 +1005,8 @@ The constants name the various character encodings that the BeOS supports.
 values for 7-bit character codes but uses multiple bytes to encode other
 values in the {ref}`Unicode standard.`
 
-See also: {cpp:func}`BFont::SetEncoding`, the "{ref}`Character Encoding`"
-section of this chapter
+See also: {cpp:func}`BFont::SetEncoding()`, the "{ref}`Character
+Encoding`" section of this chapter
 
 ### Font Flags
 
@@ -1038,14 +1038,14 @@ The first flag, {cpp:enumerator}`B_DISABLE_ANTIALIASING`, is passed to a
 turned off when printing, but should generally be left on when drawing to
 the screen.
 
-The other two flags enable {ref}`get_font_family()` and
-{ref}`get_font_style()` to give information about a font.
+The other two flags enable {cpp:func}`get_font_family()` and
+{cpp:func}`get_font_style()` to give information about a font.
 {cpp:enumerator}`B_IS_FIXED` indicates that the font is nonproportional.
 {cpp:enumerator}`B_HAS_TUNED_FONT` indicates that the family or style has
 one or more tuned fonts—bitmap fonts that have been adjusted to look good
 on the screen—for some set of font properties (such as size and shear).
 
-See also: {cpp:func}`BFont::SetFlags`
+See also: {cpp:func}`BFont::SetFlags()`
 
 ### Font Name Lengths
 
@@ -1129,8 +1129,8 @@ These constants list the font properites that can be set for a
 {cpp:class}`BView` individually or in combination. The constants form a
 mask that's passed, along with a {cpp:class}`BFont` object, to
 {cpp:class}`BView`'s {cpp:func}`BView <BView::SetFont>` and
-{cpp:class}`BTextView`'s {cpp:func}`SetFontAndColor()
-<BTextView::SetFontAndColor>` functions. For example:
+{cpp:class}`BTextView`'s {cpp:func}`~BTextView::SetFontAndColor()`
+functions. For example:
 
 :::{code} cpp
 myView->SetFont(theFont, B_FONT_SIZE | B_FONT_ENCODING);
@@ -1170,7 +1170,7 @@ widths: auto
 These constants enumerate the four modes for positioning characters in a
 line of text.
 
-See also: {cpp:func}`BFont::SetSpacing`
+See also: {cpp:func}`BFont::SetSpacing()`
 
 ### font_metric_mode
 
@@ -1243,7 +1243,7 @@ enum font_direction {
 These constants tell whether a font is used for text that's read
 left-to-right or right-to-left. Thus is an inherent property of the font.
 
-See also: {cpp:func}`BFont::Direction`
+See also: {cpp:func}`BFont::Direction()`
 
 ### unicode_block
 
@@ -1269,10 +1269,9 @@ private:
 
 The {htype}`unicode_block` class describes the ranges of Unicode™
 characters a font supports. You can get a {htype}`unicode_block` object for
-a font by calling the {cpp:func}`Blocks() <BFont::Blocks>` function. Once
-you have this, you can check to see if a particular block is supported, or
-compare it to another block to see if it's inclusive, equal, unequal, and
-so forth.
+a font by calling the {cpp:func}`~BFont::Blocks()` function. Once you have
+this, you can check to see if a particular block is supported, or compare
+it to another block to see if it's inclusive, equal, unequal, and so forth.
 
 In general, you won't instantiate a {htype}`unicode_block` object on your
 own.

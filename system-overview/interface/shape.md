@@ -6,7 +6,7 @@ the outline of any shape that can be comprised of lines or Beziér curves.
 The {cpp:class}`BShapeIterator` class provides a means for utilizing
 {cpp:class}`BShape` objects in your own code. You can also use
 {cpp:class}`BShape` objects to obtain outlines of characters in a
-{cpp:class}`BFont` by calling {cpp:func}`BFont::GetGlyphShapes`.
+{cpp:class}`BFont` by calling {cpp:func}`BFont::GetGlyphShapes()`.
 
 ## Creating a BShape
 

@@ -13,7 +13,7 @@ down message, but it does generate a key up.
 The following illustration shows the keycodes for most of the keys on
 standard keyboards.
 
-![Info Icon](./images/TheKeyboard/keymap.png)
+![Info Icon](./_static/images/keymap.png)
 
 Some keyboards vary slightly from this; however, even if keys are in
 different locations than those depicted here, they'll still have the same

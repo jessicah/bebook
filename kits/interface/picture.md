@@ -37,8 +37,8 @@ and deletes all its picture data.
 Archives the {hclass}`BPicture` by recording its current settings in the
 {cpp:class}`BMessage` {hparam}`archive`.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BPicture::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BPicture::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -394,7 +394,7 @@ are all {hmethod}`SetFont…()` functions. Many of the font state functions
 are found in BFont rather than {cpp:class}`BView`.
 
 -   {hmethod}`SetFontRotate()` sets the rotation of the font. Unlike the
-{cpp:func}`BFont::SetRotation` function, the angle here is specified in
+{cpp:func}`BFont::SetRotation()` function, the angle here is specified in
 radians, rather than in degrees. You can convert the value into degrees by
 using the forumla:
 
@@ -416,15 +416,14 @@ the version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the archive message doesn't contain data for a
 {hclass}`BPicture` object, this function returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BPicture::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BPicture::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BArchivable::Archive>` function adds the
-following fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BArchivable::Archive()` function adds the following fields
+to its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

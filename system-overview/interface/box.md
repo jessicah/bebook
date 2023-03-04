@@ -18,4 +18,4 @@ such as a control. For example, a popup menu might be used as the
 {cpp:class}`BBox`'s label, to let the user select a group of options to
 view in a preference panel:
 
-![Example BBox](./images/TheInterfaceKit/box_screen.png)
+![Example BBox](./_static/images/box_screen.png)

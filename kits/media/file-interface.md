@@ -29,7 +29,7 @@ return without doing anything.
 :::
 
 Implement this function to handle messages that arrive on your control
-port; see {cpp:func}`BMediaNode::HandleMessage` for details.
+port; see {cpp:func}`BMediaNode::HandleMessage()` for details.
 ::::
 
 ::::{abi-group}

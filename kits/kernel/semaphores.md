@@ -22,15 +22,14 @@ widths: auto
 A semaphore is a token that's used to synchronize multiple threads. The
 semaphore concept is simple: To enter into a semaphore-protected "critical
 section", a thread must first "acquire" the semaphore, through the
-{cpp:func}`acquire_sem() <acquire::sem>` function. When it passes out of
-the critical section, the thread "releases" the semaphore through
-{cpp:func}`release_sem() <release::sem>`.
+{cpp:func}`acquire_sem()` function. When it passes out of the critical
+section, the thread "releases" the semaphore through
+{cpp:func}`release_sem()`.
 
 The advantage of the semaphore system is that if a thread can't acquire a
 semaphore (because the semaphore is yet to be released by the previous
-acquirer), the thread blocks in the {cpp:func}`acquire_sem()
-<acquire::sem>` call. While it's blocked, the thread doesn't waste any
-cycles.
+acquirer), the thread blocks in the {cpp:func}`acquire_sem()` call. While
+it's blocked, the thread doesn't waste any cycles.
 
 For the full story about semaphores, see "{ref}`Semaphore Overview`".
 
@@ -60,11 +59,11 @@ specify a count that's less than 1.
 {cpp:enumerator}`B_RELATIVE_TIMEOUT` to the {hparam}`flags` argument.
 {hparam}`timeout` to the amount of time, in microseconds, that you're
 willing to wait, measured relative to now (relative timeout), or in
-comparison to the value returned by {cpp:func}`system_time()
-<system::time>` (absolute timeout). The function returns
-{cpp:enumerator}`B_TIMED_OUT` if the semaphore isn't acquired within the
-specified time. If you specify a relative {hparam}`timeout` of 0 and the
-semaphore isn't immediately available, the function immediately returns
+comparison to the value returned by {cpp:func}`system_time()` (absolute
+timeout). The function returns {cpp:enumerator}`B_TIMED_OUT` if the
+semaphore isn't acquired within the specified time. If you specify a
+relative {hparam}`timeout` of 0 and the semaphore isn't immediately
+available, the function immediately returns
 {cpp:enumerator}`B_WOULD_BLOCK`.
 
 :::{admonition} Warning
@@ -81,9 +80,8 @@ semaphore acquisition in order to protect system-defined semaphores.
 Other than the timeout and the acquisition count, there's no difference
 between the two acquisition functions. Specifically, any semaphore can be
 acquired through either of these functions; you always release a semaphore
-through {cpp:func}`release_sem() <release::sem>` (or
-{ref}`release_sem_etc()`) regardless of which function you used to acquire
-it.
+through {cpp:func}`release_sem()` (or {cpp:func}`release_sem_etc()`)
+regardless of which function you used to acquire it.
 
 To determine if the semaphore is available, the function looks at the
 semaphore's thread count (before decrementing it):
@@ -94,8 +92,8 @@ function returns immediately upon acquisition.
 
 -   If the thread count is zero or less, the calling thread is placed in the
 semaphore's thread queue where it waits for a corresponding
-{cpp:func}`release_sem() <release::sem>` call to de-queue it (or for the
-timeout to expire).
+{cpp:func}`release_sem()` call to de-queue it (or for the timeout to
+expire).
 
 :::{list-table}
 ---
@@ -200,11 +198,12 @@ if ((my_sem = create_sem(1,"My Semaphore")) < B_OK)
 :::
 
 create_sem() sets the new semaphore's owner to the team of the calling
-thread. Ownership may be re-assigned through the {ref}`set_sem_owner()`
-function. When the owner dies (when all the threads in the team are dead),
-the semaphore is automatically deleted. The owner is also signficant in a
-{cpp:func}`delete_sem() <delete::sem>` call: Only those threads that belong
-to a semaphore's owner are allowed to delete that semaphore.
+thread. Ownership may be re-assigned through the
+{cpp:func}`set_sem_owner()` function. When the owner dies (when all the
+threads in the team are dead), the semaphore is automatically deleted. The
+owner is also signficant in a {cpp:func}`delete_sem()` call: Only those
+threads that belong to a semaphore's owner are allowed to delete that
+semaphore.
 
 :::{list-table}
 ---
@@ -278,15 +277,14 @@ Returns, by reference in {hparam}`thread_count`, the value of the
 semaphore's thread count variable:
 
 -   A positive thread count (_n_) means that there are no threads in the
-semaphore's queue, and the next _n_ {cpp:func}`acquire_sem()
-<acquire::sem>` calls will return without blocking.
+semaphore's queue, and the next _n_ {cpp:func}`acquire_sem()` calls will
+return without blocking.
 
 -   If the count is zero, there are no queued threads, but the next
-{cpp:func}`acquire_sem() <acquire::sem>` call will block.
+{cpp:func}`acquire_sem()` call will block.
 
 -   A negative count (-_n_) means there are _n_ threads in the semaphore's
-thread queue and the next call to {cpp:func}`acquire_sem() <acquire::sem>`
-will block.
+thread queue and the next call to {cpp:func}`acquire_sem()` will block.
 
 By the time this function returns and you get a chance to look at the
 {hparam}`thread_count` value, the semaphore's thread count may have
@@ -411,7 +409,7 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`acquire_sem() <acquire::sem>`
+See also: {cpp:func}`acquire_sem()`
 ::::
 
 ::::{abi-group}
@@ -436,7 +434,8 @@ owned by that team are deleted.
 2.    Threads can only by deleted by threads that belongs to a semaphore's
 owner.
 
-To discover a semaphore's owner, use the {ref}`get_sem_info()` function.
+To discover a semaphore's owner, use the {cpp:func}`get_sem_info()`
+function.
 
 :::{list-table}
 ---
@@ -471,8 +470,8 @@ typedef int32 sem_id;
 :::
 
 {htype}`sem_id` numbers identify semaphores. The id is assigned when the
-semaphore is created ({cpp:func}`create_sem() <create::sem>`). The values
-are unique across the system.
+semaphore is created ({cpp:func}`create_sem()`). The values are unique
+across the system.
 
 ### sem_info
 
@@ -487,8 +486,8 @@ typedef struct sem_info {
 :::
 
 The {htype}`sem_info` structure supplies information about a semaphore.
-You retrieve the structure through the {ref}`get_sem_info()` function. The
-information in the {htype}`sem_info` structure is guaranteed to be
+You retrieve the structure through the {cpp:func}`get_sem_info()` function.
+The information in the {htype}`sem_info` structure is guaranteed to be
 internally consistent, but the structure as a whole should be consider to
 be out-of-date as soon as you receive it. It provides a picture of a
 semaphore as it exists just before the info-retrieving function returns.
@@ -571,4 +570,4 @@ widths: auto
 :::
 
 These constants are combined to form the {hparam}`flag` argument to the
-{ref}`acquire_sem_etc()` and {ref}`release_sem_etc()` functions.
+{cpp:func}`acquire_sem_etc()` and {cpp:func}`release_sem_etc()` functions.

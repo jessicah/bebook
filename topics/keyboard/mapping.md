@@ -9,17 +9,16 @@ that's been around for decades.
 
 A {cpp:enumerator}`B_KEY_DOWN` message holds the character mapped to the
 key the user pressed as an array of bytes named, simply, {hparam}`byte`.
-The array is passed as a string to the {cpp:func}`KeyDown()
-<BView::KeyDown>` hook function along with a count of the number of bytes
-in the string:
+The array is passed as a string to the {cpp:func}`~BView::KeyDown()` hook
+function along with a count of the number of bytes in the string:
 
 :::{code} c
 virtual void KeyDown(const char* bytes, int32 numBytes)
 :::
 
 See "{ref}`Character Encoding`" in the Interface Kit chapter for a
-description of UTF-8 encoding and {ref}`get_key_map()` for an explanation
-of the key map.
+description of UTF-8 encoding and {cpp:func}`get_key_map()` for an
+explanation of the key map.
 
 Most keys are mapped to more than one character. The precise character
 that the key produces depends on which modifier keys are being held down

@@ -21,10 +21,10 @@ data. A possible exception is if your node is a filter that simply
 processes buffers it receives and passes them along.
 
 A {cpp:class}`BBufferGroup` instance runs a thread that reclaims
-{cpp:class}`BBuffer`s whose {cpp:func}`Recycle() <BBuffer::Recycle>`
-function has been called. If the group is temporarily out of free buffers,
-a request for a buffer may block until one is available, or until the
-request times out, if a timeout is specified when the request is made.
+{cpp:class}`BBuffer`s whose {cpp:func}`~BBuffer::Recycle()` function has
+been called. If the group is temporarily out of free buffers, a request for
+a buffer may block until one is available, or until the request times out,
+if a timeout is specified when the request is made.
 
 ## Using BBitmaps as Buffers
 
@@ -68,5 +68,5 @@ for the buffer to be contiguous (you can do this using the
 
 Before deleting any {cpp:class}`BBitmap`s used in this way, be sure the
 buffer group has been deleted first and (if
-{cpp:func}`SetOutputBuffersFor() <BBufferConsumer::SetOutputBuffersFor>`
-has been used) all buffers have been reclaimed.
+{cpp:func}`~BBufferConsumer::SetOutputBuffersFor()` has been used) all
+buffers have been reclaimed.

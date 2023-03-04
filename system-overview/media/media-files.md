@@ -20,9 +20,9 @@ such as "Startup" or "desktop image." The {cpp:func}`entry_ref
 entry.
 
 An application can instantiate a {cpp:class}`BMediaFiles` object and then
-use the {cpp:func}`GetRefFor() <BMediaFiles::GetRefFor>` function to find
-out what file is assigned to a particular registry entry. For instance, if
-your application needs to access the desktop image file, you can get this
+use the {cpp:func}`~BMediaFiles::GetRefFor()` function to find out what
+file is assigned to a particular registry entry. For instance, if your
+application needs to access the desktop image file, you can get this
 information as follows:
 
 :::{code} cpp
@@ -35,5 +35,5 @@ if (GetRefFor("bitmap", "desktop image", &ref) == B_OK) {
 
 The user uses the Sounds preference application to assign sound files to
 events, such as the system beep and the startup sound. These are named
-"Beep" and "Startup" respectively. The {ref}`beep()` function will always
-play whatever sound is assigned to the Beep event.
+"Beep" and "Startup" respectively. The {cpp:func}`beep()` function will
+always play whatever sound is assigned to the Beep event.

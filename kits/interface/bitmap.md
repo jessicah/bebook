@@ -14,10 +14,10 @@
 
 Creates a new {hclass}`BBitmap` object that can hold a bitmap whose size
 and depth are described by {hparam}`bounds` and {hparam}`space`. The bitmap
-data is uninitialized; you set the data through {cpp:func}`Bits()
-<BBitmap::Bits>` / {cpp:func}`SetBits() <BBitmap::SetBits>`, or by drawing
-into an attached {cpp:class}`BView` (see "{ref}`Using a View to Draw into a
-Bitmap`").
+data is uninitialized; you set the data through
+{cpp:func}`~BBitmap::Bits()` / {cpp:func}`~BBitmap::SetBits()`, or by
+drawing into an attached {cpp:class}`BView` (see "{ref}`Using a View to
+Draw into a Bitmap`").
 
 :::{admonition} Warning
 :class: warning
@@ -55,8 +55,8 @@ to the Application Server.
 :::
 
 Adds {hparam}`aView` (and all its children) to this {hclass}`BBitmap`'s
-view hierarchy, and causes {cpp:func}`AttachedToWindow()
-<BView::AttachedToWindow>` to be sent to the newly add children.
+view hierarchy, and causes {cpp:func}`~BView::AttachedToWindow()` to be
+sent to the newly add children.
 
 :::{admonition} Warning
 :class: warning
@@ -68,22 +68,20 @@ bitmap.
 {hmethod}`AddChild()` fails if the {hclass}`BBitmap` was not constructed
 to accept views.
 
-See also: {cpp:func}`BWindow::AddChild`,
-{cpp:func}`BView::AttachedToWindow`, {cpp:func}`RemoveChild()
-<BBitmap::RemoveChild>`, the {hclass}`BBitmap` {cpp:func}`constructor
-<BBitmap::BBitmap()>`
+See also: {cpp:func}`BWindow::AddChild()`,
+{cpp:func}`BView::AttachedToWindow()`, {cpp:func}`~BBitmap::RemoveChild()`,
+the {hclass}`BBitmap` {cpp:func}`constructor <BBitmap::BBitmap()>`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual status_t BBitmap::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive()
-<BArchivable::Archive>` and stores the {hclass}`BBitmap` in the
-{cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BArchivable::Archive()` and
+stores the {hclass}`BBitmap` in the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BBitmap::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BBitmap::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -91,17 +89,16 @@ See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
 :::
 
 Returns a pointer to the bitmap data. The length of the data can be
-obtained by calling {cpp:func}`BitsLength() <BBitmap::BitsLength>`—or it
-can be calculated from the height of the bitmap (the number of rows) and
-{cpp:func}`BytesPerRow() <BBitmap::BytesPerRow>`.
+obtained by calling {cpp:func}`~BBitmap::BitsLength()`—or it can be
+calculated from the height of the bitmap (the number of rows) and
+{cpp:func}`~BBitmap::BytesPerRow()`.
 
-The data is in the format specified by {cpp:func}`ColorSpace()
-<BBitmap::ColorSpace>`.
+The data is in the format specified by {cpp:func}`~BBitmap::ColorSpace()`.
 
 This pointer is valid throughout the entire lifespan of the object.
 
-See also: {cpp:func}`Bounds() <BBitmap::Bounds>`, {cpp:func}`BytesPerRow()
-<BBitmap::BytesPerRow>`, {cpp:func}`BitsLength() <BBitmap::BitsLength>`
+See also: {cpp:func}`~BBitmap::Bounds()`,
+{cpp:func}`~BBitmap::BytesPerRow()`, {cpp:func}`~BBitmap::BitsLength()`
 ::::
 
 ::::{abi-group}
@@ -110,8 +107,8 @@ See also: {cpp:func}`Bounds() <BBitmap::Bounds>`, {cpp:func}`BytesPerRow()
 
 Returns the number of bytes that were allocated to store the bitmap data.
 
-See also: {cpp:func}`Bits() <BBitmap::Bits>`, {cpp:func}`BytesPerRow()
-<BBitmap::BytesPerRow>`
+See also: {cpp:func}`~BBitmap::Bits()`,
+{cpp:func}`~BBitmap::BytesPerRow()`
 ::::
 
 ::::{abi-group}
@@ -161,9 +158,9 @@ views.
 :::
 
 Returns the color space of the data being stored (not necessarily the
-color space of the data passed to the {cpp:func}`SetBits()
-<BBitmap::SetBits>` function). Once set by the {hclass}`BBitmap`
-constructor, the color space doesn't change.
+color space of the data passed to the {cpp:func}`~BBitmap::SetBits()`
+function). Once set by the {hclass}`BBitmap` constructor, the color space
+doesn't change.
 ::::
 
 ::::{abi-group}
@@ -189,8 +186,8 @@ view draws at the {hparam}`point` given, or no view associated with the
 :::
 
 Returns {cpp:expr}`true` if there's memory for the bitmap (if the address
-returned by {cpp:func}`Bits() <BBitmap::Bits>` is valid), and
-{cpp:expr}`false` if not.
+returned by {cpp:func}`~BBitmap::Bits()` is valid), and {cpp:expr}`false`
+if not.
 ::::
 
 ::::{abi-group}
@@ -224,8 +221,8 @@ off-screen window.
 
 Removes {hparam}`aView` from the hierarchy of views associated with the
 {hclass}`BBitmap`, but only if {hparam}`aView` was added to the hierarchy
-by calling {hclass}`BBitmap`'s version of the {cpp:func}`AddChild()
-<BView::AddChild>` function.
+by calling {hclass}`BBitmap`'s version of the
+{cpp:func}`~BView::AddChild()` function.
 
 If {hparam}`aView` is successfully removed, {hmethod}`RemoveChild()`
 returns {cpp:expr}`true`. If not, it returns {cpp:expr}`false`.
@@ -246,8 +243,8 @@ of data.
 
 This function is intended to be used for importing existing data from a
 different format rather than for setting individual pixels in the bitmap.
-If you're interested in coloring individual pixels, use {cpp:func}`Bits()
-<BBitmap::Bits>` to obtain direct access to the bitmap data.
+If you're interested in coloring individual pixels, use
+{cpp:func}`~BBitmap::Bits()` to obtain direct access to the bitmap data.
 
 The source data is specified in the {hparam}`mode` color space, which may
 or may not be the same as the color space that the {hclass}`BBitmap` uses
@@ -303,15 +300,14 @@ Returns a new {hclass}`BBitmap` object—or {cpp:expr}`NULL`, if the
 object. The new object is allocated by new and created with the version of
 the constructor that takes a {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BBitmap::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BBitmap::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BBitmap::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BBitmap::Archive()` function adds the following fields to
+its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

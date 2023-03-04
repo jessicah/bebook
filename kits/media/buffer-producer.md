@@ -18,10 +18,10 @@ If the node will produce more than one type of data, your
 (which is a wildcard value).
 
 If your node has additional latency on startup, you should call
-{cpp:func}`SetInitialLatency() <BBufferProducer::SetInitialLatency>` to
-record this information. This might be the case if the buffers your node
-produces are created from an input signal which refreshes infrequently,
-such as a television signal.
+{cpp:func}`~BBufferProducer::SetInitialLatency()` to record this
+information. This might be the case if the buffers your node produces are
+created from an input signal which refreshes infrequently, such as a
+television signal.
 
 :::{admonition} Note
 :class: note
@@ -38,10 +38,10 @@ yourself.
 :::
 
 When a consumer calls
-{cpp:func}`BBufferConsumer::RequestAdditionalBuffer`, this function is
-called as a result. Its job is to call {cpp:func}`SendBuffer()
-<BBufferProducer::SendBuffer>` to immediately send the next buffer to the
-consumer.
+{cpp:func}`BBufferConsumer::RequestAdditionalBuffer()`, this function is
+called as a result. Its job is to call
+{cpp:func}`~BBufferProducer::SendBuffer()` to immediately send the next
+buffer to the consumer.
 
 The {hparam}`previousBufferID`, {hparam}`previousTime`, and
 {hparam}`previousTag` arguments identify the last buffer the consumer
@@ -67,8 +67,8 @@ destination is immediately changing to the format specified by
 
 :::{admonition} Warning
 :class: warning
-You must never call {cpp:func}`SendBuffer() <BBufferProducer::SendBuffer>`
-while this call is pending.
+You must never call {cpp:func}`~BBufferProducer::SendBuffer()` while this
+call is pending.
 :::
 
 :::{list-table}
@@ -87,10 +87,10 @@ widths: auto
 	- The format change request has been sent without error.
 -
 	- {cpp:enumerator}`B_MEDIA_CHANGE_IN_PROGRESS`.
-	- A mutual exclusion error has occurred with {cpp:func}`SendBuffer()
-		<BBufferProducer::SendBuffer>`; {hmethod}`ChangeFormat()` and
-		{cpp:func}`SendBuffer() <BBufferProducer::SendBuffer>` can't both be
-		running at the same time.
+	- A mutual exclusion error has occurred with
+		{cpp:func}`~BBufferProducer::SendBuffer()`; {hmethod}`ChangeFormat()` and
+		{cpp:func}`~BBufferProducer::SendBuffer()` can't both be running at the
+		same time.
 -
 	- Other errors.
 	- You may receive other errors if the consumer doesn't agree with the new
@@ -132,7 +132,7 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`BBufferConsumer::RegionToClipData`
+See also: {cpp:func}`BBufferConsumer::RegionToClipData()`
 ::::
 
 ::::{abi-group}
@@ -146,21 +146,21 @@ and the destination. The format negotiation is already complete by the time
 
 The {hparam}`status` argument indicates whether or not the connection
 actually took place; this is the result code returned by the
-{cpp:func}`BBufferConsumer::Connected` function or an error code indicating
-an error that has occurred during other preparation for the connection.
+{cpp:func}`BBufferConsumer::Connected()` function or an error code
+indicating an error that has occurred during other preparation for the
+connection.
 
 If {hparam}`status` isn't {cpp:enumerator}`B_OK`, you should release the
 {htype}`media_source` that was reserved for this connection by
-{cpp:func}`PrepareToConnect() <BBufferProducer::PrepareToConnect>`; this
-lets it be used by other connection attempts.
+{cpp:func}`~BBufferProducer::PrepareToConnect()`; this lets it be used by
+other connection attempts.
 
 On entry, {hparam}`ioName` contains the connection name specified by the
 consumer (this may be different from the name specified by the
-{cpp:func}`PrepareToConnect() <BBufferProducer::PrepareToConnect>`
-function). On return, {hparam}`ioName` should point to a name for the
-connection; if the name really matters to you, copy the name you want the
-connection to have back into {hparam}`ioName`; otherwise, you can leave it
-alone.
+{cpp:func}`~BBufferProducer::PrepareToConnect()` function). On return,
+{hparam}`ioName` should point to a name for the connection; if the name
+really matters to you, copy the name you want the connection to have back
+into {hparam}`ioName`; otherwise, you can leave it alone.
 ::::
 
 ::::{abi-group}
@@ -173,8 +173,8 @@ connection between the specified {hparam}`source` and
 send any further buffers on the connection.
 
 If a {cpp:class}`BBufferGroup` has been specified for your producer (via
-the {cpp:func}`SetBufferGroup() <BBufferProducer::SetBufferGroup>`
-function), you should delete it here.
+the {cpp:func}`~BBufferProducer::SetBufferGroup()` function), you should
+delete it here.
 ::::
 
 ::::{abi-group}
@@ -182,10 +182,10 @@ function), you should delete it here.
 :::
 
 Once a client has finished iterating through your outputs via
-{cpp:func}`GetNextOutput() <BBufferProducer::GetNextOutput>` calls, it will
-call this function with the last value you returned as a {hparam}`cookie`.
-This gives you the opportunity to dispose of any memory you may have
-allocated for the iteration process.
+{cpp:func}`~BBufferProducer::GetNextOutput()` calls, it will call this
+function with the last value you returned as a {hparam}`cookie`. This gives
+you the opportunity to dispose of any memory you may have allocated for the
+iteration process.
 
 Return {cpp:enumerator}`B_OK` if the cookie is successfully disposed of
 (or if nothing needs to be done); otherwise, return an appropriate error
@@ -197,11 +197,11 @@ code.
 :::
 
 This hook function is called when a consumer's
-{cpp:func}`SetOutputEnabled() <BBufferConsumer::SetOutputEnabled>` function
-is called. This indicates whether or not the output specified by
-{hparam}`whichOutput` needs to be sent buffers. You must implement this
-function so that you don't send buffers to outputs that don't need them.
-The {hparam}`_deprecated_` argument is no longer used.
+{cpp:func}`~BBufferConsumer::SetOutputEnabled()` function is called. This
+indicates whether or not the output specified by {hparam}`whichOutput`
+needs to be sent buffers. You must implement this function so that you
+don't send buffers to outputs that don't need them. The
+{hparam}`_deprecated_` argument is no longer used.
 
 By default, output is enabled.
 ::::
@@ -303,9 +303,8 @@ request, you can safely assume that it's fine.
 Return {cpp:enumerator}`B_OK` if the change request is processed
 successfully; otherwise, return an appropriate error code.
 
-See also: {cpp:func}`FormatSuggestionRequested()
-<BBufferProducer::FormatSuggestionRequested>`, {cpp:func}`FormatProposal()
-<BBufferProducer::FormatProposal>`
+See also: {cpp:func}`~BBufferProducer::FormatSuggestionRequested()`,
+{cpp:func}`~BBufferProducer::FormatProposal()`
 ::::
 
 ::::{abi-group}
@@ -374,9 +373,9 @@ Implement this hook function to store, in {hparam}`outLatency`, the total
 amount of latency your {hclass}`BBufferProducer` incurs from receiving a
 buffer of data until it reaches its ultimate destination.
 
-Call {cpp:func}`FindLatencyFor() <BBufferProducer::FindLatencyFor>` on
-whatever outputs the data is being forwarded to, add your own latency to
-the largest of those values, and return that value.
+Call {cpp:func}`~BBufferProducer::FindLatencyFor()` on whatever outputs
+the data is being forwarded to, add your own latency to the largest of
+those values, and return that value.
 
 The default implementation of {hmethod}`GetLatency()` finds the maximum
 latency of your currently-available outputs by iterating over them, and
@@ -435,7 +434,7 @@ dispatch to each ancestor class in turn (starting with
 {hmethod}`HandleMessage()` implementations returns {cpp:enumerator}`B_OK`.
 If none of the inherited implementations of this function returns
 {cpp:enumerator}`B_OK`, you should pass the message to
-{cpp:func}`BMediaNode::HandleBadMessage` to be dealt with.
+{cpp:func}`BMediaNode::HandleBadMessage()` to be dealt with.
 
 Your port-listening thread should call {hmethod}`HandleMessage()` to
 dispatch the received data.
@@ -450,7 +449,7 @@ See also: "{cpp:func}`About Multiple Virtual Inheritance
 
 This hook function is called when a {cpp:class}`BBufferConsumer` that's
 receiving data from you determines that its latency has changed. It will
-call its {cpp:func}`BBufferConsumer::SendLatencyChange` function, and in
+call its {cpp:func}`BBufferConsumer::SendLatencyChange()` function, and in
 response, the Media Server will call your {hmethod}`LatencyChanged()`
 function.
 
@@ -469,7 +468,7 @@ adjust your own latency calculations to keep the data flowing smoothly.
 
 This hook function is called when a {cpp:class}`BBufferConsumer` that's
 receiving data from you determines that data is arriving late (when the
-{cpp:func}`BBufferConsumer::NotifyLateProducer` function is called); the
+{cpp:func}`BBufferConsumer::NotifyLateProducer()` function is called); the
 exact degree to which your buffers are late is specified by the
 {hparam}`howLate` argument. Your implementation of this function should
 take whatever steps are necessary to correct the problem, either by asking
@@ -479,7 +478,7 @@ other appropriate actions, depending on the current run mode.
 The {hparam}`performanceTime` argument specifies the performance time at
 which the notification was sent.
 
-See also: {cpp:func}`BMediaNode::RunMode`
+See also: {cpp:func}`BMediaNode::RunMode()`
 ::::
 
 ::::{abi-group}
@@ -496,27 +495,26 @@ Your implementation should, additionally, return in {hparam}`outSource`
 the source to be used for the connection, and should fill the
 {hparam}`outName` buffer with the name the connection will be given; the
 consumer will see this in the `outInput->name` argument specified to
-{cpp:func}`BBufferConsumer::Connected`. If your node doesn't care what the
-name is, you can leave the {hparam}`outName` untouched.
+{cpp:func}`BBufferConsumer::Connected()`. If your node doesn't care what
+the name is, you can leave the {hparam}`outName` untouched.
 
 :::{admonition} Note
 :class: note
-Your {cpp:func}`Connect() <BBufferProducer::Connect>` function may return
-a different {htype}`media_source` value in {hparam}`outOutput`'s source
-field than the one specified as the {hparam}`source` argument to this
-function. One reason you might do this is if you implement one
-{htype}`media_source` to accept connection requests, then create a new
-{htype}`media_source` to actually handle each connection.
+Your {cpp:func}`~BBufferProducer::Connect()` function may return a
+different {htype}`media_source` value in {hparam}`outOutput`'s source field
+than the one specified as the {hparam}`source` argument to this function.
+One reason you might do this is if you implement one {htype}`media_source`
+to accept connection requests, then create a new {htype}`media_source` to
+actually handle each connection.
 :::
 
 Return {cpp:enumerator}`B_OK` if the connection process should proceed, or
 an appropriate error code if something's wrong.
 
 If you return {cpp:enumerator}`B_OK`, the consumer's
-{cpp:func}`Connected() <BBufferConsumer::Connected>` function will be
-called, to let it know that a new connection is being established. Finally,
-the producer's {hmethod}`Connect()` function is called to complete the
-exchange.
+{cpp:func}`~BBufferConsumer::Connected()` function will be called, to let
+it know that a new connection is being established. Finally, the producer's
+{hmethod}`Connect()` function is called to complete the exchange.
 ::::
 
 ::::{abi-group}
@@ -582,7 +580,7 @@ In particular, be sure that if you're outputting video buffers you set the
 things will go badly for you.
 
 You can obtain a buffer to fill and send by calling
-{cpp:func}`BBufferConsumer::RequestAdditionalBuffer` on a
+{cpp:func}`BBufferConsumer::RequestAdditionalBuffer()` on a
 {cpp:class}`BBufferConsumer` that you own (and that's okay to use for
 buffers going to the specified destination).
 
@@ -684,7 +682,7 @@ It's okay to pass {hparam}`group` on to another node upstream from your
 along buffers it receives in its processing loop; in that case, you're not
 really the owner of the {cpp:class}`BBufferGroup`, unless you pass
 {cpp:expr}`true` for {hparam}`willReclaim` in the call to
-{cpp:func}`BBufferConsumer::SetOutputBuffersFor`.
+{cpp:func}`BBufferConsumer::SetOutputBuffersFor()`.
 
 Return {cpp:enumerator}`B_OK` if the buffer group is set without incident;
 otherwise, return an appropriate error code.
@@ -764,14 +762,14 @@ done easily by adding the following line to your implementation:
 *outFromChangeTag = UpdateChangeTag();
 :::
 
-You can use the {cpp:func}`ClipDataToRegion()
-<BBufferProducer::ClipDataToRegion>` function to convert the data in
-{hparam}`clipData` into an actual {cpp:class}`BRegion` if that's a better
-format for you to work with. If you do, keep in mind that
-{hparam}`numShorts` is the actual number of {htype}`int16` values in the
-array specified by {hparam}`clipData`, while {cpp:func}`ClipDataToRegion()
-<BBufferProducer::ClipDataToRegion>` requires the number of bytes of data
-in the array; be sure to multiply {hparam}`numShorts` by `sizeof(int16)`.
+You can use the {cpp:func}`~BBufferProducer::ClipDataToRegion()` function
+to convert the data in {hparam}`clipData` into an actual
+{cpp:class}`BRegion` if that's a better format for you to work with. If you
+do, keep in mind that {hparam}`numShorts` is the actual number of
+{htype}`int16` values in the array specified by {hparam}`clipData`, while
+{cpp:func}`~BBufferProducer::ClipDataToRegion()` requires the number of
+bytes of data in the array; be sure to multiply {hparam}`numShorts` by
+`sizeof(int16)`.
 
 The {htype}`media_video_display_info` structure referred to by display
 indicates the format of the video display onto which the video is being

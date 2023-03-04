@@ -12,9 +12,9 @@
 Call this from your derived node's constructor.
 
 The node is created with a reference count of 1; the count is incremented
-each time the {cpp:func}`Acquire() <BMediaNode::Acquire>` call is issued,
-and decremented each time {cpp:func}`Release() <BMediaNode::Release>` is
-called. When the reference count becomes zero, the node is deleted.
+each time the {cpp:func}`~BMediaNode::Acquire()` call is issued, and
+decremented each time {cpp:func}`~BMediaNode::Release()` is called. When
+the reference count becomes zero, the node is deleted.
 ::::
 
 ::::{abi-group}
@@ -101,7 +101,7 @@ the {hparam}`cookie` and time given. When the time
 {hmethod}`TimerExpired()` with the corresponding {hparam}`cookie` value,
 passing the recorded {hparam}`toPerformanceTime` value as the
 {hparam}`notifyPoint` argument. This will, in turn, cause the
-{cpp:func}`BMediaRoster::SyncToNode` call that instigated the timer to
+{cpp:func}`BMediaRoster::SyncToNode()` call that instigated the timer to
 return to the caller.
 
 Your implementation of {hmethod}`AddTimer()` should return
@@ -153,9 +153,9 @@ error code.
 If your node receives a message that neither the node, nor any interface
 from which the node is derived, understands the message, pass the message
 along to this function, which will work magic to deal with the problem one
-way or another. All arguments received by the {cpp:func}`HandleMessage()
-<BMediaNode::HandleMessage>` function should be passed directly through to
-{hmethod}`HandleBadMessage()`.
+way or another. All arguments received by the
+{cpp:func}`~BMediaNode::HandleMessage()` function should be passed directly
+through to {hmethod}`HandleBadMessage()`.
 ::::
 
 ::::{abi-group}
@@ -176,8 +176,8 @@ attempt to process it.
 
 For example, if your node inherits from both {cpp:class}`BBufferProducer`
 and {cpp:class}`BBufferConsumer`, you should call
-{cpp:func}`BBufferProducer::HandleMessage` and
-{cpp:func}`BBufferConsumer::HandleMessage`, {hmethod}`then
+{cpp:func}`BBufferProducer::HandleMessage()` and
+{cpp:func}`BBufferConsumer::HandleMessage()`, {hmethod}`then
 BMediaNode::HandleMessage()`, like this:
 
 :::{code} cpp
@@ -194,7 +194,7 @@ virtual status_t MyBufferProducerConsumer::HandleMessage(int32 message,
 }
 :::
 
-Note that {cpp:func}`BMediaNode::HandleBadMessage` is called if none of
+Note that {cpp:func}`BMediaNode::HandleBadMessage()` is called if none of
 the {hmethod}`HandleMessage()` implementations accept the message.
 
 Values of message between 0x60000000 and 0x7FFFFFFF are available for use
@@ -253,8 +253,8 @@ Returns a bit mask indicating what interfaces the node implements. See
 :::
 
 Returns a human-readable string specifying the node's name. This pointer
-is only valid until you {cpp:func}`Release() <BMediaNode::Release>` the
-node; after that, the pointer may point into empty space.
+is only valid until you {cpp:func}`~BMediaNode::Release()` the node; after
+that, the pointer may point into empty space.
 ::::
 
 ::::{abi-group}
@@ -333,10 +333,10 @@ widths: auto
 :::
 
 This hook function may be called before your node receives a
-{cpp:func}`Start() <BMediaNode::Start>` message if the application using
-the node calls {cpp:func}`BMediaRoster::PrerollNode`. This gives the node a
-chance to prepare the media so that when the media is started, the response
-is as fast as possible.
+{cpp:func}`~BMediaNode::Start()` message if the application using the node
+calls {cpp:func}`BMediaRoster::PrerollNode()`. This gives the node a chance
+to prepare the media so that when the media is started, the response is as
+fast as possible.
 ::::
 
 ::::{abi-group}
@@ -345,8 +345,8 @@ is as fast as possible.
 
 Transmits the error code specified by {hparam}`whichError` to anyone
 that's receiving notifications from this node (see
-{cpp:func}`BMediaRoster::StartWatching` and
-{cpp:func}`BMediaRoster::StopWatching` on  ). If {hparam}`info` isn't
+{cpp:func}`BMediaRoster::StartWatching()` and
+{cpp:func}`BMediaRoster::StopWatching()` on  ). If {hparam}`info` isn't
 {cpp:expr}`NULL`, it's used as a model message for the error notification
 message.
 
@@ -440,15 +440,15 @@ gets returned.
 :::{admonition} Warning
 :class: warning
 The {cpp:class}`BTimeSource` object returned by {hmethod}`TimeSource()` is
-only valid until the next call to {cpp:func}`HandleMessage()
-<BMediaNode::HandleMessage>` on that object. Therefore, if your node runs
-more than one thread, you need to serialize calls to
-{hmethod}`TimeSource()` (as well as usage of the returned objects) with
-calls to {cpp:func}`HandleMessage() <BMediaNode::HandleMessage>` This isn't
-a problem if you follow the recommended policy of running a single thread
-that monitors the service port with {ref}`read_port_etc()` and calls
-{cpp:func}`HandleMessage() <BMediaNode::HandleMessage>` only when a message
-is actually received.
+only valid until the next call to {cpp:func}`~BMediaNode::HandleMessage()`
+on that object. Therefore, if your node runs more than one thread, you need
+to serialize calls to {hmethod}`TimeSource()` (as well as usage of the
+returned objects) with calls to {cpp:func}`~BMediaNode::HandleMessage()`
+This isn't a problem if you follow the recommended policy of running a
+single thread that monitors the service port with
+{cpp:func}`read_port_etc()` and calls
+{cpp:func}`~BMediaNode::HandleMessage()` only when a message is actually
+received.
 :::
 ::::
 
@@ -486,8 +486,8 @@ If {hparam}`immediate` is {cpp:expr}`true`, your node should ignore the
 {hparam}`performanceTime` value and synchronously stop performance. When
 {hmethod}`Stop()` returns, you're promising not to write into any
 {cpp:class}`BBuffer`s you may have received from your downstream consumers,
-and you promise not to send any more buffers until {cpp:func}`Start()
-<BMediaNode::Start>` is called again.
+and you promise not to send any more buffers until
+{cpp:func}`~BMediaNode::Start()` is called again.
 
 :::{admonition} Note
 :class: note
@@ -532,36 +532,37 @@ This function waits until either real time specified by
 {hparam}`waitUntil` or a message is received on the control port.. The
 {hparam}`flags` are currently unused and should be 0.
 
-When a message is received, the appropriate {cpp:func}`HandleMessage()
-<BMediaNode::HandleMessage>` calls are made given the class derivation of
-the node:
+When a message is received, the appropriate
+{cpp:func}`~BMediaNode::HandleMessage()` calls are made given the class
+derivation of the node:
 
--   {cpp:func}`BMediaNode::HandleMessage` is always called first.
+-   {cpp:func}`BMediaNode::HandleMessage()` is always called first.
 
 -   If the node is derived from {cpp:class}`BBufferProducer`, and the message
-hasn't been handled yet, {cpp:func}`BBufferProducer::HandleMessage` is
+hasn't been handled yet, {cpp:func}`BBufferProducer::HandleMessage()` is
 called.
 
 -   If the node is derived from {cpp:class}`BBufferConsumer`, and the message
-hasn't been handled yet, {cpp:func}`BBufferConsumer::HandleMessage` is
+hasn't been handled yet, {cpp:func}`BBufferConsumer::HandleMessage()` is
 called.
 
 -   If the node is derived from {cpp:class}`BFileInterface`, and the message
-hasn't been handled yet, {cpp:func}`BFileInterface::HandleMessage` is
+hasn't been handled yet, {cpp:func}`BFileInterface::HandleMessage()` is
 called.
 
 -   If the node is derived from {cpp:class}`BControllable`, and the message
-hasn't been handled yet, {cpp:func}`BControllable::HandleMessage` is
+hasn't been handled yet, {cpp:func}`BControllable::HandleMessage()` is
 called.
 
 -   If the node is derived from {cpp:class}`BTimeSource`, and the message
-hasn't been handled yet, {cpp:func}`BTimeSource::HandleMessage` is called.
+hasn't been handled yet, {cpp:func}`BTimeSource::HandleMessage()` is
+called.
 
 -   If the message still hasn't been handled, the most-derived interface's
 {hmethod}`HandleMessage()` function is called.
 
--   If the message hasn't been handled, {cpp:func}`HandleBadMessage()
-<BMediaNode::HandleBadMessage>` is called.
+-   If the message hasn't been handled,
+{cpp:func}`~BMediaNode::HandleBadMessage()` is called.
 
 Once this has been done, {hmethod}`WaitForMessage()` returns. As you can
 see, this can be called from your control port to handle much of the work
@@ -610,13 +611,13 @@ widths: auto
 
 -
 	- {cpp:enumerator}`B_NODE_FAILED_START`
-	- The node failed on a {cpp:func}`Start() <BMediaNode::Start>` request.
+	- The node failed on a {cpp:func}`~BMediaNode::Start()` request.
 -
 	- {cpp:enumerator}`B_NODE_FAILED_STOP`
-	- The node failed on a {cpp:func}`Stop() <BMediaNode::Stop>` request.
+	- The node failed on a {cpp:func}`~BMediaNode::Stop()` request.
 -
 	- {cpp:enumerator}`B_NODE_FAILED_SEEK`
-	- The node failed on a {cpp:func}`Seek() <BMediaNode::Seek>` request.
+	- The node failed on a {cpp:func}`~BMediaNode::Seek()` request.
 -
 	- {cpp:enumerator}`B_NODE_FAILED_SET_RUN_MODE`
 	- The node's {ref}`run_mode` couldn't be set.
@@ -625,7 +626,7 @@ widths: auto
 	- The node couldn't fulfill a time warp request.
 -
 	- {cpp:enumerator}`B_NODE_FAILED_PREROLL`
-	- The node failed on a {cpp:func}`Preroll() <BMediaNode::Preroll>` request.
+	- The node failed on a {cpp:func}`~BMediaNode::Preroll()` request.
 -
 	- {cpp:enumerator}`B_NODE_FAILED_SET_TIME_SOURCE_FOR`
 	- The node's time source couldn't be changed.
@@ -662,10 +663,10 @@ widths: auto
 		buffers at any particular time. Each buffer's performance time should be
 		derived from the time stamped on the buffer, rather than from a
 		{cpp:class}`BTimeSource`. In fact, you'll usually want to call
-		{ref}`set_thread_priority()` to set your node's processing threads to a low
-		priority while the node is in offline mode. This lets software render media
-		to disk in an efficient manner, letting the user continue to work while the
-		render occurs in the background.
+		{cpp:func}`set_thread_priority()` to set your node's processing threads to
+		a low priority while the node is in offline mode. This lets software render
+		media to disk in an efficient manner, letting the user continue to work
+		while the render occurs in the background.
 -
 	- {cpp:enumerator}`B_RECORDING`
 	- Time-stamped buffers are being received from a node capturing them from
@@ -696,9 +697,8 @@ widths: auto
 
 		If your node gets behind in the {cpp:enumerator}`B_INCREASE_LATENCY` run
 		mode, your node should increase its internal latency measurement and send
-		call the {cpp:func}`LateNoticeReceived()
-		<BBufferProducer::LateNoticeReceived>` function in anyone above your node
-		in the media stream.
+		call the {cpp:func}`~BBufferProducer::LateNoticeReceived()` function in
+		anyone above your node in the media stream.
 
 		Your node should then try to produce each buffer earlier before the
 		buffer's performance time from that point on, so there's more time for the

@@ -36,8 +36,8 @@ vertical scroll bar should be {cpp:enumerator}`B_V_SCROLL_BAR_WIDTH` units
 wide.
 
 -   The {hclass}`BScrollBar`'s {hparam}`name` identifies it and permits it to
-be located by the {cpp:func}`FindView() <BView::FindView>` function. It can
-be {cpp:expr}`NULL`.
+be located by the {cpp:func}`~BView::FindView()` function. It can be
+{cpp:expr}`NULL`.
 
 Unlike other {cpp:class}`BView`s, the {hclass}`BScrollBar` constructor
 doesn't set an automatic resizing mode. By default, scroll bars have the
@@ -67,7 +67,7 @@ Makes sure that the Application Server is cognizant of the
 {hclass}`BScrollBar`'s value, if a value was set before the object was
 attached to a window.
 
-See also: {cpp:func}`BView::AttachedToWindow`
+See also: {cpp:func}`BView::AttachedToWindow()`
 ::::
 
 ::::{abi-group}
@@ -79,27 +79,25 @@ Responds to a notification that the value of the scroll bar has changed to
 {hparam}`newValue` as the coordinate value that should be at the left side
 of the target view's bounds rectangle. For a vertical scroll bar, it
 interprets {hparam}`newValue` as the coordinate value that should be at the
-top of the rectangle. It calls {cpp:func}`ScrollTo() <BView::ScrollTo>` to
-scroll the target's contents into position, unless they have already been
-scrolled.
+top of the rectangle. It calls {cpp:func}`~BView::ScrollTo()` to scroll the
+target's contents into position, unless they have already been scrolled.
 
 {hmethod}`ValueChanged()` is called as the result both of user actions
 ({cpp:enumerator}`B_VALUE_CHANGED` messages received from the Application
 Server) and of programmatic ones. Programmatically, scrolling can be
-initiated by the target view (calling {cpp:func}`ScrollTo()
-<BView::ScrollTo>`) or by the {hclass}`BScrollBar` (calling
-{cpp:func}`SetValue() <BScrollBar::SetValue>` or {cpp:func}`SetRange()
-<BScrollBar::SetRange>`).
+initiated by the target view (calling {cpp:func}`~BView::ScrollTo()`) or by
+the {hclass}`BScrollBar` (calling {cpp:func}`~BScrollBar::SetValue()` or
+{cpp:func}`~BScrollBar::SetRange()`).
 
 In all these cases, the target view and the scroll bars need to be kept in
 synch. This is done by a chain of function calls: {hmethod}`ValueChanged()`
-calls {cpp:func}`ScrollTo() <BView::ScrollTo>`, which in turn calls
-{cpp:func}`SetValue() <BScrollBar::SetValue>`, which then calls
+calls {cpp:func}`~BView::ScrollTo()`, which in turn calls
+{cpp:func}`~BScrollBar::SetValue()`, which then calls
 {hmethod}`ValueChanged()` again. It's up to {hmethod}`ValueChanged()` to
 get off this merry-go-round, which it does by checking the target view's
 bounds rectangle. If {hparam}`newValue` already matches the left or top
-side of the bounds rectangle, if forgoes calling {cpp:func}`ScrollTo()
-<BView::ScrollTo>`.
+side of the bounds rectangle, if forgoes calling
+{cpp:func}`~BView::ScrollTo()`.
 
 {hmethod}`ValueChanged()` does nothing if a target {cpp:class}`BView`
 hasn't been set—or if the target has been set by name, but the name doesn't
@@ -108,8 +106,8 @@ correspond to an actual {cpp:class}`BView` within the scroll bar's window.
 Derived classes can override this function to interpret {hparam}`newValue`
 differently, or to do something in addition to scrolling the target view.
 
-See also: {cpp:func}`SetTarget() <BScrollBar::SetTarget>`,
-{cpp:func}`SetValue() <BScrollBar::SetValue>`, {cpp:func}`BView::ScrollTo`
+See also: {cpp:func}`~BScrollBar::SetTarget()`,
+{cpp:func}`~BScrollBar::SetValue()`, {cpp:func}`BView::ScrollTo()`
 ::::
 
 ## Member Functions
@@ -118,13 +116,13 @@ See also: {cpp:func}`SetTarget() <BScrollBar::SetTarget>`,
 :::{cpp:function} virtual status_t BScrollBar::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive() <BView::Archive>`,
-then adds the {hclass}`BScrollBar`'s range, orientation, current value and
+Calls the inherited version of {cpp:func}`~BView::Archive()`, then adds
+the {hclass}`BScrollBar`'s range, orientation, current value and
 proportion, and the size of its big and little steps to the
 {cpp:class}`BMessage` {hparam}`archive`.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BScrollBar::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BScrollBar::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -174,9 +172,9 @@ current minimum and maximum in the variables that {hparam}`min` and
 
 If the scroll bar's current value falls outside the new range, it will be
 reset to the closest value—either {hparam}`min` or {hparam}`max`—within
-range. {cpp:func}`ValueChanged() <BScrollBar::ValueChanged>` is called to
-inform the {hclass}`BScrollBar` of the change whether or not it's attached
-to a window.
+range. {cpp:func}`~BScrollBar::ValueChanged()` is called to inform the
+{hclass}`BScrollBar` of the change whether or not it's attached to a
+window.
 
 If the {hclass}`BScrollBar` is attached to a window, any change in its
 range will be immediately reflected on-screen. The knob will move to the
@@ -220,7 +218,7 @@ as expected.
 Currently, a {hclass}`BScrollBar`'s steps can be successfully set only
 after it's attached to a window.
 
-See also: {cpp:func}`ValueChanged() <BScrollBar::ValueChanged>`
+See also: {cpp:func}`~BScrollBar::ValueChanged()`
 ::::
 
 ::::{abi-group}
@@ -250,8 +248,8 @@ object is passed to the target view. This lets the target update its scroll
 bars when its contents are scrolled.
 
 See also: The {hclass}`BScrollBar` {cpp:func}`constructor
-<BScrollBar::BScrollBar()>`, {cpp:func}`ValueChanged()
-<BScrollBar::ValueChanged>`, {cpp:func}`BView::ScrollBar`
+<BScrollBar::BScrollBar()>`, {cpp:func}`~BScrollBar::ValueChanged()`,
+{cpp:func}`BView::ScrollBar()`
 ::::
 
 ::::{abi-group}
@@ -267,21 +265,21 @@ provides a way to do it programmatically. {hmethod}`Value()` returns the
 current value, whether set by {hmethod}`SetValue()` or by the user.
 
 {hmethod}`SetValue()` assigns a new {hparam}`value` to the scroll bar and
-calls the {cpp:func}`ValueChanged() <BScrollBar::ValueChanged>` hook
-function, whether or not the new value is really a change from the old. If
-the value passed lies outside the range of the scroll bar, the
-{hclass}`BScrollBar` is reset to the closest value within range—that is, to
-either the minimum or the maximum value previously specified.
+calls the {cpp:func}`~BScrollBar::ValueChanged()` hook function, whether or
+not the new value is really a change from the old. If the value passed lies
+outside the range of the scroll bar, the {hclass}`BScrollBar` is reset to
+the closest value within range—that is, to either the minimum or the
+maximum value previously specified.
 
 If the scroll bar is attached to a window, changing its value updates its
-on-screen display. The call to {cpp:func}`ValueChanged()
-<BScrollBar::ValueChanged>` enables the object to scroll the target view so
-that it too is updated to conform to the new value.
+on-screen display. The call to {cpp:func}`~BScrollBar::ValueChanged()`
+enables the object to scroll the target view so that it too is updated to
+conform to the new value.
 
 The initial value of a scroll bar is 0.
 
-See also: {cpp:func}`ValueChanged() <BScrollBar::ValueChanged>`,
-{cpp:func}`SetRange() <BScrollBar::SetRange>`
+See also: {cpp:func}`~BScrollBar::ValueChanged()`,
+{cpp:func}`~BScrollBar::SetRange()`
 ::::
 
 ## Static Functions
@@ -295,15 +293,14 @@ with the version of the constructor that takes a {cpp:class}`BMessage`
 archive. However, if the {hparam}`archive` message doesn't contain data for
 a {hclass}`BScrollBar` object, the return value will be {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BScrollBar::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BScrollBar::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BScrollBar::Archive>` function adds the
-following fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BScrollBar::Archive()` function adds the following fields
+to its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

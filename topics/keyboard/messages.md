@@ -21,8 +21,8 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BView::KeyDown` ({cpp:enumerator}`B_KEY_DOWN`)
-{cpp:func}`BView::KeyUp` ({cpp:enumerator}`B_KEY_UP`)   (The
+	- {cpp:func}`BView::KeyDown()` ({cpp:enumerator}`B_KEY_DOWN`)
+{cpp:func}`BView::KeyUp()` ({cpp:enumerator}`B_KEY_UP`)   (The
 {cpp:enumerator}`…UNMAPPED…` messages don't map to hook functions.)
 
 

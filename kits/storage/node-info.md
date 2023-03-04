@@ -14,11 +14,11 @@
 
 The default constructor creates a new, uninitialized {hclass}`BNodeInfo`
 object. To initialize you have to follow this construction with a call to
-{cpp:func}`SetTo() <BNodeInfo::SetTo>`.
+{cpp:func}`~BNodeInfo::SetTo()`.
 
 The {cpp:class}`BNode` version intializes the {hclass}`BNodeInfo` by
-passing the argument to {cpp:func}`SetTo() <BNodeInfo::SetTo>`; see
-{cpp:func}`SetTo() <BNodeInfo::SetTo>` for details (and error codes).
+passing the argument to {cpp:func}`~BNodeInfo::SetTo()`; see
+{cpp:func}`~BNodeInfo::SetTo()` for details (and error codes).
 ::::
 
 ::::{abi-group}
@@ -76,7 +76,7 @@ widths: auto
 
 :::
 
-See Also: {cpp:func}`BMimeType::GetAppHint`
+See Also: {cpp:func}`BMimeType::GetAppHint()`
 ::::
 
 ::::{abi-group}
@@ -159,8 +159,8 @@ widths: auto
 	- The bitmap or icon wasn't the proper size.
 -
 	- Attribute errors.
-	- See the error codes for {cpp:func}`BNode::ReadAttr` and
-		{cpp:func}`BNode::WriteAttr`.
+	- See the error codes for {cpp:func}`BNode::ReadAttr()` and
+		{cpp:func}`BNode::WriteAttr()`.
 
 :::
 ::::
@@ -216,8 +216,8 @@ widths: auto
 		(greater than {cpp:enumerator}`B_MIME_TYPE_LENGTH`).
 -
 	- Attribute errors.
-	- See the error codes for {cpp:func}`BNode::ReadAttr` and
-		{cpp:func}`BNode::WriteAttr`.
+	- See the error codes for {cpp:func}`BNode::ReadAttr()` and
+		{cpp:func}`BNode::WriteAttr()`.
 
 :::
 ::::
@@ -256,8 +256,8 @@ widths: auto
 	- The {hclass}`BNodeInfo` is uninitialized.
 -
 	- Attribute errors.
-	- See the error codes for {cpp:func}`BNode::ReadAttr` and
-		{cpp:func}`BNode::WriteAttr`.
+	- See the error codes for {cpp:func}`BNode::ReadAttr()` and
+		{cpp:func}`BNode::WriteAttr()`.
 
 :::
 ::::
@@ -288,7 +288,7 @@ widths: auto
 
 :::
 
-See {cpp:func}`SetTo() <BNodeInfo::SetTo>` for more error codes.
+See {cpp:func}`~BNodeInfo::SetTo()` for more error codes.
 ::::
 
 ::::{abi-group}

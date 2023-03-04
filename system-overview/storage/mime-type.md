@@ -52,8 +52,8 @@ include spaces or any of these forbidden characters:
 :::
 
 When you initialize a {hclass}`BMimeType` object (through the constructor
-or {cpp:func}`SetTo() <BMimeType::SetTo>` function), you have to tell it
-what MIME string you want it to represent:
+or {cpp:func}`~BMimeType::SetTo()` function), you have to tell it what MIME
+string you want it to represent:
 
 -   The string can be supertype-only, or it can be supertype/subtype.
 
@@ -69,8 +69,8 @@ characters.
 characters. More than enough.)
 
 You can check the validity of a MIME string without constructing a
-{hclass}`BMimeType` object by calling the static {cpp:func}`IsValid()
-<BMimeType::IsValid>` function:
+{hclass}`BMimeType` object by calling the static
+{cpp:func}`~BMimeType::IsValid()` function:
 
 :::{code} cpp
 BMimeType::IsValid("text/qwerty");

@@ -11,8 +11,8 @@ commands
 -   It provides an Undo mechanism.
 
 By default, a {cpp:class}`BTextView` displays all its text in a single
-font and color. The {cpp:func}`SetStylable() <BTextView::SetStylable>`
-turns on support for multiple character formats.
+font and color. The {cpp:func}`~BTextView::SetStylable()` turns on support
+for multiple character formats.
 
 Paragraph formats—such as alignment and tab widths—are uniform for all
 text the BTextView displays. These properties can be set, but the setting
@@ -43,13 +43,12 @@ text in Unicode UTF-8 encoding,
 The BeOS(TM) is . . .
 :::
 
-and "BeOS(TM)" is selected. {cpp:func}`GetSelection()
-<BTextView::GetSelection>` would return 4 and 11 as the offsets that
-enclose the selection. The character 'B' occupies the fourth byte of text
-and the space following the trademark symbol is the eleventh byte of text.
-The characters in "BeOS" are each encoded in one byte, but '(TM) ' takes up
-three bytes in UTF-8. Thus the five-character selection occupies 7 bytes
-(and offsets) of text.
+and "BeOS(TM)" is selected. {cpp:func}`~BTextView::GetSelection()` would
+return 4 and 11 as the offsets that enclose the selection. The character
+'B' occupies the fourth byte of text and the space following the trademark
+symbol is the eleventh byte of text. The characters in "BeOS" are each
+encoded in one byte, but '(TM) ' takes up three bytes in UTF-8. Thus the
+five-character selection occupies 7 bytes (and offsets) of text.
 
 Although offsets count bytes, they can also be thought of as designating
 positions between characters. The position at the beginning of the text is
@@ -69,23 +68,21 @@ uses the graphics primitives it inherits from the {cpp:class}`"BView`
 class. However, it largely presents its own API for determining the
 appearance of the text it draws. You should not attempt to affect the
 {cpp:class}`BTextView` by calling primitive {cpp:class}`BView` functions
-like {cpp:func}`MovePenTo() <BView::MovePenTo>`, {cpp:func}`SetFont()
-<BView::SetFont>`, or {cpp:func}`SetHighColor() <BView::SetHighColor>`.
-Instead, use {cpp:class}`BTextView` functions like
-{cpp:func}`SetFontAndColor() <BTextView::SetFontAndColor>` and let the
-object take care of formatting and drawing the text.
+like {cpp:func}`~BView::MovePenTo()`, {cpp:func}`~BView::SetFont()`, or
+{cpp:func}`~BView::SetHighColor()`. Instead, use {cpp:class}`BTextView`
+functions like {cpp:func}`~BTextView::SetFontAndColor()` and let the object
+take care of formatting and drawing the text.
 
 The one inherited function that can influence the {cpp:class}`BTextView`
-is {cpp:func}`SetViewColor() <BView::SetViewColor>`. This function
-determines the background against which the text is drawn and the color
-that is used in antialiasing calculations.
+is {cpp:func}`~BView::SetViewColor()`. This function determines the
+background against which the text is drawn and the color that is used in
+antialiasing calculations.
 
 ## Resizing
 
 A {cpp:class}`BTextView` can be made to resize itself to exactly fit the
 text that the user enters. This is sometimes appropriate for small one-line
-text fields. See the {cpp:func}`MakeResizable() <BTextView::MakeResizable>`
-function.
+text fields. See the {cpp:func}`~BTextView::MakeResizable()` function.
 
 ## BTextView and BScrollBars
 
@@ -99,7 +96,7 @@ have to delete them yourself if you created them.) When the
 scrollbars' ranges, step sizes, and scroller positions and proportions are
 automatically reset to reflect the {cpp:class}`BTextView` object's bounds.
 Attempts to set these parameters directly (through
-{cpp:func}`BScrollBar::SetRange` etc.), are worse than ignored; they're
+{cpp:func}`BScrollBar::SetRange()` etc.), are worse than ignored; they're
 actually applied, and then (at some point) the {cpp:class}`BTextView` will
 notice the change in the scrollbars and reset them. Looks like flicker to
 me.

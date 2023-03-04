@@ -92,7 +92,7 @@ belong to you.
 
 ### Archive()
 
-See {cpp:func}`BArchivable::Archive`
+See {cpp:func}`BArchivable::Archive()`
 
 ::::{abi-group}
 :::{cpp:function} virtual status_t BHandler::GetSupportedSuites(BMessage* message)
@@ -140,10 +140,10 @@ The value returned by {hmethod}`GetSupportedSuites()` is added to
 :::
 
 These are "smart" versions of {cpp:class}`BLooper`'s locking functions
-({cpp:func}`BLooper::Lock` et. al.). The difference between the versions is
-that these functions retrieve the handler's looper and lock it (or unlock
-it) in a pseudo-atomic operation, thus avoiding a race condition. Anytime
-you're tempted to write code such as this:
+({cpp:func}`BLooper::Lock()` et. al.). The difference between the versions
+is that these functions retrieve the handler's looper and lock it (or
+unlock it) in a pseudo-atomic operation, thus avoiding a race condition.
+Anytime you're tempted to write code such as this:
 
 :::{code} cpp
 /* DON'T DO THIS */
@@ -165,7 +165,8 @@ if (myHandler->LockLooper()) {
 
 Except for an additional return value in
 {hmethod}`LockLooperWithTimeout()`, these functions are identical to their
-{cpp:class}`BLooper` analogues. See {cpp:func}`BLooper::Lock` for details.
+{cpp:class}`BLooper` analogues. See {cpp:func}`BLooper::Lock()` for
+details.
 
 {hmethod}`LockLooper()` returns {cpp:expr}`true` if it was able to lock
 the looper, or if it's already locked by the calling thread, and
@@ -213,7 +214,7 @@ associated with only one {cpp:class}`BLooper` at a time.
 Note that a {cpp:class}`BLooper` object automatically adds itself (as a
 handler) to itself (as a looper), and a {cpp:class}`BWindow` automatically
 adds its child views. To explicitly add a handler to a looper, you call
-{cpp:func}`BLooper::AddHandler`.
+{cpp:func}`BLooper::AddHandler()`.
 ::::
 
 ::::{abi-group}
@@ -269,9 +270,9 @@ if ( (strcmp(property, "Proxy") == 0)
 :::
 
 Since this function resolved the specifier at {hparam}`index`, it calls
-{cpp:func}`PopSpecifier() <BMessage::PopSpecifier>` to decrement the index
-before forwarding the message. Otherwise, the next handler would try to
-resolve the same specifier.
+{cpp:func}`~BMessage::PopSpecifier()` to decrement the index before
+forwarding the message. Otherwise, the next handler would try to resolve
+the same specifier.
 
 #### Method 2:
 
@@ -297,8 +298,8 @@ place as the designated handler for the message. The {cpp:class}`BLooper`
 will give the returned handler a chance to respond to the message or
 resolve the next specifier.
 
-Again, {cpp:func}`PopSpecifier() <BMessage::PopSpecifier>` should be
-called so that an attempt isn't made to resolve the same specifier twice.
+Again, {cpp:func}`~BMessage::PopSpecifier()` should be called so that an
+attempt isn't made to resolve the same specifier twice.
 
 #### Method 3:
 
@@ -314,8 +315,7 @@ if ( (strcmp(property, "Value") == 0) &&
 
 This confirms the {hclass}`BHandler` as the message target.
 {hmethod}`ResolveSpecifier()` won't be called again, so it's not necessary
-to call {cpp:func}`PopSpecifier() <BMessage::PopSpecifier>` before
-returning.
+to call {cpp:func}`~BMessage::PopSpecifier()` before returning.
 
 #### Method 4:
 
@@ -388,8 +388,8 @@ For {hmethod}`SetFilterList()`, {hmethod}`AddFilter()` and
 to a {cpp:class}`BLooper` object and the {cpp:class}`BLooper` must be
 locked.
 
-See also: {cpp:func}`BLooper::SetCommonFilterList`,
-{cpp:func}`BLooper::Lock`, the {cpp:class}`BMessageFilter` class
+See also: {cpp:func}`BLooper::SetCommonFilterList()`,
+{cpp:func}`BLooper::Lock()`, the {cpp:class}`BMessageFilter` class
 ::::
 
 ::::{abi-group}
@@ -407,8 +407,8 @@ These functions set and return the name that identifies the
 altered or freed.
 
 See also: The {hclass}`BHandler` {cpp:func}`constructor
-<BHandler::BHandler()>`, {cpp:func}`BView::FindView` in th {ref}`Interface
-Kit`
+<BHandler::BHandler()>`, {cpp:func}`BView::FindView()` in th
+{ref}`Interface Kit`
 ::::
 
 ::::{abi-group}
@@ -425,7 +425,7 @@ chain, and the {cpp:class}`BLooper` they belong to must be locked. The
 order of objects in the handler chain affects the way in-coming messages
 are handled (as explained in "{ref}`Inheritance and the Handler Chain`". By
 default handlers are placed in the order that they're added (through
-{cpp:func}`BLooper::AddHandler`).
+{cpp:func}`BLooper::AddHandler()`).
 
 {hmethod}`NextHandler()` returns this object's next handler. If this
 object is at the end of the chain, it returns {cpp:expr}`NULL`.
@@ -438,10 +438,10 @@ object is at the end of the chain, it returns {cpp:expr}`NULL`.
 Sends a {cpp:enumerator}`B_OBSERVER_NOTICE_CHANGE` message to each
 {hclass}`BHandler` object (or "observer") that's observing this handler
 (the "notifier"). To observe a notifier, the observer calls
-{cpp:func}`StartWatching() <BHandler::StartWatching>`. The {hparam}`what`
-argument describes the type of change that's prompting this notification;
-only those observers that have registered to be notified about what (or
-that are watching all changes) are sent notifications.
+{cpp:func}`~BHandler::StartWatching()`. The {hparam}`what` argument
+describes the type of change that's prompting this notification; only those
+observers that have registered to be notified about what (or that are
+watching all changes) are sent notifications.
 
 The {cpp:enumerator}`B_OBSERVER_NOTICE_CHANGE` messages that are sent are
 copied from {hparam}`msg` with the what argument added as the
@@ -530,7 +530,7 @@ widths: auto
 
 ### Instantiate()
 
-See {cpp:func}`BArchivable::Instantiate`
+See {cpp:func}`BArchivable::Instantiate()`
 
 ## Archived Fields
 
@@ -552,7 +552,7 @@ widths: auto
 
 	- {cpp:enumerator}`B_STRING_TYPE`
 
-	- The object's name (see {cpp:func}`SetName() <BHandler::SetName>`).
+	- The object's name (see {cpp:func}`~BHandler::SetName()`).
 
 
 :::

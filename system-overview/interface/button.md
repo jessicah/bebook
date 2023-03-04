@@ -27,17 +27,17 @@ Invoke(). To post a message each time the button is clicked or operated
 from the keyboard.
 
 : You can designate the object that should handle the message by calling
-{cpp:class}`BControl`'s {cpp:func}`SetTarget() <BInvoker::SetTarget>`
-function inherited from {cpp:class}`BInvoker`. A model for the message is
-set by the {cpp:class}`BButton` constructor (or by {cpp:class}`BControl`'s
-{cpp:func}`SetMessage() <BInvoker::SetMessage>` function inherited from
+{cpp:class}`BControl`'s {cpp:func}`~BInvoker::SetTarget()` function
+inherited from {cpp:class}`BInvoker`. A model for the message is set by the
+{cpp:class}`BButton` constructor (or by {cpp:class}`BControl`'s
+{cpp:func}`~BInvoker::SetMessage()` function inherited from
 {cpp:class}`BInvoker`).
 
 IsEnabled(). To determine how the button should be drawn and whether it's
 enabled to post a message.
 
-: You can call {cpp:class}`BControl`'s {cpp:func}`SetEnabled()
-<BControl::SetEnabled>` to enable and disable the button.
+: You can call {cpp:class}`BControl`'s {cpp:func}`~BControl::SetEnabled()`
+to enable and disable the button.
 
 A {cpp:class}`BButton` is an appropriate control device for initiating an
 action. Use a {cpp:class}`BCheckBox`, a {cpp:class}`BPictureButton`, or

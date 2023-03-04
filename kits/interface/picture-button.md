@@ -23,9 +23,9 @@ overview. The other arguments are inherited from the {cpp:class}`BView` and
 {cpp:enumerator}`B_CONTROL_OFF`.
 
 If the {hclass}`BPictureButton` can be disabled, it needs additional
-"disabled" images, as set through {cpp:func}`SetDisabledOff()
-<BPictureButton::SetDisabledOff>` and {cpp:func}`SetDisabledOn()
-<BPictureButton::SetDisabledOn>`.
+"disabled" images, as set through
+{cpp:func}`~BPictureButton::SetDisabledOff()` and
+{cpp:func}`~BPictureButton::SetDisabledOn()`.
 
 The {hclass}`BPictureButton` copies all {cpp:class}`BPicture`s that are
 passed to it. It's the caller's responsibility to free the
@@ -47,8 +47,8 @@ Deletes the object and its data.
 
 Stores the {hclass}`BPictureButton` in the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BPictureButton::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BPictureButton::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -117,15 +117,14 @@ created with the version of the constructor that takes a
 contain data for a {hclass}`BPictureButton` object, this function returns
 {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BPictureButton::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BPictureButton::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BPictureButton::Archive>` function adds the
-following fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BPictureButton::Archive()` function adds the following
+fields to its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---
@@ -180,4 +179,4 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`BArchivable::Archive`
+See also: {cpp:func}`BArchivable::Archive()`

@@ -16,7 +16,7 @@ about a node in the file system. You can…
 -   Get a {cpp:class}`BVolume` object for the node's volume.
 
 -   Get the {htype}`node_ref` of the node (and pass it to
-{cpp:func}`watch_node() <watch::node>`, most likely).
+{cpp:func}`watch_node()`, most likely).
 
 ## Nodes and Entries
 
@@ -38,39 +38,38 @@ invoked-upon entry is abstract.
 
 ## Relationship to stat()
 
-The {hclass}`BStatable` functions are covers for the POSIX {ref}`stat()`
-call. stat() retrieves a file-specific {htype}`stat` structure, which
-records the statistics listed above (and then some). Although
-{hclass}`BStatable` was designed to hide stat details, you can get the
-{ref}`stat()` structure through the {cpp:func}`GetStat()
-<BStatable::GetStat>` function.
+The {hclass}`BStatable` functions are covers for the POSIX
+{cpp:func}`stat()` call. stat() retrieves a file-specific {htype}`stat`
+structure, which records the statistics listed above (and then some).
+Although {hclass}`BStatable` was designed to hide stat details, you can get
+the {cpp:func}`stat()` structure through the
+{cpp:func}`~BStatable::GetStat()` function.
 
 stat() is notorious for being expensive. Furthermore, the {htype}`stat`
 structure is stale as soon as it gets back from the stat() call. If you're
 concerned with efficiency, be aware that every {hclass}`BStatable` function
 (the "setters" as well as the "getters") performs a stat(). For example,
-calling {cpp:func}`GetOwner() <BStatable::GetOwner>` and then
-{cpp:func}`GetGroup() <BStatable::GetGroup>` results in two stat() calls.
-If you want to look at lot of fields (within the same {htype}`stat`
-structure) all at once, you might consider using {hclass}`BStatable`'s
-{cpp:func}`GetStat() <BStatable::GetStat>` function.
+calling {cpp:func}`~BStatable::GetOwner()` and then
+{cpp:func}`~BStatable::GetGroup()` results in two stat() calls. If you want
+to look at lot of fields (within the same {htype}`stat` structure) all at
+once, you might consider using {hclass}`BStatable`'s
+{cpp:func}`~BStatable::GetStat()` function.
 
 As for integrity, {hclass}`BStatable` info-getting functions are obviously
 in the same boat as the stat() call itself: The retrieved data isn't
 guaranteed to be in sync with the actual state of the stat()'d item.
 
 The {cpp:class}`BDirectory` class also defines a stat-retrieving function
-that, in some cases, can be more efficient than the {cpp:func}`GetStat()
-<BStatable::GetStat>` function defined here:
+that, in some cases, can be more efficient than the
+{cpp:func}`~BStatable::GetStat()` function defined here:
 
--   The {cpp:func}`BDirectory::GetStatFor` function retrieves the
+-   The {cpp:func}`BDirectory::GetStatFor()` function retrieves the
 {htype}`stat` structure for the node of a named entry within a directory.
 If you're interested in getting stat information for a series of nodes
 within the same directory, you should use this function. You have to call
 it iteratively (once for each named entry), but the accumulation of the
-iterated calls will be faster than the {cpp:func}`GetStat()
-<BStatable::GetStat>` calls made on the analogous {cpp:class}`BEntry`
-objects.
+iterated calls will be faster than the {cpp:func}`~BStatable::GetStat()`
+calls made on the analogous {cpp:class}`BEntry` objects.
 
 ## Accessing Unreadable and Unwritable Entries
 
@@ -84,8 +83,8 @@ you're looking at is read-protected. However, you can only invoke the
 info-setting functions if the node allows writing.
 
 -   Similarly, you can get stat info for a locked node, but you won't be able
-to write the info (through functions such as {cpp:func}`SetOwner()
-<BStatable::SetOwner>`) unless your object holds the lock. See
+to write the info (through functions such as
+{cpp:func}`~BStatable::SetOwner()`) unless your object holds the lock. See
 {cpp:class}`BNode` for more on locking.
 
 ## Other Details
@@ -94,6 +93,5 @@ You rarely set stat information. In practice, you rarely use
 {hclass}`BStatable`'s info-setting functions. Setting information such as
 when a file was created, who owns it, or how big it is, is the
 responsibility of the system and the privilege of the user. For example,
-when you {cpp:func}`Write() <BFile::Write>` to a {cpp:class}`BFile` object,
-the system automatically updates the size and modification date for the
-file.
+when you {cpp:func}`~BFile::Write()` to a {cpp:class}`BFile` object, the
+system automatically updates the size and modification date for the file.

@@ -45,10 +45,10 @@ The layout of the items in a {hclass}`BPopUpMenu` can be either
 fits the items that are added to it.
 
 The new {hclass}`BPopUpMenu` is empty; you add items to it by calling
-{cpp:class}`BMenu`'s {cpp:func}`AddItem() <BMenu::AddItem>` function.
+{cpp:class}`BMenu`'s {cpp:func}`~BMenu::AddItem()` function.
 
-See also: {cpp:func}`BMenu::SetRadioMode`,
-{cpp:func}`BMenu::SetLabelFromMarked`
+See also: {cpp:func}`BMenu::SetRadioMode()`,
+{cpp:func}`BMenu::SetLabelFromMarked()`
 ::::
 
 ::::{abi-group}
@@ -65,11 +65,11 @@ after a {hclass}`BPopUpMenu`.
 :::{cpp:function} virtual status_t BPopUpMenu::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive() <BMenu::Archive>` and
-stores the {hclass}`BPopUpMenu` in the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BMenu::Archive()` and stores
+the {hclass}`BPopUpMenu` in the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BPopUpMenu::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BPopUpMenu::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -87,8 +87,9 @@ return until the user dismisses the menu from the screen. If the user
 invoked an item in the menu, it returns a pointer to the item. If no item
 was invoked, it returns {cpp:expr}`NULL`.
 
-{hmethod}`Go()` is typically called from within the {cpp:func}`MouseDown()
-<BView::MouseDown>` function of a {cpp:class}`BView`. For example:
+{hmethod}`Go()` is typically called from within the
+{cpp:func}`~BView::MouseDown()` function of a {cpp:class}`BView`. For
+example:
 
 :::{code} cpp
 void MyView::MouseDown(BPoint point)
@@ -148,7 +149,7 @@ coordinate system.
 Once {hmethod}`Go()` returns, your application should delete the
 {hclass}`BPopUpMenu` object.
 
-See also: {cpp:func}`BInvoker::SetMessage`
+See also: {cpp:func}`BInvoker::SetMessage()`
 ::::
 
 ::::{abi-group}
@@ -167,8 +168,8 @@ to determine the point to pass to {hmethod}`Go()`. However, you can
 override it to change where a customized pop-up menu defined in a derived
 class appears on-screen when it's controlled by a {cpp:class}`BMenuBar`.
 
-See also: {cpp:func}`BMenu::SetLabelFromMarked`,
-{cpp:func}`BMenu::ScreenLocation`, the {hclass}`BPopUpMenu` constructor
+See also: {cpp:func}`BMenu::SetLabelFromMarked()`,
+{cpp:func}`BMenu::ScreenLocation()`, the {hclass}`BPopUpMenu` constructor
 ::::
 
 ::::{abi-group}
@@ -197,7 +198,6 @@ with the version of the constructor that takes a {cpp:class}`BMessage`
 archive. However, if the archive message doesn't contain data for a
 {hclass}`BPopUpMenu`, this function returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BMenu::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BMenu::Archive()`
 ::::

@@ -116,12 +116,11 @@ frames) and cache the performance time and tag values of the first buffer
 that arrives at that seek point.
 
 Producers that can't seek without help from the decoder can then query the
-consumer by calling {cpp:func}`FindSeekTag()
-<BBufferProducer::FindSeekTag>`. This causes the consumer's
-{cpp:func}`SeekTagRequested() <BBufferConsumer::SeekTagRequested>` function
-to be called. This returns the seek tag and time that are closest to the
-requested time. The producer can then use this information locate the
-appropriate point in the media data.
+consumer by calling {cpp:func}`~BBufferProducer::FindSeekTag()`. This
+causes the consumer's {cpp:func}`~BBufferConsumer::SeekTagRequested()`
+function to be called. This returns the seek tag and time that are closest
+to the requested time. The producer can then use this information locate
+the appropriate point in the media data.
 
 The easiest way to use this is to use the file offset as the tag data, but
 any value that makes sense to the producer can be used, since the consumer
@@ -137,8 +136,8 @@ Time          Seek Tag
 
 In this simple example, we have four buffers, two of which have seek tags
 recorded (at 0.0 seconds and 0.3 seconds). If the producer is seeking to
-0.2 seconds, it would call {cpp:func}`FindSeekTag()
-<BBufferProducer::FindSeekTag>`, like this:
+0.2 seconds, it would call {cpp:func}`~BBufferProducer::FindSeekTag()`,
+like this:
 
 :::{code} cpp
 media_seek_tag tag;

@@ -2,7 +2,7 @@
 
 The {cpp:class}`BMediaTrack` class provides access to a particular track
 in a media file. It's always instantiated using the
-{cpp:func}`BMediaFile::TrackAt` or {cpp:func}`BMediaFile::CreateTrack`
+{cpp:func}`BMediaFile::TrackAt()` or {cpp:func}`BMediaFile::CreateTrack()`
 function.
 
 The {cpp:class}`BMediaTrack` constructor searches for a codec that can
@@ -13,20 +13,18 @@ If you opened the file for writing, you can write data into the track. If
 you specified the {cpp:enumerator}`B_MEDIA_FILE_REPLACE_MODE` flag when
 constructing the {cpp:class}`BMediaFile`, you can both read and write from
 the file. If no decoder is available for the track, you can still use
-{cpp:func}`ReadChunk() <BMediaTrack::ReadChunk>` to access the encoded data
-directly.
+{cpp:func}`~BMediaTrack::ReadChunk()` to access the encoded data directly.
 
 After instantiating the {cpp:class}`BMediaTrack`, using the
 {cpp:class}`BMediaFile` functions for doing so, you should call
-{cpp:func}`InitCheck() <BMediaTrack::InitCheck>` to be sure the track is
-valid. You can then use {cpp:func}`ReadFrames() <BMediaTrack::ReadFrames>`
-and {cpp:func}`WriteFrames() <BMediaTrack::WriteFrames>` to read and write
-data to the file, as appropriate. For video data, you should work one frame
-at a time.
+{cpp:func}`~BMediaTrack::InitCheck()` to be sure the track is valid. You
+can then use {cpp:func}`~BMediaTrack::ReadFrames()` and
+{cpp:func}`~BMediaTrack::WriteFrames()` to read and write data to the file,
+as appropriate. For video data, you should work one frame at a time.
 
-You can also seek particular times or frames using {cpp:func}`SeekToTime()
-<BMediaTrack::SeekToTime>` or {cpp:func}`SeekToFrame()
-<BMediaTrack::SeekToFrame>`.
+You can also seek particular times or frames using
+{cpp:func}`~BMediaTrack::SeekToTime()` or
+{cpp:func}`~BMediaTrack::SeekToFrame()`.
 
 For an example of how to use {cpp:class}`BMediaTrack` to read and write
 tracks in media files, see "{ref}`Reading and Writing Media Files`"

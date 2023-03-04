@@ -16,9 +16,9 @@
 :::
 
 The constructor sets up the {hclass}`BMediaBufferDecoder`. If you use the
-empty form of the constructor, you'll have to call {cpp:func}`SetTo()
-<BMediaDecoder::SetTo>` to establish the format to be decoded before
-calling {cpp:func}`Decode() <BMediaDecoder::Decode>`.
+empty form of the constructor, you'll have to call
+{cpp:func}`~BMediaDecoder::SetTo()` to establish the format to be decoded
+before calling {cpp:func}`~BMediaDecoder::Decode()`.
 
 The second form accepts a {cpp:func}`media_format <media::format>`
 structure, {hparam}`inFormat`, that indicates the type of media data that
@@ -33,8 +33,8 @@ structure, {hparam}`mci`, that determines which codec should be used.
 :class: note
 If you use either the {cpp:func}`media_format <media::format>` or
 {ref}`media_codec_info` form of the constructor, you must call
-{cpp:func}`InitCheck() <BMediaBufferDecoder::InitCheck>` to ensure that
-construction was successful before using any other functions in this class.
+{cpp:func}`~BMediaBufferDecoder::InitCheck()` to ensure that construction
+was successful before using any other functions in this class.
 :::
 ::::
 
@@ -77,8 +77,8 @@ widths: auto
 	- No error.
 -
 	- Other errors.
-	- The decoder's {cpp:func}`Decode() <BMediaDecoder::Decode>` function can
-		return errors.
+	- The decoder's {cpp:func}`~BMediaDecoder::Decode()` function can return
+		errors.
 
 :::
 ::::
@@ -88,8 +88,8 @@ widths: auto
 :::
 
 Implementation detail. This function is implemented to fetch memory from
-the input buffer specified by the call to {cpp:func}`DecodeBuffer()
-<BMediaBufferDecoder::DecodeBuffer>`.
+the input buffer specified by the call to
+{cpp:func}`~BMediaBufferDecoder::DecodeBuffer()`.
 ::::
 
 ::::{abi-group}
@@ -116,8 +116,8 @@ widths: auto
 	- The constructor was successful.
 -
 	- Other errors.
-	- See {cpp:class}`BMediaDecoder`'s {cpp:func}`SetTo()
-		<BMediaDecoder::SetTo>` function.
+	- See {cpp:class}`BMediaDecoder`'s {cpp:func}`~BMediaDecoder::SetTo()`
+		function.
 
 :::
 ::::

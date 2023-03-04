@@ -23,8 +23,8 @@ named fido in the new directory.
 
 The {hclass}`BSymLink` class creates objects that know how to read a
 symlink's data. The class does not create new symlinks; to create a
-symlink, you use {cpp:class}`BDirectory`'s {cpp:func}`CreateSymLink()
-<BDirectory::CreateSymLink>` function.
+symlink, you use {cpp:class}`BDirectory`'s
+{cpp:func}`~BDirectory::CreateSymLink()` function.
 
 :::{admonition} Note
 :class: note
@@ -34,9 +34,9 @@ themselves. For example, {hclass}`BSymLinks` can't resolve the fido/rover
 :::
 
 The only really useful {hclass}`BSymLink` function is
-{cpp:func}`ReadLink() <BSymLink::ReadLink>`. This function returns the data
-that the symlink contains. The other functions are convenient, but they're
-not essential.
+{cpp:func}`~BSymLink::ReadLink()`. This function returns the data that the
+symlink contains. The other functions are convenient, but they're not
+essential.
 
 ## Initialization and File Descriptors
 

@@ -53,17 +53,16 @@ When you ask a {cpp:class}`BAppFileInfo` object to get some information,
 it looks in its {cpp:class}`BFile`'s attributes; if the information isn't
 there, it then looks in the file's resources. When you ask it to set some
 information, the info is written as an attribute and also stored as a
-resource. You can modify this behavior through {cpp:func}`SetInfoLocation()
-<BAppFileInfo::SetInfoLocation>`: You can tell the object to only access
-the file's attributes, or to only access the resources.
+resource. You can modify this behavior through
+{cpp:func}`~BAppFileInfo::SetInfoLocation()`: You can tell the object to
+only access the file's attributes, or to only access the resources.
 
 The signature, icons, and supported types that you set through the
-functions provided here ( {cpp:func}`SetSignature()
-<BAppFileInfo::SetSignature>`, {cpp:func}`SetIcon()
-<BAppFileInfo::SetIcon>`, {cpp:func}`SetIconForType()
-<BAppFileInfo::SetIconForType>`, {cpp:func}`SetSupportedTypes()
-<BAppFileInfo::SetSupportedTypes>`) are also recorded in the File Types
-database, as described in the various functions.
+functions provided here ( {cpp:func}`~BAppFileInfo::SetSignature()`,
+{cpp:func}`~BAppFileInfo::SetIcon()`,
+{cpp:func}`~BAppFileInfo::SetIconForType()`,
+{cpp:func}`~BAppFileInfo::SetSupportedTypes()`) are also recorded in the
+File Types database, as described in the various functions.
 
 ## Functions Inherited From BNodeInfo
 
@@ -121,5 +120,5 @@ widths: auto
 :::
 
 The info-reading and -writing functions may also return the error codes
-declared by {cpp:func}`BNode::ReadAttr` and {cpp:func}`BNode::WriteAttr` ,
-and by {cpp:func}`BResources::WriteTo`.
+declared by {cpp:func}`BNode::ReadAttr()` and
+{cpp:func}`BNode::WriteAttr()` , and by {cpp:func}`BResources::WriteTo()`.

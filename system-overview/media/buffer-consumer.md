@@ -47,5 +47,5 @@ After this code has executed, time contains the start time for the buffer,
 in your node's time base.
 
 You should probably, for performance's sake, cache the producer's time
-source the first time {cpp:func}`BufferReceived()
-<BBufferConsumer::BufferReceived>` is called.
+source the first time {cpp:func}`~BBufferConsumer::BufferReceived()` is
+called.

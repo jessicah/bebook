@@ -25,10 +25,10 @@ user's preferred font for menus.
 
 By default, the {hparam}`frame` rectangle is divided horizontally in half,
 with the label displayed on the left and the menu on the right. This
-division can be changed with the {cpp:func}`SetDivider()
-<BMenuField::SetDivider>` function. The menu is assigned to a
-{cpp:class}`BMenuBar` object and will pop up under the user's control. For
-most uses, the menu should be a {cpp:class}`BPopUpMenu` object.
+division can be changed with the {cpp:func}`~BMenuField::SetDivider()`
+function. The menu is assigned to a {cpp:class}`BMenuBar` object and will
+pop up under the user's control. For most uses, the menu should be a
+{cpp:class}`BPopUpMenu` object.
 
 The second form of the constructor accepts an added argument,
 {hparam}`fixedSize`. If this is true, the {hclass}`BMenuField` won't adjust
@@ -58,7 +58,7 @@ and to adjust the height of the view to the height of the
 {cpp:class}`BMenuBar` child it contains. The height of the child depends on
 the size of the user's preferred font for menus.
 
-See also: {cpp:func}`BView::AttachedToWindow`
+See also: {cpp:func}`BView::AttachedToWindow()`
 ::::
 
 ::::{abi-group}
@@ -70,26 +70,26 @@ view's border and label. The way the menu field is drawn depends on whether
 it's enabled or disabled and whether or not it's the current focus for
 keyboard actions.
 
-See also: {cpp:func}`BView::Draw`
+See also: {cpp:func}`BView::Draw()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BMenuField::KeyDown(const char* bytes, int32 numBytes)
 :::
 
-Augments the {cpp:class}`BView` version of {cpp:func}`KeyDown()
-<BView::KeyDown>` to permit keyboard navigation to and from the view and to
-allow users to open the menu by pressing the space bar.
+Augments the {cpp:class}`BView` version of {cpp:func}`~BView::KeyDown()`
+to permit keyboard navigation to and from the view and to allow users to
+open the menu by pressing the space bar.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BMenuField::MouseDown(BPoint point)
 :::
 
-Overrides the {cpp:class}`BView` version of {cpp:func}`MouseDown()
-<BView::MouseDown>` to enable users to pop up the menu using the mouse,
-even if the cursor isn't directly over the menu portion of the bounds
-rectangle.
+Overrides the {cpp:class}`BView` version of
+{cpp:func}`~BView::MouseDown()` to enable users to pop up the menu using
+the mouse, even if the cursor isn't directly over the menu portion of the
+bounds rectangle.
 ::::
 
 ::::{abi-group}
@@ -99,7 +99,7 @@ rectangle.
 Makes sure that the {hclass}`BMenuField` is redrawn when the window is
 activated and deactivated, provided that it's the current focus view.
 
-See also: {cpp:func}`BView::WindowActivated`
+See also: {cpp:func}`BView::WindowActivated()`
 ::::
 
 ## Member Functions
@@ -114,18 +114,18 @@ normal course of things, archive the child {cpp:class}`BMenuBar` and the
 {cpp:expr}`true`. This function then adds the label, divider, and current
 state of the {hclass}`BMenuField` to the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BMenuField::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BMenuField::Instantiate()` static function
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BMenuField::MakeFocus(bool focused)
 :::
 
-Augments the {cpp:class}`BView` version of {cpp:func}`MakeFocus()
-<BView::MakeFocus>` to enable keyboard navigation. This function calls
-{cpp:func}`Draw() <BMenuField::Draw>` when the {hclass}`BMenuField` becomes
-the focus view and when it loses that status.
+Augments the {cpp:class}`BView` version of {cpp:func}`~BView::MakeFocus()`
+to enable keyboard navigation. This function calls
+{cpp:func}`~BMenuField::Draw()` when the {hclass}`BMenuField` becomes the
+focus view and when it loses that status.
 ::::
 
 ::::{abi-group}
@@ -248,9 +248,8 @@ with the version of the constructor that takes a {cpp:class}`BMessage`
 archive. However, if the archive message doesn't contain data for a
 {hclass}`BMenuField` object, this function returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BMenuField::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BMenuField::Archive()`
 ::::
 
 ## Archived Fields

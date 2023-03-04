@@ -10,5 +10,5 @@ All the member functions are static; instead of creating a
 BNetDebug::Print("Starting server...");
 :::
 
-Debug output is off by default; call {cpp:func}`BNetDebug::Enable` to
+Debug output is off by default; call {cpp:func}`BNetDebug::Enable()` to
 enable it.

@@ -16,9 +16,9 @@
 :::
 
 The constructor sets up the {hclass}`BMediaBufferEncoder`. If you use the
-empty form of the constructor, you'll have to call {cpp:func}`SetTo()
-<BMediaEncoder::SetTo>` to establish the format to be encoded before
-calling {cpp:func}`Encode() <BMediaEncoder::Encode>`.
+empty form of the constructor, you'll have to call
+{cpp:func}`~BMediaEncoder::SetTo()` to establish the format to be encoded
+before calling {cpp:func}`~BMediaEncoder::Encode()`.
 
 The second form accepts a {cpp:func}`media_format <media::format>`
 structure, {hparam}`inFormat`, that indicates the type of media data that
@@ -31,8 +31,8 @@ structure, {hparam}`mci`, that determines which codec should be used.
 :class: note
 If you use either the {cpp:func}`media_format <media::format>` or
 {ref}`media_codec_info` form of the constructor, you must call
-{cpp:func}`InitCheck() <BMediaBufferEncoder::InitCheck>` to ensure that
-construction was successful before using any other functions in this class.
+{cpp:func}`~BMediaBufferEncoder::InitCheck()` to ensure that construction
+was successful before using any other functions in this class.
 :::
 ::::
 
@@ -75,8 +75,8 @@ widths: auto
 	- No error.
 -
 	- Other errors.
-	- The encoder's {cpp:func}`Encode() <BMediaEncoder::Encode>` function can
-		return errors.
+	- The encoder's {cpp:func}`~BMediaEncoder::Encode()` function can return
+		errors.
 
 :::
 ::::
@@ -105,8 +105,8 @@ widths: auto
 	- The constructor was successful.
 -
 	- Other errors.
-	- See {cpp:class}`BMediaEncoder`'s {cpp:func}`SetTo()
-		<BMediaEncoder::SetTo>` function.
+	- See {cpp:class}`BMediaEncoder`'s {cpp:func}`~BMediaEncoder::SetTo()`
+		function.
 
 :::
 ::::
@@ -116,6 +116,5 @@ widths: auto
 :::
 
 Implemented to write the encoded media data into the buffer specified when
-{cpp:func}`EncodeToBuffer() <BMediaBufferEncoder::EncodeToBuffer>` was
-called.
+{cpp:func}`~BMediaBufferEncoder::EncodeToBuffer()` was called.
 ::::

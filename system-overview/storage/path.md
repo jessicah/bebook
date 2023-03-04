@@ -48,7 +48,7 @@ general) or {htype}`entry_ref`s is largely a matter of taste.
 You initialize a {hclass}`BPath`—in other words, you establish the path
 that the object represents—by passing a string (or two, or a
 {cpp:class}`BDirectory` and a string) to the constructor or to the
-{cpp:func}`SetTo() <BPath::SetTo>` function. Upon initialization, the
+{cpp:func}`~BPath::SetTo()` function. Upon initialization, the
 {hclass}`BPath` object concatenates the strings and then "normalizes" the
 passed-in strings if it has to (this emphasis is important, as we'll see in
 a moment). The following elements trigger normalization:
@@ -122,9 +122,8 @@ $ Path: (null)
 
 ### Forcing Initialization
 
-Both the constructor and the {cpp:func}`SetTo() <BPath::SetTo>` function
-carry an optional argument that lets you force the passed-in path to be
-normalized:
+Both the constructor and the {cpp:func}`~BPath::SetTo()` function carry an
+optional argument that lets you force the passed-in path to be normalized:
 
 :::{code} cpp
 /* The trailing bool forces normalization. */
@@ -153,9 +152,9 @@ subsequent initialization.
 
 ### Other Normalization Details
 
--   You can't force the {hclass}`BPath` constructor or {cpp:func}`SetTo()
-<BPath::SetTo>` function to skip the normalization. If the path needs to be
-normalized, it will be normalized.
+-   You can't force the {hclass}`BPath` constructor or
+{cpp:func}`~BPath::SetTo()` function to skip the normalization. If the path
+needs to be normalized, it will be normalized.
 
 -   {hclass}`BPath` doesn't let you ask if its pathname was normalized.
 
@@ -170,7 +169,7 @@ ask for a {hclass}`BPath` object. This is a convention of usage:
 asks for a {htype}`const char*`.
 
 As an example of a function that returns a {hclass}`BPath` to you, recall
-{cpp:class}`BEntry`'s {cpp:func}`GetPath() <BEntry::GetPath>` function:
+{cpp:class}`BEntry`'s {cpp:func}`~BEntry::GetPath()` function:
 
 :::{code} cpp
 status_t BEntry::GetPath(BPath *path)
@@ -180,8 +179,8 @@ status_t BEntry::GetPath(BPath *path)
 {hclass}`BPath` allocates the pathname storage for you, you don't have to
 mess around with ugly buffer and length arguments.)
 
-On the other hand, {cpp:class}`BEntry`'s {cpp:func}`SetTo()
-<BEntry::SetTo>` takes a pathname as a {htype}`const char*`:
+On the other hand, {cpp:class}`BEntry`'s {cpp:func}`~BEntry::SetTo()`
+takes a pathname as a {htype}`const char*`:
 
 :::{code} cpp
 status_t BEntry::SetTo(const char *path)
@@ -194,16 +193,16 @@ this function thus:
 entry.SetTo(path.Path());
 :::
 
-The constructors and {cpp:func}`SetTo() <BPath::SetTo>` functions in (most
-of) the Storage Kit classes have {htype}`const char*` versions that can be
+The constructors and {cpp:func}`~BPath::SetTo()` functions in (most of)
+the Storage Kit classes have {htype}`const char*` versions that can be
 called as shown here.
 
 ## Passing a BPath in a BMessage
 
 Let's say you've got a {hclass}`BPath` object that you want to send to
 some other application. To do this, you have to add it to a
-{cpp:class}`BMessage` object through the latter's {cpp:func}`AddFlat()
-<BMessage::AddFlat>` function. As an inheritor from
+{cpp:class}`BMessage` object through the latter's
+{cpp:func}`~BMessage::AddFlat()` function. As an inheritor from
 {cpp:class}`BFlattenable` the {hclass}`BPath` knows how to flatten itself
 for just this purpose.
 
@@ -219,7 +218,7 @@ if (msg.AddFlat("pathname", &path) != B_OK)
 :::
 
 The receiver of the message can retrieve the pathname as a {hclass}`BPath`
-object by calling {cpp:func}`FindFlat() <BMessage::FindFlat>`:
+object by calling {cpp:func}`~BMessage::FindFlat()`:
 
 :::{code} cpp
 void MyApp::MessageReceived(BMessage *msg)
@@ -233,7 +232,7 @@ void MyApp::MessageReceived(BMessage *msg)
 :::
 
 Alternatively, the pathname can be retrieved as an {htype}`entry_ref`
-through {cpp:func}`FindRef() <BMessage::FindRef>`:
+through {cpp:func}`~BMessage::FindRef()`:
 
 :::{code} cpp
 void MyApp::MessageReceived(BMessage *msg)
@@ -247,35 +246,35 @@ void MyApp::MessageReceived(BMessage *msg)
 :::
 
 If you want to skip all the conversion business and simply pass the
-pathname as a string, use {cpp:func}`AddString() <BMessage::AddString>`.
-The receiver, of course, would have to call {cpp:func}`FindString()
-<BMessage::FindString>` to retrieve your pathname string.
+pathname as a string, use {cpp:func}`~BMessage::AddString()`. The receiver,
+of course, would have to call {cpp:func}`~BMessage::FindString()` to
+retrieve your pathname string.
 
 ### What's Really Going On
 
 When you add a flattened {hclass}`BPath` to a {cpp:class}`BMessage`, the
 object's pathname is turned into an {htype}`entry_ref`. If the message
-receiver asks for a {hclass}`BPath` (through {cpp:func}`FindFlat()
-<BMessage::FindFlat>`), the {htype}`entry_ref` is turned back into a
-{hclass}`BPath` object. Therefore, it's more efficient to retrieve a
+receiver asks for a {hclass}`BPath` (through
+{cpp:func}`~BMessage::FindFlat()`), the {htype}`entry_ref` is turned back
+into a {hclass}`BPath` object. Therefore, it's more efficient to retrieve a
 flattened {hclass}`BPath` as an {htype}`entry_ref` than it is to unflatten
 it as a {hclass}`BPath` object.
 
 The {hclass}`BPath` to {htype}`entry_ref` conversion has another, more
-subtle implication: Adding a {hclass}`BPath` through {cpp:func}`AddFlat()
-<BMessage::AddFlat>` performs an implicit normalization on the data that's
-added to the {cpp:class}`BMessage`.
+subtle implication: Adding a {hclass}`BPath` through
+{cpp:func}`~BMessage::AddFlat()` performs an implicit normalization on the
+data that's added to the {cpp:class}`BMessage`.
 
-If the normalization fails, the {cpp:func}`AddFlat() <BMessage::AddFlat>`
-function returns an error and the data isn't added to the
-{cpp:class}`BMessage`. The original {hclass}`BPath` is untouched,
-regardless of the result of the normalization.
+If the normalization fails, the {cpp:func}`~BMessage::AddFlat()` function
+returns an error and the data isn't added to the {cpp:class}`BMessage`. The
+original {hclass}`BPath` is untouched, regardless of the result of the
+normalization.
 
 ## Converting a BPath
 
 As mentioned earlier, most of the Storage Kit classes have constructors
-and {cpp:func}`SetTo() <BPath::SetTo>` functions that accept {htype}`const
-char*` arguments. If you want to turn your {hclass}`BPath` into a
+and {cpp:func}`~BPath::SetTo()` functions that accept {htype}`const char*`
+arguments. If you want to turn your {hclass}`BPath` into a
 {cpp:class}`BFile` (for example), you would do this (including error
 checks):
 
@@ -293,7 +292,7 @@ err = file.SetTo(path.Path());
 :::
 
 To convert a {hclass}`BPath` to an {htype}`entry_ref`, pass the pathname
-to the {ref}`get_ref_for_path()` function:
+to the {cpp:func}`get_ref_for_path()` function:
 
 :::{code} cpp
 entry_ref ref;

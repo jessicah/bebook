@@ -6,8 +6,8 @@ The {cpp:class}`BTab` class defines the tabs used by the
 
 When a tab is created, a target view is specified as a parameter to the
 {cpp:class}`BTab` {cpp:func}`constructor <BTab::BTab()>`, or by calling
-{cpp:func}`SetView() <BTab::SetView>`. The target view is the view that
-will be displayed in the {cpp:class}`BTabView`'s container view when the
+{cpp:func}`~BTab::SetView()`. The target view is the view that will be
+displayed in the {cpp:class}`BTabView`'s container view when the
 {cpp:class}`BTab` is selected.
 
 Users select tabs by clicking on them, or by using keyboard navigation to
@@ -20,23 +20,22 @@ section.
 ## Customizing the Appearance of a BTab
 
 Customizing the appearance of your tabs is achieved by overriding the
-{cpp:func}`DrawTab() <BTab::DrawTab>`, {cpp:func}`DrawFocusMark()
-<BTab::DrawFocusMark>`, and/or {cpp:func}`DrawLabel() <BTab::DrawLabel>`
-functions.
+{cpp:func}`~BTab::DrawTab()`, {cpp:func}`~BTab::DrawFocusMark()`, and/or
+{cpp:func}`~BTab::DrawLabel()` functions.
 
 These functions are responsible for all drawing of the {cpp:class}`BTab`.
-{cpp:func}`DrawTab() <BTab::DrawTab>` renders the entire tab, excluding the
-focus mark: it draws the borders and calls {cpp:func}`DrawLabel()
-<BTab::DrawLabel>` to render the text of the label.
+{cpp:func}`~BTab::DrawTab()` renders the entire tab, excluding the focus
+mark: it draws the borders and calls {cpp:func}`~BTab::DrawLabel()` to
+render the text of the label.
 
-{cpp:func}`DrawFocusMark() <BTab::DrawFocusMark>` draws the indicator that
-shows which tab is the current focus for keyboard navigation.
+{cpp:func}`~BTab::DrawFocusMark()` draws the indicator that shows which
+tab is the current focus for keyboard navigation.
 
 By default, tabs have a beveled, rounded look. Let's look at an example in
 which we replace this appearance with a square shape:
 
 To do this, we create a new class, derived from {cpp:class}`BTab`, that
-overrides the {cpp:func}`DrawTab() <BTab::DrawTab>` function.
+overrides the {cpp:func}`~BTab::DrawTab()` function.
 
 :::{code} cpp
 class CustomTab : public BTab {
@@ -46,8 +45,7 @@ class CustomTab : public BTab {
 };
 :::
 
-The {cpp:func}`DrawTab() <BTab::DrawTab>` function is implemented as
-follows:
+The {cpp:func}`~BTab::DrawTab()` function is implemented as follows:
 
 :::{code} cpp
 const rgb_color kWhite = {255,255,255,255};

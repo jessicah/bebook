@@ -11,10 +11,9 @@
 
 Initializes the {hclass}`BPrintJob` object and assigns the job a
 {hparam}`name`. The Print Server isn't contacted until
-{cpp:func}`ConfigPage() <BPrintJob::ConfigPage>` or {cpp:func}`ConfigJob()
-<BPrintJob::ConfigJob>` is called. The spool file isn't created until
-{cpp:func}`BeginJob() <BPrintJob::BeginJob>` prepares for the production of
-pages.
+{cpp:func}`~BPrintJob::ConfigPage()` or {cpp:func}`~BPrintJob::ConfigJob()`
+is called. The spool file isn't created until
+{cpp:func}`~BPrintJob::BeginJob()` prepares for the production of pages.
 ::::
 
 ::::{abi-group}
@@ -34,8 +33,8 @@ Opens a spool file for the job and prepares for the production of a series
 of pages. Call this function only once per printing session—just after
 initializing the job and just before drawing the first page.
 
-See also: {cpp:func}`CommitJob() <BPrintJob::CommitJob>`, "{ref}`The Spool
-File`" in the class overview
+See also: {cpp:func}`~BPrintJob::CommitJob()`, "{ref}`The Spool File`" in
+the class overview
 ::::
 
 ::::{abi-group}
@@ -69,8 +68,8 @@ Commits all spooled pages to the printer. This ends the print job; when
 {hmethod}`CommitJob()` returns, the {hclass}`BPrintJob` object can be
 deleted. {hmethod}`CommitJob()` can be called only once per job.
 
-See also: {cpp:func}`BeginJob() <BPrintJob::BeginJob>`, "{ref}`The Spool
-File`" in the class overview
+See also: {cpp:func}`~BPrintJob::BeginJob()`, "{ref}`The Spool File`" in
+the class overview
 ::::
 
 ::::{abi-group}
@@ -90,13 +89,12 @@ The job definition includes such things as which pages are to be printed
 and the number of copies.
 
 Both functions record the user's choices in a {cpp:class}`BMessage` object
-that {cpp:func}`Settings() <BPrintJob::Settings>` returns.
+that {cpp:func}`~BPrintJob::Settings()` returns.
 
-If {cpp:func}`SetSettings() <BPrintJob::SetSettings>` has been called to
-establish a default configuration for the page layout or the job, these
-functions will pass it to the Print Server so the server can present it to
-the user. Otherwise, the server will choose a default configuration to show
-the user.
+If {cpp:func}`~BPrintJob::SetSettings()` has been called to establish a
+default configuration for the page layout or the job, these functions will
+pass it to the Print Server so the server can present it to the user.
+Otherwise, the server will choose a default configuration to show the user.
 
 These two functions return {htype}`status_t` error codes, despite having
 return values that are declared {htype}`int32`. They return
@@ -104,9 +102,8 @@ return values that are declared {htype}`int32`. They return
 server or if the job can't be established for any reason. They return
 {cpp:enumerator}`B_OK` if all goes well.
 
-See also: {cpp:func}`SetSettings() <BPrintJob::SetSettings>`,
-"{ref}`Setting Up the Page Layout`" and "{ref}`Setting Up a Print Job`" in
-the class overview
+See also: {cpp:func}`~BPrintJob::SetSettings()`, "{ref}`Setting Up the
+Page Layout`" and "{ref}`Setting Up a Print Job`" in the class overview
 ::::
 
 ::::{abi-group}
@@ -119,13 +116,13 @@ the class overview
 {hmethod}`DrawView()` calls upon a {hparam}`view` to draw the
 {hparam}`rect` portion of its display at the location specified by
 {hparam}`point` on the page. As a result, the {hparam}`view`'s
-{cpp:func}`Draw() <BView::Draw>` function will be called with
-{hparam}`rect` passed as the update rectangle. The rectangle should be
-stated in the {cpp:class}`BView`'s coordinate system. The {hparam}`point`
-should be stated in a coordinate system that has the origin at the top left
-corner of the printable rectangle. Together the {hparam}`rect` and
-{hparam}`point` should be fashioned so that the entire rectangle lies
-within the boundaries of the page's printable area.
+{cpp:func}`~BView::Draw()` function will be called with {hparam}`rect`
+passed as the update rectangle. The rectangle should be stated in the
+{cpp:class}`BView`'s coordinate system. The {hparam}`point` should be
+stated in a coordinate system that has the origin at the top left corner of
+the printable rectangle. Together the {hparam}`rect` and {hparam}`point`
+should be fashioned so that the entire rectangle lies within the boundaries
+of the page's printable area.
 
 The {hparam}`view` must be attached to a window; that is, it must be known
 to the Application Server. However, when printing, a {cpp:class}`BView` can
@@ -156,8 +153,9 @@ After all views have drawn and the page is complete,
 {hmethod}`SpoolPage()` adds it to the spool file. {hmethod}`SpoolPage()`
 must be called once to terminate each page.
 
-See also: {cpp:func}`PrintableRect() <BPrintJob::PrintableRect>`,
-{cpp:func}`BView::Draw`, "{ref}`Drawing on the Page`" in the class overview
+See also: {cpp:func}`~BPrintJob::PrintableRect()`,
+{cpp:func}`BView::Draw()`, "{ref}`Drawing on the Page`" in the class
+overview
 ::::
 
 ::::{abi-group}
@@ -205,7 +203,7 @@ the coordinate origin, (0.0, 0.0).
 The "{ref}`Drawing Coordinates`" section in the class overview illustrates
 these rectangles and their coordinate systems.
 
-See also: {cpp:func}`DrawView() <BPrintJob::DrawView>`
+See also: {cpp:func}`~BPrintJob::DrawView()`
 ::::
 
 ::::{abi-group}
@@ -249,9 +247,8 @@ be documented where the print driver API is documented.
 Instead of looking in the {hmethod}`Settings()` {cpp:class}`BMessage`,
 rely on {hclass}`BPrintJob` functions to provide specific information about
 the layout and the print job. Currently, there are only two functions –
-{cpp:func}`FirstPage() <BPrintJob::FirstPage>` and {cpp:func}`LastPage()
-<BPrintJob::LastPage>`, which return the first and last pages that need to
-be printed.
+{cpp:func}`~BPrintJob::FirstPage()` and {cpp:func}`~BPrintJob::LastPage()`,
+which return the first and last pages that need to be printed.
 
 {hmethod}`Settings()` can be called to get the current configuration
 message, which can then be flattened and stored with the document. You can
@@ -280,5 +277,5 @@ it returns to the caller; you don't need to make a copy.
 specified message is a valid settings message; otherwise it returns
 {cpp:expr}`false`.
 
-See also: {cpp:func}`ConfigPage() <BPrintJob::ConfigPage>`
+See also: {cpp:func}`~BPrintJob::ConfigPage()`
 ::::

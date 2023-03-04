@@ -1,11 +1,11 @@
 # Modifier Keys
 
-Conceptually, there are eight modifier keys. The global {ref}`modifiers()`
-function returns a value that encodes the current status of all eight of
-these keys. You can test for the state of a particular modifier key by
-comparing {ref}`modifiers()` with the constants listed in the table below.
-For example, here's how you can see if the user is holding down one of the
-{hkey}`Shift` keys:
+Conceptually, there are eight modifier keys. The global
+{cpp:func}`modifiers()` function returns a value that encodes the current
+status of all eight of these keys. You can test for the state of a
+particular modifier key by comparing {cpp:func}`modifiers()` with the
+constants listed in the table below. For example, here's how you can see if
+the user is holding down one of the {hkey}`Shift` keys:
 
 :::{code} c
 if (modifiers() | B_SHIFT_KEY) {

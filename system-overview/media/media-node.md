@@ -20,11 +20,10 @@ Applications shouldn't call a node's member functions directly; instead,
 you call the {cpp:class}`BMediaRoster` with a reference to the node and let
 the request come to the node through the control port. The only exception
 is if the node is subclassed directly within the application, in which case
-{cpp:func}`Acquire() <BMediaNode::Acquire>`, {cpp:func}`ID()
-<BMediaNode::ID>`, {cpp:func}`Node() <BMediaNode::Node>`, and
-{cpp:func}`Release() <BMediaNode::Release>` can be called directly once the
-node is registered—if you do this, be sure you don't call them after the
-node is destroyed.
+{cpp:func}`~BMediaNode::Acquire()`, {cpp:func}`~BMediaNode::ID()`,
+{cpp:func}`~BMediaNode::Node()`, and {cpp:func}`~BMediaNode::Release()` can
+be called directly once the node is registered—if you do this, be sure you
+don't call them after the node is destroyed.
 :::
 
 Calling a node's member functions directly from outside the node itself
@@ -50,15 +49,16 @@ pause while it or its memory is fetched back from the swap file.
 The user can use the Media preference application to configure what types
 of nodes should use locked memory. Nodes should typically use the realtime
 memory allocation functions instead of malloc() and free().
-{cpp:func}`rtm_alloc() <rtm::alloc>` will automatically handle locking the
-memory if the {cpp:enumerator}`B_MEDIA_REALTIME_ALLOCATOR` flag is set, so
-your node doesn't have to worry about it.
+{cpp:func}`rtm_alloc()` will automatically handle locking the memory if the
+{cpp:enumerator}`B_MEDIA_REALTIME_ALLOCATOR` flag is set, so your node
+doesn't have to worry about it.
 
 In addition, if the realtime flag corresponding to the type of node you're
 writing is set, your node should also call
-{ref}`media_realtime_init_thread()` to lock down the stacks of its threads.
-Properly-written nodes can always call {ref}`media_realtime_init_thread()`,
-without checking the realtime flags, because this function will return
+{cpp:func}`media_realtime_init_thread()` to lock down the stacks of its
+threads. Properly-written nodes can always call
+{cpp:func}`media_realtime_init_thread()`, without checking the realtime
+flags, because this function will return
 {cpp:enumerator}`B_MEDIA_REALTIME_DISABLED` if the corresponding flag isn't
 set. You can simply ignore the error and move on.
 
@@ -77,9 +77,9 @@ if (err != B_OK && err != B_MEDIA_REALTIME_DISABLED) {
 :::
 
 If your node requires realtime performance from an add-on or shared
-library, you can use the {ref}`media_realtime_init_image()` function to
-lock down that image in memory. Note, however, that any uses of malloc() by
-that image won't allocate locked memory; you can't control that. Still,
+library, you can use the {cpp:func}`media_realtime_init_image()` function
+to lock down that image in memory. Note, however, that any uses of malloc()
+by that image won't allocate locked memory; you can't control that. Still,
 locking down the image itself can help performance even further.
 
 :::{admonition} Note
@@ -87,7 +87,7 @@ locking down the image itself can help performance even further.
 Standard BeOS system libraries are Be's responsibility. If it's
 appropriate for them to be locked, they're locked for you. Don't lock them
 yourself. Both libmedia.so and libroot.so have
-{ref}`media_realtime_init_image()` called on them.
+{cpp:func}`media_realtime_init_image()` called on them.
 :::
 
 ### Negotiating a Connection
@@ -101,16 +101,16 @@ connection can even be established.
 If the node you're writing could be connected by the system mixer (using
 the Audio preference application, for example) as the default output, the
 node needs to be as flexible as possible in terms of the formats it accepts
-on its free inputs in the {cpp:func}`GetNextInput()
-<BBufferConsumer::GetNextInput>` function. The format your node returns
-from {cpp:func}`GetNextInput() <BBufferConsumer::GetNextInput>` will be
-used as the starting poing in the negotiation process; the more wildcards
-you support, the better.
+on its free inputs in the {cpp:func}`~BBufferConsumer::GetNextInput()`
+function. The format your node returns from
+{cpp:func}`~BBufferConsumer::GetNextInput()` will be used as the starting
+poing in the negotiation process; the more wildcards you support, the
+better.
 
 An application that wants to establish a connection between some other
 node and your node will determine the format from the inputs into your node
 and the outputs from the other node, then call
-{cpp:func}`BMediaRoster::Connect` with that format.
+{cpp:func}`BMediaRoster::Connect()` with that format.
 
 If there are any wildcards in the format passed to
 {hmethod}`BMediaRoster::Format()`, the media roster will call
@@ -123,7 +123,7 @@ producer.
 The resulting format may have some wildcards left (or, if the producer is
 particularly picky, there may be none at all). The media roster will then
 pass this format to your consumer node's
-{cpp:func}`BBufferConsumer::AcceptFormat` function. This function should be
-implemented to specialize the remaining wildcards and return this format,
-which should describe a specific format. This format will be used to
-establish the connection.
+{cpp:func}`BBufferConsumer::AcceptFormat()` function. This function should
+be implemented to specialize the remaining wildcards and return this
+format, which should describe a specific format. This format will be used
+to establish the connection.

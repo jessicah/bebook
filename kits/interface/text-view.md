@@ -29,8 +29,8 @@ argument—{cpp:enumerator}`B_FRAME_EVENTS`, so that the {hclass}`BTextView`
 can reformat the text when it's resized, and
 {cpp:enumerator}`B_PULSE_NEEDED`, so that the caret marking the insertion
 point can "blink" in time with {cpp:enumerator}`B_PULSE` messages. Later,
-{cpp:func}`AttachedToWindow() <BTextView::AttachedToWindow>` will set the
-window's pulse rate to 500,000 microseconds.
+{cpp:func}`~BTextView::AttachedToWindow()` will set the window's pulse rate
+to 500,000 microseconds.
 
 The text rectangle, {hparam}`textRect`, is stated in the
 {hclass}`BTextView`'s coordinate system. It determines where text in placed
@@ -43,13 +43,13 @@ and may actually extend beyond the bottom of the rectangle.
 -   The left and right sides of the text rectangle determine where lines of
 text are placed within the view. Lines can be aligned to either side of the
 rectangle, or they can be centered between the two sides. See the
-{cpp:func}`SetAlignment() <BTextView::SetAlignment>` function.
+{cpp:func}`~BTextView::SetAlignment()` function.
 
 -   When lines wrap on word boundaries, the width of the text rectangle
 determines the maximum length of a line; each line of text can be as long
 as the rectangle is wide. When word wrapping isn't turned on, lines can
 extend beyond the boundaries of the text rectangle. See the
-{cpp:func}`SetWordWrap() <BTextView::SetWordWrap>` function.
+{cpp:func}`~BTextView::SetWordWrap()` function.
 
 The bottom of the text rectangle is ignored; it doesn't limit the amount
 of text the view can contain. The text can be limited by the number of
@@ -66,37 +66,35 @@ specified, the text is drawn in black.
 The constructor establishes the following default properties for a new
 {hclass}`BTextView`:
 
--   The text is selectable and editable. (See {cpp:func}`MakeSelectable()
-<BTextView::MakeSelectable>` and {cpp:func}`MakeEditable()
-<BTextView::MakeEditable>`.)
+-   The text is selectable and editable. (See
+{cpp:func}`~BTextView::MakeSelectable()` and
+{cpp:func}`~BTextView::MakeEditable()`.)
 
 -   Multiple character formats are not permitted. (See
-{cpp:func}`SetStylable() <BTextView::SetStylable>`.)
+{cpp:func}`~BTextView::SetStylable()`.)
 
--   The text is left-aligned. (See {cpp:func}`SetAlignment()
-<BTextView::SetAlignment>`.)
+-   The text is left-aligned. (See {cpp:func}`~BTextView::SetAlignment()`.)
 
--   The tab width is 28.0 coordinate units. (See {cpp:func}`SetTabWidth()
-<BTextView::SetTabWidth>`.)
+-   The tab width is 28.0 coordinate units. (See
+{cpp:func}`~BTextView::SetTabWidth()`.)
 
--   Word wrapping is turned on. (See {cpp:func}`SetWordWrap()
-<BTextView::SetWordWrap>`.)
+-   Word wrapping is turned on. (See {cpp:func}`~BTextView::SetWordWrap()`.)
 
--   Automatic indenting is turned off. (See {cpp:func}`SetAutoindent()
-<BTextView::SetAutoindent>`.)
+-   Automatic indenting is turned off. (See
+{cpp:func}`~BTextView::SetAutoindent()`.)
 
--   The maximum amount of data is permitted. (See {cpp:func}`SetMaxBytes()
-<BTextView::SetMaxBytes>`.)
+-   The maximum amount of data is permitted. (See
+{cpp:func}`~BTextView::SetMaxBytes()`.)
 
 -   The view doesn't grow to accommodate more characters. (See
-{cpp:func}`MakeResizable() <BTextView::MakeResizable>`.)
+{cpp:func}`~BTextView::MakeResizable()`.)
 
 -   All characters the user may type are acceptable. (See
-{cpp:func}`DisallowChar() <BTextView::DisallowChar>`.)
+{cpp:func}`~BTextView::DisallowChar()`.)
 
-See also: {cpp:func}`AttachedToWindow() <BTextView::AttachedToWindow>`,
-{cpp:func}`SetFontAndColor() <BTextView::SetFontAndColor>`, the
-{cpp:class}`BView` {cpp:func}`constructor <BView::BView()>`
+See also: {cpp:func}`~BTextView::AttachedToWindow()`,
+{cpp:func}`~BTextView::SetFontAndColor()`, the {cpp:class}`BView`
+{cpp:func}`constructor <BView::BView()>`
 ::::
 
 ::::{abi-group}
@@ -142,7 +140,7 @@ void MyText::AttachedToWindow()
 If it doesn't, the {hclass}`BTextView` won't be able to properly display
 the text.
 
-See also: {cpp:func}`BView::AttachedToWindow`
+See also: {cpp:func}`BView::AttachedToWindow()`
 ::::
 
 ::::{abi-group}
@@ -153,7 +151,7 @@ Resets the cursor to the standard hand image
 ({cpp:enumerator}`B_HAND_CURSOR`) if it's above the {hclass}`BTextView`
 when the {hclass}`BTextView` is removed from the window.
 
-See also: {cpp:func}`BView::DetachedFromWindow`
+See also: {cpp:func}`BView::DetachedFromWindow()`
 ::::
 
 ::::{abi-group}
@@ -162,7 +160,7 @@ See also: {cpp:func}`BView::DetachedFromWindow`
 
 Draws the {hclass}`BTextView`.
 
-See also: {cpp:func}`BView::Draw`
+See also: {cpp:func}`BView::Draw()`
 ::::
 
 ::::{abi-group}
@@ -174,7 +172,7 @@ of this function to reset the ranges of the {hclass}`BTextView`'s scroll
 bars and to update the sizes of their proportional knobs whenever the size
 of the {hclass}`BTextView` changes.
 
-See also: {cpp:func}`BView::FrameResized`
+See also: {cpp:func}`BView::FrameResized()`
 ::::
 
 ::::{abi-group}
@@ -206,38 +204,38 @@ character preceding or following the current insertion point.
 the display.
 
 Otherwise, it checks whether the character was registered as unacceptable
-(by {cpp:func}`DisallowChar() <BTextView::DisallowChar>`). If not
-disallowed, it calls the {cpp:func}`InsertText() <BTextView::InsertText>`
-hook function to enter the character into the text and display it. Derived
-classes can preview about-to-be-inserted characters by overriding
-{cpp:func}`InsertText() <BTextView::InsertText>`.
+(by {cpp:func}`~BTextView::DisallowChar()`). If not disallowed, it calls
+the {cpp:func}`~BTextView::InsertText()` hook function to enter the
+character into the text and display it. Derived classes can preview
+about-to-be-inserted characters by overriding
+{cpp:func}`~BTextView::InsertText()`.
 
-See also: {cpp:func}`BView::KeyDown`
+See also: {cpp:func}`BView::KeyDown()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BTextView::MessageReceived(BMessage* message)
 :::
 
-Augments the {cpp:class}`BView` version of {cpp:func}`MessageReceived()
-<BView::MessageReceived>` to handle scripting requests, dropped data, and
-four editing messages—{cpp:enumerator}`B_CUT`, {cpp:enumerator}`B_COPY`,
-{cpp:enumerator}`B_PASTE`, and {cpp:enumerator}`B_SELECT_ALL`.
+Augments the {cpp:class}`BView` version of
+{cpp:func}`~BView::MessageReceived()` to handle scripting requests, dropped
+data, and four editing messages—{cpp:enumerator}`B_CUT`,
+{cpp:enumerator}`B_COPY`, {cpp:enumerator}`B_PASTE`, and
+{cpp:enumerator}`B_SELECT_ALL`.
 
 If the message was dragged and dropped on the {hclass}`BTextView` and it
 contains {cpp:enumerator}`B_MIME_TYPE` data under the name "text/plain",
 this function inserts the new text at the point where it was dropped—but
-only if {cpp:func}`AcceptsDrop() <BTextView::AcceptsDrop>` returns
-{cpp:expr}`true` for the message.
+only if {cpp:func}`~BTextView::AcceptsDrop()` returns {cpp:expr}`true` for
+the message.
 
 This function handles {cpp:enumerator}`B_CUT`, {cpp:enumerator}`B_COPY`,
 {cpp:enumerator}`B_PASTE`, and {cpp:enumerator}`B_SELECT_ALL` messages by
-calling the {cpp:func}`Cut() <BTextView::Cut>`, {cpp:func}`Copy()
-<BTextView::Copy>`, {cpp:func}`Paste() <BTextView::Paste>`, and
-{cpp:func}`SelectAll() <BTextView::SelectAll>` functions. A
-{hclass}`BTextView` will get these messages, even if the application
-doesn't send them, when it's the focus view and the user uses the
-{hkey}`Command`+{hkey}`x`, {hkey}`Command`+{hkey}`c`,
+calling the {cpp:func}`~BTextView::Cut()`, {cpp:func}`~BTextView::Copy()`,
+{cpp:func}`~BTextView::Paste()`, and {cpp:func}`~BTextView::SelectAll()`
+functions. A {hclass}`BTextView` will get these messages, even if the
+application doesn't send them, when it's the focus view and the user uses
+the {hkey}`Command`+{hkey}`x`, {hkey}`Command`+{hkey}`c`,
 {hkey}`Command`+{hkey}`v`, and {hkey}`Command`+{hkey}`a` shortcuts. See
 "{ref}`Shortcuts and Menu Items`" in the class overview for information on
 how to set up compatible Cut, Copy, Paste, and Select All menu items.
@@ -246,10 +244,9 @@ To inherit this functionality, {hmethod}`MessageReceived()` functions
 implemented by derived classes should be sure to call the
 {hclass}`BTextView` version.
 
-See also: {cpp:func}`AcceptsPaste() <BTextView::AcceptsPaste>`,
-{cpp:func}`InsertText() <BTextView::InsertText>`,
-{cpp:func}`BView::MessageReceived`, {cpp:func}`BInvoker::SetMessage`,
-{cpp:func}`BInvoker::SetTarget`
+See also: {cpp:func}`~BTextView::AcceptsPaste()`,
+{cpp:func}`~BTextView::InsertText()`, {cpp:func}`BView::MessageReceived()`,
+{cpp:func}`BInvoker::SetMessage()`, {cpp:func}`BInvoker::SetTarget()`
 ::::
 
 ::::{abi-group}
@@ -258,13 +255,13 @@ See also: {cpp:func}`AcceptsPaste() <BTextView::AcceptsPaste>`,
 
 Selects text, drags text, and positions the insertion point in response to
 the user's mouse actions. If the {hclass}`BTextView` isn't already the
-focus view for its window, this function calls {cpp:func}`MakeFocus()
-<BTextView::MakeFocus>` to make it the focus view.
+focus view for its window, this function calls
+{cpp:func}`~BTextView::MakeFocus()` to make it the focus view.
 
 {hmethod}`MouseDown()` is called for each mouse-down event that occurs
 inside the {hclass}`BTextView`'s frame rectangle.
 
-See also: {cpp:func}`BView::MouseDown`
+See also: {cpp:func}`BView::MouseDown()`
 ::::
 
 ::::{abi-group}
@@ -285,8 +282,8 @@ If a message is being dragged to the {hclass}`BTextView`, this function
 tests it see whether it contains textual data and tracks it to its
 destination.
 
-See also: {cpp:func}`BView::MouseMoved`, {cpp:func}`AcceptsDrop()
-<BTextView::AcceptsDrop>`
+See also: {cpp:func}`BView::MouseMoved()`,
+{cpp:func}`~BTextView::AcceptsDrop()`
 ::::
 
 ::::{abi-group}
@@ -299,7 +296,7 @@ Turns the caret marking the current insertion point on and off when the
 
 This function is first declared in the {cpp:class}`BView` class.
 
-See also: {cpp:func}`BView::Pulse`
+See also: {cpp:func}`BView::Pulse()`
 ::::
 
 ::::{abi-group}
@@ -319,8 +316,8 @@ The Interface Kit calls this function for you whenever the
 {hclass}`BTextView`'s window becomes the active window or it loses that
 status.
 
-See also: {cpp:func}`BView::WindowActivated`, {cpp:func}`MakeFocus()
-<BTextView::MakeFocus>`
+See also: {cpp:func}`BView::WindowActivated()`,
+{cpp:func}`~BTextView::MakeFocus()`
 ::::
 
 ## Member Functions
@@ -348,20 +345,20 @@ dragged over the {hclass}`BTextView`, and when the message is dropped on
 the object. {hmethod}`AcceptsPaste()` is called when a
 {cpp:enumerator}`B_PASTE` message is received. If you augment these
 functions to accept more types, you'll also have to augment the
-{cpp:func}`MessageReceived() <BTextView::MessageReceived>` and
-{cpp:func}`Paste() <BTextView::Paste>` functions to insert the text found
-in message or clipboard.
+{cpp:func}`~BTextView::MessageReceived()` and
+{cpp:func}`~BTextView::Paste()` functions to insert the text found in
+message or clipboard.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual status_t BTextView::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive() <BView::Archive>` and
-stores the {hclass}`BTextView` in the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BView::Archive()` and stores
+the {hclass}`BTextView` in the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BTextView::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BTextView::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -415,7 +412,7 @@ bool MyTextView::CanEndLine(int32 offset)
 }
 :::
 
-See also: {cpp:func}`SetWordWrap() <BTextView::SetWordWrap>`
+See also: {cpp:func}`~BTextView::SetWordWrap()`
 ::::
 
 ::::{abi-group}
@@ -438,9 +435,9 @@ text from the {hclass}`BTextView` and removes it from the display. The text
 is entered in the clipboard as {cpp:enumerator}`B_MIME_TYPE` data under the
 name "text/plain". {hmethod}`Paste()` looks in the clipboard for just this
 type of data and pastes it into the text—but only if
-{cpp:func}`AcceptsPaste() <BTextView::AcceptsPaste>` returns
-{cpp:expr}`true`. The new text replaces the current selection, or is placed
-at the site of the current insertion point.
+{cpp:func}`~BTextView::AcceptsPaste()` returns {cpp:expr}`true`. The new
+text replaces the current selection, or is placed at the site of the
+current insertion point.
 
 If the {hclass}`BTextView` supports multiple character formats,
 {hmethod}`Cut()` and {hmethod}`Copy()` also place a {htype}`text_run_array`
@@ -458,8 +455,8 @@ The {hmethod}`Clear()` function simply removes the currently-selected text
 from the {hclass}`BTextView` without affecting any clipboard. If there's no
 selection, nothing happens.
 
-See also: {cpp:func}`AcceptsPaste() <BTextView::AcceptsPaste>`,
-"{ref}`Shortcuts and Menu Items`" in the overview
+See also: {cpp:func}`~BTextView::AcceptsPaste()`, "{ref}`Shortcuts and
+Menu Items`" in the overview
 ::::
 
 ::::{abi-group}
@@ -480,12 +477,11 @@ setting up the object. Although declared as {htype}`uint32`,
 {hmethod}`AllowChar()` reverses the effect of {hmethod}`DisallowChar()`.
 
 Alternatively, and for more control over the context in which characters
-are accepted or rejected, you can implement an {cpp:func}`InsertText()
-<BTextView::InsertText>` function for the {hclass}`BTextView`.
-{cpp:func}`InsertText() <BTextView::InsertText>` is called for all
-insertions, including each character the user types, all text the user
-drags to the {hclass}`BTextView`, and all attempts to paste from the
-clipboard.
+are accepted or rejected, you can implement an
+{cpp:func}`~BTextView::InsertText()` function for the {hclass}`BTextView`.
+{cpp:func}`~BTextView::InsertText()` is called for all insertions,
+including each character the user types, all text the user drags to the
+{hclass}`BTextView`, and all attempts to paste from the clipboard.
 ::::
 
 ::::{abi-group}
@@ -522,9 +518,9 @@ be selected together.
 
 {hmethod}`GetDragParameters()` is called when a drag session is initiated.
 The values that it retrieves (by reference in the arguments) are passed on
-to {cpp:func}`BView::DragMessage`. If you don't supply a bitmap (if you set
-{hparam}`*bitmap` to {cpp:expr}`NULL`), the outline rectangle version of
-{cpp:func}`DragMessage() <BView::DragMessage>` is used.
+to {cpp:func}`BView::DragMessage()`. If you don't supply a bitmap (if you
+set {hparam}`*bitmap` to {cpp:expr}`NULL`), the outline rectangle version
+of {cpp:func}`~BView::DragMessage()` is used.
 ::::
 
 ::::{abi-group}
@@ -539,7 +535,7 @@ the position of the current insertion point.
 
 If the text isn't selectable, both offsets will be 0.
 
-See also: {cpp:func}`Select() <BTextView::Select>`
+See also: {cpp:func}`~BTextView::Select()`
 ::::
 
 ::::{abi-group}
@@ -552,7 +548,7 @@ displayed within the {hclass}`BTextView`'s coordinate system, and modifies
 the {cpp:class}`BRegion` object passed as the third argument,
 {hparam}`region`, so that it represents that region.
 
-See also: {cpp:func}`TextHeight() <BTextView::TextHeight>`
+See also: {cpp:func}`~BTextView::TextHeight()`
 ::::
 
 ::::{abi-group}
@@ -580,8 +576,8 @@ point—is currently located.
 
 Like other functions that change the selection, {hmethod}`GoToLine()`
 doesn't automatically scroll the display to make the new selection visible.
-Call {cpp:func}`ScrollToSelection() <BTextView::ScrollToSelection>` to be
-sure that the user can see the start of the selection.
+Call {cpp:func}`~BTextView::ScrollToSelection()` to be sure that the user
+can see the start of the selection.
 ::::
 
 ::::{abi-group}
@@ -613,8 +609,8 @@ if the text is already highlighted, it unhighlights it. If you highlight
 some text, be sure to unhighlight it before the next editorial change; the
 {hclass}`BTextView` will not do it for you.
 
-See also: {cpp:func}`Select() <BTextView::Select>`,
-{cpp:func}`GetTextRegion() <BTextView::GetTextRegion>`
+See also: {cpp:func}`~BTextView::Select()`,
+{cpp:func}`~BTextView::GetTextRegion()`
 ::::
 
 ::::{abi-group}
@@ -651,7 +647,7 @@ immediately preceding the offset character.
 
 Offsets in the {hparam}`runs` array should describe the text being
 inserted; in other words, the first offset should be 0. See
-{cpp:func}`SetRunArray() <BTextView::SetRunArray>` for a description of the
+{cpp:func}`~BTextView::SetRunArray()` for a description of the
 {htype}`text_run_array` structure.
 
 {hmethod}`Insert()` doesn't assume responsibility for the {hparam}`text`
@@ -664,8 +660,8 @@ and {hparam}`finish` offsets from the display and deletes them from the
 deleted. If offsets are not provided, {hmethod}`Delete()` deletes the
 current selection.
 
-See also: {cpp:func}`SetText() <BTextView::SetText>`, {cpp:func}`Cut()
-<BTextView::Cut>`, {cpp:func}`SetRunArray() <BTextView::SetRunArray>`
+See also: {cpp:func}`~BTextView::SetText()`,
+{cpp:func}`~BTextView::Cut()`, {cpp:func}`~BTextView::SetRunArray()`
 ::::
 
 ::::{abi-group}
@@ -697,8 +693,8 @@ inserted text; that is, the first offset in the array is 0, not
 {hparam}`offset`.
 
 {hmethod}`InsertText()` is called for every insertion, except one. The
-exception occurs when {cpp:func}`SetText() <BTextView::SetText>` takes text
-from a file; in this case the text goes directly from the file to the
+exception occurs when {cpp:func}`~BTextView::SetText()` takes text from a
+file; in this case the text goes directly from the file to the
 {hclass}`BTextView`; it's not stored in a temporary buffer while
 {hmethod}`InsertText()` is called.
 
@@ -707,8 +703,8 @@ and {hparam}`finish` offsets. It fails if the offsets don't differ, or if
 the {hparam}`finish` offset isn't greater than the {hparam}`start` offset.
 This function is called for every deletion.
 
-See also: {cpp:func}`Insert() <BTextView::Insert>`, {cpp:func}`Delete()
-<BTextView::Delete>`
+See also: {cpp:func}`~BTextView::Insert()`,
+{cpp:func}`~BTextView::Delete()`
 ::::
 
 ::::{abi-group}
@@ -767,7 +763,7 @@ tallest font and the descent and leading from the deepest.
 Both functions reset out-of-range indices to be in-range—that is, to the
 index of the first or last line.
 
-See also: {cpp:func}`BFont::GetHeight`
+See also: {cpp:func}`BFont::GetHeight()`
 ::::
 
 ::::{abi-group}
@@ -783,7 +779,7 @@ If the {hparam}`index` passed is out-of-range, it's reinterpreted to be
 the nearest in-range index—that is, as the index to the first or the last
 line.
 
-See also: {cpp:func}`BFont::StringWidth`
+See also: {cpp:func}`BFont::StringWidth()`
 ::::
 
 ::::{abi-group}
@@ -801,15 +797,15 @@ When text is editable but not selectable, the user can enter and delete
 text at the insertion point, but can't select text to make changes to more
 than one character at a time.
 
-See also: {cpp:func}`MakeSelectable() <BTextView::MakeSelectable>`
+See also: {cpp:func}`~BTextView::MakeSelectable()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BTextView::MakeFocus(bool flag = true)
 :::
 
-Overrides the {cpp:class}`BView` version of {cpp:func}`MakeFocus()
-<BView::MakeFocus>` to highlight the current selection when the
+Overrides the {cpp:class}`BView` version of
+{cpp:func}`~BView::MakeFocus()` to highlight the current selection when the
 {hclass}`BTextView` becomes the focus view (when {hparam}`flag` is
 {cpp:expr}`true`) and to unhighlight it when the {hclass}`BTextView` no
 longer is the focus view (when {hparam}`flag` is {cpp:expr}`false`).
@@ -820,7 +816,7 @@ This function is called for you whenever the user's actions make the
 {hclass}`BTextView` become the focus view, or force it to give up that
 status.
 
-See also: {cpp:func}`MouseDown() <BTextView::MouseDown>`
+See also: {cpp:func}`~BTextView::MouseDown()`
 ::::
 
 ::::{abi-group}
@@ -863,7 +859,7 @@ two schemes are incompatible; the container view (or the
 {hclass}`BTextView`, if there is no container) should not automatically
 resize itself when its parent is resized.
 
-See also: {cpp:func}`SetAlignment() <BTextView::SetAlignment>`
+See also: {cpp:func}`~BTextView::SetAlignment()`
 ::::
 
 ::::{abi-group}
@@ -883,12 +879,12 @@ characters to copy to the clipboard, but can't position the insertion point
 (an empty selection), enter characters from the keyboard, or paste new text
 into the view.
 
-See also: {cpp:func}`MakeEditable() <BTextView::MakeEditable>`
+See also: {cpp:func}`~BTextView::MakeEditable()`
 ::::
 
 ### ResolveSpecifier()
 
-See {cpp:func}`BHandler::ResolveSpecifier`
+See {cpp:func}`BHandler::ResolveSpecifier()`
 
 ::::{abi-group}
 :::{cpp:function} virtual void BTextView::ScrollToOffset(int32 offset)
@@ -903,7 +899,7 @@ within the visible region of the view. If the {hclass}`BTextView` is
 equipped with scroll bars, the {cpp:class}`BScrollBar` objects are informed
 so they can update themselves.
 
-See also: {cpp:func}`BView::ScrollTo`
+See also: {cpp:func}`BView::ScrollTo()`
 ::::
 
 ::::{abi-group}
@@ -924,13 +920,13 @@ If the {hclass}`BTextView` is the current focus view in the active window,
 {hmethod}`Select()` highlights the new selection (or displays a blinking
 caret at the insertion point). However, it doesn't automatically scroll the
 contents of the {hclass}`BTextView` to make the new selection visible. Call
-{cpp:func}`ScrollToSelection() <BTextView::ScrollToSelection>` to be sure
-that the user can see the start of the selection.
+{cpp:func}`~BTextView::ScrollToSelection()` to be sure that the user can
+see the start of the selection.
 
-See also: {cpp:func}`Text() <BTextView::Text>`, {cpp:func}`GetSelection()
-<BTextView::GetSelection>`, {cpp:func}`ScrollToSelection()
-<BTextView::ScrollToSelection>`, {cpp:func}`GoToLine()
-<BTextView::GoToLine>`, {cpp:func}`MouseDown() <BTextView::MouseDown>`
+See also: {cpp:func}`~BTextView::Text()`,
+{cpp:func}`~BTextView::GetSelection()`,
+{cpp:func}`~BTextView::ScrollToSelection()`,
+{cpp:func}`~BTextView::GoToLine()`, {cpp:func}`~BTextView::MouseDown()`
 ::::
 
 ::::{abi-group}
@@ -940,7 +936,7 @@ See also: {cpp:func}`Text() <BTextView::Text>`, {cpp:func}`GetSelection()
 Selects the entire text of the {hclass}`BTextView`, and highlights it if
 the {hclass}`BTextView` is the current focus view in the active window.
 
-See also: {cpp:func}`Select() <BTextView::Select>`
+See also: {cpp:func}`~BTextView::Select()`
 ::::
 
 ::::{abi-group}
@@ -1034,10 +1030,10 @@ undo mechanism is one operation deep: Udoing undoes the previous
 
 You call {hmethod}`SetDoesUndo()` to enable or disable the undo machinery
 for this object. By default, undo is enabled. The ability to undo is also
-controlled by the object's editability ( {cpp:func}`MakeEditable()
-<BTextView::MakeEditable>`), but this is a tautology, since in order to
-have something to undo you have to have been able to edit the object in the
-first place.
+controlled by the object's editability (
+{cpp:func}`~BTextView::MakeEditable()`), but this is a tautology, since in
+order to have something to undo you have to have been able to edit the
+object in the first place.
 
 {hmethod}`DoesUndo()` tells you whether the object is "undoable" as set by
 {hmethod}`SetDoesUndo()`. It doesn't take editability into consideration.
@@ -1116,10 +1112,9 @@ multiple character formats are not supported, {hmethod}`SetFontAndColor()`
 ignores the offsets and formats the entire text.
 
 {hmethod}`SetFontAndColor()` works like {cpp:class}`BView`'s
-{cpp:func}`SetFont() <BView::SetFont>` function. It sets the {hparam}`font`
-to the attributes of the font {cpp:class}`BFont` object that are enumerated
-by the properties mask. The mask is formed by combining the following
-constants:
+{cpp:func}`~BView::SetFont()` function. It sets the {hparam}`font` to the
+attributes of the font {cpp:class}`BFont` object that are enumerated by the
+properties mask. The mask is formed by combining the following constants:
 
 -   {cpp:enumerator}`B_FONT_FAMILY_AND_STYLE`
 
@@ -1270,7 +1265,7 @@ freeing it when the returned {htype}`text_run_array` is no longer needed.
 {hmethod}`SetRunArray()` doesn't assume responsibility for the runs data
 it's passed; it's up to the caller to free it.
 
-See also: {cpp:func}`SetFontAndColor() <BTextView::SetFontAndColor>`
+See also: {cpp:func}`~BTextView::SetFontAndColor()`
 ::::
 
 ::::{abi-group}
@@ -1292,8 +1287,8 @@ character.
 {hmethod}`IsStylable()` returns whether multiple formats are permitted. By
 default, they're not.
 
-See also: {cpp:func}`SetFontAndColor() <BTextView::SetFontAndColor>`
-{cpp:func}`SetRunArray() <BTextView::SetRunArray>`
+See also: {cpp:func}`~BTextView::SetFontAndColor()`
+{cpp:func}`~BTextView::SetRunArray()`
 ::::
 
 ::::{abi-group}
@@ -1338,16 +1333,16 @@ buffer, the {hparam}`file`, or the {hparam}`runs` array; you can delete
 them when {hmethod}`SetText()` returns.
 
 Text taken from a file is inserted directly into the text, bypassing the
-{cpp:func}`InsertText() <BTextView::InsertText>` function. In other words,
-you won't receive an {cpp:func}`InsertText() <BTextView::InsertText>`
-notification for text taken from a file.
+{cpp:func}`~BTextView::InsertText()` function. In other words, you won't
+receive an {cpp:func}`~BTextView::InsertText()` notification for text taken
+from a file.
 
 This function is typically used to set the text initially displayed in the
 view. If the {hclass}`BTextView` is already attached to a window, it's
 updated to show its new contents.
 
-See also: {cpp:func}`Text() <BTextView::Text>`, {cpp:func}`TextLength()
-<BTextView::TextLength>`
+See also: {cpp:func}`~BTextView::Text()`,
+{cpp:func}`~BTextView::TextLength()`
 ::::
 
 ::::{abi-group}
@@ -1379,14 +1374,14 @@ See also: the {hclass}`BTextView` {cpp:func}`constructor
 These functions set and return whether the {hclass}`BTextView` wraps lines
 on word boundaries, thus pushing entire words that don't fit at the end of
 a line to the next line. When word wrapping is turned on, the
-{hclass}`BTextView` calls {cpp:func}`CanEndLine() <BTextView::CanEndLine>`
-to determine exactly where a line can break. If word wrapping is off, lines
-break only on a newline character (where the user types {hkey}`Return`).
+{hclass}`BTextView` calls {cpp:func}`~BTextView::CanEndLine()` to determine
+exactly where a line can break. If word wrapping is off, lines break only
+on a newline character (where the user types {hkey}`Return`).
 
 By default, word wrapping is turned on ({hmethod}`DoesWordWrap()` returns
 {cpp:expr}`true`).
 
-See also: {cpp:func}`SetTextRect() <BTextView::SetTextRect>`
+See also: {cpp:func}`~BTextView::SetTextRect()`
 ::::
 
 ::::{abi-group}
@@ -1403,10 +1398,10 @@ These functions reveal the text contained in the {hclass}`BTextView`.
 
 {hmethod}`Text()` returns a pointer to the text, which may be a pointer to
 an empty string if the {hclass}`BTextView` is empty. The returned pointer
-can be used to read the text, but not to alter it (use {cpp:func}`SetText()
-<BTextView::SetText>`, {cpp:func}`Insert() <BTextView::Insert>`,
-{cpp:func}`Delete() <BTextView::Delete>`, and other {hclass}`BTextView`
-functions to do that).
+can be used to read the text, but not to alter it (use
+{cpp:func}`~BTextView::SetText()`, {cpp:func}`~BTextView::Insert()`,
+{cpp:func}`~BTextView::Delete()`, and other {hclass}`BTextView` functions
+to do that).
 
 {hmethod}`GetText()` copies up to {hparam}`length` bytes of the text into
 {hparam}`buffer`, beginning with the byte at {hparam}`offset`, and adds a
@@ -1435,7 +1430,7 @@ The pointer that {hmethod}`Text()` returns may no longer be valid after
 the user or the program next changes the text. Even if valid, the string
 may no longer be null-terminated and gaps may appear.
 
-See also: {cpp:func}`TextLength() <BTextView::TextLength>`
+See also: {cpp:func}`~BTextView::TextLength()`
 ::::
 
 ::::{abi-group}
@@ -1443,10 +1438,10 @@ See also: {cpp:func}`TextLength() <BTextView::TextLength>`
 :::
 
 Returns the number of bytes of text data the {hclass}`BTextView` currently
-contains—the number of bytes in the string that {cpp:func}`Text()
-<BTextView::Text>` returns (not counting the null terminator).
+contains—the number of bytes in the string that
+{cpp:func}`~BTextView::Text()` returns (not counting the null terminator).
 
-See also: {cpp:func}`SetMaxBytes() <BTextView::SetMaxBytes>`
+See also: {cpp:func}`~BTextView::SetMaxBytes()`
 ::::
 
 ## Static Functions
@@ -1474,7 +1469,7 @@ If a {hparam}`numBytes` argument is provided, both functions place the
 number of bytes they allocated for the data in the variable that
 {hparam}`numBytes` refers to.
 
-See also: {cpp:func}`SetRunArray() <BTextView::SetRunArray>`
+See also: {cpp:func}`~BTextView::SetRunArray()`
 ::::
 
 ::::{abi-group}
@@ -1486,8 +1481,8 @@ the version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the archive doesn't contain data for a {hclass}`BTextView`
 object, the return value will be {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`, {cpp:func}`Archive()
-<BTextView::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`~BTextView::Archive()`
 ::::
 
 ## Scripting Support
@@ -1501,8 +1496,9 @@ The current text selection
 
 Using two {htype}`int32` offsets to the beginning and end of the selection
 in either the "result" or "data" arrays, these messages convey the current
-selection of the object in a manner identical to {cpp:func}`GetSelection()
-<BTextView::GetSelection>` and {cpp:func}`Select() <BTextView::Select>`.
+selection of the object in a manner identical to
+{cpp:func}`~BTextView::GetSelection()` and
+{cpp:func}`~BTextView::Select()`.
 
 :::{list-table}
 ---
@@ -1539,13 +1535,12 @@ widths: auto
 The text in the view
 
 The "Text" get and set messages correspond to the method
-{cpp:func}`GetText() <BTextView::GetText>` and {cpp:func}`SetText()
-<BTextView::SetText>`, using a C string to store the data. If the
-{cpp:enumerator}`B_SET_PROPERTY` message lacks a "data" member, the
-selection is deleted; otherwise, "range" bytes are inserted at offset
-"index." The values specifying the range are given in byte rather than
-character offsets. The range counts towards the end of the text, even for
-{cpp:enumerator}`B_REVERSE_RANGE_SPECIFIER`.
+{cpp:func}`~BTextView::GetText()` and {cpp:func}`~BTextView::SetText()`,
+using a C string to store the data. If the {cpp:enumerator}`B_SET_PROPERTY`
+message lacks a "data" member, the selection is deleted; otherwise, "range"
+bytes are inserted at offset "index." The values specifying the range are
+given in byte rather than character offsets. The range counts towards the
+end of the text, even for {cpp:enumerator}`B_REVERSE_RANGE_SPECIFIER`.
 
 :::{list-table}
 ---
@@ -1591,9 +1586,9 @@ widths: auto
 
 Font and color information for the text
 
-These messages correspond to the methods {cpp:func}`RunArray()
-<BTextView::RunArray>` and {cpp:func}`SetRunArray()
-<BTextView::SetRunArray>`, storing the result as a
+These messages correspond to the methods
+{cpp:func}`~BTextView::RunArray()` and
+{cpp:func}`~BTextView::SetRunArray()`, storing the result as a
 {cpp:enumerator}`B_RAW_TYPE`. As with the "Text" property, the values
 specifying the range are given in byte rather than character offsets. The
 range counts towards the end of the text, even for
@@ -1635,8 +1630,8 @@ widths: auto
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BTextView::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BTextView::Archive()` function adds the following fields
+to its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---
@@ -1691,8 +1686,7 @@ widths: auto
 
 	- {cpp:enumerator}`B_INT32_TYPE`
 
-	- The maximum size (a la {cpp:func}`SetMaxBytes()
-<BTextView::SetMaxBytes>`).
+	- The maximum size (a la {cpp:func}`~BTextView::SetMaxBytes()`).
 
 -
 	- {hparam}`_sel` (array)

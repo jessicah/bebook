@@ -22,7 +22,7 @@ of {cpp:expr}`true` for the looping argument to the
 {cpp:class}`BFileGameSound` constructor.
 
 You can pause the {cpp:class}`BFileGameSound` by calling
-{cpp:func}`SetPaused() <BFileGameSound::SetPaused>`:
+{cpp:func}`~BFileGameSound::SetPaused()`:
 
 :::{code} cpp
 themeSong.SetPaused(true, 0);

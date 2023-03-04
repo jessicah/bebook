@@ -209,9 +209,9 @@ is of no consequence.
 -   The function sets {hparam}`location` to point to the symbol's address.
 
 To retrieve {htype}`image_id` numbers on which these functions can act,
-use the {ref}`get_next_image_info()` function. Such numbers are also
+use the {cpp:func}`get_next_image_info()` function. Such numbers are also
 returned directly when you load an add-on image through the
-{ref}`load_add_on()` function.
+{cpp:func}`load_add_on()` function.
 
 :::{list-table}
 ---
@@ -339,7 +339,7 @@ to free them immediately after load_image() returns.
 
 The thread that's returned by load_image() is in a suspended state. To
 start the thread running, you pass the {htype}`thread_id` to
-{cpp:func}`resume_thread() <resume::thread>` or {ref}`wait_for_thread()`.
+{cpp:func}`resume_thread()` or {cpp:func}`wait_for_thread()`.
 
 An example that demonstrates the use of load_image() is given in "Loading
 an App Image."

@@ -40,7 +40,7 @@ them "system".
 
 To access a clipboard's data, you call functions on a
 {cpp:class}`BMessage` that the {cpp:class}`BClipboard` object hands you
-(through its {cpp:func}`Data() <BClipboard::Data>` function). The
+(through its {cpp:func}`~BClipboard::Data()` function). The
 {cpp:class}`BMessage` follows these conventions:
 
 -   The {cpp:var}`what` value is unused.
@@ -99,32 +99,32 @@ widths: auto
 -
 	- {ref}``
 
-	- Call {cpp:func}`Data() <BClipboard::Data>` to get a pointer to the
+	- Call {cpp:func}`~BClipboard::Data()` to get a pointer to the
 		{cpp:class}`BClipboard`'s {cpp:class}`BMessage` object.
 -
 	- {ref}``
 
-	- Write the data by invoking {cpp:func}`AddData() <BMessage::AddData>`
-		directly on the {cpp:class}`BMessage`. In the example, we write the data in
-		two different formats.
+	- Write the data by invoking {cpp:func}`~BMessage::AddData()` directly on
+		the {cpp:class}`BMessage`. In the example, we write the data in two
+		different formats.
 -
 	- {ref}``
 
-	- Call {cpp:func}`Commit() <BClipboard::Commit>` to copy your
-		{cpp:class}`BMessage` back to the clipboard. As soon as you call
-		{cpp:func}`Commit() <BClipboard::Commit>`, the data that you added is
-		visible to other clipboard clients.
+	- Call {cpp:func}`~BClipboard::Commit()` to copy your {cpp:class}`BMessage`
+		back to the clipboard. As soon as you call
+		{cpp:func}`~BClipboard::Commit()`, the data that you added is visible to
+		other clipboard clients.
 -
 	- {ref}``
 
-	- {cpp:func}`Unlock() <BClipboard::Unlock>` balances the {cpp:func}`Lock()
-		<BClipboard::Lock>`. The {cpp:class}`BClipboard` object can now be accessed
-		by other threads in your application.
+	- {cpp:func}`~BClipboard::Unlock()` balances the
+		{cpp:func}`~BClipboard::Lock()`. The {cpp:class}`BClipboard` object can now
+		be accessed by other threads in your application.
 
 :::
 
 If you decide that you don't want to commit your changes, you should call
-{cpp:func}`Revert() <BClipboard::Revert>` before you unlock.
+{cpp:func}`~BClipboard::Revert()` before you unlock.
 
 ## Reading from the Clipboard
 
@@ -152,12 +152,12 @@ widths: auto
 -
 	- {ref}``
 
-	- As in writing, we bracket the operation with {cpp:func}`Lock()
-		<BClipboard::Lock>` and {cpp:func}`Unlock() <BClipboard::Unlock>`. Keep in
-		mind that {cpp:func}`Lock() <BClipboard::Lock>` uploads data from the
+	- As in writing, we bracket the operation with
+		{cpp:func}`~BClipboard::Lock()` and {cpp:func}`~BClipboard::Unlock()`. Keep
+		in mind that {cpp:func}`~BClipboard::Lock()` uploads data from the
 		clipboard into our object. Any changes that are made to the clipboard (by
-		some other application) after {cpp:func}`Lock() <BClipboard::Lock>` is
-		called won't be seen here.
+		some other application) after {cpp:func}`~BClipboard::Lock()` is called
+		won't be seen here.
 -
 	- {ref}``
 
@@ -167,8 +167,8 @@ widths: auto
 	- {ref}``
 
 	- It isn't necessary to examine the clipboard data before you unlock it. The
-		{cpp:func}`FindData() <BMessage::FindData>` call could just as well have
-		been performed after the {cpp:func}`Unlock() <BClipboard::Unlock>` call.
+		{cpp:func}`~BMessage::FindData()` call could just as well have been
+		performed after the {cpp:func}`~BClipboard::Unlock()` call.
 
 :::
 

@@ -15,12 +15,11 @@
 Constructs a new {hclass}`BMimeType` object and initializes its MIME type
 to a copy of {hparam}`MIME_string` (if the argument is given). The rules of
 validity apply (see "{ref}`Valid MIME Strings`"). To see if the
-initialization was successful, call {cpp:func}`InitCheck()
-<BMimeType::InitCheck>` after you construct a new {hclass}`BMimeType`
-object.
+initialization was successful, call {cpp:func}`~BMimeType::InitCheck()`
+after you construct a new {hclass}`BMimeType` object.
 
-You can also set the MIME type through the {cpp:func}`SetTo()
-<BMimeType::SetTo>` function.
+You can also set the MIME type through the {cpp:func}`~BMimeType::SetTo()`
+function.
 ::::
 
 ::::{abi-group}
@@ -90,7 +89,7 @@ widths: auto
 
 :::
 
-See Also: {cpp:func}`BNodeInfo::GetAppHint`
+See Also: {cpp:func}`BNodeInfo::GetAppHint()`
 ::::
 
 ::::{abi-group}
@@ -241,8 +240,9 @@ set, add the new ones, and then call {hmethod}`SetFileExtensions()`.
 
 Also, there's no way to ask the database to give you a set of file types
 that map to a given extension. To find a type for an extension, you have to
-get all the installed types with {cpp:func}`GetInstalledTypes()
-<BMimeType::GetInstalledTypes>` and ask each one for its set of extensions.
+get all the installed types with
+{cpp:func}`~BMimeType::GetInstalledTypes()` and ask each one for its set of
+extensions.
 :::
 
 :::{list-table}
@@ -596,8 +596,8 @@ If an application supports both the full type and the supertype, it will
 be listed only once in the "applications" array (as a full supporter).
 
 To set the types that an application supports, use
-{cpp:func}`BAppFileInfo::SetSupportedTypes`. To tell an app to support all
-types, add "application/octet-stream" to its supported-types list.
+{cpp:func}`BAppFileInfo::SetSupportedTypes()`. To tell an app to support
+all types, add "application/octet-stream" to its supported-types list.
 
 :::{list-table}
 ---
@@ -630,10 +630,10 @@ widths: auto
 :::{cpp:function} status_t BMimeType::InitCheck() const
 :::
 
-Returns the status of the most recent construction or {cpp:func}`SetTo()
-<BMimeType::SetTo>` call.
+Returns the status of the most recent construction or
+{cpp:func}`~BMimeType::SetTo()` call.
 
-See {cpp:func}`SetTo() <BMimeType::SetTo>`.
+See {cpp:func}`~BMimeType::SetTo()`.
 ::::
 
 ::::{abi-group}
@@ -716,8 +716,8 @@ the validity test described in "{ref}`Valid MIME Strings`".
 {hmethod}`Unset()` frees the object's current MIME string, and sets the
 object's status to {cpp:enumerator}`B_NO_INIT`.
 
-These return codes are also returned by the {cpp:func}`InitCheck()
-<BMimeType::InitCheck>` function.
+These return codes are also returned by the
+{cpp:func}`~BMimeType::InitCheck()` function.
 
 :::{list-table}
 ---
@@ -822,42 +822,42 @@ widths: auto
 -
 	- {cpp:enumerator}`B_ICON_CHANGED`
 
-	- {cpp:func}`SetIcon() <BMimeType::SetIcon>`
+	- {cpp:func}`~BMimeType::SetIcon()`
 
 -
 	- {cpp:enumerator}`B_PREFERRED_APP_CHANGED`
 
-	- {cpp:func}`SetPreferredApp() <BMimeType::SetPreferredApp>`
+	- {cpp:func}`~BMimeType::SetPreferredApp()`
 
 -
 	- {cpp:enumerator}`B_ATTR_INFO_CHANGED`
 
-	- {cpp:func}`SetAttrInfo() <BMimeType::SetAttrInfo>`
+	- {cpp:func}`~BMimeType::SetAttrInfo()`
 
 -
 	- {cpp:enumerator}`B_FILE_EXTENSIONS_CHANGED`
 
-	- {cpp:func}`SetFileExtensions() <BMimeType::SetFileExtensions>`
+	- {cpp:func}`~BMimeType::SetFileExtensions()`
 
 -
 	- {cpp:enumerator}`B_SHORT_DESCRIPTION_CHANGED`
 
-	- {cpp:func}`SetShortDescription() <BMimeType::SetShortDescription>`
+	- {cpp:func}`~BMimeType::SetShortDescription()`
 
 -
 	- {cpp:enumerator}`B_LONG_DESCRIPTION_CHANGED`
 
-	- {cpp:func}`SetLongDescription() <BMimeType::SetLongDescription>`
+	- {cpp:func}`~BMimeType::SetLongDescription()`
 
 -
 	- {cpp:enumerator}`B_ICON_FOR_TYPE_CHANGED`
 
-	- {cpp:func}`SetIconForType() <BMimeType::SetIconForType>`
+	- {cpp:func}`~BMimeType::SetIconForType()`
 
 -
 	- {cpp:enumerator}`B_APP_HINT_CHANGED`
 
-	- {cpp:func}`SetAppHint() <BMimeType::SetAppHint>`
+	- {cpp:func}`~BMimeType::SetAppHint()`
 
 
 :::

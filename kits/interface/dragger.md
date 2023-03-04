@@ -58,19 +58,18 @@ bitmap image it draws).
 :::
 
 {hmethod}`AttachedToWindow()` makes sure that the {hclass}`BDragger` is
-under the control of the {cpp:func}`HideAllDraggers()
-<BDragger::HideAllDraggers>` and {cpp:func}`ShowAllDraggers()
-<BDragger::ShowAllDraggers>` functions, makes its low and background view
-colors match the view color of its parent, and determines the
-{hclass}`BDragger`'s precise relationship to its target view. To make this
-determination, the target must be in the view hierarchy; it can't be added
-to the window after the {hclass}`BDragger` is. For example, if the target
-is the {hclass}`BDragger`'s child, it should be added to the
+under the control of the {cpp:func}`~BDragger::HideAllDraggers()` and
+{cpp:func}`~BDragger::ShowAllDraggers()` functions, makes its low and
+background view colors match the view color of its parent, and determines
+the {hclass}`BDragger`'s precise relationship to its target view. To make
+this determination, the target must be in the view hierarchy; it can't be
+added to the window after the {hclass}`BDragger` is. For example, if the
+target is the {hclass}`BDragger`'s child, it should be added to the
 {hclass}`BDragger` and then the {hclass}`BDragger` added to the window.
 
 {hmethod}`DetachedFromWindow()` removes the {hclass}`BDragger` from the
-control of the {cpp:func}`HideAllDraggers() <BDragger::HideAllDraggers>`
-and {cpp:func}`ShowAllDraggers() <BDragger::ShowAllDraggers>` functions.
+control of the {cpp:func}`~BDragger::HideAllDraggers()` and
+{cpp:func}`~BDragger::ShowAllDraggers()` functions.
 ::::
 
 ::::{abi-group}
@@ -105,7 +104,7 @@ operation, or by taking other appropriate action.
 :::
 
 Records the {hclass}`BDragger`'s hierarchical relationship to the target
-view and then calls {cpp:func}`BView::Archive` . The {hparam}`deep` flag
+view and then calls {cpp:func}`BView::Archive()` . The {hparam}`deep` flag
 has no significance for {hclass}`BDragger` itself, but note that the flag
 is passed on to the {cpp:class}`BView` version.
 ::::
@@ -124,11 +123,11 @@ wasn't visible and now should be.
 Otherwise, this function returns {cpp:expr}`false`.
 
 What's this function for? It's in the API so derived classes can implement
-their own versions of {cpp:func}`Draw() <BDragger::Draw>`. If the
+their own versions of {cpp:func}`~BDragger::Draw()`. If the
 {hclass}`BDragger` isn't the parent of its target, the visibility of the
-{hclass}`BDragger` view can be controlled by the {cpp:func}`Hide()
-<BView::Hide>` and {cpp:func}`Show() <BView::Show>` functions rather than
-{cpp:func}`Draw() <BDragger::Draw>`.
+{hclass}`BDragger` view can be controlled by the {cpp:func}`~BView::Hide()`
+and {cpp:func}`~BView::Show()` functions rather than
+{cpp:func}`~BDragger::Draw()`.
 ::::
 
 ::::{abi-group}
@@ -164,7 +163,7 @@ objects to draw their handles. The Show Replicants / Hide Replicants menu
 item does its work through these functions.
 
 {hmethod}`HideAllDraggers()` may or may not hide the {hclass}`BDragger`
-view in the way that {cpp:class}`BView's` {cpp:func}`Hide() <BView::Hide>`
+view in the way that {cpp:class}`BView's` {cpp:func}`~BView::Hide()`
 function does. The {hclass}`BDragger` may still be visible, although it
 won't draw anything until {hmethod}`ShowAllDraggers()` is called.
 Therefore, if the target {cpp:class}`BView` is the {hclass}`BDragger`'s
@@ -209,7 +208,7 @@ widths: auto
 	- {cpp:enumerator}`B_MESSAGE_TYPE`
 
 	- Archive of the pop-up menu. Field present only if this menu was set with
-{cpp:func}`SetPopUp() <BDragger::SetPopUp>`.
+{cpp:func}`~BDragger::SetPopUp()`.
 
 -
 	- {hparam}`_rel`

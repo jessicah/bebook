@@ -19,9 +19,9 @@ Initializes the {hclass}`BShelf` object so that it serves a container
 view. The versions that accept an {htype}`entry_ref` or
 {cpp:class}`BDataIO` argument prime the shelf so that it (initially)
 contains the replicants that are archived in the referred to file or stream
-using {cpp:func}`Save() <BShelf::Save>`. The {hparam}`ref`/{hparam}`stream`
+using {cpp:func}`~BShelf::Save()`. The {hparam}`ref`/{hparam}`stream`
 argument is also used as the archival repository when you tell your
-{hclass}`BShelf` to {cpp:func}`Save() <BShelf::Save>` itself.
+{hclass}`BShelf` to {cpp:func}`~BShelf::Save()` itself.
 
 If the {hparam}`allowsDragging` flag is {cpp:expr}`true`, the user will be
 able to drag replicant view within the container's bounds. If the flag is
@@ -29,7 +29,7 @@ able to drag replicant view within the container's bounds. If the flag is
 
 {hparam}`name` is the {hclass}`BShelf`'s handler name. The name can be
 important: It's compared to the replicant's {hparam}`shelf_type` field, as
-explained in {cpp:func}`AddReplicant() <BShelf::AddReplicant>`.
+explained in {cpp:func}`~BShelf::AddReplicant()`.
 
 :::{admonition} Warning
 :class: warning
@@ -42,7 +42,7 @@ declared in Shelf.h. Don't use it.
 :::{cpp:function} virtual BShelf::~BShelf()
 :::
 
-The destructor calls {cpp:func}`Save() <BShelf::Save>`, and then frees the
+The destructor calls {cpp:func}`~BShelf::Save()`, and then frees the
 object.
 ::::
 
@@ -90,8 +90,8 @@ otherwise allow dragging.
 :::{cpp:function} virtual bool BShelf::CanAcceptReplicantView(BRect destRect, BView* view, BMessage* archive) const
 :::
 
-These hook functions are invoked from within {cpp:func}`AddReplicant()
-<BShelf::AddReplicant>` whenever a replicant is dropped on the
+These hook functions are invoked from within
+{cpp:func}`~BShelf::AddReplicant()` whenever a replicant is dropped on the
 {hclass}`BShelf`. You can implement these functions to reject unwanted
 replicants.
 
@@ -101,8 +101,8 @@ the look of the archive, return {cpp:expr}`false` and the message will be
 thrown away. Note that you shouldn't return {cpp:expr}`false` if the
 archive doesn't seem to be in the correct form (specifically, if it doesn't
 contain any views). Rejection of such messages is handled more elegantly
-(and after this function is invoked) by the {cpp:func}`AddReplicant()
-<BShelf::AddReplicant>` function.
+(and after this function is invoked) by the
+{cpp:func}`~BShelf::AddReplicant()` function.
 
 {hmethod}`CanAcceptReplicantView()` is invoked after the message has been
 unarchived. {hparam}`destRect` is the rectangle that the replicant will
@@ -119,11 +119,11 @@ return of {cpp:expr}`true` does the obvious thing.
 :::{cpp:function} virtual void BShelf::ReplicantDeleted(int32 index, const BMessage* archive, const BView* view)
 :::
 
-This hook function is invoked from within {cpp:func}`DeleteReplicant()
-<BShelf::DeleteReplicant>` to indicate a replicant has been deleted from
-the {hclass}`BShelf`. It is called after the view has been removed from the
-shelf with the {hparam}`index` of the replicant in the shelf, its
-{hparam}`archive` message, and the detached {hparam}`view`.
+This hook function is invoked from within
+{cpp:func}`~BShelf::DeleteReplicant()` to indicate a replicant has been
+deleted from the {hclass}`BShelf`. It is called after the view has been
+removed from the shelf with the {hparam}`index` of the replicant in the
+shelf, its {hparam}`archive` message, and the detached {hparam}`view`.
 ::::
 
 ## Member Functions
@@ -138,35 +138,33 @@ This function is invoked automatically when a replicant is dropped on the
 where, within the container view's bounds, the message was dropped. The
 function goes through these steps to reject and adjust the replicant:
 
--   First, it invokes the {cpp:func}`CanAcceptReplicantMessage()
-<BShelf::CanAcceptReplicantMessage>` hook function. If the hook returns
-{cpp:expr}`false`, then {hmethod}`AddReplicant()` doesn't add the
-replicant.
+-   First, it invokes the {cpp:func}`~BShelf::CanAcceptReplicantMessage()`
+hook function. If the hook returns {cpp:expr}`false`, then
+{hmethod}`AddReplicant()` doesn't add the replicant.
 
 -   Next, it looks for a {hparam}`shelf_type` string field in the
 {cpp:class}`BMessage`. If it finds one and the value of the field doesn't
 match the {hclass}`BShelf`'s name, the replicant is rejected.
 
--   If type enforcement is {cpp:expr}`true` (see {cpp:func}`SetTypeEnforced()
-<BShelf::SetTypeEnforced>`) and the shelf has a name, then the
+-   If type enforcement is {cpp:expr}`true` (see
+{cpp:func}`~BShelf::SetTypeEnforced()`) and the shelf has a name, then the
 {cpp:class}`BMessage` must have a {hparam}`shelf_type` string and this
 string must match the shelf name. Otherwise, the replicant is rejected.
 
     There's no specific API for adding the {hparam}`shelf_type` field to a
 view. If you want to configure your views to accept only certain
 {hclass}`BShelf` objects, you have to add the field directly as part of the
-view's {cpp:func}`Archive() <BView::Archive>` implementation.
+view's {cpp:func}`~BView::Archive()` implementation.
 
 -   The archive message is then unarchived (the replicant is instantiated). If
 the archive doesn't contain a {cpp:class}`BView`, the message is passed on
 to another handler ({cpp:enumerator}`B_DISPATCH_MESSAGE` is returned).
 
--   {cpp:func}`CanAcceptReplicantView() <BShelf::CanAcceptReplicantView>` hook
-function is called next (with a return of {cpp:expr}`false` meaning
-rejection).
+-   {cpp:func}`~BShelf::CanAcceptReplicantView()` hook function is called next
+(with a return of {cpp:expr}`false` meaning rejection).
 
--   Finally, {cpp:func}`AdjustReplicantBy() <BShelf::AdjustReplicantBy>` is
-called, and the replicant is drawn in the container view.
+-   Finally, {cpp:func}`~BShelf::AdjustReplicantBy()` is called, and the
+replicant is drawn in the container view.
 
 Except in the case of a no-view archive, {hmethod}`AddReplicant()` returns
 {cpp:enumerator}`B_SKIP_MESSAGE`.
@@ -190,7 +188,7 @@ yourself, although that's not its expected use.
 {hmethod}`Archive()` is currently a no-op that returns
 {cpp:enumerator}`B_ERROR`. You can't archive a {hclass}`BShelf`. If you
 want to archive something, archive the shelf's contents by calling
-{cpp:func}`Save() <BShelf::Save>`.
+{cpp:func}`~BShelf::Save()`.
 :::
 
 ::::{abi-group}
@@ -337,7 +335,7 @@ then it is rejected. Type enforcement is {cpp:expr}`false` by default.
 {hmethod}`Instantiate()` is currently a no-op that returns
 {cpp:expr}`NULL`. You can't archive a {hclass}`BShelf`. If you want to
 archive something, archive the shelf's contents by calling
-{cpp:func}`Save() <BShelf::Save>`.
+{cpp:func}`~BShelf::Save()`.
 :::
 ::::
 

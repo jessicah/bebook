@@ -25,7 +25,7 @@ screen identifiers other than for the main screen.
 :::
 
 To be sure the new object was correctly constructed, call
-{cpp:func}`IsValid() <BScreen::IsValid>`.
+{cpp:func}`~BScreen::IsValid()`.
 ::::
 
 ::::{abi-group}
@@ -68,9 +68,10 @@ the {htype}`color_map` structure for the main screen without reference to a
 
 {hmethod}`IndexForColor()` returns the "index" of the 8-bit color that, in
 this screen's color map, most closely matches the given 32-bit color. You
-can pass the {hparam}`index` to functions such {cpp:func}`BBitmap::SetBits`
-to set an 8-bit color. Note that {hmethod}`IndexForColor()` knows how to
-convert {cpp:enumerator}`B_TRANSPARENT_32_BIT` into
+can pass the {hparam}`index` to functions such
+{cpp:func}`BBitmap::SetBits()` to set an 8-bit color. Note that
+{hmethod}`IndexForColor()` knows how to convert
+{cpp:enumerator}`B_TRANSPARENT_32_BIT` into
 {cpp:enumerator}`B_TRANSPARENT_8_BIT`.
 
 {hmethod}`ColorForIndex()` returns the 32-bit color representation of a
@@ -106,7 +107,7 @@ Returns the color space of the screen display—typically
 
 The color space is set by the user through the Screen preferences
 application. You can set it programatically through the
-{cpp:func}`SetMode() <BScreen::SetMode>` function.
+{cpp:func}`~BScreen::SetMode()` function.
 ::::
 
 ::::{abi-group}
@@ -126,7 +127,7 @@ set to 0.0.
 
 The screen's frame rectangle is set by the user through the Screen
 preferences application. You can set it programatically through the
-{cpp:func}`SetMode() <BScreen::SetMode>` function.
+{cpp:func}`~BScreen::SetMode()` function.
 ::::
 
 ::::{abi-group}
@@ -310,7 +311,7 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`ProposeMode() <BScreen::ProposeMode>`
+See also: {cpp:func}`~BScreen::ProposeMode()`
 ::::
 
 ::::{abi-group}
@@ -428,9 +429,9 @@ if not.
 
 {hmethod}`ProposeMode()` is a convenience function that attempts to adjust
 {hparam}`candidate` so that it's a supported mode (as listed by the
-{cpp:func}`GetModeList() <BScreen::GetModeList>` function). It then
-compares the possibly-adjusted {hparam}`candidate` to the limits declared
-in {hparam}`low` and {hparam}`high` and expresses this comparison in the
+{cpp:func}`~BScreen::GetModeList()` function). It then compares the
+possibly-adjusted {hparam}`candidate` to the limits declared in
+{hparam}`low` and {hparam}`high` and expresses this comparison in the
 return value. Note that the function doesn't adjust {hparam}`candidate` so
 that it is, of necessity, between {hparam}`low` and {hparam}`high`.
 

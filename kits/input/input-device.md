@@ -9,8 +9,9 @@
 :::{cpp:function} BInputDevice::BInputDevice()
 :::
 
-The constructor is private. Use {ref}`find_input_device()` or
-{ref}`get_input_devices()` to retrieve a {hclass}`BInputDevice` instance.
+The constructor is private. Use {cpp:func}`find_input_device()` or
+{cpp:func}`get_input_devices()` to retrieve a {hclass}`BInputDevice`
+instance.
 ::::
 
 ::::{abi-group}

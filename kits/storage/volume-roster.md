@@ -11,9 +11,8 @@
 
 Creates a new {hclass}`BVolumeRoster` object. You don't have to
 "initialize" the object before using it (as you do with most other Storage
-Kit classes). You can call {cpp:func}`GetNextVolume()
-<BVolumeRoster::GetNextVolume>` (or whatever) immediately after
-constructing.
+Kit classes). You can call {cpp:func}`~BVolumeRoster::GetNextVolume()` (or
+whatever) immediately after constructing.
 ::::
 
 ::::{abi-group}

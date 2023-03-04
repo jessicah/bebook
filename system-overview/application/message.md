@@ -46,34 +46,34 @@ The {cpp:class}`BMessage` class defines five types of functions:
 Data field functions.
 
 : These functions either set or retrieve the value of a data field. See
-{cpp:func}`AddData() <BMessage::AddData>`, {cpp:func}`FindData()
-<BMessage::FindData>`, {cpp:func}`ReplaceData() <BMessage::ReplaceData>`,
-and {cpp:func}`RemoveName() <BMessage::RemoveName>`.
+{cpp:func}`~BMessage::AddData()`, {cpp:func}`~BMessage::FindData()`,
+{cpp:func}`~BMessage::ReplaceData()`, and
+{cpp:func}`~BMessage::RemoveName()`.
 
 Info functions.
 
 : These functions retrieve information about the state and contents of the
-{cpp:class}`BMessage`. See {cpp:func}`IsSystem() <BMessage::IsSystem>` and
-{cpp:func}`GetInfo() <BMessage::GetInfo>`.
+{cpp:class}`BMessage`. See {cpp:func}`~BMessage::IsSystem()` and
+{cpp:func}`~BMessage::GetInfo()`.
 
 Messaging functions.
 
 : These functions are part of the messaging system. A smaller set of
 functions reports on the status of a received message. For example,
-{cpp:func}`IsSourceWaiting() <BMessage::IsSourceWaiting>` tells whether the
-message sender is waiting for a reply, {cpp:func}`WasDropped()
-<BMessage::WasDropped>` says whether it was dragged and dropped, and
-{cpp:func}`DropPoint() <BMessage::DropPoint>` says where it was dropped.
+{cpp:func}`~BMessage::IsSourceWaiting()` tells whether the message sender
+is waiting for a reply, {cpp:func}`~BMessage::WasDropped()` says whether it
+was dragged and dropped, and {cpp:func}`~BMessage::DropPoint()` says where
+it was dropped.
 
 Scripting functions.
 
-: Functions such as {cpp:func}`AddSpecifier() <BMessage::AddSpecifier>` and
-{cpp:func}`PopSpecifier() <BMessage::PopSpecifier>`.
+: Functions such as {cpp:func}`~BMessage::AddSpecifier()` and
+{cpp:func}`~BMessage::PopSpecifier()`.
 
 Flattening functions.
 
 : The data in a {cpp:class}`BMessage` can be flattened into an untyped
-stream of bytes. See {cpp:func}`Flatten() <BMessage::Flatten>`.
+stream of bytes. See {cpp:func}`~BMessage::Flatten()`.
 
 ## BMessage Ownership
 

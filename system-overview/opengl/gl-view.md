@@ -17,9 +17,8 @@ frontbuffer. Drawing performed in single-buffered mode immediately appears
 on the screen.
 
 In double-buffered contexts, drawing is performed in the backbuffer and is
-not visible onscreen until the {cpp:func}`SwapBuffers()
-<BGLView::SwapBuffers>` function is called to swap the two buffers and
-refresh the screen image.
+not visible onscreen until the {cpp:func}`~BGLView::SwapBuffers()` function
+is called to swap the two buffers and refresh the screen image.
 
 :::{admonition} Note
 :class: note
@@ -29,9 +28,9 @@ The BGLView class currently only supports double-buffered OpenGL contexts.
 ### BGLView & BDirectWindow
 
 The {cpp:class}`BGLView` class provides a function,
-{cpp:func}`DirectConnected() <BGLView::DirectConnected>`, that your
-{cpp:func}`BDirectWindow::DirectConnected` function can call to handle the
-work of refreshing the OpenGL display.
+{cpp:func}`~BGLView::DirectConnected()`, that your
+{cpp:func}`BDirectWindow::DirectConnected()` function can call to handle
+the work of refreshing the OpenGL display.
 
 ## Using OpenGL
 
@@ -44,7 +43,7 @@ However, it's important to understand how OpenGL fits into the framework
 of a BeOS application. The example that follows will draw a pattern of
 lines around a central point, as seen in the picture below.
 
-![Info Icon](./images/TheOpenGLKit/gltest.png)
+![Info Icon](./_static/images/gltest.png)
 
 This code has been structured to make it relatively easy to port sample
 programs from the OpenGL web site; however, most of those samples use GLUT
@@ -108,8 +107,8 @@ class SampleGLWindow : public BWindow {
 
 The constructor accepts a {hparam}`frame` rectangle for the window and the
 OpenGL context type parameter that will be passed to
-{hclass}`SampleGLView`'s constructor. As always, {cpp:func}`QuitRequested()
-<BApplication::QuitRequested>` is overridden to post a
+{hclass}`SampleGLView`'s constructor. As always,
+{cpp:func}`~BApplication::QuitRequested()` is overridden to post a
 {cpp:enumerator}`B_QUIT_REQUESTED` message to the application and return
 true. A pointer to the {hclass}`SampleGLView` object is maintained as well.
 
@@ -128,7 +127,7 @@ This code establishes the window, then creates the {hclass}`SampleGLView`
 and adds it as a child of the window. Once that's done, the window is made
 visible by calling {hmethod}`Show()`. Finally, the {hclass}`SampleGLView`'s
 contents are drawn by calling the {hclass}`SampleGLView`'s
-{cpp:func}`Render() <SampleGLView::Render>` function.
+{cpp:func}`~SampleGLView::Render()` function.
 
 The meat of this program is in the {hclass}`SampleGLView` class, which
 follows:
@@ -155,11 +154,11 @@ class SampleGLView : public BGLView {
 
 The {hclass}`SampleGLView` class implements the constructor and
 reimplements three of the functions of the {cpp:class}`BGLView` class:
-{cpp:func}`AttachedToWindow() <BGLView::AttachedToWindow>`,
-{cpp:func}`FrameResized() <BGLView::FrameResized>`, and
-{cpp:func}`ErrorCallback() <BGLView::ErrorCallback>`. An additional public
-method, {cpp:func}`Render() <SampleGLView::Render>`, will contain the
-actual code for drawing the contents of the view.
+{cpp:func}`~BGLView::AttachedToWindow()`,
+{cpp:func}`~BGLView::FrameResized()`, and
+{cpp:func}`~BGLView::ErrorCallback()`. An additional public method,
+{cpp:func}`~SampleGLView::Render()`, will contain the actual code for
+drawing the contents of the view.
 
 In addition, there are three private methods that will contain the actual
 OpenGL calls for initializing, drawing, and resizing the
@@ -188,9 +187,9 @@ that information when the view is attached to the window, and the
 {cpp:class}`BGLView` class doesn't include {hmethod}`Width()` and
 {hmethod}`Height()` functions.
 
-The {cpp:func}`AttachedToWindow() <BGLView::AttachedToWindow>` function,
-which is called when the {hclass}`SampleGLView` is attached to its parent
-window, looks like this:
+The {cpp:func}`~BGLView::AttachedToWindow()` function, which is called
+when the {hclass}`SampleGLView` is attached to its parent window, looks
+like this:
 
 :::{code} cpp
 void SampleGLView::AttachedToWindow(void) {
@@ -203,25 +202,24 @@ void SampleGLView::AttachedToWindow(void) {
 :::
 
 This performs the initialization of the OpenGL context. First,
-{cpp:func}`LockGL() <BGLView::LockGL>` is called to lock the context and
-let the OpenGL Kit know which view should be targeted by future OpenGL
-calls. Then the inherited version of {cpp:func}`AttachedToWindow()
-<BView::AttachedToWindow>` is called to let {cpp:class}`BGLView` set up the
-view normally.
+{cpp:func}`~BGLView::LockGL()` is called to lock the context and let the
+OpenGL Kit know which view should be targeted by future OpenGL calls. Then
+the inherited version of {cpp:func}`~BView::AttachedToWindow()` is called
+to let {cpp:class}`BGLView` set up the view normally.
 
-Once that's done, the {hmethod}`gInit()` and {cpp:func}`gReshape()
-<SampleGLView::gReshape>` functions are called. {cpp:func}`gInit()
-<SampleGLView::gInit>`, as we'll see shortly, is responsible for
-initializing the context. {cpp:func}`gReshape() <SampleGLView::gReshape>`
-is called to configure the OpenGL coordinate system for the
+Once that's done, the {hmethod}`gInit()` and
+{cpp:func}`~SampleGLView::gReshape()` functions are called.
+{cpp:func}`~SampleGLView::gInit()`, as we'll see shortly, is responsible
+for initializing the context. {cpp:func}`~SampleGLView::gReshape()` is
+called to configure the OpenGL coordinate system for the
 {cpp:class}`BGLView` given the current width and height of the view.
 
-Finally, {cpp:func}`UnlockGL() <BGLView::UnlockGL>` is called to release
-the OpenGL context for the {hclass}`SampleGLView` and to indicate that
-we're done using the context for the time being.
+Finally, {cpp:func}`~BGLView::UnlockGL()` is called to release the OpenGL
+context for the {hclass}`SampleGLView` and to indicate that we're done
+using the context for the time being.
 
-The {cpp:func}`FrameResized() <BGLView::FrameResized>` function is called
-automatically whenever the {hclass}`SampleGLView` is resized:
+The {cpp:func}`~BGLView::FrameResized()` function is called automatically
+whenever the {hclass}`SampleGLView` is resized:
 
 :::{code} cpp
 void SampleGLView::FrameResized(float newWidth, float newHeight) {
@@ -242,17 +240,16 @@ calls the inherited version of {hmethod}`FrameResized()` to let
 {cpp:class}`BGLView` perform whatever tasks it may need to do.
 
 The new width and height of the view are saved in the {hparam}`width` and
-{hparam}`height` variables, then the {cpp:func}`gReshape()
-<SampleGLView::gReshape>` function is called to adjust the OpenGL context
-given the new size of the view.
+{hparam}`height` variables, then the {cpp:func}`~SampleGLView::gReshape()`
+function is called to adjust the OpenGL context given the new size of the
+view.
 
-Finally, the context is unlocked, and {cpp:func}`Render()
-<SampleGLView::Render>` is called to redraw the view's contents at the new
-size.
+Finally, the context is unlocked, and {cpp:func}`~SampleGLView::Render()`
+is called to redraw the view's contents at the new size.
 
-Although the default {cpp:func}`ErrorCallback() <BGLView::ErrorCallback>`
-function provided by {cpp:class}`BGLView` would be acceptable, we include
-one of our own anyway:
+Although the default {cpp:func}`~BGLView::ErrorCallback()` function
+provided by {cpp:class}`BGLView` would be acceptable, we include one of our
+own anyway:
 
 :::{code} cpp
 void SampleGLView::ErrorCallback(GLenum whichError) {
@@ -291,10 +288,10 @@ lines (you can change this by setting {hparam}`use_stipple_mode` to
 {cpp:enumerator}`GL_FALSE`). It also chooses to use 2 pixel wide lines, and
 4 pixel wide points.
 
-This function doesn't call {cpp:func}`LockGL() <BGLView::LockGL>` and
-{cpp:func}`UnlockGL() <BGLView::UnlockGL>`, so they must be called by the
-calling function (and if you look at the {cpp:func}`AttachedToWindow()
-<BGLView::AttachedToWindow>` code above, you'll see that this is the case).
+This function doesn't call {cpp:func}`~BGLView::LockGL()` and
+{cpp:func}`~BGLView::UnlockGL()`, so they must be called by the calling
+function (and if you look at the {cpp:func}`~BGLView::AttachedToWindow()`
+code above, you'll see that this is the case).
 
 There are some global variables used by this program (some of them
 accessed in the above code), so lets' take a quick look at those:
@@ -418,22 +415,20 @@ void SampleGLView::Render(void) {
 }
 :::
 
-{cpp:func}`LockGL() <BGLView::LockGL>` is called to lock the context
-before calling {hmethod}`gDraw()` to do the actual OpenGL calls to draw the
-view. Then the {cpp:func}`SwapBuffers() <BGLView::SwapBuffers>` function is
-called to swap the backbuffer that was just drawn to the screen, and the
-context is unlocked.
+{cpp:func}`~BGLView::LockGL()` is called to lock the context before
+calling {hmethod}`gDraw()` to do the actual OpenGL calls to draw the view.
+Then the {cpp:func}`~BGLView::SwapBuffers()` function is called to swap the
+backbuffer that was just drawn to the screen, and the context is unlocked.
 
 ## Adapting OpenGL Sample Code
 
 The program described above can easily be adapted to be used with other
 sample code from the OpenGL web site. First, replace the code in the
-{hmethod}`gInit()`, {hmethod}`gDraw()`, and {cpp:func}`gReshape()
-<SampleGLView::gReshape>` functions with the code from the
-{cpp:func}`gInit() <SampleGLView::gInit>`, {cpp:func}`gDraw()
-<SampleGLView::gDraw>`, and {cpp:func}`gReshape() <SampleGLView::gReshape>`
-functions in the sample code (some of the sample programs give these
-functions slightly different names).
+{hmethod}`gInit()`, {hmethod}`gDraw()`, and
+{cpp:func}`~SampleGLView::gReshape()` functions with the code from the
+{cpp:func}`~SampleGLView::gInit()`, {cpp:func}`~SampleGLView::gDraw()`, and
+{cpp:func}`~SampleGLView::gReshape()` functions in the sample code (some of
+the sample programs give these functions slightly different names).
 
 Keep in mind that the current implementation of OpenGL under BeOS doesn't
 support single-buffered graphics, so you'll need to make whatever

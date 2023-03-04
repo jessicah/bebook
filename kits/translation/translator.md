@@ -11,7 +11,7 @@
 
 The constructor must create and return a new instance of your
 {hclass}`BTranslator` subclass. Note that the constructor doesn't
-{cpp:func}`Acquire() <BTranslator::Acquire>` the object it returns.
+{cpp:func}`~BTranslator::Acquire()` the object it returns.
 ::::
 
 ::::{abi-group}
@@ -20,8 +20,8 @@ The constructor must create and return a new instance of your
 
 Note that the destructor is protected; you can only delete a
 {hclass}`BTranslator` object from within the implementation of the
-subclass. From outside the class, you call {cpp:func}`Release()
-<BTranslator::Release>`.
+subclass. From outside the class, you call
+{cpp:func}`~BTranslator::Release()`.
 ::::
 
 ## Member Functions
@@ -71,8 +71,8 @@ predicate your code on the value it returns.
 :::
 
 Hook function that asks the object to write its current state into the
-{cpp:class}`BMessage`* argument. See {ref}`GetConfigMessage()` [Translator
-Add-ons] for details.
+{cpp:class}`BMessage`* argument. See {cpp:func}`GetConfigMessage()`
+[Translator Add-ons] for details.
 ::::
 
 ::::{abi-group}
@@ -81,8 +81,8 @@ Add-ons] for details.
 
 Hook function called by the Translator Roster to ask the
 {hclass}`BTranslator` if it knows how to convert {hparam}`inSource` into
-the type described by {hparam}`outType`. See {ref}`Identify()` [Translator
-Add-ons] for details.
+the type described by {hparam}`outType`. See {cpp:func}`Identify()`
+[Translator Add-ons] for details.
 ::::
 
 ::::{abi-group}
@@ -95,8 +95,8 @@ Add-ons] for details.
 These functions should be implemented to return arrays of
 {htype}`translation_format` structures that describe the formats that this
 object supports. If the functions aren't implemented, the object's
-{cpp:func}`Identify() <BTranslator::Identify>` function will be called each
-time an application requests a translation. Both functions should set
+{cpp:func}`~BTranslator::Identify()` function will be called each time an
+application requests a translation. Both functions should set
 {hparam}`count` to the number of elements in the format array.
 
 :::{admonition} Important
@@ -112,7 +112,7 @@ by these functions don't have to be terminated by an empty
 :::
 
 Hook function that lets the {hclass}`BTranslator` supply a configuration
-view. See {ref}`MakeConfig()` [Translator Add-ons] for details.
+view. See {cpp:func}`MakeConfig()` [Translator Add-ons] for details.
 ::::
 
 ::::{abi-group}
@@ -121,8 +121,8 @@ view. See {ref}`MakeConfig()` [Translator Add-ons] for details.
 
 Hook function that asks the {hclass}`BTranslator` to translate data from
 {hparam}`inSource` to format {hparam}`outType`, writing the output to
-{hparam}`outDestination`. See {cpp:func}`Translate()
-<BTranslator::Translate>` [Translator Add-ons] for details.
+{hparam}`outDestination`. See {cpp:func}`~BTranslator::Translate()`
+[Translator Add-ons] for details.
 ::::
 
 ::::{abi-group}

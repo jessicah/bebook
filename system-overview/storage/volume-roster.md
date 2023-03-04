@@ -5,12 +5,11 @@ mounted in the file system hierarchy. It lets you know about volumes in two
 ways:
 
 -   It lists the volumes that are currently mounted. You can step through the
-list through iterative calls to the {cpp:func}`GetNextVolume()
-<BVolumeRoster::GetNextVolume>` function.
+list through iterative calls to the
+{cpp:func}`~BVolumeRoster::GetNextVolume()` function.
 
 -   It lets you know when new volumes are mounted, and when existing volumes
-are unmounted. (See {cpp:func}`StartWatching()
-<BVolumeRoster::StartWatching>`.)
+are unmounted. (See {cpp:func}`~BVolumeRoster::StartWatching()`.)
 
 How you create your {hclass}`BVolumeRoster` object depends on what you're
 going to do with it:

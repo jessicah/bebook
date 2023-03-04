@@ -49,8 +49,8 @@ slider, and {cpp:enumerator}`B_HASH_MARKS_NONE` to omit them entirely
 marks spaced evenly across the slider.
 
 Finally, if you want to add labels at the ends of the slider, to indicate
-the minimum and maximum values, you can use the {cpp:func}`SetLimitLabels()
-<BSlider::SetLimitLabels>` function:
+the minimum and maximum values, you can use the
+{cpp:func}`~BSlider::SetLimitLabels()` function:
 
 :::{code} cpp
 slider->SetLimitLabels("Slow", "Fast");
@@ -71,9 +71,8 @@ drawing the slider bar, thumb, focus mark, and hash marks.
 
 For example, let's say you want your slider's thumb to be round. Just
 create a new class—let's call it CustomSlider—derived from
-{cpp:class}`BSlider`, and override the {cpp:func}`DrawThumb()
-<BSlider::DrawThumb>` function with code that might look something like
-this:
+{cpp:class}`BSlider`, and override the {cpp:func}`~BSlider::DrawThumb()`
+function with code that might look something like this:
 
 :::{code} cpp
 const rgb_color kWhite = {255,255,255,255};
@@ -114,16 +113,16 @@ void CustomSlider::DrawThumb(void) {
 :::
 
 All rendering of a {cpp:class}`BSlider` is done into an offscreen view,
-which you can get a pointer to by calling the {cpp:func}`OffscreenView()
-<BSlider::OffscreenView>` function. This improves performance and makes
-drawing the slider—especially complicated ones—look much smoother to the
-user.
+which you can get a pointer to by calling the
+{cpp:func}`~BSlider::OffscreenView()` function. This improves performance
+and makes drawing the slider—especially complicated ones—look much smoother
+to the user.
 
 This code gets a pointer to the offscreen view, then renders a round,
 beveled thumb into the offscreen view, filling the thumb's frame rectangle
-as returned by the {cpp:func}`ThumbFrame() <BSlider::ThumbFrame>` function.
+as returned by the {cpp:func}`~BSlider::ThumbFrame()` function.
 
 The result is a round thumb that looks like the one in the "Totality of
 Damage" slider in the picture below:
 
-![Slider With Rounded Thumb](./images/TheInterfaceKit/slider_round.png)
+![Slider With Rounded Thumb](./_static/images/slider_round.png)

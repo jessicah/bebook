@@ -11,7 +11,7 @@ jeopardy.
 
 The driver settings API provides easy, safe access to boolean and string
 settings, and is available to all drivers and modules. If your driver has
-more complex settings, the {ref}`get_driver_settings()` function is
+more complex settings, the {cpp:func}`get_driver_settings()` function is
 available to retrieve all your settings in a hierarchical tree.
 
 The boot loader reads the settings files from the boot volume and passes
@@ -26,12 +26,13 @@ your driver.
 
 Using the API is very simple. Just follow these basic steps:
 
--   Call {ref}`load_driver_settings()` to load the settings data.
+-   Call {cpp:func}`load_driver_settings()` to load the settings data.
 
--   Use {ref}`get_driver_settings()` or {ref}`get_driver_parameter()` and
-{ref}`get_driver_boolean_parameter()` to read the settings.
+-   Use {cpp:func}`get_driver_settings()` or
+{cpp:func}`get_driver_parameter()` and
+{cpp:func}`get_driver_boolean_parameter()` to read the settings.
 
--   Call {ref}`unload_driver_settings()` when you're done.
+-   Call {cpp:func}`unload_driver_settings()` when you're done.
 
 ### The Settings File
 
@@ -69,8 +70,8 @@ device 1 {
 }
 :::
 
-For this settings file, {ref}`get_driver_settings()` will return a pointer
-to the following tree:
+For this settings file, {cpp:func}`get_driver_settings()` will return a
+pointer to the following tree:
 
 :::{code} sh
 driver_settings = {
@@ -114,7 +115,7 @@ driver_settings = {
 ### Loading the Settings
 
 To load the driver's settings, you need to call
-{ref}`load_driver_settings()`. For example, if your driver's name is
+{cpp:func}`load_driver_settings()`. For example, if your driver's name is
 "xr_joystick", you might do this:
 
 :::{code} c
@@ -129,11 +130,12 @@ opaque reference protects you against any future changes in the kernel.
 
 There are three functions you can use to read driver settings:
 
--   {ref}`get_driver_boolean_parameter()` returns a boolean parameter's value.
+-   {cpp:func}`get_driver_boolean_parameter()` returns a boolean parameter's
+value.
 
--   {ref}`get_driver_parameter()` returns a string parameter's value.
+-   {cpp:func}`get_driver_parameter()` returns a string parameter's value.
 
--   {ref}`get_driver_settings()` returns all the settings at once,
+-   {cpp:func}`get_driver_settings()` returns all the settings at once,
 encapsulated in a hierarchical format.
 
 #### Reading a Boolean Parameter
@@ -154,10 +156,10 @@ bool debug = get_driver_boolean_parameter(handle, "debug",
 unload_driver_settings(handle);
 :::
 
-If there's no settings file, {ref}`load_driver_settings()` will return
-{cpp:expr}`NULL`. In this case, {ref}`get_driver_boolean_parameter()` will
-return {cpp:expr}`false` (the value we're passing as the
-{hparam}`unknownValue` argument).
+If there's no settings file, {cpp:func}`load_driver_settings()` will
+return {cpp:expr}`NULL`. In this case,
+{cpp:func}`get_driver_boolean_parameter()` will return {cpp:expr}`false`
+(the value we're passing as the {hparam}`unknownValue` argument).
 
 If there's a settings file, but the debug entry isn't found, the
 {hparam}`unknownValue` argument is returned. Even though the handle is
@@ -167,7 +169,8 @@ as the default.
 If the file contains a line starting with "debug", the second word on the
 line is used as the value. If no value is specified, {cpp:expr}`true` is
 returned (the value of the {hparam}`noArgValue` argument to
-{ref}`get_driver_boolean_parameter()`). Otherwise the following is done:
+{cpp:func}`get_driver_boolean_parameter()`). Otherwise the following is
+done:
 
 -   If the value is "1", "true", "yes", "on", "enable", or "enabled",
 {cpp:expr}`true` is returned.
@@ -185,15 +188,15 @@ previously specified in the settings file.
 #### Reading a String Parameter
 
 Reading string parameters works in much the same way, using the
-{ref}`get_driver_parameter()` function. The only difference is that the
-string returned will be {cpp:expr}`NULL` if the parameter is missing, or
-the file doesn't exist.
+{cpp:func}`get_driver_parameter()` function. The only difference is that
+the string returned will be {cpp:expr}`NULL` if the parameter is missing,
+or the file doesn't exist.
 
 #### Reading All Parameters
 
 If your driver has more complex parameters (such as parameters with
 multiple values, or with subparameters), you can read the entire settings
-tree using the {ref}`get_driver_settings()` function.
+tree using the {cpp:func}`get_driver_settings()` function.
 
 The {htype}`driver_settings` structure contains the root of the settings
 tree:
@@ -229,12 +232,13 @@ bool get_driver_boolean_parameter(void*handle,
 :::
 
 Returns the value of a given boolean parameter. The driver settings file
-is specified by the handle, as returned by {ref}`load_driver_settings()`.
-The parameter's name is given by {hparam}`keyName`. If the parameter isn't
-found, {hparam}`unknownValue` is returned. If the parameter exists but has
-no value, {hparam}`noArgValue` is returned. This lets you easily deal with
-these two conditions, providing appropriate default values without
-additional code to check for error conditions.
+is specified by the handle, as returned by
+{cpp:func}`load_driver_settings()`. The parameter's name is given by
+{hparam}`keyName`. If the parameter isn't found, {hparam}`unknownValue` is
+returned. If the parameter exists but has no value, {hparam}`noArgValue` is
+returned. This lets you easily deal with these two conditions, providing
+appropriate default values without additional code to check for error
+conditions.
 
 If the {hparam}`handle` is {cpp:expr}`NULL`, {hparam}`unknownValue` is
 returned.
@@ -250,7 +254,7 @@ const char*get_driver_parameter(void*handle,
 
 Returns the value of a given string parameter. The driver settings file is
 specified by the {hparam}`handle`, as returned by
-{ref}`load_driver_settings()`. The parameter's name is given by
+{cpp:func}`load_driver_settings()`. The parameter's name is given by
 {hparam}`keyName`. If the parameter isn't found, {hparam}`unknownValue` is
 returned. If the parameter exists but has no value, {hparam}`noArgValue` is
 returned. This lets you easily deal with these two conditions, providing

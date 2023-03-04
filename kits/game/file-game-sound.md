@@ -30,8 +30,8 @@ Currently, {hparam}`device` must always be {cpp:expr}`NULL`.
 :::
 
 After instantiating the {hclass}`BFileGameSound` object, you should call
-{cpp:func}`InitCheck() <BFileGameSound::InitCheck>` to determine whether or
-not the sound was successfully created.
+{cpp:func}`~BFileGameSound::InitCheck()` to determine whether or not the
+sound was successfully created.
 ::::
 
 ::::{abi-group}

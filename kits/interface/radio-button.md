@@ -33,7 +33,7 @@ window, the height of the rectangle will be adjusted so that there is
 exactly the right amount of room to accommodate the label.
 
 See also: The {cpp:class}`BControl` and {cpp:class}`BView` constructors,
-{cpp:func}`AttachedToWindow() <BRadioButton::AttachedToWindow>`
+{cpp:func}`~BRadioButton::AttachedToWindow()`
 ::::
 
 ::::{abi-group}
@@ -51,11 +51,11 @@ itself when it's deleted.
 :::
 
 Augments the {cpp:class}`BControl` version of
-{cpp:func}`AttachedToWindow() <BControl::AttachedToWindow>` to set the view
-and low colors of the {hclass}`BRadioButton` to the match its parent's view
-color, and to resize the radio button vertically to fit the height of the
-label it displays. The height of the label depends on the
-{hclass}`BRadioButton`'s font.
+{cpp:func}`~BControl::AttachedToWindow()` to set the view and low colors of
+the {hclass}`BRadioButton` to the match its parent's view color, and to
+resize the radio button vertically to fit the height of the label it
+displays. The height of the label depends on the {hclass}`BRadioButton`'s
+font.
 ::::
 
 ::::{abi-group}
@@ -67,7 +67,7 @@ icon is filled when the {hclass}`BRadioButton`'s value is 1
 ({cpp:enumerator}`B_CONTROL_ON`); it's left empty when the value is 0
 ({cpp:enumerator}`B_CONTROL_OFF`).
 
-See also: {cpp:func}`BView::Draw`
+See also: {cpp:func}`BView::Draw()`
 ::::
 
 ::::{abi-group}
@@ -77,28 +77,27 @@ See also: {cpp:func}`BView::Draw`
 Calculates the optimal size for the radio button to display the icon and
 the label in the current font, and places the result in the variables that
 the {hparam}`width` and {hparam}`height` arguments refer to.
-{cpp:func}`ResizeToPreferred() <BView::ResizeToPreferred>`, defined in the
-{cpp:class}`BView` class, resizes a view's frame rectangle to the preferred
-size, keeping its left and top sides constant.
-{cpp:func}`AttachedToWindow() <BRadioButton::AttachedToWindow>`
+{cpp:func}`~BView::ResizeToPreferred()`, defined in the {cpp:class}`BView`
+class, resizes a view's frame rectangle to the preferred size, keeping its
+left and top sides constant. {cpp:func}`~BRadioButton::AttachedToWindow()`
 automatically resizes a radio button to its preferred height, but doesn't
 modify its width.
 
-See also: {cpp:func}`BView::GetPreferredSize`,
-{cpp:func}`BView::AttachedToWindow`
+See also: {cpp:func}`BView::GetPreferredSize()`,
+{cpp:func}`BView::AttachedToWindow()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BRadioButton::KeyDown(const char* bytes, int32 numBytes)
 :::
 
-Augments the inherited versions of {cpp:func}`KeyDown()
-<BControl::KeyDown>` to turn the radio button on and deliver a message to
-the target {cpp:class}`BHandler` when the character passed in
-{hparam}`bytes` is {cpp:enumerator}`B_SPACE or B_ENTER`.
+Augments the inherited versions of {cpp:func}`~BControl::KeyDown()` to
+turn the radio button on and deliver a message to the target
+{cpp:class}`BHandler` when the character passed in {hparam}`bytes` is
+{cpp:enumerator}`B_SPACE or B_ENTER`.
 
-See also: {cpp:func}`BView::KeyDown`, {cpp:func}`SetValue()
-<BRadioButton::SetValue>`
+See also: {cpp:func}`BView::KeyDown()`,
+{cpp:func}`~BRadioButton::SetValue()`
 ::::
 
 ::::{abi-group}
@@ -110,23 +109,24 @@ while the user holds the mouse button down. If the cursor is pointing to
 the radio button when the user releases the mouse button, this function
 turns the button on (and consequently turns all sibling
 {hclass}`BRadioButton`s off), calls the {hclass}`BRadioButton`'s
-{cpp:func}`Draw() <BRadioButton::Draw>` function, and posts a message that
-will be delivered to the target {cpp:class}`BHandler`. Unlike a
+{cpp:func}`~BRadioButton::Draw()` function, and posts a message that will
+be delivered to the target {cpp:class}`BHandler`. Unlike a
 {cpp:class}`BCheckBox`, a {hclass}`BRadioButton` posts the message—it's
 "invoked"—only when it's turned on, not when it's turned off.
 
-See also: {cpp:func}`BControl::Invoke`, {cpp:func}`BInvoker::SetTarget`,
-{cpp:func}`SetValue() <BRadioButton::SetValue>`
+See also: {cpp:func}`BControl::Invoke()`,
+{cpp:func}`BInvoker::SetTarget()`, {cpp:func}`~BRadioButton::SetValue()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BRadioButton::SetValue(int32 value)
 :::
 
-Augments the {cpp:class}`BControl` version of {cpp:func}`SetValue()
-<BControl::SetValue>` to turn all sibling {hclass}`BRadioButton`s off (set
-their values to 0) when this {hclass}`BRadioButton` is turned on (when the
-value passed is anything but 0).
+Augments the {cpp:class}`BControl` version of
+{cpp:func}`~BControl::SetValue()` to turn all sibling
+{hclass}`BRadioButton`s off (set their values to 0) when this
+{hclass}`BRadioButton` is turned on (when the value passed is anything but
+0).
 ::::
 
 ## Member Functions
@@ -135,12 +135,12 @@ value passed is anything but 0).
 :::{cpp:function} virtual status_t BRadioButton::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive() <BControl::Archive>`
-and doesn't add anything specific to the {hclass}`BRadioButton` class to
-the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BControl::Archive()` and
+doesn't add anything specific to the {hclass}`BRadioButton` class to the
+{cpp:class}`BMessage` archive.
 
-{cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BRadioButton::Instantiate>` static function
+{cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BRadioButton::Instantiate()` static function
 ::::
 
 ## Static Functions
@@ -154,6 +154,6 @@ with the version of the constructor that takes a {cpp:class}`BMessage`
 archive. However, if the message doesn't contain data for an archived
 {hclass}`BRadioButton` object, this function returns {cpp:expr}`NULL`.
 
-{cpp:func}`BArchivable::Instantiate`, {cpp:func}`instantiate_object()
-<instantiate::object>`, {cpp:func}`Archive() <BRadioButton::Archive>`
+{cpp:func}`BArchivable::Instantiate()`, {cpp:func}`instantiate_object()`,
+{cpp:func}`~BRadioButton::Archive()`
 ::::

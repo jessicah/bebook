@@ -71,7 +71,7 @@ Change the {hparam}`resizingMode`, the {hparam}`layout`, and the
 for a purpose other than to implement a true menu bar.
 
 See also: the {cpp:class}`BMenu` {cpp:func}`constructor <BMenu::BMenu()>`,
-{cpp:func}`BWindow::SetSizeLimits`
+{cpp:func}`BWindow::SetSizeLimits()`
 ::::
 
 ::::{abi-group}
@@ -100,8 +100,7 @@ the keyboard. If a window contains more than one {hclass}`BMenuBar` in its
 view hierarchy, the last one that's added to the window gets to keep this
 designation. However, the key menu bar should always be the real menu bar
 at the top of the window. It can be explicitly set with
-{cpp:class}`BWindow`'s {cpp:func}`SetKeyMenuBar() <BWindow::SetKeyMenuBar>`
-function.
+{cpp:class}`BWindow`'s {cpp:func}`~BWindow::SetKeyMenuBar()` function.
 ::::
 
 ::::{abi-group}
@@ -113,7 +112,7 @@ list, or as a single item that controls a pop-up menu. This function is
 called as the result of update messages; you don't need to call it
 yourself.
 
-See also: {cpp:func}`BView::Draw`
+See also: {cpp:func}`BView::Draw()`
 ::::
 
 ::::{abi-group}
@@ -124,7 +123,7 @@ Initiates mouse tracking and keyboard navigation of the menu hierarchy.
 This function is called to notify the {hclass}`BMenuBar` of a mouse-down
 event.
 
-See also: {cpp:func}`BView::MouseDown`
+See also: {cpp:func}`BView::MouseDown()`
 ::::
 
 ## Member Functions
@@ -133,14 +132,15 @@ See also: {cpp:func}`BView::MouseDown`
 :::{cpp:function} virtual status_t BMenuBar::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive() <BMenu::Archive>`
-which serves to archive the {hclass}`BMenuBar`'s current state and, if the
+Calls the inherited version of {cpp:func}`~BMenu::Archive()` which serves
+to archive the {hclass}`BMenuBar`'s current state and, if the
 {hparam}`deep` flag is {cpp:expr}`true`, all its menu items. This function
 then adds the {hclass}`BMenuBar`'s border style to the
 {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`BMenu::Archive`,
-{cpp:func}`Instantiate() <BMenuBar::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`BMenu::Archive()`, {cpp:func}`~BMenuBar::Instantiate()` static
+function
 ::::
 
 ::::{abi-group}
@@ -157,7 +157,7 @@ removed from the screen. But it would be a mistake to remove the window
 that displays a {hclass}`BMenuBar`. Hiding a {hclass}`BMenuBar` is like
 hiding a typical view; only the view is hidden, not the window.
 
-See also: {cpp:func}`BView::Hide`
+See also: {cpp:func}`BView::Hide()`
 ::::
 
 ::::{abi-group}
@@ -208,15 +208,14 @@ the version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the archive message doesn't contain data for a
 {hclass}`BMenuBar` object, this function returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BMenuBar::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BMenuBar::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BMenuBar::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BMenuBar::Archive()` function adds the following fields to
+its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

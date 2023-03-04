@@ -6,7 +6,7 @@
 ## Constructor and Destructor
 
 You never create or delete a {hclass}`BDiscreteParameter` object yourself.
-Instead, call the {cpp:func}`BParameterGroup::MakeDiscreteParameter`
+Instead, call the {cpp:func}`BParameterGroup::MakeDiscreteParameter()`
 function to create a {hclass}`BDiscreteParameter` within the desired
 {cpp:class}`BParameterGroup`.
 
@@ -57,8 +57,8 @@ Returns the number of discrete values the control can take.
 :::
 
 These functions return the name and value of the item at the specified
-index, where index ranges from 0 to {cpp:func}`CountItems()
-<BDiscreteParameter::CountItems>`-1.
+index, where index ranges from 0 to
+{cpp:func}`~BDiscreteParameter::CountItems()`-1.
 
 :::{admonition} Note
 :class: note

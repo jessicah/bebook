@@ -4,7 +4,7 @@ A {cpp:class}`BParameterGroup` object serves as a logical grouping of
 {cpp:class}`BParameter`s. Each {cpp:class}`BParameter` belongs to exactly
 one {cpp:class}`BParameterGroup`, and is in fact created by the
 {cpp:class}`BParameterGroup` object to which it belongs, via the
-{cpp:func}`BParameterWeb::MakeGroup` function.
+{cpp:func}`BParameterWeb::MakeGroup()` function.
 
 {cpp:class}`BParameterGroup`s can be nested one inside another.
 

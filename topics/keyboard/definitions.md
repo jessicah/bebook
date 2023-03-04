@@ -48,9 +48,9 @@ on which modifier keys are currently engaged, the UTF-8 bytes that should
 be generated. It also defines which keys are treated as modifier keys.
 
 BeOS maintains a keymap for use by all applications. Applications that
-want to look up key codes in the keymap can call {ref}`get_key_map()` to
-get a copy of it. The Keymap preference panel can be used to configure the
-system keymap.
+want to look up key codes in the keymap can call {cpp:func}`get_key_map()`
+to get a copy of it. The Keymap preference panel can be used to configure
+the system keymap.
 
 ## Character Keys
 
@@ -88,13 +88,13 @@ When a key is pressed and held down, it produces a continuous series of
 messages, as long as the key is still held down and doesn't press another
 key. After the first message, there's a slight delay before the key begins
 repeating. This delay can be determined by calling
-{ref}`get_key_repeat_delay()` and can be changed by calling
-{ref}`set_key_repeat_delay()` (although you should leave the user's
+{cpp:func}`get_key_repeat_delay()` and can be changed by calling
+{cpp:func}`set_key_repeat_delay()` (although you should leave the user's
 preference for this alone).
 
 After the key begins to repeat, the {cpp:enumerator}`B_KEY_DOWN` or
 {cpp:enumerator}`B_UNMAPPED_KEY_DOWN` messages are sent at a fixed rate;
-this rate can be determined by calling {ref}`get_key_repeat_rate()`.
+this rate can be determined by calling {cpp:func}`get_key_repeat_rate()`.
 
 All keys repeat except {hkey}`Pause`, {hkey}`Break`, {hkey}`Caps Lock`,
 {hkey}`Num Lock`, and {hkey}`Scroll Lock`.

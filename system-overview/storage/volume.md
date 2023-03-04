@@ -27,14 +27,14 @@ if it knows about attributes.
 There are two ways to initialize a {hclass}`BVolume`:
 
 1.    You can initialize it directly using a device ID ({htype}`dev_t`) that you
-pass to the {hclass}`BVolume` constructor or {cpp:func}`SetTo()
-<BVolume::SetTo>` function. You can get a device ID from the device field
-of an {htype}`entry_ref` or {htype}`node_ref` structure. This method is
-useful if you have a file and you want to know which volume it lives on.
+pass to the {hclass}`BVolume` constructor or {cpp:func}`~BVolume::SetTo()`
+function. You can get a device ID from the device field of an
+{htype}`entry_ref` or {htype}`node_ref` structure. This method is useful if
+you have a file and you want to know which volume it lives on.
 
 2.    If you want to iterate over all the mounted volumes, you can ask a
 {cpp:class}`BVolumeRoster` object to get you the "next" volume
-({cpp:func}`BVolumeRoster::GetNextVolume`). You can also ask the
+({cpp:func}`BVolumeRoster::GetNextVolume()`). You can also ask the
 {cpp:class}`BVolumeRoster` for the "boot" volume. This is the volume that
 was used to boot the computer.
 
@@ -47,7 +47,7 @@ returns {cpp:enumerator}`B_BAD_VALUE`, the device is no longer mounted.
 
 Furthermore, you can't ask a {hclass}`BVolume` to unmount itself. If you
 want to be told when devices are mounted and unmounted, you have to ask the
-Node Monitor to help you. Call {cpp:func}`watch_node() <watch::node>` thus:
+Node Monitor to help you. Call {cpp:func}`watch_node()` thus:
 
 :::{code} c
 watch_node(NULL, B_WATCH_MOUNT, messenger);

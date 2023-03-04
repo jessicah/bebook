@@ -75,13 +75,13 @@ argument, which must be allocated.
 
 Typically, you use an node's {htype}`node_ref` as a key to the Node
 Monitor by passing the {htype}`node_ref` structure to the
-{cpp:func}`watch_node() <watch::node>` function. The Node Monitor watches
-the node for specific changes; see "{ref}`The Node Monitor`" section of
-this chapter for details.
+{cpp:func}`watch_node()` function. The Node Monitor watches the node for
+specific changes; see "{ref}`The Node Monitor`" section of this chapter for
+details.
 
 As a convenience, you can use a {htype}`node_ref` structure to initialize
 a {cpp:class}`BDirectory` object (through the constructor or
-{cpp:func}`BDirectory::SetTo` function).
+{cpp:func}`BDirectory::SetTo()` function).
 
 :::{list-table}
 ---

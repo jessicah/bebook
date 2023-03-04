@@ -189,10 +189,9 @@ widths: auto
 -
 	- {cpp:enumerator}`B_DESKTOP_DIRECTORY`
 	- Applying the {cpp:enumerator}`B_BACKGROUND_INFO` attribute to
-		{cpp:enumerator}`B_DESKTOP_DIRECTORY` (see {cpp:func}`find_directory()
-		<find::directory>` in the Storage Kit) will change the Desktop's background
-		image (but see below to find out how to tell the Tracker to update the
-		image).
+		{cpp:enumerator}`B_DESKTOP_DIRECTORY` (see {cpp:func}`find_directory()` in
+		the Storage Kit) will change the Desktop's background image (but see below
+		to find out how to tell the Tracker to update the image).
 -
 	- Tracker/DefaultFolderTemplate
 		inside{cpp:enumerator}`B_USER_SETTINGS_DIRECTORY`

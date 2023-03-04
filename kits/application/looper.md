@@ -13,17 +13,17 @@
 :::
 
 Assigns the {hclass}`BLooper` object a {hparam}`name` and then locks it
-(by calling {cpp:func}`Lock() <BLooper::Lock>`). {hparam}`priority` is a
-value that describes the amount of CPU attention the message loop will
-receive once it starts running, and {hparam}`portCapacity` is the number of
+(by calling {cpp:func}`~BLooper::Lock()`). {hparam}`priority` is a value
+that describes the amount of CPU attention the message loop will receive
+once it starts running, and {hparam}`portCapacity` is the number of
 messages the {hclass}`BLooper` can hold in its "message port" (this is
 __not__ the message queue, as explained below).
 
 After you construct the {hclass}`BLooper`, you have to tell it to
-{cpp:func}`Run() <BLooper::Run>`. Because the object is locked,
-{cpp:func}`Run() <BLooper::Run>` can only be called from the thread that
-constructed the object. It's legal to invoke {cpp:func}`Run()
-<BLooper::Run>` from within a subclass implementation of the constructor.
+{cpp:func}`~BLooper::Run()`. Because the object is locked,
+{cpp:func}`~BLooper::Run()` can only be called from the thread that
+constructed the object. It's legal to invoke {cpp:func}`~BLooper::Run()`
+from within a subclass implementation of the constructor.
 
 #### Priority
 
@@ -92,7 +92,7 @@ filters are.
 
 In general, you should never delete your {hclass}`BLooper` objects: With
 the exception of the {cpp:class}`BApplication` object, {hclass}`BLooper`s
-are destroyed by the {cpp:func}`Quit() <BLooper::Quit>` function.
+are destroyed by the {cpp:func}`~BLooper::Quit()` function.
 
 :::{admonition} Warning
 :class: warning
@@ -120,8 +120,7 @@ in the looper's queue, one invocation per message. You never invoke
 {hmethod}`DispatchMessage()` yourself.
 
 The default implementation passes {hparam}`message` to {hparam}`handler`
-by invoking the latter's {cpp:func}`MessageReceived()
-<BHandler::MessageReceived>`:
+by invoking the latter's {cpp:func}`~BHandler::MessageReceived()`:
 
 :::{code} cpp
 target->MessageReceived(message);
@@ -129,8 +128,8 @@ target->MessageReceived(message);
 
 The only exception is where {hparam}`message`.what is
 {cpp:enumerator}`B_QUIT_REQUESTED` and {hparam}`handler` is the looper
-itself; in this case, the object invokes its own {cpp:func}`QuitRequested()
-<BLooper::QuitRequested>` function.
+itself; in this case, the object invokes its own
+{cpp:func}`~BLooper::QuitRequested()` function.
 
 You can override this function to dispatch the messages that your own
 application defines or recognizes. All unhandled messages should be passed
@@ -197,9 +196,9 @@ These functions manage the {hclass}`BLooper`'s list of
 {cpp:class}`BMessageFilter`s. Message filters are objects that screen
 in-coming messages. In the case of {hclass}`BLooper`, each message is
 passed through all filters in the list before it's passed on to
-{cpp:func}`DispatchMessage() <BLooper::DispatchMessage>`. The order of the
-filters in the list is determinate. See the {cpp:class}`BMessageFilter`
-class for details on how message filters work.
+{cpp:func}`~BLooper::DispatchMessage()`. The order of the filters in the
+list is determinate. See the {cpp:class}`BMessageFilter` class for details
+on how message filters work.
 
 {hmethod}`AddCommonFilter()` adds {hparam}`filter` to the end of the
 filter list (creating a {cpp:class}`BList` container if necessary).
@@ -256,10 +255,10 @@ and {cpp:expr}`false` if not or if the handler doesn't belong to the
 {hclass}`BLooper` in the first place.
 
 {hmethod}`AddHandler()` also calls the handler's
-{cpp:func}`SetNextHandler() <BHandler::SetNextHandler>` function to assign
-it the {hclass}`BLooper` as its default next handler.
-{hmethod}`RemoveHandler()` calls the same function to set the handler's
-next handler to {cpp:expr}`NULL`.
+{cpp:func}`~BHandler::SetNextHandler()` function to assign it the
+{hclass}`BLooper` as its default next handler. {hmethod}`RemoveHandler()`
+calls the same function to set the handler's next handler to
+{cpp:expr}`NULL`.
 
 {hmethod}`HandlerAt()` returns the {cpp:class}`BHandler` object currently
 located at {hparam}`index` in the {hclass}`BLooper`'s list of eligible
@@ -273,9 +272,9 @@ list.
 
 For any of these functions to work, the {hclass}`BLooper` must be locked.
 
-See also: {cpp:func}`BHandler::Looper`, {cpp:func}`SetNextHandler()
-<BHandler::SetNextHandler>`, {cpp:func}`PostMessage()
-<BLooper::PostMessage>`, the {cpp:class}`BMessenger` class
+See also: {cpp:func}`BHandler::Looper()`,
+{cpp:func}`~BHandler::SetNextHandler()`,
+{cpp:func}`~BLooper::PostMessage()`, the {cpp:class}`BMessenger` class
 ::::
 
 ::::{abi-group}
@@ -316,9 +315,9 @@ the message and holding on to it will block the sender.
 
 {hmethod}`Lock()` locks the {hclass}`BLooper`. Locks are held within the
 context of a thread; while a {hclass}`BLooper` is locked, no other thread
-can invoke its most important functions ( {cpp:func}`AddHandler()
-<BLooper::AddHandler>`, {cpp:func}`DispatchMessage()
-<BLooper::DispatchMessage>`, etc.)
+can invoke its most important functions (
+{cpp:func}`~BLooper::AddHandler()`,
+{cpp:func}`~BLooper::DispatchMessage()`, etc.)
 
 If the looper is already locked (by some other thread), {hmethod}`Lock()`
 blocks until the looper is unlocked. To set a timeout for the block, use
@@ -337,9 +336,9 @@ balanced. A single {hmethod}`Unlock()` will not undo a series of
 
 {cpp:class}`BHandler` defines "smart" versions of these functions that
 find the handler's looper and then locks it (or unlocks it) in a
-pseudo-atomic operation (see {cpp:func}`BHandler::LockLooper`). You should
-always use the {cpp:class}`BHandler` versions, if possible, rather than
-retrieving the handler's looper and locking it yourself.
+pseudo-atomic operation (see {cpp:func}`BHandler::LockLooper()`). You
+should always use the {cpp:class}`BHandler` versions, if possible, rather
+than retrieving the handler's looper and locking it yourself.
 
 {hmethod}`Lock()` returns {cpp:expr}`true` if it was able to lock the
 looper, or if it's already locked by the calling thread, and
@@ -398,10 +397,9 @@ currently has the {hclass}`BLooper` locked (if it's the locking thread) and
 {hclass}`BLooper` isn't locked).
 
 {hmethod}`CountLocks()` returns the number of times the locking thread has
-locked the {hclass}`BLooper`the number of {cpp:func}`Lock()
-<BLooper::Lock>` (or {cpp:func}`LockWithTimeout() <BLooper::Lock>`) calls
-that have not yet been balanced by matching {cpp:func}`Unlock()
-<BLooper::Lock>` calls.
+locked the {hclass}`BLooper`the number of {cpp:func}`~BLooper::Lock()` (or
+{cpp:func}`LockWithTimeout() <BLooper::Lock>`) calls that have not yet been
+balanced by matching {cpp:func}`Unlock() <BLooper::Lock>` calls.
 
 {hmethod}`CountLockRequests()` returns the number of threads currently
 trying to lock the {hclass}`BLooper`. The count includes the thread that
@@ -410,7 +408,7 @@ currently has the lock plus all threads currently waiting to acquire it.
 {hmethod}`Sem()` returns the {htype}`sem_id` for the semaphore that the
 {hclass}`BLooper` uses to implement the locking mechanism.
 
-See also: {cpp:func}`Lock() <BLooper::Lock>`
+See also: {cpp:func}`~BLooper::Lock()`
 ::::
 
 ::::{abi-group}
@@ -421,7 +419,7 @@ Simply calls the inherited function. For the current release, the
 {hclass}`BLooper` implementation of this function does nothing of
 importance.
 
-See also: {cpp:func}`BHandler::MessageReceived`
+See also: {cpp:func}`BHandler::MessageReceived()`
 ::::
 
 ::::{abi-group}
@@ -449,12 +447,12 @@ See also: the {cpp:class}`BMessageQueue` class
 :::
 
 {hmethod}`PostMessage()` is similar to
-{cpp:func}`BMessenger::SendMessage`. The {cpp:func}`BMessenger` version is
-preferred (it's a bit safer than {hmethod}`PostMessage()`).
+{cpp:func}`BMessenger::SendMessage()`. The {cpp:func}`BMessenger` version
+is preferred (it's a bit safer than {hmethod}`PostMessage()`).
 
 Places a message at the far end of the {hclass}`BLooper`'s message queue.
-The message will be processed by {cpp:func}`DispatchMessage()
-<BLooper::DispatchMessage>` when it comes to the head of the queue.
+The message will be processed by {cpp:func}`~BLooper::DispatchMessage()`
+when it comes to the head of the queue.
 
 The message can be a full {cpp:class}`BMessage` object
 ({hparam}`message`), or just a command constant ({hparam}`command`). In the
@@ -466,10 +464,10 @@ you.
 {hparam}`handler` is the designated handler for the message, and must be
 part of this {hclass}`BLooper`'s handler chain. If handler is (literally)
 {cpp:expr}`NULL`, the designated handler is the {hclass}`BLooper`'s
-preferred handler at the time {cpp:func}`DispatchMessage()
-<BLooper::DispatchMessage>` is called. In the versions of
-{hmethod}`PostMessage()` that don't have a handler argument, the designated
-handler is the {hclass}`BLooper` object itself.
+preferred handler at the time {cpp:func}`~BLooper::DispatchMessage()` is
+called. In the versions of {hmethod}`PostMessage()` that don't have a
+handler argument, the designated handler is the {hclass}`BLooper` object
+itself.
 
 Replies to the message are delivered to {hparam}`replyHandler`. If a
 {hparam}`replyHandler` isn't specified, replies are sent to
@@ -497,7 +495,7 @@ widths: auto
 	- {hparam}`handler` doesn't belong to this {hclass}`BLooper`.
 -
 	- Other errors.
-	- See the return values for {cpp:func}`BMessenger::SendMessage`.
+	- See the return values for {cpp:func}`BMessenger::SendMessage()`.
 
 :::
 ::::
@@ -555,11 +553,10 @@ widths: auto
 		{htype}`thread_id` for the thread.
 -
 	- Thread errors.
-	- See {cpp:func}`spawn_thread() <spawn::thread>` and
-		{cpp:func}`resume_thread() <resume::thread>`.
+	- See {cpp:func}`spawn_thread()` and {cpp:func}`resume_thread()`.
 -
 	- Port errors.
-	- See {cpp:func}`create_port() <create::port>`.
+	- See {cpp:func}`create_port()`.
 
 :::
 ::::
@@ -577,8 +574,8 @@ specifically targetted to another {cpp:class}`BHandler`.
 
 To designate the current preferred handler, whatever object that may be,
 as the target of a message, pass {cpp:expr}`NULL` for the target handler to
-{cpp:func}`PostMessage() <BLooper::PostMessage>` or to the
-{cpp:func}`BMessenger constructor <BMessenger::BMessenger()>`.
+{cpp:func}`~BLooper::PostMessage()` or to the {cpp:func}`BMessenger
+constructor <BMessenger::BMessenger()>`.
 
 Posting or sending messages to the preferred handler can be useful. For
 example, in the {ref}`Interface Kit`, {cpp:class}`BWindow` objects name the
@@ -598,8 +595,8 @@ the {hclass}`BLooper` whenever the preferred handler is {cpp:expr}`NULL`.
 In other words, the {hclass}`BLooper` acts as default preferred handler,
 even though the default is formally {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BInvoker::SetTarget`, {cpp:func}`PostMessage()
-<BLooper::PostMessage>`
+See also: {cpp:func}`BInvoker::SetTarget()`,
+{cpp:func}`~BLooper::PostMessage()`
 ::::
 
 ::::{abi-group}
@@ -611,9 +608,9 @@ See also: {cpp:func}`BInvoker::SetTarget`, {cpp:func}`PostMessage()
 
 These functions identify the thread that runs the message loop and the
 team to which it belongs. {hmethod}`Thread()` returns
-{cpp:enumerator}`B_ERROR` if {cpp:func}`Run() <BLooper::Run>` hasn't yet
-been called to spawn the thread and begin the loop. {hmethod}`Team()`
-always returns the application's {htype}`team_id`.
+{cpp:enumerator}`B_ERROR` if {cpp:func}`~BLooper::Run()` hasn't yet been
+called to spawn the thread and begin the loop. {hmethod}`Team()` always
+returns the application's {htype}`team_id`.
 ::::
 
 ## Static Functions

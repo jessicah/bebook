@@ -19,9 +19,9 @@ The constructor creates a new object, locks it, sets the global variable
 {cpp:var}`be_app` to point to it, and establishes a connection to the
 Application Server. From this point on, your application can receive
 messages, although it won't start processing them until you call
-{cpp:func}`Run() <BApplication::Run>`. You can also begin creating and
+{cpp:func}`~BApplication::Run()`. You can also begin creating and
 displaying {cpp:class}`BWindow` objects even before you call
-{cpp:func}`Run() <BApplication::Run>`.
+{cpp:func}`~BApplication::Run()`.
 
 The {hparam}`signature` constructors assign the argument as the app's
 application signature. The argument is ignored if a signature is already
@@ -33,9 +33,10 @@ set them, see TODO.
 
 If you specify {hparam}`error`, a pointer to a {htype}`status_t`, any
 error that occurs while constructing the {hclass}`BApplication` will be
-returned in that variable. Alternately, you can call {cpp:func}`InitCheck()
-<BApplication::InitCheck>` to check the results. If an error is returned by
-the constructor, you shouldn't call {cpp:func}`Run() <BApplication::Run>`.
+returned in that variable. Alternately, you can call
+{cpp:func}`~BApplication::InitCheck()` to check the results. If an error is
+returned by the constructor, you shouldn't call
+{cpp:func}`~BApplication::Run()`.
 
 The {hparam}`archive` constructor is an implementation detail; see the
 {ref}`BArchivable` class.
@@ -50,9 +51,9 @@ Closes and deletes the application's {cpp:class}`BWindow`s (and the
 to the Application Server.
 
 Never delete a {hclass}`BApplication` object while it's running; wait
-until {cpp:func}`Run() <BApplication::Run>` returns. To stop a
-{hclass}`BApplication` (and so cause {cpp:func}`Run() <BApplication::Run>`
-to return), send it a {cpp:enumerator}`B_QUIT_REQUESTED` message:
+until {cpp:func}`~BApplication::Run()` returns. To stop a
+{hclass}`BApplication` (and so cause {cpp:func}`~BApplication::Run()` to
+return), send it a {cpp:enumerator}`B_QUIT_REQUESTED` message:
 
 :::{code} cpp
 be_app->PostMessage(B_QUIT_REQUESTED);
@@ -84,13 +85,13 @@ application is now active; {cpp:expr}`false` means it isn't.
 
 The user can activate an application by clicking on or unhiding one of its
 windows; you can activate an application programmatically by calling
-{cpp:func}`BWindow::Activate` or {cpp:func}`BRoster::ActivateApp`. (With
-regard to the latter: This function is called only if the application has
-an "activatable" window i.e. a non-modal, non-floating window).
+{cpp:func}`BWindow::Activate()` or {cpp:func}`BRoster::ActivateApp()`.
+(With regard to the latter: This function is called only if the application
+has an "activatable" window i.e. a non-modal, non-floating window).
 
-During launch, this function is called after {cpp:func}`ReadyToRun()
-<BApplication::ReadyToRun>` (provided the application is displaying an
-activatable window).
+During launch, this function is called after
+{cpp:func}`~BApplication::ReadyToRun()` (provided the application is
+displaying an activatable window).
 ::::
 
 ::::{abi-group}
@@ -101,12 +102,12 @@ Hook function that's invoked when the application receives a
 {cpp:enumerator}`B_ARGV_RECEIVED` message. The message is sent if command
 line arguments are used in launching the application from the shell, or if
 {hparam}`argv`/{hparam}`argc` values are passed to
-{cpp:func}`BRoster::Launch`.
+{cpp:func}`BRoster::Launch()`.
 
 :::{admonition} Warning
 :class: warning
 This function isn't called if there were no command line arguments, or if
-{cpp:func}`BRoster::Launch` was called without
+{cpp:func}`BRoster::Launch()` was called without
 {hparam}`argv`/{hparam}`argc` values.
 :::
 
@@ -124,9 +125,9 @@ $ MyApp file1 file2
 
 …produces the {hparam}`argv` array { "./MyApp", "file1", "file2" }.
 
-{cpp:func}`BRoster::Launch` forwards its {hparam}`argv` and {hparam}`argc`
-arguments, but adds the executable name to the front of the {hparam}`argv`
-array and increments the {hparam}`argc` value.
+{cpp:func}`BRoster::Launch()` forwards its {hparam}`argv` and
+{hparam}`argc` arguments, but adds the executable name to the front of the
+{hparam}`argv` array and increments the {hparam}`argc` value.
 
 Normally, the {cpp:enumerator}`B_ARGV_RECEIVED` message (if sent at all)
 is sent once, just before {cpp:enumerator}`B_READY_TO_RUN` is sent.
@@ -144,9 +145,9 @@ that's sent to the already-running image. Thus, for such apps, the
 
 {hmethod}`Pulse()` is a hook function that's called when the application
 receives a {cpp:enumerator}`B_PULSE` message. The message is sent at the
-rate set in {cpp:func}`SetPulseRate() <BApplication::SetPulseRate>`. The
-first {hmethod}`Pulse()` message is sent after {cpp:func}`ReadyToRun()
-<BApplication::ReadyToRun>` returns.
+rate set in {cpp:func}`~BApplication::SetPulseRate()`. The first
+{hmethod}`Pulse()` message is sent after
+{cpp:func}`~BApplication::ReadyToRun()` returns.
 
 You can implement {hmethod}`Pulse()` to do whatever you want (the default
 version does nothing), but don't try to use it for precision timing: The
@@ -155,8 +156,8 @@ pulse granularity is no better than 100,000 microseconds.
 Keep in mind that {hmethod}`Pulse()` executes in the app's message loop
 thread along with all other message handling functions. Your application
 won't receive any {hmethod}`Pulse()` invocations while it's waiting for
-some other handler function (including {cpp:func}`MessageReceived()
-<BApplication::MessageReceived>`) to finish. In the meantime,
+some other handler function (including
+{cpp:func}`~BApplication::MessageReceived()`) to finish. In the meantime,
 {cpp:enumerator}`B_PULSE` messages will be stacking up in the message
 queue; when the loop becomes "unblocked", you'll see a burst of
 {hmethod}`Pulse()` invocations.
@@ -173,9 +174,9 @@ quit is confirmed if {hmethod}`QuitRequested()` returns {cpp:expr}`true`,
 and denied if it returns {cpp:expr}`false`.
 
 In its implementation, {hclass}`BApplication` sends
-{cpp:func}`BLooper::QuitRequested` to each of its {cpp:class}`BWindow`
+{cpp:func}`BLooper::QuitRequested()` to each of its {cpp:class}`BWindow`
 objects. If they all agree to quit, the windows are all destroyed (through
-{cpp:func}`BWindow::Quit`) and this {hmethod}`QuitRequested()` returns
+{cpp:func}`BWindow::Quit()`) and this {hmethod}`QuitRequested()` returns
 {cpp:expr}`true`. But if any {cpp:class}`BWindow` refuses to quit, that
 window and all surviving windows are saved, and this
 {hmethod}`QuitRequested()` returns {cpp:expr}`false`.
@@ -190,8 +191,8 @@ Augment this function as you will, but be sure to call the
 
 Hook function that's called when the application receives a
 {cpp:enumerator}`B_READY_TO_RUN` message. The message is sent automatically
-during the {cpp:func}`Run() <BApplication::Run>` function, and is sent
-after the initial {cpp:enumerator}`B_REFS_RECEIVED` and
+during the {cpp:func}`~BApplication::Run()` function, and is sent after the
+initial {cpp:enumerator}`B_REFS_RECEIVED` and
 {cpp:enumerator}`B_ARGV_RECEIVED` messages (if any) have been handled. This
 is the only application message that every running application is
 guaranteed to receive.
@@ -210,8 +211,8 @@ Hook function that's called when the application receives a
 {cpp:enumerator}`B_REFS_RECEIVED` message. The message is sent when the
 user drops a file (or files) on your app's icon, or double clicks a file
 that's handled by your app. The message can arrive either at launch time,
-or while your application is already running use {cpp:func}`IsLaunching()
-<BApplication::IsLaunching>` to tell which.
+or while your application is already running use
+{cpp:func}`~BApplication::IsLaunching()` to tell which.
 
 {hparam}`message` contains a single field named {hparam}`be:refs` that
 contains one or more {htype}`entry_ref` ({cpp:enumerator}`B_REF_TYPE`)
@@ -228,11 +229,11 @@ use the refs to create {cpp:class}`BEntry` or {cpp:class}`BFile` objects.
 
 ### Archive()
 
-See {cpp:func}`BArchivable::Archive`
+See {cpp:func}`BArchivable::Archive()`
 
 ### DispatchMessage()
 
-See {cpp:func}`BLooper::DispatchMessage`
+See {cpp:func}`BLooper::DispatchMessage()`
 
 ::::{abi-group}
 :::{cpp:function} status_t BApplication::GetAppInfo(app_info* theInfo) const
@@ -244,7 +245,7 @@ Returns information about the application. This is a cover for
 be_roster->GetRunningAppInfo(be_app->Team(), theInfo);
 :::
 
-See {cpp:func}`BRoster::GetAppInfo` for more information.
+See {cpp:func}`BRoster::GetAppInfo()` for more information.
 ::::
 
 ::::{abi-group}
@@ -254,7 +255,7 @@ See {cpp:func}`BRoster::GetAppInfo` for more information.
 Adds the scripting suite "suite/vnd.Be-application" to message. See
 "{cpp:func}`Scripting Suites and Properties
 <BApplication::ScriptingSuites>`" for the suite's properties. Also see
-{cpp:func}`BHandler::GetSupportedSuites` for more information on how this
+{cpp:func}`BHandler::GetSupportedSuites()` for more information on how this
 function works.
 ::::
 
@@ -264,18 +265,18 @@ function works.
 
 Returns {cpp:expr}`true` if the application is still launching. An
 application is considered to be in its launching phase until
-{cpp:func}`ReadyToRun() <BApplication::ReadyToRun>` returns. Invoked from
-within {cpp:func}`ReadyToRun() <BApplication::ReadyToRun>`,
-{hmethod}`IsLaunching()` returns {cpp:expr}`true`.
+{cpp:func}`~BApplication::ReadyToRun()` returns. Invoked from within
+{cpp:func}`~BApplication::ReadyToRun()`, {hmethod}`IsLaunching()` returns
+{cpp:expr}`true`.
 ::::
 
 ### MessageReceived()
 
-See {cpp:func}`BHandler::MessageReceived`
+See {cpp:func}`BHandler::MessageReceived()`
 
 ### ResolveSpecifier()
 
-See {cpp:func}`BHandler::ResolveSpecifier`
+See {cpp:func}`BHandler::ResolveSpecifier()`
 
 ::::{abi-group}
 :::{cpp:function} virtual thread_id BApplication::Run()
@@ -356,9 +357,9 @@ section in the {cpp:class}`BCursor overview`.
 :::
 
 Sets the period between {cpp:enumerator}`B_PULSE` messages being sent and
-the {cpp:func}`Pulse() <BApplication::Pulse>` method being called. If the
-pulse rate is 0 (the default), the {cpp:enumerator}`B_PULSE` messages
-aren't sent.
+the {cpp:func}`~BApplication::Pulse()` method being called. If the pulse
+rate is 0 (the default), the {cpp:enumerator}`B_PULSE` messages aren't
+sent.
 ::::
 
 ::::{abi-group}
@@ -404,7 +405,7 @@ You needn't have a {hparam}`be_app` object to invoke this function.
 
 ### Instantiate()
 
-See {cpp:func}`BArchivable::Instantiate`
+See {cpp:func}`BArchivable::Instantiate()`
 
 ## Global Variables
 
@@ -510,7 +511,7 @@ widths: auto
 
 	- {cpp:enumerator}`B_DIRECT_SPECIFIER`
 
-	- Returns {cpp:func}`CountWindows() <BApplication::CountWindows>`.
+	- Returns {cpp:func}`~BApplication::CountWindows()`.
 
 -
 	- Not applicable.

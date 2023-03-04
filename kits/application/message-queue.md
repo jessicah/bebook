@@ -78,7 +78,7 @@ another thread won't alter the contents of the queue while it's being read.
 returns {cpp:expr}`true`. {hmethod}`Unlock()` releases the lock so that
 someone else can lock it. Calls to these functions can be nested.
 
-See also: {cpp:func}`BLooper::Lock`
+See also: {cpp:func}`BLooper::Lock()`
 ::::
 
 ::::{abi-group}
@@ -88,5 +88,5 @@ See also: {cpp:func}`BLooper::Lock`
 Removes and returns the oldest message from the queue. If the queue is
 empty, the function returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`FindMessage() <BMessageQueue::FindMessage>`
+See also: {cpp:func}`~BMessageQueue::FindMessage()`
 ::::

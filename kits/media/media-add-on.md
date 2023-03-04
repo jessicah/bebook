@@ -37,9 +37,9 @@ memory you've allocated.
 :::{cpp:function} virtual status_t BMediaAddOn::AutoStart(int32 index, BMediaNode** outNode, int32* outInternalID, bool* outHasMore) = 0
 :::
 
-If {cpp:func}`WantsAutoStart() <BMediaAddOn::WantsAutoStart>` returns
-{cpp:expr}`true`, you'll get repeated calls to {hmethod}`AutoStart()` when
-your add-on is loaded.
+If {cpp:func}`~BMediaAddOn::WantsAutoStart()` returns {cpp:expr}`true`,
+you'll get repeated calls to {hmethod}`AutoStart()` when your add-on is
+loaded.
 
 Your {hmethod}`AutoStart()` function should be implemented to instantiate
 nodes to your liking, one for each call to {hmethod}`AutoStart()`. Each
@@ -72,7 +72,7 @@ can deal with.
 Implement this function to save information about how the given
 {hparam}`node` is configured into the specified message. This lets the
 node's configuration be saved to disk for future rehydration using
-{cpp:func}`InstantiateNodeFor() <BMediaAddOn::InstantiateNodeFor>`.
+{cpp:func}`~BMediaAddOn::InstantiateNodeFor()`.
 
 Note that it's not reasonable to save information about what connections
 are routed through the node, since the other nodes probably won't exist
@@ -223,10 +223,10 @@ well, {cpp:enumerator}`B_OK` should be returned.
 :::
 
 Given the information in {hparam}`info` (which might be a copy of
-information you previously returned from a {cpp:func}`GetFlavorAt()
-<BMediaAddOn::GetFlavorAt>` call), you should instantiate a new object of
-the node class referenced by {hparam}`info`'s {hparam}`internal_id` field
-and return a pointer to that node.
+information you previously returned from a
+{cpp:func}`~BMediaAddOn::GetFlavorAt()` call), you should instantiate a new
+object of the node class referenced by {hparam}`info`'s
+{hparam}`internal_id` field and return a pointer to that node.
 
 The {hparam}`config` message might contain information saved by a previous
 instance of the same flavor node, and should be used to configure the new
@@ -393,8 +393,8 @@ private:
 
 The {htype}`dormant_node_info` structure describes a node that resides in
 an add-on and that may not be in memory. You might use it when issuing the
-{cpp:func}`BMediaRoster::InstantiateDormantNode` to instantiate a node, for
-example.
+{cpp:func}`BMediaRoster::InstantiateDormantNode()` to instantiate a node,
+for example.
 
 The {hparam}`addon` field indicates the ID number of the media add-on in
 which the node resides, and the {hparam}`flavor_id` is the flavor ID

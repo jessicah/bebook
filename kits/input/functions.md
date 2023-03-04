@@ -184,7 +184,7 @@ get_key_info() returns {cpp:enumerator}`B_OK` if it was able to get the
 requested information, and {cpp:enumerator}`B_ERROR` if the return results
 are unreliable.
 
-See also: {cpp:func}`BView::KeyDown`, {ref}`modifiers()`
+See also: {cpp:func}`BView::KeyDown()`, {cpp:func}`modifiers()`
 ::::
 
 ::::{abi-group}
@@ -208,9 +208,9 @@ update your applications as necessary to avoid leaking memory.
 Through the Keymap preferences application, users can configure the
 keyboard to their liking. The user's preferences are stored in a file
 (Key_map within the {cpp:enumerator}`B_USER_SETTINGS_DIRECTORY`, returned
-by the {cpp:func}`find_directory() <find::directory>` function). When the
-machine reboots, the key map is read from this file. If the file doesn't
-exist, the original map encoded in the Application Server is used.
+by the {cpp:func}`find_directory()` function). When the machine reboots,
+the key map is read from this file. If the file doesn't exist, the original
+map encoded in the Application Server is used.
 
 The {htype}`key_map` structure contains a large number of fields, but it
 can be broken down into these six parts:
@@ -351,7 +351,7 @@ Each field names the key that functions as that modifier. For example,
 when the user holds down the key whose code is set in the
 {hparam}`right_option_key` field, the {cpp:enumerator}`B_OPTION_KEY` and
 {cpp:enumerator}`B_RIGHT_OPTION_KEY` bits are turned on in the modifiers
-mask that the {ref}`modifiers()` function returns. When the user then
+mask that the {cpp:func}`modifiers()` function returns. When the user then
 strikes a character key, the {cpp:enumerator}`B_OPTION_KEY` state
 influences the character that's generated.
 
@@ -740,8 +740,8 @@ character of the second offset in the {hparam}`grave_dead_key` array ('Q'
 in the example above). A key mapped to the same character by another table
 would not be dead.
 
-See also: {ref}`get_key_info()`, {ref}`modifiers()`, the Keyboard
-Information appendix, {ref}`set_modifier_key()`
+See also: {cpp:func}`get_key_info()`, {cpp:func}`modifiers()`, the
+Keyboard Information appendix, {cpp:func}`set_modifier_key()`
 ::::
 
 ::::{abi-group}
@@ -879,7 +879,7 @@ combination of the following constants:
 
 -   {cpp:enumerator}`B_SCROLL_LOCK`
 
-See also: {ref}`get_key_map()`, {ref}`modifiers()`
+See also: {cpp:func}`get_key_map()`, {cpp:func}`modifiers()`
 ::::
 
 ::::{abi-group}
@@ -920,11 +920,11 @@ that previously played that role. The change remains in effect until the
 default key map is restored. In general, the user's preferences for
 modifier keys—expressed in the Keymap application—should be respected.
 
-Modifier keys can also be mapped by calling {ref}`get_key_map()` and
+Modifier keys can also be mapped by calling {cpp:func}`get_key_map()` and
 altering the {cpp:func}`key_map <key::map>` structure directly. This
 function is merely a convenient alternative for accomplishing the same
 thing. (It's currently not possible to alter the key map;
-{ref}`get_key_map()` looks at a copy.)
+{cpp:func}`get_key_map()` looks at a copy.)
 ::::
 
 ### instantiate_input_device()

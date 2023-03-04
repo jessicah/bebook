@@ -45,8 +45,8 @@ widths: auto
 
 The constructor also sets the font for displaying the {hclass}`BBox`'s
 label to the system bold font ({cpp:enumerator}`be_bold_font`). However,
-the new object doesn't have a label; call {cpp:func}`SetLabel()
-<BBox::SetLabel>` to assign it one.
+the new object doesn't have a label; call {cpp:func}`~BBox::SetLabel()` to
+assign it one.
 ::::
 
 ::::{abi-group}
@@ -64,8 +64,8 @@ Frees the label, if the {hclass}`BBox` has one.
 
 Stores the {hclass}`BBox` in the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BBox::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BBox::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -91,7 +91,7 @@ response to update messages.
 Makes sure that the parts of the box that change when it's resized are
 redrawn.
 
-See also: {cpp:func}`BView::FrameResized`
+See also: {cpp:func}`BView::FrameResized()`
 ::::
 
 ::::{abi-group}
@@ -168,15 +168,14 @@ version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the archive message doesn't contain data for a {hclass}`BBox`
 object, this function returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BBox::Archive>`()
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BBox::Archive()`()
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BBox::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BBox::Archive()` function adds the following fields to its
+{cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

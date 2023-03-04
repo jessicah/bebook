@@ -167,9 +167,9 @@ next section.
 ## Device Hooks
 
 The hook functions specified in the device_hooks function returned by the
-driver's {cpp:func}`find_device() <find::device>` function handle requests
-made by devfs (and through devfs, from user applications). These are
-described in this section.
+driver's {cpp:func}`find_device()` function handle requests made by devfs
+(and through devfs, from user applications). These are described in this
+section.
 
 The structure itself looks like this:
 
@@ -197,12 +197,12 @@ successfully completed, or an appropriate error code if not.
 
 This hook function is called when a program opens one of the devices
 supported by the driver. The name of the device (as returned by
-{cpp:func}`publish_devices() <publish::devices>`) is passed in name, along
-with the flags passed to the Posix open() function. {hparam}`cookie` points
-to space large enough for you to store a single pointer. You can use this
-to store state information specific to the open() instance. If you need to
-track information on a per-open() basis, allocate the memory you need and
-store a pointer to it in *{hparam}`cookie`.
+{cpp:func}`publish_devices()`) is passed in name, along with the flags
+passed to the Posix open() function. {hparam}`cookie` points to space large
+enough for you to store a single pointer. You can use this to store state
+information specific to the open() instance. If you need to track
+information on a per-open() basis, allocate the memory you need and store a
+pointer to it in *{hparam}`cookie`.
 ::::
 
 ::::{abi-group}
@@ -214,8 +214,8 @@ the close() Posix function. Note that because of the multithreaded nature
 of the BeOS, it's possible there may still be transactions pending, and you
 may receive more calls on the device. For that reason, you shouldn't free
 instance-wide system resources here. Instead, you should do this in
-{cpp:func}`free_hook() <free::hook>`. However, if there are any blocked
-transactions pending, you should unblock them here.
+{cpp:func}`free_hook()`. However, if there are any blocked transactions
+pending, you should unblock them here.
 ::::
 
 ::::{abi-group}
@@ -256,8 +256,8 @@ destination buffers, your implementation should fill each successive buffer
 with bytes, up to a total of {hparam}`len` bytes. The {hparam}`vec` array
 has {hparam}`count` items in it.
 
-As with {cpp:func}`read_hook() <read::hook>`, set {hparam}`len` to the
-actual number of bytes read, and return an appropriate result code.
+As with {cpp:func}`read_hook()`, set {hparam}`len` to the actual number of
+bytes read, and return an appropriate result code.
 ::::
 
 ::::{abi-group}

@@ -22,7 +22,7 @@ share any data; independent memory is allocated for the copy to hold a
 duplicate list of points.
 
 If a {hclass}`BPolygon` is constructed without a point list, points must
-be set with the {cpp:func}`AddPoints() <BPolygon::AddPoints>` function.
+be set with the {cpp:func}`~BPolygon::AddPoints()` function.
 ::::
 
 ::::{abi-group}
@@ -91,7 +91,7 @@ report each point as a string in the form
 
 where x and y stand for the coordinate values of the point in question.
 
-See also: {cpp:func}`BPoint::PrintToStream`
+See also: {cpp:func}`BPoint::PrintToStream()`
 ::::
 
 ## Operators

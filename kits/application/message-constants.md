@@ -40,7 +40,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BApplication::AboutRequested` if the target is
+	- {cpp:func}`BApplication::AboutRequested()` if the target is
 {cpp:var}`be_app`.
 
 
@@ -79,7 +79,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BApplication::AppActivated`
+	- {cpp:func}`BApplication::AppActivated()`
 
 
 :::
@@ -139,13 +139,13 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BApplication::ArgvReceived`
+	- {cpp:func}`BApplication::ArgvReceived()`
 
 
 :::
 
 Forwards arguments that (a) the user passes while launching the app from
-the command line, or (b) are passed to {cpp:func}`BRoster::Launch`. Most
+the command line, or (b) are passed to {cpp:func}`BRoster::Launch()`. Most
 apps treat command line arguments as filenames that should be opened. If
 the filename is relative (if it doesn't start with "/"), you should append
 it to the {hparam}`cwd` field to reconstruct the full path.
@@ -216,7 +216,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BApplication::Pulse` and {cpp:func}`BView::Pulse`
+	- {cpp:func}`BApplication::Pulse()` and {cpp:func}`BView::Pulse()`
 
 
 :::
@@ -255,7 +255,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BApplication::ReadyToRun`
+	- {cpp:func}`BApplication::ReadyToRun()`
 
 
 :::
@@ -294,7 +294,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BApplication::RefsReceived`
+	- {cpp:func}`BApplication::RefsReceived()`
 
 
 :::
@@ -302,7 +302,7 @@ widths: auto
 Automatically sent to be_app when (a) the user double-clicks a file that
 has a type that's supported by the app, and (b) when the user confirms some
 files (or directories) in an Open File panel (the target is be_app by
-default; it can be changed in {cpp:func}`BFilePanel::SetTarget`). You can
+default; it can be changed in {cpp:func}`BFilePanel::SetTarget()`). You can
 also create, stuff, and send a {cpp:enumerator}`B_REFS_RECEIVED` message
 yourself. When it receives this message, an app is expected to open the
 files that the message refers to.
@@ -364,7 +364,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BLooper::QuitRequested`.
+	- {cpp:func}`BLooper::QuitRequested()`.
 
 
 :::
@@ -499,7 +499,7 @@ widths: auto
 	- {cpp:enumerator}`B_MESSAGE_TYPE`
 
 	- An array of one or more {cpp:class}`BMessage`s that specify the targeted
-property. See {cpp:func}`AddSpecifier() <BMessage::AddSpecifier>` in the
+property. See {cpp:func}`~BMessage::AddSpecifier()` in the
 {cpp:class}`BMessage` class of the Application Kit for details on the
 contents of a specifier.
 
@@ -525,9 +525,9 @@ The following three messages are sent as replies to other messages.
 
 This message doesn't contain any data. The system sends it as a reply to a
 message that the receiving thread's chain of {cpp:class}`BHandler` does not
-recognize. See {cpp:func}`MessageReceived() <BHandler::MessageReceived>`
-and {cpp:func}`ResolveSpecifier() <BHandler::ResolveSpecifier>` in the
-{cpp:class}`BHandler` class of the Application Kit.
+recognize. See {cpp:func}`~BHandler::MessageReceived()` and
+{cpp:func}`~BHandler::ResolveSpecifier()` in the {cpp:class}`BHandler`
+class of the Application Kit.
 ::::
 
 ::::{abi-group}
@@ -537,8 +537,8 @@ and {cpp:func}`ResolveSpecifier() <BHandler::ResolveSpecifier>` in the
 This message doesn't contain any data. It's sent as a default reply to
 another message when the original message is about to be deleted. The
 default reply is sent only if a synchronous reply is expected and none has
-been sent. See the {cpp:func}`SendReply() <BMessage::SendReply>` function
-in the {cpp:class}`BMessage` class of the Application Kit.
+been sent. See the {cpp:func}`~BMessage::SendReply()` function in the
+{cpp:class}`BMessage` class of the Application Kit.
 ::::
 
 ::::{abi-group}
@@ -583,7 +583,7 @@ widths: auto
 
 :::
 
-If you've called {cpp:func}`BClipboard::StartWatching` to monitor a
+If you've called {cpp:func}`BClipboard::StartWatching()` to monitor a
 clipboard for changes, this message is sent to the specified
 {cpp:class}`BMessenger` when the clipboard changes.
 ::::
@@ -622,9 +622,8 @@ widths: auto
 :::
 
 Sent by {cpp:class}`BHandler`s to all targets that have been registered
-with the {cpp:class}`BHandler`'s {cpp:func}`StartWatching()
-<BHandler::StartWatching>` or {cpp:func}`StartWatchingAll()
-<BHandler::StartWatchingAll>` function.
+with the {cpp:class}`BHandler`'s {cpp:func}`~BHandler::StartWatching()` or
+{cpp:func}`~BHandler::StartWatchingAll()` function.
 
 :::{list-table}
 ---
@@ -659,14 +658,14 @@ the broadcasting mechanism.
 
 The message may have other fields, depending on what the broadcast message
 is. Messages are sent to targets in response to the
-{cpp:func}`BHandler::SendNotices` function. The logic is:
+{cpp:func}`BHandler::SendNotices()` function. The logic is:
 
 1.    Take the message to broadcast and place its what code into the
 {hparam}`be:observe_change_orig_what` field.
 
 2.    Add the {hparam}`be:observe_change_what` field, which is set to the
-{hparam}`what` code specified by the call to {cpp:func}`SendNotices()
-<BHandler::SendNotices>`.
+{hparam}`what` code specified by the call to
+{cpp:func}`~BHandler::SendNotices()`.
 
 3.    Set the message's {hparam}`what` code to
 {cpp:enumerator}`B_OBSERVER_NOTICE_CHANGE`.
@@ -747,7 +746,7 @@ widths: auto
 :::
 
 Sent as apps are launched, activated, or quit. You get these messages by
-invoking {cpp:func}`BRoster::StartWatching` passing a one or more of
+invoking {cpp:func}`BRoster::StartWatching()` passing a one or more of
 {cpp:enumerator}`B_REQUEST_ACTIVATED`,
 {cpp:enumerator}`B_REQUEST_LAUNCHED`, and {cpp:enumerator}`B_REQUEST_QUIT`.
 

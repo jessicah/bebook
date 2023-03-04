@@ -18,8 +18,7 @@
 Initializes the {hclass}`BRegion` object to be a copy of {hparam}`region`,
 or to be a rectangular region containing the space indicated by
 {hparam}`rect`. If no argument is supplied, the {hclass}`BRegion` is empty
-and {cpp:func}`Frame() <BRegion::Frame>` returns and invalid
-{cpp:class}`BRect`.
+and {cpp:func}`~BRegion::Frame()` returns and invalid {cpp:class}`BRect`.
 ::::
 
 ::::{abi-group}
@@ -71,7 +70,7 @@ with {hparam}`rect`, and {cpp:expr}`false` if not.
 :::
 
 Empties the {hclass}`BRegion` and invalidates the object's
-{cpp:func}`Frame() <BRegion::Frame>` rectangle.
+{cpp:func}`~BRegion::Frame()` rectangle.
 ::::
 
 ::::{abi-group}

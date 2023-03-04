@@ -16,9 +16,9 @@
 :::
 
 The constructor sets up the {hclass}`BMediaDecoder`. If you use the empty
-form of the constructor, you'll have to call {cpp:func}`SetTo()
-<BMediaDecoder::SetTo>` to establish the format to be decoded before
-calling {cpp:func}`Decode() <BMediaDecoder::Decode>`.
+form of the constructor, you'll have to call
+{cpp:func}`~BMediaDecoder::SetTo()` to establish the format to be decoded
+before calling {cpp:func}`~BMediaDecoder::Decode()`.
 
 The second form accepts a {cpp:func}`media_format <media::format>`
 structure, {hparam}`inFormat`, that indicates the type of media data that
@@ -33,8 +33,8 @@ structure, {hparam}`mci`, that determines which codec should be used.
 :class: note
 If you use either the {cpp:func}`media_format <media::format>` or
 {ref}`media_codec_info` form of the constructor, you must call
-{cpp:func}`InitCheck() <BMediaDecoder::InitCheck>` to ensure that
-construction was successful before using any other functions in this class.
+{cpp:func}`~BMediaDecoder::InitCheck()` to ensure that construction was
+successful before using any other functions in this class.
 :::
 ::::
 
@@ -79,11 +79,11 @@ The {ref}`media_decode_info` structure info is used on input to specify
 decoding parameters.
 
 The amount of data decoded is part of the format determined by
-{cpp:func}`SetTo() <BMediaDecoder::SetTo>` or {cpp:func}`SetInputFormat()
-<BMediaDecoder::SetInputFormat>`. For audio, it's the buffer size. For
-video, it's one frame, which is height*row_bytes. The data to be decoded
-will be fetched from the source by the decoder add-on calling the derived
-class' {cpp:func}`GetNextChunk() <BMediaDecoder::GetNextChunk>` function.
+{cpp:func}`~BMediaDecoder::SetTo()` or
+{cpp:func}`~BMediaDecoder::SetInputFormat()`. For audio, it's the buffer
+size. For video, it's one frame, which is height*row_bytes. The data to be
+decoded will be fetched from the source by the decoder add-on calling the
+derived class' {cpp:func}`~BMediaDecoder::GetNextChunk()` function.
 
 :::{list-table}
 ---
@@ -164,7 +164,7 @@ widths: auto
 	- The constructor was successful.
 -
 	- Other errors.
-	- See {cpp:func}`SetTo() <BMediaDecoder::SetTo>`.
+	- See {cpp:func}`~BMediaDecoder::SetTo()`.
 
 :::
 ::::
@@ -182,11 +182,11 @@ widths: auto
 information the decoder wants to provide. {hparam}`infoSize` must indicate
 the size of the buffer pointed to by {hparam}`info`.
 
-Unlike {cpp:func}`SetTo() <BMediaDecoder::SetTo>`,
-{hmethod}`SetInputFormat()` function does not select a codec, so the
-currently-selected codec will continue to be used. You should only use
-{hmethod}`SetInputFormat()` to refine the format settings if it will not
-require the use of a different decoder.
+Unlike {cpp:func}`~BMediaDecoder::SetTo()`, {hmethod}`SetInputFormat()`
+function does not select a codec, so the currently-selected codec will
+continue to be used. You should only use {hmethod}`SetInputFormat()` to
+refine the format settings if it will not require the use of a different
+decoder.
 
 {hmethod}`SetOutputFormat()` sets the format the decoder should output. On
 return, the {hparam}`outputFormat` is changed to match the actual format

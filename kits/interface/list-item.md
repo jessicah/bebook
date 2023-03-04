@@ -15,7 +15,7 @@
 The constructors create a new {hclass}`BListItem` object. The level and
 expanded arguments are only used if the item is added to a
 {cpp:class}`BOutlineListView` object; see
-{cpp:func}`BOutlineListView::AddItem` for more information.
+{cpp:func}`BOutlineListView::AddItem()` for more information.
 ::::
 
 ::::{abi-group}
@@ -83,7 +83,7 @@ is in a {cpp:class}`BOutlineListView`.
 state; {hmethod}`IsSelected()` returns the state. The setting functions
 don't automatically update the item's display: After calling
 {hmethod}`Select()` or {hmethod}`Deselect()`, you must tell the owner to
-redrawn this item (see {cpp:func}`BListView::InvalidateItem`).
+redrawn this item (see {cpp:func}`BListView::InvalidateItem()`).
 
 Also, {hmethod}`Select()` doesn't deselect the current selection. If this
 item is part of a single-selection list view, you have to deselect the
@@ -92,7 +92,7 @@ current selection yourself.
 :::{admonition} Note
 :class: note
 If possible, you should use {cpp:class}`BListView`'s versions of these
-functions (see {cpp:func}`BListView::Select`. They update the view and
+functions (see {cpp:func}`BListView::Select()`. They update the view and
 manage the selection for you.
 :::
 ::::
@@ -106,12 +106,12 @@ manage the selection for you.
 
 {hmethod}`SetEnabled()` sets the list item's enabled state;
 {hmethod}`IsEnabled()` returns the state. A disabled item can't be selected
-by the user or by {cpp:func}`BListView::Select` , but it can be selected
-through {cpp:func}`BListItem::Select`. If an item is already selected,
+by the user or by {cpp:func}`BListView::Select()` , but it can be selected
+through {cpp:func}`BListItem::Select()`. If an item is already selected,
 {hmethod}`SetEnabled`({cpp:expr}`false`) doesn't deselect it.
 
 After calling {hmethod}`SetEnabled()`, you must tell the owner list view
-to redraw the item (see {cpp:func}`BListView::InvalidateItem`).
+to redraw the item (see {cpp:func}`BListView::InvalidateItem()`).
 
 Note that {cpp:class}`BListView` doesn't provide smart versions of these
 functions (as it does for {hmethod}`Select()`).
@@ -128,13 +128,13 @@ These functions set and return the item's expanded state. This is only
 meaningful if the item is part of a {cpp:class}`BOutlineListView`. The item
 is not automatically redrawn; you must tell the
 {cpp:class}`BOutlineListView` to redraw the item (and its sublist) through
-{cpp:func}`BListView::InvalidateItem`.
+{cpp:func}`BListView::InvalidateItem()`.
 
 :::{admonition} Note
 :class: note
 If possible, you should use {cpp:class}`BOutlineListView`'s
-{cpp:func}`Expand() <BOutlineListView::Expand>` and {cpp:func}`Collapse()
-<BOutlineListView::Collapse>` functions instead of
+{cpp:func}`~BOutlineListView::Expand()` and
+{cpp:func}`~BOutlineListView::Collapse()` functions instead of
 {hmethod}`SetExpanded()`. The {cpp:class}`BOutlineListView` functions
 redraw the affected part of the list for you.
 :::
@@ -154,8 +154,8 @@ redraw the affected part of the list for you.
 :::
 
 These functions set and return the width and height of the item. The
-item's dimensions are adjusted when {cpp:func}`Update()
-<BListItem::Update>` is called.
+item's dimensions are adjusted when {cpp:func}`~BListItem::Update()` is
+called.
 ::::
 
 ## Archived Fields

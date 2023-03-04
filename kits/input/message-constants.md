@@ -9,7 +9,7 @@ Declared in: app/AppDefs.h
 
 This section lists the event messages that a
 {cpp:class}`BInputServerDevice` is expected to create and send through its
-{cpp:func}`EnqueueMessage() <BInputServerDevice::EnqueueMessage>` function.
+{cpp:func}`~BInputServerDevice::EnqueueMessage()` function.
 
 ### Pointing Device Event Messages
 
@@ -40,11 +40,10 @@ Declared in: add-ons/input_server/InputServerDevice.h
 
 This section lists the control messages that are defined by the BeOS for
 pointing and keyboard devices. These are messages that appear in the
-{cpp:func}`BInputServerDevice::Control` function. Each control message is
+{cpp:func}`BInputServerDevice::Control()` function. Each control message is
 identified by the value that appears as the command argument in the
-{cpp:func}`Control() <BInputDevice::Control>` function. None of the
-Be-defined control messages use the additional {cpp:class}`BMessage`
-argument.
+{cpp:func}`~BInputDevice::Control()` function. None of the Be-defined
+control messages use the additional {cpp:class}`BMessage` argument.
 
 Control messages are used to notify input devices of downstream requests.
 For example, when the user changes the mouse speed, a
@@ -69,7 +68,7 @@ Furthermore, the Be-defined control messages don't contain the value of
 the parameter that's being set. For example, the
 {cpp:enumerator}`B_MOUSE_SPEED_CHANGED` message doesn't contain the
 requested mouse speed. The input device must ask the Input Server for the
-new value through a global function ({ref}`get_mouse_speed()`, in this
+new value through a global function ({cpp:func}`get_mouse_speed()`, in this
 case). The functions that correspond to the messages are listed in the
 descriptions below.
 
@@ -89,21 +88,21 @@ widths: auto
 -
 	- {cpp:enumerator}`B_CLICK_SPEED_CHANGED`
 	- Requests that the receiver change the mouse double-click speed to the
-		value retrieved through {ref}`get_click_speed()`.
+		value retrieved through {cpp:func}`get_click_speed()`.
 -
 	- {cpp:enumerator}`B_MOUSE_MAP_CHANGED`
 	- Requests that the receiver change the mouse map (the correspondence
 		between physical mouse buttons and the
 		{cpp:enumerator}`B_PRIMARY_MOUSE_BUTTON`, et. al., constants) to the map
-		retrieved through {ref}`get_mouse_map()`.
+		retrieved through {cpp:func}`get_mouse_map()`.
 -
 	- {cpp:enumerator}`B_MOUSE_SPEED_CHANGED`
 	- Requests that the receiver change the mouse speed to the value retrieved
-		through {ref}`get_mouse_speed()`.
+		through {cpp:func}`get_mouse_speed()`.
 -
 	- {cpp:enumerator}`B_MOUSE_TYPE_CHANGED`
 	- Requests that the receiver change the mouse type (the number of buttons)
-		to the type retrieved through {ref}`get_mouse_type()`.
+		to the type retrieved through {cpp:func}`get_mouse_type()`.
 
 :::
 
@@ -124,30 +123,30 @@ widths: auto
 	- {cpp:enumerator}`B_KEY_LOCKS_CHANGED`
 	- Requests that the receiver change the state of the locked keys (caps lock,
 		num lock, etc.). To get the desired state of the locking keys, read the
-		states out of the key map returned by {ref}`get_key_map()`.
+		states out of the key map returned by {cpp:func}`get_key_map()`.
 -
 	- {cpp:enumerator}`B_KEY_MAP_CHANGED`
 	- Requests that the receiver change the keyboard's key map—the mapping
 		between physical keys and the character codes they generate. The new key
-		map is returned by {ref}`get_key_map()`.
+		map is returned by {cpp:func}`get_key_map()`.
 -
 	- {cpp:enumerator}`B_KEY_REPEAT_DELAY_CHANGED`
 	- Requests that the receiver change the delay before a held key starts
 		generating repeated characters to the value retrieved through
-		{ref}`get_key_repeat_delay()`.
+		{cpp:func}`get_key_repeat_delay()`.
 -
 	- {cpp:enumerator}`B_KEY_REPEAT_RATE_CHANGED`
 	- Requests that the receiver change the speed at which a held key generates
 		repeated characters to the value retrieved through
-		{ref}`get_key_repeat_rate()`.
+		{cpp:func}`get_key_repeat_rate()`.
 
 :::
 
 ### Device Monitoring
 
-The {ref}`watch_input_devices()` function lets you ask the Input Server to
-send you a message when a device starts or stops, or when the set of
-registered devices changes. These "device monitoring" notifications are
+The {cpp:func}`watch_input_devices()` function lets you ask the Input
+Server to send you a message when a device starts or stops, or when the set
+of registered devices changes. These "device monitoring" notifications are
 sent to the target specified in the function. The command constant is
 always {cpp:enumerator}`B_INPUT_DEVICES_CHANGED.` The {hparam}`be:opcode`
 field will be one of:

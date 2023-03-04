@@ -14,8 +14,8 @@
 
 Creates a new {hclass}`BResources` object. You can initialize the object
 by passing a pointer to a valid {cpp:class}`BFile`; without the argument,
-the object won't refer to a file until {cpp:func}`SetTo()
-<BResources::SetTo>` is called.
+the object won't refer to a file until {cpp:func}`~BResources::SetTo()` is
+called.
 
 If {hparam}`clobber` is {cpp:expr}`true`, the file that's referred to by
 {cpp:class}`BFile` is truncated (it's data is erased), and a new resource
@@ -135,8 +135,8 @@ resource that has the given type and name.
 
 -   The last ({hparam}`byPointer`) returns information about the resource
 whose data is pointed to by {hparam}`byPointer`. This can be used to trace
-a resource that's already been loaded with {cpp:func}`LoadResource()
-<BResources::LoadResource>` back to its information.
+a resource that's already been loaded with
+{cpp:func}`~BResources::LoadResource()` back to its information.
 
 The other arguments return the other statistics about the resource (if
 found).
@@ -285,8 +285,7 @@ widths: auto
 -
 	- {cpp:enumerator}`B_NOT_ALLOWED`.
 	- Couldn't find the specified resource, or an error occurred trying to
-		remove it (first form of {cpp:func}`RemoveResource()
-		<BResources::RemoveResource>`).
+		remove it (first form of {cpp:func}`~BResources::RemoveResource()`).
 -
 	- {cpp:enumerator}`B_ERROR`.
 	- Couldn't find the specified resource, the pointer doesn't indicate a valid

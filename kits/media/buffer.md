@@ -60,8 +60,8 @@ video should be displayed.
 
 Returns a pointer to the buffer's header. This header describes the media
 data contained therein. The result is only valid for a buffer received from
-either {cpp:func}`BBufferGroup::RequestBuffer` or
-{cpp:func}`BBufferConsumer::BufferReceived`.
+either {cpp:func}`BBufferGroup::RequestBuffer()` or
+{cpp:func}`BBufferConsumer::BufferReceived()`.
 
 If you put data into a buffer, you should call {hmethod}`Header()` to
 obtain a pointer to the buffer's header, then fill out the
@@ -84,8 +84,8 @@ buffer ID. Otherwise, a negative number is returned.
 
 Sends the buffer back to the BBufferGroup that owns it so the buffer can
 be reused. You can only call Recycle() on a buffer that you received from
-either the {cpp:func}`BBufferGroup::RequestBuffer` call or the
-{cpp:func}`BBufferConsumer::BufferReceived` call.
+either the {cpp:func}`BBufferGroup::RequestBuffer()` call or the
+{cpp:func}`BBufferConsumer::BufferReceived()` call.
 
 :::{admonition} Warning
 :class: warning
@@ -100,8 +100,7 @@ buffer.
 
 Returns the size, in bytes, of the buffer. The actual number of bytes used
 might be less than this value, and is stored in the buffer's header, which
-can be obtained by calling the {cpp:func}`Header() <BBuffer::Header>`
-function.
+can be obtained by calling the {cpp:func}`~BBuffer::Header()` function.
 ::::
 
 ::::{abi-group}
@@ -126,8 +125,8 @@ data.
 Returns the media type of the data contained within the buffer, as
 specified by the {cpp:class}`BBufferProducer` from which the buffer
 originated. This value is only valid if you received the buffer from either
-the {cpp:func}`BBufferGroup::RequestBuffer` call or the
-{cpp:func}`BBufferConsumer::BufferReceived` call.
+the {cpp:func}`BBufferGroup::RequestBuffer()` call or the
+{cpp:func}`BBufferConsumer::BufferReceived()` call.
 ::::
 
 ::::{abi-group}

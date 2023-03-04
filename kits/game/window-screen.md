@@ -63,11 +63,11 @@ if ( error != B_OK )
 
 If the {hparam}`debugging` flag is {cpp:expr}`true`, the
 {hclass}`BWindowScreen` is constructed in debugging mode. This modifies its
-behavior and enables three functions, {cpp:func}`RegisterThread()
-<BWindowScreen::RegisterThread>`, {cpp:func}`Suspend()
-<BWindowScreen::Suspend>`, and {cpp:func}`SuspensionHook()
-<BWindowScreen::SuspensionHook>`. The debugging regime is described under
-those functions.
+behavior and enables three functions,
+{cpp:func}`~BWindowScreen::RegisterThread()`,
+{cpp:func}`~BWindowScreen::Suspend()`, and
+{cpp:func}`~BWindowScreen::SuspensionHook()`. The debugging regime is
+described under those functions.
 
 See also: the {cpp:class}`BScreen` class in the {ref}`Interface Kit`
 ::::
@@ -128,7 +128,7 @@ void MyWindowScreen::ScreenConnected(bool connected)
 }
 :::
 
-See also: {cpp:func}`Disconnect() <BWindowScreen::Disconnect>`
+See also: {cpp:func}`~BWindowScreen::Disconnect()`
 ::::
 
 ## Member Functions
@@ -141,9 +141,9 @@ Returns {cpp:expr}`true` if the graphics card driver permits applications
 to control the configuration of the frame buffer, and {cpp:expr}`false` if
 not. Control is exercised through these two functions:
 
--   {cpp:func}`SetFrameBuffer() <BWindowScreen::SetFrameBuffer>`
+-   {cpp:func}`~BWindowScreen::SetFrameBuffer()`
 
--   {cpp:func}`MoveDisplayArea() <BWindowScreen::MoveDisplayArea>`
+-   {cpp:func}`~BWindowScreen::MoveDisplayArea()`
 
 A return of {cpp:expr}`true` means that these functions can communicate
 with the graphics card driver and at least the first will do something
@@ -170,7 +170,7 @@ returns, but it should ask for a new set each time the depth or dimensions
 of the screen changes and each time the {hclass}`BWindowScreen` object
 releases or regains control of the screen. You'd typically call
 {hmethod}`CardHookAt()` in your implementation of
-{cpp:func}`ScreenConnected() <BWindowScreen::ScreenConnected>`.
+{cpp:func}`~BWindowScreen::ScreenConnected()`.
 ::::
 
 ::::{abi-group}
@@ -188,7 +188,7 @@ The information returned by this function is only valid when the
 {hclass}`BWindowScreen` is connected to the display.
 :::
 
-See also: {cpp:func}`FrameBufferInfo() <BWindowScreen::FrameBufferInfo>`
+See also: {cpp:func}`~BWindowScreen::FrameBufferInfo()`
 ::::
 
 ::::{abi-group}
@@ -199,20 +199,20 @@ Forces the {hclass}`BWindowScreen` object to disconnect itself from the
 screen—to give up its authority over the graphics card driver, allowing the
 Application Server to reassert control. Normally, you'd disconnect the
 {hclass}`BWindowScreen` only when hiding the game, reducing it to an
-ordinary window in the background, or quitting. The {cpp:func}`Hide()
-<BWindowScreen::Hide>` and {cpp:func}`Quit() <BWindowScreen::Quit>`
+ordinary window in the background, or quitting. The
+{cpp:func}`~BWindowScreen::Hide()` and {cpp:func}`~BWindowScreen::Quit()`
 functions automatically disconnect the {hclass}`BWindowScreen` as part of
-the process of hiding and quitting. {cpp:func}`Disconnect()
-<BWindowScreen::Disconnect>` allows you to sever the connection before
-calling those functions.
+the process of hiding and quitting.
+{cpp:func}`~BWindowScreen::Disconnect()` allows you to sever the connection
+before calling those functions.
 
-Before breaking the screen connection, {cpp:func}`Disconnect()
-<BWindowScreen::Disconnect>` causes the {hclass}`BWindowScreen` object to
-receive a {cpp:func}`ScreenConnected() <BWindowScreen::ScreenConnected>`
+Before breaking the screen connection,
+{cpp:func}`~BWindowScreen::Disconnect()` causes the {hclass}`BWindowScreen`
+object to receive a {cpp:func}`~BWindowScreen::ScreenConnected()`
 notification with a flag of {cpp:expr}`false`. It doesn't return until
-{cpp:func}`ScreenConnected() <BWindowScreen::ScreenConnected>` returns and
-the connection is broken. {cpp:func}`Hide() <BWindowScreen::Hide>` and
-{cpp:func}`Quit() <BWindowScreen::Quit>` share this behavior.
+{cpp:func}`~BWindowScreen::ScreenConnected()` returns and the connection is
+broken. {cpp:func}`~BWindowScreen::Hide()` and
+{cpp:func}`~BWindowScreen::Quit()` share this behavior.
 ::::
 
 ::::{abi-group}
@@ -226,14 +226,13 @@ defined in addons/graphics/GraphicsCard.h
 :::{admonition} Note
 :class: note
 The information returned by this function is only valid if
-{cpp:func}`SetFrameBuffer() <BWindowScreen::SetFrameBuffer>` has been
-called.
+{cpp:func}`~BWindowScreen::SetFrameBuffer()` has been called.
 :::
 
-See also: {cpp:func}`SetSpace() <BWindowScreen::SetSpace>`,
-{cpp:func}`SetFrameBuffer() <BWindowScreen::SetFrameBuffer>`,
-{cpp:func}`MoveDisplayArea() <BWindowScreen::MoveDisplayArea>`,
-{cpp:func}`CardInfo() <BWindowScreen::CardInfo>`
+See also: {cpp:func}`~BWindowScreen::SetSpace()`,
+{cpp:func}`~BWindowScreen::SetFrameBuffer()`,
+{cpp:func}`~BWindowScreen::MoveDisplayArea()`,
+{cpp:func}`~BWindowScreen::CardInfo()`
 ::::
 
 ::::{abi-group}
@@ -248,19 +247,18 @@ sure that the {hclass}`BWindowScreen` is disconnected from the screen
 before it's hidden and that it's ready to establish a connection when it
 becomes the active window.
 
-{hmethod}`Hide()` calls {cpp:func}`ScreenConnected()
-<BWindowScreen::ScreenConnected>` (with an argument of {cpp:expr}`false`)
-and breaks the connection to the screen when {cpp:func}`ScreenConnected()
-<BWindowScreen::ScreenConnected>` returns. It then hides the window.
+{hmethod}`Hide()` calls {cpp:func}`~BWindowScreen::ScreenConnected()`
+(with an argument of {cpp:expr}`false`) and breaks the connection to the
+screen when {cpp:func}`~BWindowScreen::ScreenConnected()` returns. It then
+hides the window.
 
 {hmethod}`Show()` shows the window on-screen and makes it the active
 window, which will cause it to establish a direct connection to the
 graphics card driver for the screen. Unlike {hmethod}`Hide()`, it may
-return before {cpp:func}`ScreenConnected()
-<BWindowScreen::ScreenConnected>` is called (with an argument of
-{cpp:expr}`true`).
+return before {cpp:func}`~BWindowScreen::ScreenConnected()` is called (with
+an argument of {cpp:expr}`true`).
 
-See also: {cpp:func}`BWindow::Hide`
+See also: {cpp:func}`BWindow::Hide()`
 ::::
 
 ::::{abi-group}
@@ -287,8 +285,7 @@ frame buffer with a total area larger than the display area. If successful
 in relocating the display area, this function returns
 {cpp:enumerator}`B_OK`; if not, it returns {cpp:enumerator}`B_ERROR`.
 
-See also: {cpp:func}`CanControlFrameBuffer()
-<BWindowScreen::CanControlFrameBuffer>`
+See also: {cpp:func}`~BWindowScreen::CanControlFrameBuffer()`
 ::::
 
 ::::{abi-group}
@@ -304,7 +301,7 @@ may not be soon enough for your application. For example, if you need to
 destroy some drawing threads before the {hclass}`BWindowScreen` object is
 itself destroyed, you should get rid of them after the screen connection is
 severed. You can force the object to disconnect itself by calling
-{cpp:func}`Disconnect() <BWindowScreen::Disconnect>`. For example:
+{cpp:func}`~BWindowScreen::Disconnect()`. For example:
 
 :::{code} cpp
 void MyWindowScreen::Quit()
@@ -317,10 +314,10 @@ void MyWindowScreen::Quit()
 :::
 
 If the screen connection is still in place when {hmethod}`Quit()` is
-called, it calls {cpp:func}`ScreenConnected()
-<BWindowScreen::ScreenConnected>` with a flag of {cpp:expr}`false`. It
-doesn't return until {cpp:func}`ScreenConnected()
-<BWindowScreen::ScreenConnected>` returns and the connection is broken.
+called, it calls {cpp:func}`~BWindowScreen::ScreenConnected()` with a flag
+of {cpp:expr}`false`. It doesn't return until
+{cpp:func}`~BWindowScreen::ScreenConnected()` returns and the connection is
+broken.
 ::::
 
 ::::{abi-group}
@@ -342,11 +339,10 @@ set to {cpp:expr}`true`. The flag is {cpp:expr}`false` by default.
 
 2.    Register all drawing threads (all threads that can touch the frame buffer
 in any way) by passing the {htype}`thread_id` to
-{cpp:func}`RegisterThread() <BWindowScreen::RegisterThread>` immediately
-after the thread is spawned—before {hmethod}`resume_thread()` is called to
-start the thread's execution. The window thread for the
-{hclass}`BWindowScreen` object should not draw and should not be
-registered.
+{cpp:func}`~BWindowScreen::RegisterThread()` immediately after the thread
+is spawned—before {hmethod}`resume_thread()` is called to start the
+thread's execution. The window thread for the {hclass}`BWindowScreen`
+object should not draw and should not be registered.
 
 3.    Launch the application from the command line in a Terminal window. The
 window will collect debugging output from the application while the
@@ -401,12 +397,13 @@ start again.
 :::{cpp:function} virtual void BWindowScreen::ScreenChanged(BRect frame, color_space mode)
 :::
 
-Overrides the {cpp:class}`BWindow` version of {cpp:func}`ScreenChanged()
-<BWindow::ScreenChanged>` so that it does nothing. This function is called
-automatically when the screen configuration changes. It's not one that you
-should call in application code or reimplement for the game.
+Overrides the {cpp:class}`BWindow` version of
+{cpp:func}`~BWindow::ScreenChanged()` so that it does nothing. This
+function is called automatically when the screen configuration changes.
+It's not one that you should call in application code or reimplement for
+the game.
 
-See also: {cpp:func}`BWindow::ScreenChanged`
+See also: {cpp:func}`BWindow::ScreenChanged()`
 ::::
 
 ::::{abi-group}
@@ -433,7 +430,7 @@ This is not the list kept by the graphics card driver, but a local copy. It
 belongs to the {hclass}`BWindowScreen` object and should be altered only by
 calling {hmethod}`SetColorList()`.
 
-See also: {cpp:func}`BScreen::ColorMap` in the {ref}`Interface Kit`
+See also: {cpp:func}`BScreen::ColorMap()` in the {ref}`Interface Kit`
 ::::
 
 ::::{abi-group}
@@ -443,21 +440,21 @@ See also: {cpp:func}`BScreen::ColorMap` in the {ref}`Interface Kit`
 Configures the frame buffer on the graphics card so that it's
 {hparam}`width` pixel columns wide and {hparam}`height` pixel rows high.
 This function works only if the driver for the graphics card allows custom
-configurations (as reported by {cpp:func}`CanControlFrameBuffer()
-<BWindowScreen::CanControlFrameBuffer>`) and the {hclass}`BWindowScreen`
-object is currently connected to the screen.
+configurations (as reported by
+{cpp:func}`~BWindowScreen::CanControlFrameBuffer()`) and the
+{hclass}`BWindowScreen` object is currently connected to the screen.
 
 The new dimensions of the frame buffer must be large enough to hold all
 the pixels displayed on-screen—that is, they must be at least as large as
 the dimensions of the display area. If the driver can't accommodate the
-proposed width and height, {cpp:func}`SetFrameBuffer()
-<BWindowScreen::SetFrameBuffer>` returns {cpp:enumerator}`B_ERROR`. If the
-change is made, it returns {cpp:enumerator}`B_OK`.
+proposed width and height, {cpp:func}`~BWindowScreen::SetFrameBuffer()`
+returns {cpp:enumerator}`B_ERROR`. If the change is made, it returns
+{cpp:enumerator}`B_OK`.
 
 This function doesn't alter the depth of the frame buffer or the size or
 location of the display area.
 
-See also: {cpp:func}`MoveDisplayArea() <BWindowScreen::MoveDisplayArea>`,
+See also: {cpp:func}`~BWindowScreen::MoveDisplayArea()`,
 {cpp:func}`SetSpace() <BWindowScreen::MoveDisplayArea>`
 ::::
 
@@ -476,41 +473,40 @@ display area. For example, if {hparam}`space` is
 and at least 800 pixel columns wide and 600 pixel rows high. The display
 area (the area of the frame buffer mapped to the screen) will also be 800
 pixels * 600 pixels. After setting the screen space, you can enlarge the
-frame buffer by calling {cpp:func}`SetFrameBuffer()
-<BWindowScreen::SetFrameBuffer>` and relocate the display area in the
-larger buffer by calling {cpp:func}`MoveDisplayArea()
-<BWindowScreen::MoveDisplayArea>`.
+frame buffer by calling {cpp:func}`~BWindowScreen::SetFrameBuffer()` and
+relocate the display area in the larger buffer by calling
+{cpp:func}`~BWindowScreen::MoveDisplayArea()`.
 
 If the requested configuration is refused by the graphics card driver,
 {cpp:enumerator}`SetSpace()` returns {cpp:enumerator}`B_ERROR`. If all goes
 well, it returns {cpp:enumerator}`B_OK`.
 
 See also: the {hclass}`BWindowScreen` {cpp:func}`constructor
-<BWindowScreen::BWindowScreen()>`, {cpp:func}`SetFrameBuffer()
-<BWindowScreen::SetFrameBuffer>`, {cpp:func}`MoveDisplayArea()
-<BWindowScreen::MoveDisplayArea>`
+<BWindowScreen::BWindowScreen()>`,
+{cpp:func}`~BWindowScreen::SetFrameBuffer()`,
+{cpp:func}`~BWindowScreen::MoveDisplayArea()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BWindowScreen::WindowActivated(bool active)
 :::
 
-Overrides the {cpp:class}`BWindow` version of {cpp:func}`WindowActivated()
-<BWindow::WindowActivated>` to connect the {hclass}`BWindowScreen` object
-to the screen (give it control over the graphics card driver) when the
-{hparam}`active` flag is {cpp:expr}`true`.
+Overrides the {cpp:class}`BWindow` version of
+{cpp:func}`~BWindow::WindowActivated()` to connect the
+{hclass}`BWindowScreen` object to the screen (give it control over the
+graphics card driver) when the {hparam}`active` flag is {cpp:expr}`true`.
 
 This function doesn't disconnect the {hclass}`BWindowScreen` when the flag
 is {cpp:expr}`false`, because there's no way for the window to cease being
 the active window without the connection already having been lost.
 
 Don't reimplement this function in your application, even if you call the
-inherited version; rely instead on {cpp:func}`ScreenConnected()
-<BWindowScreen::ScreenConnected>` for accurate notifications of when the
-{hclass}`BWindowScreen` gains and loses control of the screen.
+inherited version; rely instead on
+{cpp:func}`~BWindowScreen::ScreenConnected()` for accurate notifications of
+when the {hclass}`BWindowScreen` gains and loses control of the screen.
 
-See also: {cpp:func}`BWindow::WindowActivated`,
-{cpp:func}`ScreenConnected() <BWindowScreen::ScreenConnected>`
+See also: {cpp:func}`BWindow::WindowActivated()`,
+{cpp:func}`~BWindowScreen::ScreenConnected()`
 ::::
 
 ::::{abi-group}
@@ -518,16 +514,16 @@ See also: {cpp:func}`BWindow::WindowActivated`,
 :::
 
 Overrides the {cpp:class}`BWindow` version of
-{cpp:func}`WorkspaceActivated() <BWindow::WorkspaceActivated>` to connect
-the {hclass}`BWindowScreen` object to the screen when the {hparam}`active`
-flag is {cpp:expr}`true` and to disconnect it when the flag is
+{cpp:func}`~BWindow::WorkspaceActivated()` to connect the
+{hclass}`BWindowScreen` object to the screen when the {hparam}`active` flag
+is {cpp:expr}`true` and to disconnect it when the flag is
 {cpp:expr}`false`. User's typically activate the game by activating the
 workspace in which it's running, and deactivate it by moving to another
 workspace.
 
 Don't override this function in your application; implement
-{cpp:func}`ScreenConnected() <BWindowScreen::ScreenConnected>` instead.
+{cpp:func}`~BWindowScreen::ScreenConnected()` instead.
 
-See also: {cpp:func}`BWindow::WorkspaceActivated`,
-{cpp:func}`ScreenConnected() <BWindowScreen::ScreenConnected>`
+See also: {cpp:func}`BWindow::WorkspaceActivated()`,
+{cpp:func}`~BWindowScreen::ScreenConnected()`
 ::::

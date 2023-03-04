@@ -9,9 +9,8 @@ type of flow control (hardware or software) that should be used.
 
 To read and write data, a {cpp:class}`BSerialPort` object must first open
 one of the serial ports by name. To find the names of all the serial ports
-on the computer, use the {cpp:func}`CountDevices()
-<BSerialPort::CountDevices>` and {cpp:func}`GetDeviceName()
-<BSerialPort::GetDeviceName>` functions:
+on the computer, use the {cpp:func}`~BSerialPort::CountDevices()` and
+{cpp:func}`~BSerialPort::GetDeviceName()` functions:
 
 :::{code} cpp
 BSerialPort serial;

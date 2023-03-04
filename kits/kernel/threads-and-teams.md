@@ -75,14 +75,15 @@ widths: auto
 	- exit_thread()
 	- Tells the calling thread to exit with a return value as given by the
 		argument. Declaring the return value is only useful if some other thread is
-		sitting in a {ref}`wait_for_thread()` call on this thread. exit_thread()
-		sends a signal to the thread (after caching the return value in a known
-		place).
+		sitting in a {cpp:func}`wait_for_thread()` call on this thread.
+		exit_thread() sends a signal to the thread (after caching the return value
+		in a known place).
 -
 	- kill_thread()
 	- Kills the thread given by the argument. The value that the thread will
-		return to {ref}`wait_for_thread()` is undefined and can't be relied upon.
-		kill_thread() is the same as sending a SIGKILLTHR signal to the thread.
+		return to {cpp:func}`wait_for_thread()` is undefined and can't be relied
+		upon. kill_thread() is the same as sending a SIGKILLTHR signal to the
+		thread.
 -
 	- kill_team()
 	- Kills all the threads within the given team. Again, the threads' return
@@ -144,11 +145,11 @@ Finds and returns the thread with the given {hparam}`name`. A
 {hparam}`name` argument of {cpp:expr}`NULL` returns the calling thread.
 
 A thread's name is assigned when the thread is spawned. The name can be
-changed thereafter through the {cpp:func}`rename_thread() <rename::thread>`
-function. Keep in mind that thread names needn't be unique: If two (or
-more) threads boast the same name, a find_thread() call on that name
-returns the first so-named thread that it finds. There's no way to iterate
-through identically-named threads.
+changed thereafter through the {cpp:func}`rename_thread()` function. Keep
+in mind that thread names needn't be unique: If two (or more) threads boast
+the same name, a find_thread() call on that name returns the first so-named
+thread that it finds. There's no way to iterate through identically-named
+threads.
 
 :::{list-table}
 ---
@@ -316,15 +317,15 @@ widths: auto
 
 Tells a new or suspended thread to begin executing instructions. If the
 thread has just been spawned, it enters and executes the thread function
-declared in {cpp:func}`spawn_thread() <spawn::thread>`. If the thread was
-previously suspended(through {cpp:func}`suspend_thread()
-<suspend::thread>`), it continues from where it was suspended.
+declared in {cpp:func}`spawn_thread()`. If the thread was previously
+suspended(through {cpp:func}`suspend_thread()`), it continues from where it
+was suspended.
 
 You can't use this function to wake up a sleeping thread, or to unblock a
 thread that's waiting to acquire a semaphore or waiting in a
-{cpp:func}`receive_data() <receive::data>` call. However, you can unblock
-any of these threads by suspending and then resuming. Blocked threads that
-are resumed return {cpp:enumerator}`B_INTERRUPTED`.
+{cpp:func}`receive_data()` call. However, you can unblock any of these
+threads by suspending and then resuming. Blocked threads that are resumed
+return {cpp:enumerator}`B_INTERRUPTED`.
 
 resume_thread() is the same as sending a SIGCONT signal to the thread.
 
@@ -357,18 +358,18 @@ widths: auto
 :::
 
 Retrieves a message from the thread's message cache. The message will have
-been placed there through a previous {cpp:func}`send_data() <send::data>`
-function call. If the cache is empty, receive_data() blocks until one shows
-up—it never returns empty-handed.
+been placed there through a previous {cpp:func}`send_data()` function call.
+If the cache is empty, receive_data() blocks until one shows up—it never
+returns empty-handed.
 
-The {htype}`thread_id` of the thread that called {cpp:func}`send_data()
-<send::data>` is returned by reference in the sender argument. Note that
-there's no guarantee that the sender will still be alive by the time you
-get its ID. Also, the value of sender going into the function is
-ignored—you can't ask for a message from a particular sender.
+The {htype}`thread_id` of the thread that called {cpp:func}`send_data()`
+is returned by reference in the sender argument. Note that there's no
+guarantee that the sender will still be alive by the time you get its ID.
+Also, the value of sender going into the function is ignored—you can't ask
+for a message from a particular sender.
 
-The {cpp:func}`send_data() <send::data>` function copies two pieces of
-data into a thread's message cache:
+The {cpp:func}`send_data()` function copies two pieces of data into a
+thread's message cache:
 
 -   A single four-byte code that's delivered as receive_data()'s return value,
 
@@ -388,15 +389,14 @@ the message.
 
 -   Conversely, if receive_data() asks for more data than was sent, the
 function returns with the excess portion of buffer
-unmodified—receive_data() doesn't wait for another {cpp:func}`send_data()
-<send::data>` call to provide more data with which to fill up the buffer.
+unmodified—receive_data() doesn't wait for another {cpp:func}`send_data()`
+call to provide more data with which to fill up the buffer.
 
-Each receive_data() corresponds to exactly one {cpp:func}`send_data()
-<send::data>`. Lacking a previous invocation of its mate, receive_data()
-will block until {cpp:func}`send_data() <send::data>` is called. If you
-don't want to block, you should call {cpp:func}`has_data() <has::data>`
-before calling receive_data() (and proceed to receive_data() only if
-{cpp:func}`has_data() <has::data>` returns {cpp:expr}`true`).
+Each receive_data() corresponds to exactly one {cpp:func}`send_data()`.
+Lacking a previous invocation of its mate, receive_data() will block until
+{cpp:func}`send_data()` is called. If you don't want to block, you should
+call {cpp:func}`has_data()` before calling receive_data() (and proceed to
+receive_data() only if {cpp:func}`has_data()` returns {cpp:expr}`true`).
 
 :::{list-table}
 ---
@@ -425,30 +425,28 @@ widths: auto
 
 send_data() copies a message into thread's message cache. The target
 thread retrieves the message (and empties the cache) by calling
-{cpp:func}`receive_data() <receive::data>`.
+{cpp:func}`receive_data()`.
 
 There are two parts to the message:
 
 -   A single four-byte code passed as an argument to send_data() and returned
-directly by {cpp:func}`receive_data() <receive::data>`.
+directly by {cpp:func}`receive_data()`.
 
 -   A {hparam}`buffer` of data that's {hparam}`buffer_size` bytes long
 ({hparam}`buffer` can be {cpp:expr}`NULL`, in which case
 {hparam}`buffer_size` should be 0). The data is copied into the target
-thread's cache, and then copied into {cpp:func}`receive_data()
-<receive::data>`'s {hparam}`buffer` (which must be allocated). The calling
-threads retain responsibility for freeing their buffers.
+thread's cache, and then copied into {cpp:func}`receive_data()`'s
+{hparam}`buffer` (which must be allocated). The calling threads retain
+responsibility for freeing their buffers.
 
 In addition to returning the {hparam}`code` directly, and copying the
-message data into its {hparam}`buffer` argument, {cpp:func}`receive_data()
-<receive::data>` sets {hparam}`sender` to the id of the thread that sent
-the message.
+message data into its {hparam}`buffer` argument, {cpp:func}`receive_data()`
+sets {hparam}`sender` to the id of the thread that sent the message.
 
 send_data() blocks if there's an unread message in the target thread's
 cache; otherwise it returns immediately (i.e. it doesn't wait for the
-target to call {cpp:func}`receive_data() <receive::data>`. Analogously,
-{cpp:func}`receive_data() <receive::data>` blocks until there's a message
-to retrieve.
+target to call {cpp:func}`receive_data()`. Analogously,
+{cpp:func}`receive_data()` blocks until there's a message to retrieve.
 
 In the following example, the main thread spawns a thread, sends it a
 message, and then tells the thread to run:
@@ -467,8 +465,8 @@ main()
 }
 :::
 
-To retrieve the message, the target thread calls {cpp:func}`receive_data()
-<receive::data>`:
+To retrieve the message, the target thread calls
+{cpp:func}`receive_data()`:
 
 :::{code} cpp
 int32 thread_func(void *data)
@@ -521,8 +519,7 @@ widths: auto
 
 has_data() returns {cpp:expr}`true` if {hparam}`thread` has a message in
 its message cache. Ostensibly, you use this function before calling
-{cpp:func}`send_data() <send::data>` or {cpp:func}`receive_data()
-<receive::data>` to avoid blocking:
+{cpp:func}`send_data()` or {cpp:func}`receive_data()` to avoid blocking:
 
 :::{code} cpp
 if (!has_data(target_thread))
@@ -534,10 +531,9 @@ if (has_data(find_thread(NULL))
    code = receive_data(...);
 :::
 
-This works for {cpp:func}`receive_data() <receive::data>`, but notice that
-there's a race condition between the has_data() and {cpp:func}`send_data()
-<send::data>` calls. Another thread could send a message to the target in
-the interim.
+This works for {cpp:func}`receive_data()`, but notice that there's a race
+condition between the has_data() and {cpp:func}`send_data()` calls. Another
+thread could send a message to the target in the interim.
 ::::
 
 ::::{abi-group}
@@ -556,7 +552,7 @@ See "Thread Priorities" for a description of the priority scheme, and
 
 suggest_thread_priority() takes information about a thread and returns a
 suggested priority that you can pass to set_thread_priority() (or, more
-likely, to {cpp:func}`spawn_thread() <spawn::thread>`).
+likely, to {cpp:func}`spawn_thread()`).
 
 The {hparam}`what` value is a bit mask that indicates the type of
 activities the thread will be used for. The possible values are listed in
@@ -625,8 +621,7 @@ snooze() blocks the calling thread for the given number of
 snooze_until() blocks until an absolute time measured in the given
 {hparam}`timebase`. Currently, the only allowed value for
 {hparam}`timebase` is {cpp:enumerator}`B_SYSTEM_TIMEBASE`, which measures
-time against the system clock (as reported by {cpp:func}`system_time()
-<system::time>`).
+time against the system clock (as reported by {cpp:func}`system_time()`).
 
 :::{list-table}
 ---
@@ -691,11 +686,11 @@ widths: auto
 
 A newly spawned thread is in a suspended state
 ({cpp:enumerator}`B_THREAD_SUSPENDED`). To tell the thread to run, you pass
-its {htype}`thread_id` to the {cpp:func}`resume_thread() <resume::thread>`
-function. The thread will continue to run until the thread function exits,
-or until the thread is explicitly killed (through a signal or a call to
-{cpp:func}`exit_thread() <exit::thread>`, {cpp:func}`kill_thread()
-<kill::thread>`, or {cpp:func}`kill_team() <kill::team>`).
+its {htype}`thread_id` to the {cpp:func}`resume_thread()` function. The
+thread will continue to run until the thread function exits, or until the
+thread is explicitly killed (through a signal or a call to
+{cpp:func}`exit_thread()`, {cpp:func}`kill_thread()`, or
+{cpp:func}`kill_team()`).
 
 :::{list-table}
 ---
@@ -724,8 +719,8 @@ widths: auto
 
 Halts the execution of the given thread, but doesn't kill the thread
 entirely. The thread remains suspended (suspend_thread() blocks) until it's
-told to run through the {cpp:func}`resume_thread() <resume::thread>`
-function. Nothing prevents you from suspending your own thread, i.e.:
+told to run through the {cpp:func}`resume_thread()` function. Nothing
+prevents you from suspending your own thread, i.e.:
 
 :::{code} cpp
 suspend_thread(find_thread(NULL));
@@ -736,12 +731,11 @@ resume you later.
 
 You can suspend any thread, regardless of its current state. But be
 careful: If the thread is blocked on a semaphore (for example), the
-subsequent {cpp:func}`resume_thread() <resume::thread>` call will "hop
-over" the semaphore acquisition.
+subsequent {cpp:func}`resume_thread()` call will "hop over" the semaphore
+acquisition.
 
-Suspensions don't nest. A single {cpp:func}`resume_thread()
-<resume::thread>` unsuspends a thread regardless of the number of
-suspend_thread() calls it has received.
+Suspensions don't nest. A single {cpp:func}`resume_thread()` unsuspends a
+thread regardless of the number of suspend_thread() calls it has received.
 
 suspend_thread() is the same as sending a SIGSTOP signal to the thread.
 
@@ -775,11 +769,11 @@ thread") has died. If thread is suspended (or freshly spawned),
 wait_for_thread() will resume it.
 
 When the target thread is dead, the value that was returned by its thread
-function (or imposed by {cpp:func}`exit_thread() <exit::thread>`) is
-returned in {hparam}`exit_value`. If the target thread was killed (by
-{cpp:func}`kill_thread() <kill::thread>` or {cpp:func}`kill_team()
-<kill::team>`), or if the thread function doesn't return a value, the value
-returned in {hparam}`exit_value` will be unreliable.
+function (or imposed by {cpp:func}`exit_thread()`) is returned in
+{hparam}`exit_value`. If the target thread was killed (by
+{cpp:func}`kill_thread()` or {cpp:func}`kill_team()`), or if the thread
+function doesn't return a value, the value returned in {hparam}`exit_value`
+will be unreliable.
 
 You must pass a valid pointer as the second argument to wait_for_thread().
 You mustn't pass {cpp:expr}`NULL` even if you're not interested in the
@@ -804,9 +798,9 @@ widths: auto
 	- {hparam}`thread` isn't a valid {htype}`thread_id` number.
 -
 	- {cpp:enumerator}`B_INTERRUPTED`.
-	- The target was killed by a signal. This includes {cpp:func}`kill_thread()
-		<kill::thread>`, {cpp:func}`kill_team() <kill::team>`, and
-		{cpp:func}`exit_thread() <exit::thread>`.
+	- The target was killed by a signal. This includes
+		{cpp:func}`kill_thread()`, {cpp:func}`kill_team()`, and
+		{cpp:func}`exit_thread()`.
 
 :::
 ::::
@@ -841,8 +835,8 @@ typedef struct {
 :::
 
 The {htype}`team_info` structure returns information about a team. To
-retrieve one of these structures, use {ref}`get_team_info()` or
-{ref}`get_next_team_info()`.
+retrieve one of these structures, use {cpp:func}`get_team_info()` or
+{cpp:func}`get_next_team_info()`.
 
 The first field is obvious; the next three reasonably so: They give the
 number of threads that have been spawned, images that have been loaded, and
@@ -868,16 +862,15 @@ typedef int32 (*thread_func)(void *data);
 
 {htype}`thread_func` is the prototype for a thread's thread function. You
 specify a thread function by passing a {htype}`thread_func` as the first
-argument to {cpp:func}`spawn_thread() <spawn::thread>`; the last argument
-to {cpp:func}`spawn_thread() <spawn::thread>` is forwarded as the thread
-function's data argument. When the thread function exits, the spawned
-thread is automatically killed. To retrieve a {htype}`thread_func`'s return
-value, some other thread must be waiting in a {ref}`wait_for_thread()`
-call.
+argument to {cpp:func}`spawn_thread()`; the last argument to
+{cpp:func}`spawn_thread()` is forwarded as the thread function's data
+argument. When the thread function exits, the spawned thread is
+automatically killed. To retrieve a {htype}`thread_func`'s return value,
+some other thread must be waiting in a {cpp:func}`wait_for_thread()` call.
 
-Note that {cpp:func}`spawn_thread() <spawn::thread>` doesn't copy the data
-that data points to. It simply passes the pointer through literally. Never
-pass a pointer that's allocated locally (on the stack).
+Note that {cpp:func}`spawn_thread()` doesn't copy the data that data
+points to. It simply passes the pointer through literally. Never pass a
+pointer that's allocated locally (on the stack).
 
 ### thread_info
 
@@ -897,8 +890,8 @@ typedef struct {
 :::
 
 The {htype}`thread_info` structure contains information about a thread. To
-retrieve one of these structure, use {ref}`get_thread_info()` or
-{ref}`get_next_thread_info()`.
+retrieve one of these structure, use {cpp:func}`get_thread_info()` or
+{cpp:func}`get_next_thread_info()`.
 
 The {hparam}`thread`, {hparam}`team`, and {hparam}`name` fields contain
 the indicated information.
@@ -935,8 +928,8 @@ stack-grows-down world, the base should be greater than the end.)
 #define B_SYSTEM_TEAM ...
 :::
 
-Use this constant as the first argument to {ref}`get_team_info()` to get
-team information about the kernel).
+Use this constant as the first argument to {cpp:func}`get_team_info()` to
+get team information about the kernel).
 ::::
 
 ::::{abi-group}
@@ -948,8 +941,8 @@ team information about the kernel).
 :::
 
 The system timebase constant is used as a basis for time measurement in
-the {cpp:func}`snooze_until() <snooze::until>` function. (Currently, it's
-the only timebase available.)
+the {cpp:func}`snooze_until()` function. (Currently, it's the only timebase
+available.)
 ::::
 
 ### be_task_flags
@@ -1027,13 +1020,13 @@ widths: auto
 
 These constants describe what the thread is designed to do. You use these
 constants when asking for a suggested priority (see
-{ref}`suggest_thread_priority()`).
+{cpp:func}`suggest_thread_priority()`).
 
 :::{admonition} Warning
 :class: warning
 These constants may not be used as actual thread priority values—do not
 pass one of these values as the priority argument to
-{cpp:func}`spawn_thread() <spawn::thread>`.
+{cpp:func}`spawn_thread()`.
 :::
 
 ### Thread Priority Values
@@ -1103,8 +1096,8 @@ widths: auto
 
 The thread priority values are used to set the "urgency" of a thread.
 Although you can reset a thread's priority through
-{ref}`set_thread_priority()`, the priority is initially—and almost always
-permanently—set in {cpp:func}`spawn_thread() <spawn::thread>`.
+{cpp:func}`set_thread_priority()`, the priority is initially—and almost
+always permanently—set in {cpp:func}`spawn_thread()`.
 
 ### thread_state
 
@@ -1140,14 +1133,14 @@ widths: auto
 		which semaphore.
 -
 	- {cpp:enumerator}`B_THREAD_RECEIVING`.
-	- The thread is sitting in a {cpp:func}`receive_data() <receive::data>`
-		function call.
+	- The thread is sitting in a {cpp:func}`receive_data()` function call.
 -
 	- {cpp:enumerator}`B_THREAD_ASLEEP`.
-	- The thread is sitting in a {ref}`snooze()` call.
+	- The thread is sitting in a {cpp:func}`snooze()` call.
 
 :::
 
 A thread's state tells you what the thread is currently doing. To get the
 state, look in the state field of the {cpp:func}`thread_info
-<thread::info>` structure (retrieved through {ref}`get_thread_info()`).
+<thread::info>` structure (retrieved through
+{cpp:func}`get_thread_info()`).

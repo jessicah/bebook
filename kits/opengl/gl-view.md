@@ -41,8 +41,8 @@ widths: auto
 -
 	- {cpp:enumerator}`BGL_DOUBLE`
 	- Use double-buffered graphics. All rendering is done to an offscreen buffer
-		and only becomes visible when the {cpp:func}`SwapBuffers()
-		<BGLView::SwapBuffers>` function is called.
+		and only becomes visible when the {cpp:func}`~BGLView::SwapBuffers()`
+		function is called.
 -
 	- {cpp:enumerator}`BGL_ACCUM`
 	- Requests that the view have an accumulation buffer.
@@ -72,11 +72,10 @@ Disposes of the OpenGL context for the view.
 :::{cpp:function} virtual void BGLView::~BGLView()
 :::
 
-Calls the inherited version of {cpp:func}`AttachedToWindow()
-<BView::AttachedToWindow>` and sets the view color to
-{cpp:enumerator}`B_TRANSPARENT_32_BIT` (this improves performance by
-preventing the Application Server from erasing the view, since OpenGL takes
-over responsibility for drawing into the view).
+Calls the inherited version of {cpp:func}`~BView::AttachedToWindow()` and
+sets the view color to {cpp:enumerator}`B_TRANSPARENT_32_BIT` (this
+improves performance by preventing the Application Server from erasing the
+view, since OpenGL takes over responsibility for drawing into the view).
 ::::
 
 ::::{abi-group}
@@ -136,8 +135,8 @@ widths: auto
 :::
 
 If the {hclass}`BGLView` is in a {cpp:class}`BDirectWindow`, you should
-call this from your {cpp:func}`BDirectWindow::DirectConnected` function to
-let OpenGL update the window properly.
+call this from your {cpp:func}`BDirectWindow::DirectConnected()` function
+to let OpenGL update the window properly.
 ::::
 
 ::::{abi-group}
@@ -196,9 +195,9 @@ gracefully.
 :::{cpp:function} virtual void BGLView::FrameResized(float width, float height)
 :::
 
-Calls the inherited version of {cpp:func}`FrameResized()
-<BView::FrameResized>`, releases tables that need to be recalculated, and
-resizes the OpenGL buffers.
+Calls the inherited version of {cpp:func}`~BView::FrameResized()`,
+releases tables that need to be recalculated, and resizes the OpenGL
+buffers.
 
 You can augment this function to perform other necessary tasks, such as
 adjusting your {hclass}`BGLView`'s coordinate system.

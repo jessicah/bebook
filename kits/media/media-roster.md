@@ -10,8 +10,8 @@
 :::
 
 You never construct a {hclass}`BMediaRoster` yourself. Instead, use the
-static {cpp:func}`Roster() <BMediaRoster::Roster>` function to obtain an
-instance of the {hclass}`BMediaRoster` class that you can use.
+static {cpp:func}`~BMediaRoster::Roster()` function to obtain an instance
+of the {hclass}`BMediaRoster` class that you can use.
 ::::
 
 ::::{abi-group}
@@ -242,7 +242,7 @@ conversion for you, then pass along the audio to the output node.
 
 Once your application has finished using these nodes (and they've been
 stopped and disconnected), you should release them by calling
-{cpp:func}`ReleaseNode() <BMediaRoster::ReleaseNode>`.
+{cpp:func}`~BMediaRoster::ReleaseNode()`.
 
 :::{list-table}
 ---
@@ -452,8 +452,7 @@ the actual number of matching nodes found, unless an error occurs.
 
 Nodes you obtain using {hmethod}`GetDormantNodes()` must be released when
 you're done using them. To do this, be sure they're stopped and
-disconnected, then call {cpp:func}`ReleaseNode()
-<BMediaRoster::ReleaseNode>`.
+disconnected, then call {cpp:func}`~BMediaRoster::ReleaseNode()`.
 
 :::{list-table}
 ---
@@ -688,8 +687,7 @@ returns.
 An active node is a node that is preloaded by the system and is always
 available for use, as opposed to a dormant node, which resides in an add-on
 and is only loaded when instantiated using
-{cpp:func}`InstantiateDormantNode()
-<BMediaRoster::InstantiateDormantNode>`.
+{cpp:func}`~BMediaRoster::InstantiateDormantNode()`.
 
 You can obtain a more specific result list by specifying one or more of
 the {hparam}`hasInput`, {hparam}`hasOutput`, {hparam}`name`, and
@@ -741,7 +739,7 @@ to query the node for available inputs, outputs, and so forth.
 
 Once your application has finished using the returned node (and it's been
 stopped and disconnected), you should release it by calling
-{cpp:func}`ReleaseNode() <BMediaRoster::ReleaseNode>`.
+{cpp:func}`~BMediaRoster::ReleaseNode()`.
 
 :::{list-table}
 ---
@@ -775,9 +773,9 @@ various {cpp:class}`BParameter`s within the web to figure out what there is
 to control, and to present a user interface to the node's parameters.
 Delete the web pointed to by {hparam}`outWeb` when you're done with it.
 
-Note that the {cpp:func}`StartControlPanel()
-<BMediaRoster::StartControlPanel>` function provides an easy, painless way
-to automatically present user interface for configuring nodes.
+Note that the {cpp:func}`~BMediaRoster::StartControlPanel()` function
+provides an easy, painless way to automatically present user interface for
+configuring nodes.
 
 :::{admonition} Note
 :class: note
@@ -879,19 +877,19 @@ widths: auto
 
 -
 	- {cpp:enumerator}`B_MEDIA_REALTIME_ALLOCATOR`
-	- When set, {cpp:func}`rtm_alloc() <rtm::alloc>` will return locked memory.
+	- When set, {cpp:func}`rtm_alloc()` will return locked memory.
 -
 	- {cpp:enumerator}`B_MEDIA_REALTIME_AUDIO`
 	- Audio add-ons in the Media Server are locked in memory, and should lock
-		their thread stacks using {ref}`media_realtime_init_thread()`.
+		their thread stacks using {cpp:func}`media_realtime_init_thread()`.
 -
 	- {cpp:enumerator}`B_MEDIA_REALTIME_VIDEO`
 	- Video add-ons are locked in memory, and should lock their thread stacks
-		using {ref}`media_realtime_init_thread()`.
+		using {cpp:func}`media_realtime_init_thread()`.
 -
 	- {cpp:enumerator}`B_MEDIA_REALTIME_ANYKIND`
 	- All Media add-ons are locked in memory, and should lock their thread
-		stacks using {ref}`media_realtime_init_thread()`.
+		stacks using {cpp:func}`media_realtime_init_thread()`.
 
 :::
 
@@ -963,10 +961,10 @@ widths: auto
 This function returns, in {hparam}`clonedTimeSource`, a reference to a
 clone of the system time source. The system time source is the fallback
 time source used when no other source is available; its time is derived
-from the {cpp:func}`system_time() <system::time>` real-time clock. As such,
-it's quite accurate, but has no relevant relationship to the timing of the
-hardware devices being used for media input and output. Thus it's not a
-good choice for a master clock—but it's there if nothing else is available.
+from the {cpp:func}`system_time()` real-time clock. As such, it's quite
+accurate, but has no relevant relationship to the timing of the hardware
+devices being used for media input and output. Thus it's not a good choice
+for a master clock—but it's there if nothing else is available.
 
 By default, new nodes are slaved to the system time source.
 
@@ -1006,14 +1004,14 @@ Typically, the preferred master clock will be the same node as the default
 audio output (assuming that the audio output node is also a
 {cpp:class}`BTimeSource`, which should be the case). The sound circuitry's
 DAC is then used as a timing reference. Although this may be less accurate
-than the system clock (as defined by the global {cpp:func}`system_time()
-<system::time>` function), glitch-free audio performance is best ensured by
-using the audio output to synchronize media operations.
+than the system clock (as defined by the global {cpp:func}`system_time()`
+function), glitch-free audio performance is best ensured by using the audio
+output to synchronize media operations.
 
 By default, nodes are slaved to the system time source (see
-{cpp:func}`GetSystemTimeSource() <BMediaRoster::GetSystemTimeSource>`
-above). Usually you'll want to use this function to obtain a more accurate
-time source, then slave your nodes to it:
+{cpp:func}`~BMediaRoster::GetSystemTimeSource()` above). Usually you'll
+want to use this function to obtain a more accurate time source, then slave
+your nodes to it:
 
 :::{code} cpp
 media_node timeSource;
@@ -1029,7 +1027,7 @@ corresponding to the specified node's time source. This object can then be
 used to issue {cpp:class}`BTimeSource` calls to determine and adjust timing
 issues (for instance, to determine the current performance time). When
 you're done with the {cpp:class}`BTimeSource`, you should call
-{cpp:func}`ReleaseNode() <BMediaRoster::ReleaseNode>` on it.
+{cpp:func}`~BMediaRoster::ReleaseNode()` on it.
 
 :::{list-table}
 ---
@@ -1066,14 +1064,14 @@ The {hparam}`addon` field should be filled out to contain the add-on ID of
 the add-on from which the node should be instantiated, and the
 {hparam}`flavor_id` should be the flavor ID number the node should be
 instantiated to process. Typically you'll use a function such as
-{cpp:func}`GetDormantNodes() <BMediaRoster::GetDormantNodes>` to find a
+{cpp:func}`~BMediaRoster::GetDormantNodes()` to find a
 {htype}`dormant_node_info` structure that describes a suitable node.
 
 When you're done using the node, and have stopped and disconnected it, you
-should always call {cpp:func}`ReleaseNode() <BMediaRoster::ReleaseNode>` to
-let the Media Server know you're finished with it. This lets the Media
-Server track whether or not the node's add-on can be unloaded, based on the
-number of applications still using it.
+should always call {cpp:func}`~BMediaRoster::ReleaseNode()` to let the
+Media Server know you're finished with it. This lets the Media Server track
+whether or not the node's add-on can be unloaded, based on the number of
+applications still using it.
 
 The difference between these two functions is that the second form lets
 you specify flags controlling how the node is instantiated. The
@@ -1153,17 +1151,17 @@ corresponding node's ID number.
 :::
 
 Calling {hmethod}`PrerollNode()` sends a preroll message to the specified
-{hparam}`node`; the node's {cpp:func}`Preroll() <BMediaNode::Preroll>` hook
-function will be called. When that hook returns, {hmethod}`PrerollNode()`
-will also return. A node that's been prerolled should respond very quickly
-to a {cpp:func}`StartNode() <BMediaRoster::StartNode>` call, because the
-time-consuming setup operations should have been done already by the
-{cpp:func}`Preroll() <BMediaNode::Preroll>` hook.
+{hparam}`node`; the node's {cpp:func}`~BMediaNode::Preroll()` hook function
+will be called. When that hook returns, {hmethod}`PrerollNode()` will also
+return. A node that's been prerolled should respond very quickly to a
+{cpp:func}`~BMediaRoster::StartNode()` call, because the time-consuming
+setup operations should have been done already by the
+{cpp:func}`~BMediaNode::Preroll()` hook.
 
 While it's not mandatory for an application to call
-{hmethod}`PrerollNode()` before calling {cpp:func}`StartNode()
-<BMediaRoster::StartNode>`, it's recommended, because doing so may improve
-real-time performance once the node is started.
+{hmethod}`PrerollNode()` before calling
+{cpp:func}`~BMediaRoster::StartNode()`, it's recommended, because doing so
+may improve real-time performance once the node is started.
 
 :::{admonition} Note
 :class: note
@@ -1247,11 +1245,10 @@ widths: auto
 :::
 
 Releases the specified node, which has previously been obtained by using
-the {cpp:func}`InstantiateDormantNode()
-<BMediaRoster::InstantiateDormantNode>`, {cpp:func}`GetNodeFor()
-<BMediaRoster::GetNodeFor>`, or default node functions (such as
-{cpp:func}`GetVideoOutput() <BMediaRoster::GetVideoOutput>` or
-{cpp:func}`GetAudioMixer() <BMediaRoster::GetAudioMixer>`).
+the {cpp:func}`~BMediaRoster::InstantiateDormantNode()`,
+{cpp:func}`~BMediaRoster::GetNodeFor()`, or default node functions (such as
+{cpp:func}`~BMediaRoster::GetVideoOutput()` or
+{cpp:func}`~BMediaRoster::GetAudioMixer()`).
 
 :::{list-table}
 ---
@@ -1289,10 +1286,10 @@ is also queued.
 This function is especially useful for the offline rendering case (the
 {cpp:enumerator}`B_OFFLINE` run mode). It lets you render a certain time
 range without accidentally going too far; if you queue up a start and stop
-using {cpp:func}`Start() <BMediaNode::Start>` and {cpp:func}`Stop()
-<BMediaNode::Stop>`, the node may have already rendered past your desired
-stop time before your {cpp:func}`Stop() <BMediaNode::Stop>` call occurs.
-{cpp:func}`RollNode() <BMediaRoster::RollNode>` avoids that problem.
+using {cpp:func}`~BMediaNode::Start()` and {cpp:func}`~BMediaNode::Stop()`,
+the node may have already rendered past your desired stop time before your
+{cpp:func}`~BMediaNode::Stop()` call occurs.
+{cpp:func}`~BMediaRoster::RollNode()` avoids that problem.
 
 :::{list-table}
 ---
@@ -1371,7 +1368,7 @@ to perform the seek operation.
 :class: note
 If the node is a time source, and you want to operate on the time source
 aspect of the node (to seek all slaved nodes), you should call
-{cpp:func}`SeekTimeSource() <BMediaRoster::SeekTimeSource>` instead.
+{cpp:func}`~BMediaRoster::SeekTimeSource()` instead.
 :::
 
 :::{list-table}
@@ -1394,8 +1391,8 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`StartNode() <BMediaRoster::StartNode>`,
-{cpp:func}`StopNode() <BMediaRoster::StopNode>`
+See also: {cpp:func}`~BMediaRoster::StartNode()`,
+{cpp:func}`~BMediaRoster::StopNode()`
 ::::
 
 ::::{abi-group}
@@ -1434,8 +1431,8 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`StartTimeSource() <BMediaRoster::StartTimeSource>`,
-{cpp:func}`StopTimeSource() <BMediaRoster::StopTimeSource>`
+See also: {cpp:func}`~BMediaRoster::StartTimeSource()`,
+{cpp:func}`~BMediaRoster::StopTimeSource()`
 ::::
 
 ::::{abi-group}
@@ -1565,7 +1562,7 @@ widths: auto
 	- No error.
 -
 	- Other errors.
-	- Returned by {cpp:func}`BBufferProducer::SetPlayRate`.
+	- Returned by {cpp:func}`BBufferProducer::SetPlayRate()`.
 
 :::
 ::::
@@ -1861,7 +1858,7 @@ In either case, the requested change will occur at the time specified by
 :class: note
 If the node is a time source, and you want to operate on the time source
 aspect of the node (to start or stop all slaved nodes), you should call
-{cpp:func}`SeekTimeSource() <BMediaRoster::SeekTimeSource>` instead.
+{cpp:func}`~BMediaRoster::SeekTimeSource()` instead.
 :::
 
 The error returned by these functions only indicates whether or not the
@@ -1895,7 +1892,7 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`SeekNode() <BMediaRoster::SeekNode>`
+See also: {cpp:func}`~BMediaRoster::SeekNode()`
 ::::
 
 ::::{abi-group}
@@ -1945,7 +1942,7 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`SeekTimeSource() <BMediaRoster::SeekTimeSource>`
+See also: {cpp:func}`~BMediaRoster::SeekTimeSource()`
 ::::
 
 ::::{abi-group}

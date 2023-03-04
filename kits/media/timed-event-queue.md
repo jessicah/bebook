@@ -366,8 +366,7 @@ widths: auto
 		is removed from the queue.
 -
 	- {cpp:enumerator}`B_EXPIRE_TIMER`
-	- Call {cpp:func}`TimerExpired() <BMediaNode::TimerExpired>` on the event's
-		data field.
+	- Call {cpp:func}`~BMediaNode::TimerExpired()` on the event's data field.
 -
 	- {cpp:enumerator}`B_USER_CLEANUP`
 	- Base value for user-defined cleanup types.
@@ -427,7 +426,7 @@ widths: auto
 -
 	- {cpp:enumerator}`B_PARAMETER`
 	- The buffer contains changes to parameter values; pass it to
-		{cpp:func}`BControllable::ApplyParameterData`.
+		{cpp:func}`BControllable::ApplyParameterData()`.
 -
 	- {cpp:enumerator}`B_USER_EVENT`
 	- Base value for user-defined events.
@@ -454,7 +453,7 @@ widths: auto
 
 -
 	- {cpp:enumerator}`B_DONE`
-	- End the {cpp:func}`DoForEach() <BTimedEventQueue::DoForEach>` pass.
+	- End the {cpp:func}`~BTimedEventQueue::DoForEach()` pass.
 -
 	- {cpp:enumerator}`B_NO_ACTION`
 	- Do nothing for this event.
@@ -468,9 +467,9 @@ widths: auto
 :::
 
 These queue action values are returned by the hook function used by
-{cpp:func}`DoForEach() <BTimedEventQueue::DoForEach>`; these values
-indicate what {cpp:func}`DoForEach() <BTimedEventQueue::DoForEach>` should
-do to the event after the hook has processed it.
+{cpp:func}`~BTimedEventQueue::DoForEach()`; these values indicate what
+{cpp:func}`~BTimedEventQueue::DoForEach()` should do to the event after the
+hook has processed it.
 
 ### time_direction
 
@@ -518,7 +517,7 @@ typedef queue_action (*cleanup_hook)(media_timed_event* event,
 
 The {htype}`cleanup_hook` type is used to define a hook function called
 while removing an event from the queue; it's set by calling
-{cpp:func}`SetCleanupHook() <BTimedEventQueue::SetCleanupHook>`.
+{cpp:func}`~BTimedEventQueue::SetCleanupHook()`.
 
 ### for_each_hook
 
@@ -530,7 +529,7 @@ typedef queue_action (*for_each_hook)(media_timed_event* event,
 :::
 
 The {htype}`for_each_hook` type is used to define a hook function called
-by {cpp:func}`DoForEach() <BTimedEventQueue::DoForEach>`.
+by {cpp:func}`~BTimedEventQueue::DoForEach()`.
 
 ### media_timed_event
 

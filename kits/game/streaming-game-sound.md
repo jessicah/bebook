@@ -46,7 +46,7 @@ bytes of audio data.
 In the {hclass}`BStreamingGameSound` implemenation, this function calls
 the stream hook, if one exists.
 
-See also: {cpp:func}`SetStreamHook() <BStreamingGameSound::SetStreamHook>`
+See also: {cpp:func}`~BStreamingGameSound::SetStreamHook()`
 ::::
 
 ::::{abi-group}
@@ -103,7 +103,7 @@ unpleasant collisions in the land of multithreadedness; it returns
 {hmethod}`SetAttributes()` is implemented to disallow the
 {cpp:enumerator}`B_GS_LOOPING` attribute, since streamed sounds can't loop.
 
-See also: {cpp:func}`BGameSound::SetAttributes`
+See also: {cpp:func}`BGameSound::SetAttributes()`
 ::::
 
 ::::{abi-group}

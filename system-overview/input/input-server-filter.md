@@ -19,8 +19,8 @@ To create a new input filter, you must:
 
 -   create a subclass of {cpp:class}`BInputServerFilter`
 
--   implement the {ref}`instantiate_input_filter()` C function to create an
-instance of your {cpp:class}`BInputServerFilter` subclass
+-   implement the {cpp:func}`instantiate_input_filter()` C function to create
+an instance of your {cpp:class}`BInputServerFilter` subclass
 
 -   compile the class and function as an add-on
 
@@ -29,11 +29,10 @@ instance of your {cpp:class}`BInputServerFilter` subclass
 At boot time (or whenever the Input Server is restarted; see
 "{ref}`Loading`" in The Input Server), the Input Server loads the add-ons
 it finds in the input filter directories. For each add-on it finds, the
-Server invokes {ref}`instantiate_input_filter()` to get a pointer to the
-add-ons's {cpp:class}`BInputServerFilter` object. After constructing the
-object, the Server calls {cpp:func}`InitCheck()
-<BInputServerFilter::InitCheck>` to give the add-on a chance to bail out if
-the constructor failed.
+Server invokes {cpp:func}`instantiate_input_filter()` to get a pointer to
+the add-ons's {cpp:class}`BInputServerFilter` object. After constructing
+the object, the Server calls {cpp:func}`~BInputServerFilter::InitCheck()`
+to give the add-on a chance to bail out if the constructor failed.
 
 ## Installing an Input Filter
 

@@ -28,10 +28,9 @@ or initialized with {hparam}`looper` and {hparam}`handler`. See the
 identifies a target.
 
 If you want a reply handler, you have to call
-{cpp:func}`SetHandlerForReply() <BInvoker::SetHandlerForReply>` after the
-constructor returns. You can reset the message and messenger through
-{cpp:func}`SetMessage() <BInvoker::SetMessage>` and {cpp:func}`SetTarget()
-<BInvoker::SetTarget>`.
+{cpp:func}`~BInvoker::SetHandlerForReply()` after the constructor returns.
+You can reset the message and messenger through
+{cpp:func}`~BInvoker::SetMessage()` and {cpp:func}`~BInvoker::SetTarget()`.
 ::::
 
 ::::{abi-group}
@@ -52,7 +51,7 @@ Deletes the object's {cpp:class}`BMessage`.
 
 If for some reason you need to implement a method that emulates an
 {cpp:func}`InvokeNotify() <BInvoker::Invoke>` call inside an
-{cpp:func}`Invoke() <BInvoker::Invoke>` implementation, you should wrap the
+{cpp:func}`~BInvoker::Invoke()` implementation, you should wrap the
 invocation code in these functions. They set up and tear down an
 {cpp:func}`InvokeNotify() <BInvoker::Invoke>` context.
 ::::
@@ -68,8 +67,8 @@ invocation code in these functions. They set up and tear down an
 message. If {hparam}`message` is non-{cpp:expr}`NULL`, that message is
 sent, otherwise the object sends its default message (i.e. the
 {cpp:class}`BMessage` that was passed in the constructor or in
-{cpp:func}`SetMessage() <BInvoker::SetMessage>`). The message is sent
-asynchronously with no time limit on the reply.
+{cpp:func}`~BInvoker::SetMessage()`). The message is sent asynchronously
+with no time limit on the reply.
 
 :::{admonition} Note
 :class: note
@@ -86,9 +85,8 @@ notifications. By default, the {hparam}`kind` is
 {cpp:enumerator}`B_CONTROL_INVOKED`, the same kind sent by a straight
 {hmethod}`Invoke()`.
 
-{hmethod}`Invoke()` doesn't call {cpp:func}`SendNotices()
-<BHandler::SendNotices>` by default; you'll have to implement code to do it
-yourself. Here's how:
+{hmethod}`Invoke()` doesn't call {cpp:func}`~BHandler::SendNotices()` by
+default; you'll have to implement code to do it yourself. Here's how:
 
 :::{code} cpp
 status_t BControl::Invoke(BMessage* msg) {
@@ -150,7 +148,7 @@ widths: auto
 	- No default message, and no message argument.
 -
 	- Other errors.
-	- Forwarded from {cpp:func}`BMessenger::SendMessage`.
+	- Forwarded from {cpp:func}`BMessenger::SendMessage()`.
 
 :::
 ::::
@@ -161,18 +159,17 @@ widths: auto
 
 Returns the kind passed to {cpp:func}`InvokeNotify() <BInvoker::Invoke>`.
 This should be called from within your implementation of
-{cpp:func}`Invoke() <BInvoker::Invoke>` if you need to determine what kind
-was specified when {cpp:func}`InvokeNotify() <BInvoker::Invoke>` was
-called. If you care whether {cpp:func}`Invoke() <BInvoker::Invoke>` or
+{cpp:func}`~BInvoker::Invoke()` if you need to determine what kind was
+specified when {cpp:func}`InvokeNotify() <BInvoker::Invoke>` was called. If
+you care whether {cpp:func}`~BInvoker::Invoke()` or
 {cpp:func}`InvokeNotify() <BInvoker::Invoke>` was originally called, you
 can specify a pointer to a {htype}`bool`, {hparam}`notify`, which is set to
 {cpp:expr}`true` if {cpp:func}`InvokeNotify() <BInvoker::Invoke>` was
-called, or {cpp:expr}`false` if {cpp:func}`Invoke() <BInvoker::Invoke>` was
-called. This lets you fetch the {cpp:func}`InvokeNotify()
-<BInvoker::Invoke>` arguments from your {cpp:func}`Invoke()
-<BInvoker::Invoke>` code without breaking compatibility with older
-applications by adding arguments to {cpp:func}`Invoke()
-<BInvoker::Invoke>`.
+called, or {cpp:expr}`false` if {cpp:func}`~BInvoker::Invoke()` was called.
+This lets you fetch the {cpp:func}`InvokeNotify() <BInvoker::Invoke>`
+arguments from your {cpp:func}`~BInvoker::Invoke()` code without breaking
+compatibility with older applications by adding arguments to
+{cpp:func}`~BInvoker::Invoke()`.
 ::::
 
 ::::{abi-group}
@@ -268,12 +265,11 @@ widths: auto
 
 These functions set and query the {hclass}`BInvoker`'s target. This is the
 {cpp:class}`BHandler` to which the object sends a message when
-{cpp:func}`Invoke() <BInvoker::Invoke>` is called. The target is
-represented by a {cpp:class}`BMessenger` object; you can set the
-{cpp:class}`BMessenger` as a copy of {hparam}`messenger`, or initialize it
-with {hparam}`looper` and {hparam}`handler`. See the
-{cpp:class}`BMessenger` class for details on how a {cpp:class}`BMessenger`
-identifies a target.
+{cpp:func}`~BInvoker::Invoke()` is called. The target is represented by a
+{cpp:class}`BMessenger` object; you can set the {cpp:class}`BMessenger` as
+a copy of {hparam}`messenger`, or initialize it with {hparam}`looper` and
+{hparam}`handler`. See the {cpp:class}`BMessenger` class for details on how
+a {cpp:class}`BMessenger` identifies a target.
 
 {hmethod}`Target()` returns the {cpp:class}`BHandler` that's targeted by
 the object's messenger. If {hparam}`looper` is non-{cpp:expr}`NULL`, the

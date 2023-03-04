@@ -21,10 +21,10 @@
 Initializes the {hclass}`BMenu` object. The name of the object becomes the
 initial label of the supermenu item that controls the menu and brings it to
 the screen. (It's also the name that can be passed to {cpp:class}`BView`'s
-{cpp:func}`FindView() <BView::FindView>` function.)
+{cpp:func}`~BView::FindView()` function.)
 
 A new {hclass}`BMenu` object doesn't contain any items; you need to call
-{cpp:func}`AddItem() <BMenu::AddItem>` to set up its contents.
+{cpp:func}`~BMenu::AddItem()` to set up its contents.
 
 A menu can arrange its items in any of three ways:
 
@@ -105,7 +105,7 @@ and resizing the {hclass}`BMenu` view to fit. This function is called for
 you each time the {hclass}`BMenu` is assigned to a window. For a submenu,
 that means each time the menu is shown on-screen.
 
-See also: {cpp:func}`BView::AttachedToWindow`
+See also: {cpp:func}`BView::AttachedToWindow()`
 ::::
 
 ::::{abi-group}
@@ -116,7 +116,7 @@ Draws the menu. This function is called for you whenever the menu is
 placed on-screen or is updated while on-screen. It's not a function you
 need to call yourself.
 
-See also: {cpp:func}`BView::Draw`
+See also: {cpp:func}`BView::Draw()`
 ::::
 
 ::::{abi-group}
@@ -127,7 +127,7 @@ Handles keyboard navigation through the menu. This function is called to
 respond to messages reporting key-down events. It should not be called from
 application code.
 
-See also: {cpp:func}`BView::KeyDown`
+See also: {cpp:func}`BView::KeyDown()`
 ::::
 
 ## Member Functions
@@ -178,7 +178,7 @@ called—{hmethod}`AddItem()` returns {cpp:expr}`false`. If successful, it
 returns {cpp:expr}`true`.
 
 See also: the {hclass}`BMenu` constructor, the {cpp:class}`BMenuItem`
-class, {cpp:func}`RemoveItem() <BMenu::RemoveItem>`
+class, {cpp:func}`~BMenu::RemoveItem()`
 ::::
 
 ::::{abi-group}
@@ -200,21 +200,21 @@ an item and has an indexed position in the list, but it doesn't do
 anything. It's drawn as a horizontal line across the menu. Therefore, it's
 appropriately added only to menus where the items are laid out in a column.
 
-See also: {cpp:func}`AddItem() <BMenu::AddItem>`
+See also: {cpp:func}`~BMenu::AddItem()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual status_t BMenu::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive() <BView::Archive>`,
-then archives the {hclass}`BMenu` by recording its layout and all current
+Calls the inherited version of {cpp:func}`~BView::Archive()`, then
+archives the {hclass}`BMenu` by recording its layout and all current
 settings in the {cpp:class}`BMessage` {hparam}`archive`. If the
 {hparam}`deep` flag is {cpp:expr}`true`, all of the menu items are also
 archived.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BMenu::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BMenu::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -250,8 +250,8 @@ If none of the items in the menu hierarchy meet the stated criterion,
 Returns the first marked item in the menu list (the one with the lowest
 index), or {cpp:expr}`NULL` if no item is marked.
 
-See also: {cpp:func}`SetRadioMode() <BMenu::SetRadioMode>`,
-{cpp:func}`BMenuItem::SetMarked`
+See also: {cpp:func}`~BMenu::SetRadioMode()`,
+{cpp:func}`BMenuItem::SetMarked()`
 ::::
 
 ::::{abi-group}
@@ -281,7 +281,7 @@ implementing a derived class. You'd need them only if you're implementing a
 nonstandard menu of some kind and want to control when the menu appears
 on-screen.
 
-See also: {cpp:func}`BView::Show`, {cpp:func}`Track() <BMenu::Track>`
+See also: {cpp:func}`BView::Show()`, {cpp:func}`~BMenu::Track()`
 ::::
 
 ::::{abi-group}
@@ -300,7 +300,7 @@ If the menu doesn't contain the specified {hparam}`item`, or the item that
 controls {hparam}`submenu`, the return value will be
 {cpp:enumerator}`B_ERROR`.
 
-See also: {cpp:func}`AddItem() <BMenu::AddItem>`
+See also: {cpp:func}`~BMenu::AddItem()`
 ::::
 
 ::::{abi-group}
@@ -344,7 +344,7 @@ ItemAt(index)->Submenu()
 It returns {cpp:expr}`NULL` if the item at {hparam}`index` doesn't control
 a submenu.
 
-See also: {cpp:func}`AddItem() <BMenu::AddItem>`
+See also: {cpp:func}`~BMenu::AddItem()`
 ::::
 
 ::::{abi-group}
@@ -393,7 +393,7 @@ When an item is removed from a menu, it loses its target; the cached value
 is set to {cpp:expr}`NULL`. If the item controls a submenu, it remains
 attached to the submenu even after being removed.
 
-See also: {cpp:func}`AddItem() <BMenu::AddItem>`
+See also: {cpp:func}`~BMenu::AddItem()`
 ::::
 
 ::::{abi-group}
@@ -433,7 +433,7 @@ and every {hclass}`BMenu` above it in the menu hierarchy, is enabled. It
 returns {cpp:expr}`false` if the {hclass}`BMenu`, or any {hclass}`BMenu`
 above it in the menu hierarchy, is disabled.
 
-See also: {cpp:func}`BMenuItem::SetEnabled`
+See also: {cpp:func}`BMenuItem::SetEnabled()`
 ::::
 
 ::::{abi-group}
@@ -449,7 +449,7 @@ all items are enclosed in a rectangle of the same size, one big enough for
 the largest item. Keyboard shortcuts are displayed in the right margin and
 check marks in the left.
 
-See also: {cpp:func}`SetMaxContentWidth() <BMenu::SetMaxContentWidth>`
+See also: {cpp:func}`~BMenu::SetMaxContentWidth()`
 ::::
 
 ::::{abi-group}
@@ -471,7 +471,7 @@ change and the label of the superitem isn't automatically reset.
 taken from the marked item (but not necessarily whether the {hclass}`BMenu`
 is in radio mode).
 
-See also: {cpp:func}`SetRadioMode() <BMenu::SetRadioMode>`
+See also: {cpp:func}`~BMenu::SetRadioMode()`
 ::::
 
 ::::{abi-group}
@@ -491,8 +491,8 @@ Normally, a menu will be wide enough to accommodate its longest item.
 However, items wider than the maximum set by
 {hmethod}`SetMaxContentWidth()` are truncated to fit.
 
-See also: {cpp:func}`SetItemMargins() <BMenu::SetItemMargins>`,
-{cpp:func}`BMenuItem::TruncateLabel`
+See also: {cpp:func}`~BMenu::SetItemMargins()`,
+{cpp:func}`BMenuItem::TruncateLabel()`
 ::::
 
 ::::{abi-group}
@@ -507,9 +507,9 @@ See also: {cpp:func}`SetItemMargins() <BMenu::SetItemMargins>`,
 {hparam}`flag` is {cpp:expr}`false`. In radio mode, only one item in the
 menu can be marked at a time. If the user selects an item, a check mark is
 placed in front of it automatically (you don't need to call
-{cpp:class}`BMenuItem`'s {cpp:func}`SetMarked() <BMenuItem::SetMarked>`
-function; it's called for you). If another item was marked at the time, its
-mark is removed. Selecting a currently marked item retains the mark.
+{cpp:class}`BMenuItem`'s {cpp:func}`~BMenuItem::SetMarked()` function; it's
+called for you). If another item was marked at the time, its mark is
+removed. Selecting a currently marked item retains the mark.
 
 {hmethod}`IsRadioMode()` returns whether the {hclass}`BMenu` is currently
 in radio mode. The default radio mode is {cpp:expr}`false` for ordinary
@@ -522,8 +522,8 @@ you must mark it yourself.
 When {hmethod}`SetRadioMode()` turns radio mode off, it calls
 SetLabelFromMarked() and passes it an argument of {cpp:expr}`false`—turning
 off the feature that changes the label of the menu's superitem each time
-the marked item changes. Similarly, when {cpp:func}`SetLabelFromMarked()
-<BMenu::SetLabelFromMarked>` turns on this feature, it calls
+the marked item changes. Similarly, when
+{cpp:func}`~BMenu::SetLabelFromMarked()` turns on this feature, it calls
 {hmethod}`SetRadioMode()` and passes it an argument of
 {cpp:expr}`true`—turning radio mode on.
 ::::
@@ -574,7 +574,7 @@ as the application is running. If triggers are ever enabled for a menu,
 they should always be enabled; if they're ever disabled, they should always
 be disabled.
 
-See also: {cpp:func}`BMenuItem::SetTrigger`
+See also: {cpp:func}`BMenuItem::SetTrigger()`
 ::::
 
 ::::{abi-group}
@@ -589,7 +589,7 @@ These functions return the supermenu item that controls the
 could be a {cpp:class}`BMenuBar` object. If the {hclass}`BMenu` hasn't been
 made the submenu of another menu, both functions return {cpp:expr}`NULL`.
 
-See also: {cpp:func}`AddItem() <BMenu::AddItem>`
+See also: {cpp:func}`~BMenu::AddItem()`
 ::::
 
 ::::{abi-group}
@@ -629,9 +629,8 @@ the version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the {hparam}`archive` message doesn't contain data for a
 {hclass}`BMenu` object, {hmethod}`Instantiate()` returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BMenu::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BMenu::Archive()`
 ::::
 
 ## Scripting Support
@@ -857,8 +856,8 @@ specifier off the stack.
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BMenu::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BMenu::Archive()` function adds the following fields to
+its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

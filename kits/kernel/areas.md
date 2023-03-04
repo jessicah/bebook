@@ -61,7 +61,7 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`find_area() <find::area>`
+See also: {cpp:func}`find_area()`
 ::::
 
 ::::{abi-group}
@@ -99,7 +99,7 @@ widths: auto
 	- Is one of four constants that describes how clone_addr is to be
 		interpreted. The first three constants, {cpp:enumerator}`B_EXACT_ADDRESS`,
 		{cpp:enumerator}`B_BASE_ADDRESS`, and {cpp:enumerator}`B_ANY_ADDRESS`, have
-		meanings as explained under {cpp:func}`create_area() <create::area>`.
+		meanings as explained under {cpp:func}`create_area()`.
 
 		The fourth constant, {cpp:enumerator}`B_CLONE_ADDRESS`, specifies that the
 		address of the cloned area should be the same as the address of the source
@@ -113,14 +113,13 @@ widths: auto
 	- clone_protection
 	- Is one or both of {cpp:enumerator}`B_READ_AREA` and
 		{cpp:enumerator}`B_WRITE_AREA`. These have the same meaning as in
-		{cpp:func}`create_area() <create::area>`; keep in mind, as described there,
-		that a cloned area can have a protection that's different from that of its
-		source.
+		{cpp:func}`create_area()`; keep in mind, as described there, that a cloned
+		area can have a protection that's different from that of its source.
 -
 	- source_area
 	- Is the {htype}`area_id` of the area that you wish to clone. You usually
-		supply this value by passing an area name to the {cpp:func}`find_area()
-		<find::area>` function.
+		supply this value by passing an area name to the {cpp:func}`find_area()`
+		function.
 
 :::
 
@@ -246,8 +245,7 @@ long.
 				ignored (going into the function).
 		-
 			- {cpp:enumerator}`B_CLONE_ADDRESS`
-			- This is only meaningful to the {cpp:func}`clone_area() <clone::area>`
-				function.
+			- This is only meaningful to the {cpp:func}`clone_area()` function.
 
 		:::
 -
@@ -274,8 +272,7 @@ long.
 		ignored (going into the function).
 -
 	- {cpp:enumerator}`B_CLONE_ADDRESS`
-	- This is only meaningful to the {cpp:func}`clone_area() <clone::area>`
-		function.
+	- This is only meaningful to the {cpp:func}`clone_area()` function.
 -
 	- size
 	- Is the size, in bytes, of the area. The size must be an integer multiple
@@ -461,7 +458,7 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`area_for() <area::for>`
+See also: {cpp:func}`area_for()`
 ::::
 
 ::::{abi-group}

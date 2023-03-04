@@ -72,17 +72,16 @@ in a subsequent release. But even then you should be frugal.
 define functions that let you access the node's data portion in the
 appropriate style; for example…
 
--   {cpp:class}`BFile` implements {cpp:func}`Read() <BFile::Read>` and
-{cpp:func}`Write() <BFile::Write>` functions that let you retrieve
-arbitrary amounts of data from arbitrary positions in the file.
+-   {cpp:class}`BFile` implements {cpp:func}`~BFile::Read()` and
+{cpp:func}`~BFile::Write()` functions that let you retrieve arbitrary
+amounts of data from arbitrary positions in the file.
 
 -   {cpp:class}`BDirectory` implements functions, such as
-{cpp:func}`GetNextEntry() <BDirectory::GetNextEntry>` and
-{cpp:func}`FindEntry() <BDirectory::FindEntry>`, that read entries from the
-directory.
+{cpp:func}`~BDirectory::GetNextEntry()` and
+{cpp:func}`~BDirectory::FindEntry()`, that read entries from the directory.
 
--   {cpp:class}`BSymLink`'s {cpp:func}`ReadLink() <BSymLink::ReadLink>`
-returns the pathname that it contains.
+-   {cpp:class}`BSymLink`'s {cpp:func}`~BSymLink::ReadLink()` returns the
+pathname that it contains.
 
 If you want to (sensibly) look at a node's data portion, you must create
 an instance of the appropriate derived class. In other words, if you want
@@ -103,10 +102,10 @@ yourself holding a {hclass}`BNode` instance, here's what you'll be able to
 do with it:
 
 -   Read and write attributes. The attribute-accessing functions
-({cpp:func}`ReadAttr() <BNode::ReadAttr>`, {cpp:func}`WriteAttr()
-<BNode::WriteAttr>`, and so on) are general—they work without regard for
-the node's flavor. Thus, you don't need an instance of a specific derived
-class to read and write attributes.
+({cpp:func}`~BNode::ReadAttr()`, {cpp:func}`~BNode::WriteAttr()`, and so
+on) are general—they work without regard for the node's flavor. Thus, you
+don't need an instance of a specific derived class to read and write
+attributes.
 
 -   Get stat information. The {cpp:class}`BStatable` functions can be invoked
 on any flavor of node.
@@ -138,8 +137,7 @@ There are solutions, however…
 Converting from a {hclass}`BNode` to a {cpp:class}`BDirectory`, while not
 transparent, is pretty simple: Grab the {htype}`node_ref` out of the
 {hclass}`BNode` and pass it to the {cpp:class}`BDirectory` constructor or
-{cpp:func}`SetTo() <BDirectory::SetTo>` function. Regard this example
-function:
+{cpp:func}`~BDirectory::SetTo()` function. Regard this example function:
 
 :::{code} cpp
 void Node2Directory(BNode *node, BDirectory *dir)
@@ -176,9 +174,10 @@ a {hclass}`BNode`, but then decide you need the data-writing power of a
 ## Node Locking
 
 Another feature provided by the {hclass}`BNode` class is "node locking":
-Through {hclass}`BNode`'s {cpp:func}`Lock() <BNode::Lock>` function you can
-restrict access to the node. The lock is removed when {cpp:func}`Unlock()
-<BNode::Unlock>` is called, or when the {hclass}`BNode` object is deleted.
+Through {hclass}`BNode`'s {cpp:func}`~BNode::Lock()` function you can
+restrict access to the node. The lock is removed when
+{cpp:func}`~BNode::Unlock()` is called, or when the {hclass}`BNode` object
+is deleted.
 
 -   When you lock a node, you prevent other objects (or agents) from reading
 or writing the node's data and attributes. No other agent can even open the

@@ -38,7 +38,7 @@ to the front and making it the active window). This function works only if
 the target application has a window on-screen. The newly activated
 application is notified with a {cpp:enumerator}`B_APP_ACTIVATED` message.
 
-See also: {cpp:func}`BApplication::AppActivated`
+See also: {cpp:func}`BApplication::AppActivated()`
 ::::
 
 ::::{abi-group}
@@ -124,7 +124,7 @@ Replies to the broadcasted {hparam}`message` will be sent via the
 {hparam}`reply_to` {cpp:class}`BMessenger`, if specified. If
 {hparam}`reply_to` is absent, the replies will be lost.
 
-See also: {cpp:func}`BMessenger::SendMessage`
+See also: {cpp:func}`BMessenger::SendMessage()`
 ::::
 
 ::::{abi-group}
@@ -145,15 +145,15 @@ reference to the {hparam}`app` argument. Otherwise, it finds the preferred
 application for the filetype.
 
 In other words, this function goes about finding an application in the
-same way that {cpp:func}`Launch() <BRoster::Launch>` finds the application
-it will launch.
+same way that {cpp:func}`~BRoster::Launch()` finds the application it will
+launch.
 
 If it can translate the {hparam}`type` or {hparam}`file` into a reference
 to an application executable, {hmethod}`FindApp()` returns
 {cpp:enumerator}`B_OK`. If not, it returns an error code, typically one
 describing a file system error.
 
-See also: {cpp:func}`Launch() <BRoster::Launch>`
+See also: {cpp:func}`~BRoster::Launch()`
 ::::
 
 ::::{abi-group}
@@ -281,8 +281,8 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`Launch() <BRoster::Launch>`,
-{cpp:func}`BApplication::GetAppInfo`
+See also: {cpp:func}`~BRoster::Launch()`,
+{cpp:func}`BApplication::GetAppInfo()`
 ::::
 
 ::::{abi-group}
@@ -312,8 +312,8 @@ If a {hparam}`signature` is passed, the list identifies only applications
 running under that signature. If a {hparam}`signature` isn't specified, the
 list identifies all running applications.
 
-See also: {cpp:func}`TeamFor() <BRoster::TeamFor>`, the
-{cpp:func}`BMessenger constructor <BMessenger::BMessenger()>`
+See also: {cpp:func}`~BRoster::TeamFor()`, the {cpp:func}`BMessenger
+constructor <BMessenger::BMessenger()>`
 ::::
 
 ::::{abi-group}
@@ -357,8 +357,8 @@ Otherwise, it launches the preferred application for the file type and
 passes the {hparam}`file` reference to the application in a
 {cpp:enumerator}`B_REFS_RECEIVED` message. In other words,
 {hmethod}`Launch()` finds the application to launch just as
-{cpp:func}`FindApp() <BRoster::FindApp>` finds the application for a
-particular {hparam}`type` or {hparam}`file`.
+{cpp:func}`~BRoster::FindApp()` finds the application for a particular
+{hparam}`type` or {hparam}`file`.
 
 If a {hparam}`message` is specified, it will be sent to the application
 on-launch where it will be received and responded to before the application
@@ -372,8 +372,7 @@ application configure itself before it starts getting other messages. To
 launch an application and send it an ordinary message, call
 {hmethod}`Launch()` to get it running, then set up a
 {cpp:class}`BMessenger` object for the application and call
-{cpp:class}`BMessenger`'s {cpp:func}`SendMessage()
-<BMessenger::SendMessage>` function.
+{cpp:class}`BMessenger`'s {cpp:func}`~BMessenger::SendMessage()` function.
 
 If the target application is already running, {hmethod}`Launch()` won't
 launch it again, unless it permits multiple instances to run concurrently
@@ -426,8 +425,8 @@ widths: auto
 
 :::
 
-See also: the {cpp:class}`BMessenger` class, {cpp:func}`GetAppInfo()
-<BRoster::GetAppInfo>`, {cpp:func}`FindApp() <BRoster::FindApp>`
+See also: the {cpp:class}`BMessenger` class,
+{cpp:func}`~BRoster::GetAppInfo()`, {cpp:func}`~BRoster::FindApp()`
 ::::
 
 ::::{abi-group}
@@ -560,7 +559,7 @@ running, or if more than one instance was launched from the same
 {hparam}`executable` file, {hmethod}`TeamFor()` arbitrarily picks one of
 the instances and returns its {htype}`team_id`.
 
-See also: {cpp:func}`GetAppList() <BRoster::GetAppList>`
+See also: {cpp:func}`~BRoster::GetAppList()`
 ::::
 
 ## Global Variables
@@ -589,7 +588,7 @@ B_LAUNCH_MASK
 These constants are used to get information from the flags field of an
 {cpp:func}`app_info <app::info>` structure.
 
-See also: {cpp:func}`BRoster::GetAppInfo`, "{cpp:func}`Launch Constants
+See also: {cpp:func}`BRoster::GetAppInfo()`, "{cpp:func}`Launch Constants
 <Constants::Launch>`" below
 
 ### Launch Constants
@@ -606,7 +605,7 @@ particular application signature. This information is part of the flags
 field of an {cpp:func}`app_info <app::info>` structure and can be extracted
 using the {cpp:enumerator}`B_LAUNCH_MASK` constant.
 
-See also: {cpp:func}`BRoster::GetAppInfo`, "{ref}`Application Flags`"
+See also: {cpp:func}`BRoster::GetAppInfo()`, "{ref}`Application Flags`"
 above
 
 ## Defined Types
@@ -627,11 +626,11 @@ typedef struct {
 } app_info
 :::
 
-This structure is used by {cpp:class}`BRoster`'s {cpp:func}`GetAppInfo()
-<BRoster::GetAppInfo>`, {cpp:func}`GetRunningAppInfo()
-<BRoster::GetRunningAppInfo>`, and {cpp:func}`GetActiveAppInfo()
-<BRoster::GetActiveAppInfo>` functions to report information about an
-application. Its constructor ensures that its fields are initialized to
-invalid values. To get meaningful values for an actual application, you
-must pass the structure to one of the {cpp:class}`BRoster` functions. See
-those functions for a description of the various fields.
+This structure is used by {cpp:class}`BRoster`'s
+{cpp:func}`~BRoster::GetAppInfo()`,
+{cpp:func}`~BRoster::GetRunningAppInfo()`, and
+{cpp:func}`~BRoster::GetActiveAppInfo()` functions to report information
+about an application. Its constructor ensures that its fields are
+initialized to invalid values. To get meaningful values for an actual
+application, you must pass the structure to one of the {cpp:class}`BRoster`
+functions. See those functions for a description of the various fields.

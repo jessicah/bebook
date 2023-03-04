@@ -25,22 +25,21 @@ can do this.
 
 The first way is to ask the {cpp:class}`BPushGameSound` class to give you
 a page to fill with audio data. This is done by calling
-{cpp:func}`LockNextPage() <BPushGameSound::LockNextPage>`. This gives you
-exclusive access to the next audio page that needs to be filled; you can
-fill it with whatever sound you want to push, then call
-{cpp:func}`UnlockPage() <BPushGameSound::UnlockPage>` to release it. It
-won't be played while it's locked, so you need to stuff your sound into it
-and release it as quickly as possible.
+{cpp:func}`~BPushGameSound::LockNextPage()`. This gives you exclusive
+access to the next audio page that needs to be filled; you can fill it with
+whatever sound you want to push, then call
+{cpp:func}`~BPushGameSound::UnlockPage()` to release it. It won't be played
+while it's locked, so you need to stuff your sound into it and release it
+as quickly as possible.
 
 ### The Neverending Story
 
 The second way takes better planning, but can give you lower overhead.
-Call {cpp:func}`LockForCyclic() <BPushGameSound::LockForCyclic>` to request
-access to the entire sound buffer area. This doesn't give you exclusive
-access, so playback never stops—it keeps looping the entire time, while you
-write into it. The {cpp:func}`CurrentPosition()
-<BPushGameSound::CurrentPosition>` function tells you where in the buffer
-area playback is currently occurring.
+Call {cpp:func}`~BPushGameSound::LockForCyclic()` to request access to the
+entire sound buffer area. This doesn't give you exclusive access, so
+playback never stops—it keeps looping the entire time, while you write into
+it. The {cpp:func}`~BPushGameSound::CurrentPosition()` function tells you
+where in the buffer area playback is currently occurring.
 
 Your mission (should you choose to accept it) is to stuff audio into the
 buffer, keeping ahead of this position far enough that playback never

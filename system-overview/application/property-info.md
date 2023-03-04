@@ -47,7 +47,7 @@ for your particular object.
 {cpp:class}`BPropertyInfo` is a descendant of {cpp:class}`BFlattenable`,
 and can therefore be used to store a description of an object's supported
 scripting suite. This is particularly useful when overriding
-{cpp:func}`GetSupportedSuites() <BApplication::GetSupportedSuites>`:
+{cpp:func}`~BApplication::GetSupportedSuites()`:
 
 :::{code} cpp
 status_t MyHandler::GetSupportedSuites(BMessage *msg)
@@ -62,12 +62,12 @@ status_t MyHandler::GetSupportedSuites(BMessage *msg)
 Naturally, {cpp:class}`BPropertyInfo` is equally as useful in interpreting
 the results obtained from querying an object for its supported suites.
 
-{cpp:class}`BPropertyInfo` defines the {cpp:func}`FindMatch()
-<BPropertyInfo::FindMatch>` method designed to simplify the implementation
-of {cpp:func}`ResolveSpecifier() <BHandler::ResolveSpecifier>`. It returns
-the index of the property info matching the description given to it, or -1
-if none match. This reduces {cpp:func}`ResolveSpecifier()
-<BHandler::ResolveSpecifier>` in the simplest cases to:
+{cpp:class}`BPropertyInfo` defines the
+{cpp:func}`~BPropertyInfo::FindMatch()` method designed to simplify the
+implementation of {cpp:func}`~BHandler::ResolveSpecifier()`. It returns the
+index of the property info matching the description given to it, or -1 if
+none match. This reduces {cpp:func}`~BHandler::ResolveSpecifier()` in the
+simplest cases to:
 
 :::{code} cpp
 BHandler*
@@ -84,9 +84,9 @@ MyHandler::ResolveSpecifier(BMessage* msg, int32 index,
 }
 :::
 
-Of course, for more complicated objects, {cpp:func}`ResolveSpecifier()
-<BHandler::ResolveSpecifier>` may need to set the target handler to an
-object other than itself, so more processing may be required. In those
-cases, the object can use the index returned by {cpp:func}`FindMatch()
-<BPropertyInfo::FindMatch>` to help it determine the target of the
-scripting message.
+Of course, for more complicated objects,
+{cpp:func}`~BHandler::ResolveSpecifier()` may need to set the target
+handler to an object other than itself, so more processing may be required.
+In those cases, the object can use the index returned by
+{cpp:func}`~BPropertyInfo::FindMatch()` to help it determine the target of
+the scripting message.

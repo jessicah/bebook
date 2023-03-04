@@ -84,8 +84,7 @@ the cursor image on-screen; if it's {cpp:expr}`false`, it should remove the
 cursor from the screen.
 
 If the driver is asked to show the cursor before
-{cpp:func}`define_cursor() <define::cursor>` is called, it should show it
-at (0, 0).
+{cpp:func}`define_cursor()` is called, it should show it at (0, 0).
 
 ## draw_line_with_8_bit_depth()Index: 3
 
@@ -113,14 +112,14 @@ the diagonal, not by overlapping. Here's how you should (and shouldn't)
 produce a mostly-vertical line; for the mostly-horizontal version, turn
 your head sideways:
 
-![Drawing Line With 8 Bit Depth](./images/TheGameKit/draw_line_with_8_bit_depth.png)
+![Drawing Line With 8 Bit Depth](./_static/images/draw_line_with_8_bit_depth.png)
 
 ## draw_line_with_32_bit_depth()Index: 4
 
 
 
-This is the same as {ref}`draw_line_with_8_bit_depth()` except for the
-color argument. Here, {hparam}`color` is a 32-bit value with 8-bit red,
+This is the same as {cpp:func}`draw_line_with_8_bit_depth()` except for
+the color argument. Here, {hparam}`color` is a 32-bit value with 8-bit red,
 green, blue, and alpha components. The components are arranged in the order
 that the driver specified when it received the
 {cpp:enumerator}`B_GET_GRAPHICS_CARD_INFO` request.
@@ -138,8 +137,8 @@ should be included in the area being filled.
 
 
 
-This is the same as {ref}`draw_rect_with_8_bit_depth()` except for the
-{hparam}`color` argument. Here, {hparam}`color` is a 32-bit value with
+This is the same as {cpp:func}`draw_rect_with_8_bit_depth()` except for
+the {hparam}`color` argument. Here, {hparam}`color` is a 32-bit value with
 8-bit red, green, blue, and alpha components. The components are arranged
 in the order that the driver specified when it received the
 {cpp:enumerator}`B_GET_GRAPHICS_CARD_INFO` request.
@@ -204,7 +203,7 @@ drawing area. If {hparam}`clipToRect` is {cpp:expr}`false`, the final four
 arguments should be ignored
 
 The lines should be minimally thin, as described under
-{ref}`draw_line_with_8_bit_depth()`
+{cpp:func}`draw_line_with_8_bit_depth()`
 
 ## draw_array_with_32_bit_depth(), rgb_color_lineIndex: 9
 
@@ -212,8 +211,8 @@ The lines should be minimally thin, as described under
 
 Except for the color specification, which is encoded in the
 {htype}`rgb_color_line` structure, this is the same as
-{ref}`draw_array_with_8_bit_depth()`. The {htype}`rgb_color_line` structure
-contains these fields:
+{cpp:func}`draw_array_with_8_bit_depth()`. The {htype}`rgb_color_line`
+structure contains these fields:
 
 :::{list-table}
 ---
@@ -272,18 +271,18 @@ arguments. The sides of the rectangle are included in the inversion.
 
 
 
-This is the same as {ref}`draw_line_with_8_bit_depth()` except for the
-color argument. Here, {hparam}`color` is a 16-bit value with red, green,
-blue, and (possibly) alpha components. The components are arranged in the
-order that the driver specified when it received the
+This is the same as {cpp:func}`draw_line_with_8_bit_depth()` except for
+the color argument. Here, {hparam}`color` is a 16-bit value with red,
+green, blue, and (possibly) alpha components. The components are arranged
+in the order that the driver specified when it received the
 {cpp:enumerator}`B_GET_GRAPHICS_CARD_INFO` request.
 
 ## draw_rect_with_16_bit_depth()Index: 13
 
 
 
-This is the same as {ref}`draw_rect_with_8_bit_depth()` except for the
-color argument. Here, {hparam}`color` is a 16-bit value with red, green,
-blue, and (possibly) alpha components. The components are arranged in the
-order that the driver specified when it received the
+This is the same as {cpp:func}`draw_rect_with_8_bit_depth()` except for
+the color argument. Here, {hparam}`color` is a 16-bit value with red,
+green, blue, and (possibly) alpha components. The components are arranged
+in the order that the driver specified when it received the
 {cpp:enumerator}`B_GET_GRAPHICS_CARD_INFO` request.

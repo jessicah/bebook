@@ -27,8 +27,8 @@ view displays, for example, and appear over the image when the user moves
 the cursor there and presses the mouse button. Or it might be associated
 with the view as a whole and come up under the cursor wherever the cursor
 happens to be. When the view is notified of a mouse-down event, it calls
-{cpp:class}`BPopUpMenu`'s {cpp:func}`Go() <BPopUpMenu::Go>` function to
-show the menu on-screen.
+{cpp:class}`BPopUpMenu`'s {cpp:func}`~BPopUpMenu::Go()` function to show
+the menu on-screen.
 
 3.    The {cpp:class}`BPopUpMenu` might also be controlled by a particular mouse
 button, typically the secondary mouse button. When the user presses the
@@ -36,8 +36,7 @@ button, the menu appears at the location of the cursor. Instead of passing
 responsibility for the mouse-down event to a {cpp:class}`BView`, the
 {cpp:class}`BWindow` would intercept it and place the menu on-screen.
 
-Other than {cpp:func}`Go() <BPopUpMenu::Go>` (and the
-{cpp:func}`constructor <BPopUpMenu::BPopUpMenu()>`), this class implements
-no functions that you ever need to call from application code. In all other
-respects, a {cpp:class}`BPopUpMenu` can be treated like any other
-{cpp:class}`BMenu`.
+Other than {cpp:func}`~BPopUpMenu::Go()` (and the {cpp:func}`constructor
+<BPopUpMenu::BPopUpMenu()>`), this class implements no functions that you
+ever need to call from application code. In all other respects, a
+{cpp:class}`BPopUpMenu` can be treated like any other {cpp:class}`BMenu`.

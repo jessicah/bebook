@@ -14,7 +14,7 @@ color. The arrow keys can similarly change the selection when the object is
 the focus view. The {cpp:class}`BColorControl`'s value changes each time
 the selection does.
 
-![Example BColorControl](./images/TheInterfaceKit/colorcontrol.png)
+![Example BColorControl](./_static/images/colorcontrol.png)
 
 When the screen is 15, 16, or 32 bits deep, the {cpp:class}`BColorControl`
 object displays ramps for each color component. The user changes the

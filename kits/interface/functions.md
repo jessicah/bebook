@@ -15,21 +15,15 @@ In almost all cases, you need a valid (but not necessarily running)
 
 
 
-
-
-
-
 Declared in: interface/InterfaceDefs.h
 
 These functions set and return the active workspace, the one that's
 currently displayed on-screen. The workspace is identified by an index,
 0-based.
 
-See also: {cpp:func}`BWindow::WorkspaceActivated`
+See also: {cpp:func}`BWindow::WorkspaceActivated()`
 
 ## bitmaps_support_space()
-
-
 
 
 
@@ -55,7 +49,7 @@ widths: auto
 
 -
 	- {cpp:enumerator}`B_VIEWS_SUPPORT_DRAW_BITMAP`
-	- {cpp:func}`BView::DrawBitmap` supports drawing {cpp:class}`BBitmap`s of
+	- {cpp:func}`BView::DrawBitmap()` supports drawing {cpp:class}`BBitmap`s of
 		the specified color space.
 -
 	- {cpp:enumerator}`B_BITMAPS_SUPPORT_ATTACHED_VIEWS`
@@ -68,8 +62,6 @@ widths: auto
 
 
 
-
-
 Declared in:  interface/InterfaceDefs.h
 
 Writes the screen coordinates of the current frame of the Deskbar window
@@ -77,14 +69,6 @@ into {hparam}`frame`. Returns {cpp:enumerator}`B_OK` on success or an
 appropriate error code on failure.
 
 ## get_font_family(), count_font_families(), get_font_style(), count_font_styles()
-
-
-
-
-
-
-
-
 
 
 
@@ -163,24 +147,22 @@ be set to 0.
 
 If you find a family and style that has a tuned font, you can set a
 {cpp:class}`BFont` object to that family and style, then call the object's
-{cpp:func}`GetTunedInfo() <BFont::GetTunedInfo>` function to get details
-about exactly which combination of font properties (for example, which font
-sizes) have tuned counterparts. If you set a {cpp:class}`BFont` so that it
-has those properties and make it a {cpp:class}`BView`'s current font, the
-tuned version will be used when the {cpp:class}`BView` draws to the screen.
+{cpp:func}`~BFont::GetTunedInfo()` function to get details about exactly
+which combination of font properties (for example, which font sizes) have
+tuned counterparts. If you set a {cpp:class}`BFont` so that it has those
+properties and make it a {cpp:class}`BView`'s current font, the tuned
+version will be used when the {cpp:class}`BView` draws to the screen.
 
 It's possible for the user to install or remove fonts while the
-application is running. However, unless {ref}`update_font_families()` has
-been called to get the updated list, {hmethod}`get_font_family()` will
+application is running. However, unless {cpp:func}`update_font_families()`
+has been called to get the updated list, {hmethod}`get_font_family()` will
 provide information on the same set of fonts each time it's called. The
 list isn't automatically updated.
 
-See also: {ref}`update_font_families()`, {cpp:func}`BView::SetFont`,
-{cpp:func}`BFont::SetFamilyAndStyle`
+See also: {cpp:func}`update_font_families()`,
+{cpp:func}`BView::SetFont()`, {cpp:func}`BFont::SetFamilyAndStyle()`
 
 ## get_pixel_size_for()
-
-
 
 
 
@@ -193,8 +175,6 @@ alignment for that color space.
 
 
 
-
-
 Declared in:  interface/InterfaceDefs.h
 
 Returns the number of microseconds since the user last manipulated the
@@ -203,8 +183,6 @@ application; idle_time() tells you when the user last directed an action at
 any application, not just yours.
 
 ## keyboard_navigation_color()
-
-
 
 Declared in: interface/InterfaceDefs.h
 
@@ -222,10 +200,6 @@ type.
 
 
 
-
-
-
-
 Declared in: interface/InterfaceDefs.h
 
 These two functions have the Print Server place panels on-screen where the
@@ -237,10 +211,6 @@ known printers and lets the user select one.
 See also: The {cpp:class}`BPrintJob` class
 
 ## set_menu_info(), get_menu_info()
-
-
-
-
 
 
 
@@ -296,8 +266,6 @@ widths: auto
 See also: The {cpp:class}`BMenu` class
 
 ## set_screen_space()
-
-
 
 
 
@@ -390,13 +358,10 @@ them.
 The current screen configuration can be obtained from the
 {cpp:class}`BScreen` object.
 
-See also: {cpp:func}`BWindow::ScreenChanged`, {ref}`The Game Kit` chapter
+See also: {cpp:func}`BWindow::ScreenChanged()`, {ref}`The Game Kit`
+chapter
 
 ## set_scroll_bar_info(), get_scroll_bar_info()
-
-
-
-
 
 
 
@@ -465,10 +430,6 @@ See also: The {cpp:class}`BScrollBar` class
 
 
 
-
-
-
-
 Declared in: interface/InterfaceDefs.h
 
 These functions set and return the number of workspaces the user has
@@ -476,28 +437,24 @@ available. There can be as many as 32 workspaces and as few as 1. The
 choice of how many there should be is usually left to the user and the
 Workspaces application.
 
-See also: {cpp:func}`activate_workspace() <activate::workspace>`
+See also: {cpp:func}`activate_workspace()`
 
 ## system_colors()
-
-
 
 
 
 Declared in: interface/InterfaceDefs.h
 
 Returns a pointer to the system color map. This function duplicates the
-{cpp:class}`BScreen` {cpp:func}`ColorMap() <BScreen::ColorMap>` function,
-but it permits software that isn't concerned about the on-screen display to
-get the color map without referring to a particular screen. (Actually it
+{cpp:class}`BScreen` {cpp:func}`~BScreen::ColorMap()` function, but it
+permits software that isn't concerned about the on-screen display to get
+the color map without referring to a particular screen. (Actually it
 returns the color map for the main screen.)
 
 The {htype}`color_map` structure returned by this function belongs to the
 operating system.
 
 ## tint_color()
-
-
 
 
 
@@ -516,8 +473,6 @@ Various {hparam}`tint` constants are defined by the Interface Kit as seen
 
 
 
-
-
 Declared in:  interface/InterfaceDefs.h
 
 Converts the supplied {cpp:func}`color_which <color::which>` constant
@@ -528,20 +483,18 @@ the specified user interface element.
 
 
 
-
-
 Declared in:  interface/Font.h
 
 Updates the list of installed fonts, so that it reflects any that have
 been added or removed since the last time the list was updated. Until the
-list is updated, {ref}`get_font_family()` operates assuming the set of
+list is updated, {cpp:func}`get_font_family()` operates assuming the set of
 fonts that were installed when the application started up. If the list is
 unchanged since the last update (or since startup), this function returns
 {cpp:expr}`false`; if a font has been installed or an installed font has
 been removed, it returns {cpp:expr}`true`.
 
 If the {hparam}`checkOnly` flag is {cpp:expr}`true`,
-{ref}`get_font_family()` only reports whether the list has changed; it
+{cpp:func}`get_font_family()` only reports whether the list has changed; it
 doesn't modify the current list. If the flag is {cpp:expr}`false`, it
 contacts the Application Server to get the updated list, a much more
 expensive operation.

@@ -4,31 +4,29 @@ A {cpp:class}`BFont` object records a set of font attributes, such as the
 font's family, style, size, and so on. You can set most of these attributes
 to modify the font and then use the object to set the font of a
 {cpp:class}`BView`. A {cpp:class}`BView`'s font determines how the
-characters that it draws (with the {cpp:func}`DrawString()
-<BView::DrawString>` and {cpp:func}`DrawChar() <BView::DrawChar>`
-functions) will be rendered.
+characters that it draws (with the {cpp:func}`~BView::DrawString()` and
+{cpp:func}`~BView::DrawChar()` functions) will be rendered.
 
 A {cpp:class}`BFont` object can perform calculations based on the metrics
 of the particular font it represents. For example, it can tell you how much
 screen real estate it needs to display a given line of text.
 
 To find which fonts are currently installed on the system, call
-{ref}`get_font_family()` and {ref}`get_font_style()`.
+{cpp:func}`get_font_family()` and {cpp:func}`get_font_style()`.
 
 ## Using a BFont Object
 
 A {cpp:class}`BFont` object by itself doesn't do anything. To be able to
 draw characters in the font, the object must be passed to
-{cpp:class}`BView`'s {cpp:func}`SetFont() <BView::SetFont>` function (or
-{cpp:class}`BTextView`'s {cpp:func}`SetFontAndColor()
-<BTextView::SetFontAndColor>`).
+{cpp:class}`BView`'s {cpp:func}`~BView::SetFont()` function (or
+{cpp:class}`BTextView`'s {cpp:func}`~BTextView::SetFontAndColor()`).
 
 A {cpp:class}`BFont` object is always a full representation of a font; all
 attributes are always set. However, you can choose which of these
 attributes will modify a {cpp:class}`BView`'s current font by passing a
-mask to {cpp:func}`SetFont() <BView::SetFont>` (or {cpp:class}`BTextView`'s
-{cpp:func}`SetFontAndColor() <BTextView::SetFontAndColor>`). For example,
-this code sets only the font shear and spacing:
+mask to {cpp:func}`~BView::SetFont()` (or {cpp:class}`BTextView`'s
+{cpp:func}`~BTextView::SetFontAndColor()`). For example, this code sets
+only the font shear and spacing:
 
 :::{code} cpp
 BFont font;
@@ -49,8 +47,7 @@ myView->SetFont(&font);
 :::
 
 Notice that we had to explicitly reset the view's font (through
-{cpp:func}`SetFont() <BView::SetFont>`) after changing the font's
-attributes.
+{cpp:func}`~BView::SetFont()`) after changing the font's attributes.
 
 ## System Fonts
 
@@ -90,8 +87,7 @@ application, and aren't updated by the system, even if the user changes
 their definitions while your app is running. The new values take effect the
 next time your application is launched.
 
-To use a system font in a view, simply call {cpp:func}`SetFont()
-<BView::SetFont>`:
+To use a system font in a view, simply call {cpp:func}`~BView::SetFont()`:
 
 :::{code} cpp
 myView->SetFont(be_bold_font);

@@ -11,8 +11,9 @@
 
 The {hclass}`BControllable` constructor. You should override this in your
 derived class to create a {cpp:class}`BParameterWeb` object, configure it
-to describe the available parameters, and call {cpp:func}`SetParameterWeb()
-<BControllable::SetParameterWeb>` with that object before returning.
+to describe the available parameters, and call
+{cpp:func}`~BControllable::SetParameterWeb()` with that object before
+returning.
 ::::
 
 ## Member Functions
@@ -31,9 +32,8 @@ configuration.
 The configuration of a parameter changes only when the range of possible
 values for the parameter changes. For example, if the parameter's value is
 a CD track number, the configuration would change (thus requiring a call to
-{cpp:func}`BroadcastChangedParameter()
-<BControllable::BroadcastChangedParameter>`) if the user put in a different
-CD with a different number of tracks on it.
+{cpp:func}`~BControllable::BroadcastChangedParameter()`) if the user put in
+a different CD with a different number of tracks on it.
 :::
 
 :::{list-table}
@@ -52,7 +52,7 @@ widths: auto
 	- No errors.
 -
 	- Other errors.
-	- See {cpp:func}`BMessenger::SendMessage`
+	- See {cpp:func}`BMessenger::SendMessage()`
 
 :::
 ::::
@@ -63,9 +63,8 @@ widths: auto
 
 Call this function when a parameter value change takes effect and you want
 people that are interested in knowing about the change to stay in sync with
-you. Unlike {cpp:func}`BroadcastChangedParameter()
-<BControllable::BroadcastChangedParameter>`, this function actually passes
-along the new value of the parameter.
+you. Unlike {cpp:func}`~BControllable::BroadcastChangedParameter()`, this
+function actually passes along the new value of the parameter.
 
 The {hparam}`when` argument indicates the performance time at which the
 change took effect. The {hparam}`id` indicates the parameter ID of the
@@ -160,7 +159,7 @@ In this example, the {hclass}`BControllable` implementation of
 {hmethod}`HandleMessage()` gets the first crack at handling the request. If
 it doesn't know what to do with the message, it's forwarded to
 {cpp:class}`BMediaNode`'s implementation. If the message still isn't
-handled, it's then sent to {cpp:func}`BMediaNode::HandleBadMessage` to be
+handled, it's then sent to {cpp:func}`BMediaNode::HandleBadMessage()` to be
 dealt with.
 
 :::{list-table}
@@ -215,18 +214,17 @@ UnlockParameterWeb();
 
 The {hmethod}`MakeParameterData()` utility function takes a list of
 parameter IDs from {hparam}`parameterList` and calls
-{cpp:func}`GetParameterValue() <BControllable::GetParameterValue>` for each
-of them, storing the values in the specified {hparam}`buffer` until the
-size specified in {hparam}`ioSize` is filled, or all the parameters are
-read. The number of bytes of the buffer used will be returned in
-{hparam}`ioSize`.
+{cpp:func}`~BControllable::GetParameterValue()` for each of them, storing
+the values in the specified {hparam}`buffer` until the size specified in
+{hparam}`ioSize` is filled, or all the parameters are read. The number of
+bytes of the buffer used will be returned in {hparam}`ioSize`.
 
 If your {hclass}`BControllable` is also a {cpp:class}`BBufferConsumer`
 that accepts {cpp:enumerator}`B_MEDIA_PARAMETERS` type data on some input,
 call {hmethod}`ApplyParameterData()` with {hparam}`value` set to the result
-of {cpp:func}`BBuffer::Data` and {hparam}`size` set to
-{cpp:func}`BBuffer::SizeUsed`. This function will then parse the parameter
-change requests in the buffer and dispatch them to your
+of {cpp:func}`BBuffer::Data()` and {hparam}`size` set to
+{cpp:func}`BBuffer::SizeUsed()`. This function will then parse the
+parameter change requests in the buffer and dispatch them to your
 {hmethod}`SetParameterValue()` function to fulfill the requests.
 
 This lets your node support easy automation of parameter information. Even
@@ -274,8 +272,8 @@ path, and how it can be manipulated.
 If the {hparam}`web` argument isn't {cpp:expr}`NULL`, and is different
 from the previously-established web for the {hclass}`BControllable` node, a
 {cpp:enumerator}`B_MEDIA_WEB_CHANGED` message is sent to everyone watching
-for media notifications. See {cpp:func}`StartWatching()
-<BMediaRoster::StartWatching>` for more information.
+for media notifications. See {cpp:func}`~BMediaRoster::StartWatching()` for
+more information.
 
 {hmethod}`SetParameterWeb()` will return {cpp:enumerator}`B_OK` if the web
 was set without errors; otherwise an error code will be returned.

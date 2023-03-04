@@ -4,7 +4,7 @@ A {cpp:class}`BOutlineListView` displays a list of items that can be
 structured like an outline, with items grouped under other items. The
 levels of the outline are indicated by successive levels of indentation.
 
-![Outline ListView](./images/TheInterfaceKit/outlinelist.png)
+![Outline ListView](./_static/images/outlinelist.png)
 
 The outline list view shown above was created using the following code:
 
@@ -56,7 +56,7 @@ outline->AddUnder(new BStringItem("Los Angeles"), state);
 California is then further divided into cities: Menlo Park and Los
 Angeles, which reside at level 2 of our outline list. These are inserted
 under the California item by specifying the pointer to that item (locality)
-when calling {cpp:func}`AddUnder() <BOutlineListView::AddUnder>`.
+when calling {cpp:func}`~BOutlineListView::AddUnder()`.
 
 This process is repeated for New York state, which has three cities
 available in our list:
@@ -133,10 +133,9 @@ concerned only with the expanded sections of the list, not with sections
 that are hidden because they're collapsed. If an inherited function returns
 an index or takes an index as an argument, the index counts just the items
 that are shown on-screen (or could be shown on-screen if they were scrolled
-into the visible region of the view). {cpp:func}`DoForEach()
-<BListView::DoForEach>` skips items that can't be displayed.
-{cpp:func}`CountItems() <BListView::CountItems>` counts items only in the
-expanded sections of the list.
+into the visible region of the view). {cpp:func}`~BListView::DoForEach()`
+skips items that can't be displayed. {cpp:func}`~BListView::CountItems()`
+counts items only in the expanded sections of the list.
 
 However, the functions that the {cpp:class}`BOutlineListView` class itself
 defines are concerned with all sections of the list, expanded or collapsed.
@@ -145,16 +144,16 @@ or not.
 
 The class defines some functions that match those it inherits, but its
 versions prefix {hmethod}`FullList…()` to the function name and don't
-ignore any items. For example, {cpp:func}`FullListCountItems()
-<BOutlineListView::FullListCountItems>` counts every item in the list and
-{cpp:func}`FullListDoForEach() <BOutlineListView::FullListDoForEach>`
-doesn't skip items in collapsed sections.
+ignore any items. For example,
+{cpp:func}`~BOutlineListView::FullListCountItems()` counts every item in
+the list and {cpp:func}`~BOutlineListView::FullListDoForEach()` doesn't
+skip items in collapsed sections.
 
 In some cases, {cpp:class}`BOutlineListView` simply overrides an inherited
 function without adding the {hmethod}`FullList…()` prefix. You should
 always use the {cpp:class}`BOutlineListView` versions of these functions,
 not the {cpp:class}`BListView` versions. For example,
-{cpp:class}`BOutlineListView`'s version of {cpp:func}`MakeEmpty()
-<BOutlineListView::MakeEmpty>` truly empties the list;
+{cpp:class}`BOutlineListView`'s version of
+{cpp:func}`~BOutlineListView::MakeEmpty()` truly empties the list;
 {cpp:class}`BListView`'s version would remove items from the screen, but
 not from the real list.

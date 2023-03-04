@@ -24,8 +24,8 @@ that the default playback device should be used.
 
 By default, two audio buffers are used.
 
-Be sure to call {cpp:func}`InitCheck() <BPushGameSound::InitCheck>` before
-using the {hclass}`BPushGameSound` object.
+Be sure to call {cpp:func}`~BPushGameSound::InitCheck()` before using the
+{hclass}`BPushGameSound` object.
 ::::
 
 ::::{abi-group}
@@ -139,9 +139,9 @@ widths: auto
 :::
 
 These values are returned by the locking functions in the
-{hclass}`BPushGameSound` class ( {cpp:func}`LockNextPage()
-<BPushGameSound::LockNextPage>` and {cpp:func}`LockForCyclic()
-<BPushGameSound::LockForCyclic>`). If either function returns
+{hclass}`BPushGameSound` class (
+{cpp:func}`~BPushGameSound::LockNextPage()` and
+{cpp:func}`~BPushGameSound::LockForCyclic()`). If either function returns
 {cpp:enumerator}`lock_failed`, there isn't a buffer to be filled; your code
 is pushing buffers too fast.
 

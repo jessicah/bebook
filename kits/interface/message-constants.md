@@ -128,16 +128,15 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BStatusBar::Update`
+	- {cpp:func}`BStatusBar::Update()`
 
 
 :::
 
 You construct and send this message to a {cpp:class}`BStatusBar` object to
 tell it to (asynchronously) update its progress. To send the message,
-invoke {cpp:class}`BWindow`'s {cpp:func}`PostMessage()
-<BLooper::PostMessage>` naming the target {cpp:class}`BStatusBar` as the
-handler:
+invoke {cpp:class}`BWindow`'s {cpp:func}`~BLooper::PostMessage()` naming
+the target {cpp:class}`BStatusBar` as the handler:
 
 :::{code} cpp
 statusBar->Window()->PostMessage(theMessage, statusBar);
@@ -204,7 +203,7 @@ widths: auto
 -
 	- Target:
 
-	- {cpp:func}`Reset() <BStatusBar::Reset>`
+	- {cpp:func}`~BStatusBar::Reset()`
 
 -
 	- Hook:
@@ -217,7 +216,7 @@ widths: auto
 You construct and send this message to a {cpp:class}`BStatusBar` object to
 tell it to (asynchronously) reset itself. The message also lets you reset
 the object's labels. To send the message, invoke {cpp:class}`BWindow`'s
-{cpp:func}`PostMessage() <BLooper::PostMessage>` naming the target
+{cpp:func}`~BLooper::PostMessage()` naming the target
 {cpp:class}`BStatusBar` as the handler:
 
 :::{code} cpp
@@ -319,8 +318,8 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BView::KeyDown` ({cpp:enumerator}`B_KEY_DOWN`)
-{cpp:func}`BView::KeyUp` ({cpp:enumerator}`B_KEY_UP`)   (The
+	- {cpp:func}`BView::KeyDown()` ({cpp:enumerator}`B_KEY_DOWN`)
+{cpp:func}`BView::KeyUp()` ({cpp:enumerator}`B_KEY_UP`)   (The
 ...{cpp:enumerator}`UNMAPPED`... messages don't map to hook functions.)
 
 
@@ -524,7 +523,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BView::MouseDown`
+	- {cpp:func}`BView::MouseDown()`
 
 
 :::
@@ -618,7 +617,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BView::MouseMoved`
+	- {cpp:func}`BView::MouseMoved()`
 
 
 :::
@@ -694,7 +693,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BView::MouseUp`
+	- {cpp:func}`BView::MouseUp()`
 
 
 :::
@@ -818,8 +817,6 @@ wheel.
 
 ## B_PRINTER_CHANGED
 
-
-
 :::{list-table}
 ---
 header-rows: 0
@@ -856,8 +853,6 @@ print.
 
 ## B_SCREEN_CHANGED
 
-
-
 :::{list-table}
 ---
 header-rows: 0
@@ -883,7 +878,7 @@ windows).
 -
 	- Hook:
 
-	- {cpp:func}`BWindow::ScreenChanged`
+	- {cpp:func}`BWindow::ScreenChanged()`
 
 
 :::
@@ -932,8 +927,6 @@ widths: auto
 
 ## B_VALUE_CHANGED
 
-
-
 :::{list-table}
 ---
 header-rows: 0
@@ -958,7 +951,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BScrollBar::ValueChanged`
+	- {cpp:func}`BScrollBar::ValueChanged()`
 
 
 :::
@@ -1025,7 +1018,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BView::FrameMoved`
+	- {cpp:func}`BView::FrameMoved()`
 
 
 :::
@@ -1093,7 +1086,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BView::FrameResized`
+	- {cpp:func}`BView::FrameResized()`
 
 
 :::
@@ -1179,15 +1172,15 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BWindow::WindowActivated` and
-{cpp:func}`BView::WindowActivated`
+	- {cpp:func}`BWindow::WindowActivated()` and
+{cpp:func}`BView::WindowActivated()`
 
 
 :::
 
 Sent just after a window is activated or deactivated. Note that the
-{cpp:class}`BWindow` invokes {cpp:func}`WindowActivated()
-<BView::WindowActivated>` on each of its views.
+{cpp:class}`BWindow` invokes {cpp:func}`~BView::WindowActivated()` on each
+of its views.
 
 :::{list-table}
 ---
@@ -1367,7 +1360,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BWindow::FrameMoved`
+	- {cpp:func}`BWindow::FrameMoved()`
 
 
 :::
@@ -1434,7 +1427,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BWindow::FrameResized`
+	- {cpp:func}`BWindow::FrameResized()`
 
 
 :::
@@ -1509,7 +1502,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BWindow::WorkspaceActivated`
+	- {cpp:func}`BWindow::WorkspaceActivated()`
 
 
 :::
@@ -1582,7 +1575,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BWindow::WorkspacesChanged`
+	- {cpp:func}`BWindow::WorkspacesChanged()`
 
 
 :::
@@ -1656,7 +1649,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BWindow::Zoom`
+	- {cpp:func}`BWindow::Zoom()`
 
 
 :::
@@ -1778,7 +1771,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BWindow::Minimize`
+	- {cpp:func}`BWindow::Minimize()`
 
 
 :::
@@ -1849,7 +1842,7 @@ widths: auto
 -
 	- Hook:
 
-	- {cpp:func}`BShelf::CanAcceptReplicantMessage`
+	- {cpp:func}`BShelf::CanAcceptReplicantMessage()`
 
 
 :::
@@ -1865,9 +1858,9 @@ application. If the remote application has a {cpp:class}`BShelf` object,
 the {cpp:class}`BShelf` will pick up the message (through a
 {cpp:class}`BMessageFilter`) and pass it to the hook function.
 
-To create a simulated replicant message, you call {cpp:func}`Archive()
-<BView::Archive>` on the view that you want to replicate, and add (at
-least) the {hparam}`add_on` field to the archive message.
+To create a simulated replicant message, you call
+{cpp:func}`~BView::Archive()` on the view that you want to replicate, and
+add (at least) the {hparam}`add_on` field to the archive message.
 
 See {cpp:class}`BShelf` and {cpp:class}`BDragger` for more information
 about replicants.

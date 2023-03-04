@@ -77,18 +77,17 @@ background color of the button so that it matches the background color of
 its parent. This function also sets the start position of the slider and
 allocates other memory needed for the slider to function.
 
-See also: {cpp:func}`BView::AttachedToWindow`,
-{cpp:func}`BControl::AttachedToWindow`
+See also: {cpp:func}`BView::AttachedToWindow()`,
+{cpp:func}`BControl::AttachedToWindow()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BSlider::Draw(BRect updateRect)
 :::
 
-Draws the slider by calling {cpp:func}`DrawSlider()
-<BSlider::DrawSlider>`.
+Draws the slider by calling {cpp:func}`~BSlider::DrawSlider()`.
 
-See also: {cpp:func}`BView::Draw`
+See also: {cpp:func}`BView::Draw()`
 ::::
 
 ::::{abi-group}
@@ -107,7 +106,7 @@ bar.
 These functions can be augmented or replaced by your own versions to alter
 the appearance of the slider bar.
 
-See also: {cpp:func}`OffscreenView() <BSlider::OffscreenView>`
+See also: {cpp:func}`~BSlider::OffscreenView()`
 ::::
 
 ::::{abi-group}
@@ -147,15 +146,15 @@ the appearance of the hash marks.
 Draws the entire slider control by calling the functions responsible for
 drawing the various parts of the control:
 
--   {cpp:func}`DrawBar() <BSlider::DrawBar>`
+-   {cpp:func}`~BSlider::DrawBar()`
 
--   {cpp:func}`DrawHashMarks() <BSlider::DrawHashMarks>`
+-   {cpp:func}`~BSlider::DrawHashMarks()`
 
--   {cpp:func}`DrawThumb() <BSlider::DrawThumb>`
+-   {cpp:func}`~BSlider::DrawThumb()`
 
--   {cpp:func}`DrawFocusMark() <BSlider::DrawFocusMark>`
+-   {cpp:func}`~BSlider::DrawFocusMark()`
 
--   {cpp:func}`DrawText() <BSlider::DrawText>`
+-   {cpp:func}`~BSlider::DrawText()`
 
 Once the slider has been drawn into the offscreen view, it's copied to its
 parent window.
@@ -169,11 +168,11 @@ Draws the slider's text areas. These are the minimum label, maximum label,
 and status message.
 
 The minimum and maximum labels can be set using the
-{cpp:func}`SetLimitLabels() <BSlider::SetLimitLabels>` function. The status
-message is obtained by calling the {cpp:func}`UpdateText()
-<BSlider::UpdateText>` function. If you want there to be a status message,
-simply override {cpp:func}`UpdateText() <BSlider::UpdateText>` to return
-the string you want drawn as the status message.
+{cpp:func}`~BSlider::SetLimitLabels()` function. The status message is
+obtained by calling the {cpp:func}`~BSlider::UpdateText()` function. If you
+want there to be a status message, simply override
+{cpp:func}`~BSlider::UpdateText()` to return the string you want drawn as
+the status message.
 
 :::{admonition} Note
 :class: note
@@ -195,9 +194,8 @@ the appearance or placement of the text.
 :::
 
 {hmethod}`DrawThumb()` draws the slider's thumb. If you choose to
-reimplement this function, you should call {cpp:func}`Style()
-<BSlider::Style>` to determine whether to draw a block thumb or a triangle
-thumb.
+reimplement this function, you should call {cpp:func}`~BSlider::Style()` to
+determine whether to draw a block thumb or a triangle thumb.
 
 {hmethod}`ThumbFrame()` returns the frame rectangle that encloses the
 thumb.
@@ -210,9 +208,9 @@ the appearance of the thumb.
 :::{cpp:function} virtual void BSlider::FrameResized(float* width, float* height)
 :::
 
-Augments the {cpp:class}`BControl` version of {cpp:func}`FrameResized()
-<BView::FrameResized>` to adjust the offscreen view and bitmap used for
-rendering the slider.
+Augments the {cpp:class}`BControl` version of
+{cpp:func}`~BView::FrameResized()` to adjust the offscreen view and bitmap
+used for rendering the slider.
 ::::
 
 ::::{abi-group}
@@ -248,23 +246,22 @@ change the appearance of the slider.
 :::{cpp:function} virtual void BSlider::KeyDown(const char* bytes, int32 numBytes)
 :::
 
-Augments the inherited version of {cpp:func}`KeyDown()
-<BControl::KeyDown>` to let the up and right arrow keys increment the value
-of the slider, and the down and left arrow keys to decrement the value of
-the slider.
+Augments the inherited version of {cpp:func}`~BControl::KeyDown()` to let
+the up and right arrow keys increment the value of the slider, and the down
+and left arrow keys to decrement the value of the slider.
 
-See also: {cpp:func}`BControl::Invoke`, {cpp:func}`BView::KeyDown`
+See also: {cpp:func}`BControl::Invoke()`, {cpp:func}`BView::KeyDown()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BSlider::MouseDown(BPoint point)
 :::
 
-Overrides the {cpp:class}`BView` version of {cpp:func}`MouseDown()
-<BView::MouseDown>` to track mouse the mouse when the button is pressed. A
-single click causes the thumb to immediately reposition itself to the
-clicked location, and a click and drag motion causes the slider to follow
-the mouse cursor until the button is released.
+Overrides the {cpp:class}`BView` version of
+{cpp:func}`~BView::MouseDown()` to track mouse the mouse when the button is
+pressed. A single click causes the thumb to immediately reposition itself
+to the clicked location, and a click and drag motion causes the slider to
+follow the mouse cursor until the button is released.
 
 If a modification message has been established, it is sent repeatedly
 while the mouse button is down. This can be used, for example, to let the
@@ -272,9 +269,10 @@ changes to the value of the slider be instantly reflected in an onscreen
 display. When the mouse button is released and the slider has been set to
 its resting position, the slider's model message is sent.
 
-See also: {cpp:func}`BControl::Invoke`, {cpp:func}`BInvoker::SetTarget`,
-{cpp:func}`ModificationMessage() <BSlider::ModificationMessage>`,
-{cpp:func}`SetModificationMessage() <BSlider::SetModificationMessage>`
+See also: {cpp:func}`BControl::Invoke()`,
+{cpp:func}`BInvoker::SetTarget()`,
+{cpp:func}`~BSlider::ModificationMessage()`,
+{cpp:func}`~BSlider::SetModificationMessage()`
 ::::
 
 ## Member Functions
@@ -287,8 +285,8 @@ Archives the {hclass}`BSlider` by recording its the fields shown
 {cpp:func}`here <BSlider::ArchivedFields>` in the {cpp:class}`BMessage`
 {hparam}`archive`.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BSlider::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BSlider::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -447,7 +445,7 @@ clicked inside the slider.
 {hmethod}`ModificationMessage()` returns the modification message
 currently set up.
 
-See also: {cpp:func}`MouseDown() <BSlider::MouseDown>`
+See also: {cpp:func}`~BSlider::MouseDown()`
 ::::
 
 ::::{abi-group}
@@ -553,9 +551,8 @@ default, this function returns {cpp:expr}`NULL`; if you want a status
 message to be displayed, simply override this function to return the
 appropriate string.
 
-The pointer you return is yours; the {cpp:func}`DrawText()
-<BSlider::DrawText>` routine won't dispose of it unless you augment it to
-do so.
+The pointer you return is yours; the {cpp:func}`~BSlider::DrawText()`
+routine won't dispose of it unless you augment it to do so.
 ::::
 
 ::::{abi-group}
@@ -588,15 +585,14 @@ the version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the archive doesn't contain data for a {hclass}`BSlider`
 object, {hmethod}`Instantiate()` returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BControl::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BControl::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BSlider::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BSlider::Archive()` function adds the following fields to
+its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

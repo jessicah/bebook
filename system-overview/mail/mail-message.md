@@ -38,7 +38,7 @@ mail->AddEnclosure("/boot/home/file.zip");
 :::
 
 Once your message has been constructed, you can send it by calling
-{cpp:func}`Send() <BMailMessage::Send>`:
+{cpp:func}`~BMailMessage::Send()`:
 
 :::{code} cpp
 mail->Send();

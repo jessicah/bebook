@@ -2,8 +2,6 @@
 
 ## frame_buffer_info
 
-
-
 Declared in:  add-ons/graphics/GraphicsCard.h
 
 :::{code} c
@@ -22,11 +20,9 @@ typedef struct {
 This structure is used to report the current configuration of the frame
 buffer.
 
-See also: {cpp:func}`FrameBufferInfo() <BWindowScreen::FrameBufferInfo>`
+See also: {cpp:func}`~BWindowScreen::FrameBufferInfo()`
 
 ## graphics_card_hook
-
-
 
 Declared in:  add-ons/graphics/GraphicsCard.h
 
@@ -38,12 +34,10 @@ This is the general type declaration for a graphics card hook function.
 Specific hook functions will in fact declare various sets of arguments and
 all return a status_t error code rather than void.
 
-See also: {cpp:func}`CardHookAt() <BWindowScreen::CardHookAt>`,
-"{ref}`Graphics Card Hook Functions`"
+See also: {cpp:func}`~BWindowScreen::CardHookAt()`, "{ref}`Graphics Card
+Hook Functions`"
 
 ## graphics_card_info
-
-
 
 Declared in:  add-ons/graphics/GraphicsCard.h
 
@@ -65,11 +59,9 @@ Drivers use this structure to supply information about themselves and the
 current configuration of the frame buffer to the Application Server and the
 {cpp:class}`BWindowScreen` class.
 
-See also: {cpp:func}`CardInfo() <BWindowScreen::CardInfo>`
+See also: {cpp:func}`~BWindowScreen::CardInfo()`
 
 ## gs_attribute
-
-
 
 Declared in:  game/GameSoundDefs.h
 
@@ -93,8 +85,6 @@ attributes.
 
 ## gs_attribute_info
 
-
-
 Declared in:  game/GameSoundDefs.h
 
 :::{code} c
@@ -112,8 +102,6 @@ and minimum and maximum specify the minimum and maximum values the
 attribute can take on.
 
 ## gs_audio_format
-
-
 
 Declared in:  game/GameSoundDefs.h
 
@@ -188,8 +176,6 @@ widths: auto
 :::
 
 ## gs_id
-
-
 
 Declared in:  game/GameSoundDefs.h
 

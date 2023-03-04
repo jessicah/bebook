@@ -2,17 +2,17 @@
 
 A {cpp:class}`BBitmap` describes a rectangular image as a two-dimensional
 array of pixel data (or bitmap). The {cpp:class}`BBitmap` class lets you
-create a bitmap by specifying raw pixel data (through the {cpp:func}`Bits()
-<BBitmap::Bits>` and {cpp:func}`SetBits() <BBitmap::SetBits>` functions),
-or you can add a {cpp:class}`BView` to your {cpp:class}`BBitmap` and use
-the view's drawing operations ( {cpp:func}`FillRect() <BView::FillRect>`,
-{cpp:func}`StrokeLine() <BView::StrokeLine>`, etc) to draw into the
-{cpp:class}`BBitmap` object (see "{ref}`Using a View to Draw into a
-Bitmap`", below).
+create a bitmap by specifying raw pixel data (through the
+{cpp:func}`~BBitmap::Bits()` and {cpp:func}`~BBitmap::SetBits()`
+functions), or you can add a {cpp:class}`BView` to your
+{cpp:class}`BBitmap` and use the view's drawing operations (
+{cpp:func}`~BView::FillRect()`, {cpp:func}`~BView::StrokeLine()`, etc) to
+draw into the {cpp:class}`BBitmap` object (see "{ref}`Using a View to Draw
+into a Bitmap`", below).
 
 The {cpp:class}`BBitmap` class doesn't provide a way to actually display
 bitmap data. Displaying a bitmap is the task of {cpp:class}`BView`
-functions such as {cpp:func}`DrawBitmap() <BView::DrawBitmap>`.
+functions such as {cpp:func}`~BView::DrawBitmap()`.
 
 ## Bitmap Data
 
@@ -58,17 +58,17 @@ When the view draws, the drawing operations are rendered into the bitmap.
 Note that you must explicitly tell the {cpp:class}`BView`): to draw—the
 {cpp:class}`BView`s that you use to draw into a {cpp:class}`BBitmap` aren't
 part of the user interface, so they won't receive user event messages. When
-you're done drawing, you should call {cpp:class}`BView`'s {cpp:func}`Sync()
-<BView::Sync>` function to make sure the drawing has all been performed. If
-the bitmap that you've created is static—if it doesn't need to change after
-you've drawn into it—you can throw away the {cpp:class}`BView` that you
-used create the bitmap data.
+you're done drawing, you should call {cpp:class}`BView`'s
+{cpp:func}`~BView::Sync()` function to make sure the drawing has all been
+performed. If the bitmap that you've created is static—if it doesn't need
+to change after you've drawn into it—you can throw away the
+{cpp:class}`BView` that you used create the bitmap data.
 
 A {cpp:class}`BBitmap` can contain more than one {cpp:class}`BView`—it can
 act as the root of an entire view hierarchy. The {cpp:class}`BBitmap` class
 defines a number of {cpp:class}`BWindow`-like
-functions—{cpp:func}`AddChild() <BBitmap::AddChild>`, {cpp:func}`FindView()
-<BBitmap::FindView>`, {cpp:func}`ChildAt() <BBitmap::ChildAt>`, and so
+functions—{cpp:func}`~BBitmap::AddChild()`,
+{cpp:func}`~BBitmap::FindView()`, {cpp:func}`~BBitmap::ChildAt()`, and so
 on—to help you create and manage the hierarchy.
 
 ## Transparency
@@ -118,4 +118,4 @@ degrees of transparency.
 
 Transparency is covered in more detail under "{ref}`Drawing Modes`".
 
-See also: {cpp:func}`system_colors() <system::colors>`
+See also: {cpp:func}`system_colors()`

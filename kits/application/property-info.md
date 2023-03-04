@@ -31,7 +31,7 @@ the destructor frees all memory associated with the
 
 ### AllowsTypeCode()
 
-See {cpp:func}`BFlattenable::AllowsTypeCode`.
+See {cpp:func}`BFlattenable::AllowsTypeCode()`.
 
 ::::{abi-group}
 :::{cpp:function} int32 BPropertyInfo::FindMatch(BMessage* msg, int32 index, BMessage* spec, int32 form, const char* prop, void* data = NULL) const
@@ -52,19 +52,19 @@ match in the array. Otherwise, it returns {cpp:enumerator}`B_ERROR`.
 
 ### Flatten()
 
-See {cpp:func}`BFlattenable::Flatten`.
+See {cpp:func}`BFlattenable::Flatten()`.
 
 ### FlattenedSize()
 
-See {cpp:func}`BFlattenable::FlattenedSize`.
+See {cpp:func}`BFlattenable::FlattenedSize()`.
 
 ### IsFixedSize()
 
-See {cpp:func}`BFlattenable::IsFixedSize`.
+See {cpp:func}`BFlattenable::IsFixedSize()`.
 
 ### TypeCode()
 
-See {cpp:func}`BFlattenable::TypeCode`.
+See {cpp:func}`BFlattenable::TypeCode()`.
 
 ::::{abi-group}
 :::{cpp:function} void BPropertyInfo::PrintToStream() const
@@ -83,7 +83,7 @@ with the object.
 
 ### Unflatten()
 
-See {cpp:func}`BFlattenable::Unflatten`.
+See {cpp:func}`BFlattenable::Unflatten()`.
 
 ## Defined Types
 

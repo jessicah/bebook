@@ -34,8 +34,8 @@ Frees the text the item displays.
 Calls the inherited version of {hmethod}`Archive()` and stores the
 {hclass}`BStringItem` in the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BStringItem::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BStringItem::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -45,7 +45,7 @@ See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
 Draws the text string, dimming it if the item is disabled and highlighting
 it if the item is selected.
 
-See also: {cpp:func}`BListItem::DrawItem`
+See also: {cpp:func}`BListItem::DrawItem()`
 ::::
 
 ::::{abi-group}
@@ -65,8 +65,8 @@ draws. {hmethod}`SetText()` copies the string it's passed.
 :::{cpp:function} virtual void BStringItem::Update(BView* owner, const BFont* font)
 :::
 
-Overrides the {hclass}`BListItem` version of {cpp:func}`Update()
-<BListItem::Update>` to recalculate the width and height of the
+Overrides the {hclass}`BListItem` version of
+{cpp:func}`~BListItem::Update()` to recalculate the width and height of the
 {hclass}`BStringItem` and the placement of the text. The width of the item
 is based on the width of the owner {cpp:class}`BView`. The height and text
 placement are based on the owner's font. The item must be tall enough to
@@ -84,15 +84,14 @@ with the version of the constructor that takes a {cpp:class}`BMessage`
 archive. However, if the archive message doesn't contain archived data for
 a BStringItem, Instantiate() returns {cpp:expr}`NULL`.
 
-See also {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BStringItem::Archive>`
+See also {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BStringItem::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BStringItem::Archive>` function adds the
-following fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BStringItem::Archive()` function adds the following fields
+to its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

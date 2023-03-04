@@ -22,11 +22,11 @@
 :::
 
 Creates a new {hclass}`BEntry` object that represents the entry described
-by the arguments. See the analogous {cpp:func}`SetTo() <BEntry::SetTo>`
-functions for descriptions of the flavorful constructors.
+by the arguments. See the analogous {cpp:func}`~BEntry::SetTo()` functions
+for descriptions of the flavorful constructors.
 
 The default constructor does nothing; it should be followed by a call to
-{cpp:func}`SetTo() <BEntry::SetTo>`.
+{cpp:func}`~BEntry::SetTo()`.
 
 The copy constructor points the new object to the entry that's represented
 by the argument. The two objects themselves maintain separate
@@ -34,8 +34,8 @@ representation of the entry; in other words, they each contain their own a)
 file descriptor and b) string to identify the entry's a) directory and b)
 name.
 
-To see if the initialization was successful, call {cpp:func}`InitCheck()
-<BEntry::InitCheck>`.
+To see if the initialization was successful, call
+{cpp:func}`~BEntry::InitCheck()`.
 ::::
 
 ::::{abi-group}
@@ -98,7 +98,7 @@ If {hmethod}`GetName()` fails, {hparam}`*buffer` is pointed at
 
 {hmethod}`GetPath()` takes the entry's full pathname and initializes the
 {cpp:class}`BPath` argument with it. To retrieve the path from the
-{cpp:class}`BPath` object, call {cpp:func}`BPath::Path`:
+{cpp:class}`BPath` object, call {cpp:func}`BPath::Path()`:
 
 :::{code} cpp
 BPath path;
@@ -106,8 +106,8 @@ entry.GetPath(&path);
 printf(">Entry pathname: %sn", path.Path());
 :::
 
-If {hmethod}`GetPath()` fails, the argument is {cpp:func}`Unset()
-<BEntry::Unset>`.
+If {hmethod}`GetPath()` fails, the argument is
+{cpp:func}`~BEntry::Unset()`.
 
 :::{list-table}
 ---
@@ -144,10 +144,10 @@ Gets the directory, as a {hclass}`BEntry` or {cpp:class}`BDirectory`
 object, in which the object's entry lives. The argument must be allocated
 before it's passed in.
 
-If the function is unsuccessful, the argument is {cpp:func}`Unset()
-<BEntry::Unset>`. Because of this, you should be particularly careful if
-you're using the {hclass}`BEntry`-argument version to destructively get a
-{hclass}`BEntry`'s parent:
+If the function is unsuccessful, the argument is
+{cpp:func}`~BEntry::Unset()`. Because of this, you should be particularly
+careful if you're using the {hclass}`BEntry`-argument version to
+destructively get a {hclass}`BEntry`'s parent:
 
 :::{code} cpp
 if (entry.GetParent(&entry) != B_OK) {
@@ -285,7 +285,7 @@ widths: auto
 :::
 
 Returns the status of the previous construction, assignment operation, or
-{cpp:func}`SetTo() <BEntry::SetTo>` call.
+{cpp:func}`~BEntry::SetTo()` call.
 
 :::{list-table}
 ---
@@ -303,11 +303,10 @@ widths: auto
 	- The initialization was successful.
 -
 	- {cpp:enumerator}`B_NO_INIT`.
-	- The object is uninitialized (this includes {cpp:func}`Unset()
-		<BEntry::Unset>`).
+	- The object is uninitialized (this includes {cpp:func}`~BEntry::Unset()`).
 -
 	- Other errors.
-	- See {cpp:func}`SetTo() <BEntry::SetTo>`
+	- See {cpp:func}`~BEntry::SetTo()`
 
 :::
 ::::
@@ -466,7 +465,7 @@ descriptor. When you re-initialize, the old file descriptor is closed.
 :::
 
 {hmethod}`Unset()` removes the object's association with its current
-entry, and sets {cpp:func}`InitCheck() <BEntry::InitCheck>` to
+entry, and sets {cpp:func}`~BEntry::InitCheck()` to
 {cpp:enumerator}`B_NO_INIT`.
 
 :::{list-table}
@@ -510,8 +509,8 @@ BEntry a = b;
 
 {hclass}`BEntry` {hparam}`a` is initialized to refer to the same entry as
 {hparam}`b`. To gauge the success of the assignment, you should call
-{cpp:func}`InitCheck() <BEntry::InitCheck>` immediately afterwards.
-Assigning a {hclass}`BEntry` to itself is safe.
+{cpp:func}`~BEntry::InitCheck()` immediately afterwards. Assigning a
+{hclass}`BEntry` to itself is safe.
 
 Assigning from an uninitialized {hclass}`BEntry` is "successful": The
 assigned-to {hclass}`BEntry` will also be uninitialized

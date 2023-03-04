@@ -35,24 +35,24 @@ Either method opens the entire menu hierarchy to keyboard navigation.
 If a window's view hierarchy includes more than one {cpp:class}`BMenuBar`
 object, the {hkey}`Menu` key (or {hkey}`Command`+{hkey}`Escape`) must
 choose one of them to put in focus. By default, it picks the last one that
-was attached to the window. However, the {cpp:func}`SetKeyMenuBar()
-<BWindow::SetKeyMenuBar>` function defined in the {cpp:class}`BWindow`
-class can be called to designate a different {cpp:class}`BMenuBar` object
-as the "key" menu bar for the window.
+was attached to the window. However, the
+{cpp:func}`~BWindow::SetKeyMenuBar()` function defined in the
+{cpp:class}`BWindow` class can be called to designate a different
+{cpp:class}`BMenuBar` object as the "key" menu bar for the window.
 
 ## A Kind of BMenu
 
 {cpp:class}`BMenuBar` inherits most of its functions from the
-{cpp:class}`BMenu` class. It reimplements the {cpp:func}`AttachedToWindow()
-<BMenuBar::AttachedToWindow>`, {cpp:func}`Draw() <BMenuBar::Draw>`, and
-{cpp:func}`MouseDown() <BMenuBar::MouseDown>`, functions that set up the
-object and respond to messages, but these aren't functions that you'd call
-from application code; they're called for you.
+{cpp:class}`BMenu` class. It reimplements the
+{cpp:func}`~BMenuBar::AttachedToWindow()`, {cpp:func}`~BMenuBar::Draw()`,
+and {cpp:func}`~BMenuBar::MouseDown()`, functions that set up the object
+and respond to messages, but these aren't functions that you'd call from
+application code; they're called for you.
 
 The only real function (other than the constructor) that the
 {cpp:class}`BMenuBar` class adds to those it inherits is
-{cpp:func}`SetBorder() <BMenuBar::SetBorder>`, which determines how the
-list of items is bordered.
+{cpp:func}`~BMenuBar::SetBorder()`, which determines how the list of items
+is bordered.
 
 Therefore, for most {cpp:class}`BMenuBar` operations—adding submenus,
 finding items, temporarily disabling the menu bar, and so on—you must call

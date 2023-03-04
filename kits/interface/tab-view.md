@@ -66,7 +66,7 @@ Frees all memory the {hclass}`BTabView` allocated, and deletes every
 :::{cpp:function} virtual void BTabView::AttachedToWindow()
 :::
 
-Calls {cpp:func}`BView::AttachedToWindow`, then selects the first tab in
+Calls {cpp:func}`BView::AttachedToWindow()`, then selects the first tab in
 the tab view.
 ::::
 
@@ -85,11 +85,10 @@ the selected tab's target view.
 Draws the box that encloses the container view. {hparam}`selTabRect` is
 the frame rectangle of the currently-selected tab; this information is used
 to allow the box to attach properly to the current tab. This is the same
-rectangle that the {cpp:func}`DrawTabs() <BTabView::DrawTabs>` function
-returns.
+rectangle that the {cpp:func}`~BTabView::DrawTabs()` function returns.
 
-This is called for you by the {cpp:func}`Draw() <BTabView::Draw>` function
-and is provided primarily as a hook for customizing the appearance of your
+This is called for you by the {cpp:func}`~BTabView::Draw()` function and
+is provided primarily as a hook for customizing the appearance of your
 {hclass}`BTabView`.
 ::::
 
@@ -99,11 +98,11 @@ and is provided primarily as a hook for customizing the appearance of your
 
 Draws all the tabs in the {hclass}`BTabView` and returns the frame
 rectangle of the currently-selected tab. This rectangle should then be
-passed to {cpp:func}`DrawBox() <BTabView::DrawBox>` to draw the container
-view's enclosing box.
+passed to {cpp:func}`~BTabView::DrawBox()` to draw the container view's
+enclosing box.
 
-This is called for you by the {cpp:func}`Draw() <BTabView::Draw>` function
-and is provided primarily as a hook for customizing the appearance of your
+This is called for you by the {cpp:func}`~BTabView::Draw()` function and
+is provided primarily as a hook for customizing the appearance of your
 {hclass}`BTabView`.
 ::::
 
@@ -116,11 +115,11 @@ The {hmethod}`KeyDown()` function handles keyboard navigation of the
 left, and the up and right arrow keys move the focus to the right. The
 space bar and enter keys select the focused tab.
 
-All other keys are passed through to the {cpp:func}`BView::KeyDown`
+All other keys are passed through to the {cpp:func}`BView::KeyDown()`
 function for further processing.
 
 See also: the Keyboard Information appendix, "B_KEY_DOWN" in the Message
-Protocols appendix, {cpp:func}`BView::KeyDown`, {ref}`modifiers()`
+Protocols appendix, {cpp:func}`BView::KeyDown()`, {cpp:func}`modifiers()`
 ::::
 
 ::::{abi-group}
@@ -129,21 +128,20 @@ Protocols appendix, {cpp:func}`BView::KeyDown`, {ref}`modifiers()`
 
 Identifies which tab (if any) the user clicked and selects that tab. If
 the mouse was not inside a tab when clicked, the
-{cpp:func}`BView::MouseDown` function is called.
+{cpp:func}`BView::MouseDown()` function is called.
 
 See also: "B_MOUSE_DOWN" in the Message Protocols appendix,
-{cpp:func}`BView::GetMouse`
+{cpp:func}`BView::GetMouse()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BTabView::WindowActivated(bool active)
 :::
 
-Calls the inherited version of {cpp:func}`WindowActivated()
-<BView::WindowActivated>`, then calls {cpp:func}`DrawTabs()
-<BTabView::DrawTabs>` to redraw the tabs.
+Calls the inherited version of {cpp:func}`~BView::WindowActivated()`, then
+calls {cpp:func}`~BTabView::DrawTabs()` to redraw the tabs.
 
-See also: {cpp:func}`BWindow::WindowActivated`
+See also: {cpp:func}`BWindow::WindowActivated()`
 ::::
 
 ## Member Functions
@@ -161,7 +159,7 @@ in the {hclass}`BTabView`. The new tab's target view is set to
 
 If {hparam}`tab` is {cpp:expr}`NULL`, a new {cpp:class}`BTab` object is
 constructed and added to the {hclass}`BTabView`. You can get a pointer to
-the new tab using the {cpp:func}`TabAt() <BTabView::TabAt>` function
+the new tab using the {cpp:func}`~BTabView::TabAt()` function
 
 if you choose to reimplement {hmethod}`AddTab()`, you should call the
 inherited form of this function once the {cpp:class}`BTab` has been
@@ -177,11 +175,11 @@ need it anymore, you can do that yourself.
 :::{cpp:function} virtual BTabView::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive() <BView::Archive>` and
-stores the {hclass}`BTabView` in the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BView::Archive()` and stores
+the {hclass}`BTabView` in the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BTabView::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BTabView::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -189,7 +187,7 @@ See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
 :::
 
 Makes the {hclass}`BTabView` the current focus by first calling
-{cpp:func}`BView::MakeFocus`, then making the currently-selected tab the
+{cpp:func}`BView::MakeFocus()`, then making the currently-selected tab the
 focus of the {hclass}`BTabView`.
 ::::
 
@@ -289,9 +287,8 @@ The leftmost tab is index number 0.
 Returns the frame rectangle of the tab whose index number is specified.
 The leftmost tab is index number 0.
 
-See also: {cpp:func}`DrawTabs() <BTabView::DrawTabs>`,
-{cpp:func}`DrawBox() <BTabView::DrawBox>`, {cpp:func}`Draw()
-<BTabView::Draw>`
+See also: {cpp:func}`~BTabView::DrawTabs()`,
+{cpp:func}`~BTabView::DrawBox()`, {cpp:func}`~BTabView::Draw()`
 ::::
 
 ## Static Functions
@@ -306,15 +303,14 @@ However, if the {hparam}`archive` message doesn't contain data for a
 {hclass}`BTabView` object, {hmethod}`Instantiate()` returns
 {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BTabView::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BTabView::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BTabView::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BTabView::Archive()` function adds the following fields to
+its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

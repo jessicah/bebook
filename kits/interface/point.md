@@ -30,7 +30,7 @@ Creates a new {hclass}`BPoint` object that corresponds to the point
 If no coordinate values are assigned, the {hclass}`BPoint`'s location is
 indeterminate.
 
-See also: {cpp:func}`Set() <BPoint::Set>`, the assignment operator
+See also: {cpp:func}`~BPoint::Set()`, the assignment operator
 ::::
 
 ## Member Functions
@@ -43,7 +43,7 @@ Ensures that the {hclass}`BPoint` lies within {hparam}`rect`. If it's
 already contained in the rectangle, the {hclass}`BPoint` is unchanged;
 otherwise, it's moved to the {hparam}`rect`'s nearest edge.
 
-See also: {cpp:func}`BRect::Contains`
+See also: {cpp:func}`BRect::Contains()`
 ::::
 
 ::::{abi-group}

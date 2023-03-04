@@ -11,22 +11,21 @@ queries. To use a {hclass}`BQuery` you have to follow these steps:
 
 1.    Initialize.   The first thing you have to do is initialize the object;
 there are two parts to the initialization: You have to set the volume that
-you want to query over ({cpp:func}`SetVolume() <BQuery::SetVolume>`), and
-set the query's "criteria formula" ({cpp:func}`SetPredicate()
-<BQuery::SetPredicate>`)
+you want to query over ({cpp:func}`~BQuery::SetVolume()`), and set the
+query's "criteria formula" ({cpp:func}`~BQuery::SetPredicate()`)
 
 2.    Fetch.   After the {hclass}`BQuery` has been properly initialized, you
-invoke {cpp:func}`Fetch() <BQuery::Fetch>`. The function returns
-immediately while the query executes in the background.
+invoke {cpp:func}`~BQuery::Fetch()`. The function returns immediately while
+the query executes in the background.
 
-3.    Read.   As soon as {cpp:func}`Fetch() <BQuery::Fetch>` returns, you can
-start reading the list of winning entries by making iterative calls to the
-entry-list functions {cpp:func}`GetNextRef() <BQuery::GetNextRef>`,
-{cpp:func}`GetNextEntry() <BQuery::GetNextEntry>`, and
-{cpp:func}`GetNextDirents() <BQuery::GetNextDirents>`. If you ask for
-entries faster than the query can deliver them, your {hmethod}`GetNext…()`
-call will block until the next entry arrives. The function returns an error
-when there are no more entries to retrieve.
+3.    Read.   As soon as {cpp:func}`~BQuery::Fetch()` returns, you can start
+reading the list of winning entries by making iterative calls to the
+entry-list functions {cpp:func}`~BQuery::GetNextRef()`,
+{cpp:func}`~BQuery::GetNextEntry()`, and
+{cpp:func}`~BQuery::GetNextDirents()`. If you ask for entries faster than
+the query can deliver them, your {hmethod}`GetNext…()` call will block
+until the next entry arrives. The function returns an error when there are
+no more entries to retrieve.
 
 The set of entries that the {hmethod}`GetNext…()` calls retrieve (for a
 given fetch) are called the query's "static" entries. This distinction will
@@ -36,23 +35,22 @@ become useful when we speak of "live" queries, below.
 
 Want to go around again? You can, but first you have to clear the object:
 
--   Between each "fetching session," you have to invoke {cpp:func}`Clear()
-<BQuery::Clear>` on your {hclass}`BQuery` object.
+-   Between each "fetching session," you have to invoke
+{cpp:func}`~BQuery::Clear()` on your {hclass}`BQuery` object.
 
 Clearing erases the object's predicate, volume, target (which we'll get to
 later), and list of static entries—in other words, clearing gets you back
 to a fresh {hclass}`BQuery` object.
 
-And speaking of going around again, be aware that the {cpp:func}`Rewind()
-<BQuery::Rewind>` function, which {hclass}`BQuery` inherits from
-{cpp:class}`BEntryList`, is implemented to be a no-op: You can't rewind a
-{hclass}`BQuery`'s list of static entries. After you've performed a fetch,
-you should read the entry list as quickly as possible and get on with
-things; you can't turn back or start over.
+And speaking of going around again, be aware that the
+{cpp:func}`~BQuery::Rewind()` function, which {hclass}`BQuery` inherits
+from {cpp:class}`BEntryList`, is implemented to be a no-op: You can't
+rewind a {hclass}`BQuery`'s list of static entries. After you've performed
+a fetch, you should read the entry list as quickly as possible and get on
+with things; you can't turn back or start over.
 
-{cpp:func}`CountEntries() <BQuery::CountEntries>` is also a no-op. This
-function is also defined by {cpp:class}`BEntryList`. It doesn't apply to
-{hclass}`BQuery`s.
+{cpp:func}`~BQuery::CountEntries()` is also a no-op. This function is also
+defined by {cpp:class}`BEntryList`. It doesn't apply to {hclass}`BQuery`s.
 
 ## Live Queries
 
@@ -67,13 +65,13 @@ update message describes a single entry that has changed so that…
 
 Not every {hclass}`BQuery` is live; you have to tell it you want it to be
 live. To do this, all you have to do is set the object's target, through
-the {cpp:func}`SetTarget() <BQuery::SetTarget>` function. The target is a
+the {cpp:func}`~BQuery::SetTarget()` function. The target is a
 {cpp:class}`BMessenger` that identifies a
 {cpp:class}`BHandler`/{cpp:class}`BLooper` pair (as described in the
-{cpp:func}`SetTarget() <BQuery::SetTarget>` function). Also…
+{cpp:func}`~BQuery::SetTarget()` function). Also…
 
--   Live query notifications stop when you {cpp:func}`Clear() <BQuery::Clear>`
-or destroy the {hclass}`BQuery` object.
+-   Live query notifications stop when you {cpp:func}`~BQuery::Clear()` or
+destroy the {hclass}`BQuery` object.
 
 Another important point regarding live queries is that you can start
 receiving updates before you're done looking at all the static entries (in
@@ -110,11 +108,11 @@ appropriate value in the predicate. However…
 -   The index only knows about attributes that were written after the index
 (for that attribute) was created.
 
-To index an attribute, you call the {ref}`fs_create_index()` function.
-Unfortunately, there's currently no way to retroactively include existing
-attributes in a newly created index. (Such a utility would be simple enough
-to write, but it would take a long time to execute since it would have to
-look at every file in the file system.)
+To index an attribute, you call the {cpp:func}`fs_create_index()`
+function. Unfortunately, there's currently no way to retroactively include
+existing attributes in a newly created index. (Such a utility would be
+simple enough to write, but it would take a long time to execute since it
+would have to look at every file in the file system.)
 
 Only string and numeric attributes can be queried. Although an attribute
 can hold any type of data (it's stored as raw bytes), the query mechanism
@@ -132,7 +130,7 @@ attributes), measured in seconds since January 1, 1970. The modification
 time is recorded as a 32-bit integer.
 
 Technically, "name", "size", and "last_modified" aren't actually
-attributes—you can't get them through {cpp:func}`BNode::ReadAttr`, for
+attributes—you can't get them through {cpp:func}`BNode::ReadAttr()`, for
 example. But they're always eligible as the attribute component in a query.
 
 ## Values
@@ -159,20 +157,21 @@ The value of an indexed attribute can be, at most, 255 bytes.
 There are two ways to construct a predicate:
 
 -   You can set the predicate formula as a string through
-{cpp:func}`SetPredicate() <BQuery::SetPredicate>`, or
+{cpp:func}`~BQuery::SetPredicate()`, or
 
 -   You can construct the predicate by "pushing" the components in Reverse
-Polish Notation (or "postfix") order through the {cpp:func}`PushAttr()
-<BQuery::PushAttr>`, {hmethod}`PushValue…()`, and {cpp:func}`PushOp()
-<BQuery::PushOp>` functions. There are seven value-pushing functions that
-push specific types: {htype}`string`, {htype}`int32`, {htype}`uint32`,
-{htype}`int64`, {htype}`uint64`, {htype}`float`, and {htype}`double`.
+Polish Notation (or "postfix") order through the
+{cpp:func}`~BQuery::PushAttr()`, {hmethod}`PushValue…()`, and
+{cpp:func}`~BQuery::PushOp()` functions. There are seven value-pushing
+functions that push specific types: {htype}`string`, {htype}`int32`,
+{htype}`uint32`, {htype}`int64`, {htype}`uint64`, {htype}`float`, and
+{htype}`double`.
 
 You can't combine the methods: Pushing the predicate always takes
-precedence over {cpp:func}`SetPredicate() <BQuery::SetPredicate>`,
-regardless of the order in which the methods are deployed.
+precedence over {cpp:func}`~BQuery::SetPredicate()`, regardless of the
+order in which the methods are deployed.
 
-{cpp:func}`SetPredicate() <BQuery::SetPredicate>` features:
+{cpp:func}`~BQuery::SetPredicate()` features:
 
 -   Comparison operators: = < > <= >= !=
 
@@ -187,7 +186,7 @@ regardless of the order in which the methods are deployed.
 -   String (value) quoting: ' '
 
 The following are all legitimate strings that you can pass to
-{cpp:func}`SetPredicate() <BQuery::SetPredicate>`:
+{cpp:func}`~BQuery::SetPredicate()`:
 
 :::{code} sh
 size < 500
@@ -200,14 +199,14 @@ size < 500
 
 Push features:
 
--   The {cpp:func}`PushOp() <BQuery::PushOp>` function takes operator symbols,
-such as {cpp:enumerator}`B_EQ` (equals), {cpp:enumerator}`B_GT` (greater
-than), {cpp:enumerator}`B_LT` (less than), and so on. The complete list is
-given in the {cpp:func}`PushOp() <BQuery::PushOp>` function description.
+-   The {cpp:func}`~BQuery::PushOp()` function takes operator symbols, such as
+{cpp:enumerator}`B_EQ` (equals), {cpp:enumerator}`B_GT` (greater than),
+{cpp:enumerator}`B_LT` (less than), and so on. The complete list is given
+in the {cpp:func}`~BQuery::PushOp()` function description.
 
--   Value strings passed as arguments to {cpp:func}`PushString()
-<BQuery::PushString>` are naturally quoted, so you don't have to
-single-quote to embed spaces or other odd characters.
+-   Value strings passed as arguments to {cpp:func}`~BQuery::PushString()` are
+naturally quoted, so you don't have to single-quote to embed spaces or
+other odd characters.
 
 -   The '*' wildcard is allowed, or you can use special "contains", "begins
 with", and "ends with" operators.

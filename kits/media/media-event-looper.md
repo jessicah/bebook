@@ -20,8 +20,8 @@ version you're compiling under.
 :::{cpp:function} virtual BMediaEventLooper::~BMediaEventLooper()
 :::
 
-Calls {cpp:func}`Quit() <BMediaEventLooper::Quit>` to stop the control
-thread and free allocated memory.
+Calls {cpp:func}`~BMediaEventLooper::Quit()` to stop the control thread
+and free allocated memory.
 ::::
 
 ## Member Functions
@@ -41,9 +41,9 @@ require.
 :::
 
 This function waits for messages, pops events off the queue, and calls
-{cpp:func}`DispatchEvent() <BMediaEventLooper::DispatchEvent>`. It's called
-automatically when the {hclass}`BMediaEventLooper` is {cpp:func}`Run()
-<BMediaEventLooper::Run>`.
+{cpp:func}`~BMediaEventLooper::DispatchEvent()`. It's called automatically
+when the {hclass}`BMediaEventLooper` is
+{cpp:func}`~BMediaEventLooper::Run()`.
 
 :::{admonition} Warning
 :class: warning
@@ -63,15 +63,15 @@ Returns the control thread's {cpp:func}`thread_id <thread::id>`.
 :::{cpp:function} void BMediaEventLooper::DispatchEvent(const media_timed_event* event, bigtime_t lateness, bool realTimeEvent = false)
 :::
 
-Calls {cpp:func}`HandleEvent() <BMediaEventLooper::HandleEvent>` to let
-your code handle the specified event. If your code doesn't handle it, this
-function may have a default handler to process it. In general, you won't
-call this function.
+Calls {cpp:func}`~BMediaEventLooper::HandleEvent()` to let your code
+handle the specified event. If your code doesn't handle it, this function
+may have a default handler to process it. In general, you won't call this
+function.
 
 {hclass}`BMediaEventLooper` compensates your performance time by adding
-the event latency (see {cpp:func}`SetEventLatency()
-<BMediaEventLooper::SetEventLatency>`) and the scheduling latency (or, for
-real-time events, only the scheduling latency).
+the event latency (see {cpp:func}`~BMediaEventLooper::SetEventLatency()`)
+and the scheduling latency (or, for real-time events, only the scheduling
+latency).
 
 It's the control loop's job to remove the event from the queue; this
 function doesn't do that.
@@ -110,8 +110,8 @@ is, and {hparam}`realTimeEvent` is {cpp:expr}`true` if the event needs to
 be handled in real time.
 
 The {hclass}`BMediaEventLooper` will call this function from the
-{cpp:func}`DispatchEvent() <BMediaEventLooper::DispatchEvent>` function.
-It's the control loop's job to remove the event from the queue.
+{cpp:func}`~BMediaEventLooper::DispatchEvent()` function. It's the control
+loop's job to remove the event from the queue.
 ::::
 
 ::::{abi-group}
@@ -120,11 +120,11 @@ It's the control loop's job to remove the event from the queue.
 
 The Media Server calls this hook function after the node has been
 registered. This is derived from {cpp:class}`BMediaNode`;
-{hclass}`BMediaEventLooper` implements it to call {cpp:func}`Run()
-<BMediaEventLooper::Run>` automatically when the node is registered; if you
-implement {hmethod}`NodeRegistered()` you should call through to
-{cpp:func}`BMediaNode::NodeRegistered` after you've done your custom
-operations.
+{hclass}`BMediaEventLooper` implements it to call
+{cpp:func}`~BMediaEventLooper::Run()` automatically when the node is
+registered; if you implement {hmethod}`NodeRegistered()` you should call
+through to {cpp:func}`BMediaNode::NodeRegistered()` after you've done your
+custom operations.
 ::::
 
 ::::{abi-group}
@@ -140,10 +140,9 @@ the control thread is gone.
 :::
 
 Spawns and runs the control thread; this is called automatically by the
-default {cpp:func}`NodeRegistered() <BMediaEventLooper::NodeRegistered>`
-implementation. If you override {cpp:func}`NodeRegistered()
-<BMediaEventLooper::NodeRegistered>`, be sure you call through to the
-default implementation, or call {hmethod}`Run()`.
+default {cpp:func}`~BMediaEventLooper::NodeRegistered()` implementation. If
+you override {cpp:func}`~BMediaEventLooper::NodeRegistered()`, be sure you
+call through to the default implementation, or call {hmethod}`Run()`.
 ::::
 
 ::::{abi-group}

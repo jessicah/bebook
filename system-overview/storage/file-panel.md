@@ -4,7 +4,7 @@
 "Save File" panel, and provides the means for filtering and responding to
 the user's actions on the panel. The Save Panel looks like this:
 
-![File Save Panel](./images/TheStorageKit/FilePanel1.png)
+![File Save Panel](./_static/images/FilePanel1.png)
 
 The Open Panel looks pretty much the same, but without the text view in
 the lower left corner.
@@ -94,7 +94,7 @@ widths: auto
 
 	- {hparam}`be_app_messenger`
 
-	- {cpp:func}`SetTarget() <BFilePanel::SetTarget>`
+	- {cpp:func}`~BFilePanel::SetTarget()`
 
 
 :::
@@ -256,7 +256,7 @@ widths: auto
 
 	- a default {cpp:class}`BMessage`
 
-	- {cpp:func}`SetMessage() <BFilePanel::SetMessage>`
+	- {cpp:func}`~BFilePanel::SetMessage()`
 
 
 :::
@@ -266,7 +266,7 @@ user confirms or cancels is defined by the file panel (the default formats
 are defined later). You can override the default by specifying your own
 {cpp:class}`BMessage`. The {cpp:class}`BMessage` is copied by the
 {hclass}`BFilePanel` object. You can change this message using the
-{cpp:func}`SetMessage() <BFilePanel::SetMessage>` function.
+{cpp:func}`~BFilePanel::SetMessage()` function.
 
 ### Ref Filter
 
@@ -288,14 +288,14 @@ widths: auto
 
 	- {cpp:expr}`NULL`
 
-	- {cpp:func}`SetRefFilter() <BFilePanel::SetRefFilter>`
+	- {cpp:func}`~BFilePanel::SetRefFilter()`
 
 
 :::
 
 When panel directory changes (this includes when the panel is constructed,
-and when the panel's {cpp:func}`Refresh() <BFilePanel::Refresh>` function
-is called), or when a new entry is added to the existing directory, the new
+and when the panel's {cpp:func}`~BFilePanel::Refresh()` function is
+called), or when a new entry is added to the existing directory, the new
 entries are passed, one-by-one, to the panel's {cpp:class}`BRefFilter`
 object through a {cpp:class}`BRefFilter` hook function. In your
 implementation of the hook function, you can reject individual entries;
@@ -356,7 +356,7 @@ widths: auto
 
 	- {cpp:expr}`true`
 
-	- {cpp:func}`SetHideWhenDone() <BFilePanel::SetHideWhenDone>`
+	- {cpp:func}`~BFilePanel::SetHideWhenDone()`
 
 
 :::
@@ -372,7 +372,7 @@ When the user confirms a selection or cancels a file panel, a
 {hclass}`BFilePanel` object. By default, the target is
 {cpp:var}`be_app_messenger`. You can specify a different target (as a
 {cpp:class}`BMessenger`) through the {hclass}`BFilePanel` constructor, or
-through the {cpp:func}`SetTarget() <BFilePanel::SetTarget>` function.
+through the {cpp:func}`~BFilePanel::SetTarget()` function.
 
 The format of the {cpp:class}`BMessage` that the target receives depends
 on whether the user is opening, saving, or canceling.
@@ -381,14 +381,13 @@ on whether the user is opening, saving, or canceling.
 
 If the target is {cpp:var}`be_app_messenger` and the {cpp:var}`what` field
 is {cpp:enumerator}`B_REFS_RECEIVED`, the {cpp:class}`BMessage` shows up in
-the {cpp:func}`RefsReceived() <BApplication::RefsReceived>` function.
-Otherwise it's sent to the target's {cpp:func}`MessageReceived()
-<BHandler::MessageReceived>`.
+the {cpp:func}`~BApplication::RefsReceived()` function. Otherwise it's sent
+to the target's {cpp:func}`~BHandler::MessageReceived()`.
 
 -   By default, the {cpp:var}`what` field is
 {cpp:enumerator}`B_REFS_RECEIVED`. You can override the default by
-supplying your own {cpp:class}`BMessage` ({cpp:func}`SetMessage()
-<BFilePanel::SetMessage>`).
+supplying your own {cpp:class}`BMessage`
+({cpp:func}`~BFilePanel::SetMessage()`).
 
 -   The {hparam}`refs` field (type {cpp:enumerator}`B_REF_TYPE`) contains
 {htype}`entry_ref` structures, one for each entry that the user has
@@ -406,7 +405,7 @@ you to turn the symlink into a file (which is probably what you want).
 
 If you want a {cpp:class}`BEntry` object, all you have to do is pass
 {cpp:expr}`true` as the {hparam}`traverse` argument to
-{cpp:class}`BEntry`'s constructor or {cpp:func}`SetTo() <BEntry::SetTo>`:
+{cpp:class}`BEntry`'s constructor or {cpp:func}`~BEntry::SetTo()`:
 
 :::{code} cpp
 /* We'll assume that 'ref' was just plucked from an
@@ -426,12 +425,12 @@ entry.GetRef(&ref);
 ## Save Notification
 
 Save notifications are always sent to the target's
-{cpp:func}`MessageReceived() <BHandler::MessageReceived>` function.
+{cpp:func}`~BHandler::MessageReceived()` function.
 
 -   By default, the {cpp:var}`what` field is
 {cpp:enumerator}`B_SAVE_REQUESTED`. You can override the default by
-supplying your own {cpp:class}`BMessage` ({cpp:func}`SetMessage()
-<BFilePanel::SetMessage>`).
+supplying your own {cpp:class}`BMessage`
+({cpp:func}`~BFilePanel::SetMessage()`).
 
 -   The {hparam}`directory` field (type {cpp:enumerator}`B_REF_TYPE`) contain
 a single {htype}`entry_ref` structure that points to the directory in which
@@ -465,7 +464,7 @@ panel being hidden after an open or a save (given that the panel is in
 hide-when-done mode).
 
 Cancel notifications are always sent to the target's
-{cpp:func}`MessageReceived() <BHandler::MessageReceived>` function.
+{cpp:func}`~BHandler::MessageReceived()` function.
 
 -   The {cpp:var}`what` field is always {cpp:enumerator}`B_CANCEL`, even if
 you supplied your own {cpp:class}`BMessage`.
@@ -522,7 +521,7 @@ The views in the panel are (mostly) named, as listed and shown below
 
 -   "cancel button" is the Cancel button.
 
-![File Panel Views](./images/TheStorageKit/FilePanel2.png)
+![File Panel Views](./_static/images/FilePanel2.png)
 
 The background view doesn't have a name, but it's always the first in the
 window's list of views:

@@ -11,8 +11,8 @@
 
 The constructor creates a new {hclass}`BFilePanel` object and initializes
 it according to the arguments. The panel isn't displayed until you invoke
-{cpp:func}`Show() <BFilePanel::Show>`. The arguments are thoroughly
-described in "{ref}`Constructing and Fine-tuning the Panel`."
+{cpp:func}`~BFilePanel::Show()`. The arguments are thoroughly described in
+"{ref}`Constructing and Fine-tuning the Panel`."
 
 :::{admonition} Note
 :class: note
@@ -43,8 +43,8 @@ is currently displaying a file panel, the panel is closed.
 
 This hook function is invoked whenever the user changes the set of
 selected files. Within your implementation of this function, you iterate
-over {cpp:func}`GetNextSelectedRef() <BFilePanel::GetNextSelectedRef>` to
-retrieve refs to the currently selected files.
+over {cpp:func}`~BFilePanel::GetNextSelectedRef()` to retrieve refs to the
+currently selected files.
 ::::
 
 ::::{abi-group}
@@ -53,8 +53,8 @@ retrieve refs to the currently selected files.
 
 {hmethod}`WasHidden()` is a hook function that's invoked whenever the
 user's actions causes the file panel to be hidden. If you call
-{cpp:func}`Hide() <BFilePanel::Hide>` yourself, {hmethod}`WasHidden()` is
-not invoked.
+{cpp:func}`~BFilePanel::Hide()` yourself, {hmethod}`WasHidden()` is not
+invoked.
 ::::
 
 ## Member Functions
@@ -72,8 +72,8 @@ function returns {cpp:enumerator}`B_ENTRY_NOT_FOUND` when it reaches the
 end of the list. {hmethod}`Rewind()` gets you back to the top of the list.
 
 Although you can call these functions anytime you want, they're intended
-to be used in implementations of the {cpp:func}`SelectionChanged()
-<BFilePanel::SelectionChanged>` hook function.
+to be used in implementations of the
+{cpp:func}`~BFilePanel::SelectionChanged()` hook function.
 ::::
 
 ::::{abi-group}
@@ -105,7 +105,7 @@ sync automatically.
 Sends {cpp:class}`BMessage` {hparam}`message` to the {cpp:class}`BHandler`
 targeted by {hparam}`messenger`.
 
-See Also: {cpp:func}`BMessenger::SendMessage`
+See Also: {cpp:func}`BMessenger::SendMessage()`
 ::::
 
 ::::{abi-group}
@@ -209,13 +209,13 @@ current panel directory. The argument must be allocated.
 :::
 
 Whenever the file panel's panel directory is changed or refreshed
-({cpp:func}`Refresh() <BFilePanel::Refresh>`), or when a new entry is added
-to the current panel directory, the "new" entries are run through the
-panel's "ref filter." The {cpp:class}`BRefFilter` class defines a single
-boolean hook function called {cpp:func}`Filter() <BRefFilter::Filter>`. The
-function receives the entries, one-by-one, and can reject specific entries
-(because they're the wrong file type, for example). Rejected entries are
-not shown in the panel's file list.
+({cpp:func}`~BFilePanel::Refresh()`), or when a new entry is added to the
+current panel directory, the "new" entries are run through the panel's "ref
+filter." The {cpp:class}`BRefFilter` class defines a single boolean hook
+function called {cpp:func}`~BRefFilter::Filter()`. The function receives
+the entries, one-by-one, and can reject specific entries (because they're
+the wrong file type, for example). Rejected entries are not shown in the
+panel's file list.
 
 The {hmethod}`SetRefFilter()` function sets the panel's ref filter. You
 can also set it through the constructor. Ownership of the filter is __not__

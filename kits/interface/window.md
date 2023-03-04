@@ -33,31 +33,30 @@ widths: auto
 	- Is the window's content area rectangle given in screen coordinates. The
 		window's border and title tab (if any) are wrapped around the content area.
 		The frame's coordinates are rounded to the nearest whole number. You can
-		further restrict the window's frame through {cpp:func}`SetWindowAlignment()
-		<BWindow::SetWindowAlignment>` and {cpp:func}`SetSizeLimits()
-		<BWindow::SetSizeLimits>`.
+		further restrict the window's frame through
+		{cpp:func}`~BWindow::SetWindowAlignment()` and
+		{cpp:func}`~BWindow::SetSizeLimits()`.
 -
 	- title
 	- Is the string that's displayed in the window's title tab (if it has one).
 		The string is also used, with the prefix "w>", as the name of the window's
 		looper thread: "w>{hparam}`title`". You can reset the title through
-		{cpp:func}`SetTitle() <BWindow::SetTitle>`.
+		{cpp:func}`~BWindow::SetTitle()`.
 -
 	- look/feelortype.
 	- The appearance and behavior of the window is defined by a combination of
 		the {hparam}`look` and {hparam}`feel` arguments, or by a single
 		{hparam}`type`. See the {ref}`window_look`, {ref}`window_feel`, and
 		{ref}`window_type` descriptions for a list of values. The look and feel can
-		be reset through {cpp:func}`SetLook() <BWindow::SetLook>`,
-		{cpp:func}`SetFeel() <BWindow::SetFeel>`, and {cpp:func}`SetType()
-		<BWindow::SetType>`.
+		be reset through {cpp:func}`~BWindow::SetLook()`,
+		{cpp:func}`~BWindow::SetFeel()`, and {cpp:func}`~BWindow::SetType()`.
 -
 	- flags
 	- The {hparam}`flags` argument is a mask that defines the window's "user
 		attributes"—whether the user can resize or close the window, whether the
 		window avoids front when the user closes other windows, and so on. See
 		"{ref}`Window Flags`" for a list of values. The flags can be reset through
-		{cpp:func}`SetFlags() <BWindow::SetFlags>`.
+		{cpp:func}`~BWindow::SetFlags()`.
 -
 	- workspaces
 	- Is a mask that tells the window which of the 32 potential workspace(s) it
@@ -67,20 +66,20 @@ widths: auto
 		can also use the {cpp:enumerator}`B_CURRENT_WORKSPACE` or
 		{cpp:enumerator}`B_ALL_WORKSPACES` constant. By default, the window appears
 		in the current (active) workspace. You can reset the workspaces through
-		{cpp:func}`SetWorkspaces() <BWindow::SetWorkspaces>`.
+		{cpp:func}`~BWindow::SetWorkspaces()`.
 
 :::
 
 A freshly-created window is hidden and locked. After construction, you add
-{cpp:class}`BView`s to the {hclass}`BWindow` through {cpp:func}`AddChild()
-<BWindow::AddChild>`, and then show the window (and start its message loop)
-by calling {cpp:func}`Show() <BWindow::Show>`.
+{cpp:class}`BView`s to the {hclass}`BWindow` through
+{cpp:func}`~BWindow::AddChild()`, and then show the window (and start its
+message loop) by calling {cpp:func}`~BWindow::Show()`.
 ::::
 
 ### ~BWindow()
 
-You never delete your {hclass}`BWindow`s; call {cpp:func}`Quit()
-<BWindow::Quit>` instead.
+You never delete your {hclass}`BWindow`s; call
+{cpp:func}`~BWindow::Quit()` instead.
 
 ## Hook Functions
 
@@ -125,7 +124,7 @@ for a "menus beginning" or "menus ended" message.
 :::{cpp:function} virtual void BWindow::MessageReceived(BMessage* message)
 :::
 
-Implementation detail. See {cpp:func}`BHandler::MessageReceived`.
+Implementation detail. See {cpp:func}`BHandler::MessageReceived()`.
 ::::
 
 ::::{abi-group}
@@ -137,7 +136,7 @@ located) changes size or location in the screen coordinate system, or
 changes color space (depth). {hparam}`frame` is the screen's new frame
 rectangle, and {hparam}`mode` is its new color space.
 
-See also: {cpp:func}`BScreen::Frame`
+See also: {cpp:func}`BScreen::Frame()`
 ::::
 
 ::::{abi-group}
@@ -189,7 +188,7 @@ workspaces. Each workspace is represented by a corresponding bit in the
 The default ({hclass}`BWindow`) version of this function is empty.
 
 See also: {cpp:enumerator}`B_WORKSPACES_CHANGED` in the Message Protocols
-appendix, {cpp:func}`SetWorkspaces() <BWindow::SetWorkspaces>`
+appendix, {cpp:func}`~BWindow::SetWorkspaces()`
 ::::
 
 ::::{abi-group}
@@ -205,26 +204,25 @@ size and location for the window (as described below), and then passes
 these dimensions to the virtual {hmethod}`Zoom()` hook function. It's hook
 {hmethod}`Zoom()`'s responsibility to actually resize and move the window;
 the default version applies the arguments explicitly by calling
-{cpp:func}`MoveTo() <BWindow::MoveTo>` and {cpp:func}`ResizeTo()
-<BWindow::ResizeTo>`. You can re-implement hook {hmethod}`Zoom()` to create
-a new zooming algorithm that incorporates or ignores the arguments as you
-see fit.
+{cpp:func}`~BWindow::MoveTo()` and {cpp:func}`~BWindow::ResizeTo()`. You
+can re-implement hook {hmethod}`Zoom()` to create a new zooming algorithm
+that incorporates or ignores the arguments as you see fit.
 
 The dimensions that non-virtual {hmethod}`Zoom()` passes to hook
 {hmethod}`Zoom()` are deduced from the smallest of three rectangles: 1) the
-screen rectangle, 2) the rectangle defined by {cpp:func}`SetZoomLimits()
-<BWindow::SetZoomLimits>`, 3) the rectangle defined by
-{cpp:func}`SetSizeLimits() <BWindow::SetSizeLimits>`. However, if the
-window's rectangle already matches these "zoom" dimensions (give or take a
-few pixels), {hmethod}`Zoom()` passes the window's previous ("non-zoomed")
-size and location.
+screen rectangle, 2) the rectangle defined by
+{cpp:func}`~BWindow::SetZoomLimits()`, 3) the rectangle defined by
+{cpp:func}`~BWindow::SetSizeLimits()`. However, if the window's rectangle
+already matches these "zoom" dimensions (give or take a few pixels),
+{hmethod}`Zoom()` passes the window's previous ("non-zoomed") size and
+location.
 
 You can effectively call {hmethod}`Zoom()` even if the window is
 {cpp:enumerator}`B_NOT_ZOOMABLE`.
 
 {hmethod}`Zoom()` may both move and resize the window, resulting in
-{cpp:func}`FrameMoved() <BWindow::FrameMoved>` and
-{cpp:func}`FrameResized() <BWindow::FrameResized>` notifications.
+{cpp:func}`~BWindow::FrameMoved()` and {cpp:func}`~BWindow::FrameResized()`
+notifications.
 ::::
 
 ## Member Functions
@@ -240,8 +238,8 @@ You can effectively call {hmethod}`Zoom()` even if the window is
 {hparam}`flag` is {cpp:expr}`true`), or causes it to relinquish that status
 (if {hparam}`flag` is {cpp:expr}`false`). The active window is made
 frontmost, its title tab is highlighted, and it becomes the target of
-keyboard events. The {cpp:func}`Show() <BWindow::Show>` function
-automatically activates the window.
+keyboard events. The {cpp:func}`~BWindow::Show()` function automatically
+activates the window.
 
 :::{admonition} Important
 :class: important
@@ -257,7 +255,7 @@ make active is the user's choice.
 {hmethod}`IsActive()` returns {cpp:expr}`true` if the window is currently
 the active window, and {cpp:expr}`false` if it's not.
 
-See also: {cpp:func}`BView::WindowActivated`
+See also: {cpp:func}`BView::WindowActivated()`
 ::::
 
 ::::{abi-group}
@@ -290,9 +288,8 @@ order in which sibling views are drawn.
 {hparam}`aView`'s next handler is set to this {hclass}`BWindow`.
 
 Each {cpp:class}`BView` in aView's hierarchy is sent an
-{cpp:func}`AttachedToWindow() <BView::AttachedToWindow>` call. When they've
-all had a chance to respond, they're each sent an {cpp:func}`AllAttached()
-<BView::AllAttached>` call.
+{cpp:func}`~BView::AttachedToWindow()` call. When they've all had a chance
+to respond, they're each sent an {cpp:func}`~BView::AllAttached()` call.
 
 If {hparam}`aView` has already been added to a view hierarchy, or if
 {hparam}`sibling` isn't in the window's view list, {hmethod}`AddChild()`
@@ -302,20 +299,20 @@ fails.
 the window's display, view list, and handler list, and sets
 {hparam}`aView`'s next handler to {cpp:expr}`NULL`.
 
-{cpp:func}`DetachedFromWindow() <BView::DetachedFromWindow>` and
-{cpp:func}`AllDetached() <BView::AllDetached>` are invoked on
-{hparam}`aView` and each of its children. If {hparam}`aView` isn't in the
-window's view list, the function fails and returns {cpp:expr}`false`; it
-returns {cpp:expr}`true` upon success.
+{cpp:func}`~BView::DetachedFromWindow()` and
+{cpp:func}`~BView::AllDetached()` are invoked on {hparam}`aView` and each
+of its children. If {hparam}`aView` isn't in the window's view list, the
+function fails and returns {cpp:expr}`false`; it returns {cpp:expr}`true`
+upon success.
 
 {hmethod}`ChildAt()` returns the {hparam}`index`'th view in the window's
 view list, or {cpp:expr}`NULL` if {hparam}`index` is out of bounds (you've
 reached the end of the list). The view list doesn't recurse; to build a
-full map of a window's view hierarchy, you call {cpp:func}`BView::ChildAt`
-iteratively on each of the window's views (and each of their children,
-etc.).
+full map of a window's view hierarchy, you call
+{cpp:func}`BView::ChildAt()` iteratively on each of the window's views (and
+each of their children, etc.).
 
-See also: {cpp:func}`BView::Parent`
+See also: {cpp:func}`BView::Parent()`
 ::::
 
 ::::{abi-group}
@@ -459,7 +456,7 @@ modal and floating windows with a subset feel only (i.e.
 {cpp:enumerator}`B_MODAL_SUBSET_WINDOW_FEEL` or
 {cpp:enumerator}`B_FLOATING_SUBSET_WINDOW_FEEL`). A subset feel window
 blocks or floats above only those windows in its subset. To set the
-window's feel, use {cpp:func}`SetFeel() <BWindow::SetFeel>`.
+window's feel, use {cpp:func}`~BWindow::SetFeel()`.
 ::::
 
 ::::{abi-group}
@@ -472,8 +469,8 @@ type, and flags in the {cpp:class}`BMessage` {hparam}`archive`. If the
 the views in the window's view hierarchy. If the flag is {cpp:expr}`false`,
 only the {hclass}`BWindow` is archived.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BWindow::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BWindow::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -535,11 +532,11 @@ returns the current focus view for the {hclass}`BWindow`, or
 {cpp:expr}`NULL` if no view is currently in focus. The focus view is the
 {cpp:class}`BView` that's responsible for showing the current selection and
 is the target for keyboard messages directed at this {hclass}`BWindow`. The
-focus view is set through {cpp:func}`BView::MakeFocus`.
+focus view is set through {cpp:func}`BView::MakeFocus()`.
 
 The {hclass}`BWindow` sets its preferred handler to be the focus view, so
-the inherited {cpp:func}`PreferredHandler() <BLooper::PreferredHandler>`
-function will return this same object (but as a {cpp:class}`BHandler`).
+the inherited {cpp:func}`~BLooper::PreferredHandler()` function will return
+this same object (but as a {cpp:class}`BHandler`).
 ::::
 
 ::::{abi-group}
@@ -555,19 +552,19 @@ suppressed until updates are re-enabled. If you're doing a lot of drawing
 within the window, and you want the results of the drawing to appear all at
 once, you should disable updates, draw, and then re-enable updates.
 
-See also: {cpp:func}`BView::Invalidate`, {cpp:func}`UpdateIfNeeded()
-<BWindow::UpdateIfNeeded>`
+See also: {cpp:func}`BView::Invalidate()`,
+{cpp:func}`~BWindow::UpdateIfNeeded()`
 ::::
 
 ### DispatchMessage()
 
-Implementation detail; see {cpp:func}`BLooper::DispatchMessage`.
+Implementation detail; see {cpp:func}`BLooper::DispatchMessage()`.
 
 :::{admonition} Warning
 :class: warning
 You shouldn't override this function in a {hclass}`BWindow` subclass; if
 you want to augment the window's message-dispatching mechanism, override
-{cpp:func}`MessageReceived() <BWindow::MessageReceived>`.
+{cpp:func}`~BWindow::MessageReceived()`.
 :::
 
 ::::{abi-group}
@@ -595,7 +592,7 @@ immediately; {hmethod}`Sync()` send the messages and waits for the App
 Server to respond. In other words, when {hmethod}`Sync()` returns you're
 guaranteed that all of the flushed messages have been processed.
 
-See also: {cpp:func}`BView::Flush`
+See also: {cpp:func}`BView::Flush()`
 ::::
 
 ::::{abi-group}
@@ -604,7 +601,7 @@ See also: {cpp:func}`BView::Flush`
 
 Adds the name "suite/vnd.Be-window" to the message.
 
-See also: {cpp:func}`BHandler::GetSupportedSuites`
+See also: {cpp:func}`BHandler::GetSupportedSuites()`
 ::::
 
 ::::{abi-group}
@@ -663,8 +660,8 @@ Neither function alters the {hclass}`BWindow`'s coordinate system or
 bounds rectangle.
 
 When these functions move a window, a window-moved event is reported to
-the window. This results in the {hclass}`BWindow`'s {cpp:func}`FrameMoved()
-<BWindow::FrameMoved>` function being called.
+the window. This results in the {hclass}`BWindow`'s
+{cpp:func}`~BWindow::FrameMoved()` function being called.
 ::::
 
 ::::{abi-group}
@@ -689,8 +686,8 @@ you call {hmethod}`CommitViewTransaction()`. You can only perform one
 transaction (per window) at a time. The {hclass}`BWindow` must be locked
 when you call {hmethod}`OpenViewTransaction()`, and must remain locked
 until after you call {hmethod}`CommitViewTransaction()`. Invocations of
-{cpp:func}`Flush() <BWindow::Flush>` are ignored while a transaction is
-open (and locked).
+{cpp:func}`~BWindow::Flush()` are ignored while a transaction is open (and
+locked).
 ::::
 
 ::::{abi-group}
@@ -715,8 +712,8 @@ and the {hclass}`BWindow` and its thread have been destroyed.
 The window must be locked when you call {hmethod}`Quit()`.
 :::
 
-See also: {cpp:func}`BLooper::QuitRequested`, {cpp:func}`BLooper::Quit`,
-{cpp:func}`BApplication::QuitRequested`
+See also: {cpp:func}`BLooper::QuitRequested()`,
+{cpp:func}`BLooper::Quit()`, {cpp:func}`BApplication::QuitRequested()`
 ::::
 
 ::::{abi-group}
@@ -733,8 +730,8 @@ width of the window's frame and {hparam}`vertical` pixels to its height.
 {hparam}`height`] pixels. Fractional components are rounded to the nearest
 whole number.
 
-The {cpp:func}`FrameResized() <BWindow::FrameResized>` hook function is
-called after the frame has been resized.
+The {cpp:func}`~BWindow::FrameResized()` hook function is called after the
+frame has been resized.
 ::::
 
 ::::{abi-group}
@@ -745,7 +742,7 @@ Resolves specifiers for the "Frame", "Title", and "View" properties. See
 "{cpp:func}`Scripting Support <BWindow::Scripting>`" in the class overview
 for more information.
 
-See also: {cpp:func}`BHandler::ResolveSpecifier`
+See also: {cpp:func}`BHandler::ResolveSpecifier()`
 ::::
 
 ::::{abi-group}
@@ -772,7 +769,7 @@ current default (without promoting another button) call
 {hmethod}`SetDefaultButton()` demotes the previous default.
 
 When you promote or demote a default button, it's automatically
-redisplayed and receives a {cpp:func}`BButton::MakeDefault` call.
+redisplayed and receives a {cpp:func}`BButton::MakeDefault()` call.
 ::::
 
 ::::{abi-group}
@@ -851,16 +848,16 @@ a list of {htype}`window_look` constants.
 :::{cpp:function} bigtime_t BWindow::PulseRate()
 :::
 
-These functions set and return how often {cpp:func}`BView::Pulse` is
+These functions set and return how often {cpp:func}`BView::Pulse()` is
 called for the {hclass}`BWindow`'s views (how often
 {cpp:enumerator}`B_PULSE` messages are posted to the window). All
 {cpp:class}`BView`s attached to the same window share the same pulse rate.
 
 By turning on the {cpp:enumerator}`B_PULSE_NEEDED` flag, a
-{cpp:class}`BView` can request periodic {cpp:func}`BView::Pulse`
+{cpp:class}`BView` can request periodic {cpp:func}`BView::Pulse()`
 notifications. By default, {cpp:enumerator}`B_PULSE` messages are posted
 every 500,000 microseconds, as long as no other messages are pending. Each
-message causes {cpp:func}`BView::Pulse` to be called once for every
+message causes {cpp:func}`BView::Pulse()` to be called once for every
 {cpp:class}`BView` that requested the notification. There are no pulses if
 no {cpp:class}`BView`s request them.
 
@@ -902,10 +899,10 @@ within range.
 provided.
 
 {hmethod}`SetZoomLimits()` sets the maximum size that the window will zoom
-to (when the {cpp:func}`Zoom() <BWindow::Zoom>` function is called). The
-maximums set by {hmethod}`SetSizeLimits()` also apply to zooming; the
-window will zoom to the screen size or to the smaller of the maximums set
-by these two functions.
+to (when the {cpp:func}`~BWindow::Zoom()` function is called). The maximums
+set by {hmethod}`SetSizeLimits()` also apply to zooming; the window will
+zoom to the screen size or to the smaller of the maximums set by these two
+functions.
 
 Since the sides of a window must line up on screen pixels, the values
 passed to both {hmethod}`SetSizeLimits()` and {hmethod}`SetZoomLimits()`
@@ -1029,8 +1026,7 @@ will identify the current workspace rather than return
 {cpp:enumerator}`B_CURRENT_WORKSPACE`.
 
 Changing a {hclass}`BWindow`'s set of workspaces causes it to be notified
-with a {cpp:func}`WorkspacesChanged() <BWindow::WorkspacesChanged>`
-function call.
+with a {cpp:func}`~BWindow::WorkspacesChanged()` function call.
 
 See also: the {hclass}`BWindow` {cpp:func}`constructor
 <BWindow::BWindow()>`
@@ -1105,22 +1101,21 @@ See also: {cpp:enumerator}`B_MINIMIZE`
 :::{cpp:function} void BWindow::UpdateIfNeeded()
 :::
 
-Immediately and synchronously invokes {cpp:func}`Draw() <BView::Draw>` on
-each child view that needs updating. This function is ignored if its called
-from any thread other than the {hclass}`BWindow`'s message loop. You call
-it as part of the implementation of a user interface hook function (
-{cpp:func}`MouseMoved() <BView::MouseMoved>`, {cpp:func}`KeyDown()
-<BView::KeyDown>`(), et. al.) to force invalid views to be immediately
-redrawn without having to wait for the hook function to finish. See
-{ref}`"Forcing an Update while Responding to an Event"` for details and an
-example.
+Immediately and synchronously invokes {cpp:func}`~BView::Draw()` on each
+child view that needs updating. This function is ignored if its called from
+any thread other than the {hclass}`BWindow`'s message loop. You call it as
+part of the implementation of a user interface hook function (
+{cpp:func}`~BView::MouseMoved()`, {cpp:func}`~BView::KeyDown()`(), et. al.)
+to force invalid views to be immediately redrawn without having to wait for
+the hook function to finish. See {ref}`"Forcing an Update while Responding
+to an Event"` for details and an example.
 ::::
 
 ## Static Functions
 
 ### Instantiate()
 
-See {cpp:func}`BArchivable::Instantiate`
+See {cpp:func}`BArchivable::Instantiate()`
 
 ## Constants and Defined Types
 
@@ -1129,8 +1124,8 @@ See {cpp:func}`BArchivable::Instantiate`
 The {htype}`window_look` constants define the appearance of the window–the
 look of its title tab, border, and the type of "resize control" (in the
 bottom right corner of the window). The look is set in the constructor or
-in the {cpp:func}`SetLook() <BWindow::SetLook>` function. The table below
-lists and briefly describes the {htype}`window_look` values.
+in the {cpp:func}`~BWindow::SetLook()` function. The table below lists and
+briefly describes the {htype}`window_look` values.
 
 :::{list-table}
 ---
@@ -1169,11 +1164,10 @@ widths: auto
 
 The {htype}`window_feel` constants govern a window's behavior in relation
 to other windows. The feel is set in the {hclass}`BWindow` constructor or
-in {cpp:func}`SetFeel() <BWindow::SetFeel>`. The table below briefly
-describes the window feels.
+in {cpp:func}`~BWindow::SetFeel()`. The table below briefly describes the
+window feels.
 
--   To set a window's subset, use {cpp:func}`AddToSubset()
-<BWindow::AddToSubset>`.
+-   To set a window's subset, use {cpp:func}`~BWindow::AddToSubset()`.
 
 -   Modal windows are drawn in front of floating windows.
 
@@ -1211,8 +1205,8 @@ widths: auto
 
 The {htype}`window_type` constants are pre-defined combinations of looks
 and feels. You set the type through the {hclass}`BWindow`
-{cpp:func}`constructor <BWindow::BWindow()>` or {cpp:func}`SetType()
-<BWindow::SetType>`.
+{cpp:func}`constructor <BWindow::BWindow()>` or
+{cpp:func}`~BWindow::SetType()`.
 
 :::{list-table}
 ---
@@ -1269,7 +1263,7 @@ The window flags (or "user attributes") define miscellaneous aspects of
 the window's interface, such as whether it can be moved or closed by the
 user. You combine the flags that you want and pass them to the
 {hclass}`BWindow` {cpp:func}`constructor <BWindow::BWindow()>` or
-{cpp:func}`SetFlags() <BWindow::SetFlags>`.
+{cpp:func}`~BWindow::SetFlags()`.
 
 The default behavior is the inverse of all these flags–i.e. a window is
 normally movable, closable, resizable, and so on. However, some window
@@ -1372,9 +1366,8 @@ backwards compatibility).
 ### Window Workspaces
 
 You tell a window which workspaces to appear through the constructor, or
-through the {cpp:func}`SetWorkspaces() <BWindow::SetWorkspaces>` function.
-In practice, the only two realistic settings are represented by these
-constants.
+through the {cpp:func}`~BWindow::SetWorkspaces()` function. In practice,
+the only two realistic settings are represented by these constants.
 
 :::{list-table}
 ---
@@ -1436,8 +1429,7 @@ widths: auto
 
 The {hparam}`Feel` property represents the workspaces in which the window
 resides. The messages are equivalent to manipulating the window with the
-{cpp:func}`Feel() <BWindow::Feel>` and {cpp:func}`SetFeel()
-<BWindow::SetFeel>` methods.
+{cpp:func}`~BWindow::Feel()` and {cpp:func}`~BWindow::SetFeel()` methods.
 
 :::{list-table}
 ---
@@ -1472,8 +1464,8 @@ widths: auto
 #### Flags
 
 The {hparam}`Flags` property represents the window flags. The messages are
-equivalent to manipulating the window with the {cpp:func}`Flags()
-<BWindow::Flags>` and {cpp:func}`SetFlags() <BWindow::SetFlags>` methods.
+equivalent to manipulating the window with the
+{cpp:func}`~BWindow::Flags()` and {cpp:func}`~BWindow::SetFlags()` methods.
 
 :::{list-table}
 ---
@@ -1545,11 +1537,11 @@ widths: auto
 
 The "Hidden" property determines the visibility of the window. The
 messages are equivalent to manipulating the window with the
-{cpp:func}`IsHidden() <BWindow::IsHidden>`, {cpp:func}`Hide()
-<BWindow::Hide>` and {cpp:func}`Show() <BWindow::Show>` methods with one
-caveat: nested {cpp:func}`Hide() <BWindow::Hide>` and {cpp:func}`Show()
-<BWindow::Show>` calls are disabled so that multiple scripted "hides" are
-undone with a single scripted "show".
+{cpp:func}`~BWindow::IsHidden()`, {cpp:func}`~BWindow::Hide()` and
+{cpp:func}`~BWindow::Show()` methods with one caveat: nested
+{cpp:func}`~BWindow::Hide()` and {cpp:func}`~BWindow::Show()` calls are
+disabled so that multiple scripted "hides" are undone with a single
+scripted "show".
 
 :::{list-table}
 ---
@@ -1586,8 +1578,7 @@ otherwise.
 
 The "Look" property represents the constant that indicates how the window
 appears. The messages are equivalent to manipulating the window with the
-{cpp:func}`Look() <BWindow::Look>` and {cpp:func}`SetLook()
-<BWindow::SetLook>` methods.
+{cpp:func}`~BWindow::Look()` and {cpp:func}`~BWindow::SetLook()` methods.
 
 :::{list-table}
 ---
@@ -1652,7 +1643,7 @@ widths: auto
 
 The "Minimize" property controls the whether the window is minimized or
 not. The message is equivalent to manipulating the window with the
-{cpp:func}`Minimize() <BWindow::Minimize>` method.
+{cpp:func}`~BWindow::Minimize()` method.
 
 :::{list-table}
 ---
@@ -1680,8 +1671,8 @@ widths: auto
 #### Title
 
 The "Title" property represents the title of the window. The messages are
-equivalent to manipulating the window with the {cpp:func}`Title()
-<BWindow::Title>` and {cpp:func}`SetTitle() <BWindow::SetTitle>` methods.
+equivalent to manipulating the window with the
+{cpp:func}`~BWindow::Title()` and {cpp:func}`~BWindow::SetTitle()` methods.
 
 :::{list-table}
 ---
@@ -1746,8 +1737,8 @@ specifier.
 
 The "Workspaces" property represents the workspaces in which the window
 resides. The messages are equivalent to manipulating the window with the
-{cpp:func}`Workspaces() <BWindow::Workspaces>` and
-{cpp:func}`SetWorkspaces() <BWindow::SetWorkspaces>` methods.
+{cpp:func}`~BWindow::Workspaces()` and
+{cpp:func}`~BWindow::SetWorkspaces()` methods.
 
 :::{list-table}
 ---

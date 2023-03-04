@@ -17,14 +17,14 @@
 
 Creates a new {hclass}`BVolume` object and initializes it according to the
 argument. The status of the initialization is recorded by the
-{cpp:func}`InitCheck() <BVolume::InitCheck>` function.
+{cpp:func}`~BVolume::InitCheck()` function.
 
--   The default constructor does nothing and sets {cpp:func}`InitCheck()
-<BVolume::InitCheck>` to {cpp:enumerator}`B_NO_INIT`.
+-   The default constructor does nothing and sets
+{cpp:func}`~BVolume::InitCheck()` to {cpp:enumerator}`B_NO_INIT`.
 
 -   The device constructor sets the {hclass}`BVolume` to point to the volume
-represented by the argument. See the {cpp:func}`SetTo() <BVolume::SetTo>`
-function for status codes.
+represented by the argument. See the {cpp:func}`~BVolume::SetTo()` function
+for status codes.
 
 -   The copy constructor sets the object to point to the same device as does
 the argument.
@@ -65,7 +65,7 @@ Returns the volume's icon in {hparam}`icon`. which specifies the icon to
 retrieve, either {cpp:enumerator}`B_MINI_ICON` (16x16) or
 {cpp:enumerator}`B_LARGE_ICON` (32x32).
 
-See also: {ref}`get_device_icon()`
+See also: {cpp:func}`get_device_icon()`
 ::::
 
 ::::{abi-group}
@@ -90,7 +90,7 @@ entire file hierarchy.
 :::
 
 Returns the status of the last initialization (from either the constructor
-or {cpp:func}`SetTo() <BVolume::SetTo>`).
+or {cpp:func}`~BVolume::SetTo()`).
 ::::
 
 ::::{abi-group}
@@ -165,8 +165,8 @@ BVolume a = b;
 
 {hclass}`BVolume` {hparam}`a` is initialized to refer to the same volume
 as {hparam}`b`. To gauge the success of the assignment, you should call
-{cpp:func}`InitCheck() <BVolume::InitCheck>` immediately afterwards.
-Assigning a {hclass}`BVolume` to itself is safe.
+{cpp:func}`~BVolume::InitCheck()` immediately afterwards. Assigning a
+{hclass}`BVolume` to itself is safe.
 
 Assigning from an uninitialized {hclass}`BVolume` is "successful": The
 assigned-to {hclass}`BVolume` will also be uninitialized

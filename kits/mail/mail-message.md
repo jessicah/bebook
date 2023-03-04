@@ -149,8 +149,8 @@ widths: auto
 
 Queues the message for transmission. If {hparam}`send_now` is
 {cpp:expr}`true`, the message is sent immediately; otherwise, it is placed
-in the queue to be sent the next time {ref}`check_for_mail()` is called or
-the mail daemon performs an automatic mail check.
+in the queue to be sent the next time {cpp:func}`check_for_mail()` is
+called or the mail daemon performs an automatic mail check.
 
 If the {hparam}`remove_when_sent` argument is {cpp:expr}`true`, the
 message will be deleted from the user's disk drive after it has been sent;

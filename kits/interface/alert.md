@@ -64,9 +64,9 @@ widths: auto
 
 :::
 
-After the {hclass}`BAlert` is constructed, {cpp:func}`Go() <BAlert::Go>`
-must be called to display it. The panel is removed and the object is
-deleted after the user clicks a button.
+After the {hclass}`BAlert` is constructed, {cpp:func}`~BAlert::Go()` must
+be called to display it. The panel is removed and the object is deleted
+after the user clicks a button.
 ::::
 
 ::::{abi-group}
@@ -80,11 +80,11 @@ A standard destructor
 
 ### FrameResized()
 
-See {cpp:func}`BWindow::FrameResized`
+See {cpp:func}`BWindow::FrameResized()`
 
 ### MessageReceived()
 
-See {cpp:func}`BWindow::MessageReceived`
+See {cpp:func}`BWindow::MessageReceived()`
 
 ## Member Functions
 

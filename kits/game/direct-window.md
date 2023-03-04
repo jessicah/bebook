@@ -20,12 +20,12 @@ supports direct window operations.
 You will probably want to set up a flag to keep track of whether or not
 the direct window's connection to the screen is viable. In the constructor,
 you should set this flag (let's call it {hparam}`fConnectionDisabled` ) to
-{cpp:expr}`false`, which indicates to both {cpp:func}`DirectConnected()
-<BDirectWindow::DirectConnected>` and your drawing thread that the window
-is not in the process of being deconstructed. The destructor would then set
-this flag to {cpp:expr}`true` before terminating the connection to avoid
-the unlikely possibility of the connection trying to restart while the
-{hclass}`BDirectWindow` is being dismantled.
+{cpp:expr}`false`, which indicates to both
+{cpp:func}`~BDirectWindow::DirectConnected()` and your drawing thread that
+the window is not in the process of being deconstructed. The destructor
+would then set this flag to {cpp:expr}`true` before terminating the
+connection to avoid the unlikely possibility of the connection trying to
+restart while the {hclass}`BDirectWindow` is being dismantled.
 
 You'll also need other flags or semaphores (or benaphores) to manage the
 interaction between the {hclass}`BDirectWindow` and your drawing thread.
@@ -39,17 +39,16 @@ See the sample code in "{ref}`Using a Direct Window`" for an example.
 
 Frees all memory the {hclass}`BDirectWindow` object allocated for itself.
 You should never delete a {hclass}`BDirectWindow` object; call its
-{cpp:func}`Quit() <BWindow::Quit>` function instead (inherited from
+{cpp:func}`~BWindow::Quit()` function instead (inherited from
 {cpp:class}`BWindow`).
 
 Your {hclass}`BDirectWindow` destructor should begin by setting the
 {hparam}`fConnectionDisabled` flag to {cpp:expr}`true`, to prevent
-{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` from
-attempting to reconnect to the direct window while it's being
-deconstructed.
+{cpp:func}`~BDirectWindow::DirectConnected()` from attempting to reconnect
+to the direct window while it's being deconstructed.
 
-Then you should call {cpp:func}`Hide() <BWindow::Hide>` and
-{cpp:func}`Sync() <BWindow::Sync>` to force the direct window to disconnect
+Then you should call {cpp:func}`~BWindow::Hide()` and
+{cpp:func}`~BWindow::Sync()` to force the direct window to disconnect
 direct access (both inherited from {cpp:class}`BWindow`):
 
 :::{code} cpp
@@ -133,15 +132,14 @@ if you need one.
 :::{admonition} Warning
 :class: warning
 The {hmethod}`GetClippingRegion()` function can only be called from the
-{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` function;
-calling it from outside {cpp:func}`DirectConnected()
-<BDirectWindow::DirectConnected>` will return invalid results.
+{cpp:func}`~BDirectWindow::DirectConnected()` function; calling it from
+outside {cpp:func}`~BDirectWindow::DirectConnected()` will return invalid
+results.
 :::
 
 If you need to cache the clipping region of your window and need a
 {cpp:class}`BRegion` for clipping purposes, you could use the following
-code inside your {cpp:func}`DirectConnected()
-<BDirectWindow::DirectConnected>` function:
+code inside your {cpp:func}`~BDirectWindow::DirectConnected()` function:
 
 :::{code} cpp
 BRegion rgn;
@@ -193,11 +191,10 @@ maintain a state setting of your own and use that value.
 
 {hmethod}`SetFullScreen()` enables full-screen exclusive mode if the
 {hparam}`enable` flag is {cpp:expr}`true`. To switch to window mode, pass
-{cpp:expr}`false`. The {cpp:func}`SupportsWindowMode()
-<BDirectWindow::SupportsWindowMode>` function can be used to determine
-whether or not the video card is capable of supporting window mode. See
-"{ref}`Window Mode vs. Full Screen Mode`" for a detailed explanation of the
-differences between these modes.
+{cpp:expr}`false`. The {cpp:func}`~BDirectWindow::SupportsWindowMode()`
+function can be used to determine whether or not the video card is capable
+of supporting window mode. See "{ref}`Window Mode vs. Full Screen Mode`"
+for a detailed explanation of the differences between these modes.
 
 When your window is in full screen mode, it will always have the focus,
 and no other window can come in front of it.
@@ -249,8 +246,8 @@ hardware cursor; older video cards may not be capable of supporting window
 mode.
 
 If window mode isn't supported, but you still select window mode,
-{cpp:func}`DirectConnected() <BDirectWindow::DirectConnected>` will never
-be called (so you'll never be authorized for direct frame buffer access).
+{cpp:func}`~BDirectWindow::DirectConnected()` will never be called (so
+you'll never be authorized for direct frame buffer access).
 
 Even if window mode isn't supported, you can still use
 {hclass}`BDirectWindow` objects for full-screen direct access to the frame

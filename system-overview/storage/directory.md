@@ -5,24 +5,22 @@ directory. A {cpp:class}`BDirectory`'s primary features are:
 
 -   It can iteratively retrieve the entries in the directory. The entries are
 returned as {cpp:class}`BEntry` objects, {htype}`entry_ref`s, or
-{htype}`dirent` structures ({cpp:func}`GetNextEntry()
-<BDirectory::GetNextEntry>`, {cpp:func}`GetNextRef()
-<BDirectory::GetNextRef>`, {cpp:func}`GetNextDirents()
-<BDirectory::GetNextDirents>`).
+{htype}`dirent` structures ({cpp:func}`~BDirectory::GetNextEntry()`,
+{cpp:func}`~BDirectory::GetNextRef()`,
+{cpp:func}`~BDirectory::GetNextDirents()`).
 
 -   It can find a specific entry. You can ask if the entry exists
-({cpp:func}`Contains() <BDirectory::Contains>`), and you can retrieve the
-entry as a {cpp:class}`BEntry` ({cpp:func}`FindEntry()
-<BDirectory::FindEntry>`).
+({cpp:func}`~BDirectory::Contains()`), and you can retrieve the entry as a
+{cpp:class}`BEntry` ({cpp:func}`~BDirectory::FindEntry()`).
 
--   It can create new entries. Through the aptly named {cpp:func}`CreateFile()
-<BDirectory::CreateFile>`, {cpp:func}`CreateDirectory()
-<BDirectory::CreateDirectory>` and {cpp:func}`CreateSymLink()
-<BDirectory::CreateSymLink>` functions.
+-   It can create new entries. Through the aptly named
+{cpp:func}`~BDirectory::CreateFile()`,
+{cpp:func}`~BDirectory::CreateDirectory()` and
+{cpp:func}`~BDirectory::CreateSymLink()` functions.
 
 Unlike the other {cpp:class}`BNode` classes, a {cpp:class}`BDirectory`
-knows its own entry ({cpp:func}`GetEntry() <BDirectory::GetEntry>`), and
-can be initialized with a {htype}`node_ref` structure.
+knows its own entry ({cpp:func}`~BDirectory::GetEntry()`), and can be
+initialized with a {htype}`node_ref` structure.
 
 ## Retrieving Entries
 
@@ -51,35 +49,34 @@ once (technically, you'll see the same node under the guise of different
 entries), or you could miss an entry.
 
 -   Counting entries uses the same iterator that retrieves entries. You
-mustn't call {cpp:func}`CountEntries() <BDirectory::CountEntries>` while
-you're looping over a {hmethod}`GetNext…()` function.
+mustn't call {cpp:func}`~BDirectory::CountEntries()` while you're looping
+over a {hmethod}`GetNext…()` function.
 
 ## Creating New Directories
 
 To create a new directory, you can use {cpp:class}`BDirectory`'s
-{cpp:func}`CreateDirectory() <BDirectory::CreateDirectory>` function. The
-function creates a single new directory as identified by its argument. The
-new directory will be a subdirectory of the invoked-upon
-{cpp:class}`BDirectory`'s directory.
+{cpp:func}`~BDirectory::CreateDirectory()` function. The function creates a
+single new directory as identified by its argument. The new directory will
+be a subdirectory of the invoked-upon {cpp:class}`BDirectory`'s directory.
 
 You can also create an entire path full of new directories through the
-global {cpp:func}`create_directory() <create::directory>` function. This
-convenient function attempts to create all "missing" directories along the
-path that you pass in.
+global {cpp:func}`create_directory()` function. This convenient function
+attempts to create all "missing" directories along the path that you pass
+in.
 
 ## Finding a Directory
 
-The {cpp:func}`find_directory() <find::directory>` function gives you the
-pathnames for pre-defined directories. These directories, such as those
-that store Be-supplied applications and user-defined preferences settings,
-are represented by directory_which constants. These constants are not
-strings; you can't use them directly. You have to pass them through
-{cpp:func}`find_directory() <find::directory>`.
+The {cpp:func}`find_directory()` function gives you the pathnames for
+pre-defined directories. These directories, such as those that store
+Be-supplied applications and user-defined preferences settings, are
+represented by directory_which constants. These constants are not strings;
+you can't use them directly. You have to pass them through
+{cpp:func}`find_directory()`.
 
 Note that the {cpp:class}`BDirectory` class itself doesn't let you find
 directories on the basis of the {ref}`directory_which` constants—you have
-to use the {cpp:func}`find_directory() <find::directory>` function (which
-is documented at the end of this class description).
+to use the {cpp:func}`find_directory()` function (which is documented at
+the end of this class description).
 
 ## Node Monitoring a Directory
 
@@ -93,10 +90,10 @@ this chapter.
 You can monitor changes to the contents of a directory by passing a
 {cpp:class}`BDirectory`'s {htype}`node_ref` and the
 {cpp:enumerator}`B_WATCH_DIRECTORY` flag to the Node Monitor's
-{cpp:func}`watch_node() <watch::node>` function. As with all invocations of
-{cpp:func}`watch_node() <watch::node>`, you also have to pass a
-{cpp:class}`BMessenger` (the "target") that will receive the Node Monitor
-notifications; here, we use {cpp:var}`be_app_messenger`:
+{cpp:func}`watch_node()` function. As with all invocations of
+{cpp:func}`watch_node()`, you also have to pass a {cpp:class}`BMessenger`
+(the "target") that will receive the Node Monitor notifications; here, we
+use {cpp:var}`be_app_messenger`:
 
 :::{code} cpp
 BDirectory dir("/boot/home");

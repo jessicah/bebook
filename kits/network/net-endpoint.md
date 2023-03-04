@@ -17,8 +17,8 @@
 
 Creates a {hclass}`BNetEndpoint` representing a network connection
 endpoint on the local system. After construction, you must call
-{cpp:func}`InitCheck() <BNetEndpoint::InitCheck>` to ensure that no errors
-occurred during setup.
+{cpp:func}`~BNetEndpoint::InitCheck()` to ensure that no errors occurred
+during setup.
 
 The {hparam}`protocol` argument lets you specify whether the
 {hclass}`BNetEndpoint` will use a stream socket
@@ -26,9 +26,8 @@ The {hparam}`protocol` argument lets you specify whether the
 ({cpp:enumerator}`SOCK_DGRAM`).
 
 By default, I/O is blocking and address reusing is off. You can change
-these by calling {cpp:func}`SetNonBlocking()
-<BNetEndpoint::SetNonBlocking>` and {cpp:func}`SetReuseAddr()
-<BNetEndpoint::SetReuseAddr>`.
+these by calling {cpp:func}`~BNetEndpoint::SetNonBlocking()` and
+{cpp:func}`~BNetEndpoint::SetReuseAddr()`.
 ::::
 
 ::::{abi-group}
@@ -69,7 +68,7 @@ must be bound.
 If you don't specify an {hparam}`address` or {hparam}`port` number, or
 specify a {hparam}`port` number of 0, {hmethod}`Bind()` will bind the
 {hclass}`BNetEndpoint` to a random local port. You can determine which one
-by calling {cpp:func}`LocalAddr() <BNetEndpoint::LocalAddr>`.
+by calling {cpp:func}`~BNetEndpoint::LocalAddr()`.
 
 The only way to unbind a {hclass}`BNetEndpoint` from an address or port is
 to close the endpoint.
@@ -317,20 +316,20 @@ in a loop to buffer incoming data in chunks until the desired number of
 bytes have been read.
 
 The {hparam}`flags` argument, which is passed on to the socket.h
-{ref}`recv()` or {ref}`recvfrom()` function, is currently unused and must
-be 0.
+{cpp:func}`recv()` or {cpp:func}`recvfrom()` function, is currently unused
+and must be 0.
 
 When you call these functions in blocking mode (which is the default),
 they block until there's data available to receive or a timeout occurs. The
-timeout period is set by calling {cpp:func}`SetTimeout()
-<BNetEndpoint::SetTimeout>`. You can turn on or off blocking by calling
-{cpp:func}`SetNonBlocking() <BNetEndpoint::SetNonBlocking>`. If you're in
-nonblocking mode and there's no data waiting, these functions return 0
-immediately, indicating that there's no data.
+timeout period is set by calling {cpp:func}`~BNetEndpoint::SetTimeout()`.
+You can turn on or off blocking by calling
+{cpp:func}`~BNetEndpoint::SetNonBlocking()`. If you're in nonblocking mode
+and there's no data waiting, these functions return 0 immediately,
+indicating that there's no data.
 
 These functions return the number of bytes actually received, or -1 if an
-error occurred. You can call {cpp:func}`Error() <BNetEndpoint::Error>` to
-get the specific error that occurred.
+error occurred. You can call {cpp:func}`~BNetEndpoint::Error()` to get the
+specific error that occurred.
 ::::
 
 ::::{abi-group}
@@ -350,8 +349,8 @@ get the specific error that occurred.
 connection. If there's no connection established, {cpp:enumerator}`B_ERROR`
 is returned immediately. In addition, if the {hclass}`BNetEndpoint` is
 configured to use a datagram protocol, this function fails unless
-{cpp:func}`Connect() <BNetEndpoint::Connect>` has been called, since that
-function caches the destination address.
+{cpp:func}`~BNetEndpoint::Connect()` has been called, since that function
+caches the destination address.
 
 {hmethod}`SendTo()` sends the buffer to the remote system specified by the
 to {cpp:class}`BNetAddress`. {hmethod}`SendTo()` only works if the
@@ -362,12 +361,12 @@ specified size, and the second form sends the contents of a
 {cpp:class}`BNetBuffer`.
 
 The {hparam}`flags` argument, which is passed on to the the socket.h
-{ref}`send()` or {ref}`sendto()` function, is currently unused and must be
-0.
+{cpp:func}`send()` or {cpp:func}`sendto()` function, is currently unused
+and must be 0.
 
 These functions return the number of bytes actually sent, or -1 if an
-error occurred. You can call {cpp:func}`Error() <BNetEndpoint::Error>` to
-get the specific error that occurred.
+error occurred. You can call {cpp:func}`~BNetEndpoint::Error()` to get the
+specific error that occurred.
 ::::
 
 ::::{abi-group}
@@ -430,9 +429,8 @@ widths: auto
 :::{cpp:function} void BNetEndpoint::SetTimeout(bigtime_t timeout)
 :::
 
-Sets the timeout for calls to {cpp:func}`Receive()
-<BNetEndpoint::Receive>` and {cpp:func}`ReceiveFrom()
-<BNetEndpoint::ReceiveFrom>`. If blocking I/O is in use, and
+Sets the timeout for calls to {cpp:func}`~BNetEndpoint::Receive()` and
+{cpp:func}`~BNetEndpoint::ReceiveFrom()`. If blocking I/O is in use, and
 {hparam}`timeout` microseconds pass, the function will abort with an error.
 By default, there's no timeout. You can specify that you want no timeout by
 specifying -1.

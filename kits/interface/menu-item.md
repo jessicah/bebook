@@ -64,8 +64,8 @@ since 12:00:00 AM January 1, 1970.
 :::
 
 By default, the target of the message is the window that the contains the
-menu that the item is part of. Use {cpp:func}`SetTarget()
-<BInvoker::SetTarget>` to set a different target.
+menu that the item is part of. Use {cpp:func}`~BInvoker::SetTarget()` to
+set a different target.
 
 The constructor can also set a keyboard {hparam}`shortcut` for the item.
 The character that's passed as the {hparam}`shortcut` parameter will be
@@ -93,7 +93,7 @@ to bring up the submenu. However, it can be assigned a model
 {hparam}`message` if the application must take some collateral action when
 the submenu is opened. The item's initial label will be taken from the name
 of the submenu. It can be changed after construction by calling
-{cpp:func}`SetLabel() <BMenuItem::SetLabel>`.
+{cpp:func}`~BMenuItem::SetLabel()`.
 ::::
 
 ::::{abi-group}
@@ -127,8 +127,8 @@ called first. It draws the background for the entire item, then calls
 {hmethod}`DrawContent()` to draw the label within the item's content area.
 After {hmethod}`DrawContent()` returns, it draws the check mark (if the
 item is currently marked) and the keyboard shortcut (if any). It finishes
-by calling {cpp:func}`Highlight() <BMenuItem::Highlight>` if the item is
-currently selected.
+by calling {cpp:func}`~BMenuItem::Highlight()` if the item is currently
+selected.
 
 Both functions draw by calling functions of the {cpp:class}`BMenu` in
 which the item is located. For example:
@@ -146,18 +146,17 @@ A derived class can override either {hmethod}`Draw()`, if it needs to draw
 the entire item, or {hmethod}`DrawContent()`, if it needs to draw only
 within the content area. A {hmethod}`Draw()` function can find the frame
 rectangle it should draw within by calling the {hclass}`BMenuItem`'s
-{cpp:func}`Frame() <BMenuItem::Frame>` function; a {hmethod}`DrawContent()`
+{cpp:func}`~BMenuItem::Frame()` function; a {hmethod}`DrawContent()`
 function can calculate the content area from the point returned by
-{cpp:func}`ContentLocation() <BMenuItem::ContentLocation>` and the
-dimensions provided by {cpp:func}`GetContentSize()
-<BMenuItem::GetContentSize>`.
+{cpp:func}`~BMenuItem::ContentLocation()` and the dimensions provided by
+{cpp:func}`~BMenuItem::GetContentSize()`.
 
 When {hmethod}`DrawContent()` is called, the pen is positioned to draw the
 item's label and the high color is appropriately set. The high color may be
 a shade of gray, if the item is disabled, or black if it's enabled. If some
 other distinction is used to distinguish disabled from enabled items,
 {hmethod}`DrawContent()` should check the item's current state by calling
-{cpp:func}`IsEnabled() <BMenuItem::IsEnabled>`.
+{cpp:func}`~BMenuItem::IsEnabled()`.
 
 :::{admonition} Note
 :class: note
@@ -179,8 +178,8 @@ in the string.
 Archives the {hclass}`BMenuItem` by recording its current settings in the
 {cpp:class}`BMessage` {hparam}`archive`.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BMenuItem::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BMenuItem::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -195,10 +194,10 @@ the item where a check mark or a keyboard shortcut could be displayed, nor
 the border and background around the content area.
 
 You would need to call this function only if you're implementing a
-{cpp:func}`DrawContent() <BMenuItem::DrawContent>` function to draw the
-contents of the menu item. The content rectangle can be calculated from the
-point returned by this function and the size specified by
-{cpp:func}`GetContentSize() <BMenuItem::GetContentSize>`.
+{cpp:func}`~BMenuItem::DrawContent()` function to draw the contents of the
+menu item. The content rectangle can be calculated from the point returned
+by this function and the size specified by
+{cpp:func}`~BMenuItem::GetContentSize()`.
 
 If the item isn't part of a menu, the return value is indeterminate.
 ::::
@@ -211,7 +210,7 @@ Returns the rectangle that frames the entire menu item, in the coordinate
 system of the {cpp:class}`BMenu` to which the item belongs. If the item
 hasn't been added to a menu, the return value is indeterminate.
 
-See also: {cpp:func}`BMenu::AddItem`
+See also: {cpp:func}`BMenu::AddItem()`
 ::::
 
 ::::{abi-group}
@@ -234,13 +233,12 @@ This area is calculated from the label and the {cpp:class}`BMenu`'s current
 font.
 
 If you design a class derived from {hclass}`BMenuItem` and implement your
-own {cpp:func}`Draw() <BMenuItem::Draw>` or {cpp:func}`DrawContent()
-<BMenuItem::DrawContent>` function, you should also implement a
-{hmethod}`GetContentSize()` function to report how much room will be needed
-to draw the item's contents.
+own {cpp:func}`~BMenuItem::Draw()` or {cpp:func}`~BMenuItem::DrawContent()`
+function, you should also implement a {hmethod}`GetContentSize()` function
+to report how much room will be needed to draw the item's contents.
 
-See also: {cpp:func}`DrawContent() <BMenuItem::DrawContent>`,
-{cpp:func}`ContentLocation() <BMenuItem::ContentLocation>`
+See also: {cpp:func}`~BMenuItem::DrawContent()`,
+{cpp:func}`~BMenuItem::ContentLocation()`
 ::::
 
 ::::{abi-group}
@@ -252,25 +250,25 @@ removes the highlighting when {hparam}`flag` is {cpp:expr}`false`.
 Highlighting simply inverts all the colors in the item's frame rectangle
 (except for the check mark).
 
-This function is called by the {cpp:func}`Draw() <BMenuItem::Draw>`
-function whenever the item is selected and needs to be drawn in its
-highlighted state. There's no reason to call it yourself, unless you define
-your own version of {cpp:func}`Draw() <BMenuItem::Draw>`. However, it can
-be reimplemented in a derived class, if items belonging to that class need
-to be highlighted in some way other than simple inversion.
+This function is called by the {cpp:func}`~BMenuItem::Draw()` function
+whenever the item is selected and needs to be drawn in its highlighted
+state. There's no reason to call it yourself, unless you define your own
+version of {cpp:func}`~BMenuItem::Draw()`. However, it can be reimplemented
+in a derived class, if items belonging to that class need to be highlighted
+in some way other than simple inversion.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual status_t BMenuItem::Invoke(BMessage* message = NULL)
 :::
 
-Augments the {cpp:class}`BInvoker` version of {cpp:func}`Invoke()
-<BInvoker::Invoke>` to ensure that only enabled menu items that are
-attached to a menu hierarchy can be invoked. This function appropriately
-marks items when the user invokes them. Before sending a message, it adds
-{hparam}`when`, {hparam}`source`, and {hparam}`index` field to it, as
-explained under the {hclass}`BMenuItem` {cpp:func}`constructor
-<BMenuItem::BMenuItem()>`.
+Augments the {cpp:class}`BInvoker` version of
+{cpp:func}`~BInvoker::Invoke()` to ensure that only enabled menu items that
+are attached to a menu hierarchy can be invoked. This function
+appropriately marks items when the user invokes them. Before sending a
+message, it adds {hparam}`when`, {hparam}`source`, and {hparam}`index`
+field to it, as explained under the {hclass}`BMenuItem`
+{cpp:func}`constructor <BMenuItem::BMenuItem()>`.
 ::::
 
 ::::{abi-group}
@@ -288,7 +286,7 @@ Returns {cpp:expr}`true` if the menu item is currently selected, and
 Returns the menu where the item is located, or {cpp:expr}`NULL` if the
 item hasn't yet been added to a menu.
 
-See also: {cpp:func}`BMenu::AddItem`
+See also: {cpp:func}`BMenu::AddItem()`
 ::::
 
 ::::{abi-group}
@@ -322,7 +320,7 @@ sufficient to enable the item if it's located in a disabled branch of the
 menu hierarchy. It can only undo a previous {hmethod}`SetEnabled()` call
 (with an argument of {cpp:expr}`false`) on the same item.
 
-See also: {cpp:func}`BMenu::SetEnabled`
+See also: {cpp:func}`BMenu::SetEnabled()`
 ::::
 
 ::::{abi-group}
@@ -347,7 +345,7 @@ if the submenu was set up to have this feature.
 
 {hmethod}`Label()` returns a pointer to the current label.
 
-See also: {cpp:func}`BMenu::SetLabelFromMarked`, the {hclass}`BMenuItem`
+See also: {cpp:func}`BMenu::SetLabelFromMarked()`, the {hclass}`BMenuItem`
 {cpp:func}`constructor <BMenuItem::BMenuItem()>`
 ::::
 
@@ -365,8 +363,8 @@ redisplayed with or without the mark.
 
 {hmethod}`IsMarked()` returns whether the item is currently marked.
 
-See also: {cpp:func}`BMenu::SetLabelFromMarked`,
-{cpp:func}`BMenu::FindMarked`
+See also: {cpp:func}`BMenu::SetLabelFromMarked()`,
+{cpp:func}`BMenu::FindMarked()`
 ::::
 
 ::::{abi-group}
@@ -428,7 +426,7 @@ or {cpp:expr}`NULL` if {hmethod}`SetTrigger()` didn't succeed or if
 {hmethod}`SetTrigger()` was never called and the trigger is selected
 automatically.
 
-See also: {cpp:func}`BMenu::SetTriggersEnabled`
+See also: {cpp:func}`BMenu::SetTriggersEnabled()`
 ::::
 
 ::::{abi-group}
@@ -459,7 +457,7 @@ shortening the string based on the actual content of the label.
 Your version of {hmethod}`TruncateLabel()` should be careful to not cut
 the trigger character from the string.
 
-See also: {cpp:func}`BFont::GetTruncatedStrings`
+See also: {cpp:func}`BFont::GetTruncatedStrings()`
 ::::
 
 ## Static Functions
@@ -473,15 +471,14 @@ with the version of the constructor that takes a {cpp:class}`BMessage`
 archive. However, if the archive message doesn't contain data for a
 {hclass}`BMenuItem` object, this function returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BMenuItem::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BMenuItem::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BArchivable::Archive>` function adds the
-following fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BArchivable::Archive()` function adds the following fields
+to its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

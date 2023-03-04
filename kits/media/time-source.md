@@ -162,7 +162,7 @@ time is.
 
 {hmethod}`PerformanceTimeFor()` returns an estimate of the performance
 time represented by the specified real time (as returned by
-{cpp:func}`BTimeSource::RealTime`).
+{cpp:func}`BTimeSource::RealTime()`).
 
 {hmethod}`RealTimeFor()`, given a performance time, returns an
 approximation of the corresponding real time, adjusted by the given
@@ -226,13 +226,12 @@ of the world sees from your node.
 
 Returns the current absolute real time reference that all time sources
 measure themselves against. This is the only call that you should rely upon
-to obtain this value (don't use the Kernel Kit's {cpp:func}`system_time()
-<system::time>` function).
+to obtain this value (don't use the Kernel Kit's {cpp:func}`system_time()`
+function).
 
-As of this time, {hmethod}`RealTime()` and {cpp:func}`system_time()
-<system::time>` do return the same value; however, you shouldn't rely upon
-this relationship. When doing media stuff, you should always use
-{hmethod}`RealTime()`.
+As of this time, {hmethod}`RealTime()` and {cpp:func}`system_time()` do
+return the same value; however, you shouldn't rely upon this relationship.
+When doing media stuff, you should always use {hmethod}`RealTime()`.
 ::::
 
 ::::{abi-group}
@@ -241,8 +240,8 @@ this relationship. When doing media stuff, you should always use
 
 Implement this function to handle a seek request. When a
 {hclass}`BTimeSource`'s performance time is adjusted, it needs to broadcast
-the change to all nodes slaved to it; call {cpp:func}`BroadcastTimeWarp()
-<BTimeSource::BroadcastTimeWarp>` to do this.
+the change to all nodes slaved to it; call
+{cpp:func}`~BTimeSource::BroadcastTimeWarp()` to do this.
 
 Be sure to queue at least one seek request, so seek operations can be
 requested in advance. The seek request should occur at the real time
@@ -255,8 +254,8 @@ specified by {hparam}`atRealTime`.
 
 This function transmits the specified mode to all the nodes slaved to this
 node, so they know that their time source's run mode has changed. This
-function is called by {cpp:func}`SetRunMode() <BTimeSource::SetRunMode>`;
-it may or may not make sense to call it elsewhere, depending on your
+function is called by {cpp:func}`~BTimeSource::SetRunMode()`; it may or may
+not make sense to call it elsewhere, depending on your
 {hclass}`BTimeSource` implementation.
 ::::
 
@@ -266,7 +265,8 @@ it may or may not make sense to call it elsewhere, depending on your
 
 This hook function is called when someone requests that your node's run
 mode be changed. Be sure to call through to either
-{cpp:func}`BMediaNode::SetRunMode` or {hmethod}`BTimeSource::SetRunMode()`.
+{cpp:func}`BMediaNode::SetRunMode()` or
+{hmethod}`BTimeSource::SetRunMode()`.
 ::::
 
 ::::{abi-group}
@@ -361,9 +361,9 @@ perform the mapping between real time and performance time.
 :::{cpp:function} virtual status_t BTimeSource::TimeSourceOp(const time_source_op_info& op, void* _reserved = 0)
 :::
 
-This function is called by the {cpp:func}`BMediaNode::Start`,
-{cpp:func}`BMediaNode::Stop`, and {cpp:func}`BMediaNode::Seek` functions to
-perform the requested activities.
+This function is called by the {cpp:func}`BMediaNode::Start()`,
+{cpp:func}`BMediaNode::Stop()`, and {cpp:func}`BMediaNode::Seek()`
+functions to perform the requested activities.
 
 You must implement this function to handle these requests.
 
@@ -401,8 +401,8 @@ widths: auto
 
 :::
 
-These constants identify the various operations {cpp:func}`TimeSourceOp()
-<BTimeSource::TimeSourceOp>` will be called upon to handle.
+These constants identify the various operations
+{cpp:func}`~BTimeSource::TimeSourceOp()` will be called upon to handle.
 
 ## Defined Types
 
@@ -418,8 +418,7 @@ struct time_source_op_info {
 };
 :::
 
-Describes a request to {cpp:func}`TimeSourceOp()
-<BTimeSource::TimeSourceOp>`.
+Describes a request to {cpp:func}`~BTimeSource::TimeSourceOp()`.
 
 :::{list-table}
 ---
@@ -439,12 +438,12 @@ widths: auto
 	- real_time
 	- Indicates the time at which the request is to be filled (this is the
 		{hparam}`atRealTime` argument passed to the {cpp:class}`BMediaRoster`
-		functions {cpp:func}`SeekTimeSource() <BMediaRoster::SeekTimeSource>`,
-		{cpp:func}`StopTimeSource() <BMediaRoster::StopTimeSource>`, or
-		{cpp:func}`StartTimeSource() <BMediaRoster::StartTimeSource>`).
+		functions {cpp:func}`~BMediaRoster::SeekTimeSource()`,
+		{cpp:func}`~BMediaRoster::StopTimeSource()`, or
+		{cpp:func}`~BMediaRoster::StartTimeSource()`).
 -
 	- performance_time
 	- Is the {hparam}`newPerformanceTime` argument passed to
-		{cpp:func}`SeekTimeSource() <BMediaRoster::SeekTimeSource>`.
+		{cpp:func}`~BMediaRoster::SeekTimeSource()`.
 
 :::

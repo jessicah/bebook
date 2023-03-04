@@ -19,19 +19,19 @@ even show—a window, but it must be running for the window to receive
 notifications of user events (mouse clicks, key presses, etc.).
 
 Typically, the first thing you do with your {cpp:class}`BWindow` is add
-{cpp:class}`BView`s to it, through the {cpp:func}`AddChild()
-<BWindow::AddChild>` function. Again, {hparam}`be_app` needn't be running
-at this point, nor must the window be showing.
+{cpp:class}`BView`s to it, through the {cpp:func}`~BWindow::AddChild()`
+function. Again, {hparam}`be_app` needn't be running at this point, nor
+must the window be showing.
 
 Even though it inherits from {cpp:class}`BLooper`, you never invoke
-{cpp:func}`AddChild() <BWindow::AddChild>`Run() on a {cpp:class}`BWindow`.
-Instead, you call {cpp:func}`Show() <BWindow::Show>`. In addition to
-putting the window on-screen, the first (and only the first)
-{cpp:func}`Show() <BWindow::Show>` invocation starts the
-{cpp:class}`BWindow`'s message loop. To remove a window from the screen
-without interrupting the object's message loop, use {cpp:func}`Hide()
-<BWindow::Hide>`. Other message loop details (locking and quitting in
-particular) are handled as described in the {cpp:class}`BLooper` class.
+{cpp:func}`~BWindow::AddChild()`Run() on a {cpp:class}`BWindow`. Instead,
+you call {cpp:func}`~BWindow::Show()`. In addition to putting the window
+on-screen, the first (and only the first) {cpp:func}`~BWindow::Show()`
+invocation starts the {cpp:class}`BWindow`'s message loop. To remove a
+window from the screen without interrupting the object's message loop, use
+{cpp:func}`~BWindow::Hide()`. Other message loop details (locking and
+quitting in particular) are handled as described in the
+{cpp:class}`BLooper` class.
 
 :::{admonition} Warning
 :class: warning

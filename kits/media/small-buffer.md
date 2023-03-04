@@ -10,8 +10,7 @@
 :::
 
 Constructor. Creates a small buffer that can hold up to
-{cpp:func}`SmallBufferSizeLimit() <BSmallBuffer::SmallBufferSizeLimit>`
-bytes.
+{cpp:func}`~BSmallBuffer::SmallBufferSizeLimit()` bytes.
 ::::
 
 ## Static Functions

@@ -41,8 +41,8 @@ of the function is particularly useful when used with
 
 In all cases, {hparam}`use` specifies the {hclass}`BTranslatorRoster` to
 use in translating the image. If {hparam}`use` is {cpp:expr}`NULL`, the
-default translator (as returned by {cpp:func}`BTranslatorRoster::Default`)
-is used.
+default translator (as returned by
+{cpp:func}`BTranslatorRoster::Default()`) is used.
 
 If the file or stream doesn't contain a suitable bitmap, the functions
 return {cpp:expr}`NULL`.
@@ -56,5 +56,5 @@ Returns the image held in the file {hparam}`name`. If the file doesn't
 contain a suitable image, the function returns {cpp:expr}`NULL`.
 {hparam}`use` specifies the {hclass}`BTranslatorRoster` used to translate
 the image. If {hparam}`use` is {cpp:expr}`NULL`, the default translator (as
-returned by {cpp:func}`BTranslatorRoster::Default`) is used.
+returned by {cpp:func}`BTranslatorRoster::Default()`) is used.
 ::::

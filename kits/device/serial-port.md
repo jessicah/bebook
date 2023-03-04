@@ -12,17 +12,16 @@
 Initializes the {hclass}`BSerialPort` object to the following default
 values:
 
--   Hardware flow control (see {cpp:func}`SetFlowControl()
-<BSerialPort::SetFlowControl>`)
+-   Hardware flow control (see {cpp:func}`~BSerialPort::SetFlowControl()`)
 
--   A data rate of 19,200 bits per second (see {cpp:func}`SetDataRate()
-<BSerialPort::SetDataRate>`)
+-   A data rate of 19,200 bits per second (see
+{cpp:func}`~BSerialPort::SetDataRate()`)
 
 -   A serial unit with 8 bits of data, 1 stop bit, and no parity (see
-{cpp:func}`SetDataBits() <BSerialPort::SetDataBits>`)
+{cpp:func}`~BSerialPort::SetDataBits()`)
 
 -   Blocking with no time limit—an infinite timeout—for reading data (see
-{cpp:func}`Read() <BSerialPort::Read>`)
+{cpp:func}`~BSerialPort::Read()`)
 
 The new object doesn't represent any particular serial port. After
 construction, it's necessary to open one of the ports by name.
@@ -31,7 +30,7 @@ The type of flow control must be decided before a port is opened. But the
 other default settings listed above can be changed before or after opening
 a port.
 
-See also: {cpp:func}`Open() <BSerialPort::Open>`
+See also: {cpp:func}`~BSerialPort::Open()`
 ::::
 
 ::::{abi-group}
@@ -52,9 +51,9 @@ Makes sure the port is closed before the object is destroyed.
 
 These functions empty the serial port driver's input and output buffers,
 so that the contents of the input buffer won't be read (by the
-{cpp:func}`Read() <BSerialPort::Read>` function) and the contents of the
-output buffer (after having been written by {cpp:func}`Write()
-<BSerialPort::Write>`) won't be transmitted over the connection.
+{cpp:func}`~BSerialPort::Read()` function) and the contents of the output
+buffer (after having been written by {cpp:func}`~BSerialPort::Write()`)
+won't be transmitted over the connection.
 
 The buffers are cleared automatically when a port is opened.
 ::::
@@ -74,7 +73,7 @@ given {hparam}`index`. The buffer pointed to by {hparam}`outName` is filled
 with the device name; {hparam}`bufSize` indicates the size of the buffer.
 
 The names returned by {hmethod}`GetDeviceName()` can be passed into the
-{cpp:func}`Open() <BSerialPort::Open>` function to open a device.
+{cpp:func}`~BSerialPort::Open()` function to open a device.
 
 :::{list-table}
 ---
@@ -219,16 +218,16 @@ the serial port, it returns without reading anything.
 will block while waiting for data to arrive at the port's input buffer. The
 timeout is relevant to {hmethod}`Read()` only if the {hparam}`shouldBlock`
 flag is {cpp:expr}`true`. However, the time limit also applies to the
-{cpp:func}`WaitForInput() <BSerialPort::WaitForInput>` function, which
-always blocks, regardless of the {hparam}`shouldBlock` setting.
+{cpp:func}`~BSerialPort::WaitForInput()` function, which always blocks,
+regardless of the {hparam}`shouldBlock` setting.
 
 -   There is no time limit if the timeout is set to
 {cpp:enumerator}`B_INFINITE_TIMEOUT`—{hmethod}`Read()` and
-{cpp:func}`WaitForInput() <BSerialPort::WaitForInput>` will block forever.
-Otherwise, the timeout is expressed in microseconds and can range from a
-minimum of 100,000 (0.1 second) through a maximum of 25,500,000 (25.5
-seconds); differences less than 100,000 microseconds are not recognized;
-they're rounded to the nearest tenth of a second.
+{cpp:func}`~BSerialPort::WaitForInput()` will block forever. Otherwise, the
+timeout is expressed in microseconds and can range from a minimum of
+100,000 (0.1 second) through a maximum of 25,500,000 (25.5 seconds);
+differences less than 100,000 microseconds are not recognized; they're
+rounded to the nearest tenth of a second.
 
 -   The default timeout is {cpp:enumerator}`B_INFINITE_TIMEOUT`.
 
@@ -446,12 +445,12 @@ Waits for input data to arrive at the serial port and returns the number
 of bytes available to be read. If data is already waiting, the function
 returns immediately.
 
-This function doesn't respect the flag set by {cpp:func}`SetBlocking()
-<BSerialPort::SetBlocking>`; it blocks even if blocking is turned off for
-the {cpp:func}`Read() <BSerialPort::Read>` function. However, it does
-respect the timeout set by {cpp:func}`SetTimeout()
-<BSerialPort::SetTimeout>`. If the timeout expires before input data
-arrives at the serial port, it returns 0.
+This function doesn't respect the flag set by
+{cpp:func}`~BSerialPort::SetBlocking()`; it blocks even if blocking is
+turned off for the {cpp:func}`~BSerialPort::Read()` function. However, it
+does respect the timeout set by {cpp:func}`~BSerialPort::SetTimeout()`. If
+the timeout expires before input data arrives at the serial port, it
+returns 0.
 ::::
 
 ::::{abi-group}

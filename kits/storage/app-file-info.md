@@ -14,10 +14,10 @@
 
 The default constructor creates a new, uninitialized
 {hclass}`BAppFileInfo` object. To initialize you have to follow this
-construction with a call to {cpp:func}`SetTo() <BAppFileInfo::SetTo>`.
+construction with a call to {cpp:func}`~BAppFileInfo::SetTo()`.
 
 The {cpp:class}`BFile` version intializes the {hclass}`BAppFileInfo` by
-passing the argument to {cpp:func}`SetTo() <BAppFileInfo::SetTo>`.
+passing the argument to {cpp:func}`~BAppFileInfo::SetTo()`.
 ::::
 
 ::::{abi-group}
@@ -159,7 +159,7 @@ widths: auto
 ### GetPreferredApp(), SetPreferredApp()
 
 An application's preferred app must be itself; an add-on is more flexible.
-For syntax, see {cpp:func}`BNodeInfo::SetPreferredApp`.
+For syntax, see {cpp:func}`BNodeInfo::SetPreferredApp()`.
 
 ::::{abi-group}
 :::{cpp:function} status_t BAppFileInfo::GetSignature(char* signature) const
@@ -289,7 +289,7 @@ widths: auto
 
 :::
 
-See Also: {cpp:func}`Supports() <BAppFileInfo::Supports>`
+See Also: {cpp:func}`~BAppFileInfo::Supports()`
 ::::
 
 ### GetType(), SetType()
@@ -297,7 +297,7 @@ See Also: {cpp:func}`Supports() <BAppFileInfo::Supports>`
 Implementation detail; see "{ref}`Functions Inherited From BNodeInfo`". An
 executable's default file type (for both applications and add-ons) is
 {cpp:enumerator}`B_APP_MIME_TYPE`. This value mustn't be changed. For
-syntax, see {cpp:func}`BNodeInfo::SetType`.
+syntax, see {cpp:func}`BNodeInfo::SetType()`.
 
 ::::{abi-group}
 :::{cpp:function} status_t BAppFileInfo::GetVersionInfo(version_info* info, version_kind kind) const
@@ -413,9 +413,8 @@ returns {cpp:expr}`true` if the application supports
 "application/octet-stream", while {hmethod}`Supports()` returns
 {cpp:expr}`true` only if {hparam}`type` is explicitly supported.
 
-See Also: {cpp:func}`GetSupportedTypes()
-<BAppFileInfo::GetSupportedTypes>`, {cpp:func}`SetSupportedTypes()
-<BAppFileInfo::SetSupportedTypes>`
+See Also: {cpp:func}`~BAppFileInfo::GetSupportedTypes()`,
+{cpp:func}`~BAppFileInfo::SetSupportedTypes()`
 ::::
 
 ::::{abi-group}

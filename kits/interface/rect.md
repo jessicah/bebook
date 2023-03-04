@@ -49,8 +49,8 @@ widths: auto
 Initializes a {hclass}`BRect` as four sides, as two diametrically opposed
 corners, or as a copy of some other {hclass}`BRect` object. A rectangle
 that's not assigned any initial values is invalid, until a specific
-assignment is made, either through a {cpp:func}`Set() <BRect::Set>`
-function or by setting the object's data members directly.
+assignment is made, either through a {cpp:func}`~BRect::Set()` function or
+by setting the object's data members directly.
 ::::
 
 ## Member Functions
@@ -80,7 +80,7 @@ This function's results are unpredictable if either rectangle is invalid.
 :::
 
 See also: {cpp:func}`& (intersection)`, {cpp:func}`| (union)`,
-{cpp:func}`BPoint::ConstrainTo`
+{cpp:func}`BPoint::ConstrainTo()`
 ::::
 
 ::::{abi-group}
@@ -295,5 +295,5 @@ Creates and returns a new {hclass}`BRect` that minimally but completely
 encloses the area defined by both of the operands. The shaded area
 illustrates the union of the two outlined rectangles:
 
-![Union Of Two Rectangles](./images/TheInterfaceKit/rect_union.png)
+![Union Of Two Rectangles](./_static/images/rect_union.png)
 ::::

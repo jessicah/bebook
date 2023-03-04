@@ -63,22 +63,22 @@ synchronously for your response, and doing so will cause deadlock.
 When a {cpp:class}`BBufferProducer` sends buffers to one of your
 {hclass}`BBufferConsumer`'s inputs, it will eventually arrive here, at the
 {hmethod}`BufferReceived()` function (usually after first being dispatched
-by {cpp:func}`HandleMessage() <BBufferConsumer::HandleMessage>`).
+by {cpp:func}`~BBufferConsumer::HandleMessage()`).
 
 Override this hook function to add the {hparam}`buffer` to your internal
 playback queue, or to do whatever your node needs to do with buffers you
 consume. If you implement both {cpp:class}`BBufferProducer` and
 {hclass}`BBufferConsumer`, it's possible you might examine or alter the
 data in the {hparam}`buffer` and then call
-{cpp:func}`BBufferProducer::SendBuffer` to send it along to someone else.
+{cpp:func}`BBufferProducer::SendBuffer()` to send it along to someone else.
 
 If your processing of the buffer is long enough to cause the buffer to
 become late, you should still process it as usual, but you should also call
-{cpp:func}`NotifyLateProducer() <BBufferConsumer::NotifyLateProducer>` to
-let the producer know things are starting to lag.
+{cpp:func}`~BBufferConsumer::NotifyLateProducer()` to let the producer know
+things are starting to lag.
 
 Information about the contents and timing requirements of the buffer can
-be obtained by calling {cpp:func}`BBuffer::Header` on it.
+be obtained by calling {cpp:func}`BBuffer::Header()` on it.
 
 :::{admonition} Warning
 :class: warning
@@ -95,8 +95,7 @@ before returning.
 This hook function is called when a connection is being established to
 your input destination from the specified source producer. The connection
 will be composed of media data with the specified format (which you've
-previously accepted via {cpp:func}`AcceptFormat()
-<BBufferConsumer::AcceptFormat>`).
+previously accepted via {cpp:func}`~BBufferConsumer::AcceptFormat()`).
 
 Your implementation of {hmethod}`Connected()` should do whatever
 preparation you need to do to handle data input on the connection, and fill
@@ -127,7 +126,7 @@ unique (such as "MyNode Input 1" or "MyNode Output 3").
 If you want the producer to use a specific {cpp:class}`BBufferGroup` (for
 example, if you want a video producer to fill {cpp:class}`BDirectWindow`
 buffers), you should create the {cpp:class}`BBufferGroup` here, then call
-{cpp:func}`BBufferProducer::SetBufferGroup` to set the producer's buffer
+{cpp:func}`BBufferProducer::SetBufferGroup()` to set the producer's buffer
 group:
 
 :::{code} cpp
@@ -155,19 +154,18 @@ the producer, you shouldn't delete or reclaim it here, because the producer
 has a clone of the {cpp:class}`BBufferGroup` that references the same
 buffers; deleting the {cpp:class}`BBufferGroup` would free those buffers,
 leaving the producer in deadlock. Instead, delete (or reclaim) the when
-{cpp:func}`Connected() <BBufferConsumer::Connected>` is called again, and
-be sure to delete any remaining {cpp:class}`BBufferGroup`s in your
-destructor.
+{cpp:func}`~BBufferConsumer::Connected()` is called again, and be sure to
+delete any remaining {cpp:class}`BBufferGroup`s in your destructor.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BBufferConsumer::DisposeInputCookie(int32 cookie) = 0
 :::
 
-If the cookie value you return in {cpp:func}`GetNextInput()
-<BBufferConsumer::GetNextInput>` is a pointer to an object that needs to be
-deleted when the iteration process is completed, be sure to implement
-{hmethod}`DisposeInputCookie()` to do so.
+If the cookie value you return in
+{cpp:func}`~BBufferConsumer::GetNextInput()` is a pointer to an object that
+needs to be deleted when the iteration process is completed, be sure to
+implement {hmethod}`DisposeInputCookie()` to do so.
 ::::
 
 ::::{abi-group}
@@ -228,7 +226,7 @@ it yourself.
 If this function returns {cpp:enumerator}`B_OK`, the message has been
 handled.
 
-See also: {cpp:func}`BMediaNode::HandleMessage`, "{cpp:func}`About
+See also: {cpp:func}`BMediaNode::HandleMessage()`, "{cpp:func}`About
 Multiple Virtual Inheritance
 <TheMediaKit::AboutMultipleVirtualInheritance>`"
 ::::
@@ -392,8 +390,8 @@ a {hparam}`previousBuffer`, which specifies the buffer prior to the one
 being requested.
 
 This function will cause the producer's
-{cpp:func}`AdditionalBufferRequested()
-<BBufferProducer::AdditionalBufferRequested>` function to be called.
+{cpp:func}`~BBufferProducer::AdditionalBufferRequested()` function to be
+called.
 
 :::{list-table}
 ---
@@ -436,21 +434,21 @@ widths: auto
 {hparam}`source` connected to the consumer {hparam}`destination` change the
 format it produces to the format specified by {hparam}`toFormat`. The Media
 Kit returns in {hparam}`changeTag` the tag value that will be received by
-your {cpp:func}`RequestCompleted() <BMediaNode::RequestCompleted>` function
-once the change takes effect; the change tag lets you match up the call to
-{cpp:func}`RequestCompleted() <BMediaNode::RequestCompleted>` with this
-request. This function will receive a {ref}`media_request_info` structure
-with the indicated {hparam}`userData` and {hparam}`changeTag`.
+your {cpp:func}`~BMediaNode::RequestCompleted()` function once the change
+takes effect; the change tag lets you match up the call to
+{cpp:func}`~BMediaNode::RequestCompleted()` with this request. This
+function will receive a {ref}`media_request_info` structure with the
+indicated {hparam}`userData` and {hparam}`changeTag`.
 
 {hmethod}`FormatChanged()` is called by the upstream producer when the
 media format your node will be receiving changes, and indicates the new
 format in {hparam}`newFormat` and the change tag value at which the new
 format will take effect in {hparam}`changeTag`. You should implement this
 function so your node will know that the data format is going to change.
-Note that this may be called in response to your {cpp:func}`AcceptFormat()
-<BBufferConsumer::AcceptFormat>` call, if your {cpp:func}`AcceptFormat()
-<BBufferConsumer::AcceptFormat>` call alters any wildcard fields in the
-specified format.
+Note that this may be called in response to your
+{cpp:func}`~BBufferConsumer::AcceptFormat()` call, if your
+{cpp:func}`~BBufferConsumer::AcceptFormat()` call alters any wildcard
+fields in the specified format.
 
 :::{admonition} Note
 :class: note
@@ -542,12 +540,11 @@ Otherwise, you're informing the Media Server that you want the group back,
 and that you'll delete it when you're done with it.
 
 The Media Kit returns in {hparam}`changeTag` the tag value that will be
-received by your {cpp:func}`RequestCompleted()
-<BMediaNode::RequestCompleted>` function once the change takes effect; the
-change tag lets you match up the call to {cpp:func}`RequestCompleted()
-<BMediaNode::RequestCompleted>` with this request. This function will
-receive a {ref}`media_request_info` structure with the indicated
-{hparam}`userData` and {hparam}`changeTag`.
+received by your {cpp:func}`~BMediaNode::RequestCompleted()` function once
+the change takes effect; the change tag lets you match up the call to
+{cpp:func}`~BMediaNode::RequestCompleted()` with this request. This
+function will receive a {ref}`media_request_info` structure with the
+indicated {hparam}`userData` and {hparam}`changeTag`.
 
 The ability to request that certain buffers be used by a particular output
 can save you from having to perform unnecessary copies; you might be able
@@ -561,7 +558,7 @@ Before reclaiming your buffers, be sure to call
 `SetOutputBuffersFor(output, NULL)` to let the Media Kit know your producer
 no longer has permission to use them. If you forget this step, the producer
 will hang onto the buffers until it's deleted, and your
-{cpp:func}`BBufferGroup::ReclaimAllBuffers` call will hang, possibly
+{cpp:func}`BBufferGroup::ReclaimAllBuffers()` call will hang, possibly
 forever.
 :::
 
@@ -595,12 +592,11 @@ buffers to the destination. If {hparam}`enabled` is {cpp:expr}`true`, the
 producer should transmit buffers; otherwise it should not.
 
 The Media Kit returns in {hparam}`changeTag` the tag value that will be
-received by your {cpp:func}`RequestCompleted()
-<BMediaNode::RequestCompleted>` function once the change takes effect; the
-change tag lets you match up the call to {cpp:func}`RequestCompleted()
-<BMediaNode::RequestCompleted>` with this request. This function will
-receive a {htype}`media_request_info` structure with the indicated
-{hparam}`userData` and {hparam}`changeTag`.
+received by your {cpp:func}`~BMediaNode::RequestCompleted()` function once
+the change takes effect; the change tag lets you match up the call to
+{cpp:func}`~BMediaNode::RequestCompleted()` with this request. This
+function will receive a {htype}`media_request_info` structure with the
+indicated {hparam}`userData` and {hparam}`changeTag`.
 
 :::{list-table}
 ---
@@ -634,11 +630,11 @@ the specified destination clip all its writing in buffers it sends to the
 described in the section "{ref}`Video Clipping`".
 
 The Media Kit returns in changeTag the tag value that will be received by
-your {cpp:func}`RequestCompleted() <BMediaNode::RequestCompleted>` function
-once the change takes effect; the change tag lets you match up the call to
-{cpp:func}`RequestCompleted() <BMediaNode::RequestCompleted>` with this
-request. This function will receive a {ref}`media_request_info` structure
-with the indicated {hparam}`userData` and {hparam}`changeTag`.
+your {cpp:func}`~BMediaNode::RequestCompleted()` function once the change
+takes effect; the change tag lets you match up the call to
+{cpp:func}`~BMediaNode::RequestCompleted()` with this request. This
+function will receive a {ref}`media_request_info` structure with the
+indicated {hparam}`userData` and {hparam}`changeTag`.
 
 The {ref}`media_video_display_info` structure referenced by display
 describes the current configuration of the video in terms of color space,

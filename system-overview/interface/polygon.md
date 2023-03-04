@@ -13,10 +13,9 @@ series, then by connecting the first and last points if they're not
 identical.
 
 The {cpp:class}`BView` functions that draw a
-polygon—{cpp:func}`StrokePolygon() <BView::StrokePolygon>` and
-{cpp:func}`FillPolygon() <BView::FillPolygon>`—take {cpp:class}`BPolygon`
-objects as arguments. {cpp:func}`StrokePolygon() <BView::StrokePolygon>`
-offers the option of leaving the polygon open—of not stroking the line that
-connects the first and last points in the list. The polygon therefore won't
-look like a polygon, but like an chain of lines fastened at their
-endpoints.
+polygon—{cpp:func}`~BView::StrokePolygon()` and
+{cpp:func}`~BView::FillPolygon()`—take {cpp:class}`BPolygon` objects as
+arguments. {cpp:func}`~BView::StrokePolygon()` offers the option of leaving
+the polygon open—of not stroking the line that connects the first and last
+points in the list. The polygon therefore won't look like a polygon, but
+like an chain of lines fastened at their endpoints.

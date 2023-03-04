@@ -48,8 +48,8 @@ The final form of the constructor duplicates another
 {hclass}`BSimpleGameSound` object.
 
 After instantiating the {hclass}`BSimpleGameSound` object, you should call
-{cpp:func}`InitCheck() <BSimpleGameSound::InitCheck>` to determine whether
-or not the sound was successfully created.
+{cpp:func}`~BSimpleGameSound::InitCheck()` to determine whether or not the
+sound was successfully created.
 ::::
 
 ::::{abi-group}

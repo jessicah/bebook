@@ -124,9 +124,9 @@ therein. Likewise, if your node is a physical output, or a system mixer,
 you should include {cpp:enumerator}`B_PHYSICAL_OUTPUT` or
 {cpp:enumerator}`B_SYSTEM_MIXER`.
 
-Your node's constructor should also call {cpp:func}`AddNodeKind()
-<BMediaNode::AddNodeKind>` to add these kind flags; the base classes only
-add {cpp:enumerator}`B_BUFFER_CONSUMER`,
+Your node's constructor should also call
+{cpp:func}`~BMediaNode::AddNodeKind()` to add these kind flags; the base
+classes only add {cpp:enumerator}`B_BUFFER_CONSUMER`,
 {cpp:enumerator}`B_BUFFER_PRODUCER`, and so forth; the flags indicating
 that the node represents a physical input, physical output, or system mixer
 aren't added automatically. For example, a sound digitizer node's

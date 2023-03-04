@@ -6,12 +6,11 @@ accessed on the same bus, a module might be created to provide a common
 interface to the bus.
 
 Your driver can access these modules via the kernel functions
-{cpp:func}`get_module() <get::module>` and {cpp:func}`put_module()
-<put::module>`, which obtain and release references to a specified module.
-When you call {cpp:func}`get_module() <get::module>`, you obtain a
-structure that provides information about the module, plus pointers to the
-module's functions. The module is defined in a header file provided by the
-module's author, similar to this:
+{cpp:func}`get_module()` and {cpp:func}`put_module()`, which obtain and
+release references to a specified module. When you call
+{cpp:func}`get_module()`, you obtain a structure that provides information
+about the module, plus pointers to the module's functions. The module is
+defined in a header file provided by the module's author, similar to this:
 
 :::{code} c
 #define MY_MODULE_NAME "generic/mymodule/v1"
@@ -42,10 +41,9 @@ structure:
 minfo->configure(0, 10);
 :::
 
-When you're done with the module, you should call {cpp:func}`put_module()
-<put::module>` to release it. The kernel loads and unloads modules as
-needed, and properly calling {cpp:func}`put_module() <put::module>` lets
-the kernel do its job.
+When you're done with the module, you should call {cpp:func}`put_module()`
+to release it. The kernel loads and unloads modules as needed, and properly
+calling {cpp:func}`put_module()` lets the kernel do its job.
 
 :::{code} c
 put_module(MY_MODULE_NAME);

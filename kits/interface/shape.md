@@ -65,8 +65,8 @@ widths: auto
 
 Stores the {hclass}`BShape` in the {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BShape::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BShape::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -120,9 +120,8 @@ the shape, leaving it empty.
 :::
 
 {hmethod}`Close()` should be called when the shape has been
-fully-constructed by calls to the {cpp:func}`BezierTo()
-<BShape::BezierTo>`, {cpp:func}`LineTo() <BShape::LineTo>`, and
-{cpp:func}`MoveTo() <BShape::MoveTo>` functions.
+fully-constructed by calls to the {cpp:func}`~BShape::BezierTo()`,
+{cpp:func}`~BShape::LineTo()`, and {cpp:func}`~BShape::MoveTo()` functions.
 
 :::{list-table}
 ---
@@ -180,9 +179,8 @@ widths: auto
 :::
 
 Adds a "move to" command to the {hclass}`BShape`. The next
-{cpp:func}`LineTo() <BShape::LineTo>` or {cpp:func}`BezierTo()
-<BShape::BezierTo>` will begin at this point. This lets you create
-noncontiguous shapes.
+{cpp:func}`~BShape::LineTo()` or {cpp:func}`~BShape::BezierTo()` will begin
+at this point. This lets you create noncontiguous shapes.
 
 :::{list-table}
 ---
@@ -217,14 +215,14 @@ the version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the archive message doesn't contain data for a {hclass}`BShape`
 object, the return value will be {cpp:expr}`NULL`.
 
-{cpp:func}`BArchivable::Instantiate`, {cpp:func}`instantiate_object()
-<instantiate::object>`, {cpp:func}`Archive() <BShape::Archive>`
+{cpp:func}`BArchivable::Instantiate()`, {cpp:func}`instantiate_object()`,
+{cpp:func}`~BShape::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BShape::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BShape::Archive()` function adds the following fields to
+its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

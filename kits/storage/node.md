@@ -26,8 +26,8 @@
 
 Creates a new {hclass}`BNode` object that's initialized to represent a
 specific file system node. To retrieve the status of the initialization,
-call {cpp:func}`InitCheck() <BNode::InitCheck>` immediately after
-constructing the object:
+call {cpp:func}`~BNode::InitCheck()` immediately after constructing the
+object:
 
 :::{code} cpp
 BNode node("/boot/lbj/FidoOnFire.gif");
@@ -39,19 +39,19 @@ A successfully initialized {hclass}`BNode` object creates a "file
 descriptor" through which the object reads and writes the node's data and
 attributes. You can only have 256 file descriptors at a time (per
 application). The object's file descriptor is closed when the object is
-deleted, reset (through {cpp:func}`SetTo() <BNode::SetTo>`), or unset
-({cpp:func}`Unset() <BNode::Unset>`).
+deleted, reset (through {cpp:func}`~BNode::SetTo()`), or unset
+({cpp:func}`~BNode::Unset()`).
 
 -   Default constructor. The object's status will be
 {cpp:enumerator}`B_NO_INIT`, and the file descriptor isn't allocated until
-you actually initialize the object with a call to {cpp:func}`SetTo()
-<BNode::SetTo>`.
+you actually initialize the object with a call to
+{cpp:func}`~BNode::SetTo()`.
 
 -   Copy constructor. The new {hclass}`BNode` is set to the same node as the
 argument. Each of the two {hclass}`BNode` objects has its own file
 descriptor.
 
--   Other constructors. See the {cpp:func}`SetTo() <BNode::SetTo>` functions.
+-   Other constructors. See the {cpp:func}`~BNode::SetTo()` functions.
 ::::
 
 ::::{abi-group}
@@ -193,7 +193,7 @@ widths: auto
 	- The object is uninitialized.
 -
 	- Other return values
-	- See the {cpp:func}`SetTo() <BNode::SetTo>` function.
+	- See the {cpp:func}`~BNode::SetTo()` function.
 
 :::
 ::::
@@ -264,12 +264,12 @@ read.
 (if such an attribute exists) and replaces it with a copy of the first
 {hparam}`length` bytes of data in {hparam}`buffer`. The {hparam}`type`
 argument __is__ remembered—you can retrieve an attribute's type through
-{cpp:func}`GetAttrInfo() <BNode::GetAttrInfo>`, for example—and you need to
-specify the correct type when you're forming a query (see
-{cpp:class}`BQuery` and the note below). But, as mentioned above, you don't
-need to match types when you're reading the attribute. The {hparam}`offset`
-argument is currently unreliable and shouldn't be used. The functions
-returns the number of bytes that were written.
+{cpp:func}`~BNode::GetAttrInfo()`, for example—and you need to specify the
+correct type when you're forming a query (see {cpp:class}`BQuery` and the
+note below). But, as mentioned above, you don't need to match types when
+you're reading the attribute. The {hparam}`offset` argument is currently
+unreliable and shouldn't be used. The functions returns the number of bytes
+that were written.
 
 :::{admonition} Note
 :class: note
@@ -398,7 +398,7 @@ entry is a symbolic link, the BNode will open the link's node. (Conversely,
 {cpp:class}`BFile` instances __always__ traverse symbolic links.)
 
 {hmethod}`Unset()` closes the {hclass}`BNode`'s file descriptor and sets
-{cpp:func}`InitCheck() <BNode::InitCheck>` to {cpp:enumerator}`B_NO_INIT`.
+{cpp:func}`~BNode::InitCheck()` to {cpp:enumerator}`B_NO_INIT`.
 
 :::{list-table}
 ---
@@ -450,8 +450,8 @@ BNode a = b;
 
 {hclass}`BNode` {hparam}`a` is initialized to refer to the same node as
 {hparam}`b`. To gauge the success of the assignment, you should call
-{cpp:func}`InitCheck() <BNode::InitCheck>` immediately afterwards. It's
-safe to assign a {hclass}`BNode` to itself.
+{cpp:func}`~BNode::InitCheck()` immediately afterwards. It's safe to assign
+a {hclass}`BNode` to itself.
 ::::
 
 ::::{abi-group}

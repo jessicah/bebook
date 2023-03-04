@@ -26,8 +26,8 @@ The default font of the {hclass}`BStatusBar` is the system plain font, and
 the default color of the bar is blue (50, 150, 255). It's initial value is
 0.0, the minimum, and its default maximum value is 100.0.
 
-See also: {cpp:func}`SetMaxValue() <BStatusBar::SetMaxValue>`,
-{cpp:func}`SetBarColor() <BStatusBar::SetBarColor>`
+See also: {cpp:func}`~BStatusBar::SetMaxValue()`,
+{cpp:func}`~BStatusBar::SetBarColor()`
 ::::
 
 ::::{abi-group}
@@ -63,12 +63,12 @@ Draws the bar, labels, and text.
 
 Responds to {cpp:enumerator}`B_UPDATE_STATUS_BAR` and
 {cpp:enumerator}`B_RESET_STATUS_BAR` messages by calling the
-{cpp:func}`Update() <BStatusBar::Update>` and {cpp:func}`Reset()
-<BStatusBar::Reset>` functions. Each message contains data that can be
-passed as arguments to the functions.
+{cpp:func}`~BStatusBar::Update()` and {cpp:func}`~BStatusBar::Reset()`
+functions. Each message contains data that can be passed as arguments to
+the functions.
 
-See also: {cpp:func}`BView::MessageReceived`, "BStatusBar Messages" in the
-Message Protocols appendix
+See also: {cpp:func}`BView::MessageReceived()`, "BStatusBar Messages" in
+the Message Protocols appendix
 ::::
 
 ## Member Functions
@@ -95,7 +95,7 @@ The returned strings belong to the {hclass}`BStatusBar` object and should
 not be altered. They can be set only on construction or when all values are
 reset.
 
-See also: {cpp:func}`Reset() <BStatusBar::Reset>`
+See also: {cpp:func}`~BStatusBar::Reset()`
 ::::
 
 ::::{abi-group}
@@ -112,9 +112,9 @@ This gets the {hclass}`BStatusBar` ready to be reused for another
 operation. For example, if several large files are being downloaded, the
 {hclass}`BStatusBar` could be reset for each one.
 
-See also: {cpp:func}`SetText() <BStatusBar::SetText>`, {cpp:func}`Update()
-<BStatusBar::Update>`, the {cpp:enumerator}`B_RESET_STATUS_BAR` message
-constant.
+See also: {cpp:func}`~BStatusBar::SetText()`,
+{cpp:func}`~BStatusBar::Update()`, the {cpp:enumerator}`B_RESET_STATUS_BAR`
+message constant.
 ::::
 
 ::::{abi-group}
@@ -158,9 +158,9 @@ returns the current maximum. The minimum value is 0.0 and cannot be
 changed.
 
 {hmethod}`CurrentValue()` returns the current value of the
-{hclass}`BStatusBar`. The current value is set by {cpp:func}`Update()
-<BStatusBar::Update>` and reset to 0.0 by {cpp:func}`Reset()
-<BStatusBar::Reset>`.
+{hclass}`BStatusBar`. The current value is set by
+{cpp:func}`~BStatusBar::Update()` and reset to 0.0 by
+{cpp:func}`~BStatusBar::Reset()`.
 
 The amount of "filling" in the status bar reflects the ratio
 {hmethod}`CurrentValue()`/{hmethod}`MaxValue()`.
@@ -197,7 +197,7 @@ its current value and resetting its text and trailing text. Passing
 {cpp:expr}`NULL` for the {hparam}`text` or {hparam}`trailingText` argument
 retains the existing string(s). The status bar is automatically redrawn.
 
-See also: {cpp:func}`Reset() <BStatusBar::Reset>`, the
+See also: {cpp:func}`~BStatusBar::Reset()`, the
 {cpp:enumerator}`B_UPDATE_STATUS_BAR` message constant.
 ::::
 
@@ -212,15 +212,14 @@ with the version of the constructor that takes a {cpp:class}`BMessage`
 archive. However, if the archive doesn't contain data for an
 {hclass}`BStatusBar` object, this function returns {cpp:expr}`NULL`.
 
-See also {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BStatusBar::Archive>`
+See also {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BStatusBar::Archive()`
 ::::
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BStatusBar::Archive>` function adds the
-following fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BStatusBar::Archive()` function adds the following fields
+to its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

@@ -29,7 +29,7 @@ Creates a new {hclass}`BMessage` object that has the given
 If it's a copy, the new object contains the same command constant and data
 fields as {hparam}`message`.
 
-See also: {cpp:func}`BLooper::DetachCurrentMessage`
+See also: {cpp:func}`BLooper::DetachCurrentMessage()`
 ::::
 
 ::::{abi-group}
@@ -151,15 +151,15 @@ destination.)
 
 {hmethod}`AddFlat()` flattens an {hparam}`object` (by calling its
 {hmethod}`Flatten()` function) and adds the flat data to the message. It
-calls the object's {cpp:func}`TypeCode() <BFlattenable::TypeCode>` function
-to learn the type code it should associate with the data. Objects that are
-added through {hmethod}`AddFlat()` must inherit from
-{cpp:class}`BFlattenable` (defined in the {ref}`Support Kit`).
+calls the object's {cpp:func}`~BFlattenable::TypeCode()` function to learn
+the type code it should associate with the data. Objects that are added
+through {hmethod}`AddFlat()` must inherit from {cpp:class}`BFlattenable`
+(defined in the {ref}`Support Kit`).
 
 You can also provide a {hparam}`numItems` hint to {hmethod}`AddFlat()`
 when you call it to set up a new array. {hmethod}`AddFlat()` calls the
-object's {cpp:func}`IsFixedSize() <BFlattenable::IsFixedSize>` function to
-discover whether all items in the array will be the same size.
+object's {cpp:func}`~BFlattenable::IsFixedSize()` function to discover
+whether all items in the array will be the same size.
 
 These functions return {cpp:enumerator}`B_ERROR` if the data is too
 massive to be added to the message, {cpp:enumerator}`B_BAD_TYPE` if the
@@ -178,8 +178,8 @@ better to put some of the information in a common location (a file, a
 private clipboard, a shared area of memory) and just refer to it in the
 message.
 
-See also: {cpp:func}`FindData() <BMessage::FindData>`,
-{cpp:func}`GetInfo() <BMessage::GetInfo>`
+See also: {cpp:func}`~BMessage::FindData()`,
+{cpp:func}`~BMessage::GetInfo()`
 ::::
 
 ::::{abi-group}
@@ -219,10 +219,9 @@ add the specifier to the {hclass}`BMessage` and an error code, generally
 only {cpp:enumerator}`B_NO_MEMORY` to indicate that it has run out of
 memory, if not.
 
-See also: {cpp:func}`GetCurrentSpecifier()
-<BMessage::GetCurrentSpecifier>`, {cpp:func}`HasSpecifiers()
-<BMessage::HasSpecifiers>`, {cpp:func}`PopSpecifier()
-<BMessage::PopSpecifier>`
+See also: {cpp:func}`~BMessage::GetCurrentSpecifier()`,
+{cpp:func}`~BMessage::HasSpecifiers()`,
+{cpp:func}`~BMessage::PopSpecifier()`
 ::::
 
 ::::{abi-group}
@@ -238,7 +237,7 @@ If {hparam}`type` is {cpp:enumerator}`B_ANY_TYPE`, this function counts
 all named fields. If {hparam}`type` is a specific type, it counts only
 fields that store data registered as that type.
 
-See also: {cpp:func}`GetInfo() <BMessage::GetInfo>`
+See also: {cpp:func}`~BMessage::GetInfo()`
 ::::
 
 ::::{abi-group}
@@ -506,9 +505,9 @@ that's used to reconstitute the structure may have been added as an
 
 {hmethod}`FindFlat()` assigns the object stored in the {hclass}`BMessage`
 to the {hparam}`object` passed as an argument, it calls the
-{hparam}`object`'s {cpp:func}`Unflatten() <BMessage::Unflatten>` function
-and passes it the flat data from the message, provided that the two objects
-have compatible types. The argument object's {hmethod}`AllowsTypeCode()`
+{hparam}`object`'s {cpp:func}`~BMessage::Unflatten()` function and passes
+it the flat data from the message, provided that the two objects have
+compatible types. The argument object's {hmethod}`AllowsTypeCode()`
 function must return {cpp:expr}`true` when tested with the type code stored
 in the message; if not, {hmethod}`FindFlat()` fails and returns
 {cpp:enumerator}`B_BAD_VALUE`.
@@ -534,8 +533,8 @@ Finding a data item doesn't remove it from the {hclass}`BMessage`.
 {hmethod}`FindInt32()`, have versions that return the found value directly.
 These versions don't report errors and may not be supported in the future.)
 
-See also: {cpp:func}`GetInfo() <BMessage::GetInfo>`, {cpp:func}`AddData()
-<BMessage::AddData>`
+See also: {cpp:func}`~BMessage::GetInfo()`,
+{cpp:func}`~BMessage::AddData()`
 ::::
 
 ::::{abi-group}
@@ -600,12 +599,11 @@ See also: the {cpp:class}`BDataIO` class in the {ref}`Support Kit`
 by popping the current one from the stack.
 
 These functions aid in implementing a class-specific version of
-{cpp:class}`BHandler`'s {cpp:func}`ResolveSpecifier()
-<BHandler::ResolveSpecifier>` function—the first gets the specifier that
-needs to be resolved, and the second pops it from the stack after it is
-resolved. You can also call them to examine relevant specifiers when
-handling a message that targets an object property (such as
-{cpp:enumerator}`B_GET_PROPERTY`).
+{cpp:class}`BHandler`'s {cpp:func}`~BHandler::ResolveSpecifier()`
+function—the first gets the specifier that needs to be resolved, and the
+second pops it from the stack after it is resolved. You can also call them
+to examine relevant specifiers when handling a message that targets an
+object property (such as {cpp:enumerator}`B_GET_PROPERTY`).
 
 A scripting {hclass}`BMessage` keeps specifiers in a data array named
 "specifiers"; each specifier is itself a {hclass}`BMessage`, but one with a
@@ -640,9 +638,9 @@ processed through a message loop. When it fails,
 returns {cpp:enumerator}`B_BAD_VALUE`. On success, both functions return
 {cpp:enumerator}`B_OK`.
 
-See also: {cpp:func}`AddSpecifier() <BMessage::AddSpecifier>`,
-{cpp:func}`HasSpecifiers() <BMessage::HasSpecifiers>`,
-{cpp:func}`BHandler::ResolveSpecifier`
+See also: {cpp:func}`~BMessage::AddSpecifier()`,
+{cpp:func}`~BMessage::HasSpecifiers()`,
+{cpp:func}`BHandler::ResolveSpecifier()`
 ::::
 
 ::::{abi-group}
@@ -671,8 +669,7 @@ returns {cpp:enumerator}`B_NAME_NOT_FOUND` (without modifying the
 When the {hparam}`fixedSize` argument is specified, the bool referenced by
 {hparam}`fixedSize` is set to {cpp:expr}`true` if all items in the array
 specified by {hparam}`name` must be the same size, and {cpp:expr}`false` if
-the items can be of different sizes (see {cpp:func}`AddData()
-<BMessage::AddData>`).
+the items can be of different sizes (see {cpp:func}`~BMessage::AddData()`).
 
 When passed a {hparam}`type` and an {hparam}`index`, {hmethod}`GetInfo()`
 looks only at fields that store data of the requested {hparam}`type` and
@@ -731,8 +728,8 @@ type will have been read when {hmethod}`GetInfo()` returns
 {cpp:enumerator}`B_ANY_TYPE`, as shown above, it will reveal the name and
 type of every field in the {hclass}`BMessage`.
 
-See also: {cpp:func}`AddData() <BMessage::AddData>`, {cpp:func}`FindData()
-<BMessage::FindData>`
+See also: {cpp:func}`~BMessage::AddData()`,
+{cpp:func}`~BMessage::FindData()`
 ::::
 
 ::::{abi-group}
@@ -740,11 +737,11 @@ See also: {cpp:func}`AddData() <BMessage::AddData>`, {cpp:func}`FindData()
 :::
 
 Returns {cpp:expr}`true` if the {hclass}`BMessage` has specifiers added by
-an {cpp:func}`AddSpecifier() <BMessage::AddSpecifier>` function, and
-{cpp:expr}`false` if not.
+an {cpp:func}`~BMessage::AddSpecifier()` function, and {cpp:expr}`false` if
+not.
 
-See also: {cpp:func}`AddSpecifier() <BMessage::AddSpecifier>`,
-{cpp:func}`GetCurrentSpecifier() <BMessage::GetCurrentSpecifier>`
+See also: {cpp:func}`~BMessage::AddSpecifier()`,
+{cpp:func}`~BMessage::GetCurrentSpecifier()`
 ::::
 
 ::::{abi-group}
@@ -773,7 +770,7 @@ can't if it's being dragged), in which case it returns
 no data (whether or not it was emptied by {hmethod}`MakeEmpty()`), and
 {cpp:expr}`false` if it has some.
 
-See also: {cpp:func}`RemoveName() <BMessage::RemoveName>`
+See also: {cpp:func}`~BMessage::RemoveName()`
 ::::
 
 ::::{abi-group}
@@ -816,7 +813,7 @@ range, {hmethod}`RemoveData()` returns {cpp:enumerator}`B_BAD_INDEX` (the
 index is too high) or {cpp:enumerator}`B_BAD_VALUE` (the value passed is a
 negative number).
 
-See also: {cpp:func}`MakeEmpty() <BMessage::MakeEmpty>`
+See also: {cpp:func}`~BMessage::MakeEmpty()`
 ::::
 
 ::::{abi-group}
@@ -937,9 +934,9 @@ the field. The {hparam}`type` must be specific; it can't be
 
 {hmethod}`FindFlat()` replaces a flattened object with another
 {hparam}`object`, provided that the type reported by the argument
-{hparam}`object` (by its {cpp:func}`TypeCode() <BFlattenable::TypeCode>`
-function) matches the type recorded for the item in the message. If not, it
-returns {cpp:enumerator}`B_BAD_VALUE`.
+{hparam}`object` (by its {cpp:func}`~BFlattenable::TypeCode()` function)
+matches the type recorded for the item in the message. If not, it returns
+{cpp:enumerator}`B_BAD_VALUE`.
 
 The other functions are simplified versions of {hmethod}`ReplaceData()`.
 They each handle the specific type of data declared for their last
@@ -956,7 +953,7 @@ message is read-only (as it is while the message is being dragged),
 exist, or {cpp:enumerator}`B_BAD_TYPE` if the field doesn't contain data of
 the specified type.
 
-See also: {cpp:func}`AddData() <BMessage::AddData>`
+See also: {cpp:func}`~BMessage::AddData()`
 ::::
 
 ::::{abi-group}
@@ -965,18 +962,17 @@ See also: {cpp:func}`AddData() <BMessage::AddData>`
 
 Returns a {cpp:class}`BMessenger` object that can be used to reply to the
 {hclass}`BMessage`. Calling the {cpp:class}`BMessenger`'s
-{cpp:func}`SendMessage() <BMessenger::SendMessage>` function is equivalent
-to calling {cpp:func}`SendReply() <BMessage::SendReply>`, except that the
-return message won't be marked as a reply. If a reply isn't allowed (if the
-{hclass}`BMessage` wasn't delivered), the returned {cpp:class}`BMessenger`
-will be invalid.
+{cpp:func}`~BMessenger::SendMessage()` function is equivalent to calling
+{cpp:func}`~BMessage::SendReply()`, except that the return message won't be
+marked as a reply. If a reply isn't allowed (if the {hclass}`BMessage`
+wasn't delivered), the returned {cpp:class}`BMessenger` will be invalid.
 
 If you want to use the {hmethod}`ReturnAddress()` {cpp:class}`BMessenger`
 to send a synchronous reply, you must do so before the {hclass}`BMessage`
 is deleted and a default reply is sent.
 
-See also: {cpp:func}`SendReply() <BMessage::SendReply>`,
-{cpp:func}`WasDelivered() <BMessage::WasDelivered>`
+See also: {cpp:func}`~BMessage::SendReply()`,
+{cpp:func}`~BMessage::WasDelivered()`
 ::::
 
 ::::{abi-group}
@@ -1021,8 +1017,7 @@ after the function returns.
 
 {hmethod}`SendReply()` sends a message—a reply message, to be sure, but a
 message nonetheless. It behaves exactly like the other message-sending
-function, {cpp:class}`BMessenger`'s {cpp:func}`SendMessage()
-<BMessenger::SendMessage>`:
+function, {cpp:class}`BMessenger`'s {cpp:func}`~BMessenger::SendMessage()`:
 
 -   By passing it a {hparam}`reply` argument, you can ask for a synchronous
 reply to the reply message it sends. It won't return until it receives the
@@ -1057,9 +1052,9 @@ and, if requested, a synchronous reply is received.
 
 This function returns {cpp:enumerator}`B_OK` if the reply is successfully
 sent. If there's a problem in sending the message, it returns the same sort
-of error code as {cpp:class}`BMessenger`'s {cpp:func}`SendMessage()
-<BMessenger::SendMessage>`. It may also report a reply-specific problem.
-The more informative return values are as follows:
+of error code as {cpp:class}`BMessenger`'s
+{cpp:func}`~BMessenger::SendMessage()`. It may also report a reply-specific
+problem. The more informative return values are as follows:
 
 :::{list-table}
 ---
@@ -1093,12 +1088,13 @@ widths: auto
 
 If you want to delay sending a reply and keep the {hclass}`BMessage`
 object beyond the time it's scheduled to be deleted, you may be able to
-detach it from the message loop. See {cpp:func}`DetachCurrentMessage()
-<BLooper::DetachCurrentMessage>` in the {cpp:class}`BLooper` class.
+detach it from the message loop. See
+{cpp:func}`~BLooper::DetachCurrentMessage()` in the {cpp:class}`BLooper`
+class.
 
-See also: {cpp:func}`BMessenger::SendMessage`,
-{cpp:func}`BLooper::DetachCurrentMessage`, {cpp:func}`ReturnAddress()
-<BMessage::ReturnAddress>`
+See also: {cpp:func}`BMessenger::SendMessage()`,
+{cpp:func}`BLooper::DetachCurrentMessage()`,
+{cpp:func}`~BMessage::ReturnAddress()`
 ::::
 
 ::::{abi-group}
@@ -1133,13 +1129,12 @@ local or the message hasn't been delivered yet.
 {hmethod}`IsSourceWaiting()` returns {cpp:expr}`true` if the message
 source is waiting for a synchronous reply, and {cpp:expr}`false` if not.
 The source thread can request and wait for a reply when calling either
-{cpp:class}`BMessenger`'s {cpp:func}`SendMessage()
-<BMessenger::SendMessage>` or {hclass}`BMessage`'s {cpp:func}`SendReply()
-<BMessage::SendReply>` function.
+{cpp:class}`BMessenger`'s {cpp:func}`~BMessenger::SendMessage()` or
+{hclass}`BMessage`'s {cpp:func}`~BMessage::SendReply()` function.
 
 {hmethod}`IsReply()` returns {cpp:expr}`true` if the {hclass}`BMessage` is
-a reply to a previous message (if it was sent by the {cpp:func}`SendReply()
-<BMessage::SendReply>` function), and {cpp:expr}`false` if not.
+a reply to a previous message (if it was sent by the
+{cpp:func}`~BMessage::SendReply()` function), and {cpp:expr}`false` if not.
 
 {hmethod}`Previous()` returns the previous message – the message to which
 the current {hclass}`BMessage` is a reply. It works only for a
@@ -1151,9 +1146,8 @@ lost; this function can provide it. {hmethod}`Previous()` returns
 {cpp:expr}`NULL` if the {hclass}`BMessage` isn't an asynchronous reply to
 another message.
 
-See also: {cpp:func}`BMessenger::SendMessage`, {cpp:func}`SendReply()
-<BMessage::SendReply>`, {cpp:func}`ReturnAddress()
-<BMessage::ReturnAddress>`
+See also: {cpp:func}`BMessenger::SendMessage()`,
+{cpp:func}`~BMessage::SendReply()`, {cpp:func}`~BMessage::ReturnAddress()`
 ::::
 
 ::::{abi-group}
@@ -1179,7 +1173,7 @@ top corner of the dragged rectangle or image.
 Since any value can be a valid coordinate, {hmethod}`DropPoint()` produces
 reliable results only if {hmethod}`WasDropped()` returns {cpp:expr}`true`.
 
-See also: {cpp:func}`BView::DragMessage`
+See also: {cpp:func}`BView::DragMessage()`
 ::::
 
 ## Operators
@@ -1234,5 +1228,5 @@ field with an index that counts backwards from the end of a list. A
 {cpp:enumerator}`B_NAME_SPECIFIER` message includes a {hparam}`name` field
 that names the requested item.
 
-See Also: {cpp:func}`AddSpecifier() <BMessage::AddSpecifier>`, the
-{ref}`Scripting` chapter.
+See Also: {cpp:func}`~BMessage::AddSpecifier()`, the {ref}`Scripting`
+chapter.

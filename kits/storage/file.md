@@ -22,12 +22,12 @@
 :::
 
 Creates a new {hclass}`BFile` object, initializes it according to the
-arguments, and sets {cpp:func}`InitCheck() <BFile::InitCheck>` to return
-the status of the initialization.
+arguments, and sets {cpp:func}`~BFile::InitCheck()` to return the status of
+the initialization.
 
 The default constructor does nothing and sets and sets
-{cpp:func}`InitCheck() <BFile::InitCheck>` to {cpp:enumerator}`B_NO_INIT`.
-To initialize the object, call {cpp:func}`SetTo() <BFile::SetTo>`.
+{cpp:func}`~BFile::InitCheck()` to {cpp:enumerator}`B_NO_INIT`. To
+initialize the object, call {cpp:func}`~BFile::SetTo()`.
 
 The copy constructor creates a new {hclass}`BFile` that's open on the same
 file as that of the argument. Note that the two objects maintain
@@ -40,7 +40,7 @@ affect the position of the data pointer in the other object.
 written data.
 
 For information on the other constructors, see the analogous
-{cpp:func}`SetTo() <BFile::SetTo>` functions.
+{cpp:func}`~BFile::SetTo()` functions.
 ::::
 
 ::::{abi-group}
@@ -121,7 +121,7 @@ widths: auto
 	- The object is uninitialized.
 -
 	- For other errors.
-	- See {cpp:func}`SetTo() <BFile::SetTo>`
+	- See {cpp:func}`~BFile::SetTo()`
 
 :::
 ::::
@@ -248,10 +248,10 @@ widths: auto
 :::
 
 If you {hmethod}`Seek()` to a position that's past the end of the file and
-then do a {cpp:func}`Write() <BFile::Write>`, the file will be extended
-(padded with garbage) from the old end of file to the {hmethod}`Seek()`'d
-position. If you don't follow the {hmethod}`Seek()` with a
-{hmethod}`Write()`, the file isn't extended.
+then do a {cpp:func}`~BFile::Write()`, the file will be extended (padded
+with garbage) from the old end of file to the {hmethod}`Seek()`'d position.
+If you don't follow the {hmethod}`Seek()` with a {hmethod}`Write()`, the
+file isn't extended.
 
 {hmethod}`Seek()` returns the new position as measured (in bytes) from the
 beginning of the file.
@@ -284,11 +284,11 @@ widths: auto
 
 :::{admonition} Warning
 :class: warning
-If you do a "before the beginning" seek, subsequent {cpp:func}`Read()
-<BFile::Read>` and {cpp:func}`Write() <BFile::Write>` calls do not fail.
-But they almost certainly aren't doing what you want (you shouldn't be
-"before the file," anyway). The moral: Always check your {hmethod}`Seek()`
-return.
+If you do a "before the beginning" seek, subsequent
+{cpp:func}`~BFile::Read()` and {cpp:func}`~BFile::Write()` calls do not
+fail. But they almost certainly aren't doing what you want (you shouldn't
+be "before the file," anyway). The moral: Always check your
+{hmethod}`Seek()` return.
 :::
 ::::
 
@@ -397,8 +397,7 @@ file.SetTo(entry, B_READ_WRITE | B_CREATE_FILE | B_FAIL_IF_EXISTS);
 :::
 
 {hmethod}`Unset()` closes the object's file and sets its
-{cpp:func}`InitCheck() <BFile::InitCheck>` value to
-{cpp:enumerator}`B_NO_INIT`.
+{cpp:func}`~BFile::InitCheck()` value to {cpp:enumerator}`B_NO_INIT`.
 
 :::{list-table}
 ---
@@ -448,8 +447,8 @@ BFile a = b;
 
 {hclass}`BFile` {hparam}`a` is initialized to refer to the same file as
 {hparam}`b`. To gauge the success of the assignment, you should call
-{cpp:func}`InitCheck() <BFile::InitCheck>` immediately afterwards. You
-can't assign a {hclass}`BFile` to itself ({cpp:enumerator}`B_BAD_VALUE`).
+{cpp:func}`~BFile::InitCheck()` immediately afterwards. You can't assign a
+{hclass}`BFile` to itself ({cpp:enumerator}`B_BAD_VALUE`).
 
 Assigning to an uninitialized {hclass}`BFile` is "successful": The
 assigned-to {hclass}`BFile` will also be uninitialized

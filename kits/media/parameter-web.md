@@ -12,19 +12,19 @@
 The {hclass}`BParameterWeb` constructor. You'll usually create one
 {hclass}`BParameterWeb` object per {cpp:class}`BControllable` node; to
 attach a {hclass}`BParameterWeb` to a {cpp:class}`BControllable` node, you
-should call {cpp:func}`BControllable::SetParameterWeb`.
+should call {cpp:func}`BControllable::SetParameterWeb()`.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} BParameterWeb::~BParameterWeb()
 :::
 
-Once you've called {cpp:func}`BControllable::SetParameterWeb`, the node
+Once you've called {cpp:func}`BControllable::SetParameterWeb()`, the node
 takes responsibility for the parameter web object and you shouldn't delete
 it.
 
-If you don't call {cpp:func}`BControllable::SetParameterWeb`, then delete
-the {hclass}`BParameterWeb` object when you're done with it.
+If you don't call {cpp:func}`BControllable::SetParameterWeb()`, then
+delete the {hclass}`BParameterWeb` object when you're done with it.
 ::::
 
 ## Member Functions
@@ -54,9 +54,9 @@ Returns the {cpp:class}`BParameterGroup` located at the specified
 {hclass}`BParameterWeb`.
 
 The first group is numbered 0, so the maximum legal value for
-{hparam}`index` is {cpp:func}`CountGroups()
-<BParameterGroup::CountGroups>`-1. If the specified {hparam}`index` is
-outside that range, {cpp:expr}`NULL` is returned.
+{hparam}`index` is {cpp:func}`~BParameterGroup::CountGroups()`-1. If the
+specified {hparam}`index` is outside that range, {cpp:expr}`NULL` is
+returned.
 ::::
 
 ::::{abi-group}
@@ -96,7 +96,7 @@ If the {hclass}`BParameterWeb` hasn't been attached to a
 Returns the {cpp:class}`BParameter` at the specified {hparam}`index`
 within the entire {hclass}`BParameterWeb`, including those in all attached
 groups. The first parameter is numbered 0, so the maximum legal value for
-{hparam}`index` is {cpp:func}`CountParameters()
-<BParameterGroup::CountParameters>`-1. If the specified {hparam}`index` is
-outside that range, {cpp:expr}`NULL` is returned.
+{hparam}`index` is {cpp:func}`~BParameterGroup::CountParameters()`-1. If
+the specified {hparam}`index` is outside that range, {cpp:expr}`NULL` is
+returned.
 ::::

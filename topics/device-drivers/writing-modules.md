@@ -42,13 +42,12 @@ The {hparam}`flags` field specifies which flags should be in effect for
 your module. Currently, the {cpp:enumerator}`B_KEEP_LOADED` flag is the
 only one available; as expected, it tells the kernel not to unload your
 module when nobody is using it; normally, the first time your module is
-requested by someone calling {cpp:func}`get_module() <get::module>`, the
-kernel loads it. With each subsequent call to {cpp:func}`get_module()
-<get::module>`, a reference count is incremented. Every time
-{cpp:func}`put_module() <put::module>` is called to release the module, the
-reference count is decremented. When the counter reaches zero, the module
-is unloaded. {cpp:enumerator}`B_KEEP_LOADED` prevents unloading from taking
-place.
+requested by someone calling {cpp:func}`get_module()`, the kernel loads it.
+With each subsequent call to {cpp:func}`get_module()`, a reference count is
+incremented. Every time {cpp:func}`put_module()` is called to release the
+module, the reference count is decremented. When the counter reaches zero,
+the module is unloaded. {cpp:enumerator}`B_KEEP_LOADED` prevents unloading
+from taking place.
 
 {hparam}`std_ops` is a pointer to a function that your module must
 provide. This function is called to handle standard module operations.

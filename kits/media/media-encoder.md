@@ -16,9 +16,9 @@
 :::
 
 The constructor sets up the {hclass}`BMediaEncoder`. If you use the empty
-form of the constructor, you'll have to call {cpp:func}`SetTo()
-<BMediaEncoder::SetTo>` to establish the format to be encoded before
-calling {cpp:func}`Encode() <BMediaEncoder::Encode>`.
+form of the constructor, you'll have to call
+{cpp:func}`~BMediaEncoder::SetTo()` to establish the format to be encoded
+before calling {cpp:func}`~BMediaEncoder::Encode()`.
 
 The second form accepts a {cpp:func}`media_format <media::format>`
 structure, {hparam}`inFormat`, that indicates the type of media data that
@@ -31,8 +31,8 @@ structure, {hparam}`mci`, that determines which codec should be used.
 :class: note
 If you use either the {cpp:func}`media_format <media::format>` or
 {ref}`media_codec_info` form of the constructor, you must call
-{cpp:func}`InitCheck() <BMediaEncoder::InitCheck>` to ensure that
-construction was successful before using any other functions in this class.
+{cpp:func}`~BMediaEncoder::InitCheck()` to ensure that construction was
+successful before using any other functions in this class.
 :::
 ::::
 
@@ -70,8 +70,8 @@ The {ref}`media_encode_info` structure info is used on input to specify
 encoding parameters.
 
 After the data is encoded, the encoder will call the derived class'
-{cpp:func}`WriteChunk() <BMediaEncoder::WriteChunk>` function to write the
-data into the file.
+{cpp:func}`~BMediaEncoder::WriteChunk()` function to write the data into
+the file.
 
 :::{list-table}
 ---
@@ -153,7 +153,7 @@ widths: auto
 
 -
 	- Other Errors
-	- See {cpp:func}`SetTo() <BMediaEncoder::SetTo>`
+	- See {cpp:func}`~BMediaEncoder::SetTo()`
 
 :::
 ::::
@@ -224,7 +224,7 @@ widths: auto
 	- The {hclass}`BMediaEncoder` isn't initialized.
 -
 	- Other Errors.
-	- See {ref}`get_next_encoder()` and {ref}`get_image_symbol()`
+	- See {cpp:func}`get_next_encoder()` and {cpp:func}`get_image_symbol()`
 
 :::
 ::::

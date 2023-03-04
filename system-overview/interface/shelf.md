@@ -44,18 +44,17 @@ Settings.
 : A {cpp:class}`BShelf` can configure itself from a "settings" file, and can
 write its contents to that file. Your only chance to associate a
 {cpp:class}`BShelf` with a settings file is during construction. You can
-save the contents at any time through the {cpp:func}`Save() <BShelf::Save>`
+save the contents at any time through the {cpp:func}`~BShelf::Save()`
 function.
 
 Replicant rejection.
 
 : A {cpp:class}`BShelf` can reject replicants, and can adjust the position
 of the replicants that it accepts. These features are provided through the
-hook functions {cpp:func}`CanAcceptReplicantMessage()
-<BShelf::CanAcceptReplicantMessage>`, {cpp:func}`CanAcceptReplicantView()
-<BShelf::CanAcceptReplicantView>`, and {cpp:func}`AdjustReplicantBy()
-<BShelf::AdjustReplicantBy>`. A named shelf can also reject replicants, as
-explained next.
+hook functions {cpp:func}`~BShelf::CanAcceptReplicantMessage()`,
+{cpp:func}`~BShelf::CanAcceptReplicantView()`, and
+{cpp:func}`~BShelf::AdjustReplicantBy()`. A named shelf can also reject
+replicants, as explained next.
 
 BShelfnames.
 
@@ -65,13 +64,13 @@ the constructor) is compared to the dropped message's "shelf_type" field
 In this way, individual replicants can be picky about the shelves that they
 want to be displayed on. By default, a shelf accepts replicants that don't
 have a "shelf_type" field. However, if a {cpp:class}`BShelf` is set to
-"enforce type" (set through {cpp:func}`SetTypeEnforced()
-<BShelf::SetTypeEnforced>`), then it will only accept replicants that name
-the shelf (in their "shelf_type" fields).
+"enforce type" (set through {cpp:func}`~BShelf::SetTypeEnforced()`), then
+it will only accept replicants that name the shelf (in their "shelf_type"
+fields).
 
 Persistent IDs
 
 : A {cpp:class}`BShelf` assigns each replicant a unique id that's valid for
 as long as the replicant is attached to the shelf. Replicant ids don't
-change, even if the shelf is {cpp:func}`Save() <BShelf::Save>`'d and then
-later restored (through the constructor).
+change, even if the shelf is {cpp:func}`~BShelf::Save()`'d and then later
+restored (through the constructor).

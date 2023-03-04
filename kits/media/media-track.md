@@ -10,8 +10,8 @@
 :::
 
 Destructor. You shouldn't delete a {hclass}`BMediaTrack` directly;
-instead, use {cpp:func}`BMediaFile::ReleaseTrack` or
-{cpp:func}`BMediaFile::ReleaseAllTracks`, or let {cpp:class}`BMediaFile`
+instead, use {cpp:func}`BMediaFile::ReleaseTrack()` or
+{cpp:func}`BMediaFile::ReleaseAllTracks()`, or let {cpp:class}`BMediaFile`
 destroy the track objects when it's deleted.
 ::::
 
@@ -108,7 +108,7 @@ Returns the total number of frames in the track.
 :::
 
 Returns the current frame in the track (the frame that will be read next
-by {cpp:func}`ReadFrames() <BMediaTrack::ReadFrames>`.
+by {cpp:func}`~BMediaTrack::ReadFrames()`.
 ::::
 
 ::::{abi-group}
@@ -127,7 +127,7 @@ Negotiates the format that the codec will output when decoding the track's
 data. Pass in {hparam}`ioFormat` the format that you want (with wildcards
 as applicable). The codec will find and return in {hparam}`ioFormat` its
 best matching format; this format will then be used when outputting decoded
-data via {cpp:func}`ReadFrames() <BMediaTrack::ReadFrames>`.
+data via {cpp:func}`~BMediaTrack::ReadFrames()`.
 
 The format is typically of a {cpp:enumerator}`B_MEDIA_RAW_AUDIO` or
 {cpp:enumerator}`B_MEDIA_RAW_VIDEO` flavor.
@@ -169,8 +169,7 @@ Returns the total duration of the track, in microseconds.
 :::
 
 Returns the "native" encoded format of the track's data. This is the
-format of the data returned by {cpp:func}`ReadChunk()
-<BMediaTrack::ReadChunk>`.
+format of the data returned by {cpp:func}`~BMediaTrack::ReadChunk()`.
 
 :::{list-table}
 ---
@@ -370,9 +369,8 @@ Fills the buffer pointed to by {hparam}`outBuffer` with the next frames or
 samples from the track, starting at the current position. For video tracks,
 the next frame of video is decoded and stored into the output buffer. For
 audio tracks, the buffer is filled with the number of frames negotiated
-using {cpp:func}`DecodedFormat() <BMediaTrack::DecodedFormat>`. If the end
-of the track is reached before the buffer is filled, a partial buffer will
-be returned.
+using {cpp:func}`~BMediaTrack::DecodedFormat()`. If the end of the track is
+reached before the buffer is filled, a partial buffer will be returned.
 
 On return, {hparam}`outFrameCount` indicates the number of frames
 returned, and {hparam}`outHeader`, if you specified a non-{cpp:expr}`NULL`
@@ -666,8 +664,7 @@ widths: auto
 
 :::
 
-These flags, used when calling {cpp:func}`SeekToTime()
-<BMediaTrack::SeekToTime>` and {cpp:func}`SeekToFrame()
-<BMediaTrack::SeekToFrame>`, let you look for the nearest key frame after
-or before the current position in the file, without having to guess the
-time or frame number at which it's located.
+These flags, used when calling {cpp:func}`~BMediaTrack::SeekToTime()` and
+{cpp:func}`~BMediaTrack::SeekToFrame()`, let you look for the nearest key
+frame after or before the current position in the file, without having to
+guess the time or frame number at which it's located.

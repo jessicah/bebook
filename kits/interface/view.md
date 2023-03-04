@@ -19,11 +19,11 @@ the coordinate system of its eventual parent, and assigns the
 
 When it's created, a {hclass}`BView` doesn't belong to a window and has no
 parent. It's assigned a parent by having another {hclass}`BView` adopt it
-with the {cpp:func}`AddChild() <BView::AddChild>` function. If the other
-view is in a window, the {hclass}`BView` becomes part of that window's view
-hierarchy. A {hclass}`BView` can be made a child of the window's top view
-by calling {cpp:class}`BWindow`'s {cpp:func}`version <BWindow::AddChild>`
-of the {hmethod}`AddChild()` function.
+with the {cpp:func}`~BView::AddChild()` function. If the other view is in a
+window, the {hclass}`BView` becomes part of that window's view hierarchy. A
+{hclass}`BView` can be made a child of the window's top view by calling
+{cpp:class}`BWindow`'s {cpp:func}`version <BWindow::AddChild>` of the
+{hmethod}`AddChild()` function.
 
 When the {hclass}`BView` gains a parent, the values in {hparam}`frame` are
 interpreted in the parent's coordinate system. The sides of the view must
@@ -106,11 +106,11 @@ it's in. When the window is resized, the top view is too. Depending on how
 the {hparam}`resizingMode` flag is set for the top view's children and for
 the descendants of its children, automatic resizing can cascade down the
 view hierarchy. A view can also be resized programmatically by the
-{cpp:func}`ResizeTo() <BView::ResizeTo>` and {cpp:func}`ResizeBy()
-<BView::ResizeBy>` functions.
+{cpp:func}`~BView::ResizeTo()` and {cpp:func}`~BView::ResizeBy()`
+functions.
 
 The resizing mode can be changed after construction with the
-{cpp:func}`SetResizingMode() <BView::SetResizingMode>` function.
+{cpp:func}`~BView::SetResizingMode()` function.
 
 The {hparam}`flags` mask determines what kinds of notifications the
 {hclass}`BView` will receive. It can be any combination of the following
@@ -132,22 +132,21 @@ widths: auto
 	- Indicates that the {hclass}`BView` does some drawing of its own and
 		therefore can't be ignored when the window is updated. If this flag isn't
 		set, the {hclass}`BView` won't receive update notifications—its
-		{cpp:func}`Draw() <BView::Draw>` function won't be called—and it won't be
-		erased to its background view color if the color is other than white.
+		{cpp:func}`~BView::Draw()` function won't be called—and it won't be erased
+		to its background view color if the color is other than white.
 -
 	- {cpp:enumerator}`B_PULSE_NEEDED`
-	- Indicates that the {hclass}`BView` should receive {cpp:func}`Pulse()
-		<BView::Pulse>` notifications.
+	- Indicates that the {hclass}`BView` should receive
+		{cpp:func}`~BView::Pulse()` notifications.
 -
 	- {cpp:enumerator}`B_FRAME_EVENTS`
 	- Indicates that the {hclass}`BView` should receive
-		{cpp:func}`FrameResized() <BView::FrameResized>` and
-		{cpp:func}`FrameMoved() <BView::FrameMoved>` notifications when its frame
-		rectangle changes—typically as a result of the automatic resizing behavior
-		described above. {cpp:func}`FrameResized() <BView::FrameResized>` is called
-		when the dimensions of the view change; {cpp:func}`FrameMoved()
-		<BView::FrameMoved>` is called when the position of its left top corner in
-		its parent's coordinate system changes.
+		{cpp:func}`~BView::FrameResized()` and {cpp:func}`~BView::FrameMoved()`
+		notifications when its frame rectangle changes—typically as a result of the
+		automatic resizing behavior described above.
+		{cpp:func}`~BView::FrameResized()` is called when the dimensions of the
+		view change; {cpp:func}`~BView::FrameMoved()` is called when the position
+		of its left top corner in its parent's coordinate system changes.
 -
 	- {cpp:enumerator}`B_FULL_UPDATE_ON_RESIZE`
 	- Indicates that the entire view should be updated when it's resized. If
@@ -177,10 +176,10 @@ widths: auto
 :::
 
 If none of these constants apply, {hparam}`flags` can be {cpp:expr}`NULL`.
-The flags can be reset after construction with the {cpp:func}`SetFlags()
-<BView::SetFlags>` function.
+The flags can be reset after construction with the
+{cpp:func}`~BView::SetFlags()` function.
 
-See also: {cpp:func}`BHandler::SetName`
+See also: {cpp:func}`BHandler::SetName()`
 ::::
 
 ::::{abi-group}
@@ -191,9 +190,8 @@ Frees all memory the {hclass}`BView` allocated, and ensures that each of
 the {hclass}`BView`'s descendants in the view hierarchy is also destroyed.
 
 It's an error to delete a {hclass}`BView` while it remains attached to a
-window. Call {cpp:func}`RemoveChild() <BView::RemoveChild>` or
-{cpp:func}`RemoveSelf() <BView::RemoveSelf>` before using the delete
-operator.
+window. Call {cpp:func}`~BView::RemoveChild()` or
+{cpp:func}`~BView::RemoveSelf()` before using the delete operator.
 ::::
 
 ## Hook Functions
@@ -213,8 +211,8 @@ hierarchy, becomes a child of a view already attached to a window.
 {hmethod}`AttachedToWindow()` is called immediately after the
 {hclass}`BView` is formally made a part of the window's view hierarchy and
 after it has become known to the Application Server and its graphics
-parameters are set. The {cpp:func}`Window() <BView::Window>` function can
-identify which {cpp:class}`BWindow` the {hclass}`BView` belongs to.
+parameters are set. The {cpp:func}`~BView::Window()` function can identify
+which {cpp:class}`BWindow` the {hclass}`BView` belongs to.
 
 All of the {hclass}`BView`'s children, if it has any, also become attached
 to the window and receive their own {hmethod}`AttachedToWindow()`
@@ -249,7 +247,7 @@ size of its children, where their sizes depend on calculations done in
 
 The default ({hclass}`BView`) version of both these functions are empty.
 
-See also: {cpp:func}`AddChild() <BView::AddChild>`
+See also: {cpp:func}`~BView::AddChild()`
 ::::
 
 ::::{abi-group}
@@ -262,8 +260,8 @@ See also: {cpp:func}`AddChild() <BView::AddChild>`
 Implemented by derived classes to make any adjustments necessary when the
 {hclass}`BView` is about to be removed from a window's view hierarchy.
 These two functions parallel the more commonly implemented
-{cpp:func}`AttachedToWindow() <BView::AttachedToWindow>` and
-{cpp:func}`AllAttached() <BView::AllAttached>` functions.
+{cpp:func}`~BView::AttachedToWindow()` and
+{cpp:func}`~BView::AllAttached()` functions.
 
 {hmethod}`DetachedFromWindow()` notifications work their way down the
 hierarchy of views being detached, followed by {hmethod}`AllDetached()`
@@ -287,36 +285,36 @@ coordinate system.
 view needs to present itself on-screen. This may happen when:
 
 -   The window the view is in is first shown on-screen, or shown after being
-hidden (see the {cpp:class}`BWindow` version of the {cpp:func}`Hide()
-<BWindow::Hide>` function).
+hidden (see the {cpp:class}`BWindow` version of the
+{cpp:func}`~BWindow::Hide()` function).
 
 -   The view is made visible after being hidden (see {hclass}`BView`'s
-{cpp:func}`Hide() <BView::Hide>` function).
+{cpp:func}`~BView::Hide()` function).
 
 -   Obscured parts of the view are revealed, as when a window is moved from in
 front of the view or an image is dragged across it.
 
 -   The view is resized.
 
--   The contents of the view are scrolled (see {cpp:func}`ScrollBy()
-<BView::ScrollBy>`).
+-   The contents of the view are scrolled (see
+{cpp:func}`~BView::ScrollBy()`).
 
 -   A child view is added, removed, or resized.
 
 -   A rectangle has been invalidated that includes at least some of the view
-(see {cpp:func}`Invalidate() <BView::Invalidate>`).
+(see {cpp:func}`~BView::Invalidate()`).
 
--   {cpp:func}`CopyBits() <BView::CopyBits>` can't completely fill a
-destination rectangle within the view.
+-   {cpp:func}`~BView::CopyBits()` can't completely fill a destination
+rectangle within the view.
 
 {hmethod}`Draw()` is also called from a {cpp:class}`BPrintJob` object's
-{cpp:func}`DrawView() <BPrintJob::DrawView>` function to draw the view on a
-printed page. {cpp:func}`IsPrinting() <BView::IsPrinting>` returns
-{cpp:expr}`true` when the {cpp:class}`BView` is drawing for the printer and
-{cpp:expr}`false` when it's drawing to the screen. When printing, you may
-want to recalculate layouts, substitute fonts, turn antialiasing off, scale
-the size of a coordinate unit, or make other adjustments to ensure the
-quality of the printed image.
+{cpp:func}`~BPrintJob::DrawView()` function to draw the view on a printed
+page. {cpp:func}`~BView::IsPrinting()` returns {cpp:expr}`true` when the
+{cpp:class}`BView` is drawing for the printer and {cpp:expr}`false` when
+it's drawing to the screen. When printing, you may want to recalculate
+layouts, substitute fonts, turn antialiasing off, scale the size of a
+coordinate unit, or make other adjustments to ensure the quality of the
+printed image.
 
 When drawing to the screen, the {hparam}`updateRect` is the smallest
 rectangle that encloses the current clipping region for the view. Since the
@@ -324,32 +322,32 @@ Application Server won't render anything on-screen that's outside the
 clipping region, an application will be more efficient if it avoids
 producing drawing instructions for images that don't intersect with the
 rectangle. For still more efficiency and precision, you can ask for the
-clipping region itself (by calling {cpp:func}`GetClippingRegion()
-<BView::GetClippingRegion>`) and confine drawing to images that intersect
-with it.
+clipping region itself (by calling {cpp:func}`~BView::GetClippingRegion()`)
+and confine drawing to images that intersect with it.
 
 When printing, the {hparam}`updateRect` matches the rectangle passed to
-{cpp:func}`DrawView() <BPrintJob::DrawView>` and may lie outside the
-clipping region. The clipping region is not enforced for printing, but the
-Print Server clips the BView's drawing to the specified rectangle.
+{cpp:func}`~BPrintJob::DrawView()` and may lie outside the clipping region.
+The clipping region is not enforced for printing, but the Print Server
+clips the BView's drawing to the specified rectangle.
 
-See also: {cpp:func}`BWindow::UpdateIfNeeded`
+See also: {cpp:func}`BWindow::UpdateIfNeeded()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BView::DrawAfterChildren(BRect updateRect)
 :::
 
-This function is similar (in fact, almost identical) to {cpp:func}`Draw()
-<BView::Draw>`. The only difference is that {hmethod}`DrawAfterChildren()`
-is called after all children have drawn during a screen update. This is in
-contrast to {cpp:func}`Draw() <BView::Draw>`, which draws before any
-children have drawn. In general, {cpp:func}`Draw() <BView::Draw>` will be
-used for almost all of your drawing needs; {hmethod}`DrawAfterChildren()`
-is intended for use in the rare circumstances where you wish a view to be
-able to draw on top of its child views.
+This function is similar (in fact, almost identical) to
+{cpp:func}`~BView::Draw()`. The only difference is that
+{hmethod}`DrawAfterChildren()` is called after all children have drawn
+during a screen update. This is in contrast to {cpp:func}`~BView::Draw()`,
+which draws before any children have drawn. In general,
+{cpp:func}`~BView::Draw()` will be used for almost all of your drawing
+needs; {hmethod}`DrawAfterChildren()` is intended for use in the rare
+circumstances where you wish a view to be able to draw on top of its child
+views.
 
-Other details are as for {cpp:func}`Draw() <BView::Draw>`.
+Other details are as for {cpp:func}`~BView::Draw()`.
 ::::
 
 ::::{abi-group}
@@ -366,19 +364,18 @@ of the left top corner of the {hclass}`BView`'s frame rectangle.
 attached to a window.
 
 If the view is both moved and resized, {hmethod}`FrameMoved()` is called
-before {cpp:func}`FrameResized() <BView::FrameResized>`. This might happen,
-for example, if the {hclass}`BView`'s automatic resizing mode is a
-combination of {cpp:enumerator}`B_FOLLOW_TOP_BOTTOM` and
-{cpp:enumerator}`B_FOLLOW_RIGHT` and its parent is resized both
-horizontally and vertically.
+before {cpp:func}`~BView::FrameResized()`. This might happen, for example,
+if the {hclass}`BView`'s automatic resizing mode is a combination of
+{cpp:enumerator}`B_FOLLOW_TOP_BOTTOM` and {cpp:enumerator}`B_FOLLOW_RIGHT`
+and its parent is resized both horizontally and vertically.
 
 {hclass}`BView`'s version of this function is empty.
 
 Currently, {hmethod}`FrameMoved()` is also called when a hidden window is
 shown on-screen.
 
-See also: {cpp:func}`MoveBy() <BView::MoveBy>`,
-{cpp:func}`BWindow::FrameMoved`, {cpp:func}`SetFlags() <BView::SetFlags>`
+See also: {cpp:func}`~BView::MoveBy()`, {cpp:func}`BWindow::FrameMoved()`,
+{cpp:func}`~BView::SetFlags()`
 ::::
 
 ::::{abi-group}
@@ -388,8 +385,8 @@ See also: {cpp:func}`MoveBy() <BView::MoveBy>`,
 Implemented by derived classes to respond to a notification that the view
 has been resized. The arguments state the new width and height of the view.
 The resizing could have been the result of a user action (resizing the
-window) or of a programmatic one (calling {cpp:func}`ResizeTo()
-<BView::ResizeTo>` or {cpp:func}`ResizeBy() <BView::ResizeBy>`).
+window) or of a programmatic one (calling {cpp:func}`~BView::ResizeTo()` or
+{cpp:func}`~BView::ResizeBy()`).
 
 {hmethod}`FrameResized()` is called only if the
 {cpp:enumerator}`B_FRAME_EVENTS` flag is set and the {hclass}`BView` is
@@ -397,8 +394,8 @@ attached to a window.
 
 {hclass}`BView`'s version of this function is empty.
 
-See also: {cpp:func}`BWindow::FrameResized`, {cpp:func}`SetFlags()
-<BView::SetFlags>`
+See also: {cpp:func}`BWindow::FrameResized()`,
+{cpp:func}`~BView::SetFlags()`
 ::::
 
 ::::{abi-group}
@@ -418,7 +415,7 @@ button border and label given the current font.
 {hmethod}`ResizeToPreferred()` resizes the {hclass}`BView`'s frame
 rectangle to the preferred size, keeping its left and top sides constant.
 
-See also: {cpp:func}`ResizeTo() <BView::ResizeTo>`
+See also: {cpp:func}`~BView::ResizeTo()`
 ::::
 
 ::::{abi-group}
@@ -440,8 +437,8 @@ instructions to change the focus view (for keyboard navigation); they work
 even where {hkey}`Tab` alone does not.
 
 -   Can operate the default button in a window. The {cpp:class}`BButton`
-object's {cpp:func}`KeyDown() <BButton::KeyDown>` function is called,
-rather than the focus view's.
+object's {cpp:func}`~BButton::KeyDown()` function is called, rather than
+the focus view's.
 
 The first argument, {hparam}`bytes`, is an array that encodes the
 character mapped to the key the user pressed. The second argument,
@@ -501,12 +498,12 @@ Only keys that generate characters produce key-down events; the modifier
 keys on their own do not.
 
 You can determine which modifier keys were being held down at the time of
-the event by calling {cpp:class}`BLooper`'s {cpp:func}`CurrentMessage()
-<BLooper::CurrentMessage>` function and looking up the "modifiers" entry in
-the {cpp:class}`BMessage` it returns. If the {hparam}`bytes` character is
-{cpp:enumerator}`B_FUNCTION_KEY` and you want to know which key produced
-the character, you can look up the "key" entry in the {cpp:class}`BMessage`
-and test it against these constants:
+the event by calling {cpp:class}`BLooper`'s
+{cpp:func}`~BLooper::CurrentMessage()` function and looking up the
+"modifiers" entry in the {cpp:class}`BMessage` it returns. If the
+{hparam}`bytes` character is {cpp:enumerator}`B_FUNCTION_KEY` and you want
+to know which key produced the character, you can look up the "key" entry
+in the {cpp:class}`BMessage` and test it against these constants:
 
 -   {cpp:enumerator}`B_F1_KEY`
 
@@ -600,7 +597,7 @@ navigate from your view.
 
 See also: the {ref}`Keyboard Information` special topic,
 {cpp:enumerator}`B_KEY_DOWN` in the {ref}`Keyboard Messages` appendix,
-{cpp:func}`BWindow::SetDefaultButton`, {ref}`modifiers()`
+{cpp:func}`BWindow::SetDefaultButton()`, {cpp:func}`modifiers()`
 ::::
 
 ::::{abi-group}
@@ -613,14 +610,14 @@ set of keys that produce {cpp:enumerator}`B_KEY_DOWN` messages when they're
 pressed produce {cpp:enumerator}`B_KEY_UP` messages when they're released.
 The {hparam}`bytes` and {hparam}`numBytes` arguments encode the character
 mapped to the key the user released; they work exactly like the same
-arguments passed to {cpp:func}`KeyDown() <BView::KeyDown>`.
+arguments passed to {cpp:func}`~BView::KeyDown()`.
 
 Some {cpp:enumerator}`B_KEY_DOWN` messages are swallowed by the system and
-are never dispatched by calling {cpp:func}`KeyDown() <BView::KeyDown>`;
-others are dispatched, but not to the focus view. In contrast, all
+are never dispatched by calling {cpp:func}`~BView::KeyDown()`; others are
+dispatched, but not to the focus view. In contrast, all
 {cpp:enumerator}`B_KEY_UP` messages are dispatched by calling
-{cpp:func}`KeyUp() <BView::KeyUp>` for the focus view of the active window.
-Since the focus view and active window can change between the time a key is
+{cpp:func}`~BView::KeyUp()` for the focus view of the active window. Since
+the focus view and active window can change between the time a key is
 pressed and the time it's released, this may or may not be the same
 {hclass}`BView` that was notified of the {cpp:enumerator}`B_KEY_DOWN`
 message.
@@ -630,9 +627,9 @@ message.
 :::{cpp:function} virtual void BView::MessageReceived(BMessage* message)
 :::
 
-Augments the {cpp:class}`BHandler` version of {cpp:func}`MessageReceived()
-<BHandler::MessageReceived>` to handle scripting messages for the
-{hclass}`BView`.
+Augments the {cpp:class}`BHandler` version of
+{cpp:func}`~BHandler::MessageReceived()` to handle scripting messages for
+the {hclass}`BView`.
 ::::
 
 ::::{abi-group}
@@ -644,8 +641,8 @@ depresses a mouse button (or other pointing device button, not including
 joysticks). The location of the cursor at the time of the event is given by
 {hparam}`point` in the {hclass}`BView`'s coordinates. See
 {cpp:enumerator}`B_MOUSE_DOWN` for the message format. Also see
-{cpp:func}`SetMouseEventMask() <BView::SetMouseEventMask>` for information
-on extending the view's event mask while the mouse is being held down.
+{cpp:func}`~BView::SetMouseEventMask()` for information on extending the
+view's event mask while the mouse is being held down.
 
 The {hclass}`BView` version of {hmethod}`MouseDown()` is empty.
 ::::
@@ -707,9 +704,9 @@ when no other messages are pending, but only if it asks for them with the
 {cpp:enumerator}`B_PULSE_NEEDED` flag.
 
 The interval between {hmethod}`Pulse()` calls can be set with
-{cpp:class}`BWindow`'s {cpp:func}`SetPulseRate() <BWindow::SetPulseRate>`
-function. The default interval is around 500 milliseconds. The pulse rate
-is the same for all views within a window, but can vary between windows.
+{cpp:class}`BWindow`'s {cpp:func}`~BWindow::SetPulseRate()` function. The
+default interval is around 500 milliseconds. The pulse rate is the same for
+all views within a window, but can vary between windows.
 
 Derived classes can implement a {hmethod}`Pulse()` function to do
 something that must be repeated continuously. However, for time-critical
@@ -717,7 +714,7 @@ actions, you should implement your own timing mechanism.
 
 The {hclass}`BView` version of this function is empty.
 
-See also: {cpp:func}`SetFlags() <BView::SetFlags>` the {hclass}`BView`
+See also: {cpp:func}`~BView::SetFlags()` the {hclass}`BView`
 {cpp:func}`constructor <BView::BView()>`,
 ::::
 
@@ -752,7 +749,7 @@ notifications when the status of the window changes.
 
 {hclass}`BView`'s version of this function is empty.
 
-See also: {cpp:func}`BWindow::WindowActivated`
+See also: {cpp:func}`BWindow::WindowActivated()`
 ::::
 
 ## General Functions
@@ -764,8 +761,8 @@ See also: {cpp:func}`BWindow::WindowActivated`
 Archives the {hclass}`BView` in the {cpp:class}`BMessage`
 {hparam}`archive`.
 
-See also: {cpp:func}`BArchivable::Archive`, {cpp:func}`Instantiate()
-<BView::Instantiate>` static function
+See also: {cpp:func}`BArchivable::Archive()`,
+{cpp:func}`~BView::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -814,7 +811,7 @@ converted value. If a pointer is passed, the conversion is done in place.
 
 Both functions fail if the {hclass}`BView` isn't attached to a window.
 
-See also: {cpp:func}`ConvertToScreen() <BView::ConvertToScreen>`
+See also: {cpp:func}`~BView::ConvertToScreen()`
 ::::
 
 ::::{abi-group}
@@ -858,8 +855,8 @@ corner of the main screen.
 Neither function will work if the {hclass}`BView` isn't attached to a
 window.
 
-See also: {cpp:func}`BWindow::ConvertToScreen`,
-{cpp:func}`ConvertToParent() <BView::ConvertToParent>`
+See also: {cpp:func}`BWindow::ConvertToScreen()`,
+{cpp:func}`~BView::ConvertToParent()`
 ::::
 
 ::::{abi-group}
@@ -907,8 +904,7 @@ must be unhidden.
 attached to a window. The view will reflect its proper state (hidden or
 not) when it becomes attached. Views are created in an unhidden state.
 
-See also: {cpp:func}`BWindow::Hide`, {cpp:func}`IsHidden()
-<BView::IsHidden>`
+See also: {cpp:func}`BWindow::Hide()`, {cpp:func}`~BView::IsHidden()`
 ::::
 
 ::::{abi-group}
@@ -920,9 +916,9 @@ for its window, and {cpp:expr}`false` if it's not. The focus view changes
 as the user chooses one view to work in and then another—for example, as
 the user moves from one text field to another when filling out an on-screen
 form. The change is made programmatically through the
-{cpp:func}`MakeFocus() <BView::MakeFocus>` function.
+{cpp:func}`~BView::MakeFocus()` function.
 
-See also: {cpp:func}`BWindow::CurrentFocus`
+See also: {cpp:func}`BWindow::CurrentFocus()`
 ::::
 
 ::::{abi-group}
@@ -930,20 +926,20 @@ See also: {cpp:func}`BWindow::CurrentFocus`
 :::
 
 Returns {cpp:expr}`true` if the view has been hidden by the
-{cpp:func}`Hide() <BView::Hide>` function, and {cpp:expr}`false` otherwise.
+{cpp:func}`~BView::Hide()` function, and {cpp:expr}`false` otherwise.
 
-This function returns {cpp:expr}`true` whether {cpp:func}`Hide()
-<BView::Hide>` was called to hide the {hclass}`BView` itself, to hide an
-ancestor view, or to hide the {hclass}`BView`'s window. When a window is
-hidden, all its views are hidden with it. When a {hclass}`BView` is hidden,
-all its descendants are hidden with it.
+This function returns {cpp:expr}`true` whether {cpp:func}`~BView::Hide()`
+was called to hide the {hclass}`BView` itself, to hide an ancestor view, or
+to hide the {hclass}`BView`'s window. When a window is hidden, all its
+views are hidden with it. When a {hclass}`BView` is hidden, all its
+descendants are hidden with it.
 
 If the view has no visible region—perhaps because it lies outside its
 parent's frame rectangle or is obscured by a window in front—this function
 may nevertheless return {cpp:expr}`false`. It reports only whether the
-{cpp:func}`Hide() <BView::Hide>` function has been called to hide the view,
-hide one of the view's ancestors in the view hierarchy, or hide the window
-where the view is located.
+{cpp:func}`~BView::Hide()` function has been called to hide the view, hide
+one of the view's ancestors in the view hierarchy, or hide the window where
+the view is located.
 
 If the {hclass}`BView` isn't attached to a window, {hmethod}`IsHidden()`
 returns the state that it will assume when it becomes attached. By default,
@@ -960,19 +956,19 @@ rendered on-screen (or if the {hclass}`BView` isn't being asked to draw at
 all).
 
 This function's result is only reliable when called from within
-{cpp:func}`Draw() <BView::Draw>` or {cpp:func}`DrawAfterChildren()
-<BView::DrawAfterChildren>` to determine whether the drawing it does is
-destined for the printer or the screen. When drawing to the printer, the
-{hclass}`BView` may choose different parameters—such as fonts, bitmap
-images, or colors—than when drawing to the screen.
+{cpp:func}`~BView::Draw()` or {cpp:func}`~BView::DrawAfterChildren()` to
+determine whether the drawing it does is destined for the printer or the
+screen. When drawing to the printer, the {hclass}`BView` may choose
+different parameters—such as fonts, bitmap images, or colors—than when
+drawing to the screen.
 
 :::{admonition} Note
 :class: note
-You should avoid calling this function from outside {cpp:func}`Draw()
-<BView::Draw>` and {cpp:func}`DrawAfterChildren()
-<BView::DrawAfterChildren>`; however, if you absolutely have to do it, lock
-the view first. Failure to do so may bring up the debugger—if not in BeOS
-5, it may in future versions of BeOS.
+You should avoid calling this function from outside
+{cpp:func}`~BView::Draw()` and {cpp:func}`~BView::DrawAfterChildren()`;
+however, if you absolutely have to do it, lock the view first. Failure to
+do so may bring up the debugger—if not in BeOS 5, it may in future versions
+of BeOS.
 :::
 
 See also: the {cpp:class}`BPrintJob` class
@@ -985,7 +981,7 @@ See also: the {cpp:class}`BPrintJob` class
 Returns the coordinates of the left top corner of the view—the smallest x
 and y coordinate values within the bounds rectangle.
 
-See also: {cpp:func}`BRect::LeftTop`, {cpp:func}`Bounds() <BView::Bounds>`
+See also: {cpp:func}`BRect::LeftTop()`, {cpp:func}`~BView::Bounds()`
 ::::
 
 ::::{abi-group}
@@ -1024,9 +1020,8 @@ parent view to be updated, so the {hclass}`BView` is immediately displayed
 in its new location. If it doesn't have a parent or isn't attached to a
 window, these functions merely alter its frame rectangle.
 
-See also: {cpp:func}`FrameMoved() <BView::FrameMoved>`,
-{cpp:func}`ResizeBy() <BView::ResizeBy>`, {cpp:func}`Frame()
-<BView::Frame>`
+See also: {cpp:func}`~BView::FrameMoved()`,
+{cpp:func}`~BView::ResizeBy()`, {cpp:func}`~BView::Frame()`
 ::::
 
 ::::{abi-group}
@@ -1059,9 +1054,9 @@ are adjusted, but its children, if any, don't get corresponding
 adjustments.
 :::
 
-See also: {cpp:func}`FrameResized() <BView::FrameResized>`,
-{cpp:func}`MoveBy() <BView::MoveBy>`, {cpp:func}`Frame() <BView::Frame>`,
-{cpp:func}`BRect::Width`
+See also: {cpp:func}`~BView::FrameResized()`,
+{cpp:func}`~BView::MoveBy()`, {cpp:func}`~BView::Frame()`,
+{cpp:func}`BRect::Width()`
 ::::
 
 ::::{abi-group}
@@ -1101,7 +1096,7 @@ myView->SetFlags(Flags() | B_FRAME_EVENTS);
 :::
 
 See also: The {hclass}`BView` {cpp:func}`constructor <BView::BView()>`,
-{cpp:func}`SetResizingMode() <BView::SetResizingMode>`
+{cpp:func}`~BView::SetResizingMode()`
 ::::
 
 ::::{abi-group}
@@ -1134,7 +1129,7 @@ mode. The resizing mode is first set when the {hclass}`BView` is
 constructed. The various possible modes are explained where the
 {cpp:func}`constructor <BView::BView()>` is described.
 
-See also: {cpp:func}`SetFlags() <BView::SetFlags>`
+See also: {cpp:func}`~BView::SetFlags()`
 ::::
 
 ::::{abi-group}
@@ -1158,16 +1153,15 @@ requests.
 
 Returns the {cpp:class}`BWindow` to which the {hclass}`BView` belongs, or
 {cpp:expr}`NULL` if the {hclass}`BView` isn't attached to a window. This
-function returns the same object that {cpp:func}`Looper()
-<BHandler::Looper>` (inherited from the {cpp:class}`BHandler` class)
-does—except that {hmethod}`Window()` returns it more specifically as a
-pointer to a {cpp:class}`BWindow` and {cpp:func}`Looper()
-<BHandler::Looper>` returns it more generally as a pointer to a
-{cpp:class}`BLooper`.
+function returns the same object that {cpp:func}`~BHandler::Looper()`
+(inherited from the {cpp:class}`BHandler` class) does—except that
+{hmethod}`Window()` returns it more specifically as a pointer to a
+{cpp:class}`BWindow` and {cpp:func}`~BHandler::Looper()` returns it more
+generally as a pointer to a {cpp:class}`BLooper`.
 
-See also: {cpp:func}`BHandler::Looper` in the Application Kit,
-{cpp:func}`AddChild() <BView::AddChild>`, {cpp:func}`BWindow::AddChild`,
-{cpp:func}`AttachedToWindow() <BView::AttachedToWindow>`
+See also: {cpp:func}`BHandler::Looper()` in the Application Kit,
+{cpp:func}`~BView::AddChild()`, {cpp:func}`BWindow::AddChild()`,
+{cpp:func}`~BView::AttachedToWindow()`
 ::::
 
 ## View Hierarchy Functions
@@ -1188,8 +1182,8 @@ immediately before the named {hparam}`sibling` {hclass}`BView`. If the
 added to the end of the list. If the {hclass}`BView` is attached to a
 window, {hparam}`aView` and all its descendants become attached to the same
 window. Each of them is notified of this change through
-{cpp:func}`AttachedToWindow() <BView::AttachedToWindow>` and
-{cpp:func}`AllAttached() <BView::AllAttached>` function calls.
+{cpp:func}`~BView::AttachedToWindow()` and
+{cpp:func}`~BView::AllAttached()` function calls.
 
 {hmethod}`AddChild()` fails if {hparam}`aView` already belongs to a view
 hierarchy. A view can live with only one parent at a time. It also fails if
@@ -1200,8 +1194,8 @@ sibling is not already a child of the {hclass}`BView`.
 {hclass}`BView`; {hparam}`aView` retains all its own children and
 descendants, but they become an isolated fragment of a view hierarchy,
 unattached to a window. Each removed view is notified of this change
-through {cpp:func}`DetachedFromWindow() <BView::DetachedFromWindow>` and
-{cpp:func}`AllDetached() <BView::AllDetached>` function calls.
+through {cpp:func}`~BView::DetachedFromWindow()` and
+{cpp:func}`~BView::AllDetached()` function calls.
 
 A {hclass}`BView` must be removed from a window before it can be
 destroyed.
@@ -1226,11 +1220,10 @@ from the {cpp:class}`BWindow`'s flat list of {cpp:class}`BHandler` objects;
 the {hclass}`BView` will no longer be eligible to handle messages
 dispatched by the {cpp:class}`BWindow`.
 
-See also: {cpp:func}`BWindow::AddChild`, {cpp:func}`BLooper::AddHandler`,
-{cpp:func}`BHandler::SetNextHandler`, {cpp:func}`RemoveSelf()
-<BView::RemoveSelf>`, {cpp:func}`AttachedToWindow()
-<BView::AttachedToWindow>`, {cpp:func}`DetachedFromWindow()
-<BView::DetachedFromWindow>`
+See also: {cpp:func}`BWindow::AddChild()`,
+{cpp:func}`BLooper::AddHandler()`, {cpp:func}`BHandler::SetNextHandler()`,
+{cpp:func}`~BView::RemoveSelf()`, {cpp:func}`~BView::AttachedToWindow()`,
+{cpp:func}`~BView::DetachedFromWindow()`
 ::::
 
 ::::{abi-group}
@@ -1239,8 +1232,9 @@ See also: {cpp:func}`BWindow::AddChild`, {cpp:func}`BLooper::AddHandler`,
 
 Returns the {hclass}`BView` identified by {hparam}`name`, or
 {cpp:expr}`NULL` if the view can't be found. Names are assigned by the
-{hclass}`BView` constructor and can be modified by the {cpp:func}`SetName()
-<BHandler::SetName>` function inherited from {cpp:class}`BHandler`.
+{hclass}`BView` constructor and can be modified by the
+{cpp:func}`~BHandler::SetName()` function inherited from
+{cpp:class}`BHandler`.
 
 {hmethod}`FindView()` begins the search by checking whether the
 {hclass}`BView`'s name matches {hparam}`name`. If not, it continues to
@@ -1312,11 +1306,10 @@ Removes the {hclass}`BView` from its parent and returns {hparam}`true`, or
 returns {hparam}`false` if the {hclass}`BView` doesn't have a parent or for
 some reason can't be removed from the view hierarchy.
 
-This function acts just like {cpp:func}`RemoveChild()
-<BView::RemoveChild>`, except that it removes the {hclass}`BView` itself
-rather than one of its children.
+This function acts just like {cpp:func}`~BView::RemoveChild()`, except
+that it removes the {hclass}`BView` itself rather than one of its children.
 
-See also: {cpp:func}`AddChild() <BView::AddChild>`
+See also: {cpp:func}`~BView::AddChild()`
 ::::
 
 ## Input Related Functions
@@ -1361,8 +1354,8 @@ widths: auto
 :::
 
 Tracking is typically initiated from within a {hclass}`BView`'s
-{cpp:func}`MouseDown() <BView::MouseDown>` function and is terminated in
-{cpp:func}`MouseUp() <BView::MouseUp>`
+{cpp:func}`~BView::MouseDown()` function and is terminated in
+{cpp:func}`~BView::MouseUp()`
 ::::
 
 ::::{abi-group}
@@ -1393,8 +1386,8 @@ automatically freed when the message is dropped.
 
 {hparam}`point` locates the hotspot within image (in the bitmap's
 coordinate system). This is the point that's aligned with the location
-passed to {cpp:func}`MouseDown() <BView::MouseDown>` or returned by
-{cpp:func}`GetMouse() <BView::GetMouse>`.
+passed to {cpp:func}`~BView::MouseDown()` or returned by
+{cpp:func}`~BView::GetMouse()`.
 
 {hparam}`rect` defines the dimensions of an outline rectangle that you can
 instead of a bitmap. The rectangle is stated in the {hclass}`BView`'s
@@ -1456,9 +1449,9 @@ has pending update events, {hmethod}`GetMouse()` causes those update events
 to be processed.
 
 You shouldn't use this function to track the mouse; implement the
-{cpp:func}`MouseMoved() <BView::MouseMoved>` function instead.
+{cpp:func}`~BView::MouseMoved()` function instead.
 
-See also: {ref}`modifiers()`
+See also: {cpp:func}`modifiers()`
 ::::
 
 ::::{abi-group}
@@ -1481,8 +1474,7 @@ Calling {hmethod}`MakeFocus()` is the only way to make a view the focus
 view; the focus doesn't automatically change on mouse-down events.
 {hclass}`BView`s that can display the current selection (including an
 insertion point) or that can accept pasted data should call
-{hmethod}`MakeFocus()`in their {cpp:func}`MouseDown() <BView::MouseDown>`
-functions.
+{hmethod}`MakeFocus()`in their {cpp:func}`~BView::MouseDown()` functions.
 
 A derived class can override {hmethod}`MakeFocus()` to add code that takes
 note of the change in status. For example, a {hclass}`BView` that displays
@@ -1496,8 +1488,8 @@ to another view and it's notified that it's no longer the focus view.
 If the {hclass}`BView` isn't attached to a window, this function has no
 effect.
 
-See also: {cpp:func}`BWindow::CurrentFocus`, {cpp:func}`IsFocus()
-<BView::IsFocus>`
+See also: {cpp:func}`BWindow::CurrentFocus()`,
+{cpp:func}`~BView::IsFocus()`
 ::::
 
 ::::{abi-group}
@@ -1511,7 +1503,7 @@ the {hparam}`posture` orientation—{cpp:enumerator}`B_VERTICAL` or
 a scroll bar with the specified orientation, this function returns
 {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BScrollBar::SetTarget`
+See also: {cpp:func}`BScrollBar::SetTarget()`
 ::::
 
 ::::{abi-group}
@@ -1542,11 +1534,11 @@ corner of its bounds rectangle. The point is specified in the
 
 Anything in the view that was visible before scrolling and also visible
 afterwards is automatically redisplayed at its new location. The remainder
-of the view is invalidated, so the {hclass}`BView`'s {cpp:func}`Draw()
-<BView::Draw>` function will be called to fill in those parts of the
-display that were previously invisible. The update rectangle passed to
-{cpp:func}`Draw() <BView::Draw>` will be the smallest possible rectangle
-that encloses just these new areas. If the view is scrolled in only one
+of the view is invalidated, so the {hclass}`BView`'s
+{cpp:func}`~BView::Draw()` function will be called to fill in those parts
+of the display that were previously invisible. The update rectangle passed
+to {cpp:func}`~BView::Draw()` will be the smallest possible rectangle that
+encloses just these new areas. If the view is scrolled in only one
 direction, the update rectangle will be exactly the area that needs to be
 drawn.
 
@@ -1554,12 +1546,11 @@ If the {hclass}`BView` is the target of scroll bars, {hmethod}`ScrollBy()`
 and {hmethod}`ScrollTo()` notify the {cpp:func}`BScrollBar` objects of the
 change in the display so they can update themselves to match. If the
 contents were scrolled horizontally, they call the horizontal
-{cpp:func}`BScrollBar`'s {cpp:func}`SetValue() <BScrollBar::SetValue>`
-function and pass it the new value of the left side of the bounds
-rectangle. If they were scrolled vertically, they call
-{cpp:func}`SetValue() <BScrollBar::SetValue>` for the vertical
-{cpp:func}`BScrollBar` and pass it the new value of the top of the bounds
-rectangle.
+{cpp:func}`BScrollBar`'s {cpp:func}`~BScrollBar::SetValue()` function and
+pass it the new value of the left side of the bounds rectangle. If they
+were scrolled vertically, they call {cpp:func}`~BScrollBar::SetValue()` for
+the vertical {cpp:func}`BScrollBar` and pass it the new value of the top of
+the bounds rectangle.
 
 The `inline` version of {hmethod}`ScrollTo()` works by creating a
 {cpp:class}`BPoint` object and passing it to the version that's declared
@@ -1591,10 +1582,10 @@ below).
 
 {hmethod}`SetMouseEventMask()` does the same thing as
 {hmethod}`SetEventMask()`, except (1) it can only be called from within an
-implementation of {cpp:func}`MouseDown() <BView::MouseDown>`, and (2) the
-new {hparam}`events` value—which is added to the current event mask—is only
-in effect until (and including) the following mouse up event. When the
-mouse is released, the view's previous event mask (as set through
+implementation of {cpp:func}`~BView::MouseDown()`, and (2) the new
+{hparam}`events` value—which is added to the current event mask—is only in
+effect until (and including) the following mouse up event. When the mouse
+is released, the view's previous event mask (as set through
 {hmethod}`SetEventMask()`) is re-established.
 
 The {hparam}`option` arguments lets you request other event-handling
@@ -1616,17 +1607,17 @@ widths: auto
 	- {cpp:enumerator}`B_NO_POINTER_HISTORY`.
 	- This tells the App Server to only send the most recent pointer moved (i.e.
 		mouse moved) event to your view (all "old" events are thrown away). You use
-		this option if your {cpp:func}`MouseMoved() <BView::MouseMoved>`
-		implementation is too heavy to keep up with the mouse moved messages that
-		are pouring in. Of course, your view may lose some mouse movement
-		granularity, but that's the price you pay to stay in synch with the user.
+		this option if your {cpp:func}`~BView::MouseMoved()` implementation is too
+		heavy to keep up with the mouse moved messages that are pouring in. Of
+		course, your view may lose some mouse movement granularity, but that's the
+		price you pay to stay in synch with the user.
 -
 	- {cpp:enumerator}`B_SUSPEND_VIEW_FOCUS`
 	- ({hmethod}`SetMouseEventMask()` only). Events that are normally sent to
 		the focus view are suppressed. In practice, this means that while the mouse
 		is held down, the keyboard is turned off. Note that the view that's
-		processing the {cpp:func}`MouseDown() <BView::MouseDown>` messages doesn't
-		have to be the focus view to suppress focused messages.
+		processing the {cpp:func}`~BView::MouseDown()` messages doesn't have to be
+		the focus view to suppress focused messages.
 -
 	- {cpp:enumerator}`B_LOCK_WINDOW_FOCUS`
 	- ({hmethod}`SetMouseEventMask()` only). Prevents the view's window from
@@ -1678,11 +1669,10 @@ direction. {hmethod}`MovePenTo()` moves the pen to {hparam}`point`—or to
 ({hparam}`x`, {hparam}`y`)—in the {hclass}`BView`'s coordinate system.
 
 Some drawing functions also move the pen—to the end of whatever they draw.
-In particular, this is true of {cpp:func}`StrokeLine()
-<BView::StrokeLine>`, {cpp:func}`DrawString() <BView::DrawString>`, and
-{cpp:func}`DrawChar() <BView::DrawChar>`. Functions that stroke a closed
-shape (such as {cpp:func}`StrokeEllipse() <BView::StrokeEllipse>`) don't
-move the pen.
+In particular, this is true of {cpp:func}`~BView::StrokeLine()`,
+{cpp:func}`~BView::DrawString()`, and {cpp:func}`~BView::DrawChar()`.
+Functions that stroke a closed shape (such as
+{cpp:func}`~BView::StrokeEllipse()`) don't move the pen.
 
 The pen location is a parameter of the {hclass}`BView`'s graphics
 environment, which is maintained by both the Application Server and the
@@ -1698,7 +1688,7 @@ positioned in the {hclass}`BView`'s coordinate system. Because of the
 cache, this shouldn't entail contacting the server. The default pen
 position is (0.0, 0.0).
 
-See also: {cpp:func}`SetPenSize() <BView::SetPenSize>`
+See also: {cpp:func}`~BView::SetPenSize()`
 ::::
 
 ::::{abi-group}
@@ -1822,7 +1812,7 @@ makes a subsequent drawing twice as small and moves the drawing closer to
 the origin, and 2.0 makes it twice as big and moves it away, as shown
 below.
 
-![File Panel Views](./images/TheInterfaceKit/setscale.png)
+![File Panel Views](./_static/images/setscale.png)
 
 :::{admonition} Note
 :class: note
@@ -1889,8 +1879,8 @@ be established as the operable pen size for the {hclass}`BView`. If the
 {hclass}`BView` belongs to a window, this function changes both the server
 and the cache.
 
-See also: "{ref}`The Pen`" in the chapter overview, {cpp:func}`StrokeArc()
-<BView::StrokeArc>`, {cpp:func}`MovePenBy() <BView::MovePenBy>`
+See also: "{ref}`The Pen`" in the chapter overview,
+{cpp:func}`~BView::StrokeArc()`, {cpp:func}`~BView::MovePenBy()`
 ::::
 
 ::::{abi-group}
@@ -1948,7 +1938,7 @@ functions alter both the client-side and the server-side values.
 shouldn't entail contacting the Application Server.
 
 See also: "{ref}`Patterns`" "in the {ref}`Drawing`" section of this
-chapter, {cpp:func}`SetViewColor() <BView::SetViewColor>`
+chapter, {cpp:func}`~BView::SetViewColor()`
 ::::
 
 ::::{abi-group}
@@ -1977,8 +1967,8 @@ copy the `inline` code from View.h into your subclass.
 {hmethod}`ViewColor()` returns the current background color.
 
 See also: "{ref}`The View Color`" in the "{ref}`Drawing`" section of this
-chapter, {cpp:func}`SetHighColor() <BView::SetHighColor>`,
-{cpp:func}`SetViewBitmap() <BView::SetViewBitmap>`
+chapter, {cpp:func}`~BView::SetHighColor()`,
+{cpp:func}`~BView::SetViewBitmap()`
 ::::
 
 ::::{abi-group}
@@ -1991,8 +1981,7 @@ chapter, {cpp:func}`SetHighColor() <BView::SetHighColor>`,
 These two functions set and retrieve the graphics state variables which
 control the details of alpha transparency drawing. These variables will
 have an effect on drawing in the view only if the drawing mode has been set
-to {cpp:enumerator}`B_OP_ALPHA` by {cpp:func}`SetDrawingMode()
-<BView::SetDrawingMode>`.
+to {cpp:enumerator}`B_OP_ALPHA` by {cpp:func}`~BView::SetDrawingMode()`.
 
 {hparam}`alphaSrcMode` is one of the following two constants, with
 associated meanings:
@@ -2119,8 +2108,8 @@ See also: The {cpp:class}`BPrintJob` class.
 :::
 
 Gets the height of the {hclass}`BView`'s font. This function provides the
-same information as {cpp:class}`BFont`'s {cpp:func}`GetHeight()
-<BFont::GetHeight>`. The following code
+same information as {cpp:class}`BFont`'s {cpp:func}`~BFont::GetHeight()`.
+The following code
 
 :::{code} cpp
 font_height height;
@@ -2199,7 +2188,7 @@ elements in the environment, it can be set whether or not the
 {hclass}`BView` is attached to the window. Graphics parameters are kept by
 the Application Server and also cached by the {hclass}`BView` object.
 
-See also: {ref}`get_font_family()`
+See also: {cpp:func}`get_font_family()`
 ::::
 
 ::::{abi-group}
@@ -2255,8 +2244,8 @@ myView->GetFont(&font);
 width = font.StringWidth("Be"B_UTF8_REGISTERED);
 :::
 
-See also: {cpp:func}`BFont::StringWidth`,
-{cpp:func}`BFont::GetEscapements`
+See also: {cpp:func}`BFont::StringWidth()`,
+{cpp:func}`BFont::GetEscapements()`
 ::::
 
 ::::{abi-group}
@@ -2329,7 +2318,7 @@ If {hparam}`sync` is {cpp:expr}`false`, the functions will execute
 asynchronously; normally they execute synchronously (i.e. wait for the
 drawing actions to be completed by the Application Server.)
 
-See also: {cpp:func}`BeginPicture() <BView::BeginPicture>`
+See also: {cpp:func}`~BView::BeginPicture()`
 ::::
 
 ::::{abi-group}
@@ -2367,7 +2356,7 @@ Passing a {cpp:expr}`NULL` pointer removes the previous region without
 replacing it. The function works only for {hclass}`BView`s that are
 attached to a window.
 
-See also: {cpp:func}`Draw() <BView::Draw>`
+See also: {cpp:func}`~BView::Draw()`
 ::::
 
 ::::{abi-group}
@@ -2398,22 +2387,21 @@ frame rectangles of all its ancestors in the view hierarchy, and
 window that's off-screen.
 
 The clipping region can be smaller than the visible region if the program
-restricted it by calling {cpp:func}`ConstrainClippingRegion()
-<BView::ConstrainClippingRegion>`. It will exclude any area that doesn't
-intersect with the region passed to {cpp:func}`ConstrainClippingRegion()
-<BView::ConstrainClippingRegion>`.
+restricted it by calling {cpp:func}`~BView::ConstrainClippingRegion()`. It
+will exclude any area that doesn't intersect with the region passed to
+{cpp:func}`~BView::ConstrainClippingRegion()`.
 
 The clipping region is additionally modified by any items on the state
 stack. If any saved states contain clipping regions, then the actual
 clipping region used by the Application Server is the intersection of the
-local clipping region (as set by {cpp:func}`ConstrainClippingRegion()
-<BView::ConstrainClippingRegion>`) and the regions stored on the state
-stack.
+local clipping region (as set by
+{cpp:func}`~BView::ConstrainClippingRegion()`) and the regions stored on
+the state stack.
 
 While the {hclass}`BView` is being updated, the clipping region contains
 just those parts of the view that need to be redrawn. This may be smaller
 than the visible region, or the region restricted by
-{cpp:func}`ConstrainClippingRegion() <BView::ConstrainClippingRegion>`, if:
+{cpp:func}`~BView::ConstrainClippingRegion()`, if:
 
 -   The update occurs during scrolling. The clipping region will exclude any
 of the view's visible contents that the Application Server is able to shift
@@ -2423,12 +2411,12 @@ to their new location and redraw automatically.
 window larger) and the update is needed only to draw the new parts of the
 view.
 
--   The update was caused by {cpp:func}`Invalidate() <BView::Invalidate>` and
-the rectangle passed to {cpp:func}`Invalidate() <BView::Invalidate>` didn't
-cover all of the visible region.
+-   The update was caused by {cpp:func}`~BView::Invalidate()` and the
+rectangle passed to {cpp:func}`~BView::Invalidate()` didn't cover all of
+the visible region.
 
--   The update was necessary because {cpp:func}`CopyBits() <BView::CopyBits>`
-couldn't fill all of a destination rectangle.
+-   The update was necessary because {cpp:func}`~BView::CopyBits()` couldn't
+fill all of a destination rectangle.
 
 If, while updating is ongoing, you call the view's parent's
 {hmethod}`GetClippingRegion()` function, the resulting region indicates
@@ -2440,9 +2428,8 @@ This function works only if the {hclass}`BView` is attached to a window.
 Unattached {hclass}`BView`s can't draw and therefore have no clipping
 region.
 
-See also: {cpp:func}`ConstrainClippingRegion()
-<BView::ConstrainClippingRegion>`, {cpp:func}`Draw() <BView::Draw>`,
-{cpp:func}`Invalidate() <BView::Invalidate>`
+See also: {cpp:func}`~BView::ConstrainClippingRegion()`,
+{cpp:func}`~BView::Draw()`, {cpp:func}`~BView::Invalidate()`
 ::::
 
 ## Drawing Related Functions
@@ -2491,8 +2478,8 @@ waits for the Application Server to finish rendering the image before it
 returns. {hmethod}`DrawBitmapAsync()` doesn't wait; it passes the image to
 the server and returns immediately. The latter function can be more
 efficient in some cases—for example, you might use an asynchronous function
-to draw several bitmaps and then call {cpp:func}`Sync() <BView::Sync>` to
-wait for them all to finish rather than wait for each one individually:
+to draw several bitmaps and then call {cpp:func}`~BView::Sync()` to wait
+for them all to finish rather than wait for each one individually:
 
 :::{code} cpp
 DrawBitmapAsync(bitmapOne, firstPoint);
@@ -2526,8 +2513,8 @@ See also: The "{ref}`Drawing`" in the chapter overview, the
 Draws the character {hparam}`c` at the current pen position—or at the
 {hparam}`point` specified—and moves the pen to a position immediately to
 the right of the character. This function is equivalent to passing a string
-of one character to {cpp:func}`DrawString() <BView::DrawString>`. The point
-is specified in the {hclass}`BView`'s coordinate system.
+of one character to {cpp:func}`~BView::DrawString()`. The point is
+specified in the {hclass}`BView`'s coordinate system.
 ::::
 
 ::::{abi-group}
@@ -2559,22 +2546,22 @@ right (assuming an unrotated font) and moves the pen to the baseline
 immediately past the characters drawn. For a left-to-right font, the pen
 will be in position to draw the next character, as shown below:
 
-![Left To Right Font](./images/TheInterfaceKit/font_left_to_right.png)
+![Left To Right Font](./_static/images/font_left_to_right.png)
 
 The characters are drawn in the opposite direction for a right-to-left
 font, but the pen still moves left-to-right:
 
-![Right To Left Font](./images/TheInterfaceKit/font_right_to_left.png)
+![Right To Left Font](./_static/images/font_right_to_left.png)
 
 :::{admonition} Note
 :class: note
 The BeOS draws text one pixel above the logical baseline to maintain
 compatibility with an earlier version of one of our most commonly-used font
 rasterizers. This affects both fonts and {cpp:class}`BShape`s representing
-glyphs (see {cpp:func}`BFont::GetGlyphShapes`. To draw text at the right
-place, add one to the Y coordinate when calling {cpp:func}`MovePenTo()
-<BView::MovePenTo>` or specifying a {cpp:class}`BPoint` at which to begin
-drawing.
+glyphs (see {cpp:func}`BFont::GetGlyphShapes()`. To draw text at the right
+place, add one to the Y coordinate when calling
+{cpp:func}`~BView::MovePenTo()` or specifying a {cpp:class}`BPoint` at
+which to begin drawing.
 :::
 
 For a font that's read from left-to-right, a series of simple
@@ -2650,8 +2637,8 @@ box). This includes all control characters (those with values less than
 
 {hmethod}`DrawString()` doesn't erase before drawing.
 
-See also: {cpp:func}`MovePenBy() <BView::MovePenBy>`, {cpp:func}`SetFont()
-<BView::SetFont>`, the {cpp:class}`BFont` class
+See also: {cpp:func}`~BView::MovePenBy()`, {cpp:func}`~BView::SetFont()`,
+the {cpp:class}`BFont` class
 ::::
 
 ::::{abi-group}
@@ -2683,9 +2670,8 @@ curve. Both functions draw using the pattern specified by
 {hparam}`aPattern`—or, if no pattern is specified, in the current high
 color. Neither function alters the current pen position.
 
-See also: {cpp:func}`StrokeEllipse() <BView::StrokeEllipse>`,
-{cpp:func}`SetPenSize() <BView::SetPenSize>`, {cpp:func}`StrokeRoundRect()
-<BView::StrokeRoundRect>`
+See also: {cpp:func}`~BView::StrokeEllipse()`,
+{cpp:func}`~BView::SetPenSize()`, {cpp:func}`~BView::StrokeRoundRect()`
 ::::
 
 ::::{abi-group}
@@ -2717,8 +2703,8 @@ These functions draw all or part of the ellipse that's inscribed in
 {hparam}`rect` or that has its center at {hparam}`center` and has
 horizontal and vertical radii {hparam}`xRadius` and {hparam}`yRadius`. The
 ellipse is always aligned with the x and y axes. A more flexible
-curve-drawing mechanism is given by {cpp:func}`StrokeBezier()
-<BView::StrokeBezier>` and {cpp:func}`FillBezier() <BView::FillBezier>`.
+curve-drawing mechanism is given by {cpp:func}`~BView::StrokeBezier()` and
+{cpp:func}`~BView::FillBezier()`.
 
 {hmethod}`StrokeEllipse()` strokes a line around the entire perimeter of
 the ellipse and {hmethod}`FillEllipse()` fills the area the ellipse
@@ -2732,7 +2718,7 @@ with an angle of 10° and span of 235°; the blue area is the same arc filled
 through {hmethod}`FillArc()`. The center of the ellipse (the yellow dot) is
 drawn for reference.
 
-![Drawing An Arc](./images/TheInterfaceKit/draw_arc.png)
+![Drawing An Arc](./_static/images/draw_arc.png)
 
 :::{admonition} Warning
 :class: warning
@@ -2761,8 +2747,8 @@ This function draws the line using the current pen size and the specified
 pattern. If no pattern is specified, the line is drawn in the current high
 color. The points are specified in the {hclass}`BView`'s coordinate system.
 
-See also: {cpp:func}`SetPenSize() <BView::SetPenSize>`
-{cpp:func}`BeginLineArray() <BView::BeginLineArray>`
+See also: {cpp:func}`~BView::SetPenSize()`
+{cpp:func}`~BView::BeginLineArray()`
 ::::
 
 ::::{abi-group}
@@ -2811,7 +2797,7 @@ Both functions draw using the specified pattern—or, if no pattern is
 specified, in the current high color. Neither function alters the current
 pen position.
 
-See also: {cpp:func}`SetPenSize() <BView::SetPenSize>`
+See also: {cpp:func}`~BView::SetPenSize()`
 ::::
 
 ::::{abi-group}
@@ -2829,8 +2815,8 @@ Both functions draw using the pattern specified by {hparam}`aPattern`—or,
 if no pattern is specified, in the current high color. Neither function
 alters the current pen position.
 
-See also: {cpp:func}`SetPenSize() <BView::SetPenSize>`,
-{cpp:func}`StrokeRoundRect() <BView::StrokeRoundRect>`
+See also: {cpp:func}`~BView::SetPenSize()`,
+{cpp:func}`~BView::StrokeRoundRect()`
 ::::
 
 ::::{abi-group}
@@ -2846,14 +2832,14 @@ equal to {hparam}`xRadius` and a vertical radius equal to
 {hparam}`yRadius`.
 
 Except for the rounded corners of the rectangle, these functions work
-exactly like {cpp:func}`StrokeRect() <BView::StrokeRect>` and
-{cpp:func}`FillRect() <BView::FillRect>`.
+exactly like {cpp:func}`~BView::StrokeRect()` and
+{cpp:func}`~BView::FillRect()`.
 
 Both functions draw using the pattern specified by {hparam}`aPattern`—or,
 if no pattern is specified, in the current high color. Neither function
 alters the current pen position.
 
-See also: {cpp:func}`StrokeEllipse() <BView::StrokeEllipse>`
+See also: {cpp:func}`~BView::StrokeEllipse()`
 ::::
 
 ::::{abi-group}
@@ -2871,7 +2857,7 @@ Both functions draw using the pattern specified by {hparam}`aPattern`—or,
 if no pattern is specified, in the current high color. Neither function
 alters the current pen position.
 
-See also: {cpp:func}`SetPenSize() <BView::SetPenSize>`
+See also: {cpp:func}`~BView::SetPenSize()`
 ::::
 
 ::::{abi-group}
@@ -2901,7 +2887,7 @@ Both functions do their drawing using the pattern specified by
 {hparam}`aPattern`—or, if no pattern is specified, in the current high
 color. Neither function alters the current pen position.
 
-See also: {cpp:func}`SetPenSize() <BView::SetPenSize>`
+See also: {cpp:func}`~BView::SetPenSize()`
 ::::
 
 ::::{abi-group}
@@ -2915,7 +2901,7 @@ See also: {cpp:func}`SetPenSize() <BView::SetPenSize>`
 :::
 
 These functions provide a more efficient way of drawing a large number of
-lines than repeated calls to {cpp:func}`StrokeLine() <BView::StrokeLine>`.
+lines than repeated calls to {cpp:func}`~BView::StrokeLine()`.
 {hmethod}`BeginLineArray()` signals the beginning of a series of up to
 count {hmethod}`AddLine()` calls; {hmethod}`EndLineArray()` signals the end
 of the series. Each {hmethod}`AddLine()` call defines a line from the start
@@ -2937,7 +2923,7 @@ accurate and within reasonable bounds helps the efficiency of the
 line-array mechanism. It's a good idea to keep it less than 256; above that
 number, memory requirements begin to impinge on performance.
 
-See also: {cpp:func}`StrokeLine() <BView::StrokeLine>`
+See also: {cpp:func}`~BView::StrokeLine()`
 ::::
 
 ::::{abi-group}
@@ -2960,13 +2946,13 @@ recording session; it returns the object that was passed to
 
 While it's recording a picture, the {hclass}`BView` doesn't display
 anything to the screen. To render the drawing, you use the
-{cpp:func}`DrawPicture() <BView::DrawPicture>` function.
+{cpp:func}`~BView::DrawPicture()` function.
 
 The picture captures only primitive graphics operations such as
-{cpp:func}`DrawString() <BView::DrawString>`, {cpp:func}`FillArc()
-<BView::FillArc>`, and {cpp:func}`SetFont() <BView::SetFont>`. Furthermore,
-only instructions performed by this view are recorded; the drawing done by
-the view's children is not recorded.
+{cpp:func}`~BView::DrawString()`, {cpp:func}`~BView::FillArc()`, and
+{cpp:func}`~BView::SetFont()`. Furthermore, only instructions performed by
+this view are recorded; the drawing done by the view's children is not
+recorded.
 
 A {cpp:class}`BPicture` can be recorded only if the {hclass}`BView` is
 attached to a window. The window can be off-screen and the view itself can
@@ -2991,7 +2977,7 @@ rather than scaled.
 If not all of the {hparam}`source` rectangle lies within the
 {hclass}`BView`'s visible region, only the visible portion is copied. It's
 mapped to the corresponding portion of the destination rectangle. The
-{hclass}`BView` is then invalidated so its {cpp:func}`Draw() <BView::Draw>`
+{hclass}`BView` is then invalidated so its {cpp:func}`~BView::Draw()`
 function will be called to update the part of the destination rectangle
 that can't be filled with the source image.
 
@@ -3028,8 +3014,8 @@ waits for the Application Server to finish rendering the image before it
 returns. {hmethod}`DrawPictureAsync()` doesn't wait; it passes the image to
 the server and returns immediately. The latter function can be more
 efficient in some cases—for example, you might use an asynchronous function
-to draw several bitmaps and then call {cpp:func}`Sync() <BView::Sync>` to
-wait for them all to finish rather than wait for each one individually:
+to draw several bitmaps and then call {cpp:func}`~BView::Sync()` to wait
+for them all to finish rather than wait for each one individually:
 
 Nothing that's done in the {cpp:class}`BPicture` can affect anything in
 the {hclass}`BView`'s graphics state—for example, the {cpp:class}`BPicture`
@@ -3038,7 +3024,7 @@ in the {hclass}`BView`'s current graphics state affects the drawing
 instructions captured in the picture. The graphics parameters that were in
 effect when the picture was recorded determine what the picture looks like.
 
-See also: {cpp:func}`BeginPicture() <BView::BeginPicture>`
+See also: {cpp:func}`~BView::BeginPicture()`
 ::::
 
 ::::{abi-group}
@@ -3100,8 +3086,8 @@ connection to the Application Server. Calling {hmethod}`Flush()` or
 :::
 
 Invalidates the {hparam}`rect` portion of the view, causing update
-messages—and consequently {cpp:func}`Draw() <BView::Draw>` notifications—to
-be generated for the {hclass}`BView` and all descendants that lie wholly or
+messages—and consequently {cpp:func}`~BView::Draw()` notifications—to be
+generated for the {hclass}`BView` and all descendants that lie wholly or
 partially within the rectangle. The rectangle is stated in the
 {hclass}`BView`'s coordinate system.
 
@@ -3111,8 +3097,9 @@ rectangle is invalidated.
 Since only {hclass}`BView`s that are attached to a window can draw, only
 attached {hclass}`BView`s can be invalidated.
 
-See also: {cpp:func}`Draw() <BView::Draw>`, {cpp:func}`GetClippingRegion()
-<BView::GetClippingRegion>`, {cpp:func}`BWindow::UpdateIfNeeded`
+See also: {cpp:func}`~BView::Draw()`,
+{cpp:func}`~BView::GetClippingRegion()`,
+{cpp:func}`BWindow::UpdateIfNeeded()`
 ::::
 
 ::::{abi-group}
@@ -3126,7 +3113,7 @@ as the user drags the mouse.
 
 The rectangle is stated in the {hclass}`BView`'s coordinate system.
 
-See also: {cpp:func}`BScreen::ColorMap`
+See also: {cpp:func}`BScreen::ColorMap()`
 ::::
 
 ::::{abi-group}
@@ -3164,7 +3151,7 @@ set, the view bitmap is tiled across the view.
 {hmethod}`ClearViewBitmap()` clears the background bitmap for the view.
 
 See also: "{ref}`The Background Bitmap`" in the "{ref}`Drawing`" section
-of this chapter, {cpp:func}`SetViewColor() <BView::SetViewColor>`
+of this chapter, {cpp:func}`~BView::SetViewColor()`
 ::::
 
 ::::{abi-group}
@@ -3196,8 +3183,8 @@ placed, unscaled, at the upper left corner of the view.
 {hparam}`follow` determines the behavior of destination as the view is
 resized; see the {hclass}`BView` {cpp:func}`constructor <BView::BView()>`
 for specifics. {hparam}`options` specifies additional view options. The
-same options allowed by {cpp:func}`SetViewBitmap() <BView::SetViewBitmap>`
-are allowed here.
+same options allowed by {cpp:func}`~BView::SetViewBitmap()` are allowed
+here.
 
 :::{admonition} Note
 :class: note
@@ -3218,8 +3205,8 @@ the version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the message doesn't contain archived data for a
 {hclass}`BView`, {hmethod}`Instantiate()` returns {cpp:expr}`NULL`.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`
 ::::
 
 ## Scripting Support
@@ -3264,10 +3251,11 @@ widths: auto
 #### Hidden
 
 The "Hidden" property determines the visibility of the view. The messages
-are equivalent to manipulating the view with the {cpp:func}`IsHidden()
-<BView::IsHidden>`, {cpp:func}`Hide() <BView::Hide>`, and {cpp:func}`Show()
-<BView::Show>`. Note that this differs slightly from {cpp:class}`BWindow`'s
-{ref}`Hidden` property, where multiple hides or shows are not nested.
+are equivalent to manipulating the view with the
+{cpp:func}`~BView::IsHidden()`, {cpp:func}`~BView::Hide()`, and
+{cpp:func}`~BView::Show()`. Note that this differs slightly from
+{cpp:class}`BWindow`'s {ref}`Hidden` property, where multiple hides or
+shows are not nested.
 
 :::{list-table}
 ---
@@ -3306,8 +3294,8 @@ The "View" property represents the child views of the current view. For
 all messages except {cpp:enumerator}`B_COUNT_PROPERTIES`, the current
 specifier is popped off the specifier stack before the scripting message is
 passed to the target view. Views can be specified either by index (as found
-by {cpp:func}`ChildAt() <BView::ChildAt>`), or name (as found by
-{cpp:func}`FindView() <BView::FindView>`).
+by {cpp:func}`~BView::ChildAt()`), or name (as found by
+{cpp:func}`~BView::FindView()`).
 
 :::{list-table}
 ---
@@ -3374,8 +3362,8 @@ widths: auto
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BView::Archive>` function adds the following
-fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BView::Archive()` function adds the following fields to
+its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

@@ -211,7 +211,7 @@ typedef enum {
 :::
 
 I haven't tried it, but I really don't think the BeOS would work at all
-well on a Timex Sinclair (see {ref}`is_computer_on_fire()`).
+well on a Timex Sinclair (see {cpp:func}`is_computer_on_fire()`).
 
 get_system_info() always returns {cpp:enumerator}`B_OK`.
 ::::

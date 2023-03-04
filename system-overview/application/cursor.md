@@ -3,7 +3,7 @@
 You can use a {cpp:class}`BCursor` to represent a mouse cursor as an
 object instead of as a block of pixel data; this can be more convenient in
 some situations. Also, if you want to call
-{cpp:func}`BApplication::SetCursor` without forcing an immediate sync of
+{cpp:func}`BApplication::SetCursor()` without forcing an immediate sync of
 the Application Server, you have to use a {cpp:class}`BCursor`.
 
 The default {cpp:class}`BCursor`s are

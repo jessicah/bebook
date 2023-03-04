@@ -33,19 +33,19 @@ Does nothing; this class relies on the {cpp:class}`BListView`
 :::{cpp:function} virtual void BOutlineListView::KeyDown(const char* bytes, int32 numBytes)
 :::
 
-Augments the inherited version of {cpp:func}`KeyDown()
-<BListView::KeyDown>` to allow users to navigate the outline hierarchy
-using the arrow keys and to expand or collapse sections of the outline
-using Control—arrow key combinations.
+Augments the inherited version of {cpp:func}`~BListView::KeyDown()` to
+allow users to navigate the outline hierarchy using the arrow keys and to
+expand or collapse sections of the outline using Control—arrow key
+combinations.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BOutlineListView::MouseDown(BPoint point)
 :::
 
-Augments the inherited version of {cpp:func}`MouseDown()
-<BView::MouseDown>` to permit users to expand and collapse sections of the
-outline by clicking on an item's latch.
+Augments the inherited version of {cpp:func}`~BView::MouseDown()` to
+permit users to expand and collapse sections of the outline by clicking on
+an item's latch.
 ::::
 
 ## Member Functions
@@ -90,13 +90,13 @@ See also: the {cpp:class}`BListItem` class
 :::{cpp:function} virtual bool BOutlineListView::AddList(BList* newItems, int32 index)
 :::
 
-Adds a group of items to the list just as {cpp:func}`AddItem()
-<BOutlineListView::AddItem>` adds a single item. The {hparam}`index` counts
-all items assigned to the {hclass}`BOutlineListView`. The
-{hparam}`newItems` {cpp:class}`BList` must contain pointers to
-{cpp:class}`BListItem` objects.
+Adds a group of items to the list just as
+{cpp:func}`~BOutlineListView::AddItem()` adds a single item. The
+{hparam}`index` counts all items assigned to the
+{hclass}`BOutlineListView`. The {hparam}`newItems` {cpp:class}`BList` must
+contain pointers to {cpp:class}`BListItem` objects.
 
-See also: {cpp:func}`BListView::AddList`
+See also: {cpp:func}`BListView::AddList()`
 ::::
 
 ::::{abi-group}
@@ -104,13 +104,13 @@ See also: {cpp:func}`BListView::AddList`
 :::
 
 Archives the {hclass}`BOutlineListView` object much as the
-{cpp:func}`Archive() <BListView::Archive>` function in the
-{cpp:class}`BListView` class does, but makes sure that all items are
-archived, including items in collapsed sections of the list, when the
-{hparam}`deep` flag is {cpp:expr}`true`.
+{cpp:func}`~BListView::Archive()` function in the {cpp:class}`BListView`
+class does, but makes sure that all items are archived, including items in
+collapsed sections of the list, when the {hparam}`deep` flag is
+{cpp:expr}`true`.
 
-See also: {cpp:func}`BListView::Archive`, {cpp:func}`Instantiate()
-<BOutlineListView::Instantiate>` static function
+See also: {cpp:func}`BListView::Archive()`,
+{cpp:func}`~BOutlineListView::Instantiate()` static function
 ::::
 
 ::::{abi-group}
@@ -125,7 +125,7 @@ the {hparam}`item` superitem. If {hparam}`item` isn't a superitem, it is
 nevertheless flagged as expanded or collapsed so that it will behave
 appropriately in case it does become a superitem.
 
-See also: {cpp:func}`BListItem::SetExpanded`
+See also: {cpp:func}`BListItem::SetExpanded()`
 ::::
 
 ::::{abi-group}
@@ -142,13 +142,13 @@ those subitems and so forth.
 :::{admonition} Note
 :class: note
 When {hparam}`oneLevelOnly` is {cpp:expr}`false`,
-{hmethod}`CountItemsUnder()` acts just like {cpp:func}`FullListCountItems()
-<BOutlineListView::FullListCountItems>`, except the first item in the list
-that's considered is {hparam}`underItem` instead of the first item in the
-full list.
+{hmethod}`CountItemsUnder()` acts just like
+{cpp:func}`~BOutlineListView::FullListCountItems()`, except the first item
+in the list that's considered is {hparam}`underItem` instead of the first
+item in the full list.
 :::
 
-See also: {cpp:func}`BListView::CountItems`
+See also: {cpp:func}`BListView::CountItems()`
 ::::
 
 ::::{abi-group}
@@ -175,13 +175,13 @@ is returned by {hmethod}`EachItemUnder()`.
 :::{admonition} Note
 :class: note
 When {hparam}`oneLevelOnly` is {cpp:expr}`false`,
-{hmethod}`EachItemUnder()` acts just like {cpp:func}`FullListDoForEach()
-<BOutlineListView::FullListDoForEach>`, except the first item in the list
-that's considered is {hparam}`underItem` instead of the first item in the
-full list.
+{hmethod}`EachItemUnder()` acts just like
+{cpp:func}`~BOutlineListView::FullListDoForEach()`, except the first item
+in the list that's considered is {hparam}`underItem` instead of the first
+item in the full list.
 :::
 
-See also: {cpp:func}`BListView::DoForEach`
+See also: {cpp:func}`BListView::DoForEach()`
 ::::
 
 ::::{abi-group}
@@ -232,12 +232,12 @@ consider only items in sections of the outline that can be displayed
 on-screen—that is, they skip over items in collapsed portions of the list.
 
 These {hclass}`BOutlineListView` functions, on the other hand, consider
-all items in the list. For example, {cpp:func}`IndexOf()
-<BListView::IndexOf>` and {hmethod}`FullListIndexOf()` both return an index
-to a given item. However, for {cpp:func}`IndexOf() <BListView::IndexOf>`
-the index is to the position of the item in the list that can be currently
-displayed, but for {hmethod}`FullListIndexOf()` it's to the item's position
-in the full list, including collapsed sections.
+all items in the list. For example, {cpp:func}`~BListView::IndexOf()` and
+{hmethod}`FullListIndexOf()` both return an index to a given item. However,
+for {cpp:func}`~BListView::IndexOf()` the index is to the position of the
+item in the list that can be currently displayed, but for
+{hmethod}`FullListIndexOf()` it's to the item's position in the full list,
+including collapsed sections.
 ::::
 
 ::::{abi-group}
@@ -253,7 +253,7 @@ display its subitems; if not, the subitems are hidden.
 The {hparam}`index` passed to this function is to the full list of items
 assigned to the {hclass}`BOutlineListView`.
 
-See also: {cpp:func}`BListItem::IsExpanded`
+See also: {cpp:func}`BListItem::IsExpanded()`
 ::::
 
 ::::{abi-group}
@@ -269,10 +269,9 @@ recursively to locate the appropriate index.
 :::{admonition} Note
 :class: note
 When {hparam}`oneLevelOnly` is {cpp:expr}`false`, {hmethod}`ItemUnderAt()`
-acts just like {cpp:func}`FullListItemAt()
-<BOutlineListView::FullListItemAt>`, except the first item in the list
-that's considered is {hparam}`underItem` instead of the first item in the
-full list.
+acts just like {cpp:func}`~BOutlineListView::FullListItemAt()`, except the
+first item in the list that's considered is {hparam}`underItem` instead of
+the first item in the full list.
 :::
 ::::
 
@@ -280,8 +279,8 @@ full list.
 :::{cpp:function} virtual void BOutlineListView::MakeEmpty()
 :::
 
-Overrides the {cpp:class}`BListView` version of {cpp:func}`MakeEmpty()
-<BListView::MakeEmpty>` to remove all items from the list. The
+Overrides the {cpp:class}`BListView` version of
+{cpp:func}`~BListView::MakeEmpty()` to remove all items from the list. The
 {cpp:class}`BListView` version of this function won't work as advertised on
 a {hclass}`BOutlineListView`.
 ::::
@@ -314,7 +313,7 @@ item being removed is in an expanded section of the list and is not a
 superitem.
 :::
 
-See also: {cpp:func}`BListView::RemoveItem`
+See also: {cpp:func}`BListView::RemoveItem()`
 ::::
 
 ::::{abi-group}
@@ -335,10 +334,10 @@ for each superitem with {hparam}`oneLevelOnly` set to {cpp:expr}`true`.
 :::{admonition} Note
 :class: note
 When {hparam}`oneLevelOnly` is {cpp:expr}`false`,
-{hmethod}`SortItemsUnder()` acts just like {cpp:func}`FullListSortItems()
-<BOutlineListView::FullListSortItems>`, except the first item in the list
-that's considered is {hparam}`underItem` instead of the first item in the
-full list.
+{hmethod}`SortItemsUnder()` acts just like
+{cpp:func}`~BOutlineListView::FullListSortItems()`, except the first item
+in the list that's considered is {hparam}`underItem` instead of the first
+item in the full list.
 :::
 ::::
 
@@ -364,7 +363,6 @@ created with the version of the constructor that takes a
 {cpp:expr}`NULL` if the specified {hparam}`archive` doesn't contain data
 for a {hclass}`BOutlineListView` object.
 
-See also: {cpp:func}`BArchivable::Instantiate`,
-{cpp:func}`instantiate_object() <instantiate::object>`,
-{cpp:func}`Archive() <BOutlineListView::Archive>`
+See also: {cpp:func}`BArchivable::Instantiate()`,
+{cpp:func}`instantiate_object()`, {cpp:func}`~BOutlineListView::Archive()`
 ::::

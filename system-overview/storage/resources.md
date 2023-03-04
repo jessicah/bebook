@@ -13,9 +13,9 @@ regular data file—use attributes instead.
 
 The data that a file contains is either "flat," or it's "structured." To
 read a flat file, you simply open it (through a {cpp:class}`BFile` object)
-and start {cpp:func}`Read() <BFile::Read>`'ing. Structured data requires
-that you understand the structure. Typically, an application understands
-the structure either because it's a well-known format, or because the
+and start {cpp:func}`~BFile::Read()`'ing. Structured data requires that you
+understand the structure. Typically, an application understands the
+structure either because it's a well-known format, or because the
 application itself wrote the file in the first place.
 
 The {hclass}`BResources` class defines a simple design for storing
@@ -41,7 +41,7 @@ The {hclass}`BResources` class provides the means for reading and writing
 a file's resources, but it doesn't let you access the file directly.
 Instead, you must initialize the {hclass}`BResources` object by passing it
 a valid {cpp:class}`BFile` object, either in the constructor or the
-{cpp:func}`SetTo() <BResources::SetTo>` function. Note the following:
+{cpp:func}`~BResources::SetTo()` function. Note the following:
 
 -   The {cpp:class}`BFile` that you pass in is copied by the
 {hclass}`BResources` object. Thus, initializing a {hclass}`BResources`
@@ -63,8 +63,8 @@ copy of your object.
 
 -   Unfortunately, {hclass}`BResources` lacks an {hmethod}`InitCheck()`
 function. If you want to check initialization errors, you should always
-initialize through {cpp:func}`SetTo() <BResources::SetTo>`, rather than
-through the constructor.
+initialize through {cpp:func}`~BResources::SetTo()`, rather than through
+the constructor.
 
 ### Identifying and Creating Resource Files
 
@@ -137,24 +137,23 @@ FiddleResource() functions to examine and manipulate the file's resources:
 
 ### Generative Functions
 
--   {cpp:func}`AddResource() <BResources::AddResource>` adds a new resource to
-the file.
+-   {cpp:func}`~BResources::AddResource()` adds a new resource to the file.
 
--   {cpp:func}`RemoveResource() <BResources::RemoveResource>` removes an
-existing resource from the file.
+-   {cpp:func}`~BResources::RemoveResource()` removes an existing resource
+from the file.
 
 ### Data Function
 
--   {cpp:func}`LoadResource() <BResources::LoadResource>` loads a resource
-from disk and returns a pointer to it.
+-   {cpp:func}`~BResources::LoadResource()` loads a resource from disk and
+returns a pointer to it.
 
 ### Info Functions
 
--   {cpp:func}`HasResource() <BResources::HasResource>` tells you if the file
-contains a specified resource.
+-   {cpp:func}`~BResources::HasResource()` tells you if the file contains a
+specified resource.
 
--   {cpp:func}`GetResourceInfo() <BResources::GetResourceInfo>` returns
-information about a resource.
+-   {cpp:func}`~BResources::GetResourceInfo()` returns information about a
+resource.
 
 As mentioned earlier, the {cpp:class}`BFile` that you use to initialize a
 {hclass}`BResources` object must be open for reading. If you also want to
@@ -189,8 +188,8 @@ type or with the ID.
 
 Some functions also provide the option to use a pointer to a resource's
 data to identify the resource; once a resource has been loaded into memory
-by calling {cpp:func}`LoadResource() <BResources::LoadResource>`, you can
-use the resulting pointer to identify it.
+by calling {cpp:func}`~BResources::LoadResource()`, you can use the
+resulting pointer to identify it.
 
 ### Data Format
 
@@ -207,7 +206,7 @@ Resource data that you retrieve from a {hclass}`BResources` object belongs
 to the {hclass}`BResources` object. You mustn't free() these pointers.
 
 Individual changes that you make to the resource file are cached in memory
-until you call the {cpp:func}`Sync() <BResources::Sync>` function. Other
+until you call the {cpp:func}`~BResources::Sync()` function. Other
 applications won't see the changes until then.
 
 ## Reading and Writing a Resource File as a Plain File

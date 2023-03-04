@@ -34,7 +34,7 @@ typedef void (*cleanup_hook)(void *context, bigtime_t time, int32 what,
 :::
 
 You specify the cleanup hook function by calling
-{cpp:func}`SetCleanupHook() <BTimedEventQueue::SetCleanupHook>`, like this:
+{cpp:func}`~BTimedEventQueue::SetCleanupHook()`, like this:
 
 :::{code}
 SetCleanupHook(MyCleanupFunction, contextPtr);

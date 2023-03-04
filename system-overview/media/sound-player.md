@@ -18,16 +18,16 @@ Once you've instantiated a {cpp:class}`BSoundPlayer` object, you need to
 start it up before you can actually play sounds with it. This instantiates
 the sound player node, attaches it to an appropriate time source, and makes
 sure the time source is running. This is done by calling the
-{cpp:func}`Start() <BSoundPlayer::Start>` function.
+{cpp:func}`~BSoundPlayer::Start()` function.
 
 When you're done using the {cpp:class}`BSoundPlayer`, you can delete it if
 you don't plan to use it again, or, if you want to keep it around for
-reuse, you can just {cpp:func}`Stop() <BSoundPlayer::Stop>` it. This
-deletes the sound node and cleans up the sounds.
+reuse, you can just {cpp:func}`~BSoundPlayer::Stop()` it. This deletes the
+sound node and cleans up the sounds.
 
 You can find out the current time of the time source to which sounds are
-being synchronized by calling the {cpp:func}`CurrentTime()
-<BSoundPlayer::CurrentTime>` function.
+being synchronized by calling the {cpp:func}`~BSoundPlayer::CurrentTime()`
+function.
 
 By default, the audio format used by a {cpp:class}`BSoundPlayer` is
 {hclass}`BSoundPlayer`::{cpp:enumerator}`B_AUDIO_FLOAT`, which is to say
@@ -54,11 +54,11 @@ size.
 
 When you specify a play buffer handler function, either when instantiating
 the {cpp:class}`BSoundPlayer` object or by calling
-{cpp:func}`SetCallbacks() <BSoundPlayer::SetCallbacks>` or
-{cpp:func}`SetBufferPlayer() <BSoundPlayer::SetBufferPlayer>`, that
-function will be called once for each buffer that passes through the
-{cpp:class}`BSoundPlayer`'s sound playing node. Your play buffer handler
-can then fill the buffer with whatever data you wish.
+{cpp:func}`~BSoundPlayer::SetCallbacks()` or
+{cpp:func}`~BSoundPlayer::SetBufferPlayer()`, that function will be called
+once for each buffer that passes through the {cpp:class}`BSoundPlayer`'s
+sound playing node. Your play buffer handler can then fill the buffer with
+whatever data you wish.
 
 The following code sets up a {cpp:class}`BSoundPlayer` that will play a
 triangle wave.
@@ -87,13 +87,12 @@ buffer function will need to track, and creates a {cpp:class}`BSoundPlayer`
 named "wave_player" that will use a function called BufferProc() to play
 sound, and uses the cookie we've created.
 
-Then the player is started, and {cpp:func}`SetHasData()
-<BSoundPlayer::SetHasData>` is called to let the sound player node know
-that there's data to be played. This will cause the play buffer function to
-start being called.
+Then the player is started, and {cpp:func}`~BSoundPlayer::SetHasData()` is
+called to let the sound player node know that there's data to be played.
+This will cause the play buffer function to start being called.
 
-Once playback is over, the {cpp:func}`Stop() <BSoundPlayer::Stop>`
-function is called to stop playback.
+Once playback is over, the {cpp:func}`~BSoundPlayer::Stop()` function is
+called to stop playback.
 
 The BufferProc() function looks like this:
 

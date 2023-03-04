@@ -10,36 +10,32 @@ two derived classes: {cpp:class}`BDirectory` and {cpp:class}`BQuery`.
 At the heart of the {hclass}`BEntryList` class are the three
 {hmethod}`GetNext…()` functions, which let you retrieve the entries as…
 
--   {cpp:class}`BEntry` objects ({cpp:func}`GetNextEntry()
-<BEntryList::GetNextEntry>`),
+-   {cpp:class}`BEntry` objects ({cpp:func}`~BEntryList::GetNextEntry()`),
 
--   {htype}`entry_ref` structures ({cpp:func}`GetNextRef()
-<BEntryList::GetNextRef>`),
+-   {htype}`entry_ref` structures ({cpp:func}`~BEntryList::GetNextRef()`),
 
 -   or {htype}`dirent` ("directory entry") structures
-({cpp:func}`GetNextDirents() <BEntryList::GetNextDirents>`).
+({cpp:func}`~BEntryList::GetNextDirents()`).
 
 You call these functions iteratively; each call gets the "next" entry (or
-set of entries in the case of {cpp:func}`GetNextDirents()
-<BEntryList::GetNextDirents>`). You check the {hmethod}`GetNext…()` return
-value to detect the end of the list:
+set of entries in the case of {cpp:func}`~BEntryList::GetNextDirents()`).
+You check the {hmethod}`GetNext…()` return value to detect the end of the
+list:
 
--   For {cpp:func}`GetNextEntry() <BEntryList::GetNextEntry>` and
-{cpp:func}`GetNextRef() <BEntryList::GetNextRef>`,
-{cpp:enumerator}`B_ENTRY_NOT_FOUND` indicates that there are no more
-entries to get.
+-   For {cpp:func}`~BEntryList::GetNextEntry()` and
+{cpp:func}`~BEntryList::GetNextRef()`, {cpp:enumerator}`B_ENTRY_NOT_FOUND`
+indicates that there are no more entries to get.
 
--   {cpp:func}`GetNextDirents() <BEntryList::GetNextDirents>` returns 0 when
-it's at the end of the list.
+-   {cpp:func}`~BEntryList::GetNextDirents()` returns 0 when it's at the end
+of the list.
 
-To get back to the top of an entry list, you call {cpp:func}`Rewind()
-<BEntryList::Rewind>`, but note…
+To get back to the top of an entry list, you call
+{cpp:func}`~BEntryList::Rewind()`, but note…
 
 :::{admonition} Warning
 :class: warning
-{cpp:func}`Rewind() <BEntryList::Rewind>` applies to
-{cpp:class}`BDirectory`s only. You can't rewind a {cpp:class}`BQuery`'s
-entry list.
+{cpp:func}`~BEntryList::Rewind()` applies to {cpp:class}`BDirectory`s
+only. You can't rewind a {cpp:class}`BQuery`'s entry list.
 :::
 
 Here's an example of an iteration over all the entries in a
@@ -54,15 +50,15 @@ while (dir.GetNextEntry(&entry) == B_OK)
    /* do something with entry here. */
 :::
 
-The final {hclass}`BEntryList` function, {cpp:func}`CountEntries()
-<BEntryList::CountEntries>`, also only applies to {cpp:class}`BDirectory`s;
-but even there you shouldn't depend on it. The count is stale as soon as
-{cpp:func}`CountEntries() <BEntryList::CountEntries>` returns. The user
-could create a new file or delete a file in the directory while you're
-iterating over the entries. Also, {cpp:func}`CountEntries()
-<BEntryList::CountEntries>` shares the entry list pointer with the
-{hmethod}`GetNext…()` functions. You mustn't intermingle a
-{cpp:func}`CountEntries() <BEntryList::CountEntries>` call within your
+The final {hclass}`BEntryList` function,
+{cpp:func}`~BEntryList::CountEntries()`, also only applies to
+{cpp:class}`BDirectory`s; but even there you shouldn't depend on it. The
+count is stale as soon as {cpp:func}`~BEntryList::CountEntries()` returns.
+The user could create a new file or delete a file in the directory while
+you're iterating over the entries. Also,
+{cpp:func}`~BEntryList::CountEntries()` shares the entry list pointer with
+the {hmethod}`GetNext…()` functions. You mustn't intermingle a
+{cpp:func}`~BEntryList::CountEntries()` call within your
 {hmethod}`GetNext…()` loop.
 
 One more {cpp:class}`BDirectory` wrinkle:
@@ -76,9 +72,9 @@ will show up under its old name and its new name.
 
 Each {hclass}`BEntryList` object has a single iterator pointer that's
 shared by all three {hmethod}`GetNext…()` formats (and
-{cpp:func}`CountEntries() <BEntryList::CountEntries>`). Thus, each
-successive call to a {hmethod}`GetNext…()` function gets the next entry,
-regardless of the format. For example:
+{cpp:func}`~BEntryList::CountEntries()`). Thus, each successive call to a
+{hmethod}`GetNext…()` function gets the next entry, regardless of the
+format. For example:
 
 :::{code} cpp
 BEntry entry;
@@ -93,51 +89,47 @@ Here, {hparam}`entry` represents the first entry in the directory, and
 
 ## Multiple Retrieval
 
-{cpp:func}`GetNextDirents() <BEntryList::GetNextDirents>` is different
-from the other two flavors in that it can retrieve more than one entry at a
-time. Or it will, someday; currently {cpp:func}`GetNextDirents()
-<BEntryList::GetNextDirents>` retrieves only one entry at a time, no matter
-how many you ask for.
+{cpp:func}`~BEntryList::GetNextDirents()` is different from the other two
+flavors in that it can retrieve more than one entry at a time. Or it will,
+someday; currently {cpp:func}`~BEntryList::GetNextDirents()` retrieves only
+one entry at a time, no matter how many you ask for.
 
 ## Choosing an Iterator
 
 So, which flavor of {hmethod}`GetNext…()` should you use? Here's how they
 compare:
 
--   {cpp:func}`GetNextDirents() <BEntryList::GetNextDirents>` is by far the
-fastest (even in the current one-struct-at-a-time version), but it's also
-the least wieldy—the protocol isn't nearly as nice as the other two
-functions. The {htype}`dirent` structure, while jam-packed with fun facts,
-usually has to be turned into other structures ({htype}`node_ref`s or
-{htype}`entry_ref`s) in order to be useful.
+-   {cpp:func}`~BEntryList::GetNextDirents()` is by far the fastest (even in
+the current one-struct-at-a-time version), but it's also the least
+wieldy—the protocol isn't nearly as nice as the other two functions. The
+{htype}`dirent` structure, while jam-packed with fun facts, usually has to
+be turned into other structures ({htype}`node_ref`s or {htype}`entry_ref`s)
+in order to be useful.
 
--   {cpp:func}`GetNextRef() <BEntryList::GetNextRef>` is slower, but the
+-   {cpp:func}`~BEntryList::GetNextRef()` is slower, but the
 {htype}`entry_ref` structure can be immediately usable (or, at least,
 cachable). Nonetheless, you're still a step away from a "real" object.
 
--   {cpp:func}`GetNextEntry() <BEntryList::GetNextEntry>` is the slowest, but
-at least it hands you an object that you can sink your teeth into.
+-   {cpp:func}`~BEntryList::GetNextEntry()` is the slowest, but at least it
+hands you an object that you can sink your teeth into.
 
 The actual timing numbers depend on your machine, the class that you're
 invoking the functions through, and some other factors. But the difference
-is (ahem) significant: {cpp:func}`GetNextDirents()
-<BEntryList::GetNextDirents>` is about an order of magnitude faster than
-{cpp:func}`GetNextEntry() <BEntryList::GetNextEntry>`, with
-{cpp:func}`GetNextRef() <BEntryList::GetNextRef>` right about in the
-middle.
+is (ahem) significant: {cpp:func}`~BEntryList::GetNextDirents()` is about
+an order of magnitude faster than {cpp:func}`~BEntryList::GetNextEntry()`,
+with {cpp:func}`~BEntryList::GetNextRef()` right about in the middle.
 
 If, for example, you're simply compiling a list of leaf names, you should
-certainly use {cpp:func}`GetNextDirents() <BEntryList::GetNextDirents>`
-(painful though it may be). But if you plan on actually doing something
-with each and every entry that you retrieve, then bite the bullet: Use
-{cpp:func}`GetNextEntry() <BEntryList::GetNextEntry>`.
+certainly use {cpp:func}`~BEntryList::GetNextDirents()` (painful though it
+may be). But if you plan on actually doing something with each and every
+entry that you retrieve, then bite the bullet: Use
+{cpp:func}`~BEntryList::GetNextEntry()`.
 
 ## The dirent Structure and GetNextDirents()
 
-Of the three iterator functions, {cpp:func}`GetNextDirents()
-<BEntryList::GetNextDirents>` needs some explanation. The dirent structure,
-which is what the function returns, describes aspects of the retrieved
-entry:
+Of the three iterator functions, {cpp:func}`~BEntryList::GetNextDirents()`
+needs some explanation. The dirent structure, which is what the function
+returns, describes aspects of the retrieved entry:
 
 :::{code} c
 typedef struct dirent {
@@ -208,8 +200,7 @@ lunch.
 
 ::::{abi-group}
 Now that we know what to do with a dirent, let's see how to get one. The
-{cpp:func}`GetNextDirents() <BEntryList::GetNextDirents>` protocol looks
-like this:
+{cpp:func}`~BEntryList::GetNextDirents()` protocol looks like this:
 
 :::{cpp:function} int32 BEntryList::GetNextDirents(dirent* buf, size_t bufsize, int32 count = INT_MAX)
 :::
@@ -223,9 +214,9 @@ it actually got.
 
 :::{admonition} Warning
 :class: warning
-Keep in mind that currently {cpp:func}`GetNextDirents()
-<BEntryList::GetNextDirents>` can only read one dirent at a time,
-regardless of the size of {hparam}`buf`, or the value of {hparam}`count`.
+Keep in mind that currently {cpp:func}`~BEntryList::GetNextDirents()` can
+only read one dirent at a time, regardless of the size of {hparam}`buf`, or
+the value of {hparam}`count`.
 :::
 
 Let's try it. For the purposes of this example, we'll convert each

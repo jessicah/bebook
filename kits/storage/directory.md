@@ -28,19 +28,18 @@
 :::
 
 Creates a new {hclass}`BDirectory` object that represents the directory as
-given by the arguments. See the analogous {cpp:func}`SetTo()
-<BDirectory::SetTo>` functions for descriptions of the flavorful
-constructors.
+given by the arguments. See the analogous {cpp:func}`~BDirectory::SetTo()`
+functions for descriptions of the flavorful constructors.
 
 -   The default constructor does nothing; it should be followed by a call to
-{cpp:func}`SetTo() <BDirectory::SetTo>`.
+{cpp:func}`~BDirectory::SetTo()`.
 
 -   The copy constructor points the {hclass}`BDirectory` to the same directory
 as is represented by the argument. The two objects have their own entry
 iterators.
 
 To check to see if an initialization was successful, call
-{cpp:func}`InitCheck() <BNode::InitCheck>`.
+{cpp:func}`~BNode::InitCheck()`.
 ::::
 
 ::::{abi-group}
@@ -121,8 +120,8 @@ that the new symbolic link will be linked to.
 
 The object argument (the {hclass}`BDirectory`, {cpp:class}`BFile`, or
 {cpp:class}`BSymLink`) may be {cpp:expr}`NULL`. If the function fails, the
-object argument, if non-{cpp:expr}`NULL`, is {cpp:func}`Unset()
-<BDirectory::Unset>`.
+object argument, if non-{cpp:expr}`NULL`, is
+{cpp:func}`~BDirectory::Unset()`.
 
 :::{list-table}
 ---
@@ -206,9 +205,8 @@ needn't be initialized).
 the {cpp:class}`BEntry` that points to the link itself.
 
 If {hparam}`path` isn't found, the second argument is automatically
-{cpp:func}`Unset() <BDirectory::Unset>`. To find out why the lookup failed,
-invoke {cpp:func}`InitCheck() <BNode::InitCheck>` on the {hparam}`entry`
-argument:
+{cpp:func}`~BDirectory::Unset()`. To find out why the lookup failed, invoke
+{cpp:func}`~BNode::InitCheck()` on the {hparam}`entry` argument:
 
 :::{code} cpp
 BEntry entry;
@@ -220,7 +218,7 @@ if (dir.FindEntry("aFile", &entry) != B_OK) {
 :::
 
 The direct return value is also informative, but it may not be as precise
-as the {cpp:func}`InitCheck() <BNode::InitCheck>` value.
+as the {cpp:func}`~BNode::InitCheck()` value.
 
 :::{list-table}
 ---
@@ -263,8 +261,7 @@ widths: auto
 :::
 
 Initializes {hparam}`entry` to represent this {hclass}`BDirectory`. If the
-initialization fails, {hparam}`entry` is {cpp:func}`Unset()
-<BDirectory::Unset>`.
+initialization fails, {hparam}`entry` is {cpp:func}`~BDirectory::Unset()`.
 
 :::{list-table}
 ---
@@ -368,8 +365,8 @@ including the entries for "." and "..". The other two versions skip these
 entries.
 
 When you're done reading the {hclass}`BDirectory`'s entries, you can
-rewind the object's entry iterator by calling {cpp:func}`Rewind()
-<BDirectory::Rewind>`.
+rewind the object's entry iterator by calling
+{cpp:func}`~BDirectory::Rewind()`.
 
 {hmethod}`CountEntries()` returns the number of entries (not counting "."
 and "..") in the directory.
@@ -567,8 +564,8 @@ BDirectory a = b;
 
 {hclass}`BDirectory` {hparam}`a` is initialized to refer to the same
 directory as {hparam}`b`. To gauge the success of the assignment, you
-should call {cpp:func}`InitCheck() <BNode::InitCheck>` immediately
-afterwards. Assigning a {hclass}`BDirectory` to itself is safe.
+should call {cpp:func}`~BNode::InitCheck()` immediately afterwards.
+Assigning a {hclass}`BDirectory` to itself is safe.
 
 Assigning from an uninitialized {hclass}`BDirectory` is "successful": The
 assigned-to {hclass}`BDirectory` will also be uninitialized
@@ -813,15 +810,13 @@ widths: auto
 
 :::
 
-These constants are used when calling the {cpp:func}`find_directory()
-<find::directory>` function to determine the pathname of a particular
-directory of interest.
+These constants are used when calling the {cpp:func}`find_directory()`
+function to determine the pathname of a particular directory of interest.
 
 {cpp:enumerator}`B_DESKTOP_DIRECTORY` and
 {cpp:enumerator}`B_TRASH_DIRECTORY` are per-volume directories; if you
 don't specify the volume you wish to locate these directories on,
-{cpp:func}`find_directory() <find::directory>` will assume you mean the
-boot disk.
+{cpp:func}`find_directory()` will assume you mean the boot disk.
 
 {cpp:enumerator}`B_APPS_DIRECTORY` and
 {cpp:enumerator}`B_PREFERENCES_DIRECTORY` are global directories, and

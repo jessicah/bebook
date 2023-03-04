@@ -34,12 +34,12 @@ There are two Node Monitor functions, watch_node() and stop_watching().
 The names are a wee bit misleading, so before we go on to the full
 technical descriptions, let's nip some buds:
 
--   {cpp:func}`watch_node() <watch::node>` tells the Node Monitor to start
-__or stop__ watching a __specific__ node, or to watch for volumes being
-mounted and unmounted. Memorize the emphasized words.
+-   {cpp:func}`watch_node()` tells the Node Monitor to start __or stop__
+watching a __specific__ node, or to watch for volumes being mounted and
+unmounted. Memorize the emphasized words.
 
--   {cpp:func}`stop_watching() <stop::watching>` tells the Node Monitor to
-stop sending notifications to a particular target.
+-   {cpp:func}`stop_watching()` tells the Node Monitor to stop sending
+notifications to a particular target.
 
 ::::{abi-group}
 :::{cpp:function} status_t The Node Monitor::watch_node(const node_ref* nref, uint32 flags, BMessenger messenger)
@@ -54,7 +54,7 @@ watch_node() tells the Node Monitor to…
 <node::ref>` argument. If you're watching for volumes (only),
 {hparam}`nref` can be {cpp:expr}`NULL`. The easiest way to get a
 {cpp:func}`node_ref <node::ref>` is to invoke
-{cpp:func}`BStatable::GetNodeRef` on any {cpp:class}`BEntry` or
+{cpp:func}`BStatable::GetNodeRef()` on any {cpp:class}`BEntry` or
 {cpp:class}`BNode` object.
 
 -   The {hparam}`flags` argument lists the changes that you want the Monitor
@@ -63,10 +63,9 @@ to pay attention to. See below for details.
 -   The target of the change notification messages is specified either as a
 {cpp:class}`BMessenger`, or as a {cpp:class}`BHandler` /
 {cpp:class}`BLooper` pair. (The target specification follows the
-{cpp:func}`BInvoker::SetTarget` protocol; see the {cpp:class}`BInvoker`
+{cpp:func}`BInvoker::SetTarget()` protocol; see the {cpp:class}`BInvoker`
 class for details.) The notification shows up as a {cpp:class}`BMessage` in
-the target's {cpp:func}`MessageReceived() <BHandler::MessageReceived>`
-function.
+the target's {cpp:func}`~BHandler::MessageReceived()` function.
 
 :::{admonition} Note
 :class: note
@@ -91,20 +90,6 @@ status_t WatchThis(BEntry *entry)
 :::
 
 #### Monitor Flags
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 watch_node()'s {hparam}`flags` argument is a combination of the following
 
@@ -453,7 +438,7 @@ err = watch_node(&nref, B_WATCH_ALL, be_app_messenger);
 Note that the {hparam}`directory` field is a node number. By combining
 this number with the {hparam}`device` field, you can create a
 {htype}`node_ref` that points to the entry's parent. From there, you're a
-{cpp:func}`SetTo() <BDirectory::SetTo>` away from a {cpp:class}`BDirectory`
+{cpp:func}`~BDirectory::SetTo()` away from a {cpp:class}`BDirectory`
 object:
 
 :::{code} cpp
@@ -865,7 +850,7 @@ fields (an example of this is given in {cpp:enumerator}`B_ENTRY_REMOVED`).
 A file system device (in other words, a volume) was mounted.
 
 You get this if you passed {cpp:enumerator}`B_WATCH_MOUNT` to
-{cpp:func}`watch_node() <watch::node>`. The message's fields are:
+{cpp:func}`watch_node()`. The message's fields are:
 
 :::{list-table}
 ---
@@ -915,14 +900,14 @@ device's mount point.
 :::
 
 Obviously, there's no node involved, here, so the first argument to the
-{cpp:func}`watch_node() <watch::node>` call can be {cpp:expr}`NULL`:
+{cpp:func}`watch_node()` call can be {cpp:expr}`NULL`:
 
 :::{code} cpp
 watch_node(NULL, B_WATCH_MOUNT, be_app_messenger);
 :::
 
 Unlike with the other "watch flags," the only way to stop the
-mount-watching is to call {cpp:func}`stop_watching() <stop::watching>`.
+mount-watching is to call {cpp:func}`stop_watching()`.
 ::::
 
 ::::{abi-group}
@@ -932,7 +917,7 @@ mount-watching is to call {cpp:func}`stop_watching() <stop::watching>`.
 A file system device (in other words, a volume) was unmounted.
 
 You get this if you passed {cpp:enumerator}`B_WATCH_MOUNT` to
-{cpp:func}`watch_node() <watch::node>`. The message's fields are:
+{cpp:func}`watch_node()`. The message's fields are:
 
 :::{list-table}
 ---

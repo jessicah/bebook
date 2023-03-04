@@ -53,17 +53,17 @@ changed once they're set. The name shouldn't exceed
 In setting the length of a port's message queue, you're telling it how
 many messages it can hold at a time. When the queue is filled—when it's
 holding queue_length messages—subsequent invocations of
-{cpp:func}`write_port() <write::port>` (on that port) block until room is
-made in the queue (through calls to {cpp:func}`read_port() <read::port>`)
-for the additional messages. Once the queue length is set by create_port(),
-it can't be changed.
+{cpp:func}`write_port()` (on that port) block until room is made in the
+queue (through calls to {cpp:func}`read_port()`) for the additional
+messages. Once the queue length is set by create_port(), it can't be
+changed.
 
 This function sets the owner of the port to be the team of the calling
 thread. Ownership can subsequently be transferred through the
-{ref}`set_port_owner()` function. When a port's owner dies (when all the
-threads in the team are dead), the port is automatically deleted. If you
-want to delete a port prior to its owner's death, use the
-{cpp:func}`delete_port() <delete::port>` function.
+{cpp:func}`set_port_owner()` function. When a port's owner dies (when all
+the threads in the team are dead), the port is automatically deleted. If
+you want to delete a port prior to its owner's death, use the
+{cpp:func}`delete_port()` function.
 
 :::{list-table}
 ---
@@ -91,13 +91,12 @@ widths: auto
 :::
 
 Closes the port so no more messages can be written to it. After you close
-a port, you can call {cpp:func}`read_port() <read::port>` on it, but a
-{cpp:func}`write_port() <write::port>` call will return
-{cpp:enumerator}`B_BAD_PORT_ID`. You can't reopen a closed port; you call
-this function so you can read through a port's unread messages prior to
-deleting the port, while ensuring that no new messages will show up. After
-you've read the messages, you should call {cpp:func}`delete_port()
-<delete::port>` on {hparam}`port`.
+a port, you can call {cpp:func}`read_port()` on it, but a
+{cpp:func}`write_port()` call will return {cpp:enumerator}`B_BAD_PORT_ID`.
+You can't reopen a closed port; you call this function so you can read
+through a port's unread messages prior to deleting the port, while ensuring
+that no new messages will show up. After you've read the messages, you
+should call {cpp:func}`delete_port()` on {hparam}`port`.
 
 :::{list-table}
 ---
@@ -126,9 +125,9 @@ widths: auto
 
 Deletes the given {hparam}`port`. The port's message queue doesn't have to
 be empty—you can delete a port that's holding unread messages. Threads that
-are blocked in {cpp:func}`read_port() <read::port>` or
-{cpp:func}`write_port() <write::port>` calls on the port are automatically
-unblocked (and return {cpp:enumerator}`B_BAD_SEM_ID`).
+are blocked in {cpp:func}`read_port()` or {cpp:func}`write_port()` calls on
+the port are automatically unblocked (and return
+{cpp:enumerator}`B_BAD_SEM_ID`).
 
 The thread that calls delete_port() doesn't have to be a member of the
 team that owns the port; any thread can delete any port.
@@ -246,9 +245,9 @@ at the head of port's message queue. You call this function in order to
 allocate a sufficiently large buffer in which to retrieve the message data.
 
 The port_buffer_size() function blocks if the port is currently empty. It
-unblocks when a {cpp:func}`write_port() <write::port>` call gives this
-function a buffer to measure (even if the buffer is 0 bytes long), or when
-the port is deleted.
+unblocks when a {cpp:func}`write_port()` call gives this function a buffer
+to measure (even if the buffer is 0 bytes long), or when the port is
+deleted.
 
 The port_buffer_size_etc() function lets you set a limit on the amount of
 time the function will wait for a message to show up. To set the limit, you
@@ -279,7 +278,7 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`read_port() <read::port>`
+See also: {cpp:func}`read_port()`
 ::::
 
 ::::{abi-group}
@@ -288,16 +287,16 @@ See also: {cpp:func}`read_port() <read::port>`
 
 Returns the number of messages that are currently in port's message queue.
 This is the number of messages that have been written to the port through
-calls to {cpp:func}`write_port() <write::port>` but that haven't yet been
-picked up through corresponding {cpp:func}`read_port() <read::port>` calls.
+calls to {cpp:func}`write_port()` but that haven't yet been picked up
+through corresponding {cpp:func}`read_port()` calls.
 
 :::{admonition} Warning
 :class: warning
 This function is provided mostly as a convenience and a semi-accurate
 debugging tool. The value that it returns is inherently undependable:
-There's no guarantee that additional {cpp:func}`read_port() <read::port>`
-or {cpp:func}`write_port() <write::port>` calls won't change the count as
-this function is returning.
+There's no guarantee that additional {cpp:func}`read_port()` or
+{cpp:func}`write_port()` calls won't change the count as this function is
+returning.
 :::
 
 :::{list-table}
@@ -317,7 +316,7 @@ widths: auto
 
 :::
 
-See also: {ref}`get_port_info()`
+See also: {cpp:func}`get_port_info()`
 ::::
 
 ::::{abi-group}
@@ -333,12 +332,12 @@ queue and copy the messages's contents into the {hparam}`msg_code` and
 buffer, in bytes, is given by {hparam}`buffer_size`. It's up to the caller
 to ensure that the message buffer is large enough to accommodate the
 message that's being read. If you want a hint about the message's size, you
-should call {ref}`port_buffer_size()` before calling this function.
+should call {cpp:func}`port_buffer_size()` before calling this function.
 
 If {hparam}`port`'s message queue is empty when you call read_port(), the
 function will block. It returns when some other thread writes a message to
-the port through {cpp:func}`write_port() <write::port>`. A blocked read is
-also unblocked if the port is deleted.
+the port through {cpp:func}`write_port()`. A blocked read is also unblocked
+if the port is deleted.
 
 The read_port_etc() function lets you set a limit on the amount of time
 the function will wait for a message to show up. To set the limit, you pass
@@ -393,7 +392,7 @@ its threads are dead), the ports that are owned by that team are freed.
 Ownership, otherwise, has no significance—it carries no special privileges
 or obligations.
 
-To discover a port's owner, use the {ref}`get_port_info()` function.
+To discover a port's owner, use the {cpp:func}`get_port_info()` function.
 
 :::{list-table}
 ---
@@ -453,9 +452,9 @@ widths: auto
 :::
 
 If the port's queue is full when you call write_port(), the function will
-block. It returns when a {cpp:func}`read_port() <read::port>` call frees a
-slot in the queue for the new message. A blocked write_port() will also
-return if the target port is deleted or closed.
+block. It returns when a {cpp:func}`read_port()` call frees a slot in the
+queue for the new message. A blocked write_port() will also return if the
+target port is deleted or closed.
 
 The write_port_etc() function lets you set a limit on the amount of time
 the function will wait for a free queue slot. To set the limit, you pass
@@ -509,8 +508,8 @@ struct {
 :::
 
 The {htype}`port_info` structure provides information about a port. You
-retrieve one of these structures through {ref}`get_port_info()` or
-{ref}`get_next_port_info()`.
+retrieve one of these structures through {cpp:func}`get_port_info()` or
+{cpp:func}`get_next_port_info()`.
 
 :::{list-table}
 ---

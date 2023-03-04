@@ -10,9 +10,9 @@
 :::
 
 Rather than directly creating a {hclass}`BParameterGroup` object via the
-new operator, you should call {cpp:func}`BParameterWeb::MakeGroup` to
-create a top-level group, or {cpp:func}`BParameterGroup::MakeGroup` if you
-want to create a subgroup.
+new operator, you should call {cpp:func}`BParameterWeb::MakeGroup()` to
+create a top-level group, or {cpp:func}`BParameterGroup::MakeGroup()` if
+you want to create a subgroup.
 ::::
 
 ::::{abi-group}
@@ -48,7 +48,7 @@ doesn't include {cpp:class}`BParameter`s in subgroups.
 
 Returns the subgroup at the specified index within the
 {hclass}`BParameterGroup`. If the {hparam}`index` is negative, or is
-greater than {cpp:func}`CountGroups() <BParameterGroup::CountGroups>`-1,
+greater than {cpp:func}`~BParameterGroup::CountGroups()`-1,
 {cpp:expr}`NULL` is returned.
 ::::
 
@@ -291,8 +291,8 @@ displayed to the user; for example, it could be used as the label of a
 
 Returns the {cpp:class}`BParameter` at the specified {hparam}`index`
 within the {hclass}`BParameterGroup`. If the {hparam}`index` is negative,
-or is greater than {cpp:func}`CountParameters()
-<BParameterGroup::CountParameters>`-1, {cpp:expr}`NULL` is returned.
+or is greater than {cpp:func}`~BParameterGroup::CountParameters()`-1,
+{cpp:expr}`NULL` is returned.
 ::::
 
 ::::{abi-group}

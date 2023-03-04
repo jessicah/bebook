@@ -19,10 +19,10 @@ read.
 
 There are invisible system implementations of the {cpp:class}`BTimeSource`
 protocol that serve as stand-ins for other nodes, so if you call
-{cpp:func}`BMediaRoster::SetTimeSourceFor` to make one of your nodes (which
-is derived from {cpp:class}`BTimeSource`) a time source for some other
-node, the other node might see a system stand-in object, not the actual
-{cpp:class}`BTimeSource`-derived object.
+{cpp:func}`BMediaRoster::SetTimeSourceFor()` to make one of your nodes
+(which is derived from {cpp:class}`BTimeSource`) a time source for some
+other node, the other node might see a system stand-in object, not the
+actual {cpp:class}`BTimeSource`-derived object.
 
 This abstraction layer serves a valuable purpose: it enforces the desire
 to prevent any two nodes from having to know anything about each other
@@ -42,13 +42,13 @@ real time, while as a {cpp:class}`BBufferProducer` or
 time.
 
 Real time refers to the actual passage of time, as reported by
-{cpp:func}`system_time() <system::time>` or the
-{cpp:func}`BTimeSource::RealTime` function. It's measured in microseconds.
+{cpp:func}`system_time()` or the {cpp:func}`BTimeSource::RealTime()`
+function. It's measured in microseconds.
 
 Performance time runs in "time units" which aren't necessarily directly
 related to real time. Since your code will have to deal with both kinds of
 time, you need to be sure to convert between the two time systems when it's
-necessary to do so. Use the {cpp:func}`BTimeSource::RealTimeFor` function
+necessary to do so. Use the {cpp:func}`BTimeSource::RealTimeFor()` function
 to do this.
 
 For example, to calculate a timeout value, given a desired performance

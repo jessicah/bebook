@@ -14,7 +14,7 @@ These flags report the driver's ability to control the CRT display, make
 gamma corrections, and permit nonstandard configurations of the frame
 buffer. Only the last has any meaning for the Game Kit.
 
-See also: {cpp:func}`CardInfo() <BWindowScreen::CardInfo>`
+See also: {cpp:func}`~BWindowScreen::CardInfo()`
 
 ## gs_attributes
 

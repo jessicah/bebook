@@ -22,10 +22,10 @@ The constructor prepares the {hclass}`BTimeCode` object for use. If you
 use the first form of the constructor, without arguments, you'll have to
 call an appropriate function to set the {hclass}`BTimeCode`'s time
 information before using it for translation purposes. This can be done by
-calling one or more of {cpp:func}`SetData() <BTimeCode::SetData>`,
-{cpp:func}`SetType() <BTimeCode::SetType>`, {cpp:func}`SetMicroseconds()
-<BTimeCode::SetMicroseconds>`, or {cpp:func}`SetLinearFrames()
-<BTimeCode::SetLinearFrames>`.
+calling one or more of {cpp:func}`~BTimeCode::SetData()`,
+{cpp:func}`~BTimeCode::SetType()`,
+{cpp:func}`~BTimeCode::SetMicroseconds()`, or
+{cpp:func}`~BTimeCode::SetLinearFrames()`.
 
 The second form of the constructor accepts as input a time in
 microseconds, {hparam}`us`, and the timecode {hparam}`type`.
@@ -386,6 +386,6 @@ widths: auto
 -
 	- format
 	- Is a format to be used in calling sprintf(); it's used by
-		{cpp:func}`GetString() <BTimeCode::GetString>`.
+		{cpp:func}`~BTimeCode::GetString()`.
 
 :::

@@ -3,7 +3,7 @@
 A {cpp:class}`BMenu` object displays a pull-down or pop-up list of menu
 items. A menu can contain simple menu items ( {cpp:class}`BMenuItem`
 objects), or other menus (other {cpp:class}`BMenu`s). To add an item to a
-menu, call {cpp:func}`AddItem() <BMenu::AddItem>`.
+menu, call {cpp:func}`~BMenu::AddItem()`.
 
 ## Menu Hierarchy
 

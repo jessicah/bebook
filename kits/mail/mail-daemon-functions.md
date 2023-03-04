@@ -4,18 +4,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 Sends and retrieves mail. More specifically, this function asks the mail
 daemon to retrieve incoming messages from the POP server and send any
 queued outgoing messages to the SMTP server. The number of POP messages
@@ -65,8 +53,6 @@ widths: auto
 
 
 
-
-
 Returns the number of POP accounts that have been configured.
 
 :::{admonition} Note
@@ -77,8 +63,6 @@ account, though, as this will probably change in the future.
 :::
 
 ## decode_base64()
-
-
 
 
 
@@ -105,8 +89,6 @@ hold the decoded data, or this function will do bad things.
 
 
 
-
-
 Encodes the data pointed to by {hparam}`in`, which is {hparam}`length`
 bytes long, and writes the base-64 encoded output into the buffer pointed
 to by {hparam}`out`.
@@ -124,8 +106,6 @@ hold the encoded data, or this function will do bad things.
 
 
 
-
-
 Forwards the mail message specified by {hparam}`message_ref` to the list
 of users given by {hparam}`recipients`. The list of user names specified in
 {hparam}`recipients` must be separated by commas and/or whitespace, and
@@ -133,8 +113,8 @@ must be null-terminated.
 
 If the {hparam}`now` parameter is {cpp:expr}`true`, the messages will be
 sent immediately; if {cpp:expr}`false`, the message will be queued up to be
-sent the next time {ref}`check_for_mail()` is called, or the next time the
-mail daemon performs an automatic mail check.
+sent the next time {cpp:func}`check_for_mail()` is called, or the next time
+the mail daemon performs an automatic mail check.
 
 :::{list-table}
 ---
@@ -155,18 +135,12 @@ widths: auto
 	- No valid recipients were specified.
 -
 	- Other Errors
-	- Errors returned by {ref}`send_queued_mail()`, if {hparam}`now` is
+	- Errors returned by {cpp:func}`send_queued_mail()`, if {hparam}`now` is
 		{cpp:expr}`true`.
 
 :::
 
 ## get_mail_notification(), set_mail_notification(), mail_notification
-
-
-
-
-
-
 
 
 
@@ -219,20 +193,6 @@ widths: auto
 :::
 
 ## get_pop_account(), set_pop_account(), mail_pop_account
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -339,10 +299,6 @@ widths: auto
 
 
 
-
-
-
-
 get_smtp_host() returns in the buffer pointed to by {hparam}`smtp_host`
 the name of the SMTP host as currently configured. The buffer should be at
 lest {cpp:enumerator}`B_MAX_HOST_NAME_LENGTH` bytes long.
@@ -376,8 +332,6 @@ widths: auto
 
 
 
-
-
 Tells the mail daemon to send all pending outgoing mail.
 
 :::{list-table}
@@ -396,6 +350,6 @@ widths: auto
 	- Mail transfer intitiated successfully.
 -
 	- Other Errors
-	- From {cpp:func}`BMessenger::SendMessage`
+	- From {cpp:func}`BMessenger::SendMessage()`
 
 :::

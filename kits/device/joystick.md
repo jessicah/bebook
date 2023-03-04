@@ -64,10 +64,10 @@ they're provided primarily for backward compatibility.
 :::
 
 Initializes the {hclass}`BJoystick` object so that all values are set to
-0. Before using the object, you must call {cpp:func}`Open()
-<BJoystick::Open>` to open a particular joystick port. For the object to
-register any meaningful values, you must call {cpp:func}`Update()
-<BJoystick::Update>` to query the open port.
+0. Before using the object, you must call {cpp:func}`~BJoystick::Open()` to
+open a particular joystick port. For the object to register any meaningful
+values, you must call {cpp:func}`~BJoystick::Update()` to query the open
+port.
 ::::
 
 ::::{abi-group}
@@ -168,7 +168,7 @@ given {hparam}`index`. The buffer pointed to by {hparam}`outName` is filled
 with the device name; {hparam}`bufSize` indicates the size of the buffer.
 
 The names returned by {hmethod}`GetDeviceName()` can be passed into the
-{cpp:func}`Open() <BJoystick::Open>` function to open a device.
+{cpp:func}`~BJoystick::Open()` function to open a device.
 
 :::{admonition} Note
 :class: note
@@ -463,8 +463,8 @@ widths: auto
 These functions open the joystick port specified by {hparam}`devName` and
 close it again. The {hparam}`devName` should be the name of a game port
 device. The easiest way to determine valid device names is by using the
-{cpp:func}`CountDevices() <BJoystick::CountDevices>` and
-{cpp:func}`GetDeviceName() <BJoystick::GetDeviceName>` functions.
+{cpp:func}`~BJoystick::CountDevices()` and
+{cpp:func}`~BJoystick::GetDeviceName()` functions.
 
 If it's able to open the port, {hmethod}`Open()` returns a positive
 integer. If unable or if the {hparam}`devName` isn't valid, it returns

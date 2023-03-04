@@ -11,15 +11,15 @@
 
 Creates a new {hclass}`BInputServerMethod` object. You can initialize the
 object—set initial values, spawn threads, etc.—either here or in the
-inherited function {cpp:func}`InitCheck() <BInputServerFilter::InitCheck>`
-function, which is called immediately after the constructor.
+inherited function {cpp:func}`~BInputServerFilter::InitCheck()` function,
+which is called immediately after the constructor.
 
 {hparam}`name` is a textual name describing the input method, and
 {hparam}`icon` is the raw data for a 16x16 8-bit icon built from the
 standard BeOS palette. This name and icon will be displayed in the input
 method menu (the little keyboard icon in the Deskbar). When the user
-selects your input method from the menu, your {cpp:func}`MethodActivated()
-<BInputServerMethod::MethodActivated>` function is called.
+selects your input method from the menu, your
+{cpp:func}`~BInputServerMethod::MethodActivated()` function is called.
 ::::
 
 ::::{abi-group}

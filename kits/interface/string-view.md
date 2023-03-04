@@ -21,8 +21,8 @@ constructor.
 The {hparam}`frame` rectangle needs to be large enough to display the
 entire string in the current font. The string is drawn at the bottom of the
 frame rectangle and, by default, is aligned to the left side. A different
-horizontal alignment can be set by calling {cpp:func}`SetAlignment()
-<BStringView::SetAlignment>`.
+horizontal alignment can be set by calling
+{cpp:func}`~BStringView::SetAlignment()`.
 ::::
 
 ::::{abi-group}
@@ -41,7 +41,7 @@ Frees the text string.
 Sets the {hclass}`BStringView`'s low color and its background view color
 to match the background color of its new parent view.
 
-See also: {cpp:func}`BView::AttachedToWindow`
+See also: {cpp:func}`BView::AttachedToWindow()`
 ::::
 
 ::::{abi-group}
@@ -58,9 +58,8 @@ rectangle in the current high color.
 :::{cpp:function} virtual status_t BStringView::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`Archive() <BView::Archive>`,
-then adds the string and its alignment to the {cpp:class}`BMessage`
-archive.
+Calls the inherited version of {cpp:func}`~BView::Archive()`, then adds
+the string and its alignment to the {cpp:class}`BMessage` archive.
 ::::
 
 ::::{abi-group}
@@ -117,12 +116,12 @@ null-terminated string.
 
 ### Instantiate()
 
-See {cpp:func}`BArchivable::Instantiate`
+See {cpp:func}`BArchivable::Instantiate()`
 
 ## Archived Fields
 
-The {cpp:func}`Archive() <BStringView::Archive>` function adds the
-following fields to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BStringView::Archive()` function adds the following fields
+to its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---

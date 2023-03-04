@@ -2,8 +2,8 @@
 
 A {cpp:class}`BMenuItem` object displays one item within a menu and
 contains the state associated with that item. By default, menu items
-display text; a derived class can reimplement the {cpp:func}`Draw()
-<BMenuItem::Draw>` and {cpp:func}`DrawContent() <BMenuItem::DrawContent>`
+display text; a derived class can reimplement the
+{cpp:func}`~BMenuItem::Draw()` and {cpp:func}`~BMenuItem::DrawContent()`
 hook functions to draw something else.
 
 Each {cpp:class}`BMenuItem` object can have its own invocation message and
@@ -12,7 +12,7 @@ visual presence (see {cpp:class}`BSeparatorItem` for an example).
 
 Menu items can't be used outside of a menu; to add a
 {cpp:class}`BMenuItem` to a {cpp:class}`BMenu`, call
-{cpp:func}`BMenu::AddItem`.
+{cpp:func}`BMenu::AddItem()`.
 
 ## Kinds of Items
 
@@ -52,26 +52,25 @@ Like shortcuts, triggers are case-insensitive.
 For an item to have a keyboard shortcut, the application must explicitly
 assign one. However, by default, the Interface Kit chooses and assigns
 triggers for all items. The default choice can be altered by the
-{cpp:func}`SetTrigger() <BMenuItem::SetTrigger>` function.
+{cpp:func}`~BMenuItem::SetTrigger()` function.
 
 ## Marked Items
 
 An item can also be marked (with a check mark drawn to the left of the
 label) in order to indicate that the state it sets is currently in effect.
-Items are marked by the {cpp:func}`SetMarked() <BMenuItem::SetMarked>`
-function. A menu can be set up so that items are automatically marked when
-they're selected and exactly one item is marked at all times. (See
-{cpp:func}`SetRadioMode() <BMenu::SetRadioMode>` in the {cpp:class}`BMenu`
-class.)
+Items are marked by the {cpp:func}`~BMenuItem::SetMarked()` function. A
+menu can be set up so that items are automatically marked when they're
+selected and exactly one item is marked at all times. (See
+{cpp:func}`~BMenu::SetRadioMode()` in the {cpp:class}`BMenu` class.)
 
 ## Disabled Items
 
-Items can also be enabled or disabled (by the {cpp:func}`SetEnabled()
-<BMenuItem::SetEnabled>` function). A disabled item is drawn in muted tones
-to indicate that it doesn't work. It can't be selected or invoked. If the
-item controls a specific action, it won't post the message that initiates
-the action. If it controls a submenu, it will still bring the submenu to
-the screen, but all the items in submenu will be disabled. If an item in
-the submenu brings its own submenu to the screen, items in that submenu
-will also be disabled. Disabling the superitem for a submenu in effect
-disables a whole branch of the menu hierarchy.
+Items can also be enabled or disabled (by the
+{cpp:func}`~BMenuItem::SetEnabled()` function). A disabled item is drawn in
+muted tones to indicate that it doesn't work. It can't be selected or
+invoked. If the item controls a specific action, it won't post the message
+that initiates the action. If it controls a submenu, it will still bring
+the submenu to the screen, but all the items in submenu will be disabled.
+If an item in the submenu brings its own submenu to the screen, items in
+that submenu will also be disabled. Disabling the superitem for a submenu
+in effect disables a whole branch of the menu hierarchy.

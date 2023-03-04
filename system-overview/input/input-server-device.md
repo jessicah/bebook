@@ -13,30 +13,29 @@ Server only—you never create or delete these objects themselves.
 
 ## Starting and Sending Messages
 
-For each device that your object registers, it gets a {cpp:func}`Start()
-<BInputServerDevice::Start>` function call. This is the Input Server's way
-of telling your object that it can begin generating input events (for the
-designated device). So far, all of this—from the add-on load to the
-{cpp:func}`Start() <BInputServerDevice::Start>` call—happens within a
+For each device that your object registers, it gets a
+{cpp:func}`~BInputServerDevice::Start()` function call. This is the Input
+Server's way of telling your object that it can begin generating input
+events (for the designated device). So far, all of this—from the add-on
+load to the {cpp:func}`~BInputServerDevice::Start()` call—happens within a
 single Input Server thread (for all input devices). When your
-{cpp:func}`Start() <BInputServerDevice::Start>` function is called, you
-should spawn a thread so your object can generate events without blocking
-the Server. Events are generated and sent through the
-{cpp:func}`EnqueueMessage() <BInputServerDevice::EnqueueMessage>` function.
+{cpp:func}`~BInputServerDevice::Start()` function is called, you should
+spawn a thread so your object can generate events without blocking the
+Server. Events are generated and sent through the
+{cpp:func}`~BInputServerDevice::EnqueueMessage()` function.
 
 ## Device Types and Control Messages
 
 The Input Server knows about two types of devices: keyboards, and pointing
 devices (mice, tablets, etc). When you register your object's devices
-(through {cpp:func}`RegisterDevices()
-<BInputServerDevice::RegisterDevices>`) you have to indicate the device
-type. The Input Server uses the device type to predicate the input device
-control messages it sends to the devices. These messages, delivered in
-{cpp:func}`Control() <BInputServerDevice::Control>` calls, tell a device
-that there's been a change downstream that applies specifically to that
-type of device. For example, when the user changes the mouse speed, each
-pointing device receives a {cpp:enumerator}`B_MOUSE_SPEED_CHANGED`
-notification.
+(through {cpp:func}`~BInputServerDevice::RegisterDevices()`) you have to
+indicate the device type. The Input Server uses the device type to
+predicate the input device control messages it sends to the devices. These
+messages, delivered in {cpp:func}`~BInputServerDevice::Control()` calls,
+tell a device that there's been a change downstream that applies
+specifically to that type of device. For example, when the user changes the
+mouse speed, each pointing device receives a
+{cpp:enumerator}`B_MOUSE_SPEED_CHANGED` notification.
 
 The Be-defined control messages are predicated on device type only.
 
@@ -158,12 +157,12 @@ event->AddInt32( "be:tablet_eraser", erase_mode );
 
 ## Device State
 
-The {cpp:func}`Control() <BInputServerDevice::Control>` protocol is
-designed to accommodate queries (in addition to commands). Currently,
-however, the Input Server maintains the keyboard and pointing device state
-and answers these queries itself; it doesn't forward any of the Be-defined
-query messages. For example, when an application asks for the current mouse
-speed setting (through {ref}`get_mouse_speed()`), the query gets no further
+The {cpp:func}`~BInputServerDevice::Control()` protocol is designed to
+accommodate queries (in addition to commands). Currently, however, the
+Input Server maintains the keyboard and pointing device state and answers
+these queries itself; it doesn't forward any of the Be-defined query
+messages. For example, when an application asks for the current mouse speed
+setting (through {cpp:func}`get_mouse_speed()`), the query gets no further
 than the Input Server itself—it doesn't get passed as a control message to
 a pointing device.
 
@@ -193,8 +192,8 @@ To create a new input device, you must:
 
 -   create a subclass of {cpp:class}`BInputServerDevice`
 
--   implement the {ref}`instantiate_input_device()` C function to create an
-instance of your {cpp:class}`BInputServerDevice` subclass
+-   implement the {cpp:func}`instantiate_input_device()` C function to create
+an instance of your {cpp:class}`BInputServerDevice` subclass
 
 -   compile the class and the function as an add-on
 
@@ -202,14 +201,13 @@ instance of your {cpp:class}`BInputServerDevice` subclass
 
 At boot time, the Input Server loads the add-ons it finds in the input
 device directories. For each add-on it loads, the Server invokes
-{ref}`instantiate_input_device()` to get a pointer to the add-on's
+{cpp:func}`instantiate_input_device()` to get a pointer to the add-on's
 {cpp:class}`BInputServerDevice` object. After constructing the object, the
-Server calls {cpp:func}`InitCheck() <BInputServerDevice::InitCheck>` to
-give the add-on a chance to bail out if the constructor failed. If the
-add-on wants to continue, it calls {cpp:func}`RegisterDevices()
-<BInputServerDevice::RegisterDevices>` (from within {cpp:func}`InitCheck()
-<BInputServerDevice::InitCheck>`) to tell the Server which physical or
-virtual devices it handles.
+Server calls {cpp:func}`~BInputServerDevice::InitCheck()` to give the
+add-on a chance to bail out if the constructor failed. If the add-on wants
+to continue, it calls {cpp:func}`~BInputServerDevice::RegisterDevices()`
+(from within {cpp:func}`~BInputServerDevice::InitCheck()`) to tell the
+Server which physical or virtual devices it handles.
 
 ## Installing an Input Device
 

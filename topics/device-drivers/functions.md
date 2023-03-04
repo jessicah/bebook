@@ -14,12 +14,6 @@ symbols in the current kernel when the driver is loaded.
 
 
 
-
-
-
-
-
-
 :::{code} c
 typedef vlong spinlock
 :::
@@ -62,16 +56,6 @@ a single processor—you don't have to predicate your code based on the
 number of CPUs in the system.
 
 ## add_timer(), cancel_timer(), timer_hook, qent, timer
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -167,20 +151,12 @@ widths: auto
 
 
 
-
-
 Declared in: drivers/KernelExport.h
 
 Calls the function specified by {hparam}`func` on all CPUs. The
 {hparam}`cookie` can be anything your needs require.
 
 ## disable_interrupts(), restore_interrupts(), cpu_status
-
-
-
-
-
-
 
 
 
@@ -207,15 +183,9 @@ restore_interrupts(former);
 As long as the CPU state is properly restored (as shown here), the
 disable/restore functions can be nested.
 
-See also: {ref}`install_io_interrupt_handler()`
+See also: {cpp:func}`install_io_interrupt_handler()`
 
 ## dprintf(), set_dprintf_enabled(), panic()
-
-
-
-
-
-
 
 
 
@@ -247,10 +217,6 @@ panic() is similar to dprintf(), except it hangs the computer after
 printing the message.
 
 ## get_memory_map(), physical_entry
-
-
-
-
 
 
 
@@ -296,11 +262,9 @@ call get_memory_map() again with more table entries.
 
 The function always returns {cpp:enumerator}`B_OK`.
 
-See also: {cpp:func}`lock_memory() <lock::memory>`, start_isa_dma()
+See also: {cpp:func}`lock_memory()`, start_isa_dma()
 
 ## has_signals_pending()
-
-
 
 
 
@@ -312,10 +276,6 @@ yield meaningless results. has_signals_pending() returns 0 if no signals
 are pending.
 
 ## install_io_interrupt_handler(), remove_io_interrupt_handler()
-
-
-
-
 
 
 
@@ -366,7 +326,7 @@ If {cpp:enumerator}`B_INVOKE_SCHEDULER` is returned by the interrupt
 handler, the kernel will immediately invoke the scheduler, to dispatch
 processor time to tasks that need handling. This is especially useful if
 your interrupt handler has released a semaphore (see
-{ref}`release_sem_etc()` in the Kernel Kit).
+{cpp:func}`release_sem_etc()` in the Kernel Kit).
 
 The {hparam}`flags` parameter is a bitmask of options. The only option
 currently defined is {cpp:enumerator}`B_NO_ENABLE_COUNTER`. By default, the
@@ -400,29 +360,17 @@ handler, and {cpp:enumerator}`B_ERROR` if not.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 Declared in: drivers/KernelExport.h
 
 kernel_debugger() drops the calling thread into a debugger that writes its
 output to the serial port at 19,200 bits per second, just as
-{ref}`dprintf()` does. This debugger produces string as its first message;
-it's not affected by {ref}`set_dprintf_enabled()`.
+{cpp:func}`dprintf()` does. This debugger produces string as its first
+message; it's not affected by {cpp:func}`set_dprintf_enabled()`.
 
-kernel_debugger() is identical to the {ref}`debugger()` function
+kernel_debugger() is identical to the {cpp:func}`debugger()` function
 documented in the Kernel Kit, except that it works in the kernel and
 engages a different debugger. Drivers should use it instead of
-{ref}`debugger()`.
+{cpp:func}`debugger()`.
 
 add_debugger_command() registers a new command with the kernel debugger.
 When the user types in the command name, the kernel debugger calls
@@ -439,9 +387,9 @@ directories. The function returns {cpp:enumerator}`B_OK` on success and
 {cpp:enumerator}`B_ERROR` on failure.
 
 kprintf() outputs messages to the serial port. It should be used instead
-of {ref}`dprintf()` from new debugger commands because {ref}`dprintf()`
-depends too much upon the state of the kernel to be reliable from within
-the debugger.
+of {cpp:func}`dprintf()` from new debugger commands because
+{cpp:func}`dprintf()` depends too much upon the state of the kernel to be
+reliable from within the debugger.
 
 parse_expression() takes a C expression and returns the result. It only
 handles integer arithmetic. The logical and relational operations are
@@ -452,10 +400,6 @@ previous expression. This function is designed to help implement new
 debugger commands.
 
 ## lock_memory(), unlock_memory()
-
-
-
-
 
 
 
@@ -491,8 +435,6 @@ fail is that you're attempting to lock more memory than can be paged in.
 
 
 
-
-
 Declared in: drivers/KernelExport.h
 
 This function allows you to map the memory in physical memory starting at
@@ -512,18 +454,13 @@ mapped into a memory location aligned on a multiple of
 
 {hparam}`protection` is a bitmask consisting of the fields
 {cpp:enumerator}`B_READ_AREA` and {cpp:enumerator}`B_WRITE_AREA`, as
-discussed in {cpp:func}`create_area() <create::area>`.
+discussed in {cpp:func}`create_area()`.
 
-{cpp:func}`create_area() <create::area>` returns an {htype}`area_id` for
-the newly-created memory if successful or an error code on failure. The
-error codes are the same as those for {cpp:func}`create_area()
-<create::area>`.
+{cpp:func}`create_area()` returns an {htype}`area_id` for the
+newly-created memory if successful or an error code on failure. The error
+codes are the same as those for {cpp:func}`create_area()`.
 
 ## motherboard_version(), io_card_version()
-
-
-
-
 
 
 
@@ -539,17 +476,11 @@ I/O card. These functions are only available on PowerPC-based systems
 
 
 
-
-
 Declared in: drivers/KernelExport.h
 
 Returns the current platform, as defined in kernel/OS.h.
 
 ## register_kernel_daemon(), unregister_kernel_daemon()
-
-
-
-
 
 
 
@@ -564,8 +495,6 @@ value that increases by {hparam}`freq` on successive calls to the daemon
 function.
 
 ## send_signal_etc()
-
-
 
 
 
@@ -632,18 +561,14 @@ widths: auto
 
 
 
-
-
 Declared in:  drivers/KernelExport.h
 
-This function is a counterpart to {cpp:func}`spawn_thread()
-<spawn::thread>` in the Kernel Kit, which is not exported for drivers. It
-has the same syntax as the Kernel Kit function, but is able to spawn
-threads in the kernel's memory space.
+This function is a counterpart to {cpp:func}`spawn_thread()` in the Kernel
+Kit, which is not exported for drivers. It has the same syntax as the
+Kernel Kit function, but is able to spawn threads in the kernel's memory
+space.
 
 ## spin()
-
-
 
 
 

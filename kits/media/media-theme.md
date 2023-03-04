@@ -98,15 +98,14 @@ return an appropriate {cpp:class}`BControl` to operate on the specified
 
 Applications that want to use the theme to create the controls, but handle
 their layout themselves, can call this function for each parameter in the
-web, rather than rely upon {cpp:func}`ViewFor() <BMediaTheme::ViewFor>`.
-However, if an application uses {hmethod}`MakeControlFor()` to create
-individual controls rather than letting {cpp:func}`ViewFor()
-<BMediaTheme::ViewFor>` set up the entire view, the application assumes
-responsibility for setting the control's value in response to value change
-messages.
+web, rather than rely upon {cpp:func}`~BMediaTheme::ViewFor()`. However, if
+an application uses {hmethod}`MakeControlFor()` to create individual
+controls rather than letting {cpp:func}`~BMediaTheme::ViewFor()` set up the
+entire view, the application assumes responsibility for setting the
+control's value in response to value change messages.
 
 If you want the control to send a specific message when invoked, you
-should call {cpp:func}`BInvoker::SetMessage` on it.
+should call {cpp:func}`BInvoker::SetMessage()` on it.
 ::::
 
 ::::{abi-group}
@@ -124,13 +123,13 @@ anything about.
 
 :::{admonition} Note
 :class: note
-Your {cpp:func}`MakeControlFor() <BMediaTheme::MakeControlFor>`
-implementation should always call {hmethod}`MakeFallbackViewFor()` if it's
-asked to create a {cpp:class}`BControl` for a {cpp:class}`BParameter` it
-doesn't understand. This way, all {cpp:class}`BParameter`s will get some
-form of user interface, even if your theme doesn't specifically know how to
-handle some of them. This will let your theme remain compatible with future
-versions of the BeOS.
+Your {cpp:func}`~BMediaTheme::MakeControlFor()` implementation should
+always call {hmethod}`MakeFallbackViewFor()` if it's asked to create a
+{cpp:class}`BControl` for a {cpp:class}`BParameter` it doesn't understand.
+This way, all {cpp:class}`BParameter`s will get some form of user
+interface, even if your theme doesn't specifically know how to handle some
+of them. This will let your theme remain compatible with future versions of
+the BeOS.
 :::
 ::::
 
@@ -149,7 +148,7 @@ The web returned by this function belongs to the theme; applications
 shouldn't delete it (a properly-written theme will automatically dispose of
 the web when the view is closed).
 
-This function is called by {cpp:func}`ViewFor() <BMediaTheme::ViewFor>`.
+This function is called by {cpp:func}`~BMediaTheme::ViewFor()`.
 ::::
 
 ::::{abi-group}
@@ -190,8 +189,8 @@ widths: auto
 
 :::
 
-See also: {cpp:func}`ViewFor() <BMediaTheme::ViewFor>`,
-{cpp:func}`MakeViewFor() <BMediaTheme::MakeViewFor>`
+See also: {cpp:func}`~BMediaTheme::ViewFor()`,
+{cpp:func}`~BMediaTheme::MakeViewFor()`
 ::::
 
 ::::{abi-group}
@@ -207,7 +206,7 @@ was created.
 :::
 
 Given a {cpp:class}`BParameterWeb` web, typically returned by
-{cpp:func}`BMediaRoster::GetParameterWebFor`, this function creates a
+{cpp:func}`BMediaRoster::GetParameterWebFor()`, this function creates a
 {cpp:class}`BView` suitable for adding to a {cpp:class}`BWindow` to allow
 the user to configure the node the web describes, including a diagram
 indicating the data flow path through the node, and controls to let the
@@ -216,8 +215,8 @@ user configure each control point.
 :::{admonition} Note
 :class: note
 This function is the public interface for creating a view for configuring
-a node (the {cpp:func}`MakeViewFor() <BMediaTheme::MakeViewFor>` function
-is the hook you override if you're implementing your own theme).
+a node (the {cpp:func}`~BMediaTheme::MakeViewFor()` function is the hook
+you override if you're implementing your own theme).
 :::
 
 The returned view is created using the theme specified by
@@ -292,9 +291,8 @@ widths: auto
 These constants identify parts of the user interface that a theme can
 customize the appearance of by altering the color or bitmap that's used in
 the background for various user interface elements. They're used when
-calling {cpp:func}`BackgroundBitmapFor()
-<BMediaTheme::BackgroundBitmapFor>` and {cpp:func}`BackgroundColorFor()
-<BMediaTheme::BackgroundColorFor>`.
+calling {cpp:func}`~BMediaTheme::BackgroundBitmapFor()` and
+{cpp:func}`~BMediaTheme::BackgroundColorFor()`.
 
 For example, the {cpp:enumerator}`B_PRESENTATION_BG` color and/or bitmap
 would be used as the background of a window in which an oscilloscope
@@ -340,6 +338,5 @@ widths: auto
 :::
 
 The foreground color kinds are used when calling
-{cpp:func}`ForegroundColorFor() <BMediaTheme::ForegroundColorFor>` to
-obtain the color to use when drawing the foreground portions of various
-interface elements.
+{cpp:func}`~BMediaTheme::ForegroundColorFor()` to obtain the color to use
+when drawing the foreground portions of various interface elements.

@@ -53,9 +53,9 @@ the format of this file.
 {cpp:class}`BMessage`.
 
 After creating your {hclass}`BNetAddress`, you must call
-{cpp:func}`InitCheck() <BNetAddress::InitCheck>` to ensure that no errors
-occurred during setup. You can change the address later by calling
-{cpp:func}`SetTo() <BNetAddress::SetTo>`.
+{cpp:func}`~BNetAddress::InitCheck()` to ensure that no errors occurred
+during setup. You can change the address later by calling
+{cpp:func}`~BNetAddress::SetTo()`.
 ::::
 
 ::::{abi-group}

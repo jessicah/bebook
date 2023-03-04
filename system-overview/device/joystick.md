@@ -16,10 +16,9 @@ built-in game ports.
 Unlike the event and message-driven interface to the mouse and keyboard,
 the interface to a joystick is strictly demand-driven. An application must
 repeatedly poll the state of the joystick by calling the
-{cpp:class}`BJoystick` object's {cpp:func}`Update() <BJoystick::Update>`
-function. {cpp:func}`Update() <BJoystick::Update>` queries the port and
-updates the object's data members to reflect the current state of the
-joystick.
+{cpp:class}`BJoystick` object's {cpp:func}`~BJoystick::Update()` function.
+{cpp:func}`~BJoystick::Update()` queries the port and updates the object's
+data members to reflect the current state of the joystick.
 
 There are two modes available. Standard mode supports only two axes per
 joystick, and two buttons per joystick. This mode has been available since

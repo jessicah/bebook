@@ -27,7 +27,7 @@
 The first four forms of the constructor initializes the
 {hclass}`BMediaFile` to read the file specified by {hparam}`ref` or by
 {hparam}`source`. Once this has been done, be sure to call
-{cpp:func}`InitCheck() <BMediaFile::InitCheck>` to ensure that the file was
+{cpp:func}`~BMediaFile::InitCheck()` to ensure that the file was
 successfully sniffed. If sniffing was successful, the {hclass}`BMediaFile`
 object can then be used to instantiate the {cpp:class}`BMediaTrack` objects
 necessary to read the file's data.
@@ -252,11 +252,11 @@ Creates a new track in the file and returns a {cpp:class}`BMediaTrack`
 object referencing it. The track is configured to use the media format
 specified by {hparam}`mediaFormat`, and will be written using the codec
 described by {hparam}`codecInfo`. You can only use
-{cpp:func}`BMediaTrack::WriteFrames` to write into the track.
+{cpp:func}`BMediaTrack::WriteFrames()` to write into the track.
 
 If you use the second form of the constructor, without a
 {hparam}`codecInfo` argument, the track will be written containing raw
-media data. You can only use {cpp:func}`BMediaTrack::WriteChunk` to write
+media data. You can only use {cpp:func}`BMediaTrack::WriteChunk()` to write
 into the track.
 
 The {hparam}`mediaFormat` indicates the format of the buffers you'll be
@@ -267,16 +267,17 @@ codec you want to use to encode the data into the track.
 :class: note
 The {hparam}`mediaFormat` can't contain any wildcards; you have to specify
 the exact format that you're going to be providing. {hparam}`mediaFormat`
-must also be the same structure you passed to {ref}`get_next_encoder()`.
+must also be the same structure you passed to
+{cpp:func}`get_next_encoder()`.
 :::
 
 When writing new media files, you should create all your tracks at once
 before writing any media data. Once all the tracks have been created, be
-sure to call {cpp:func}`CommitHeader() <BMediaFile::CommitHeader>` to write
-the header to disk. This is necessary since the header size may vary
-depending on the number of tracks you put in the file, and once you start
-writing media data into the tracks, it would be difficult (and inefficient)
-to resize the header.
+sure to call {cpp:func}`~BMediaFile::CommitHeader()` to write the header to
+disk. This is necessary since the header size may vary depending on the
+number of tracks you put in the file, and once you start writing media data
+into the tracks, it would be difficult (and inefficient) to resize the
+header.
 
 If an error occurs while creating the new track, {cpp:expr}`NULL` is
 returned.
@@ -370,7 +371,7 @@ want to release every track you're using, you can call
 {hmethod}`ReleaseAllTracks()`.
 
 Once released, a track can't be used any longer until you use
-{cpp:func}`TrackAt() <BMediaFile::TrackAt>` again.
+{cpp:func}`~BMediaFile::TrackAt()` again.
 
 If the {hclass}`BMediaFile` wasn't properly initialized, or the index is
 invalid, {cpp:expr}`NULL` is returned.
@@ -438,15 +439,15 @@ widths: auto
 
 Returns a {cpp:class}`BMediaTrack` object referencing the track at the
 specified {hparam}`index` into the file. The index must be a value between
-0 and {cpp:func}`CountTracks() <BMediaFile::CountTracks>` - 1.
+0 and {cpp:func}`~BMediaFile::CountTracks()` - 1.
 
 If the {hclass}`BMediaFile` wasn't properly initialized, or the
 {hparam}`index` is invalid, {cpp:expr}`NULL` is returned.
 
 :::{admonition} Note
 :class: note
-You must call {cpp:func}`ReleaseTrack() <BMediaFile::ReleaseTrack>` when
-you're finished with the track.
+You must call {cpp:func}`~BMediaFile::ReleaseTrack()` when you're finished
+with the track.
 :::
 ::::
 

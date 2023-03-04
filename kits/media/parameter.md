@@ -110,8 +110,8 @@ should be large enough to contain the values for all the channels, and
 buffer.
 
 These calls simply dispatch to the
-{cpp:func}`BControllable::GetParameterValue` and
-{cpp:func}`BControllable::SetParameterValue` functions.
+{cpp:func}`BControllable::GetParameterValue()` and
+{cpp:func}`BControllable::SetParameterValue()` functions.
 
 :::{list-table}
 ---
@@ -167,7 +167,7 @@ unique within the {cpp:class}`BParameterWeb` containing the
 
 {hmethod}`InputAt()` returns the {hclass}`BParameter` that feeds data into
 the input number specified by {hparam}`index`, which can range from zero to
-{cpp:func}`CountInputs() <BParameter::CountInputs>`-1.
+{cpp:func}`~BParameter::CountInputs()`-1.
 
 {hmethod}`OutputAt()` returns the {hclass}`BParameter` that receives data
 from the output number specified by {hparam}`index`, which can range from
@@ -186,9 +186,9 @@ user-readable, but it can be used to figure out what kind of
 {cpp:class}`BControl` to create to visually represent the configuration
 option provided by the {hclass}`BParameter`.
 
-See the {cpp:func}`BParameterGroup::MakeNullParameter`,
-{cpp:func}`BParameterGroup::MakeDiscreteParameter`, and
-{cpp:func}`BParameterGroup::MakeContinuousParameter` functions for more
+See the {cpp:func}`BParameterGroup::MakeNullParameter()`,
+{cpp:func}`BParameterGroup::MakeDiscreteParameter()`, and
+{cpp:func}`BParameterGroup::MakeContinuousParameter()` functions for more
 detailed information about the available kinds.
 ::::
 
@@ -506,8 +506,8 @@ widths: auto
 :::
 
 These are the possible parameter types, which are returned by the
-{cpp:func}`Type() <BParameter::Type>` function. They indicate what subclass
-of {hclass}`BParameter` the object is.
+{cpp:func}`~BParameter::Type()` function. They indicate what subclass of
+{hclass}`BParameter` the object is.
 
 :::{admonition} Note
 :class: note

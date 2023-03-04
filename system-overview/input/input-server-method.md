@@ -7,7 +7,7 @@ represented on standard keyboards, such as the Japanese input method that
 comes with BeOS.
 
 Input methods generally handle {cpp:enumerator}`B_KEY_DOWN` messages in
-their {cpp:func}`Filter() <BInputServerFilter::Filter>` function (see
+their {cpp:func}`~BInputServerFilter::Filter()` function (see
 {cpp:class}`BInputServerFilter`), keeping some sort of state around to
 translate these standard keyboard messages into new
 {cpp:enumerator}`B_KEY_DOWN` messages representing another character set.
@@ -25,11 +25,10 @@ Technical Support (devsupport@be.com) for additional information.
 ## Input Method Events
 
 Input methods insert {cpp:enumerator}`B_INPUT_METHOD_EVENT` messages
-(using their {cpp:func}`EnqueueMessage()
-<BInputServerMethod::EnqueueMessage>` function) into the Input Server's
-event stream. These messages let {cpp:class}`BView` subclasses work
-together with your input method to create a seamless experience for the
-user.
+(using their {cpp:func}`~BInputServerMethod::EnqueueMessage()` function)
+into the Input Server's event stream. These messages let {cpp:class}`BView`
+subclasses work together with your input method to create a seamless
+experience for the user.
 
 Each {cpp:enumerator}`B_INPUT_METHOD_EVENT` message contains a
 {hparam}`be:opcode` field (an {htype}`int32` value) indicating the kind of

@@ -34,8 +34,8 @@ array of buffer IDs for the buffers to be controlled by the group, and
 the constructor isn't one you'll use very often.
 
 Before using any buffers from a new {hclass}`BBufferGroup`, call
-{cpp:func}`InitCheck() <BBufferGroup::InitCheck>` to determine if any
-errors occurred while creating the group.
+{cpp:func}`~BBufferGroup::InitCheck()` to determine if any errors occurred
+while creating the group.
 ::::
 
 ::::{abi-group}
@@ -45,9 +45,9 @@ errors occurred while creating the group.
 Releases all memory used by the {hclass}`BBufferGroup`, including the
 {cpp:class}`BBuffer`s it controls.
 
-Keep in mind that {cpp:func}`AddBuffer() <BBufferGroup::AddBuffer>` clones
-the buffer area. This destructor releases the clones, but it's your
-application's job to release the original area you added.
+Keep in mind that {cpp:func}`~BBufferGroup::AddBuffer()` clones the buffer
+area. This destructor releases the clones, but it's your application's job
+to release the original area you added.
 
 :::{admonition} Warning
 :class: warning
@@ -74,8 +74,8 @@ no longer using it; the {hclass}`BBufferGroup` won't do it for you.
 
 :::{admonition} Note
 :class: note
-You shouldn't pass the result of a {cpp:func}`BBuffer::CloneInfo` call to
-this function, as doing so would create an "alias" buffer for the same
+You shouldn't pass the result of a {cpp:func}`BBuffer::CloneInfo()` call
+to this function, as doing so would create an "alias" buffer for the same
 memory area. This is probably not the effect you want.
 :::
 
@@ -130,7 +130,7 @@ widths: auto
 
 :::
 
-Errors from {cpp:func}`AddInt32() <BMessage::AddInt32>`.
+Errors from {cpp:func}`~BMessage::AddInt32()`.
 ::::
 
 ::::{abi-group}
@@ -229,7 +229,7 @@ widths: auto
 
 If you pass a buffer group to some other {cpp:class}`BBufferProducer` but
 pass {cpp:expr}`true` for {hparam}`willReclaim` in the
-{cpp:func}`BBufferConsumer::SetOutputBuffersFor` call, you can later
+{cpp:func}`BBufferConsumer::SetOutputBuffersFor()` call, you can later
 reclaim the buffers into the {hclass}`BBufferGroup` by calling
 {hmethod}`ReclaimAllBuffers()`.
 
@@ -301,9 +301,9 @@ the value you specify.
 {hmethod}`RequestBuffer()` doesn't use the buffer flags; instead, you can
 look at the buffers within a {hclass}`BBufferGroup` to find a specific
 buffer to request yourself, based on the value returned by
-{cpp:func}`BBuffer::Flags` or {cpp:func}`BBuffer::SizeUsed`, for example.
-Use the second form of {hmethod}`RequestBuffer()` to obtain a specific
-buffer.
+{cpp:func}`BBuffer::Flags()` or {cpp:func}`BBuffer::SizeUsed()`, for
+example. Use the second form of {hmethod}`RequestBuffer()` to obtain a
+specific buffer.
 
 The first version of {hmethod}`RequestBuffer()` returns {cpp:expr}`NULL`
 if no buffer can be obtained, and sets {hparam}`errno` to the appropriate
@@ -312,11 +312,11 @@ error code. The second version returns an appropriate error code.
 :::{admonition} Warning
 :class: warning
 Don't call {hmethod}`RequestBuffer()` while an outstanding
-{cpp:func}`ReclaimAllBuffers() <BBufferGroup::ReclaimAllBuffers>` request
-is pending. To make sure that doesn't happen, a buffer producer should be
-designed to not know about the old group anymore once
-{cpp:func}`SetBufferGroup() <BBufferProducer::SetBufferGroup>` is called to
-change its buffer group.
+{cpp:func}`~BBufferGroup::ReclaimAllBuffers()` request is pending. To make
+sure that doesn't happen, a buffer producer should be designed to not know
+about the old group anymore once
+{cpp:func}`~BBufferProducer::SetBufferGroup()` is called to change its
+buffer group.
 :::
 
 :::{list-table}
@@ -347,9 +347,9 @@ widths: auto
 :::{cpp:function} status_t BBufferGroup::RequestError()
 :::
 
-Returns the last {cpp:func}`RequestBuffer() <BBufferGroup::RequestBuffer>`
-error. This is useful if {cpp:func}`RequestBuffer()
-<BBufferGroup::RequestBuffer>` returns {cpp:expr}`NULL`.
+Returns the last {cpp:func}`~BBufferGroup::RequestBuffer()` error. This is
+useful if {cpp:func}`~BBufferGroup::RequestBuffer()` returns
+{cpp:expr}`NULL`.
 ::::
 
 ::::{abi-group}

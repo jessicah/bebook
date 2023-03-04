@@ -17,11 +17,10 @@ applications beginning with Release 4.
 
 If you want to change the look of media controls within the BeOS, you can
 write your own {cpp:class}`BMediaTheme` and install it as the default
-system theme by calling {cpp:func}`SetPreferredTheme()
-<BMediaTheme::SetPreferredTheme>`. If you want to write a new theme and
-provide the ability for the user to enable it as the new system theme,
-you'll need to write an application that calls
-{cpp:func}`SetPreferredTheme() <BMediaTheme::SetPreferredTheme>`.
+system theme by calling {cpp:func}`~BMediaTheme::SetPreferredTheme()`. If
+you want to write a new theme and provide the ability for the user to
+enable it as the new system theme, you'll need to write an application that
+calls {cpp:func}`~BMediaTheme::SetPreferredTheme()`.
 
 If you want to return to the default system theme, you should call
 `SetPreferredTheme(NULL)`. Make sure you don't have any theme views

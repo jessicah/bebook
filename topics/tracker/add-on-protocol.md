@@ -11,8 +11,6 @@ by the shortcut key to the filename of the add-on.
 
 ## process_refs()
 
-
-
 Declared in:  add-ons/tracker/TrackerAddOn.h
 
 

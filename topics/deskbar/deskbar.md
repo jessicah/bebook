@@ -61,7 +61,7 @@ service. For example, the BeOS provides shelf items that monitor and
 control the input method mechanism, PPP, and the mail daemon (the date/time
 view is not a shelf replicant):
 
-![The BDeskbar Shelf](./images/TheDeskbar/Shelf.png)
+![The BDeskbar Shelf](./_static/images/Shelf.png)
 
 {hmethod}`AddItem()` puts a new item on the Deskbar's shelf.
 {hparam}`view`, the {cpp:class}`BView` that will be displayed on the shelf,
@@ -231,12 +231,12 @@ widths: auto
 :::
 
 The {htype}`deskbar_location` constants are used to set and return the
-Deskbar's location (see {cpp:func}`Location() <BDeskbar::Location>`). The
-six locations are shown in the two illustrations below:
+Deskbar's location (see {cpp:func}`~BDeskbar::Location()`). The six
+locations are shown in the two illustrations below:
 
-![BDeskbar At Top And Bottom](./images/TheDeskbar/TopBottom.png)
+![BDeskbar At Top And Bottom](./_static/images/TopBottom.png)
 
-![BDeskbar At Left And Right](./images/TheDeskbar/Corners.png)
+![BDeskbar At Left And Right](./_static/images/Corners.png)
 
 The {htype}`deskbar_location` value affects the Deskbar's expanded state:
 The Deskbar can be expanded or contracted in

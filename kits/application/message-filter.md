@@ -59,16 +59,15 @@ widths: auto
 Messages that don't fit the definition won't be sent to the object's
 filter function.
 
-The {hparam}`filter` argument is a pointer to a {cpp:func}`filter_hook
-<filter::hook>` function. This is the function that's invoked when a
-message needs to be examined (see {cpp:func}`filter_hook <filter::hook>`
-for the protocol). You don't have to supply a {cpp:func}`filter_hook
-<filter::hook>` function; instead, you can implement
-{hclass}`BMessageFilter`'s {cpp:func}`Filter() <BMessageFilter::Filter>`
-function in a subclass.
+The {hparam}`filter` argument is a pointer to a {cpp:func}`filter_hook`
+function. This is the function that's invoked when a message needs to be
+examined (see {cpp:func}`filter_hook` for the protocol). You don't have to
+supply a {cpp:func}`filter_hook` function; instead, you can implement
+{hclass}`BMessageFilter`'s {cpp:func}`~BMessageFilter::Filter()` function
+in a subclass.
 
 For more information, refer to the description of the member
-{cpp:func}`Filter() <BMessageFilter::Filter>` function.
+{cpp:func}`~BMessageFilter::Filter()` function.
 ::::
 
 ::::{abi-group}
@@ -108,8 +107,7 @@ widths: auto
 -
 	- {cpp:enumerator}`B_DISPATCH_MESSAGE`.
 	- The {hparam}`message` and {hparam}`handler` are passed (by the caller) to
-		the looper's {cpp:func}`DispatchMessage() <BLooper::DispatchMessage>`
-		function.
+		the looper's {cpp:func}`~BLooper::DispatchMessage()` function.
 -
 	- {cpp:enumerator}`B_SKIP_MESSAGE`.
 	- The message goes no further—it's immediately thrown away by the caller.
@@ -124,10 +122,10 @@ outside the message-passing mechanism), but keep in mind that it's the
 caller's responsibility to interpret the return value.
 
 Rather than implement the  function, you can supply the
-{hclass}`BMessageFilter` with a {cpp:func}`filter_hook <filter::hook>`
-callback when you construct the object. If you do both, the
-{cpp:func}`filter_hook <filter::hook>` (and not {hmethod}`Filter()`) will
-be invoked when the object is asked to examine a message.
+{hclass}`BMessageFilter` with a {cpp:func}`filter_hook` callback when you
+construct the object. If you do both, the {cpp:func}`filter_hook` (and not
+{hmethod}`Filter()`) will be invoked when the object is asked to examine a
+message.
 ::::
 
 ## Member Functions
@@ -158,7 +156,8 @@ Returns the {cpp:class}`BLooper` whose messages this object filters, or
 {cpp:expr}`NULL` if the {hclass}`BMessageFilter` hasn't yet been assigned
 to a {cpp:class}`BHandler` or {cpp:class}`BLooper`. To attach a
 {hclass}`BMessageFilter` to a looper or handler, use
-{cpp:func}`BLooper::AddCommonFilter` or {cpp:func}`BHandler::AddFilter`.
+{cpp:func}`BLooper::AddCommonFilter()` or
+{cpp:func}`BHandler::AddFilter()`.
 ::::
 
 ::::{abi-group}
@@ -230,8 +229,7 @@ widths: auto
 -
 	- {cpp:enumerator}`B_DISPATCH_MESSAGE`.
 	- The {hparam}`message` and {hparam}`handler` are passed (by the caller) to
-		the looper's {cpp:func}`DispatchMessage() <BLooper::DispatchMessage>`
-		function.
+		the looper's {cpp:func}`~BLooper::DispatchMessage()` function.
 -
 	- {cpp:enumerator}`B_SKIP_MESSAGE`.
 	- The message goes no further–it's immediately thrown away by the caller.
@@ -245,9 +243,9 @@ responsibility to interpret the return value.
 You supply a {hclass}`BMessageFilter` with a filter_hook function when you
 constuct the object. Alternatively, you can subclass
 {hclass}`BMessageFilter` and provide an implementation of
-{cpp:func}`Filter() <BMessageFilter::Filter>`. If you do both, the
-filter_hook (and not {cpp:func}`Filter() <BMessageFilter::Filter>`) will be
-invoked when the object is asked to examine a message.
+{cpp:func}`~BMessageFilter::Filter()`. If you do both, the filter_hook (and
+not {cpp:func}`~BMessageFilter::Filter()`) will be invoked when the object
+is asked to examine a message.
 ::::
 
 ### message_delivery

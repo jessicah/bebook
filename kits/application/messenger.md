@@ -135,10 +135,10 @@ These functions apply to local targets only.
 
 These functions attempt to lock the target looper in the manner of the
 similarly named {cpp:class}`BLooper` functions (see
-{cpp:func}`BLooper::Lock` ). In addition to the error codes reported there,
-these functions return {cpp:expr}`false` and {cpp:enumerator}`B_BAD_VALUE`
-(respectively) if the target isn't local, or if the looper is otherwise
-invalid.
+{cpp:func}`BLooper::Lock()` ). In addition to the error codes reported
+there, these functions return {cpp:expr}`false` and
+{cpp:enumerator}`B_BAD_VALUE` (respectively) if the target isn't local, or
+if the looper is otherwise invalid.
 ::::
 
 ::::{abi-group}

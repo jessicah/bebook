@@ -42,13 +42,12 @@ attributes for the information it sets or gets. The attribute names for the
 various information particles are given in the function descriptions,
 below. If you want, you can bypass {hclass}`BNodeInfo` and get the node
 information directly by passing the attribute names to {cpp:class}`BNode`'s
-{cpp:func}`ReadAttr() <BNode::ReadAttr>` and {cpp:func}`WriteAttr()
-<BNode::WriteAttr>` functions.
+{cpp:func}`~BNode::ReadAttr()` and {cpp:func}`~BNode::WriteAttr()`
+functions.
 
-The one exception to this is {cpp:func}`GetTrackerIcon()
-<BNodeInfo::GetTrackerIcon>`: This function starts by looking in the node's
-attributes, but then it goes out hunting if it has to (if the icon isn't
-found in the attributes).
+The one exception to this is {cpp:func}`~BNodeInfo::GetTrackerIcon()`:
+This function starts by looking in the node's attributes, but then it goes
+out hunting if it has to (if the icon isn't found in the attributes).
 
 ## BAppFileInfo
 
