@@ -5,6 +5,9 @@ from bs4.builder import XMLParsedAsHTMLWarning
 import warnings
 import re
 import sys
+import urllib.request
+import shutil
+import os.path
 from sty import fg
 
 reset = fg.rs
@@ -408,12 +411,19 @@ class Document:
 			alt_text = None
 			if element.has_attr('alt'):
 				alt_text = element['alt']
-			src = element['src']
+			src = element['src'][2:]
+			url = f'https://www.haiku-os.org/legacy-docs/bebook/{src}'
+			path = f'./_static/images/{os.path.basename(src)}'
+			print(fg.li_magenta, 'img url:', reset, url, 'saved to:', path)
+			if not os.path.exists(path):
+				with urllib.request.urlopen(url) as response:
+					with open(path, 'w+b') as file:
+						shutil.copyfileobj(response, file)
 			image = Block()
 			if alt_text is None:
-				image += f'![]({src})'
+				image += f'![]({path})'
 			else:
-				image += f'![{alt_text}]({src})'
+				image += f'![{alt_text}]({path})'
 			return image
 		
 		# also have instances where a definition list is
