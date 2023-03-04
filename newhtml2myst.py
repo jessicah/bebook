@@ -123,7 +123,8 @@ class BlockContainer(Block):
 		return self
 	
 	def __iadd__(self, other):
-		self.blocks.append(other)
+		if other is not None:
+			self.blocks.append(other)
 		return self
 
 class SectionContainer(BlockContainer):
@@ -445,6 +446,9 @@ class Document:
 						deflist += f': {self.process_inline(child, indent)}'
 			return deflist
 		
+		if element.name == 'a' and has_class(element, 'indexterm'):
+			return None
+
 		# for non-class pages, there are a lot of div wrappers
 
 		print(fg.li_red, 'unhandled block:', element.name, reset)
