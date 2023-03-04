@@ -62,7 +62,7 @@ implementation. Possible values include {cpp:enumerator}`B_BUFFER_PRODUCER`
 (which indicates that the node implements the {cpp:class}`BBufferProducer`
 protocol) and {cpp:enumerator}`B_PHYSICAL_INPUT` (which indicates that the
 node implements a physical input, such as a sound digitizing input device).
-For a complete list of kind values, see {ref}`node_kind`.
+For a complete list of kind values, see {cpp:any}`node_kind`.
 
 :::{admonition} Note
 :class: note
@@ -235,9 +235,9 @@ widths: auto
 :::{cpp:function} media_node_id BMediaNode::ID() const
 :::
 
-Returns the {ref}`media_node_id` assigned to the node by the Media Server.
-The result is 0 if the node hasn't been registered yet, and negative if an
-error occurred while attempting to register the node.
+Returns the {cpp:any}`media_node_id` assigned to the node by the Media
+Server. The result is 0 if the node hasn't been registered yet, and
+negative if an error occurred while attempting to register the node.
 ::::
 
 ::::{abi-group}

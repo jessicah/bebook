@@ -647,7 +647,7 @@ directory if it doesn't already exist.
 -   The {hparam}`length` argument (first version only) gives the length of
 {hparam}`path`.
 
-The {ref}`directory_which` constants are described below.
+The {cpp:any}`directory_which` constants are described below.
 
 :::{list-table}
 ---

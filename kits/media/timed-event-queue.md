@@ -84,7 +84,7 @@ at certain times). If you want to process all events, you can specify a
 {hparam}`time` of {cpp:enumerator}`B_INFINITE_TIMEOUT` and a
 {hparam}`direction` of {cpp:enumerator}`B_BEFORE_TIME`.
 
-The hook function should return a {ref}`queue_action` value.
+The hook function should return a {cpp:any}`queue_action` value.
 
 :::{code} cpp
 queue_action MyHook(media_timed_event* event, void* context) {
@@ -336,7 +336,7 @@ widths: auto
 
 Sets up the cleanup hook function specified by hook to be called for
 events as they're removed from the queue. The hook will be called only for
-events with {ref}`cleanup_flag` values of {cpp:enumerator}`B_DELETE` or
+events with {cpp:any}`cleanup_flag` values of {cpp:enumerator}`B_DELETE` or
 {cpp:enumerator}`B_USER_CLEANUP` or greater.
 ::::
 

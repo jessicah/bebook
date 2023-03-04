@@ -23,8 +23,8 @@ string.
 As an example, a {cpp:class}`BTextView` object puts together a
 {cpp:enumerator}`B_MIME_DATA` message for drag-and-drop operations. The
 message has the text itself in a field named "text/plain"; the
-{ref}`text_run_array` structure that describes the character formats of the
-text is in a field named "application/x-vnd.Be-text_run_array".
+{cpp:any}`text_run_array` structure that describes the character formats of
+the text is in a field named "application/x-vnd.Be-text_run_array".
 ::::
 
 ::::{abi-group}

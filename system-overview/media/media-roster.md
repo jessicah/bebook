@@ -56,7 +56,7 @@ To play a media file from disk, you would follow the following steps:
 played.
 
 -   Call {cpp:func}`~BMediaRoster::SniffRef()` to obtain a
-{ref}`dormant_node_info` reference to the node that is best capable of
+{cpp:any}`dormant_node_info` reference to the node that is best capable of
 playing back the media file.
 
 -   Call {cpp:func}`~BMediaRoster::InstantiateDormantNode()` to instantiate
@@ -165,7 +165,7 @@ else {
 :::
 
 This code begins by obtaining a pointer to the media roster. It then calls
-{cpp:func}`~BMediaRoster::SniffRef()` to get a {ref}`dormant_node_info`
+{cpp:func}`~BMediaRoster::SniffRef()` to get a {cpp:any}`dormant_node_info`
 structure describing the best-suited node for reading the media data from
 the file specified by {hparam}`ref`.
 

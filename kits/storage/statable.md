@@ -245,8 +245,8 @@ widths: auto
 :::{cpp:function} virtual status_t BStatable::GetStat(struct stat* st) const
 :::
 
-{hmethod}`GetStat()` returns the {ref}`stat` structure for the node. The
-structure is copied into the {hparam}`st` argument, which must be
+{hmethod}`GetStat()` returns the {cpp:any}`stat` structure for the node.
+The structure is copied into the {hparam}`st` argument, which must be
 allocated. The {hclass}`BStatable` object does not cache the {htype}`stat`
 structure; every time you call {hmethod}`GetStat()`, fresh stat information
 is retrieved.

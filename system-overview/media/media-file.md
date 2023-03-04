@@ -12,8 +12,8 @@ data from the file.
 
 You can also write data to the file. In this case, you construct the
 object by specifying an {cpp:func}`entry_ref <entry::ref>` and a
-{ref}`media_file_format` specification describing the format of the media
-data you plan to write into the file. You then call
+{cpp:any}`media_file_format` specification describing the format of the
+media data you plan to write into the file. You then call
 {cpp:func}`~BMediaFile::CreateTrack()` to create each track you want to
 write into the file. Once each track has been created (but is still empty),
 you call {cpp:func}`~BMediaFile::CommitHeader()` to write the file's header

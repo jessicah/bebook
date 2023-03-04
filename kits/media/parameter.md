@@ -205,7 +205,7 @@ the {hclass}`BParameter`.
 {hmethod}`SetMediaType()` changes the recorded type of media data. The
 default, if it hasn't been changed, is {cpp:enumerator}`B_MEDIA_NO_TYPE`.
 
-The {ref}`media_type` of a {hclass}`BParameter` is used to inform
+The {cpp:any}`media_type` of a {hclass}`BParameter` is used to inform
 interested parties as to the format of the data; it's an informational
 setting, and doesn't alter the data flowing through the
 {hclass}`BParameter` in any way.

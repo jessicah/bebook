@@ -379,9 +379,9 @@ You can obtain useful information (such as the media start time for the
 buffer) from the header.
 
 The second form of this function lets you provide a
-{ref}`media_decode_info` structure to provide additional information to the
-decoder, such as how much time it's allowed to use to decode the data and
-format- and codec-specific information.
+{cpp:any}`media_decode_info` structure to provide additional information to
+the decoder, such as how much time it's allowed to use to decode the data
+and format- and codec-specific information.
 
 :::{list-table}
 ---

@@ -46,9 +46,9 @@ widths: auto
 	- look/feelortype.
 	- The appearance and behavior of the window is defined by a combination of
 		the {hparam}`look` and {hparam}`feel` arguments, or by a single
-		{hparam}`type`. See the {ref}`window_look`, {ref}`window_feel`, and
-		{ref}`window_type` descriptions for a list of values. The look and feel can
-		be reset through {cpp:func}`~BWindow::SetLook()`,
+		{hparam}`type`. See the {cpp:any}`window_look`, {cpp:any}`window_feel`, and
+		{cpp:any}`window_type` descriptions for a list of values. The look and feel
+		can be reset through {cpp:func}`~BWindow::SetLook()`,
 		{cpp:func}`~BWindow::SetFeel()`, and {cpp:func}`~BWindow::SetType()`.
 -
 	- flags

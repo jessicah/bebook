@@ -24,13 +24,13 @@ The second form accepts a {cpp:func}`media_format <media::format>`
 structure, {hparam}`inFormat`, that indicates the type of media data that
 will be input into the encoder.
 
-The third form of the constructor accepts a {ref}`media_codec_info`
+The third form of the constructor accepts a {cpp:any}`media_codec_info`
 structure, {hparam}`mci`, that determines which codec should be used.
 
 :::{admonition} Note
 :class: note
 If you use either the {cpp:func}`media_format <media::format>` or
-{ref}`media_codec_info` form of the constructor, you must call
+{cpp:any}`media_codec_info` form of the constructor, you must call
 {cpp:func}`~BMediaEncoder::InitCheck()` to ensure that construction was
 successful before using any other functions in this class.
 :::
@@ -66,8 +66,8 @@ written successfully; otherwise it should return an appropriate error code.
 Encodes a chunk of media data from the input buffer by {hparam}`inBuffer`,
 which contains {hparam}`frameCount` frames of data.
 
-The {ref}`media_encode_info` structure info is used on input to specify
-encoding parameters.
+The {cpp:any}`media_encode_info` structure info is used on input to
+specify encoding parameters.
 
 After the data is encoded, the encoder will call the derived class'
 {cpp:func}`~BMediaEncoder::WriteChunk()` function to write the data into
@@ -163,7 +163,7 @@ widths: auto
 :::
 
 {hmethod}`SetFormat()` sets the input and output formats to be used by the
-encoder, as well as the {ref}`media_file_format` describing the file to
+encoder, as well as the {cpp:any}`media_file_format` describing the file to
 which the encoded data will be written.
 
 :::{list-table}
@@ -202,8 +202,9 @@ The first form accepts a {cpp:func}`media_format <media::format>`
 structure, {hparam}`outputFormat`, that indicates the type of media data
 that the encoder should output.
 
-The second form of {hmethod}`SetTo()` accepts a {ref}`media_codec_info`
-structure, {hparam}`mci`, that determines which codec should be used.
+The second form of {hmethod}`SetTo()` accepts a
+{cpp:any}`media_codec_info` structure, {hparam}`mci`, that determines which
+codec should be used.
 
 :::{list-table}
 ---

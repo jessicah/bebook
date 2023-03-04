@@ -97,11 +97,11 @@ widths: auto
 :::
 
 {hmethod}`LockNextPage()` requests access to the next page of the sound
-buffer. The {ref}`lock_status` return value is {cpp:enumerator}`lock_ok` or
-{cpp:enumerator}`lock_ok_frames_dropped` if a valid page has been returned.
-If either of these values is returned, you can then write up to
-{hparam}`outPageSize` bytes of audio data into the audio page returned in
-{hparam}`outPagePtr`.
+buffer. The {cpp:any}`lock_status` return value is
+{cpp:enumerator}`lock_ok` or {cpp:enumerator}`lock_ok_frames_dropped` if a
+valid page has been returned. If either of these values is returned, you
+can then write up to {hparam}`outPageSize` bytes of audio data into the
+audio page returned in {hparam}`outPagePtr`.
 
 If {cpp:enumerator}`lock_failed` is returned, you can't access an audio
 page.

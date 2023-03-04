@@ -482,8 +482,8 @@ widths: auto
 Given a {cpp:class}`BFileInterface` node in {hparam}`fileInterface`,
 returns information about the file formats the file interface can deal with
 in the array {hparam}`outFormatList`. On entry, {hparam}`inOutFormatCount`
-points to the number of {ref}`media_file_format` structures that can fit in
-the array specified by {hparam}`outFormatList`. Upon return, it will
+points to the number of {cpp:any}`media_file_format` structures that can
+fit in the array specified by {hparam}`outFormatList`. Upon return, it will
 contain the actual number of formats returned, unless
 {hmethod}`GetFileFormatsFor()` returns an error.
 

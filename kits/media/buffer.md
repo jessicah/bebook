@@ -26,9 +26,9 @@ Returns a pointer to an audio buffer's header; this is just an alias for:
 :::{cpp:function} buffer_clone_info BBuffer::CloneInfo() const
 :::
 
-Returns a {ref}`buffer_clone_info` structure describing a buffer. This
+Returns a {cpp:any}`buffer_clone_info` structure describing a buffer. This
 information is primarily for debugging purposes; don't use this
-{ref}`buffer_clone_info` structure to add a buffer to a buffer group,
+{cpp:any}`buffer_clone_info` structure to add a buffer to a buffer group,
 because it'll just alias an existing buffer.
 ::::
 

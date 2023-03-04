@@ -68,7 +68,7 @@ widths: auto
 	- kinds
 	- Should indicate all the relevant kinds that the node matches; this is a
 		bit field, and it's possible that more than one flag may be relevant. See
-		{ref}`node_kind`.
+		{cpp:any}`node_kind`.
 -
 	- flavor_flags
 	- Contains flags providing additional information about the flavor.

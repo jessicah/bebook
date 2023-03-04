@@ -26,13 +26,13 @@ will be input into the decoder. {hparam}`info`, if specified, will be
 filled out with text information about the node; you must specify a buffer
 {hparam}`infoSize` bytes long.
 
-The third form of the constructor accepts a {ref}`media_codec_info`
+The third form of the constructor accepts a {cpp:any}`media_codec_info`
 structure, {hparam}`mci`, that determines which codec should be used.
 
 :::{admonition} Note
 :class: note
 If you use either the {cpp:func}`media_format <media::format>` or
-{ref}`media_codec_info` form of the constructor, you must call
+{cpp:any}`media_codec_info` form of the constructor, you must call
 {cpp:func}`~BMediaBufferDecoder::InitCheck()` to ensure that construction
 was successful before using any other functions in this class.
 :::
@@ -58,8 +58,8 @@ contains {hparam}`inputSize` bytes of media data. On return,
 {hparam}`outFrameCount` is set to indicate how many frames of data were
 decoded, and outMH is the header for the decoded buffer.
 
-The {ref}`media_decode_info` structure info is used on input to specify
-decoding parameters.
+The {cpp:any}`media_decode_info` structure info is used on input to
+specify decoding parameters.
 
 :::{list-table}
 ---

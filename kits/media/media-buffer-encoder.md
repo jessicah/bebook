@@ -24,13 +24,13 @@ The second form accepts a {cpp:func}`media_format <media::format>`
 structure, {hparam}`inFormat`, that indicates the type of media data that
 will be input into the encoder.
 
-The third form of the constructor accepts a {ref}`media_codec_info`
+The third form of the constructor accepts a {cpp:any}`media_codec_info`
 structure, {hparam}`mci`, that determines which codec should be used.
 
 :::{admonition} Note
 :class: note
 If you use either the {cpp:func}`media_format <media::format>` or
-{ref}`media_codec_info` form of the constructor, you must call
+{cpp:any}`media_codec_info` form of the constructor, you must call
 {cpp:func}`~BMediaBufferEncoder::InitCheck()` to ensure that construction
 was successful before using any other functions in this class.
 :::
@@ -56,8 +56,8 @@ The encoded data is written into the buffer indicated by
 {hparam}`outputBuffer`. On return, {hparam}`outputSize` indicates how many
 bytes of data were written into the buffer.
 
-The {ref}`media_encode_info` structure info is used on input to specify
-encoding parameters.
+The {cpp:any}`media_encode_info` structure info is used on input to
+specify encoding parameters.
 
 :::{list-table}
 ---

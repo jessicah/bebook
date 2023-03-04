@@ -75,12 +75,12 @@ The second form of the constructor lets you specify in the
 {hparam}`format` argument the format of the audio that the
 {hclass}`BSoundPlayer` will perform. Since {hclass}`BSoundPlayer` can only
 play raw sound formats, this is specified using the
-{ref}`media_raw_audio_format` structure.
+{cpp:any}`media_raw_audio_format` structure.
 
 The third form of the constructor lets you specify a node through which
-the sound should be played, and also uses a {ref}`media_multi_audio_format`
-to specify the sound's format, instead of the older
-{ref}`media_raw_audio_format`.
+the sound should be played, and also uses a
+{cpp:any}`media_multi_audio_format` to specify the sound's format, instead
+of the older {cpp:any}`media_raw_audio_format`.
 
 You should call {cpp:func}`~BSoundPlayer::InitCheck()` before using your
 {hclass}`BSoundPlayer` object; this will let you determine whether or not
@@ -162,7 +162,7 @@ function.
 :::
 
 Returns the {hclass}`BSoundPlayer`'s format. Since the sound is always a
-raw sound format, the {ref}`media_raw_audio_format` structure is used.
+raw sound format, the {cpp:any}`media_raw_audio_format` structure is used.
 ::::
 
 ::::{abi-group}

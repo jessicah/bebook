@@ -36,7 +36,7 @@ that the audio is in floating-point format, where each sample ranges from
 floating-point audio whenever you can will improve your application's
 performance by cutting down on format conversions. However, if you want to
 use another format, you may do so by specifying a
-{ref}`media_raw_audio_format` when you instantiate the
+{cpp:any}`media_raw_audio_format` when you instantiate the
 {cpp:class}`BSoundPlayer` object.
 
 Sound streams may only contain 1 or 2 channels (either mono or stereo, in

@@ -139,13 +139,13 @@ Returns the Deskbar's frame in screen coordinates.
 :::
 
 {hmethod}`Location()` returns a symbolic description of the Deskbar's
-current location; see {ref}`deskbar_location` for the list of pre-defined
-locations. {hparam}`isExpanded` (if supplied) is set to {cpp:expr}`true` if
-the Deskbar is expanded, and {cpp:expr}`false` if it's contracted;
-{hmethod}`IsExpanded()` returns the expansion value directly. Expansion and
-contraction is variable only if the Deskbar's location is left-top or
-right-top; for all other locations, the expansion state is hard-wired. See
-{ref}`deskbar_location` for illustrations.
+current location; see {cpp:any}`deskbar_location` for the list of
+pre-defined locations. {hparam}`isExpanded` (if supplied) is set to
+{cpp:expr}`true` if the Deskbar is expanded, and {cpp:expr}`false` if it's
+contracted; {hmethod}`IsExpanded()` returns the expansion value directly.
+Expansion and contraction is variable only if the Deskbar's location is
+left-top or right-top; for all other locations, the expansion state is
+hard-wired. See {cpp:any}`deskbar_location` for illustrations.
 
 {hmethod}`SetLocation()` sets the Deskbar's location and expands/contracts
 the Deskbar; for some locations, the expansion/contraction is hard-wired.

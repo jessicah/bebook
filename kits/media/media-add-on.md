@@ -445,7 +445,7 @@ widths: auto
 	- Provide a human-readable name, and information about the flavor.
 -
 	- kinds
-	- Should be set to the node kind. See {ref}`node_kind`
+	- Should be set to the node kind. See {cpp:any}`node_kind`
 -
 	- flavor_flags
 	- Contains flags providing additional information about the flavor.

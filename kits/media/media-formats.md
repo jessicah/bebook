@@ -35,17 +35,17 @@ Destructor.
 {hmethod}`GetBeOSFormatFor()` returns in {hparam}`outFormat` a
 {cpp:func}`media_format <media::format>` structure that describes the media
 format corresponding to the given BeOS {hparam}`format` ID and
-{ref}`media_type`.
+{cpp:any}`media_type`.
 
 {hmethod}`GetAVIFormatFor()` returns in {hparam}`outFormat` a
 {cpp:func}`media_format <media::format>` structure that describes the media
 format corresponding to the given AVI {hparam}`format` ID and
-{ref}`media_type`.
+{cpp:any}`media_type`.
 
 {hmethod}`GetQuicktimeormatFor()` returns in {hparam}`outFormat` a
 {cpp:func}`media_format <media::format>` structure that describes the media
 format corresponding to the given QuickTime {hparam}`vendor` ID,
-{hparam}`codec` ID, and {ref}`media_type`.
+{hparam}`codec` ID, and {cpp:any}`media_type`.
 
 :::{list-table}
 ---
@@ -63,7 +63,7 @@ widths: auto
 	- No error.
 -
 	- {cpp:enumerator}`B_BAD_TYPE`
-	- The specified {ref}`media_type`. isn't supported.
+	- The specified {cpp:any}`media_type`. isn't supported.
 -
 	- {cpp:enumerator}`B_MEDIA_BAD_FORMAT`
 	- The specified combination of parameters isn't  supported.
@@ -145,7 +145,7 @@ widths: auto
 
 Fills {hparam}`outFormat` and {hparam}`outDescription` with the
 {cpp:func}`media_format <media::format>` and
-{ref}`media_format_description` of the next supported media format.
+{cpp:any}`media_format_description` of the next supported media format.
 
 :::{list-table}
 ---
@@ -239,8 +239,8 @@ with the Media Kit, and returns a {cpp:func}`media_format <media::format>`
 you can use from then on.
 
 This function is called to let the Media Server assign you an encoding
-value for your {ref}`media_format_description`. If you're implementing a
-codec add-on or a file parser, you should call this function to let the
+value for your {cpp:any}`media_format_description`. If you're implementing
+a codec add-on or a file parser, you should call this function to let the
 Media Kit know what you handle.
 
 :::{list-table}
@@ -604,9 +604,9 @@ Describes the format of media data as a WAV codec ID.
 :::{cpp:function} bool BMediaFormats::does_file_accept_format(const media_file_format* mfi, const media_format* format)
 :::
 
-Returns {cpp:expr}`true` if the given {ref}`media_file_format` can contain
-data in the specified {cpp:func}`media_format <media::format>`. Otherwise,
-{cpp:expr}`false` is returned.
+Returns {cpp:expr}`true` if the given {cpp:any}`media_file_format` can
+contain data in the specified {cpp:func}`media_format <media::format>`.
+Otherwise, {cpp:expr}`false` is returned.
 ::::
 
 ::::{abi-group}
@@ -619,8 +619,8 @@ data in the specified {cpp:func}`media_format <media::format>`. Otherwise,
 :::{cpp:function} status_t BMediaFormats::get_next_encoder(int32* cookie, media_codec_info* codecInfo)
 :::
 
-Given a {ref}`media_file_format`, {hparam}`mfi`, describing the format of
-a media file, a {cpp:func}`media_format <media::format>`,
+Given a {cpp:any}`media_file_format`, {hparam}`mfi`, describing the format
+of a media file, a {cpp:func}`media_format <media::format>`,
 {hparam}`outputFormat`, describing the desired output format, and
 optionally a {cpp:func}`media_format <media::format>`,
 {hparam}`inputFormat` describing the desired input format, returns in

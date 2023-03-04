@@ -17,7 +17,7 @@ frame rectangle will be located at the stated {hparam}`leftTop` point in
 the coordinate system of its parent view. The frame rectangle will be large
 enough to display 256 color cells arranged in the specified
 {hparam}`matrix`, which can be any of the following
-{ref}`color_control_layout` constants:
+{cpp:any}`color_control_layout` constants:
 
 -   {cpp:enumerator}`B_CELLS_4x64`
 

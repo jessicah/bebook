@@ -26,13 +26,13 @@ will be input into the decoder. {hparam}`info`, if specified, will be
 filled out with text information about the node; you must specify a buffer
 {hparam}`infoSize` bytes long.
 
-The third form of the constructor accepts a {ref}`media_codec_info`
+The third form of the constructor accepts a {cpp:any}`media_codec_info`
 structure, {hparam}`mci`, that determines which codec should be used.
 
 :::{admonition} Note
 :class: note
 If you use either the {cpp:func}`media_format <media::format>` or
-{ref}`media_codec_info` form of the constructor, you must call
+{cpp:any}`media_codec_info` form of the constructor, you must call
 {cpp:func}`~BMediaDecoder::InitCheck()` to ensure that construction was
 successful before using any other functions in this class.
 :::
@@ -75,8 +75,8 @@ Decodes a chunk of media data into the output buffer specified by
 how many frames of data were decoded, and {hparam}`outMH` is the header for
 the decoded buffer.
 
-The {ref}`media_decode_info` structure info is used on input to specify
-decoding parameters.
+The {cpp:any}`media_decode_info` structure info is used on input to
+specify decoding parameters.
 
 The amount of data decoded is part of the format determined by
 {cpp:func}`~BMediaDecoder::SetTo()` or
@@ -113,7 +113,7 @@ widths: auto
 :::{cpp:function} status_t BMediaDecoder::GetDecoderInfo(media_codec_info* outInfo) const
 :::
 
-Fills out the {ref}`media_codec_info` structure {hparam}`outInfo` with
+Fills out the {cpp:any}`media_codec_info` structure {hparam}`outInfo` with
 information about the decoder being used by the {hclass}`BMediaDecoder`.
 
 :::{list-table}
@@ -235,8 +235,9 @@ will be input into the decoder. {hparam}`info`, if specified, will be
 filled out with text information about the node; you must specify a buffer
 {hparam}`infoSize` bytes long.
 
-The second form of {hmethod}`SetTo()` accepts a {ref}`media_codec_info`
-structure, {hparam}`mci`, that determines which codec should be used.
+The second form of {hmethod}`SetTo()` accepts a
+{cpp:any}`media_codec_info` structure, {hparam}`mci`, that determines which
+codec should be used.
 
 :::{list-table}
 ---

@@ -437,7 +437,7 @@ Kit returns in {hparam}`changeTag` the tag value that will be received by
 your {cpp:func}`~BMediaNode::RequestCompleted()` function once the change
 takes effect; the change tag lets you match up the call to
 {cpp:func}`~BMediaNode::RequestCompleted()` with this request. This
-function will receive a {ref}`media_request_info` structure with the
+function will receive a {cpp:any}`media_request_info` structure with the
 indicated {hparam}`userData` and {hparam}`changeTag`.
 
 {hmethod}`FormatChanged()` is called by the upstream producer when the
@@ -543,7 +543,7 @@ The Media Kit returns in {hparam}`changeTag` the tag value that will be
 received by your {cpp:func}`~BMediaNode::RequestCompleted()` function once
 the change takes effect; the change tag lets you match up the call to
 {cpp:func}`~BMediaNode::RequestCompleted()` with this request. This
-function will receive a {ref}`media_request_info` structure with the
+function will receive a {cpp:any}`media_request_info` structure with the
 indicated {hparam}`userData` and {hparam}`changeTag`.
 
 The ability to request that certain buffers be used by a particular output
@@ -633,10 +633,10 @@ The Media Kit returns in changeTag the tag value that will be received by
 your {cpp:func}`~BMediaNode::RequestCompleted()` function once the change
 takes effect; the change tag lets you match up the call to
 {cpp:func}`~BMediaNode::RequestCompleted()` with this request. This
-function will receive a {ref}`media_request_info` structure with the
+function will receive a {cpp:any}`media_request_info` structure with the
 indicated {hparam}`userData` and {hparam}`changeTag`.
 
-The {ref}`media_video_display_info` structure referenced by display
+The {cpp:any}`media_video_display_info` structure referenced by display
 describes the current configuration of the video in terms of color space,
 resolution, and so forth.
 
