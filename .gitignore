@@ -1,2 +1,3 @@
 _build/
 _parsed_myst/
+**/__pycache__/**
