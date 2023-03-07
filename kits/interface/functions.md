@@ -275,55 +275,55 @@ Changes the configuration of the screen—its depth and dimensions—to match
 the values specified in the {hparam}`space` constant, which can be any of
 the following:
 
--   {cpp:enumerator}`B_8_BIT_640x400`
+- {cpp:enumerator}`B_8_BIT_640x400`
 
--   {cpp:enumerator}`B_8_BIT_640x480`
+- {cpp:enumerator}`B_8_BIT_640x480`
 
--   {cpp:enumerator}`B_8_BIT_800x600`
+- {cpp:enumerator}`B_8_BIT_800x600`
 
--   {cpp:enumerator}`B_8_BIT_1024x768`
+- {cpp:enumerator}`B_8_BIT_1024x768`
 
--   {cpp:enumerator}`B_8_BIT_1152x900`
+- {cpp:enumerator}`B_8_BIT_1152x900`
 
--   {cpp:enumerator}`B_8_BIT_1280x1024`
+- {cpp:enumerator}`B_8_BIT_1280x1024`
 
--   {cpp:enumerator}`B_8_BIT_1600x1200`
+- {cpp:enumerator}`B_8_BIT_1600x1200`
 
--   {cpp:enumerator}`B_15_BIT_640x480`
+- {cpp:enumerator}`B_15_BIT_640x480`
 
--   {cpp:enumerator}`B_15_BIT_800x600`
+- {cpp:enumerator}`B_15_BIT_800x600`
 
--   {cpp:enumerator}`B_15_BIT_1024x768`
+- {cpp:enumerator}`B_15_BIT_1024x768`
 
--   {cpp:enumerator}`B_15_BIT_1152x900`
+- {cpp:enumerator}`B_15_BIT_1152x900`
 
--   {cpp:enumerator}`B_15_BIT_1280x1024`
+- {cpp:enumerator}`B_15_BIT_1280x1024`
 
--   {cpp:enumerator}`B_15_BIT_1600x1200`
+- {cpp:enumerator}`B_15_BIT_1600x1200`
 
--   {cpp:enumerator}`B_16_BIT_640x480`
+- {cpp:enumerator}`B_16_BIT_640x480`
 
--   {cpp:enumerator}`B_16_BIT_800x600`
+- {cpp:enumerator}`B_16_BIT_800x600`
 
--   {cpp:enumerator}`B_16_BIT_1024x768`
+- {cpp:enumerator}`B_16_BIT_1024x768`
 
--   {cpp:enumerator}`B_16_BIT_1152x900`
+- {cpp:enumerator}`B_16_BIT_1152x900`
 
--   {cpp:enumerator}`B_16_BIT_1280x1024`
+- {cpp:enumerator}`B_16_BIT_1280x1024`
 
--   {cpp:enumerator}`B_16_BIT_1600x1200`
+- {cpp:enumerator}`B_16_BIT_1600x1200`
 
--   {cpp:enumerator}`B_32_BIT_640x480`
+- {cpp:enumerator}`B_32_BIT_640x480`
 
--   {cpp:enumerator}`B_32_BIT_800x600`
+- {cpp:enumerator}`B_32_BIT_800x600`
 
--   {cpp:enumerator}`B_32_BIT_1024x768`
+- {cpp:enumerator}`B_32_BIT_1024x768`
 
--   {cpp:enumerator}`B_32_BIT_1152x900`
+- {cpp:enumerator}`B_32_BIT_1152x900`
 
--   {cpp:enumerator}`B_32_BIT_1280x1024`
+- {cpp:enumerator}`B_32_BIT_1280x1024`
 
--   {cpp:enumerator}`B_32_BIT_1600x1200`
+- {cpp:enumerator}`B_32_BIT_1600x1200`
 
 The first part of the constant designates the screen depth and color
 space. {cpp:enumerator}`B_8_BIT…` refers to the {cpp:enumerator}`B_CMAP8`

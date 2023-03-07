@@ -30,9 +30,9 @@ Ports are largely subsumed by the Application Kit's {cpp:class}`BMessage`
 class (and relatives). The two features of ports that you can't get at the
 {cpp:class}`BMessage` level are:
 
--   Ports let you set the length of the message queue.
+- Ports let you set the length of the message queue.
 
--   Ports can be used in C code (as opposed to C++).
+- Ports can be used in C code (as opposed to C++).
 
 For most applications, these are inessential additions.
 

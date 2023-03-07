@@ -251,10 +251,10 @@ or may not be the same as the color space that the {hclass}`BBitmap` uses
 to store the data. If not, the following conversions are automatically
 made:
 
--   {cpp:enumerator}`B_GRAY1` and {cpp:enumerator}`B_RGB32` to
+- {cpp:enumerator}`B_GRAY1` and {cpp:enumerator}`B_RGB32` to
 {cpp:enumerator}`B_CMAP8`.
 
--   {cpp:enumerator}`B_CMAP8` and {cpp:enumerator}`B_GRAY1` to
+- {cpp:enumerator}`B_CMAP8` and {cpp:enumerator}`B_GRAY1` to
 {cpp:enumerator}`B_RGB32`.
 
 :::{admonition} Note

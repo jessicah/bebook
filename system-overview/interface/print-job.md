@@ -74,15 +74,15 @@ whenever the document is open and the page settings are needed.
 
 To print a document, an application must go through several ordered steps:
 
--   Engaging the Print Server and setting parameters for the job.
+- Engaging the Print Server and setting parameters for the job.
 
--   Setting up a spool file to hold image data.
+- Setting up a spool file to hold image data.
 
--   Asking {cpp:class}`BView`s to draw each page.
+- Asking {cpp:class}`BView`s to draw each page.
 
--   After each page is drawn, putting the data for the page in the spool file.
+- After each page is drawn, putting the data for the page in the spool file.
 
--   Committing the spool file to the Print Server.
+- Committing the spool file to the Print Server.
 
 A {cpp:class}`BPrintJob` object has member functions that assist with each
 step.

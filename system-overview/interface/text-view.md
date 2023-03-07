@@ -3,12 +3,12 @@
 A {cpp:class}`BTextView` object displays text on-screen, and provides
 these text manipulating features:
 
--   It lets the user enter, select, and edit text from the keyboard and mouse.
+- It lets the user enter, select, and edit text from the keyboard and mouse.
 
--   It supports standard Cut, Copy, Paste, Delete, and Select All editing
+- It supports standard Cut, Copy, Paste, Delete, and Select All editing
 commands
 
--   It provides an Undo mechanism.
+- It provides an Undo mechanism.
 
 By default, a {cpp:class}`BTextView` displays all its text in a single
 font and color. The {cpp:func}`~BTextView::SetStylable()` turns on support
@@ -106,16 +106,16 @@ me.
 When it's the focus view for its window, a {cpp:class}`BTextView`
 automatically responds to a set of keyboard shortcuts:
 
--   {hkey}`Command`+{hkey}`x` cuts text and copies it to the clipboard
+- {hkey}`Command`+{hkey}`x` cuts text and copies it to the clipboard
 
--   {hkey}`Command`+{hkey}`c` copies text to the clipboard without cutting it
+- {hkey}`Command`+{hkey}`c` copies text to the clipboard without cutting it
 
--   {hkey}`Command`+{hkey}`v` pastes text taken from the clipboard
+- {hkey}`Command`+{hkey}`v` pastes text taken from the clipboard
 
--   {hkey}`Command`+{hkey}`a` selects all of the text in the
+- {hkey}`Command`+{hkey}`a` selects all of the text in the
 {cpp:class}`BTextView`
 
--   {hkey}`Command`+{hkey}`z` undoes the previous action
+- {hkey}`Command`+{hkey}`z` undoes the previous action
 
 If you create menu items for these actions, you have to assign the
 {cpp:class}`BMenuItem` shortcuts and command constants yourself:

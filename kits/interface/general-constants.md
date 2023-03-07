@@ -471,12 +471,12 @@ is the high color.
 These constants define the {htype}`color_space` data type. A color space
 describes three properties of screens and bitmap images:
 
--   How many bits of information there are per pixel (the depth of the image)
+- How many bits of information there are per pixel (the depth of the image)
 
--   How those bits are to be interpreted (whether as colors or on a grayscale,
+- How those bits are to be interpreted (whether as colors or on a grayscale,
 what the color components are, and so on).
 
--   How are components are arranged
+- How are components are arranged
 
 A number of these aren't actually usable as screen display color spaces,
 but are intended for use in identifying the color format for video media

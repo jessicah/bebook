@@ -30,12 +30,12 @@ products.
 
 There are three types of kernel add-on:
 
-1.    Device drivers are add-ons that communicate directly with devices.
+1. Device drivers are add-ons that communicate directly with devices.
 
-2.    Modules are kernel space add-ons that export an API for use by drivers (or
+2. Modules are kernel space add-ons that export an API for use by drivers (or
 by other modules).
 
-3.    File systems are add-ons that support specific file systems, such as BFS,
+3. File systems are add-ons that support specific file systems, such as BFS,
 DOSFS, HFS, and so forth.
 
 Device drivers and file systems, while extending the functionality of the
@@ -88,11 +88,11 @@ using other file system.
 The kernel provides a number of services that drivers and modules can use.
 These include:
 
--   Enabling and disabling interrupts.
+- Enabling and disabling interrupts.
 
--   Setting up memory for DMA transactions.
+- Setting up memory for DMA transactions.
 
--   Access to other devices and modules.
+- Access to other devices and modules.
 
 The kernel also provides, at the user level, a Posix-like API for
 accessing devices. An application can open a device through open(), and use
@@ -165,9 +165,9 @@ however, you can't acquire a semaphore while handling an interrupt. So if
 you need to synchronize code while handling an interrupt, you must use a
 spinlock. Put simply:
 
--   Use spinlocks to protect critical sections in interrupt-handling code.
+- Use spinlocks to protect critical sections in interrupt-handling code.
 
--   Use semaphores in any other situation that calls for code synchronization.
+- Use semaphores in any other situation that calls for code synchronization.
 
 Anywhere you use a spinlock to protect a critical section, you should
 disable interrupts. Of course, in an interrupt handler, you know that
@@ -181,15 +181,15 @@ add_timer().
 While your spinlock is running, you can perform the following actions. If
 it's not on this list, you can't do it.
 
--   You can examine and alter hardware registers by using the appropriate bus
+- You can examine and alter hardware registers by using the appropriate bus
 manager hooks.
 
--   You can examine and alter any locked-down memory.
+- You can examine and alter any locked-down memory.
 
--   You can call the following kernel functions: system_time(), atomic_add(),
+- You can call the following kernel functions: system_time(), atomic_add(),
 atomic_or(), atomic_and().
 
--   You can call the following bus manager functions: read_io_*() and
+- You can call the following bus manager functions: read_io_*() and
 write_io*().
 
 If you do anything else inside your spinlock, you're breaking the rules,
@@ -227,10 +227,10 @@ If you have interrupts disabled and aren't in a spinlock, you can do the
 following things in addition to those listed above in "Functions Available
 During Spinlocks":
 
--   You can call release_sem_etc() with the
+- You can call release_sem_etc() with the
 {cpp:enumerator}`B_DO_NOT_RESCHEDULE` flag set.
 
--   You can call get_sem_count(), add_timer(), cancel_timer(), and dprintf().
+- You can call get_sem_count(), add_timer(), cancel_timer(), and dprintf().
 
 If you feel that you need to call a function not explicitly listed as
 permitted here, please contact Be Developer Support at devsupport@be.com
@@ -278,15 +278,15 @@ preemption.
 
 In summary, the order in which you should do things is this:
 
--   Disable interrupts.
+- Disable interrupts.
 
--   Acquire the spinlock.
+- Acquire the spinlock.
 
--   Perform your tasks.
+- Perform your tasks.
 
--   Release the spinlock.
+- Release the spinlock.
 
--   Restore the original interrupt state.
+- Restore the original interrupt state.
 
 #### File I/O
 

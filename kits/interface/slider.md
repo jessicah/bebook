@@ -146,15 +146,15 @@ the appearance of the hash marks.
 Draws the entire slider control by calling the functions responsible for
 drawing the various parts of the control:
 
--   {cpp:func}`~BSlider::DrawBar()`
+- {cpp:func}`~BSlider::DrawBar()`
 
--   {cpp:func}`~BSlider::DrawHashMarks()`
+- {cpp:func}`~BSlider::DrawHashMarks()`
 
--   {cpp:func}`~BSlider::DrawThumb()`
+- {cpp:func}`~BSlider::DrawThumb()`
 
--   {cpp:func}`~BSlider::DrawFocusMark()`
+- {cpp:func}`~BSlider::DrawFocusMark()`
 
--   {cpp:func}`~BSlider::DrawText()`
+- {cpp:func}`~BSlider::DrawText()`
 
 Once the slider has been drawn into the offscreen view, it's copied to its
 parent window.

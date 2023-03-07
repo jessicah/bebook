@@ -18,11 +18,11 @@
 Initializes the {hclass}`BInvoker` by setting its message and its
 messenger.
 
--   The object's {cpp:class}`BMessage` is taken directly as
+- The object's {cpp:class}`BMessage` is taken directly as
 {hparam}`message`—the object is __not__ copied. The {hclass}`BInvoker`
 takes over ownership of the {cpp:class}`BMessage` that you pass in.
 
--   The object's {cpp:class}`BMessenger` is copied from {hparam}`messenger`,
+- The object's {cpp:class}`BMessenger` is copied from {hparam}`messenger`,
 or initialized with {hparam}`looper` and {hparam}`handler`. See the
 {cpp:class}`BMessenger` class for details on how a {cpp:class}`BMessenger`
 identifies a target.

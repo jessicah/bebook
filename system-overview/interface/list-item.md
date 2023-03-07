@@ -122,7 +122,7 @@ The {cpp:func}`~BListItem::DrawItem()` function does the actual work of
 drawing the item. {cpp:func}`~BListItem::DrawItem()` receives three
 parameters:
 
--   A {cpp:class}`BView` "owner"; this is the view that contains the
+- A {cpp:class}`BView` "owner"; this is the view that contains the
 {cpp:class}`BListItem`. All drawing calls you issue should be made through
 this BView. For example:
 
@@ -130,10 +130,10 @@ this BView. For example:
 owner->DrawString(item_text);
 :::
 
--   A {cpp:class}`BRect`, which is the rectangle in which the item should be
+- A {cpp:class}`BRect`, which is the rectangle in which the item should be
 drawn.
 
--   A {htype}`bool`, which is {cpp:expr}`true` if the item needs to be erased
+- A {htype}`bool`, which is {cpp:expr}`true` if the item needs to be erased
 and redrawn, or {cpp:expr}`false` if the item's contents can be safely
 redrawn without erasing the current contents.
 

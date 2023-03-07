@@ -26,13 +26,13 @@ your driver.
 
 Using the API is very simple. Just follow these basic steps:
 
--   Call {cpp:func}`load_driver_settings()` to load the settings data.
+- Call {cpp:func}`load_driver_settings()` to load the settings data.
 
--   Use {cpp:func}`get_driver_settings()` or
+- Use {cpp:func}`get_driver_settings()` or
 {cpp:func}`get_driver_parameter()` and
 {cpp:func}`get_driver_boolean_parameter()` to read the settings.
 
--   Call {cpp:func}`unload_driver_settings()` when you're done.
+- Call {cpp:func}`unload_driver_settings()` when you're done.
 
 ### The Settings File
 
@@ -40,10 +40,10 @@ Driver settings files are kept in ~/config/settings/kernel/drivers.
 
 The settings file is formatted like this:
 
--   Words beginning with "#" indicate that the rest of the line should be
+- Words beginning with "#" indicate that the rest of the line should be
 treated as a comment.
 
--   Parameters can have values and subparameters. A parameter has the
+- Parameters can have values and subparameters. A parameter has the
 following form in the settings file:
 
   :::{code} sh
@@ -52,10 +52,10 @@ name [value]* [{
 }] ['n',',']
 :::
 
-    Where [ … ] indicates an optional part, and [ … ]* indicates an optional
+  Where [ … ] indicates an optional part, and [ … ]* indicates an optional
 repeated part.
 
--   Names and values may not contain spaces unless the spaces are preceded by
+- Names and values may not contain spaces unless the spaces are preceded by
 a backslash ('\') or the words are enclosed in quotes.
 
 Here's an example settings file:
@@ -130,12 +130,12 @@ opaque reference protects you against any future changes in the kernel.
 
 There are three functions you can use to read driver settings:
 
--   {cpp:func}`get_driver_boolean_parameter()` returns a boolean parameter's
+- {cpp:func}`get_driver_boolean_parameter()` returns a boolean parameter's
 value.
 
--   {cpp:func}`get_driver_parameter()` returns a string parameter's value.
+- {cpp:func}`get_driver_parameter()` returns a string parameter's value.
 
--   {cpp:func}`get_driver_settings()` returns all the settings at once,
+- {cpp:func}`get_driver_settings()` returns all the settings at once,
 encapsulated in a hierarchical format.
 
 #### Reading a Boolean Parameter
@@ -172,13 +172,13 @@ returned (the value of the {hparam}`noArgValue` argument to
 {cpp:func}`get_driver_boolean_parameter()`). Otherwise the following is
 done:
 
--   If the value is "1", "true", "yes", "on", "enable", or "enabled",
+- If the value is "1", "true", "yes", "on", "enable", or "enabled",
 {cpp:expr}`true` is returned.
 
--   If the value is "0", "false", "no", "off", "disable", or "disabled",
+- If the value is "0", "false", "no", "off", "disable", or "disabled",
 {cpp:expr}`false` is returned.
 
--   If the value matches none of these strings, it's treated as if no entry
+- If the value matches none of these strings, it's treated as if no entry
 were found, and {hparam}`unknownValue` is returned.
 
 If more than one line containing the word "debug" is found, the last one

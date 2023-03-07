@@ -41,7 +41,8 @@ doesn't Intersect() with the {cpp:class}`BRect`), even though it
 corresponds to one of the pixels that the {cpp:class}`BRect` touches (as
 shown here).
 
-![Point Outside Rectangle But Drawn Anyway](./_static/images/rect_point.png)
+![Point Outside Rectangle But Drawn
+Anyway](./_static/images/rect_point.png)
 
 ## Rectangle Validity
 

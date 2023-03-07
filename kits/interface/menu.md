@@ -378,14 +378,14 @@ Removes the item at {hparam}`index`, or the specified {hparam}`item`, or
 the item that controls the specified {hparam}`submenu`. Removing the item
 doesn't free it.
 
--   If passed an {hparam}`index`, this function returns a pointer to the item
+- If passed an {hparam}`index`, this function returns a pointer to the item
 so you can free it. It returns a {cpp:expr}`NULL` pointer if the item
 couldn't be removed (for example, if the {hparam}`index` is out-of-range).
 
--   If passed an {hparam}`item`, it returns {cpp:expr}`true` if the item was
+- If passed an {hparam}`item`, it returns {cpp:expr}`true` if the item was
 in the list and could be removed, and {cpp:expr}`false` if not.
 
--   If passed a {hparam}`submenu`, it returns {cpp:expr}`true` if the submenu
+- If passed a {hparam}`submenu`, it returns {cpp:expr}`true` if the submenu
 is controlled by an item in the menu and that item could be removed, and
 {cpp:expr}`false` otherwise.
 

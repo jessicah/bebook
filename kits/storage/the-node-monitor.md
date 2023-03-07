@@ -5,17 +5,17 @@ Declared in: storage/NodeMonitor.h
 The Node Monitor is a service that lets you ask to be notified of certain
 file system changes. You can ask to be told when a change is made to…
 
--   The contents of a specific directory.
+- The contents of a specific directory.
 
--   The name of a specific entry.
+- The name of a specific entry.
 
--   Any stat field of a specific entry.
+- Any stat field of a specific entry.
 
--   Any attribute of a specific entry.
+- Any attribute of a specific entry.
 
 You can also ask to be notified when…
 
--   Volumes are mounted and unmounted.
+- Volumes are mounted and unmounted.
 
 :::{admonition} Note
 :class: note
@@ -34,11 +34,11 @@ There are two Node Monitor functions, watch_node() and stop_watching().
 The names are a wee bit misleading, so before we go on to the full
 technical descriptions, let's nip some buds:
 
--   {cpp:func}`watch_node()` tells the Node Monitor to start __or stop__
+- {cpp:func}`watch_node()` tells the Node Monitor to start __or stop__
 watching a __specific__ node, or to watch for volumes being mounted and
 unmounted. Memorize the emphasized words.
 
--   {cpp:func}`stop_watching()` tells the Node Monitor to stop sending
+- {cpp:func}`stop_watching()` tells the Node Monitor to stop sending
 notifications to a particular target.
 
 ::::{abi-group}
@@ -50,17 +50,17 @@ notifications to a particular target.
 
 watch_node() tells the Node Monitor to…
 
--   …start paying attention to the node specified by the {cpp:func}`node_ref
+- …start paying attention to the node specified by the {cpp:func}`node_ref
 <node::ref>` argument. If you're watching for volumes (only),
 {hparam}`nref` can be {cpp:expr}`NULL`. The easiest way to get a
 {cpp:func}`node_ref <node::ref>` is to invoke
 {cpp:func}`BStatable::GetNodeRef()` on any {cpp:class}`BEntry` or
 {cpp:class}`BNode` object.
 
--   The {hparam}`flags` argument lists the changes that you want the Monitor
+- The {hparam}`flags` argument lists the changes that you want the Monitor
 to pay attention to. See below for details.
 
--   The target of the change notification messages is specified either as a
+- The target of the change notification messages is specified either as a
 {cpp:class}`BMessenger`, or as a {cpp:class}`BHandler` /
 {cpp:class}`BLooper` pair. (The target specification follows the
 {cpp:func}`BInvoker::SetTarget()` protocol; see the {cpp:class}`BInvoker`
@@ -207,12 +207,12 @@ only a single Node Monitor slot.
 A {cpp:class}`BMessage` notification sent by the Node Monitor looks like
 this:
 
--   The {hparam}`what` value is {cpp:enumerator}`B_NODE_MONITOR`.
+- The {hparam}`what` value is {cpp:enumerator}`B_NODE_MONITOR`.
 
--   The field named {hparam}`opcode` is an {htype}`int32` constant that tells
+- The field named {hparam}`opcode` is an {htype}`int32` constant that tells
 you what happened.
 
--   Additional fields give you information (device, node, name, and so on)
+- Additional fields give you information (device, node, name, and so on)
 about the node (or volume) that it happened to.
 
 The {hparam}`opcode` constants and additional fields are described in
@@ -222,19 +222,19 @@ one-to-one.
 
 There are seven opcode constants:
 
--   {cpp:enumerator}`B_ENTRY_CREATED`
+- {cpp:enumerator}`B_ENTRY_CREATED`
 
--   {cpp:enumerator}`B_ENTRY_REMOVED`
+- {cpp:enumerator}`B_ENTRY_REMOVED`
 
--   {cpp:enumerator}`B_ENTRY_MOVED`
+- {cpp:enumerator}`B_ENTRY_MOVED`
 
--   {cpp:enumerator}`B_STAT_CHANGED`
+- {cpp:enumerator}`B_STAT_CHANGED`
 
--   {cpp:enumerator}`B_ATTR_CHANGED`
+- {cpp:enumerator}`B_ATTR_CHANGED`
 
--   {cpp:enumerator}`B_DEVICE_MOUNTED`
+- {cpp:enumerator}`B_DEVICE_MOUNTED`
 
--   {cpp:enumerator}`B_DEVICE_UNMOUNTED`
+- {cpp:enumerator}`B_DEVICE_UNMOUNTED`
 
 :::{list-table}
 ---
@@ -524,16 +524,16 @@ Note that the {cpp:enumerator}`B_ENTRY_REMOVED` message is sent as soon as
 the node's entry is "unlinked" from its directory. The node itself may
 linger for while after that. Follow this logic:
 
--   When a file (regardless of flavor) is removed, the entry for that file is
+- When a file (regardless of flavor) is removed, the entry for that file is
 immediately removed ("unlinked") from the file hierarchy, and the Node
 Monitor message is immediately sent—even if you have an object that has
 opened the file's node.
 
--   The node isn't actually destroyed until the last open object (to that
+- The node isn't actually destroyed until the last open object (to that
 node) is destroyed. (In POSIX speak, the node is destroyed when the last
 file descriptor to the node is closed.)
 
--   Until the node is destroyed, the open objects (file descriptors) can still
+- Until the node is destroyed, the open objects (file descriptors) can still
 access the node's data.
 
 You can take advantage of this to warn a user that a file is going to go
@@ -759,24 +759,24 @@ widths: auto
 The stat structure is described in "The stat Structure" in the
 {cpp:class}`BStatable` class. The fields that you can change are:
 
--   Owner ({hparam}`st_uid`), group ({hparam}`st_gid`), and permissions (low
+- Owner ({hparam}`st_uid`), group ({hparam}`st_gid`), and permissions (low
 four bytes of {hparam}`st_mode`).
 
--   Creation ({hparam}`st_ctime`), modification ({hparam}`st_mtime`), and
+- Creation ({hparam}`st_ctime`), modification ({hparam}`st_mtime`), and
 access times ({hparam}`st_atime`; currently unused).
 
--   The size of the node's data ({hparam}`st_size`). The measurement doesn't
+- The size of the node's data ({hparam}`st_size`). The measurement doesn't
 include attributes.
 
 A couple of important points:
 
--   The {cpp:enumerator}`B_STAT_CHANGED` message doesn't give you enough
+- The {cpp:enumerator}`B_STAT_CHANGED` message doesn't give you enough
 information to construct an object from which you can get a {htype}`stat`
 structure. In other words, you can't play the same games that were
 described in "{cpp:func}`Parsing and Tricks
 <TheNodeMonitor::ParsingAndTricks>`."
 
--   The message also doesn't tell you which stat field changed.
+- The message also doesn't tell you which stat field changed.
 
 In most uses of the {cpp:enumerator}`B_STAT_CHANGED` message, you have to
 cache the objects that you're monitoring so you can compare their

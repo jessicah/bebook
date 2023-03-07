@@ -3,10 +3,10 @@
 You can look at the state of all the keys on the keyboard at a given
 moment in time. This information is captured and reported in two ways:
 
-1.    As the {hparam}`states` field in every {cpp:enumerator}`B_KEY_DOWN`
+1. As the {hparam}`states` field in every {cpp:enumerator}`B_KEY_DOWN`
 message, and
 
-2.    As the {hparam}`key_states` bitfield reported by
+2. As the {hparam}`key_states` bitfield reported by
 {cpp:func}`get_key_info()`.
 
 In both cases, the bitfield is an array of 16 bytes,
@@ -35,12 +35,12 @@ set to 0 if the lock is off, regardless of the state of the key itself.
 
 To test the bitfield against a particular key,
 
--   Select the byte in the {hparam}`states` array that contains the bit for
+- Select the byte in the {hparam}`states` array that contains the bit for
 that key,
 
--   Form a mask for the key that can be compared to that byte, and
+- Form a mask for the key that can be compared to that byte, and
 
--   Compare the byte to the mask.
+- Compare the byte to the mask.
 
 For example:
 

@@ -92,14 +92,14 @@ If the driver is asked to show the cursor before
 
 Tells the driver to draw a straight, 8-bit color, minimally thin line.
 
--   The line begins at ({hparam}`startX`, {hparam}`startY`) and ends at
+- The line begins at ({hparam}`startX`, {hparam}`startY`) and ends at
 ({hparam}`endX`, {hparam}`endY`), inclusive. The arguments are frame buffer
 coordinates.
 
--   {hparam}`colorIndex` gives the color of the line as an index into the
+- {hparam}`colorIndex` gives the color of the line as an index into the
 8-bit color table.
 
--   If {hparam}`clipToRect` is {cpp:expr}`true`, the function should draw only
+- If {hparam}`clipToRect` is {cpp:expr}`true`, the function should draw only
 the portion of the line that lies within the clipping rectangle defined by
 the last four arguments. The sides of the rectangle are included in the
 drawing area. If {hparam}`clipToRect` is {cpp:expr}`false`, the final four
@@ -112,7 +112,8 @@ the diagonal, not by overlapping. Here's how you should (and shouldn't)
 produce a mostly-vertical line; for the mostly-horizontal version, turn
 your head sideways:
 
-![Drawing Line With 8 Bit Depth](./_static/images/draw_line_with_8_bit_depth.png)
+![Drawing Line With 8 Bit
+Depth](./_static/images/draw_line_with_8_bit_depth.png)
 
 ## draw_line_with_32_bit_depth()Index: 4
 

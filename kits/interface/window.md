@@ -275,16 +275,16 @@ See also: {cpp:func}`BView::WindowActivated()`
 window, adds it to the window's view list, and adds it to the window's list
 of handlers:
 
--   Graphically, the view is placed in the window's coordinate system at the
+- Graphically, the view is placed in the window's coordinate system at the
 location defined by the view's frame rectangle.
 
--   In the window's view list, {hparam}`aView` is inserted before
+- In the window's view list, {hparam}`aView` is inserted before
 {hparam}`sibling`. if {hparam}`sibling` is {cpp:expr}`NULL`,
 {hparam}`aView` is added at the end of the list. Note, however, that window
 list order is of little significance; for example, it doesn't affect the
 order in which sibling views are drawn.
 
--   {hparam}`aView` and its children are added to the window's handler list;
+- {hparam}`aView` and its children are added to the window's handler list;
 {hparam}`aView`'s next handler is set to this {hclass}`BWindow`.
 
 Each {cpp:class}`BView` in aView's hierarchy is sent an
@@ -342,15 +342,15 @@ Don't use these functions to create and remove menu shortcuts; use
 
 Notes on the arguments:
 
--   {hparam}`key` is a case-insensitive character value. If you want to map to
+- {hparam}`key` is a case-insensitive character value. If you want to map to
 an uppercase character, you have to include {cpp:enumerator}`B_SHIFT_KEY`
 in the {hparam}`modifiers` mask.
 
--   {hparam}`modifiers` is an OR'd list of modifier key numbers.
+- {hparam}`modifiers` is an OR'd list of modifier key numbers.
 {cpp:enumerator}`B_COMMAND_KEY`, which is always assumed, needn't be added
 to the mask. See {ref}`modifiers()` for a list of modifier keys.
 
--   {hparam}`message` is a model of the {cpp:class}`BMessage` you want sent
+- {hparam}`message` is a model of the {cpp:class}`BMessage` you want sent
 when the user types the shortcut. The {hclass}`BWindow` takes ownership of
 the {hparam}`message` object and adds a {hparam}`when` field to it:
 
@@ -377,7 +377,7 @@ widths: auto
 
 :::
 
--   {hparam}`handler` must be in the window's handler list (or the message
+- {hparam}`handler` must be in the window's handler list (or the message
 won't be sent). If you exclude the argument, this {hclass}`BWindow` handles
 the message. If handler is (literally) {cpp:expr}`NULL`, the message is
 sent to the {hclass}`BWindow`'s focus view (or to the {hclass}`BWindow` if
@@ -952,17 +952,17 @@ The type is set at construction (or by {hmethod}`SetType()`) as one of the
 following constants (full descriptions can be found in the discussion of
 the {hclass}`BWindow` {cpp:func}`constructor <BWindow::BWindow()>`):
 
--   {cpp:enumerator}`B_UNTYPED_WINDOW`
+- {cpp:enumerator}`B_UNTYPED_WINDOW`
 
--   {cpp:enumerator}`B_MODAL_WINDOW`
+- {cpp:enumerator}`B_MODAL_WINDOW`
 
--   {cpp:enumerator}`B_BORDERED_WINDOW`
+- {cpp:enumerator}`B_BORDERED_WINDOW`
 
--   {cpp:enumerator}`B_TITLED_WINDOW`
+- {cpp:enumerator}`B_TITLED_WINDOW`
 
--   {cpp:enumerator}`B_DOCUMENT_WINDOW`
+- {cpp:enumerator}`B_DOCUMENT_WINDOW`
 
--   {cpp:enumerator}`B_FLOATING_WINDOW`
+- {cpp:enumerator}`B_FLOATING_WINDOW`
 ::::
 
 ::::{abi-group}
@@ -1167,9 +1167,9 @@ to other windows. The feel is set in the {hclass}`BWindow` constructor or
 in {cpp:func}`~BWindow::SetFeel()`. The table below briefly describes the
 window feels.
 
--   To set a window's subset, use {cpp:func}`~BWindow::AddToSubset()`.
+- To set a window's subset, use {cpp:func}`~BWindow::AddToSubset()`.
 
--   Modal windows are drawn in front of floating windows.
+- Modal windows are drawn in front of floating windows.
 
 :::{list-table}
 ---

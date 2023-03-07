@@ -16,7 +16,7 @@ is a plain file, a directory, or a symbolic link—it doesn't even care if
 the entry even exists (but we'll get to that later in "{ref}`Abstract
 Entries`"):
 
--   All the {hclass}`BEntry` cares about is a name in a directory.
+- All the {hclass}`BEntry` cares about is a name in a directory.
 
 The most important implication of this is the object's attitude towards
 data. {hclass}`BEntry`s don't know how to operate on data. You can't use a
@@ -33,27 +33,27 @@ data that lies in the file that's located by the entry."
 A properly initialized {hclass}`BEntry` object (we'll get to the rules of
 initialization later) knows the following:
 
--   Location info. A {hclass}`BEntry` knows its own (leaf) name
+- Location info. A {hclass}`BEntry` knows its own (leaf) name
 ({cpp:func}`~BEntry::GetName()`), its full pathname
 ({cpp:func}`~BEntry::GetPath()`), and the identity of its parent directory
 ({cpp:func}`~BEntry::GetParent()`).
 
--   {cpp:class}`BStatable` info. As a descendant of {cpp:class}`BStatable`, a
+- {cpp:class}`BStatable` info. As a descendant of {cpp:class}`BStatable`, a
 {hclass}`BEntry` can return statistical information about the entry's
 data—its size, creation date, owner, and so on.
 
--   {htype}`entry_ref` identifier. A {hclass}`BEntry` can return the
+- {htype}`entry_ref` identifier. A {hclass}`BEntry` can return the
 {htype}`entry_ref` that globally identifies the entry
 ({cpp:func}`~BEntry::GetRef()`).
 
 A {hclass}`BEntry` can do these things:
 
--   Perform hierarchical operations. A {hclass}`BEntry` can change the name of
+- Perform hierarchical operations. A {hclass}`BEntry` can change the name of
 its entry ({cpp:func}`~BEntry::Rename()`), move it to another directory
 ({cpp:func}`~BEntry::MoveTo()`), and remove it from the file hierarchy
 ({cpp:func}`~BEntry::Remove()`).
 
--   Initialize {cpp:class}`BNode` objects. The constructors and
+- Initialize {cpp:class}`BNode` objects. The constructors and
 {cpp:func}`~BEntry::SetTo()` initializers for {cpp:class}`BNode` and its
 children ({cpp:class}`BFile`, {cpp:class}`BDirectory`, and
 {cpp:class}`BSymLink`) accept {hclass}`BEntry` arguments.
@@ -72,31 +72,31 @@ To initialize a {hclass}`BEntry`, you have to tell it which entry to
 represent; in other words, you have to identify a directory and a name. You
 can initialize a {hclass}`BEntry` object directly…
 
--   during construction,
+- during construction,
 
--   through the {cpp:func}`~BEntry::SetTo()` function,
+- through the {cpp:func}`~BEntry::SetTo()` function,
 
--   or through the assignment operator.
+- or through the assignment operator.
 
 Or you can have some other object initialize your {hclass}`BEntry` for
 you, by passing the {hclass}`BEntry` as an argument to…
 
--   {cpp:class}`BDirectory`'s {cpp:func}`~BDirectory::FindEntry()` or
+- {cpp:class}`BDirectory`'s {cpp:func}`~BDirectory::FindEntry()` or
 {cpp:func}`~BDirectory::GetEntry()` function,
 
--   {cpp:class}`BEntryList`'s {cpp:func}`~BEntryList::GetNextEntry()` function
+- {cpp:class}`BEntryList`'s {cpp:func}`~BEntryList::GetNextEntry()` function
 (implemented by {cpp:class}`BDirectory` and {cpp:class}`BQuery`).
 
--   {hclass}`BEntry`'s {cpp:func}`~BEntry::GetParent()` function.
+- {hclass}`BEntry`'s {cpp:func}`~BEntry::GetParent()` function.
 
 In all cases (except the assignment operator) you're asked if you want to
 "traverse" the entry during initialization. Traversal is used to "resolve"
 symbolic links:
 
--   If you traverse: The {hclass}`BEntry` will point to the entry that the
+- If you traverse: The {hclass}`BEntry` will point to the entry that the
 symbolic link is linked to.
 
--   If you don't traverse: The {hclass}`BEntry` will point to the symbolic
+- If you don't traverse: The {hclass}`BEntry` will point to the symbolic
 link itself.
 
 For example, let's say /boot/home/fidoLink is linked to /fido, to wit:
@@ -137,15 +137,15 @@ traversal flag is ignored.
 
 When should you traverse, and when not? Here are a few rules of thumbs:
 
--   If somebody hands you a file reference—if your app gets a
+- If somebody hands you a file reference—if your app gets a
 {cpp:func}`~BApplication::RefsReceived()` message—then you probably want to
 traverse the entry.
 
--   If you're pawing over the contents of a directory (through
+- If you're pawing over the contents of a directory (through
 {cpp:class}`BDirectory`'s {cpp:func}`~BDirectory::GetNextEntry()`), then
 you probably don't want to traverse.
 
--   If you're looking at the result of a query (through {cpp:class}`BQuery`'s
+- If you're looking at the result of a query (through {cpp:class}`BQuery`'s
 {cpp:func}`~BQuery::GetNextEntry()`), then you almost certainly don't want
 to traverse. The query finds entries that satisfy certain criteria; if a
 symbolic link is in the list, it's because the link itself was a winner. If
@@ -181,7 +181,7 @@ a specific directory. The directory that a {hclass}`BEntry` identifies must
 exist, but the entry that corresponds to the name doesn't have to. In other
 words…
 
--   A {hclass}`BEntry` can represent a file that doesn't exist. The entry is
+- A {hclass}`BEntry` can represent a file that doesn't exist. The entry is
 said to be "abstract."
 
 For example, the following construction creates a {hclass}`BEntry` object
@@ -199,7 +199,7 @@ valid.
 
 But validity doesn't equal existence:
 
--   {cpp:func}`~BEntry::SetTo()` and {cpp:func}`~BEntry::InitCheck()` __do
+- {cpp:func}`~BEntry::SetTo()` and {cpp:func}`~BEntry::InitCheck()` __do
 not__ tell you if a {hclass}`BEntry`'s entry actually exists. Don't be
 confused; a return value of {cpp:enumerator}`B_OK` simply means the object
 is valid.
@@ -275,10 +275,10 @@ One more time: A {hclass}`BEntry` identifies an entry as a name in a
 directory. As described above, the directory is maintained internally as a
 file descriptor; the name is simply a string. This means that…
 
--   The directory for a given BEntry is persistent. If you move the directory,
+- The directory for a given BEntry is persistent. If you move the directory,
 the file descriptor, and so the BEntry, moves with it.
 
--   The name isn't persistent. If the user renames the leaf that a BEntry is
+- The name isn't persistent. If the user renames the leaf that a BEntry is
 pointing to, the BEntry will become abstract.
 
 For example, take the following {hclass}`BEntry`…

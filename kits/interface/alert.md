@@ -118,12 +118,12 @@ not be freed.
 Displays the alert panel. {hmethod}`Go()` can operate synchronously or
 asynchronously:
 
--   The no-argument version is synchronous: The function doesn't return until
+- The no-argument version is synchronous: The function doesn't return until
 the user has clicked a button and the panel has been removed from the
 screen.. The value it returns is the index of the clicked button (0,1, or
 2, left-to-right)..
 
--   The {cpp:class}`BInvoker` argument version is asynchronous: The function
+- The {cpp:class}`BInvoker` argument version is asynchronous: The function
 returns immediately (with {cpp:enumerator}`B_OK`) and the button index is
 delivered as the {htype}`int32` "which" field of the {cpp:class}`BMessage`
 that's sent to the {cpp:class}`BInvoker`'s target.

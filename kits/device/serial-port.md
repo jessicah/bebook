@@ -12,15 +12,15 @@
 Initializes the {hclass}`BSerialPort` object to the following default
 values:
 
--   Hardware flow control (see {cpp:func}`~BSerialPort::SetFlowControl()`)
+- Hardware flow control (see {cpp:func}`~BSerialPort::SetFlowControl()`)
 
--   A data rate of 19,200 bits per second (see
+- A data rate of 19,200 bits per second (see
 {cpp:func}`~BSerialPort::SetDataRate()`)
 
--   A serial unit with 8 bits of data, 1 stop bit, and no parity (see
+- A serial unit with 8 bits of data, 1 stop bit, and no parity (see
 {cpp:func}`~BSerialPort::SetDataBits()`)
 
--   Blocking with no time limit—an infinite timeout—for reading data (see
+- Blocking with no time limit—an infinite timeout—for reading data (see
 {cpp:func}`~BSerialPort::Read()`)
 
 The new object doesn't represent any particular serial port. After
@@ -203,7 +203,7 @@ depends not only on {hparam}`maxBytes`, but also on the
 {hparam}`shouldBlock` flag and the {hparam}`timeout` set by the other two
 functions.
 
--   {hmethod}`SetBlocking()` determines whether {hmethod}`Read()` should block
+- {hmethod}`SetBlocking()` determines whether {hmethod}`Read()` should block
 and wait for {hparam}`maxBytes` of data to arrive at the serial port if
 that number isn't already available to be read. If the
 {hparam}`shouldBlock` flag is {cpp:expr}`true`, {hmethod}`Read()` will
@@ -212,16 +212,16 @@ block. However, if {hparam}`shouldBlock` is {cpp:expr}`false`,
 to the maximum asked for, then return immediately. If no data is waiting at
 the serial port, it returns without reading anything.
 
--   The default {hparam}`shouldBlock` setting is {cpp:expr}`true`.
+- The default {hparam}`shouldBlock` setting is {cpp:expr}`true`.
 
--   {hmethod}`SetTimeout()` sets a time limit on how long {hmethod}`Read()`
+- {hmethod}`SetTimeout()` sets a time limit on how long {hmethod}`Read()`
 will block while waiting for data to arrive at the port's input buffer. The
 timeout is relevant to {hmethod}`Read()` only if the {hparam}`shouldBlock`
 flag is {cpp:expr}`true`. However, the time limit also applies to the
 {cpp:func}`~BSerialPort::WaitForInput()` function, which always blocks,
 regardless of the {hparam}`shouldBlock` setting.
 
--   There is no time limit if the timeout is set to
+- There is no time limit if the timeout is set to
 {cpp:enumerator}`B_INFINITE_TIMEOUT`—{hmethod}`Read()` and
 {cpp:func}`~BSerialPort::WaitForInput()` will block forever. Otherwise, the
 timeout is expressed in microseconds and can range from a minimum of
@@ -229,7 +229,7 @@ timeout is expressed in microseconds and can range from a minimum of
 differences less than 100,000 microseconds are not recognized; they're
 rounded to the nearest tenth of a second.
 
--   The default timeout is {cpp:enumerator}`B_INFINITE_TIMEOUT`.
+- The default timeout is {cpp:enumerator}`B_INFINITE_TIMEOUT`.
 
 {hmethod}`Read()` returns…
 
@@ -315,13 +315,13 @@ typedef enum { B_EVEN_PARITY, B_ODD_PARITY, B_NO_PARITY } parity_mode
 These functions set and return characteristics of the serial unit used to
 send and receive data.
 
--   {hmethod}`SetDataBits()` sets the number of bits of data in each unit; the
+- {hmethod}`SetDataBits()` sets the number of bits of data in each unit; the
 default is {cpp:enumerator}`B_DATA_BITS_8`.
 
--   {hmethod}`SetStopBits()` sets the number of stop bits in each unit; the
+- {hmethod}`SetStopBits()` sets the number of stop bits in each unit; the
 default is {cpp:enumerator}`B_STOP_BITS_2`.
 
--   {hmethod}`SetParityMode()` sets whether the serial unit contains a parity
+- {hmethod}`SetParityMode()` sets whether the serial unit contains a parity
 bit and, if so, the type of parity used; the default is
 {cpp:enumerator}`B_NO_PARITY`.
 ::::

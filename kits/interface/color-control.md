@@ -19,15 +19,15 @@ enough to display 256 color cells arranged in the specified
 {hparam}`matrix`, which can be any of the following
 {cpp:any}`color_control_layout` constants:
 
--   {cpp:enumerator}`B_CELLS_4x64`
+- {cpp:enumerator}`B_CELLS_4x64`
 
--   {cpp:enumerator}`B_CELLS_8x32`
+- {cpp:enumerator}`B_CELLS_8x32`
 
--   {cpp:enumerator}`B_CELLS_16x16`
+- {cpp:enumerator}`B_CELLS_16x16`
 
--   {cpp:enumerator}`B_CELLS_64x4`
+- {cpp:enumerator}`B_CELLS_64x4`
 
--   {cpp:enumerator}`B_CELLS_32x8`
+- {cpp:enumerator}`B_CELLS_32x8`
 
 For example, {cpp:enumerator}`B_CELLS_4x64` lays out a matrix with four
 cell columns and 64 rows; {cpp:enumerator}`B_CELLS_32x8` specifies 32

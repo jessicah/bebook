@@ -58,9 +58,9 @@ Augments the inherited version of {hmethod}`KeyDown()` to respond to
 messages reporting that the user pressed the {hkey}`Enter` key or the space
 bar. Its response is to:
 
--   Momentarily highlight the button and change its value.
+- Momentarily highlight the button and change its value.
 
--   Call {cpp:func}`~BControl::Invoke()` to deliver a copy of the model
+- Call {cpp:func}`~BControl::Invoke()` to deliver a copy of the model
 {cpp:class}`BMessage` to the target receiver.
 
 The {hclass}`BButton` gets {hmethod}`KeyDown()` function calls when it's

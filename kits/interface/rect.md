@@ -141,7 +141,7 @@ See also: {cpp:func}`& (intersection)`, {cpp:func}`| (union)`,
 Sorting out the different versions, there are three basic
 rectangle-manipulation functions here:
 
--   {hmethod}`InsetBy()` insets the sides of the {hclass}`BRect`'s rectangle
+- {hmethod}`InsetBy()` insets the sides of the {hclass}`BRect`'s rectangle
 by {hparam}`x` units (left and right sides) and {hparam}`y` units (top and
 bottom). Positive inset values shrink the rectangle; negative values expand
 it. Note that both sides of each pair moves the full amount. For example,
@@ -149,11 +149,11 @@ if you inset a {hclass}`BRect` by (4,4), the left side moves (to the right)
 four units and the right side moves (to the left) four units (and similarly
 with the top and bottom).
 
--   {hmethod}`OffsetBy()` moves the {hclass}`BRect` horizontally by
+- {hmethod}`OffsetBy()` moves the {hclass}`BRect` horizontally by
 {hparam}`x` units and vertically by {hparam}`y` units. The rectangle's size
 doesn't change.
 
--   {hmethod}`OffsetTo()` moves the {hclass}`BRect` to the location
+- {hmethod}`OffsetTo()` moves the {hclass}`BRect` to the location
 ({hparam}`x`,{hparam}`y`).
 
 If a {cpp:class}`BPoint` argument is used, the {cpp:class}`BPoint`'s

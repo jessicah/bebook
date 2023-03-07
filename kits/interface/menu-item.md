@@ -78,11 +78,11 @@ The {hparam}`modifiers` mask determines which modifier keys the user must
 hold down for the shortcut to work. The mask can be formed by combining any
 of the modifiers constants, especially these:
 
--   {cpp:enumerator}`B_SHIFT_KEY`
+- {cpp:enumerator}`B_SHIFT_KEY`
 
--   {cpp:enumerator}`B_CONTROL_KEY`
+- {cpp:enumerator}`B_CONTROL_KEY`
 
--   {cpp:enumerator}`B_OPTION_KEY`
+- {cpp:enumerator}`B_OPTION_KEY`
 
 {cpp:enumerator}`B_COMMAND_KEY` is required for all keyboard shortcuts; it
 doesn't have to be explicitly included in the mask.
@@ -312,10 +312,10 @@ Items and menus are enabled by default.
 
 When using these functions, keep in mind that:
 
--   Disabling a {hclass}`BMenuItem` that controls a submenu serves to disable
+- Disabling a {hclass}`BMenuItem` that controls a submenu serves to disable
 the entire menu hierarchy under the item.
 
--   Passing an argument of {cpp:expr}`true` to {hmethod}`SetEnabled()` is not
+- Passing an argument of {cpp:expr}`true` to {hmethod}`SetEnabled()` is not
 sufficient to enable the item if it's located in a disabled branch of the
 menu hierarchy. It can only undo a previous {hmethod}`SetEnabled()` call
 (with an argument of {cpp:expr}`false`) on the same item.
@@ -337,10 +337,10 @@ become wider (or narrower) so that it fits the new label.
 
 The Interface Kit calls this virtual function to:
 
--   Set the initial label of an item that controls a submenu to the name of
+- Set the initial label of an item that controls a submenu to the name of
 the submenu, and
 
--   Subsequently set the item's label to match the marked item in the submenu,
+- Subsequently set the item's label to match the marked item in the submenu,
 if the submenu was set up to have this feature.
 
 {hmethod}`Label()` returns a pointer to the current label.

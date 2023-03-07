@@ -111,12 +111,12 @@ void MyView::MouseDown(BPoint point)
 
 {hmethod}`Go()` operates in two modes:
 
--   If the {hparam}`deliversMessage` flag is {cpp:expr}`true`, the
+- If the {hparam}`deliversMessage` flag is {cpp:expr}`true`, the
 {hclass}`BPopUpMenu` works just like a menu that's controlled by a
 {cpp:class}`BMenuBar`. When the user invokes an item in the menu, the item
 posts a message to its target.
 
--   If the {hparam}`deliversMessage` flag is {cpp:expr}`false`, a message is
+- If the {hparam}`deliversMessage` flag is {cpp:expr}`false`, a message is
 not posted. Invoking an item doesn't automatically accomplish anything.
 It's up to the application to look at the returned {cpp:class}`BMenuItem`
 and decide what to do. It can mimic the behavior of other menus and post

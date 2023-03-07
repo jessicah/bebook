@@ -42,17 +42,17 @@ constants that determine whether an executable can only be launched once,
 whether it runs in the background, and so on. The app flag constants are
 defined in app/Roster.h; the flags must include one of the following…
 
--   {cpp:enumerator}`B_SINGLE_LAUNCH`
+- {cpp:enumerator}`B_SINGLE_LAUNCH`
 
--   {cpp:enumerator}`B_MULTIPLE_LAUNCH`
+- {cpp:enumerator}`B_MULTIPLE_LAUNCH`
 
--   {cpp:enumerator}`B_EXCLUSIVE_LAUNCH`
+- {cpp:enumerator}`B_EXCLUSIVE_LAUNCH`
 
 …plus either of these two:
 
--   {cpp:enumerator}`B_BACKGROUND_APP`
+- {cpp:enumerator}`B_BACKGROUND_APP`
 
--   {cpp:enumerator}`B_ARGV_ONLY`
+- {cpp:enumerator}`B_ARGV_ONLY`
 
 See the {cpp:class}`BApplication` class for details on the meanings of
 these constants.
@@ -432,11 +432,11 @@ See Also: {cpp:func}`~BAppFileInfo::GetSupportedTypes()`,
 either attributes, resources, or both. {hparam}`loc` takes the following
 values:
 
--   {cpp:enumerator}`B_USE_ATTRIBUTES`
+- {cpp:enumerator}`B_USE_ATTRIBUTES`
 
--   {cpp:enumerator}`B_USE_RESOURCES`
+- {cpp:enumerator}`B_USE_RESOURCES`
 
--   {cpp:enumerator}`B_USE_BOTH`
+- {cpp:enumerator}`B_USE_BOTH`
 
 {hmethod}`IsUsingAttributes()` and {hmethod}`IsUsingResources()` return
 {cpp:expr}`true` if the {hclass}`BAppFileInfo` object is storing

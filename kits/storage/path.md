@@ -28,10 +28,10 @@ Creates a new {hclass}`BPath` object that represents the path that's
 created from the arguments. See the analogous {cpp:func}`~BPath::SetTo()`
 functions for descriptions of the flavorful constructors.
 
--   The default constructor does nothing; it should be followed by a call to
+- The default constructor does nothing; it should be followed by a call to
 {cpp:func}`~BPath::SetTo()`.
 
--   The copy constructor makes a copy of the argument's pathname.
+- The copy constructor makes a copy of the argument's pathname.
 
 The constructor automatically allocates memory for the object's stored
 pathname. The memory is freed when the object is deleted.
@@ -113,10 +113,10 @@ path.GetParent(&path);
 
 Other details…
 
--   {hmethod}`GetParent()` makes a call to {cpp:func}`~BPath::SetTo()`, but
+- {hmethod}`GetParent()` makes a call to {cpp:func}`~BPath::SetTo()`, but
 it's guaranteed not to tickle the normalization machine.
 
--   You can't get the parent of "/".
+- You can't get the parent of "/".
 
 :::{list-table}
 ---
@@ -225,25 +225,25 @@ If the {hclass}`BPath` isn't initialized, the functions return pointers to
 The {hmethod}`SetTo()` function frees the pathname that the object
 currently holds, and re-initializes the object according to the arguments:
 
--   The first version concatenates the {hparam}`path` and {hparam}`leaf`
+- The first version concatenates the {hparam}`path` and {hparam}`leaf`
 strings (interposing a "/" if necessary). If {hparam}`path` is relative,
 the concatenated pathname is appended to the current working directory.
 Note that you don't have to split your pathname into two parts to call this
 constructor; the optional {hparam}`leaf` argument is provided simply as a
 convenience.
 
--   The second version performs a similar operation using the path of the
+- The second version performs a similar operation using the path of the
 {cpp:class}`BDirectory` as the initial part of the pathname.
 
--   The third version initilizes the object with the {hparam}`path` and name
+- The third version initilizes the object with the {hparam}`path` and name
 of the {hparam}`entry`.
 
 Regarding the {hparam}`leaf` argument:
 
--   The {hparam}`leaf` string can contain directories—it needn't be just a
+- The {hparam}`leaf` string can contain directories—it needn't be just a
 leaf name.
 
--   However, {hparam}`leaf` must be a relative pathname (it can't start with
+- However, {hparam}`leaf` must be a relative pathname (it can't start with
 "/").
 
 If set to {cpp:expr}`true`, the {hparam}`normalize` argument tells the
@@ -262,14 +262,14 @@ allocated storage.
 
 Other details…
 
--   Destructive setting is safe:
+- Destructive setting is safe:
 
   :::{code} cpp
 /* This works... */
 path.SetTo(path.Path(), ...);
 :::
 
--   Currently, {hmethod}`SetTo()` only checks pathname and filename length if
+- Currently, {hmethod}`SetTo()` only checks pathname and filename length if
 it has to normalize.
 
 {hmethod}`Unset()` frees the object's pathname storage and sets the

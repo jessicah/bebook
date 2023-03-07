@@ -36,23 +36,23 @@ The {hparam}`resizingMode` mask determines the behavior of the view when
 its parent is resized. It should combine one constant for horizontal
 resizing,
 
--   {cpp:enumerator}`B_FOLLOW_LEFT`
+- {cpp:enumerator}`B_FOLLOW_LEFT`
 
--   {cpp:enumerator}`B_FOLLOW_RIGHT`
+- {cpp:enumerator}`B_FOLLOW_RIGHT`
 
--   {cpp:enumerator}`B_FOLLOW_LEFT_RIGHT`
+- {cpp:enumerator}`B_FOLLOW_LEFT_RIGHT`
 
--   {cpp:enumerator}`B_FOLLOW_H_CENTER`
+- {cpp:enumerator}`B_FOLLOW_H_CENTER`
 
 with one for vertical resizing:
 
--   {cpp:enumerator}`B_FOLLOW_TOP`
+- {cpp:enumerator}`B_FOLLOW_TOP`
 
--   {cpp:enumerator}`B_FOLLOW_BOTTOM`
+- {cpp:enumerator}`B_FOLLOW_BOTTOM`
 
--   {cpp:enumerator}`B_FOLLOW_TOP_BOTTOM`
+- {cpp:enumerator}`B_FOLLOW_TOP_BOTTOM`
 
--   {cpp:enumerator}`B_FOLLOW_V_CENTER`
+- {cpp:enumerator}`B_FOLLOW_V_CENTER`
 
 For example, if {cpp:enumerator}`B_FOLLOW_LEFT` is chosen, the margin
 between the left side of the view and the left side of its parent will
@@ -87,9 +87,9 @@ from being moved.
 In addition to the constants listed above, there are two other
 possibilities:
 
--   {cpp:enumerator}`B_FOLLOW_ALL_SIDES`
+- {cpp:enumerator}`B_FOLLOW_ALL_SIDES`
 
--   {cpp:enumerator}`B_FOLLOW_NONE`
+- {cpp:enumerator}`B_FOLLOW_NONE`
 
 {cpp:enumerator}`B_FOLLOW_ALL_SIDES` is a shorthand for
 {cpp:enumerator}`B_FOLLOW_LEFT_RIGHT` and
@@ -284,27 +284,27 @@ coordinate system.
 {hmethod}`Draw()` is called as the result of update messages whenever the
 view needs to present itself on-screen. This may happen when:
 
--   The window the view is in is first shown on-screen, or shown after being
+- The window the view is in is first shown on-screen, or shown after being
 hidden (see the {cpp:class}`BWindow` version of the
 {cpp:func}`~BWindow::Hide()` function).
 
--   The view is made visible after being hidden (see {hclass}`BView`'s
+- The view is made visible after being hidden (see {hclass}`BView`'s
 {cpp:func}`~BView::Hide()` function).
 
--   Obscured parts of the view are revealed, as when a window is moved from in
+- Obscured parts of the view are revealed, as when a window is moved from in
 front of the view or an image is dragged across it.
 
--   The view is resized.
+- The view is resized.
 
--   The contents of the view are scrolled (see
+- The contents of the view are scrolled (see
 {cpp:func}`~BView::ScrollBy()`).
 
--   A child view is added, removed, or resized.
+- A child view is added, removed, or resized.
 
--   A rectangle has been invalidated that includes at least some of the view
+- A rectangle has been invalidated that includes at least some of the view
 (see {cpp:func}`~BView::Invalidate()`).
 
--   {cpp:func}`~BView::CopyBits()` can't completely fill a destination
+- {cpp:func}`~BView::CopyBits()` can't completely fill a destination
 rectangle within the view.
 
 {hmethod}`Draw()` is also called from a {cpp:class}`BPrintJob` object's
@@ -428,15 +428,15 @@ Implemented by derived classes to respond to a
 {hmethod}`KeyDown()` notification for each character the user types, except
 for those that:
 
--   Are produced while a {hkey}`Command` key is held down. Command key events
+- Are produced while a {hkey}`Command` key is held down. Command key events
 are interpreted as keyboard shortcuts.
 
--   Are produced by the {hkey}`Tab` key when an {hkey}`Option` key is held
+- Are produced by the {hkey}`Tab` key when an {hkey}`Option` key is held
 down. {hkey}`Option`+{hkey}`Tab` events are invariably interpreted as
 instructions to change the focus view (for keyboard navigation); they work
 even where {hkey}`Tab` alone does not.
 
--   Can operate the default button in a window. The {cpp:class}`BButton`
+- Can operate the default button in a window. The {cpp:class}`BButton`
 object's {cpp:func}`~BButton::KeyDown()` function is called, rather than
 the focus view's.
 
@@ -457,39 +457,39 @@ example, {hkey}`Shift`+{hkey}`i` is reported as uppercase 'I' (0x49) and
 Single-byte characters can be tested against ASCII codes and these
 constants:
 
--   {cpp:enumerator}`B_BACKSPACE`
+- {cpp:enumerator}`B_BACKSPACE`
 
--   {cpp:enumerator}`B_ENTER`
+- {cpp:enumerator}`B_ENTER`
 
--   {cpp:enumerator}`B_RETURN`
+- {cpp:enumerator}`B_RETURN`
 
--   {cpp:enumerator}`B_SPACE`
+- {cpp:enumerator}`B_SPACE`
 
--   {cpp:enumerator}`B_TAB`
+- {cpp:enumerator}`B_TAB`
 
--   {cpp:enumerator}`B_ESCAPE`
+- {cpp:enumerator}`B_ESCAPE`
 
--   {cpp:enumerator}`B_LEFT_ARROW`
+- {cpp:enumerator}`B_LEFT_ARROW`
 
--   {cpp:enumerator}`B_RIGHT_ARROW`
+- {cpp:enumerator}`B_RIGHT_ARROW`
 
--   {cpp:enumerator}`B_UP_ARROW`
+- {cpp:enumerator}`B_UP_ARROW`
 
--   {cpp:enumerator}`B_DOWN_ARROW`
+- {cpp:enumerator}`B_DOWN_ARROW`
 
--   {cpp:enumerator}`B_INSERT`
+- {cpp:enumerator}`B_INSERT`
 
--   {cpp:enumerator}`B_DELETE`
+- {cpp:enumerator}`B_DELETE`
 
--   {cpp:enumerator}`B_HOME`
+- {cpp:enumerator}`B_HOME`
 
--   {cpp:enumerator}`B_END`
+- {cpp:enumerator}`B_END`
 
--   {cpp:enumerator}`B_PAGE_UP`
+- {cpp:enumerator}`B_PAGE_UP`
 
--   {cpp:enumerator}`B_PAGE_DOWN`
+- {cpp:enumerator}`B_PAGE_DOWN`
 
--   {cpp:enumerator}`B_FUNCTION_KEY`
+- {cpp:enumerator}`B_FUNCTION_KEY`
 
 {cpp:enumerator}`B_ENTER` and {cpp:enumerator}`B_RETURN` are the same
 character, a newline ('\n').
@@ -505,37 +505,37 @@ the event by calling {cpp:class}`BLooper`'s
 to know which key produced the character, you can look up the "key" entry
 in the {cpp:class}`BMessage` and test it against these constants:
 
--   {cpp:enumerator}`B_F1_KEY`
+- {cpp:enumerator}`B_F1_KEY`
 
--   {cpp:enumerator}`B_F1_KEY`
+- {cpp:enumerator}`B_F1_KEY`
 
--   {cpp:enumerator}`B_F2_KEY`
+- {cpp:enumerator}`B_F2_KEY`
 
--   {cpp:enumerator}`B_F3_KEY`
+- {cpp:enumerator}`B_F3_KEY`
 
--   {cpp:enumerator}`B_F4_KEY`
+- {cpp:enumerator}`B_F4_KEY`
 
--   {cpp:enumerator}`B_F5_KEY`
+- {cpp:enumerator}`B_F5_KEY`
 
--   {cpp:enumerator}`B_F6_KEY`
+- {cpp:enumerator}`B_F6_KEY`
 
--   {cpp:enumerator}`B_F7_KEY`
+- {cpp:enumerator}`B_F7_KEY`
 
--   {cpp:enumerator}`B_F8_KEY`
+- {cpp:enumerator}`B_F8_KEY`
 
--   {cpp:enumerator}`B_F9_KEY`
+- {cpp:enumerator}`B_F9_KEY`
 
--   {cpp:enumerator}`B_F10_KEY`
+- {cpp:enumerator}`B_F10_KEY`
 
--   {cpp:enumerator}`B_F11_KEY`
+- {cpp:enumerator}`B_F11_KEY`
 
--   {cpp:enumerator}`B_F12_KEY`
+- {cpp:enumerator}`B_F12_KEY`
 
--   {cpp:enumerator}`B_PRINT_KEY` (Print Screen)
+- {cpp:enumerator}`B_PRINT_KEY` (Print Screen)
 
--   {cpp:enumerator}`B_SCROLL_KEY` (Scroll Lock)
+- {cpp:enumerator}`B_SCROLL_KEY` (Scroll Lock)
 
--   {cpp:enumerator}`B_PAUSE_KEY`
+- {cpp:enumerator}`B_PAUSE_KEY`
 
 For example:
 
@@ -660,13 +660,13 @@ The first argument, {hparam}`point`, gives the cursor's new location in
 the {hclass}`BView`'s coordinate system. The second argument,
 {hparam}`transit`, is one of four constants,
 
--   {cpp:enumerator}`B_ENTERED_VIEW`
+- {cpp:enumerator}`B_ENTERED_VIEW`
 
--   {cpp:enumerator}`B_INSIDE_VIEW`
+- {cpp:enumerator}`B_INSIDE_VIEW`
 
--   {cpp:enumerator}`B_EXITED_VIEW`
+- {cpp:enumerator}`B_EXITED_VIEW`
 
--   {cpp:enumerator}`B_OUTSIDE_VIEW`
+- {cpp:enumerator}`B_OUTSIDE_VIEW`
 
 which explains whether the cursor has just entered the visible region of
 the view, is now inside the visible region having previously entered, has
@@ -1071,19 +1071,19 @@ Server about the kinds of notifications the {hclass}`BView` should receive.
 The mask set by {hmethod}`SetFlags()` and the return value of
 {hmethod}`Flags()` is formed from combinations of the following constants:
 
--   {cpp:enumerator}`B_WILL_DRAW`
+- {cpp:enumerator}`B_WILL_DRAW`
 
--   {cpp:enumerator}`B_FULL_UPDATE_ON_RESIZE`
+- {cpp:enumerator}`B_FULL_UPDATE_ON_RESIZE`
 
--   {cpp:enumerator}`B_FRAME_EVENTS`
+- {cpp:enumerator}`B_FRAME_EVENTS`
 
--   {cpp:enumerator}`B_PULSE_NEEDED`
+- {cpp:enumerator}`B_PULSE_NEEDED`
 
--   {cpp:enumerator}`B_NAVIGABLE`
+- {cpp:enumerator}`B_NAVIGABLE`
 
--   {cpp:enumerator}`B_NAVIGABLE_JUMP`
+- {cpp:enumerator}`B_NAVIGABLE_JUMP`
 
--   {cpp:enumerator}`B_SUBPIXEL_PRECISE`
+- {cpp:enumerator}`B_SUBPIXEL_PRECISE`
 
 The flags are first set when the {hclass}`BView` is constructed; they're
 explained in the description of the {hclass}`BView` constructor. The mask
@@ -1208,11 +1208,11 @@ will fail if {hparam}`aView` is not, in fact, a current child of the
 When a {hclass}`BView` object becomes attached to a {cpp:class}`BWindow`,
 two other connections are automatically established for it:
 
--   The view is added to the {cpp:class}`BWindow`'s flat list of
+- The view is added to the {cpp:class}`BWindow`'s flat list of
 {cpp:class}`BHandler` objects, making it an eligible target for messages
 the {cpp:class}`BWindow` dispatches.
 
--   The {hclass}`BView`'s parent view becomes its next handler. Messages that
+- The {hclass}`BView`'s parent view becomes its next handler. Messages that
 the {hclass}`BView` doesn't recognize will be passed to its parent.
 
 Removing a {hclass}`BView` from a window's view hierarchy also removes it
@@ -1419,11 +1419,11 @@ bit is set in the variable referred to by {hparam}`buttons` for each mouse
 button that's down. This mask may be 0 (if no buttons are down) or it may
 contain one or more of the following constants:
 
--   {cpp:enumerator}`B_PRIMARY_MOUSE_BUTTON`
+- {cpp:enumerator}`B_PRIMARY_MOUSE_BUTTON`
 
--   {cpp:enumerator}`B_SECONDARY_MOUSE_BUTTON`
+- {cpp:enumerator}`B_SECONDARY_MOUSE_BUTTON`
 
--   {cpp:enumerator}`B_TERTIARY_MOUSE_BUTTON`
+- {cpp:enumerator}`B_TERTIARY_MOUSE_BUTTON`
 
 The cursor doesn't have to be located within the view for this function to
 work; it can be anywhere on-screen. However, the {hclass}`BView` must be
@@ -2046,27 +2046,27 @@ widths: auto
 These functions set and return the {hclass}`BView`'s drawing mode, which
 can be any of the following eleven constants:
 
--   {cpp:enumerator}`B_OP_COPY`
+- {cpp:enumerator}`B_OP_COPY`
 
--   {cpp:enumerator}`B_OP_OVER`
+- {cpp:enumerator}`B_OP_OVER`
 
--   {cpp:enumerator}`B_OP_ERASE`
+- {cpp:enumerator}`B_OP_ERASE`
 
--   {cpp:enumerator}`B_OP_INVERT`
+- {cpp:enumerator}`B_OP_INVERT`
 
--   {cpp:enumerator}`B_OP_SELECT`
+- {cpp:enumerator}`B_OP_SELECT`
 
--   {cpp:enumerator}`B_OP_ALPHA`
+- {cpp:enumerator}`B_OP_ALPHA`
 
--   {cpp:enumerator}`B_OP_MIN`
+- {cpp:enumerator}`B_OP_MIN`
 
--   {cpp:enumerator}`B_OP_MAX`
+- {cpp:enumerator}`B_OP_MAX`
 
--   {cpp:enumerator}`B_OP_ADD`
+- {cpp:enumerator}`B_OP_ADD`
 
--   {cpp:enumerator}`B_OP_SUBTRACT`
+- {cpp:enumerator}`B_OP_SUBTRACT`
 
--   {cpp:enumerator}`B_OP_BLEND`
+- {cpp:enumerator}`B_OP_BLEND`
 
 The drawing mode is an element of the {hclass}`BView`'s graphics
 environment, which both the Application Server and the {hclass}`BView` keep
@@ -2140,21 +2140,21 @@ matches the specified properties of the {hparam}`font` {cpp:class}`BFont`
 object. The {hparam}`properties` mask is formed by combining the following
 constants:
 
--   {cpp:enumerator}`B_FONT_FAMILY_AND_STYLE`
+- {cpp:enumerator}`B_FONT_FAMILY_AND_STYLE`
 
--   {cpp:enumerator}`B_FONT_SPACING`
+- {cpp:enumerator}`B_FONT_SPACING`
 
--   {cpp:enumerator}`B_FONT_SIZE`
+- {cpp:enumerator}`B_FONT_SIZE`
 
--   {cpp:enumerator}`B_FONT_ENCODING`
+- {cpp:enumerator}`B_FONT_ENCODING`
 
--   {cpp:enumerator}`B_FONT_SHEAR`
+- {cpp:enumerator}`B_FONT_SHEAR`
 
--   {cpp:enumerator}`B_FONT_FACE`
+- {cpp:enumerator}`B_FONT_FACE`
 
--   {cpp:enumerator}`B_FONT_ROTATION`
+- {cpp:enumerator}`B_FONT_ROTATION`
 
--   {cpp:enumerator}`B_FONT_FLAGS`
+- {cpp:enumerator}`B_FONT_FLAGS`
 
 Each constant corresponds to a settable property of the {cpp:class}`BFont`
 object. The default mask, {cpp:enumerator}`B_FONT_ALL`, is a shorthand for
@@ -2378,12 +2378,12 @@ Ordinarily, the clipping region is the same as the visible region of the
 view, the part of the view currently visible on-screen. The visible region
 is equal to the view's bounds rectangle minus:
 
--   The frame rectangles of its children,
+- The frame rectangles of its children,
 
--   Any areas that are clipped because the view doesn't lie wholly within the
+- Any areas that are clipped because the view doesn't lie wholly within the
 frame rectangles of all its ancestors in the view hierarchy, and
 
--   Any areas that are obscured by other windows or that lie in a part of the
+- Any areas that are obscured by other windows or that lie in a part of the
 window that's off-screen.
 
 The clipping region can be smaller than the visible region if the program
@@ -2403,19 +2403,19 @@ just those parts of the view that need to be redrawn. This may be smaller
 than the visible region, or the region restricted by
 {cpp:func}`~BView::ConstrainClippingRegion()`, if:
 
--   The update occurs during scrolling. The clipping region will exclude any
+- The update occurs during scrolling. The clipping region will exclude any
 of the view's visible contents that the Application Server is able to shift
 to their new location and redraw automatically.
 
--   The view rectangle has grown (because, for example, the user resized the
+- The view rectangle has grown (because, for example, the user resized the
 window larger) and the update is needed only to draw the new parts of the
 view.
 
--   The update was caused by {cpp:func}`~BView::Invalidate()` and the
+- The update was caused by {cpp:func}`~BView::Invalidate()` and the
 rectangle passed to {cpp:func}`~BView::Invalidate()` didn't cover all of
 the visible region.
 
--   The update was necessary because {cpp:func}`~BView::CopyBits()` couldn't
+- The update was necessary because {cpp:func}`~BView::CopyBits()` couldn't
 fill all of a destination rectangle.
 
 If, while updating is ongoing, you call the view's parent's

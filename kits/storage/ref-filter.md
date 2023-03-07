@@ -24,11 +24,11 @@ the file panel's file list. Simply return {cpp:expr}`true` or
 
 Technically, {hmethod}`Filter()` is invoked when…
 
--   …the file panel's panel directory is set, either through the
+- …the file panel's panel directory is set, either through the
 {hclass}`BFilePanel` constructor or the
 {cpp:func}`~BFilePanel::SetPanelDirectory()`, and when…
 
--   …the file panel's {cpp:func}`~BFilePanel::Refresh()` function is called.
+- …the file panel's {cpp:func}`~BFilePanel::Refresh()` function is called.
 
 A {hclass}`BRefFilter` can be assigned to more than one
 {cpp:class}`BFilePanel` object (assignation is performed through

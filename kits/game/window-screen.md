@@ -141,9 +141,9 @@ Returns {cpp:expr}`true` if the graphics card driver permits applications
 to control the configuration of the frame buffer, and {cpp:expr}`false` if
 not. Control is exercised through these two functions:
 
--   {cpp:func}`~BWindowScreen::SetFrameBuffer()`
+- {cpp:func}`~BWindowScreen::SetFrameBuffer()`
 
--   {cpp:func}`~BWindowScreen::MoveDisplayArea()`
+- {cpp:func}`~BWindowScreen::MoveDisplayArea()`
 
 A return of {cpp:expr}`true` means that these functions can communicate
 with the graphics card driver and at least the first will do something
@@ -334,17 +334,17 @@ These three functions aid in debugging a game application. They have
 relevance only if the {hclass}`BWindowScreen` is running in debugging mode.
 To set up the mode, you must:
 
-1.    Construct the {hclass}`BWindowScreen` with the {hparam}`debugging` flag
+1. Construct the {hclass}`BWindowScreen` with the {hparam}`debugging` flag
 set to {cpp:expr}`true`. The flag is {cpp:expr}`false` by default.
 
-2.    Register all drawing threads (all threads that can touch the frame buffer
+2. Register all drawing threads (all threads that can touch the frame buffer
 in any way) by passing the {htype}`thread_id` to
 {cpp:func}`~BWindowScreen::RegisterThread()` immediately after the thread
 is spawned—before {hmethod}`resume_thread()` is called to start the
 thread's execution. The window thread for the {hclass}`BWindowScreen`
 object should not draw and should not be registered.
 
-3.    Launch the application from the command line in a Terminal window. The
+3. Launch the application from the command line in a Terminal window. The
 window will collect debugging output from the application while the
 {hclass}`BWindowScreen` runs in a different workspace, generally the one at
 the immediately preceding index. For example, if the Terminal window is in

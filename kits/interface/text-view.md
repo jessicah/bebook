@@ -36,16 +36,16 @@ The text rectangle, {hparam}`textRect`, is stated in the
 {hclass}`BTextView`'s coordinate system. It determines where text in placed
 within the view's bounds rectangle:
 
--   The first line of text is placed at the top of the text rectangle. As
+- The first line of text is placed at the top of the text rectangle. As
 additional lines of text are entered into the view, the text grows downward
 and may actually extend beyond the bottom of the rectangle.
 
--   The left and right sides of the text rectangle determine where lines of
+- The left and right sides of the text rectangle determine where lines of
 text are placed within the view. Lines can be aligned to either side of the
 rectangle, or they can be centered between the two sides. See the
 {cpp:func}`~BTextView::SetAlignment()` function.
 
--   When lines wrap on word boundaries, the width of the text rectangle
+- When lines wrap on word boundaries, the width of the text rectangle
 determines the maximum length of a line; each line of text can be as long
 as the rectangle is wide. When word wrapping isn't turned on, lines can
 extend beyond the boundaries of the text rectangle. See the
@@ -66,30 +66,30 @@ specified, the text is drawn in black.
 The constructor establishes the following default properties for a new
 {hclass}`BTextView`:
 
--   The text is selectable and editable. (See
+- The text is selectable and editable. (See
 {cpp:func}`~BTextView::MakeSelectable()` and
 {cpp:func}`~BTextView::MakeEditable()`.)
 
--   Multiple character formats are not permitted. (See
+- Multiple character formats are not permitted. (See
 {cpp:func}`~BTextView::SetStylable()`.)
 
--   The text is left-aligned. (See {cpp:func}`~BTextView::SetAlignment()`.)
+- The text is left-aligned. (See {cpp:func}`~BTextView::SetAlignment()`.)
 
--   The tab width is 28.0 coordinate units. (See
+- The tab width is 28.0 coordinate units. (See
 {cpp:func}`~BTextView::SetTabWidth()`.)
 
--   Word wrapping is turned on. (See {cpp:func}`~BTextView::SetWordWrap()`.)
+- Word wrapping is turned on. (See {cpp:func}`~BTextView::SetWordWrap()`.)
 
--   Automatic indenting is turned off. (See
+- Automatic indenting is turned off. (See
 {cpp:func}`~BTextView::SetAutoindent()`.)
 
--   The maximum amount of data is permitted. (See
+- The maximum amount of data is permitted. (See
 {cpp:func}`~BTextView::SetMaxBytes()`.)
 
--   The view doesn't grow to accommodate more characters. (See
+- The view doesn't grow to accommodate more characters. (See
 {cpp:func}`~BTextView::MakeResizable()`.)
 
--   All characters the user may type are acceptable. (See
+- All characters the user may type are acceptable. (See
 {cpp:func}`~BTextView::DisallowChar()`.)
 
 See also: {cpp:func}`~BTextView::AttachedToWindow()`,
@@ -188,17 +188,17 @@ and the text it contains is editable.
 If the character encoded in the bytes string is an editing instruction,
 {hmethod}`KeyDown()` takes the appropriate action:
 
--   If the character is from one of the arrow keys
+- If the character is from one of the arrow keys
 ({cpp:enumerator}`B_UP_ARROW`, {cpp:enumerator}`B_LEFT_ARROW`,
 {cpp:enumerator}`B_DOWN_ARROW`, or {cpp:enumerator}`B_RIGHT_ARROW`), it
 extends the selection or moves the insertion point in the appropriate
 direction, depending on the modifiers
 
--   If the character is {cpp:enumerator}`B_BACKSPACE` or
+- If the character is {cpp:enumerator}`B_BACKSPACE` or
 {cpp:enumerator}`B_DELETE`, it deletes the current selection—or the
 character preceding or following the current insertion point.
 
--   If the character comes from one of the paging keys
+- If the character comes from one of the paging keys
 ({cpp:enumerator}`B_HOME`, {cpp:enumerator}`B_END`,
 {cpp:enumerator}`B_PAGE_UP`, or {cpp:enumerator}`B_PAGE_DOWN`), it scrolls
 the display.
@@ -333,9 +333,9 @@ These functions look at the data in their arguments, and return
 {cpp:expr}`true` if its "acceptable." The default implementations return
 {cpp:expr}`true` if both of the following are {cpp:expr}`true`:
 
--   the {hclass}`BTextView` is editable
+- the {hclass}`BTextView` is editable
 
--   the message or clipboard contains {cpp:enumerator}`B_MIME_TYPE` data
+- the message or clipboard contains {cpp:enumerator}`B_MIME_TYPE` data
 stored under the name "text/plain".
 
 If the data isn't acceptable, the drop or paste operation is aborted.
@@ -1116,33 +1116,33 @@ ignores the offsets and formats the entire text.
 attributes of the font {cpp:class}`BFont` object that are enumerated by the
 properties mask. The mask is formed by combining the following constants:
 
--   {cpp:enumerator}`B_FONT_FAMILY_AND_STYLE`
+- {cpp:enumerator}`B_FONT_FAMILY_AND_STYLE`
 
--   {cpp:enumerator}`B_FONT_SIZE`
+- {cpp:enumerator}`B_FONT_SIZE`
 
--   {cpp:enumerator}`B_FONT_SHEAR`
+- {cpp:enumerator}`B_FONT_SHEAR`
 
--   {cpp:enumerator}`B_FONT_ROTATION`
+- {cpp:enumerator}`B_FONT_ROTATION`
 
--   {cpp:enumerator}`B_FONT_SPACING`
+- {cpp:enumerator}`B_FONT_SPACING`
 
--   {cpp:enumerator}`B_FONT_ENCODING`
+- {cpp:enumerator}`B_FONT_ENCODING`
 
--   {cpp:enumerator}`B_FONT_FACE`
+- {cpp:enumerator}`B_FONT_FACE`
 
--   {cpp:enumerator}`B_FONT_FLAGS`
+- {cpp:enumerator}`B_FONT_FLAGS`
 
 In addition, {cpp:enumerator}`B_FONT_ALL` is a shorthand for all
 properties of the specified font. However, the {hclass}`BTextView` modifies
 the font to ensure that:
 
--   Characters are not rotated.
+- Characters are not rotated.
 
--   Antialiasing is not disabled.
+- Antialiasing is not disabled.
 
--   The spacing mode is {cpp:enumerator}`B_BITMAP_SPACING`.
+- The spacing mode is {cpp:enumerator}`B_BITMAP_SPACING`.
 
--   The character encoding is UTF-8 ({cpp:enumerator}`B_UNICODE_UTF8`).
+- The character encoding is UTF-8 ({cpp:enumerator}`B_UNICODE_UTF8`).
 
 If the {hparam}`font` argument is {cpp:expr}`NULL`, the font is not set
 and the properties mask is ignored.

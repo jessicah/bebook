@@ -52,58 +52,58 @@ you can register to receive such notifications by calling
 
 To play a media file from disk, you would follow the following steps:
 
--   Create an {cpp:func}`entry_ref <entry::ref>` that refers to the file to be
+- Create an {cpp:func}`entry_ref <entry::ref>` that refers to the file to be
 played.
 
--   Call {cpp:func}`~BMediaRoster::SniffRef()` to obtain a
+- Call {cpp:func}`~BMediaRoster::SniffRef()` to obtain a
 {cpp:any}`dormant_node_info` reference to the node that is best capable of
 playing back the media file.
 
--   Call {cpp:func}`~BMediaRoster::InstantiateDormantNode()` to instantiate
+- Call {cpp:func}`~BMediaRoster::InstantiateDormantNode()` to instantiate
 the node; this returns a {cpp:func}`media_node <media::node>` that you can
 use for other {cpp:class}`BMediaRoster` calls.
 
--   Use {cpp:func}`~BMediaRoster::SetRefFor()` to pass the
+- Use {cpp:func}`~BMediaRoster::SetRefFor()` to pass the
 {cpp:func}`entry_ref <entry::ref>` of the file to be played to the node.
 
--   Call {cpp:func}`~BMediaRoster::GetFreeOutputsFor()` to obtain a
+- Call {cpp:func}`~BMediaRoster::GetFreeOutputsFor()` to obtain a
 {cpp:func}`media_output <media::output>` structure describing an available
 output on the producer node. This structure contains a
 {cpp:func}`media_source <media::source>` you can pass to
 {cpp:func}`~BMediaRoster::Connect()` as the source of the media data.
 
--   The {cpp:func}`media_output <media::output>` structure returned by
+- The {cpp:func}`media_output <media::output>` structure returned by
 {cpp:func}`~BMediaRoster::GetFreeOutputsFor()` contains a
 {cpp:func}`media_format <media::format>` field that indicates the general
 type of media data contained by the media file; if you don't already know
 what type of data you're playing back (audio or video or whatever), this
 will let you determine what you'll be playing.
 
--   You can use this value to determine what type of destination is needed to
+- You can use this value to determine what type of destination is needed to
 output the data (for example, {cpp:enumerator}`B_MEDIA_RAW_AUDIO` would go
 to an audio output, and {cpp:enumerator}`B_MEDIA_RAW_VIDEO` would go to a
 video output).
 
--   Call {cpp:func}`GetAudioMixer() <BMediaRoster::StartWatching>` to get a
+- Call {cpp:func}`GetAudioMixer() <BMediaRoster::StartWatching>` to get a
 {cpp:func}`media_node <media::node>` for the default audio mixer (if the
 media data is audio), or {cpp:func}`~BMediaRoster::GetVideoOutput()` to get
 a {cpp:func}`media_node <media::node>` for the default video output (if the
 media data is video).
 
--   Use {cpp:func}`~BMediaRoster::GetFreeInputsFor()` to obtain a
+- Use {cpp:func}`~BMediaRoster::GetFreeInputsFor()` to obtain a
 {cpp:func}`media_input <media::input>` structure describing an available
 input on the consumer node (the audio mixer or video output); this
 structure contains a {cpp:func}`media_destination <media::destination>` you
 can pass to {cpp:func}`~BMediaRoster::Connect()`.
 
--   Call {cpp:func}`~BMediaRoster::Connect()` to connect the source to the
+- Call {cpp:func}`~BMediaRoster::Connect()` to connect the source to the
 destination.
 
--   Next, you need to set the time source for the media file's node. Normally
+- Next, you need to set the time source for the media file's node. Normally
 you'll set this to the preferred time source. The audio mixer or video
 output is already slaved to an appropriate time source.
 
--   Finally, you can use {cpp:func}`~BMediaRoster::StartNode()` to start the
+- Finally, you can use {cpp:func}`~BMediaRoster::StartNode()` to start the
 producer, consumer, and time source. The media file should begin playing
 back.
 
@@ -181,16 +181,16 @@ a file handling node, the {cpp:func}`~BMediaRoster::SetRefFor()` function
 is then called to tell the newly-instantiated file handler node what file
 it should handle. The inputs here are:
 
--   {hparam}`mediaFileNode` is the node whose file reference is to be set.
+- {hparam}`mediaFileNode` is the node whose file reference is to be set.
 
--   {hparam}`ref` is the file that the node should reference.
+- {hparam}`ref` is the file that the node should reference.
 
--   {cpp:expr}`false` indicates that the file must already exist. If this flag
+- {cpp:expr}`false` indicates that the file must already exist. If this flag
 were {cpp:expr}`true`, and the file indicated by {hparam}`ref` were
 nonexistent, the node would create a new file. Since we're playing a file,
 we don't want to do that.
 
--   {hparam}`duration` is a {htype}`bigtime_t` variable that will receive the
+- {hparam}`duration` is a {htype}`bigtime_t` variable that will receive the
 duration of the media file, in microseconds.
 
 Once this has been accomplished, it's time to instantiate the other nodes

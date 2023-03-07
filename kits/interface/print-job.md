@@ -138,15 +138,15 @@ attached to the specified {cpp:class}`BView`.
 
 Note the following bugs (which will be fixed in subsequent releases):
 
--   BeOS 5 (and earlier) renders only the first two hierarchy levels
+- BeOS 5 (and earlier) renders only the first two hierarchy levels
 correctly.
 
--   Hidden {cpp:class}`BView`s (and views without
+- Hidden {cpp:class}`BView`s (and views without
 {cpp:enumerator}`B_WILL_DRAW` specified) are rendered.
 
--   {cpp:class}`BScrollBar` and derived {cpp:class}`BView`s aren't rendered.
+- {cpp:class}`BScrollBar` and derived {cpp:class}`BView`s aren't rendered.
 
--   View background and overlay bitmaps are ignored; instead, the view color
+- View background and overlay bitmaps are ignored; instead, the view color
 is printed.
 
 After all views have drawn and the page is complete,

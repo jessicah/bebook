@@ -136,11 +136,11 @@ widths: auto
 
 The self-explanatory {htype}`image_type` constants are:
 
--   {cpp:enumerator}`B_APP_IMAGE`
+- {cpp:enumerator}`B_APP_IMAGE`
 
--   {cpp:enumerator}`B_LIBRARY_IMAGE`
+- {cpp:enumerator}`B_LIBRARY_IMAGE`
 
--   {cpp:enumerator}`B_ADD_ON_IMAGE`
+- {cpp:enumerator}`B_ADD_ON_IMAGE`
 
 :::{list-table}
 ---
@@ -179,11 +179,11 @@ demonstrating the use of this function is given in "Symbols."
 get_nth_image_symbol() returns information about the {hparam}`n`'th symbol
 in the given {hparam}`image`. The information is returned in the arguments:
 
--   {hparam}`name` is the name of the symbol. You have to allocate the
+- {hparam}`name` is the name of the symbol. You have to allocate the
 {hparam}`name` buffer before you pass it in—the function copies the name
 into the buffer.
 
--   You point {hparam}`name_length` to an integer that gives the length of the
+- You point {hparam}`name_length` to an integer that gives the length of the
 name buffer that you're passing in. The function uses this value to
 truncate the string that it copies into name. The function then resets
 {hparam}`name_length` to the full (untruncated) length of the symbol's name
@@ -199,14 +199,14 @@ get_nth_image_symbol(). If you're calling the function iteratively (to
 retrieve all the symbols in an image), you need to reset the
 {hparam}`name_length` value between calls.
 
--   The function sets {hparam}`symbol_type` to
+- The function sets {hparam}`symbol_type` to
 {cpp:enumerator}`B_SYMBOL_TYPE_DATA` if the symbol is a variable,
 {cpp:enumerator}`B_SYMBOL_TYPE_TEXT` if the symbol is a function, or
 {cpp:enumerator}`B_SYMBOL_TYPE_ANY` if the executable format doesn't
 distinguish between the two. The argument's value going into the function
 is of no consequence.
 
--   The function sets {hparam}`location` to point to the symbol's address.
+- The function sets {hparam}`location` to point to the symbol's address.
 
 To retrieve {htype}`image_id` numbers on which these functions can act,
 use the {cpp:func}`get_next_image_info()` function. Such numbers are also
@@ -247,11 +247,11 @@ widths: auto
 load_add_on() loads an add-on image, identified by {hparam}`pathname`,
 into your application's address space.
 
--   {hparam}`pathname` can be absolute or relative; if it's relative, it's
+- {hparam}`pathname` can be absolute or relative; if it's relative, it's
 reckoned off the base path specified by the ADDON_PATH environment
 variable.
 
--   The function returns an {htype}`image_id` (a positive integer) that
+- The function returns an {htype}`image_id` (a positive integer) that
 represents the loaded image. Image ID numbers are unique across the system.
 
 An example that demonstrates the use of load_add_on() is given in

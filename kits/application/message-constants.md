@@ -660,14 +660,14 @@ The message may have other fields, depending on what the broadcast message
 is. Messages are sent to targets in response to the
 {cpp:func}`BHandler::SendNotices()` function. The logic is:
 
-1.    Take the message to broadcast and place its what code into the
+1. Take the message to broadcast and place its what code into the
 {hparam}`be:observe_change_orig_what` field.
 
-2.    Add the {hparam}`be:observe_change_what` field, which is set to the
+2. Add the {hparam}`be:observe_change_what` field, which is set to the
 {hparam}`what` code specified by the call to
 {cpp:func}`~BHandler::SendNotices()`.
 
-3.    Set the message's {hparam}`what` code to
+3. Set the message's {hparam}`what` code to
 {cpp:enumerator}`B_OBSERVER_NOTICE_CHANGE`.
 
 The resulting message is then sent to all interested parties.

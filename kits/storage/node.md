@@ -42,16 +42,16 @@ application). The object's file descriptor is closed when the object is
 deleted, reset (through {cpp:func}`~BNode::SetTo()`), or unset
 ({cpp:func}`~BNode::Unset()`).
 
--   Default constructor. The object's status will be
+- Default constructor. The object's status will be
 {cpp:enumerator}`B_NO_INIT`, and the file descriptor isn't allocated until
 you actually initialize the object with a call to
 {cpp:func}`~BNode::SetTo()`.
 
--   Copy constructor. The new {hclass}`BNode` is set to the same node as the
+- Copy constructor. The new {hclass}`BNode` is set to the same node as the
 argument. Each of the two {hclass}`BNode` objects has its own file
 descriptor.
 
--   Other constructors. See the {cpp:func}`~BNode::SetTo()` functions.
+- Other constructors. See the {cpp:func}`~BNode::SetTo()` functions.
 ::::
 
 ::::{abi-group}
@@ -386,11 +386,11 @@ widths: auto
 Closes the {hclass}`BNode`'s current file descriptor and opens it on the
 node (of the entry) that's designated by the arguments.
 
--   In the {hparam}`path` version, {hparam}`path` can be absolute or relative,
+- In the {hparam}`path` version, {hparam}`path` can be absolute or relative,
 and can contain "." and ".." elements. If {hparam}`path` is relative, it's
 reckoned off of the current working directory.
 
--   In the {hparam}`dir`/{hparam}`path` version, {hparam}`path` must be
+- In the {hparam}`dir`/{hparam}`path` version, {hparam}`path` must be
 relative. It's reckoned off of the directory given by {hparam}`dir`.
 
 {hclass}`BNode` instances never traverse symbolic links. If the designated
@@ -487,9 +487,9 @@ struct node_ref {
 
 The {htype}`node_ref` structure describes a node in a file system.
 
--   {hparam}`device` contains the device number on which the node is located.
+- {hparam}`device` contains the device number on which the node is located.
 
--   {hparam}`node` contains the inode of the node.
+- {hparam}`node` contains the inode of the node.
 
 :::{cpp:function} BNode::node_ref()
 :::

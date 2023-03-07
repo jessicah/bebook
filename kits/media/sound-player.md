@@ -24,13 +24,13 @@ that processes data and inserts it into buffers for playback; specify NULL
 if you want to use the BSoundPlayer for playing BSounds. The parameters to
 the {hparam}`PlayBuffer` function are (in order):
 
--   Pointer to the cookie.
+- Pointer to the cookie.
 
--   Pointer to the buffer to play.
+- Pointer to the buffer to play.
 
--   Size of the buffer.
+- Size of the buffer.
 
--   Format of the audio data in the buffer.
+- Format of the audio data in the buffer.
 
 The {hparam}`Notifier` parameter specifies a pointer to a member function
 that receives notifications when events of interest occur, such as playback

@@ -123,10 +123,10 @@ this list.
 When you reach the end of the entry list, the {hmethod}`Get…()` function
 returns an indicative value:
 
--   {hmethod}`GetNextRef()` and {hmethod}`GetNextEntry()` return
+- {hmethod}`GetNextRef()` and {hmethod}`GetNextEntry()` return
 {cpp:enumerator}`B_ENTRY_NOT_FOUND`.
 
--   {hmethod}`GetNextDirents()` returns 0.
+- {hmethod}`GetNextDirents()` returns 0.
 
 You can only cycle over the list once; the {cpp:func}`~BQuery::Rewind()`
 function is not defined for {hclass}`BQuery`. See the
@@ -195,12 +195,12 @@ You use these functions to construct the {hclass}`BQuery`'s predicate.
 They create a predicate expression by pushing attribute names, operators,
 and values in Reverse Polish Notation (post-fix) order.
 
--   {hmethod}`PushAttr()` pushes an attribute name.
+- {hmethod}`PushAttr()` pushes an attribute name.
 
--   {hmethod}`PushOp()` pushes one of the {cpp:func}`query_op <query::op>`
+- {hmethod}`PushOp()` pushes one of the {cpp:func}`query_op <query::op>`
 operators.
 
--   The rest of the functions push values of the designated types.
+- The rest of the functions push values of the designated types.
 
 For details on how the push method works, see "{ref}`Constructing a
 Predicate`."

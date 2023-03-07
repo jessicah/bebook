@@ -9,16 +9,16 @@ on.
 The {hclass}`BQuery` class lets you create objects that represent specific
 queries. To use a {hclass}`BQuery` you have to follow these steps:
 
-1.    Initialize.   The first thing you have to do is initialize the object;
+1. Initialize.   The first thing you have to do is initialize the object;
 there are two parts to the initialization: You have to set the volume that
 you want to query over ({cpp:func}`~BQuery::SetVolume()`), and set the
 query's "criteria formula" ({cpp:func}`~BQuery::SetPredicate()`)
 
-2.    Fetch.   After the {hclass}`BQuery` has been properly initialized, you
+2. Fetch.   After the {hclass}`BQuery` has been properly initialized, you
 invoke {cpp:func}`~BQuery::Fetch()`. The function returns immediately while
 the query executes in the background.
 
-3.    Read.   As soon as {cpp:func}`~BQuery::Fetch()` returns, you can start
+3. Read.   As soon as {cpp:func}`~BQuery::Fetch()` returns, you can start
 reading the list of winning entries by making iterative calls to the
 entry-list functions {cpp:func}`~BQuery::GetNextRef()`,
 {cpp:func}`~BQuery::GetNextEntry()`, and
@@ -35,7 +35,7 @@ become useful when we speak of "live" queries, below.
 
 Want to go around again? You can, but first you have to clear the object:
 
--   Between each "fetching session," you have to invoke
+- Between each "fetching session," you have to invoke
 {cpp:func}`~BQuery::Clear()` on your {hclass}`BQuery` object.
 
 Clearing erases the object's predicate, volume, target (which we'll get to
@@ -59,9 +59,9 @@ to fetch, you walk through the entry list (as described above), and then
 you wait for "query update" messages to be sent to your "target." A query
 update message describes a single entry that has changed so that…
 
--   it now satisfies the predicate (where it didn't use to), or…
+- it now satisfies the predicate (where it didn't use to), or…
 
--   it no longer satisfies the predicate (where it did before).
+- it no longer satisfies the predicate (where it did before).
 
 Not every {hclass}`BQuery` is live; you have to tell it you want it to be
 live. To do this, all you have to do is set the object's target, through
@@ -70,7 +70,7 @@ the {cpp:func}`~BQuery::SetTarget()` function. The target is a
 {cpp:class}`BHandler`/{cpp:class}`BLooper` pair (as described in the
 {cpp:func}`~BQuery::SetTarget()` function). Also…
 
--   Live query notifications stop when you {cpp:func}`~BQuery::Clear()` or
+- Live query notifications stop when you {cpp:func}`~BQuery::Clear()` or
 destroy the {hclass}`BQuery` object.
 
 Another important point regarding live queries is that you can start
@@ -90,7 +90,7 @@ A {hclass}`BQuery`'s predicate is a logical expression that evaluates to
 {cpp:expr}`true` or {cpp:expr}`false`. The "atoms" of the expression are
 comparisons in the form…
 
--   __attribute op value__
+- __attribute op value__
 
 …where __attribute__ is the name of an existing attribute, __op__ is a
 constant that represents a comparison operation (==, <, >, etc), and
@@ -103,9 +103,9 @@ you tell the query to fetch, the file system looks for all nodes that have
 an attribute with that name and then compare the attribute's value to the
 appropriate value in the predicate. However…
 
--   Every query must include at least one indexed attribute.
+- Every query must include at least one indexed attribute.
 
--   The index only knows about attributes that were written after the index
+- The index only knows about attributes that were written after the index
 (for that attribute) was created.
 
 To index an attribute, you call the {cpp:func}`fs_create_index()`
@@ -120,12 +120,12 @@ can only perform string and numeric comparisons.
 
 On the bright side, every file gets three attributes for free:
 
--   "name" is the name of the entry.
+- "name" is the name of the entry.
 
--   "size" is the size of the data portion of the entry's node. The size is a
+- "size" is the size of the data portion of the entry's node. The size is a
 64-bit integer, and doesn't include the node's attributes.
 
--   "last_modified" is the time the entry's node was last modified (data and
+- "last_modified" is the time the entry's node was last modified (data and
 attributes), measured in seconds since January 1, 1970. The modification
 time is recorded as a 32-bit integer.
 
@@ -156,10 +156,10 @@ The value of an indexed attribute can be, at most, 255 bytes.
 
 There are two ways to construct a predicate:
 
--   You can set the predicate formula as a string through
+- You can set the predicate formula as a string through
 {cpp:func}`~BQuery::SetPredicate()`, or
 
--   You can construct the predicate by "pushing" the components in Reverse
+- You can construct the predicate by "pushing" the components in Reverse
 Polish Notation (or "postfix") order through the
 {cpp:func}`~BQuery::PushAttr()`, {hmethod}`PushValue…()`, and
 {cpp:func}`~BQuery::PushOp()` functions. There are seven value-pushing
@@ -173,17 +173,17 @@ order in which the methods are deployed.
 
 {cpp:func}`~BQuery::SetPredicate()` features:
 
--   Comparison operators: = < > <= >= !=
+- Comparison operators: = < > <= >= !=
 
--   Logical operators: || &&
+- Logical operators: || &&
 
--   Negation operator: !
+- Negation operator: !
 
--   Grouping: ()
+- Grouping: ()
 
--   String (value) wildcard: * (prefix and/or postfix only)
+- String (value) wildcard: * (prefix and/or postfix only)
 
--   String (value) quoting: ' '
+- String (value) quoting: ' '
 
 The following are all legitimate strings that you can pass to
 {cpp:func}`~BQuery::SetPredicate()`:
@@ -199,16 +199,16 @@ size < 500
 
 Push features:
 
--   The {cpp:func}`~BQuery::PushOp()` function takes operator symbols, such as
+- The {cpp:func}`~BQuery::PushOp()` function takes operator symbols, such as
 {cpp:enumerator}`B_EQ` (equals), {cpp:enumerator}`B_GT` (greater than),
 {cpp:enumerator}`B_LT` (less than), and so on. The complete list is given
 in the {cpp:func}`~BQuery::PushOp()` function description.
 
--   Value strings passed as arguments to {cpp:func}`~BQuery::PushString()` are
+- Value strings passed as arguments to {cpp:func}`~BQuery::PushString()` are
 naturally quoted, so you don't have to single-quote to embed spaces or
 other odd characters.
 
--   The '*' wildcard is allowed, or you can use special "contains", "begins
+- The '*' wildcard is allowed, or you can use special "contains", "begins
 with", and "ends with" operators.
 
 In Reverse Polish Notation, the operator is postfixed. You then push the
@@ -285,10 +285,10 @@ The {cpp:class}`BMessages` that are delivered by a live query have a
 {hparam}`what` field of {cpp:enumerator}`B_QUERY_UPDATE`. The rest of the
 message depends on what happened:
 
--   If the update is telling you that an entry has passed the predicate, the
+- If the update is telling you that an entry has passed the predicate, the
 message's {hparam}`opcode` field will be {cpp:enumerator}`B_ENTRY_CREATED`.
 
--   If the update is telling you that an entry has been eliminated from the
+- If the update is telling you that an entry has been eliminated from the
 query, the {hparam}`opcode` field will be
 {cpp:enumerator}`B_ENTRY_REMOVED`.
 
@@ -443,21 +443,21 @@ entry/node yourself. However, the location of the entry that "contains" the
 node may have changed since the time that the entry passed the predicate.
 Follow this outline:
 
-1.    You set up a live query ask for entries that have nodes larger than 500
+1. You set up a live query ask for entries that have nodes larger than 500
 bytes.
 
-2.    The query mechanism tells you (either in the static set or through a
+2. The query mechanism tells you (either in the static set or through a
 {cpp:enumerator}`B_ENTRY_CREATED` message) that /boot/home/fido/data
 satisfies the predicate.
 
-3.    You create an {htype}`entry_ref` and a {htype}`node_ref` to the entry, and
+3. You create an {htype}`entry_ref` and a {htype}`node_ref` to the entry, and
 cache them away somewhere.
 
-4.    The user then renames or moves the entry. The query mechanism doesn't tell
+4. The user then renames or moves the entry. The query mechanism doesn't tell
 you about this change—it only cares about the size of the node, not its
 name
 
-5.    You get a {cpp:enumerator}`B_ENTRY_REMOVED` message. You create a
+5. You get a {cpp:enumerator}`B_ENTRY_REMOVED` message. You create a
 {htype}`node_ref` from the message and match it to your cache—and get an
 out-of-date {htype}`entry_ref`.
 

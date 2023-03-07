@@ -33,10 +33,10 @@ The copy constructor creates a new {hclass}`BFile` that's open on the same
 file as that of the argument. Note that the two objects maintain
 __separate__ data pointers into the __same__ file:
 
--   Separate pointers: Reading and writing through one object __does not__
+- Separate pointers: Reading and writing through one object __does not__
 affect the position of the data pointer in the other object.
 
--   Same file: If one object writes to the file, the other object will see the
+- Same file: If one object writes to the file, the other object will see the
 written data.
 
 For information on the other constructors, see the analogous
@@ -68,9 +68,9 @@ These functions get and set the size, in bytes, of the object's file.
 {hmethod}`SetSize()` sets the size of the data portion to the size given
 by the argument:
 
--   Enlarging a file adds (uninitialized) bytes to its end.
+- Enlarging a file adds (uninitialized) bytes to its end.
 
--   Shrinking a file removes bytes from the end.
+- Shrinking a file removes bytes from the end.
 
 :::{list-table}
 ---
@@ -168,10 +168,10 @@ functions.
 
 The two functions differ in that…
 
--   {hmethod}`Read()` reads the data starting at the current location of the
+- {hmethod}`Read()` reads the data starting at the current location of the
 file's data pointer, and increments the file pointer as it reads.
 
--   {hmethod}`ReadAt()` reads the data from the location specified by the
+- {hmethod}`ReadAt()` reads the data from the location specified by the
 {hparam}`location` argument, which is taken as a measure in bytes from the
 beginning of the file. {hmethod}`ReadAt()` does not bump the file's data
 pointer.
@@ -314,11 +314,11 @@ link is automatically traversed (recursively, if necessary). Note that
 you're not prevented from opening a directory as a {hclass}`BFile`, but you
 are prevented from writing to it.
 
--   In the {hparam}`path` function, {hparam}`path` can be absolute or
+- In the {hparam}`path` function, {hparam}`path` can be absolute or
 relative, and can contain "." and ".." elements. If {hparam}`path` is
 relative, it's reckoned off of the current working directory.
 
--   In the {hparam}`dir`/{hparam}`path` function, {hparam}`path` must be
+- In the {hparam}`dir`/{hparam}`path` function, {hparam}`path` must be
 relative and is reckoned off of {hparam}`dir`.
 
 {hparam}`openMode` is a combination of flags that determines how the file

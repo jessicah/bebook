@@ -36,16 +36,16 @@ filter the in-coming message. You can discard the message, allow it to pass
 downstream (as is or modified), or replace it with one or more other
 messages:
 
--   To discard message, implement {hmethod}`Filter()` to return
+- To discard message, implement {hmethod}`Filter()` to return
 {cpp:enumerator}`B_SKIP_MESSAGE` (don't delete the {cpp:class}`BMessage`
 yourself—it's owned by the Input Server).
 
--   If you implement {hmethod}`Filter()` to return
+- If you implement {hmethod}`Filter()` to return
 {cpp:enumerator}`B_DISPATCH_MESSAGE` (and if you leave {hparam}`outList`
 unchanged), {hparam}`message` is allowed to continue downstream. You're
 allowed to modify (but not destroy or replace) {hparam}`message`.
 
--   To replace {hparam}`message`, place one or more {cpp:class}`BMessage` in
+- To replace {hparam}`message`, place one or more {cpp:class}`BMessage` in
 {hparam}`outList` and return {cpp:enumerator}`B_DISPATCH_MESSAGE`.
 {hparam}`message` is discarded; the messages in {hparam}`outList` are
 passed downstream in the order that they appear in the list. The Input

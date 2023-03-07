@@ -18,11 +18,11 @@ related in the view hierarchy (as parent-child or as siblings); but, note
 well, the constructor doesn't establish this relationship for you. After
 you construct you {hclass}`BDragger`, you have to do one of three things:
 
-1.    add the target as a child of the dragger,
+1. add the target as a child of the dragger,
 
-2.    add the dragger as a child of the target,
+2. add the dragger as a child of the target,
 
-3.    or add the dragger as a sibling of the target.
+3. or add the dragger as a sibling of the target.
 
 If you add the target as a child of {hclass}`BDragger`, it should be the
 only child that the {hclass}`BDragger` has.
@@ -115,9 +115,9 @@ is passed on to the {cpp:class}`BView` version.
 
 Returns {cpp:expr}`true` if two things are true:
 
-1.    The {hclass}`BDragger` is the parent of its target.
+1. The {hclass}`BDragger` is the parent of its target.
 
-2.    The {hclass}`BDragger` handle was visible but now should not be, or it
+2. The {hclass}`BDragger` handle was visible but now should not be, or it
 wasn't visible and now should be.
 
 Otherwise, this function returns {cpp:expr}`false`.

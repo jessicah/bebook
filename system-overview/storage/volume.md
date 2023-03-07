@@ -8,31 +8,31 @@ file systems, such as /pipe.
 
 Here's what a {hclass}`BVolume` knows:
 
--   The volume's name, device ID, and "root directory."
+- The volume's name, device ID, and "root directory."
 
--   Its storage capacity, and the currently available storage.
+- Its storage capacity, and the currently available storage.
 
--   If the volume is on a media that's removable.
+- If the volume is on a media that's removable.
 
--   If the volume's storage is persistent (as opposed to the ephemeral storage
+- If the volume's storage is persistent (as opposed to the ephemeral storage
 you get with virtual file systems).
 
--   If the volume is accessed through the network.
+- If the volume is accessed through the network.
 
--   If the file system uses MIME as file types, if it responds to queries, and
+- If the file system uses MIME as file types, if it responds to queries, and
 if it knows about attributes.
 
 ## Initializing a BVolume
 
 There are two ways to initialize a {hclass}`BVolume`:
 
-1.    You can initialize it directly using a device ID ({htype}`dev_t`) that you
+1. You can initialize it directly using a device ID ({htype}`dev_t`) that you
 pass to the {hclass}`BVolume` constructor or {cpp:func}`~BVolume::SetTo()`
 function. You can get a device ID from the device field of an
 {htype}`entry_ref` or {htype}`node_ref` structure. This method is useful if
 you have a file and you want to know which volume it lives on.
 
-2.    If you want to iterate over all the mounted volumes, you can ask a
+2. If you want to iterate over all the mounted volumes, you can ask a
 {cpp:class}`BVolumeRoster` object to get you the "next" volume
 ({cpp:func}`BVolumeRoster::GetNextVolume()`). You can also ask the
 {cpp:class}`BVolumeRoster` for the "boot" volume. This is the volume that

@@ -31,10 +31,10 @@ Creates a new {hclass}`BDirectory` object that represents the directory as
 given by the arguments. See the analogous {cpp:func}`~BDirectory::SetTo()`
 functions for descriptions of the flavorful constructors.
 
--   The default constructor does nothing; it should be followed by a call to
+- The default constructor does nothing; it should be followed by a call to
 {cpp:func}`~BDirectory::SetTo()`.
 
--   The copy constructor points the {hclass}`BDirectory` to the same directory
+- The copy constructor points the {hclass}`BDirectory` to the same directory
 as is represented by the argument. The two objects have their own entry
 iterators.
 
@@ -105,17 +105,17 @@ node is located at {hparam}`path`. If {hparam}`path` is relative, it's
 reckoned off of the directory represented by this {hclass}`BDirectory`; if
 it's absolute, the path of this {hclass}`BDirectory` is ignored.
 
--   {hmethod}`CreateFile()` fails if the file already exists and
+- {hmethod}`CreateFile()` fails if the file already exists and
 {hparam}`failIfExists` is {cpp:expr}`true`. If the flag is
 {cpp:expr}`false` (and the file exists), the old file is clobbered and a
 new one is created. If successful, the {cpp:class}`BFile` argument that you
 pass in is opened on the new file in {cpp:enumerator}`B_READ_WRITE` mode.
 
--   {hmethod}`CreateDirectory()` and {hmethod}`CreateSymLink()` fail if
+- {hmethod}`CreateDirectory()` and {hmethod}`CreateSymLink()` fail if
 {hparam}`path` already exists—you can't clobber an existing directory or
 link.
 
--   The {hparam}`linkToPath` argument ({hmethod}`CreateSymLink()`) is the path
+- The {hparam}`linkToPath` argument ({hmethod}`CreateSymLink()`) is the path
 that the new symbolic link will be linked to.
 
 The object argument (the {hclass}`BDirectory`, {cpp:class}`BFile`, or
@@ -191,16 +191,16 @@ widths: auto
 Finds the entry with the given name, and sets the second argument to refer
 to that entry.
 
--   {hparam}`path` must be a relative pathname. It's reckoned off of the
+- {hparam}`path` must be a relative pathname. It's reckoned off of the
 {hclass}`BDirectory`'s directory.
 
--   You are allowed to look for "." and "..". The former represents this
+- You are allowed to look for "." and "..". The former represents this
 directory's entry. The latter refers to this directory's parent.
 
--   The {hparam}`entry` argument must be allocated before it's passed in (it
+- The {hparam}`entry` argument must be allocated before it's passed in (it
 needn't be initialized).
 
--   The {hparam}`traverse` applies to symbolic links: If the flag is
+- The {hparam}`traverse` applies to symbolic links: If the flag is
 {cpp:expr}`true`, the link is traversed. If it's {cpp:expr}`false`, you get
 the {cpp:class}`BEntry` that points to the link itself.
 
@@ -328,7 +328,7 @@ The three {hmethod}`GetNext…()` functions retrieve the "next" entry that
 lives in the {hclass}`BDirectory` and returns it as a {cpp:class}`BEntry`,
 {htype}`entry_ref`, or {htype}`dirent` structure.
 
--   {hmethod}`GetNextEntry()` returns the entry as a {cpp:class}`BEntry`
+- {hmethod}`GetNextEntry()` returns the entry as a {cpp:class}`BEntry`
 object. If {hparam}`traverse` is {cpp:expr}`true` and the entry is a
 symbolic link, the link is traversed. In other words, {hparam}`entry` could
 end up being in a different directory than the one referred to by this.
@@ -336,14 +336,14 @@ When all entries have been visited, the function returns
 {cpp:enumerator}`B_ENTRY_NOT_FOUND`. The {hparam}`entry` argument must be
 allocated before it's passed in.
 
--   {hmethod}`GetNextRef()` return the next entry in {hparam}`ref`. Since an
+- {hmethod}`GetNextRef()` return the next entry in {hparam}`ref`. Since an
 {htype}`entry_ref` doesn't supply enough information to determine if the
 entry is a link, there's no question of traversal: The {htype}`entry_ref`
 points to exactly the next entry. When all entries have been visited, the
 function returns {cpp:enumerator}`B_ENTRY_NOT_FOUND`. The {hparam}`ref`
 argument must be allocated before it's passed in.
 
--   {hmethod}`GetNextDirents()` returns some number of {htype}`dirent`
+- {hmethod}`GetNextDirents()` returns some number of {htype}`dirent`
 structures, either as many as can be stuffed into {hparam}`buf` (where
 {hparam}`bufsize` gives the size of {hparam}`buf`), or {hparam}`count`
 structures, whichever is smaller. The function returns the number of
@@ -497,11 +497,11 @@ other files in the volume's hierarchy descend from the root directory.
 Closes the {hclass}`BDirectory`'s current directory (if any), and
 initializes the object to open the directory as given by the arguments.
 
--   In the {hparam}`path` version, path can be absolute or relative, and can
+- In the {hparam}`path` version, path can be absolute or relative, and can
 contain "." and ".." elements. If {hparam}`path` is relative, it's reckoned
 off of the current working directory.
 
--   In the {hparam}`dir`/{hparam}`path` version, {hparam}`path` must be
+- In the {hparam}`dir`/{hparam}`path` version, {hparam}`path` must be
 relative. It's reckoned off of the directory given by {hparam}`dir`.
 
 If the specification results in a symbolic link that resolves to a
@@ -581,13 +581,13 @@ assigned-to {hclass}`BDirectory` will also be uninitialized
 Creates all missing directories along the path specified by
 {hparam}`path`.
 
--   The pathname can be absolute or relative. If it's relative, the path is
+- The pathname can be absolute or relative. If it's relative, the path is
 reckoned of the current working directory. If any symlinks are found in the
 existing portion of the path, they're traversed.
 
--   {hparam}`path` can contain ".", but it may not contain "..".
+- {hparam}`path` can contain ".", but it may not contain "..".
 
--   {hparam}`mode` is the permissions setting (typically expressed as an octal
+- {hparam}`mode` is the permissions setting (typically expressed as an octal
 number) that's assigned to all directories that are created. To set the
 directories to be readable, writable, and "enterable" by all (for example),
 you would set the mode to 0777.
@@ -637,14 +637,14 @@ The second version is for C++ code only.
 Finds the path to the directory symbolized by {hparam}`which` and copies
 it into {hparam}`path_string`, or uses it to initialize {hparam}`path_obj`.
 
--   The {hparam}`create_it` argument tells the function to create the
+- The {hparam}`create_it` argument tells the function to create the
 directory if it doesn't already exist.
 
--   {hparam}`volume` identifies the volume (as a {htype}`dev_t` identifier or
+- {hparam}`volume` identifies the volume (as a {htype}`dev_t` identifier or
 {cpp:class}`BVolume` object) on which you want to look. The C++ default
 ({cpp:expr}`NULL`) means to look in the boot volume.
 
--   The {hparam}`length` argument (first version only) gives the length of
+- The {hparam}`length` argument (first version only) gives the length of
 {hparam}`path`.
 
 The {cpp:any}`directory_which` constants are described below.

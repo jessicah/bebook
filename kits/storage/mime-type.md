@@ -199,15 +199,15 @@ the lists in the database.
 These functions get and set the file extensions that are associated with
 the object's MIME type.
 
--   If you're getting the extensions, you'll find them copied into your
+- If you're getting the extensions, you'll find them copied into your
 {cpp:class}`BMessage`'s {hparam}`extensions` field (the
 {cpp:class}`BMessage` must be allocated). They're given as an indexed array
 of strings ({cpp:enumerator}`B_STRING_TYPE`).
 
--   Similarly, you pass in the extensions by adding strings to the message's
+- Similarly, you pass in the extensions by adding strings to the message's
 {hparam}`extensions` field.
 
--   The {cpp:class}`BMessage`'s {hparam}`what` field is unimportant.
+- The {cpp:class}`BMessage`'s {hparam}`what` field is unimportant.
 
 For example, to retrieve all the extensions that correspond to this
 object's MIME type, you would do the following:
@@ -330,18 +330,18 @@ object's MIME type as a signature uses to display the given file type.
 
 The icon is passed in or returned through the {hparam}`icon` argument:
 
--   If you're getting the icon, the {cpp:class}`BBitmap` must be allocated;
+- If you're getting the icon, the {cpp:class}`BBitmap` must be allocated;
 the icon data is copied into your {cpp:class}`BBitmap` object.
 
--   If you're setting the icon, the bitmap must be the proper size: 32x32 for
+- If you're setting the icon, the bitmap must be the proper size: 32x32 for
 the large icon, 16x16 for the small one. In {cpp:class}`BRect` lingo,
 that's `BRect(0, 0, 31, 31)` and `BRect(0, 0, 15, 15)`.
 
--   If you're setting the icon, the bitmap must be in the
+- If you're setting the icon, the bitmap must be in the
 {cpp:enumerator}`B_CMAP8` color space (8-bit color), or the application
 will crash.
 
--   You can remove an icon by passing {cpp:expr}`NULL` as the icon argument to
+- You can remove an icon by passing {cpp:expr}`NULL` as the icon argument to
 {hmethod}`SetIconForType()`.
 
 :::{list-table}
@@ -476,11 +476,11 @@ Unless the file identifies (in its attributes) a "custom" preferred app,
 the Tracker will ask the File Type database for the preferred app that's
 associated with the file's type.
 
--   The preferred app is identified by {hparam}`signature`, a MIME string. A
+- The preferred app is identified by {hparam}`signature`, a MIME string. A
 value of {cpp:expr}`NULL` indicates that there is no preferred app for the
 MIME type.
 
--   The {htype}`app_verb` argument specifies the type of access; currently,
+- The {htype}`app_verb` argument specifies the type of access; currently,
 the only {htype}`app_verb` is {cpp:enumerator}`B_OPEN`.
 
 :::{list-table}

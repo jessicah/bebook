@@ -184,14 +184,14 @@ relative to the display (not your view or your window).
 
 To create a new input method, you must:
 
--   Create a subclass of {cpp:class}`BInputServerMethod`
+- Create a subclass of {cpp:class}`BInputServerMethod`
 
--   Implement the instantiate_input_method() C function to create an instance
+- Implement the instantiate_input_method() C function to create an instance
 of your {cpp:class}`BInputServerMethod` subclass
 
--   Compile the class and function as an add-on
+- Compile the class and function as an add-on
 
--   Install the add-on in one of the input method directories
+- Install the add-on in one of the input method directories
 
 At boot time (or whenever the Input Server is restarted; see "Dynamic
 Loading"), the Input Server loads the add-ons it finds in the input method
@@ -208,9 +208,9 @@ subdirectories of {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY`,
 {cpp:enumerator}`B_COMMON_ADDONS_DIRECTORY`, and
 {cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
 
--   You can install your input devices in the latter two directories—i.e.
+- You can install your input devices in the latter two directories—i.e.
 those under {cpp:enumerator}`B_COMMON_ADDONS_DIRECTORY`, and
 {cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
 
--   The {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY` is reserved for add-ons that
+- The {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY` is reserved for add-ons that
 are supplied by the BeOS.

@@ -103,18 +103,18 @@ function calls doesn't get too circular.
 Users have control over some aspects of how scroll bars look and behave.
 With the ScrollBar preferences application, they can choose:
 
--   Whether the knob should be a fixed size, or whether it should grow and
+- Whether the knob should be a fixed size, or whether it should grow and
 shrink to proportionally represent how much of a document (how much of the
 data rectangle) is visible within the target view. A proportional knob is
 the default.
 
--   Whether double, bidirectional scroll arrows should appear on each end of
+- Whether double, bidirectional scroll arrows should appear on each end of
 the scroll bar, or whether each end should have only a single,
 unidirectional arrow. Double arrows are the default.
 
--   Which of three patterns should appear on the knob.
+- Which of three patterns should appear on the knob.
 
--   What the size of the knob should be—the minimum length of a proportional
+- What the size of the knob should be—the minimum length of a proportional
 knob or the fixed length of a knob that's not proportional. The default
 length is 15 pixels.
 

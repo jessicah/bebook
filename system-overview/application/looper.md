@@ -33,10 +33,10 @@ You do have to delete {hparam}`be_app`; you can't just
 
 You can deliver messages to a {cpp:class}`BLooper`'s thread by…
 
--   Posting them directly by calling {cpp:class}`BLooper`'s
+- Posting them directly by calling {cpp:class}`BLooper`'s
 {cpp:func}`~BLooper::PostMessage()` function.
 
--   Sending them through {cpp:class}`BMessenger`'s
+- Sending them through {cpp:class}`BMessenger`'s
 {cpp:func}`~BMessenger::SendMessage()` or {cpp:class}`BMessage`'s
 {cpp:func}`~BMessage::SendReply()` function.
 
@@ -50,17 +50,17 @@ handler's {cpp:func}`~BHandler::MessageReceived()` function. But which
 {cpp:class}`BHandler` does the {cpp:class}`BLooper` hand the message to?
 Here's the path:
 
--   If an incoming message targets a specific {cpp:class}`BHandler`, and if
+- If an incoming message targets a specific {cpp:class}`BHandler`, and if
 that {cpp:class}`BHandler` is one of the {cpp:class}`BLooper`'s eligible
 handlers (as set through the {cpp:func}`~BLooper::AddHandler()` function),
 the {cpp:class}`BLooper` uses that {cpp:class}`BHandler`. (See the
 {cpp:class}`BMessage` and {cpp:class}`BMessenger` classes for instructions
 on how to target a {cpp:class}`BHandler`.)
 
--   Otherwise it hands the message to its _preferred handler_, as set through
+- Otherwise it hands the message to its _preferred handler_, as set through
 {cpp:func}`~BLooper::SetPreferredHandler()`.
 
--   If no preferred handler is set, the {cpp:class}`BLooper` itself handles
+- If no preferred handler is set, the {cpp:class}`BLooper` itself handles
 the message (its own implementation of
 {cpp:func}`~BLooper::MessageReceived()` is invoked).
 

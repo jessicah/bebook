@@ -166,7 +166,7 @@ timeout through {hparam}`deliveryTimeout`.
 
 The target can respond to the message:
 
--   If you supply a {hparam}`reply` {cpp:class}`BMessage`, the response is
+- If you supply a {hparam}`reply` {cpp:class}`BMessage`, the response is
 synchronous, with an optional timeout ({hparam}`replyTimeout`) that starts
 ticking after the original message has been delivered. If the response
 times out, or the target deletes the original message without responding,
@@ -176,16 +176,16 @@ The caller is responsible for allocating and freeing {hparam}`reply`.
 
   :::{admonition} Warning
 :class: warning
-  Use caution when requesting a synchronous reply: If you call
+Use caution when requesting a synchronous reply: If you call
 {hmethod}`SendMessage()` from the target looper's thread, you'll deadlock
 (or, at best, time out).
 :::
 
--   If you supply a reply target ({hparam}`replyMessenger` or
+- If you supply a reply target ({hparam}`replyMessenger` or
 {hparam}`replyHandler`), the response is asynchronous, and is sent to the
 reply target.
 
--   If you supply neither a reply message nor a reply target, the target's
+- If you supply neither a reply message nor a reply target, the target's
 response is sent to {hparam}`be_app_messenger`.
 
 :::{list-table}
@@ -245,15 +245,15 @@ and looper (by reference in {hparam}`looper`). This function only works for
 local targets. If {hmethod}`Target()` returns {cpp:expr}`NULL`, it can mean
 one of four things:
 
-1.    The target is remote; {hparam}`looper` is set to {cpp:expr}`NULL`.
+1. The target is remote; {hparam}`looper` is set to {cpp:expr}`NULL`.
 
-2.    The {hclass}`BMessenger` hasn't been initialized; {hparam}`looper` is set
+2. The {hclass}`BMessenger` hasn't been initialized; {hparam}`looper` is set
 to {cpp:expr}`NULL`.
 
-3.    The handler is the looper's preferred handler; {hparam}`looper` will be
+3. The handler is the looper's preferred handler; {hparam}`looper` will be
 valid.
 
-4.    The handler has been deleted; {hparam}`looper` will be valid given that it
+4. The handler has been deleted; {hparam}`looper` will be valid given that it
 hasn't been deleted as well.
 
 {hmethod}`IsTargetLocal()` returns {cpp:expr}`true` if the target is

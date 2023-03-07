@@ -29,13 +29,13 @@ for the scroll bar.
 The other arguments, {hparam}`frame` and {hparam}`name`, are the same as
 for other {cpp:class}`BView`s:
 
--   The {hparam}`frame` rectangle locates the scroll bar within its parent
+- The {hparam}`frame` rectangle locates the scroll bar within its parent
 view. For consistency in the user interface, a horizontal scroll bar should
 be {cpp:enumerator}`B_H_SCROLL_BAR_HEIGHT` coordinate units high, and a
 vertical scroll bar should be {cpp:enumerator}`B_V_SCROLL_BAR_WIDTH` units
 wide.
 
--   The {hclass}`BScrollBar`'s {hparam}`name` identifies it and permits it to
+- The {hclass}`BScrollBar`'s {hparam}`name` identifies it and permits it to
 be located by the {cpp:func}`~BView::FindView()` function. It can be
 {cpp:expr}`NULL`.
 

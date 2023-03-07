@@ -10,11 +10,11 @@ two derived classes: {cpp:class}`BDirectory` and {cpp:class}`BQuery`.
 At the heart of the {hclass}`BEntryList` class are the three
 {hmethod}`GetNext…()` functions, which let you retrieve the entries as…
 
--   {cpp:class}`BEntry` objects ({cpp:func}`~BEntryList::GetNextEntry()`),
+- {cpp:class}`BEntry` objects ({cpp:func}`~BEntryList::GetNextEntry()`),
 
--   {htype}`entry_ref` structures ({cpp:func}`~BEntryList::GetNextRef()`),
+- {htype}`entry_ref` structures ({cpp:func}`~BEntryList::GetNextRef()`),
 
--   or {htype}`dirent` ("directory entry") structures
+- or {htype}`dirent` ("directory entry") structures
 ({cpp:func}`~BEntryList::GetNextDirents()`).
 
 You call these functions iteratively; each call gets the "next" entry (or
@@ -22,11 +22,11 @@ set of entries in the case of {cpp:func}`~BEntryList::GetNextDirents()`).
 You check the {hmethod}`GetNext…()` return value to detect the end of the
 list:
 
--   For {cpp:func}`~BEntryList::GetNextEntry()` and
+- For {cpp:func}`~BEntryList::GetNextEntry()` and
 {cpp:func}`~BEntryList::GetNextRef()`, {cpp:enumerator}`B_ENTRY_NOT_FOUND`
 indicates that there are no more entries to get.
 
--   {cpp:func}`~BEntryList::GetNextDirents()` returns 0 when it's at the end
+- {cpp:func}`~BEntryList::GetNextDirents()` returns 0 when it's at the end
 of the list.
 
 To get back to the top of an entry list, you call
@@ -63,7 +63,7 @@ the {hmethod}`GetNext…()` functions. You mustn't intermingle a
 
 One more {cpp:class}`BDirectory` wrinkle:
 
--   Entries are retrieved in "directory order". (This is a POSIX term that
+- Entries are retrieved in "directory order". (This is a POSIX term that
 means, roughly, ASCII order.) If the user renames a file while you're
 iterating over the directory, it's possible that the file won't be seen, or
 will show up under its old name and its new name.
@@ -99,18 +99,18 @@ one entry at a time, no matter how many you ask for.
 So, which flavor of {hmethod}`GetNext…()` should you use? Here's how they
 compare:
 
--   {cpp:func}`~BEntryList::GetNextDirents()` is by far the fastest (even in
+- {cpp:func}`~BEntryList::GetNextDirents()` is by far the fastest (even in
 the current one-struct-at-a-time version), but it's also the least
 wieldy—the protocol isn't nearly as nice as the other two functions. The
 {htype}`dirent` structure, while jam-packed with fun facts, usually has to
 be turned into other structures ({htype}`node_ref`s or {htype}`entry_ref`s)
 in order to be useful.
 
--   {cpp:func}`~BEntryList::GetNextRef()` is slower, but the
+- {cpp:func}`~BEntryList::GetNextRef()` is slower, but the
 {htype}`entry_ref` structure can be immediately usable (or, at least,
 cachable). Nonetheless, you're still a step away from a "real" object.
 
--   {cpp:func}`~BEntryList::GetNextEntry()` is the slowest, but at least it
+- {cpp:func}`~BEntryList::GetNextEntry()` is the slowest, but at least it
 hands you an object that you can sink your teeth into.
 
 The actual timing numbers depend on your machine, the class that you're
@@ -144,30 +144,30 @@ typedef struct dirent {
 
 The fields are:
 
--   {hparam}`d_dev` is a device id that identifies the device (file system) on
+- {hparam}`d_dev` is a device id that identifies the device (file system) on
 which this entry lies.
 
--   {hparam}`d_ino` is the node number for this entry's node.
+- {hparam}`d_ino` is the node number for this entry's node.
 
--   {hparam}`d_pdev` and {hparam}`d_pino` are the device and inode numbers for
+- {hparam}`d_pdev` and {hparam}`d_pino` are the device and inode numbers for
 the parent directory.
 
--   {hparam}`d_reclen` is the length of this {htype}`dirent` structure. The
+- {hparam}`d_reclen` is the length of this {htype}`dirent` structure. The
 length is variable because…
 
--   {hparam}`d_name` is a buffer that's allocated to hold the
+- {hparam}`d_name` is a buffer that's allocated to hold the
 ({cpp:expr}`NULL`-terminated) name of this entry.
 
 So—let's pretend we've retrieved a {htype}`dirent` and we want to do
 something with it. In addition to looking at individual fields, we can
 combine some of them to make other structures:
 
--   {hparam}`d_dev` + {hparam}`d_ino` = {htype}`node_ref` of the entry's node
+- {hparam}`d_dev` + {hparam}`d_ino` = {htype}`node_ref` of the entry's node
 
--   {hparam}`d_pdev` + {hparam}`d_pino` = {htype}`node_ref` of the parent
+- {hparam}`d_pdev` + {hparam}`d_pino` = {htype}`node_ref` of the parent
 directory
 
--   {hparam}`d_pdev` + {hparam}`d_pino` + {hparam}`d_name` =
+- {hparam}`d_pdev` + {hparam}`d_pino` + {hparam}`d_name` =
 {htype}`entry_ref` for the entry
 
 In code:

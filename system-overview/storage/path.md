@@ -4,12 +4,12 @@ A {hclass}`BPath` object represents an absolute pathname, and provides
 some simple path manipulation and querying functions. The primary features
 of the class are:
 
--   It allocates storage for you. When you tell your {hclass}`BPath` object
+- It allocates storage for you. When you tell your {hclass}`BPath` object
 which pathname you want it to represent, the object allocates storage for
 the pathname automatically. When you delete the object, the storage is
 freed.
 
--   It always represents an absolute path. The pathname strings that you use
+- It always represents an absolute path. The pathname strings that you use
 to initialize a {hclass}`BPath` can be relative, and they can include
 references to "." and "..". The {hclass}`BPath` "normalizes" the passed-in
 strings to create an absolute pathname, as described in "{ref}`Initializing
@@ -22,18 +22,18 @@ the file system.
 
 ## So what do you use BPaths for?
 
--   You can use your {hclass}`BPath` to initialize other, more powerful
+- You can use your {hclass}`BPath` to initialize other, more powerful
 objects ({cpp:class}`BEntry`, {cpp:class}`BNode` and its kids). See
 "{ref}`Converting a BPath`".
 
--   {hclass}`BPath`s can be passed through {cpp:class}`BMessage`s. To add a
+- {hclass}`BPath`s can be passed through {cpp:class}`BMessage`s. To add a
 {hclass}`BPath` to a {cpp:class}`BMessage`, you have to flatten it first:
 {hclass}`BPath` implements {cpp:class}`BFlattenable` for exactly this
 reason. The receiver of the {cpp:class}`BMessage` can resurrect the
 flattened object as a {hclass}`BPath` object or as an {htype}`entry_ref`
 structure. See "{ref}`Passing a BPath in a BMessage`".
 
--   {hclass}`BPath` objects are ideal for caching references to files.
+- {hclass}`BPath` objects are ideal for caching references to files.
 {hclass}`BPath`s don't consume much in the way of system resources—they
 don't contain file descriptors, for example. So they're great for keeping
 track of the files that your application is interested in.
@@ -53,30 +53,30 @@ that the object represents—by passing a string (or two, or a
 passed-in strings if it has to (this emphasis is important, as we'll see in
 a moment). The following elements trigger normalization:
 
--   a relative pathname (after concatenation; e.g. boot/lbj)
+- a relative pathname (after concatenation; e.g. boot/lbj)
 
--   the presence of "." or ".." (/boot/lbj/../lbj/./fido)
+- the presence of "." or ".." (/boot/lbj/../lbj/./fido)
 
--   redundant slashes (/boot//lbj)
+- redundant slashes (/boot//lbj)
 
--   a trailing slash (/boot/lbj/)
+- a trailing slash (/boot/lbj/)
 
 During normalization, {hclass}`BPath` conjures up an absolute pathname in
 the form
 
--   /dir1/dir2/.../dirN/leaf
+- /dir1/dir2/.../dirN/leaf
 
 It does this by applying the following rules:
 
--   relative pathnames are reckoned off of the current working directory
+- relative pathnames are reckoned off of the current working directory
 
--   "." is ignored (at the head of a path, it's taken as the cwd).
+- "." is ignored (at the head of a path, it's taken as the cwd).
 
--   ".." bumps up one directory level
+- ".." bumps up one directory level
 
--   redundant slashes are coalesced
+- redundant slashes are coalesced
 
--   a trailing slash is removed.
+- a trailing slash is removed.
 
 (The one exception to this final rule is / as a full pathname.)
 
@@ -152,11 +152,11 @@ subsequent initialization.
 
 ### Other Normalization Details
 
--   You can't force the {hclass}`BPath` constructor or
+- You can't force the {hclass}`BPath` constructor or
 {cpp:func}`~BPath::SetTo()` function to skip the normalization. If the path
 needs to be normalized, it will be normalized.
 
--   {hclass}`BPath` doesn't let you ask if its pathname was normalized.
+- {hclass}`BPath` doesn't let you ask if its pathname was normalized.
 
 ## The BPath Calling Convention
 
@@ -164,7 +164,7 @@ needs to be normalized, it will be normalized.
 of Storage Kit functions. However, you shouldn't find any functions that
 ask for a {hclass}`BPath` object. This is a convention of usage:
 
--   If an API element returns a pathname to you, it does so in the form of a
+- If an API element returns a pathname to you, it does so in the form of a
 {hclass}`BPath`. If it asks for a pathname from you (as an argument), it
 asks for a {htype}`const char*`.
 
@@ -318,7 +318,7 @@ err = entry.GetNodeRef(&nref);
 Remember, a {hclass}`BPath` represents a pathname, not a node. It isn't
 "updated" when the file system changes:
 
--   A {hclass}`BPath`'s pathname string never changes behind your back, even
+- A {hclass}`BPath`'s pathname string never changes behind your back, even
 if the entry that it originally pointed to is renamed, moved, or deleted.
 
 For example:

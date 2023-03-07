@@ -327,17 +327,17 @@ your {htype}`device_hooks` structure to {cpp:expr}`NULL`.
 
 Keep the following rules in mind for each instance of your driver:
 
--   open() will be called first, and no other hooks will be called until
+- open() will be called first, and no other hooks will be called until
 open() returns.
 
--   close() may be called while other requests are pending. As previously
+- close() may be called while other requests are pending. As previously
 mentioned, if you have blocked transactions, you must unblock them when
 close() is called. Further calls to other driver hooks my continue to occur
 after close() is called; however, you should return an error to any such
 requests.
 
--   free() isn't called until all pending transactions for the open instance
+- free() isn't called until all pending transactions for the open instance
 are completed.
 
--   Multiple threads may be accessing the driver's hooks simultaneously, so be
+- Multiple threads may be accessing the driver's hooks simultaneously, so be
 sure to lock and unlock where appropriate.

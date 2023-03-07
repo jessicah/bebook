@@ -34,10 +34,10 @@ These functions return the "next" entry in the entry list as a
 {cpp:class}`BEntry`, {htype}`entry_ref`, or {htype}`dirent` structure. The
 end of the list is signalled by…
 
--   {hmethod}`GetNextEntry()` and {hmethod}`GetNextRef()` return
+- {hmethod}`GetNextEntry()` and {hmethod}`GetNextRef()` return
 {cpp:enumerator}`B_ENTRY_NOT_FOUND`.
 
--   {hmethod}`GetNextDirents()` returns 0.
+- {hmethod}`GetNextDirents()` returns 0.
 
 If the {hparam}`traverse` argument is {cpp:expr}`true`, symlinks are
 traversed.

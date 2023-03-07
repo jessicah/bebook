@@ -3,15 +3,15 @@
 A {cpp:class}`BScreen` object represents a single display screen that's
 connected to the computer. With a {cpp:class}`BScreen` object you can…
 
--   Get and set the screen's size and pixel depth.
+- Get and set the screen's size and pixel depth.
 
--   Get the screen's color map.
+- Get the screen's color map.
 
--   Make a screen shot.
+- Make a screen shot.
 
--   Set the desktop color.
+- Set the desktop color.
 
--   Synchronize your code with the screen's retrace event.
+- Synchronize your code with the screen's retrace event.
 
 You can't copy a {cpp:class}`BScreen` object—the copy constructor and
 assignment operators are private.

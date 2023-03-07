@@ -109,7 +109,7 @@ These functions start and stop the {hclass}`BVolumeRoster`'s
 volume-watching facility. (This is actually just a convenient cover for the
 Node Monitor.)
 
--   {hmethod}`StartWatching()` registers a request for notifications of volume
+- {hmethod}`StartWatching()` registers a request for notifications of volume
 mounts and unmounts. The notifications are sent (as {cpp:class}`BMessage`s)
 to the {cpp:class}`BHandler` / {cpp:class}`BLooper` pair specified by the
 argument. There are separate messages for mounting and unmounting; their
@@ -118,11 +118,11 @@ formats are described below. The caller retains possession of the
 {cpp:class}`BMessenger` represents. The volume watching continues until
 this {hclass}`BVolumeRoster` object is destroyed, or until you call…
 
--   {hmethod}`StopWatching()`. This function tells the volume-watcher to stop
+- {hmethod}`StopWatching()`. This function tells the volume-watcher to stop
 watching. In other words, notifications of volume mounts and unmounts are
 no longer sent to the {hclass}`BVolumeRoster`'s target.
 
--   {hmethod}`Messenger()` returns a copy of the {cpp:class}`BMessenger`
+- {hmethod}`Messenger()` returns a copy of the {cpp:class}`BMessenger`
 object that was set in the previous {hmethod}`StartWatching()` call.
 
 There are separate notifications ({cpp:class}`BMessage`s) for

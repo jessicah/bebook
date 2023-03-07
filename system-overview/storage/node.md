@@ -4,21 +4,21 @@ The {hclass}`BNode` class gives you access to the data that a file system
 entry (a file, directory, or symbolic link) contains. There are two parts
 to this data:
 
-1.    There's the "data portion" itself…
+1. There's the "data portion" itself…
 
-2.    …and then there are the node's attributes.
+2. …and then there are the node's attributes.
 
 The content of the data portion depends on the node's flavor:
 
--   If it's a regular file, the data is whatever it is that the file is meant
+- If it's a regular file, the data is whatever it is that the file is meant
 to contain: ASCII text, binary image or sound data, executable code, and so
 on. Note that resources (as created by the {cpp:class}`BResources` class)
 are kept in the data portion.
 
--   If it's a directory, the data is the list of entries that the directory
+- If it's a directory, the data is the list of entries that the directory
 contains.
 
--   If it's a symbolic link, the data is the path of the "linked-to" file. The
+- If it's a symbolic link, the data is the path of the "linked-to" file. The
 path can be absolute or relative.
 
 The content of the attributes, on the other hand, isn't qualified by the
@@ -37,14 +37,14 @@ where they're located. For example, you can't ask a node for its name, or
 for the identity of its parent. This has some serious implications, the
 most important of which is…
 
--   If you need to store a reference to a file (or directory, or symbolic
+- If you need to store a reference to a file (or directory, or symbolic
 link), don't store the node—in other words, don't cache the BNode object.
 Instead, store the information that you used to create the {hclass}`BNode`
 (typically, a pathname or {htype}`entry_ref` structure).
 
 Now that we've got that straight, we'll relax the rules a bit:
 
--   {cpp:class}`BDirectory` objects are node/entry hybrids. A
+- {cpp:class}`BDirectory` objects are node/entry hybrids. A
 {cpp:class}`BDirectory` does know its own name (and parent, and so on).
 
 This doesn't really change the "store the info" rule. Even if you're
@@ -72,15 +72,15 @@ in a subsequent release. But even then you should be frugal.
 define functions that let you access the node's data portion in the
 appropriate style; for example…
 
--   {cpp:class}`BFile` implements {cpp:func}`~BFile::Read()` and
+- {cpp:class}`BFile` implements {cpp:func}`~BFile::Read()` and
 {cpp:func}`~BFile::Write()` functions that let you retrieve arbitrary
 amounts of data from arbitrary positions in the file.
 
--   {cpp:class}`BDirectory` implements functions, such as
+- {cpp:class}`BDirectory` implements functions, such as
 {cpp:func}`~BDirectory::GetNextEntry()` and
 {cpp:func}`~BDirectory::FindEntry()`, that read entries from the directory.
 
--   {cpp:class}`BSymLink`'s {cpp:func}`~BSymLink::ReadLink()` returns the
+- {cpp:class}`BSymLink`'s {cpp:func}`~BSymLink::ReadLink()` returns the
 pathname that it contains.
 
 If you want to (sensibly) look at a node's data portion, you must create
@@ -101,16 +101,16 @@ In practice, you almost always want to create an instance of one of the
 yourself holding a {hclass}`BNode` instance, here's what you'll be able to
 do with it:
 
--   Read and write attributes. The attribute-accessing functions
+- Read and write attributes. The attribute-accessing functions
 ({cpp:func}`~BNode::ReadAttr()`, {cpp:func}`~BNode::WriteAttr()`, and so
 on) are general—they work without regard for the node's flavor. Thus, you
 don't need an instance of a specific derived class to read and write
 attributes.
 
--   Get stat information. The {cpp:class}`BStatable` functions can be invoked
+- Get stat information. The {cpp:class}`BStatable` functions can be invoked
 on any flavor of node.
 
--   Lock the node. This prevents other "agents" (other objects, other apps,
+- Lock the node. This prevents other "agents" (other objects, other apps,
 the user) from accessing reading or writing the node's data and attributes.
 See "{ref}`Node Locking`".
 
@@ -179,12 +179,12 @@ restrict access to the node. The lock is removed when
 {cpp:func}`~BNode::Unlock()` is called, or when the {hclass}`BNode` object
 is deleted.
 
--   When you lock a node, you prevent other objects (or agents) from reading
+- When you lock a node, you prevent other objects (or agents) from reading
 or writing the node's data and attributes. No other agent can even open the
 node—other {hclass}`BNode` constructions and POSIX open() calls (on that
 node) will fail while you hold the lock.
 
--   You can only acquire a node lock if there are no file descriptors open on
+- You can only acquire a node lock if there are no file descriptors open on
 the node (with one exception). This means that no other {hclass}`BNode` may
 be open on the node (locked or not), nor may the node be held open because
 of a POSIX open() (or opendir()) call.
@@ -202,7 +202,7 @@ For files (and, less importantly, symlinks), the implications of locking
 are pretty clear: No one else can read or write the file. For directories,
 it's worth a closer look:
 
--   Locking a directory means that the contents of the directory can't change:
+- Locking a directory means that the contents of the directory can't change:
 You can't create new nodes in the directory, or rename or remove existing
 ones. (You can, however, create abstract entries within the directory; see
 {cpp:class}`BEntry` for more on abstract entries.)

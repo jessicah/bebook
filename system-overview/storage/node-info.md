@@ -3,12 +3,12 @@
 {hclass}`BNodeInfo` provides file type information about a particular
 node; specifically:
 
--   The (MIME) file type.
+- The (MIME) file type.
 
--   The node's icons, including the node-specific icon that the Tracker
+- The node's icons, including the node-specific icon that the Tracker
 displays.
 
--   The "preferred app"; this is the application that's used to access the
+- The "preferred app"; this is the application that's used to access the
 node's contents.
 
 Except for the Tracker icon, all this information can also be set through

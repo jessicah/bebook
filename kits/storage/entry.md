@@ -433,22 +433,22 @@ widths: auto
 Frees the {hclass}`BEntry`'s current entry reference, and initializes it
 to refer to the entry identified by the argument(s):
 
--   In the {hparam}`ref` version, the {hclass}`BEntry` is initialized to refer
+- In the {hparam}`ref` version, the {hclass}`BEntry` is initialized to refer
 to the given {htype}`entry_ref`.
 
--   In the {hparam}`path` version, {hparam}`path` can be absolute or relative,
+- In the {hparam}`path` version, {hparam}`path` can be absolute or relative,
 and can contain "." and ".." elements. If {hparam}`path` is relative, it's
 reckoned off of the current working directory.
 
--   In the {hparam}`dir`/{hparam}`path` version, {hparam}`path` must be
+- In the {hparam}`dir`/{hparam}`path` version, {hparam}`path` must be
 relative. It's reckoned off of the directory given by {hparam}`dir`.
 
 The {hparam}`traverse` argument is used to resolve (or not) entries that
 are symlinks:
 
--   If {hparam}`traverse` is {cpp:expr}`true`, the link is resolved.
+- If {hparam}`traverse` is {cpp:expr}`true`, the link is resolved.
 
--   If {hparam}`traverse` is {cpp:expr}`false`, the {hclass}`BEntry` refers to
+- If {hparam}`traverse` is {cpp:expr}`false`, the {hclass}`BEntry` refers to
 the link itself.
 
 See "{ref}`Initializing and Traversing`" for more information.
@@ -591,13 +591,13 @@ struct entry_ref {
 
 The {htype}`entry_ref` structure describes a single entry in a directory.
 
--   {hparam}`device` contains the device number on which the entry's target is
+- {hparam}`device` contains the device number on which the entry's target is
 located.
 
--   {hparam}`directory` contains the inode of the directory that contains the
+- {hparam}`directory` contains the inode of the directory that contains the
 entry's target.
 
--   {hparam}`name` contains the name of the entry.
+- {hparam}`name` contains the name of the entry.
 
 :::{cpp:function} BEntry::entry_ref()
 :::

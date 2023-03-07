@@ -105,11 +105,11 @@ widths: auto
 
 Each field is set to one of the following constants:
 
--   {cpp:enumerator}`B_PRIMARY_MOUSE_BUTTON`
+- {cpp:enumerator}`B_PRIMARY_MOUSE_BUTTON`
 
--   {cpp:enumerator}`B_SECONDARY_MOUSE_BUTTON`
+- {cpp:enumerator}`B_SECONDARY_MOUSE_BUTTON`
 
--   {cpp:enumerator}`B_TERTIARY_MOUSE_BUTTON`
+- {cpp:enumerator}`B_TERTIARY_MOUSE_BUTTON`
 
 The same role can be assigned to more than one physical button. If all
 three buttons are set to {cpp:enumerator}`B_PRIMARY_MOUSE_BUTTON`, they all
@@ -215,23 +215,23 @@ map encoded in the Application Server is used.
 The {htype}`key_map` structure contains a large number of fields, but it
 can be broken down into these six parts:
 
-1.    A version number.
+1. A version number.
 
-2.    A series of fields that determine which keys will function as modifier
+2. A series of fields that determine which keys will function as modifier
 keys—such as {hkey}`Shift`, {hkey}`Control`, or {hkey}`Num Lock`.
 
-3.    A field that sets the initial state of the keyboard locks in the default
+3. A field that sets the initial state of the keyboard locks in the default
 key map.
 
-4.    A series of ordered tables that assign character values to keys. Except
+4. A series of ordered tables that assign character values to keys. Except
 for a handful of modifier keys, all keys are mapped to characters, though
 they may not be mapped for all modifier combinations.
 
-5.    A series of tables that locate the dead keys for diacritical marks and
+5. A series of tables that locate the dead keys for diacritical marks and
 determine how a combination of a dead key plus another key is mapped to a
 particular character.
 
-6.    A set of masks that determine which modifier keys are required for a key
+6. A set of masks that determine which modifier keys are required for a key
 to be considered dead.
 
 The following sections describe the parts of the {htype}`key_map`
@@ -383,11 +383,11 @@ widths: auto
 
 The mask can be 0 or may contain any combination of these three constants:
 
--   {cpp:enumerator}`B_CAPS_LOCK`
+- {cpp:enumerator}`B_CAPS_LOCK`
 
--   {cpp:enumerator}`B_SCROLL_LOCK`
+- {cpp:enumerator}`B_SCROLL_LOCK`
 
--   {cpp:enumerator}`B_NUM_LOCK`
+- {cpp:enumerator}`B_NUM_LOCK`
 
 It's 0 by default; there are no initial locks.
 
@@ -554,20 +554,20 @@ paired, with a table that names the {hkey}`Shift` key
 ({hparam}`…_shift_map`) preceding an equivalent table without
 {hkey}`Shift`:
 
--   {hparam}`option_caps_shift_map` is paired with {hparam}`option_caps_map`,
+- {hparam}`option_caps_shift_map` is paired with {hparam}`option_caps_map`,
 
--   {hparam}`option_shift_map` with {hparam}`option_map`,
+- {hparam}`option_shift_map` with {hparam}`option_map`,
 
--   {hparam}`caps_shift_map` with {hparam}`caps_map`, and
+- {hparam}`caps_shift_map` with {hparam}`caps_map`, and
 
--   {hparam}`shift_map` with {hparam}`normal_map`.
+- {hparam}`shift_map` with {hparam}`normal_map`.
 
 These pairings are important for a special rule that applies to keys on
 the numerical keypad when {hkey}`Num Lock` is on:
 
--   If the {hkey}`Shift` key is down, the non-{hkey}`Shift` table is used.
+- If the {hkey}`Shift` key is down, the non-{hkey}`Shift` table is used.
 
--   However, if the {hkey}`Shift` key is not down, the {hkey}`Shift` table is
+- However, if the {hkey}`Shift` key is not down, the {hkey}`Shift` table is
 used.
 
 In other words, {hkey}`Num Lock` inverts the {hkey}`Shift` and
@@ -710,23 +710,23 @@ widths: auto
 
 Each of these fields contains a mask formed from the following constants:
 
--   {cpp:enumerator}`B_CONTROL_TABLE`
+- {cpp:enumerator}`B_CONTROL_TABLE`
 
--   {cpp:enumerator}`B_CAPS_SHIFT_TABLE`
+- {cpp:enumerator}`B_CAPS_SHIFT_TABLE`
 
--   {cpp:enumerator}`B_OPTION_CAPS_SHIFT_TABLE`
+- {cpp:enumerator}`B_OPTION_CAPS_SHIFT_TABLE`
 
--   {cpp:enumerator}`B_CAPS_TABLE`
+- {cpp:enumerator}`B_CAPS_TABLE`
 
--   {cpp:enumerator}`B_OPTION_CAPS_TABLE`
+- {cpp:enumerator}`B_OPTION_CAPS_TABLE`
 
--   {cpp:enumerator}`B_SHIFT_TABLE`
+- {cpp:enumerator}`B_SHIFT_TABLE`
 
--   {cpp:enumerator}`B_OPTION_SHIFT_TABLE`
+- {cpp:enumerator}`B_OPTION_SHIFT_TABLE`
 
--   {cpp:enumerator}`B_NORMAL_TABLE`
+- {cpp:enumerator}`B_NORMAL_TABLE`
 
--   {cpp:enumerator}`B_OPTION_TABLE`
+- {cpp:enumerator}`B_OPTION_TABLE`
 
 The mask designates the character-map tables that permit a key to be dead.
 For example, if the mask for the {hparam}`grave_tables` field is,
@@ -772,21 +772,21 @@ Returns a mask that has a bit set for each modifier key the user is
 holding down and for each keyboard lock that's set. The mask can be tested
 against these constants:
 
--   {cpp:enumerator}`B_SHIFT_KEY`
+- {cpp:enumerator}`B_SHIFT_KEY`
 
--   {cpp:enumerator}`B_COMMAND_KEY`
+- {cpp:enumerator}`B_COMMAND_KEY`
 
--   {cpp:enumerator}`B_CAPS_LOCK`
+- {cpp:enumerator}`B_CAPS_LOCK`
 
--   {cpp:enumerator}`B_CONTROL_KEY`
+- {cpp:enumerator}`B_CONTROL_KEY`
 
--   {cpp:enumerator}`B_MENU_KEY`
+- {cpp:enumerator}`B_MENU_KEY`
 
--   {cpp:enumerator}`B_SCROLL_LOCK`
+- {cpp:enumerator}`B_SCROLL_LOCK`
 
--   {cpp:enumerator}`B_OPTION_KEY`
+- {cpp:enumerator}`B_OPTION_KEY`
 
--   {cpp:enumerator}`B_NUM_LOCK`
+- {cpp:enumerator}`B_NUM_LOCK`
 
 No bits are set (the mask is 0) if no locks are on and none of the
 modifiers keys are down.
@@ -795,21 +795,21 @@ If it's important to know which physical key the user is holding down, the
 one on the right or the one on the left, the mask can be further tested
 against these constants:
 
--   {cpp:enumerator}`B_LEFT_SHIFT_KEY`
+- {cpp:enumerator}`B_LEFT_SHIFT_KEY`
 
--   {cpp:enumerator}`B_RIGHT_SHIFT_KEY`
+- {cpp:enumerator}`B_RIGHT_SHIFT_KEY`
 
--   {cpp:enumerator}`B_LEFT_CONTROL_KEY`
+- {cpp:enumerator}`B_LEFT_CONTROL_KEY`
 
--   {cpp:enumerator}`B_RIGHT_CONTROL_KEY`
+- {cpp:enumerator}`B_RIGHT_CONTROL_KEY`
 
--   {cpp:enumerator}`B_LEFT_OPTION_KEY`
+- {cpp:enumerator}`B_LEFT_OPTION_KEY`
 
--   {cpp:enumerator}`B_RIGHT_OPTION_KEY`
+- {cpp:enumerator}`B_RIGHT_OPTION_KEY`
 
--   {cpp:enumerator}`B_LEFT_COMMAND_KEY`
+- {cpp:enumerator}`B_LEFT_COMMAND_KEY`
 
--   {cpp:enumerator}`B_RIGHT_COMMAND_KEY`
+- {cpp:enumerator}`B_RIGHT_COMMAND_KEY`
 
 By default, the keys closest to the space bar function as {hkey}`Command`
 keys, no matter what their labels on particular keyboards. If a keyboard
@@ -873,11 +873,11 @@ modifiers mask passed as an argument are turned on; those not listed are
 turned off. The mask can be 0 (to turn off all locks) or it can contain any
 combination of the following constants:
 
--   {cpp:enumerator}`B_CAPS_LOCK`
+- {cpp:enumerator}`B_CAPS_LOCK`
 
--   {cpp:enumerator}`B_NUM_LOCK`
+- {cpp:enumerator}`B_NUM_LOCK`
 
--   {cpp:enumerator}`B_SCROLL_LOCK`
+- {cpp:enumerator}`B_SCROLL_LOCK`
 
 See also: {cpp:func}`get_key_map()`, {cpp:func}`modifiers()`
 ::::
@@ -891,29 +891,29 @@ Declared in: interface/InterfaceDefs.h
 Maps a modifier role to a particular key on the keyboard, where key is a
 key identifier and modifier is one of the these constants:
 
--   {cpp:enumerator}`B_CAPS_LOCK`
+- {cpp:enumerator}`B_CAPS_LOCK`
 
--   {cpp:enumerator}`B_LEFT_SHIFT_KEY`
+- {cpp:enumerator}`B_LEFT_SHIFT_KEY`
 
--   {cpp:enumerator}`B_RIGHT_SHIFT_KEY`
+- {cpp:enumerator}`B_RIGHT_SHIFT_KEY`
 
--   {cpp:enumerator}`B_NUM_LOCK`
+- {cpp:enumerator}`B_NUM_LOCK`
 
--   {cpp:enumerator}`B_LEFT_CONTROL_KEY`
+- {cpp:enumerator}`B_LEFT_CONTROL_KEY`
 
--   {cpp:enumerator}`B_RIGHT_CONTROL_KEY`
+- {cpp:enumerator}`B_RIGHT_CONTROL_KEY`
 
--   {cpp:enumerator}`B_SCROLL_LOCK`
+- {cpp:enumerator}`B_SCROLL_LOCK`
 
--   {cpp:enumerator}`B_LEFT_OPTION_KEY`
+- {cpp:enumerator}`B_LEFT_OPTION_KEY`
 
--   {cpp:enumerator}`B_RIGHT_OPTION_KEY`
+- {cpp:enumerator}`B_RIGHT_OPTION_KEY`
 
--   {cpp:enumerator}`B_MENU_KEY`
+- {cpp:enumerator}`B_MENU_KEY`
 
--   {cpp:enumerator}`B_LEFT_COMMAND_KEY`
+- {cpp:enumerator}`B_LEFT_COMMAND_KEY`
 
--   {cpp:enumerator}`B_RIGHT_COMMAND_KEY`
+- {cpp:enumerator}`B_RIGHT_COMMAND_KEY`
 
 The key in question serves as the named modifier key, unmapping any key
 that previously played that role. The change remains in effect until the

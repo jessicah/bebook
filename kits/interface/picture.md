@@ -343,28 +343,28 @@ BRect {hparam}`dest`, int32 {hparam}`width`, int32 {hparam}`height`, int32
 While many of these functions are similar to those found in
 {cpp:class}`BView`, there are some important differences:
 
--   The return value of the functions is ignored.
+- The return value of the functions is ignored.
 
--   The {hmethod}`Fill…()` and {hmethod}`Stroke…()` functions do not
+- The {hmethod}`Fill…()` and {hmethod}`Stroke…()` functions do not
 explicitly specify patterns. Instead, they should be drawn in the current
 pattern, as set by the {hmethod}`SetStipplePattern()` (callback #35). Note
 that there is no equivalent to {hmethod}`SetStipplePattern()` in
 {cpp:class}`BView`.
 
--   The {hparam}`deltax` and {hparam}`deltay` arguments passed to
+- The {hparam}`deltax` and {hparam}`deltay` arguments passed to
 {hmethod}`DrawString()` are escapement delta values; the string should be
 drawn at the current pen position.
 
--   {hmethod}`MovePenBy()` uses a {cpp:class}`BPoint` to specify the amount to
+- {hmethod}`MovePenBy()` uses a {cpp:class}`BPoint` to specify the amount to
 move the pen. The x component of the {cpp:class}`BPoint` gives the x offset
 and the y component the y offset.
 
--   Similarly, {hmethod}`…RoundRect()` and {hmethod}`…Ellipse()` use a
+- Similarly, {hmethod}`…RoundRect()` and {hmethod}`…Ellipse()` use a
 {cpp:class}`BPoint` to specify the two separate radius components. The
 {hparam}`x` component gives the x radius and the {hparam}`y` component the
 y radius.
 
--   {hmethod}`DrawPixels()` is a {hclass}`BPicture`-specific primitive for
+- {hmethod}`DrawPixels()` is a {hclass}`BPicture`-specific primitive for
 rendering bitmaps. It is a request to copy the {hparam}`src` rectangle from
 the raw color information in {hparam}`data` to the {hparam}`dest` rectangle
 of the current rendering area. {hparam}`width`, {hparam}`height`,
@@ -374,26 +374,26 @@ always zero and should be ignored. {hparam}`src` and {hparam}`dest` need
 not have the same dimensions; in these cases, the function should scale the
 bitmap appropriately.
 
--   {hmethod}`SetClippingRects()` is a {hclass}`BPicture`-specific primitive
+- {hmethod}`SetClippingRects()` is a {hclass}`BPicture`-specific primitive
 approximating {hmethod}`ConstrainClippingRegion()`. It instructs the
 renderer to replace the current clipping region with the union of the
 rectangles passed to SetClippingRects().
 
--   Changes in the graphics state are sandwiched between calls to
+- Changes in the graphics state are sandwiched between calls to
 {hmethod}`EnterStateChange()` and {hmethod}`ExitStateChange()`. State
 change functions will only be called between these functions. No other call
 backs will be called between these functions. State change functions are
 all {hmethod}`Set…()` functions in addition to {hmethod}`EnterFontState()`
 and {hmethod}`ExitFontState()`.
 
--   Similarly, changes to the font state are sandwiched between calls to
+- Similarly, changes to the font state are sandwiched between calls to
 {hmethod}`EnterFontState()` and {hmethod}`ExitFontState()`. Font state
 change functions will only be called between these functions. No other call
 backs will be called between these functions. Font state change functions
 are all {hmethod}`SetFont…()` functions. Many of the font state functions
 are found in BFont rather than {cpp:class}`BView`.
 
--   {hmethod}`SetFontRotate()` sets the rotation of the font. Unlike the
+- {hmethod}`SetFontRotate()` sets the rotation of the font. Unlike the
 {cpp:func}`BFont::SetRotation()` function, the angle here is specified in
 radians, rather than in degrees. You can convert the value into degrees by
 using the forumla:
@@ -401,8 +401,6 @@ using the forumla:
   :::{code} cpp
 degrees = (rotation*180.0) / 3.14159265369);
 :::
-
-    
 ::::
 
 ## Static Functions

@@ -45,9 +45,9 @@ menu bar.
 Two kinds of adjustments are made if the layout is
 {cpp:enumerator}`B_ITEMS_IN_ROW`, as it typically is for a menu bar:
 
--   The height of the menu bar is adjusted to the height of a single item.
+- The height of the menu bar is adjusted to the height of a single item.
 
--   If the {hparam}`resizingMode` includes
+- If the {hparam}`resizingMode` includes
 {cpp:enumerator}`B_FOLLOW_LEFT_RIGHT`, the width of the menu bar is
 adjusted to match the width of its parent view. This means that a true menu
 bar (one that's a child of the window's top view) will always be as wide as
@@ -56,9 +56,9 @@ the window.
 Two similar adjustments are made if the menu bar layout is
 {cpp:enumerator}`B_ITEMS_IN_COLUMN`:
 
--   The width of the menu bar is adjusted to the width of the widest item.
+- The width of the menu bar is adjusted to the width of the widest item.
 
--   If the {hparam}`resizingMode` includes
+- If the {hparam}`resizingMode` includes
 {cpp:enumerator}`B_FOLLOW_TOP_BOTTOM`, the height of the menu bar is
 adjusted to match the height of its parent view.
 

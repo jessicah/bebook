@@ -117,22 +117,22 @@ display the node. The `static` version lets you identify the node as an
 {htype}`entry_ref`. Both versions follow the same ordered path in trying to
 find the icon:
 
-1.    First, it looks in the node's attributes. If the attribute doesn't exist,
+1. First, it looks in the node's attributes. If the attribute doesn't exist,
 it…
 
-2.    …gets the node's preferred app (as a signature), and asks the File Type
+2. …gets the node's preferred app (as a signature), and asks the File Type
 database if that signature declares an icon for this node's file type. If
 the node doesn't have a preferred app, or if the app doesn't designate an
 icon for the node's type, the function…
 
-3.    …asks the File Type database for the icon based on the node's file type.
+3. …asks the File Type database for the icon based on the node's file type.
 If still empty-handed, the function…
 
-4.    …asks the File Type database for the preferred app based on the node's
+4. …asks the File Type database for the preferred app based on the node's
 file type, and then asks that app for the icon it uses to display this
 node's file type. If still nothing, we…
 
-5.    …quit.
+5. …quit.
 
 The function doesn't tell you which branch of the path it found the icon
 in.
@@ -176,9 +176,9 @@ These functions get and set the node's "preferred app." This is the
 application that's used to access the node when, for example, the user
 double-clicks the node in a Tracker window.
 
--   The preferred app is identified by {hparam}`signature`, a MIME string.
+- The preferred app is identified by {hparam}`signature`, a MIME string.
 
--   The {hparam}`app_verb` argument specifies the type of access; currently,
+- The {hparam}`app_verb` argument specifies the type of access; currently,
 the only {hparam}`app_verb` is {cpp:enumerator}`B_OPEN`.
 
 If a node doesn't have a preferred app, the Tracker looks in the File Type

@@ -3,17 +3,17 @@
 A {cpp:class}`BDirectory` object gives you access to the contents of a
 directory. A {cpp:class}`BDirectory`'s primary features are:
 
--   It can iteratively retrieve the entries in the directory. The entries are
+- It can iteratively retrieve the entries in the directory. The entries are
 returned as {cpp:class}`BEntry` objects, {htype}`entry_ref`s, or
 {htype}`dirent` structures ({cpp:func}`~BDirectory::GetNextEntry()`,
 {cpp:func}`~BDirectory::GetNextRef()`,
 {cpp:func}`~BDirectory::GetNextDirents()`).
 
--   It can find a specific entry. You can ask if the entry exists
+- It can find a specific entry. You can ask if the entry exists
 ({cpp:func}`~BDirectory::Contains()`), and you can retrieve the entry as a
 {cpp:class}`BEntry` ({cpp:func}`~BDirectory::FindEntry()`).
 
--   It can create new entries. Through the aptly named
+- It can create new entries. Through the aptly named
 {cpp:func}`~BDirectory::CreateFile()`,
 {cpp:func}`~BDirectory::CreateDirectory()` and
 {cpp:func}`~BDirectory::CreateSymLink()` functions.
@@ -38,17 +38,17 @@ For the basic story on these functions, see the {cpp:class}`BEntryList`
 class and the function descriptions below. In addition to the info you'll
 find there, you should be aware of the following:
 
--   Entries are returned in "directory order". This is, roughly, the ASCII
+- Entries are returned in "directory order". This is, roughly, the ASCII
 order of their names.
 
--   Try not to alter the directory while you're getting its entries. Entries
+- Try not to alter the directory while you're getting its entries. Entries
 are delivered on demand. If you do something to change the contents of the
 directory while you're iterating through those contents (such as change the
 name of the file "aaa" to "zzz") you could end up seeing an entry more than
 once (technically, you'll see the same node under the guise of different
 entries), or you could miss an entry.
 
--   Counting entries uses the same iterator that retrieves entries. You
+- Counting entries uses the same iterator that retrieves entries. You
 mustn't call {cpp:func}`~BDirectory::CountEntries()` while you're looping
 over a {hmethod}`GetNext…()` function.
 
@@ -113,16 +113,16 @@ The following changes to the monitored directory cause
 for all Node Monitor messages is {cpp:enumerator}`B_NODE_MONITOR`; the
 {hparam}`opcode` field (an integer code) describes the activity:
 
--   An entry was created ({hparam}`opcode` =
+- An entry was created ({hparam}`opcode` =
 {cpp:enumerator}`B_ENTRY_CREATED`).
 
--   An entry was moved to a different name in the same directory
+- An entry was moved to a different name in the same directory
 ({cpp:enumerator}`B_ENTRY_RENAMED`).
 
--   An entry was from moved from this directory to a different directory, or
+- An entry was from moved from this directory to a different directory, or
 vice versa ({cpp:enumerator}`B_ENTRY_MOVED`).
 
--   An entry (and the node it represents) was deleted from the file system
+- An entry (and the node it represents) was deleted from the file system
 ({cpp:enumerator}`B_ENTRY_REMOVED`).
 
 The {cpp:enumerator}`B_WATCH_DIRECTORY` flag (by itself) doesn't monitor

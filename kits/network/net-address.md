@@ -30,26 +30,26 @@
 Sets up the {hclass}`BNetAddress` object to refer to the specified
 address. The address can be specified in a number of ways:
 
--   By {hparam}`hostname` and {hparam}`port` number. For example, to connect
+- By {hparam}`hostname` and {hparam}`port` number. For example, to connect
 to the HTTP port at www.be.com, you would specify "www.be.com" as the
 {hparam}`hostname`, and 80 for the {hparam}`port` number.
 
--   By {htype}`sockaddr_in` structure. This structure contains the network
+- By {htype}`sockaddr_in` structure. This structure contains the network
 family, port number, and IP address that make up the address.
 
--   By IP address and port number. The IP address can be specified either
+- By IP address and port number. The IP address can be specified either
 using an {htype}`in_addr`, or by using a {htype}`uint32`. The IP address
 must be specified in network byte order. See the htonl() function.
 
--   By {hparam}`hostname`, {hparam}`protocol`, and {hparam}`service` name.
+- By {hparam}`hostname`, {hparam}`protocol`, and {hparam}`service` name.
 This causes the port to be looked up in the /etc/services file by matching
 the protocol (typically "tcp" or "udp") and service name (such as "http" or
 "ftp") against the entries in the file. See getservbyname() for details on
 the format of this file.
 
--   By copying an existing {hclass}`BNetAddress`.
+- By copying an existing {hclass}`BNetAddress`.
 
--   By unflattening an archived {hclass}`BNetAddress` from a
+- By unflattening an archived {hclass}`BNetAddress` from a
 {cpp:class}`BMessage`.
 
 After creating your {hclass}`BNetAddress`, you must call

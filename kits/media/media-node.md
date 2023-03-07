@@ -536,32 +536,32 @@ When a message is received, the appropriate
 {cpp:func}`~BMediaNode::HandleMessage()` calls are made given the class
 derivation of the node:
 
--   {cpp:func}`BMediaNode::HandleMessage()` is always called first.
+- {cpp:func}`BMediaNode::HandleMessage()` is always called first.
 
--   If the node is derived from {cpp:class}`BBufferProducer`, and the message
+- If the node is derived from {cpp:class}`BBufferProducer`, and the message
 hasn't been handled yet, {cpp:func}`BBufferProducer::HandleMessage()` is
 called.
 
--   If the node is derived from {cpp:class}`BBufferConsumer`, and the message
+- If the node is derived from {cpp:class}`BBufferConsumer`, and the message
 hasn't been handled yet, {cpp:func}`BBufferConsumer::HandleMessage()` is
 called.
 
--   If the node is derived from {cpp:class}`BFileInterface`, and the message
+- If the node is derived from {cpp:class}`BFileInterface`, and the message
 hasn't been handled yet, {cpp:func}`BFileInterface::HandleMessage()` is
 called.
 
--   If the node is derived from {cpp:class}`BControllable`, and the message
+- If the node is derived from {cpp:class}`BControllable`, and the message
 hasn't been handled yet, {cpp:func}`BControllable::HandleMessage()` is
 called.
 
--   If the node is derived from {cpp:class}`BTimeSource`, and the message
+- If the node is derived from {cpp:class}`BTimeSource`, and the message
 hasn't been handled yet, {cpp:func}`BTimeSource::HandleMessage()` is
 called.
 
--   If the message still hasn't been handled, the most-derived interface's
+- If the message still hasn't been handled, the most-derived interface's
 {hmethod}`HandleMessage()` function is called.
 
--   If the message hasn't been handled,
+- If the message hasn't been handled,
 {cpp:func}`~BMediaNode::HandleBadMessage()` is called.
 
 Once this has been done, {hmethod}`WaitForMessage()` returns. As you can

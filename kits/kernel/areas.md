@@ -434,10 +434,10 @@ value may not return the same {htype}`area_id`.
 
 What you do with the area you've found depends on where it came from:
 
--   If you're finding an area that your own application created or cloned, you
+- If you're finding an area that your own application created or cloned, you
 can use the returned ID directly.
 
--   If the area was created or cloned by some other application, you should
+- If the area was created or cloned by some other application, you should
 immediately clone the area (unless you're doing something truly innocuous,
 such as simply examining the area's info structure).
 

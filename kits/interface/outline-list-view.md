@@ -298,11 +298,11 @@ a {hclass}`BOutlineListView`.
 These functions work like their {cpp:class}`BListView` counterparts,
 except that:
 
--   They can remove items from any part of the list, including collapsed
+- They can remove items from any part of the list, including collapsed
 sections. The index counts all items assigned to the
 {hclass}`BOutlineListView`; the specified item can be hidden.
 
--   If the item being removed is a superitem, they also remove all of its
+- If the item being removed is a superitem, they also remove all of its
 subitems.
 
 :::{admonition} Warning

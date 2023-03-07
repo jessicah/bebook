@@ -44,21 +44,21 @@ Destroys the BResources object.
 Adds a new resource to the file. For this function to have an effect, the
 file must be open for writing. The arguments are:
 
--   {hparam}`type` is one of the {htype}`type_code` constants defined in
+- {hparam}`type` is one of the {htype}`type_code` constants defined in
 support/TypeConstants.h.
 
--   {hparam}`id` is the ID number that you want to assign to the resource. The
+- {hparam}`id` is the ID number that you want to assign to the resource. The
 value of the ID has no meaning other than that which your application gives
 it; the only restriction on the ID is that the combination of it and the
 data type constant must be unique across all resources in this resource
 file.
 
--   {hparam}`data` is a pointer to the data that you want the resource to
+- {hparam}`data` is a pointer to the data that you want the resource to
 hold.
 
--   {hparam}`length` is the length of the data buffer, in bytes.
+- {hparam}`length` is the length of the data buffer, in bytes.
 
--   {hparam}`name` is optional, and needn't be unique. Or even interesting.
+- {hparam}`name` is optional, and needn't be unique. Or even interesting.
 
 Ownership of the data pointer isn't assigned to the {hclass}`BResources`
 object by this function; after {hmethod}`AddResource()` returns, your
@@ -121,19 +121,19 @@ Returns the {cpp:class}`BFile` the {hclass}`BResource` object references.
 These functions return information about a specific resource, as
 identified by the first one or two arguments:
 
--   The first version ({hparam}`byIndex`) searches for the
+- The first version ({hparam}`byIndex`) searches for the
 {hparam}`byIndex`'th resource in the file.
 
--   The second ({hparam}`byType`/{hparam}`andIndex`) searches for the
+- The second ({hparam}`byType`/{hparam}`andIndex`) searches for the
 {hparam}`byIndex`'th resource that has the given type.
 
--   The third ({hparam}`byType`/{hparam}`andId`) looks for the resource with
+- The third ({hparam}`byType`/{hparam}`andId`) looks for the resource with
 the unique combination of type and ID.
 
--   The fourth ({hparam}`byType`/{hparam}`andName`) looks for the first
+- The fourth ({hparam}`byType`/{hparam}`andName`) looks for the first
 resource that has the given type and name.
 
--   The last ({hparam}`byPointer`) returns information about the resource
+- The last ({hparam}`byPointer`) returns information about the resource
 whose data is pointed to by {hparam}`byPointer`. This can be used to trace
 a resource that's already been loaded with
 {cpp:func}`~BResources::LoadResource()` back to its information.

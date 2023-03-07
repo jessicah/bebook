@@ -690,16 +690,16 @@ If successful in finding data of the {hparam}`type` requested at
 {hparam}`index`, {hmethod}`GetInfo()` returns {cpp:enumerator}`B_OK` and
 provides information about the data through the last three arguments:
 
--   It places a pointer to the name of the data field in the variable referred
+- It places a pointer to the name of the data field in the variable referred
 to by {hparam}`nameFound`.
 
--   It puts the code for the type of data the field contains in the variable
+- It puts the code for the type of data the field contains in the variable
 referred to by {hparam}`typeFound`. This will be the same as the
 {hparam}`type` requested, unless the requested type is
 {cpp:enumerator}`B_ANY_TYPE`, in which case {hparam}`typeFound` will be the
 actual type stored under the name.
 
--   It records the number of data items stored within the field in the
+- It records the number of data items stored within the field in the
 variable referred to by {hparam}`countFound`.
 
 If {hmethod}`GetInfo()` can't find data of the requested {hparam}`type` at
@@ -994,7 +994,7 @@ Sends a reply {hparam}`message` back to the sender of the
 reply is synchronous or asynchronous depends on how the {hclass}`BMessage`
 that's sending the reply was itself sent:
 
--   The reply is delivered synchronously if the message sender is waiting for
+- The reply is delivered synchronously if the message sender is waiting for
 one to arrive. The function that sent the {hclass}`BMessage` doesn't return
 until it receives the reply (or a timeout expires). If an expected reply
 has not been sent by the time the {hclass}`BMessage` object is deleted, a
@@ -1002,7 +1002,7 @@ default {cpp:enumerator}`B_NO_REPLY` message is returned to the sender. If
 a reply is sent after the sender gave up waiting for it to arrive, the
 reply {hparam}`message` disappears into the bowels of the system.
 
--   The reply is delivered asynchronously if the message sender isn't waiting
+- The reply is delivered asynchronously if the message sender isn't waiting
 for a reply. In this case, the sending function designates a target
 {cpp:class}`BHandler` and {cpp:class}`BLooper` for any replies that might
 be sent, then returns immediately after putting the {hclass}`BMessage` in
@@ -1019,11 +1019,11 @@ after the function returns.
 message nonetheless. It behaves exactly like the other message-sending
 function, {cpp:class}`BMessenger`'s {cpp:func}`~BMessenger::SendMessage()`:
 
--   By passing it a {hparam}`reply` argument, you can ask for a synchronous
+- By passing it a {hparam}`reply` argument, you can ask for a synchronous
 reply to the reply message it sends. It won't return until it receives the
 reply.
 
--   By supplying a {hparam}`replyHandler` argument, you can arrange for an
+- By supplying a {hparam}`replyHandler` argument, you can arrange for an
 expected asynchronous reply. If a specific target isn't specified, the
 {cpp:class}`BApplication` object will handle the reply if one is sent.
 

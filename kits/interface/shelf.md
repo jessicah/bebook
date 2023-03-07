@@ -61,10 +61,10 @@ in which the dropped replicant is about to be drawn. Exactly what the
 rectangle means depends on the relationship between the dragger and its
 target:
 
--   If the dragger is the target's parent, then {hparam}`destRect` encloses
+- If the dragger is the target's parent, then {hparam}`destRect` encloses
 the {cpp:class}`BDragger`'s frame.
 
--   Otherwise (if the target is the parent, or if the two views are siblings),
+- Otherwise (if the target is the parent, or if the two views are siblings),
 {hparam}`destRect` encloses the target's frame. Note that in the case of
 siblings, the {cpp:class}`BDragger`'s frame isn't included in the
 rectangle.
@@ -138,32 +138,32 @@ This function is invoked automatically when a replicant is dropped on the
 where, within the container view's bounds, the message was dropped. The
 function goes through these steps to reject and adjust the replicant:
 
--   First, it invokes the {cpp:func}`~BShelf::CanAcceptReplicantMessage()`
+- First, it invokes the {cpp:func}`~BShelf::CanAcceptReplicantMessage()`
 hook function. If the hook returns {cpp:expr}`false`, then
 {hmethod}`AddReplicant()` doesn't add the replicant.
 
--   Next, it looks for a {hparam}`shelf_type` string field in the
+- Next, it looks for a {hparam}`shelf_type` string field in the
 {cpp:class}`BMessage`. If it finds one and the value of the field doesn't
 match the {hclass}`BShelf`'s name, the replicant is rejected.
 
--   If type enforcement is {cpp:expr}`true` (see
+- If type enforcement is {cpp:expr}`true` (see
 {cpp:func}`~BShelf::SetTypeEnforced()`) and the shelf has a name, then the
 {cpp:class}`BMessage` must have a {hparam}`shelf_type` string and this
 string must match the shelf name. Otherwise, the replicant is rejected.
 
-    There's no specific API for adding the {hparam}`shelf_type` field to a
+  There's no specific API for adding the {hparam}`shelf_type` field to a
 view. If you want to configure your views to accept only certain
 {hclass}`BShelf` objects, you have to add the field directly as part of the
 view's {cpp:func}`~BView::Archive()` implementation.
 
--   The archive message is then unarchived (the replicant is instantiated). If
+- The archive message is then unarchived (the replicant is instantiated). If
 the archive doesn't contain a {cpp:class}`BView`, the message is passed on
 to another handler ({cpp:enumerator}`B_DISPATCH_MESSAGE` is returned).
 
--   {cpp:func}`~BShelf::CanAcceptReplicantView()` hook function is called next
+- {cpp:func}`~BShelf::CanAcceptReplicantView()` hook function is called next
 (with a return of {cpp:expr}`false` meaning rejection).
 
--   Finally, {cpp:func}`~BShelf::AdjustReplicantBy()` is called, and the
+- Finally, {cpp:func}`~BShelf::AdjustReplicantBy()` is called, and the
 replicant is drawn in the container view.
 
 Except in the case of a no-view archive, {hmethod}`AddReplicant()` returns

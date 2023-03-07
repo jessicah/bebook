@@ -92,16 +92,16 @@ or 0 to turn it off.
 Tells the kernel to send the SIGALRM signal at some point in the future,
 as defined by the arguments:
 
--   If {hparam}`mode` is {cpp:enumerator}`B_PERIODIC_ALARM`, the signal is
+- If {hparam}`mode` is {cpp:enumerator}`B_PERIODIC_ALARM`, the signal is
 sent every {hparam}`time` microseconds, starting as soon as set_alarm()
 function returns.
 
--   If {hparam}`mode` is {cpp:enumerator}`B_ONE_SHOT_ABOLUTE_ALARM`, the
+- If {hparam}`mode` is {cpp:enumerator}`B_ONE_SHOT_ABOLUTE_ALARM`, the
 signal is sent once (only) after {hparam}`time` microseconds have elapsed
 measured from the time the system was booted. If that point has already
 passed, the signal is sent immediately.
 
--   If {hparam}`mode` is {cpp:enumerator}`B_ONE_SHOT_RELATIVE_ALARM`, the
+- If {hparam}`mode` is {cpp:enumerator}`B_ONE_SHOT_RELATIVE_ALARM`, the
 signal is sent once (only) after {hparam}`time` microseconds have elapsed
 from the time set_alarm() returns.
 

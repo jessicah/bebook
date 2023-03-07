@@ -371,9 +371,9 @@ for a message from a particular sender.
 The {cpp:func}`send_data()` function copies two pieces of data into a
 thread's message cache:
 
--   A single four-byte code that's delivered as receive_data()'s return value,
+- A single four-byte code that's delivered as receive_data()'s return value,
 
--   and an arbitrarily long data buffer that's copied into receive_data()'s
+- and an arbitrarily long data buffer that's copied into receive_data()'s
 buffer argument (you must allocate and free buffer yourself). The
 {hparam}`buffer_size` argument tells the function how many bytes of data to
 copy. If you don't need the data buffer—if the code value returned directly
@@ -383,11 +383,11 @@ and {hparam}`buffer_size` to 0.
 Unfortunately, there's no way to tell how much data is in the cache before
 you call receive_data():
 
--   If there's more data than buffer can accommodate, the unaccommodated
+- If there's more data than buffer can accommodate, the unaccommodated
 portion is discarded—a second receive_data() call will not read the rest of
 the message.
 
--   Conversely, if receive_data() asks for more data than was sent, the
+- Conversely, if receive_data() asks for more data than was sent, the
 function returns with the excess portion of buffer
 unmodified—receive_data() doesn't wait for another {cpp:func}`send_data()`
 call to provide more data with which to fill up the buffer.
@@ -429,10 +429,10 @@ thread retrieves the message (and empties the cache) by calling
 
 There are two parts to the message:
 
--   A single four-byte code passed as an argument to send_data() and returned
+- A single four-byte code passed as an argument to send_data() and returned
 directly by {cpp:func}`receive_data()`.
 
--   A {hparam}`buffer` of data that's {hparam}`buffer_size` bytes long
+- A {hparam}`buffer` of data that's {hparam}`buffer_size` bytes long
 ({hparam}`buffer` can be {cpp:expr}`NULL`, in which case
 {hparam}`buffer_size` should be 0). The data is copied into the target
 thread's cache, and then copied into {cpp:func}`receive_data()`'s

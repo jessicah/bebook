@@ -43,14 +43,14 @@ To access a clipboard's data, you call functions on a
 (through its {cpp:func}`~BClipboard::Data()` function). The
 {cpp:class}`BMessage` follows these conventions:
 
--   The {cpp:var}`what` value is unused.
+- The {cpp:var}`what` value is unused.
 
--   The data is stored in a message field. The field should be typed as
+- The data is stored in a message field. The field should be typed as
 {cpp:enumerator}`B_MIME_TYPE`; the MIME type that describes the data should
 be used as the name of the field that holds the data (see "{ref}`Writing to
 the Clipboard`" for an example).
 
--   If the {cpp:class}`BMessage` contains more than one field, each field
+- If the {cpp:class}`BMessage` contains more than one field, each field
 should present the same data in a different format. For example, the
 StyledEdit app writes text data in its own format (in order to encode the
 fonts, colors, etc.) and also writes the data as plain ASCII text (MIME

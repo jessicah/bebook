@@ -569,11 +569,11 @@ It's your responsibility to ensure that the buffer's header and the data
 contained in the buffer itself are valid, although {hmethod}`SendBuffer()`
 will automatically fill out the following header fields for you:
 
--   {hparam}`buffer`
+- {hparam}`buffer`
 
--   {hparam}`for_id`
+- {hparam}`for_id`
 
--   {hparam}`change_tag`
+- {hparam}`change_tag`
 
 In particular, be sure that if you're outputting video buffers you set the
 {htype}`media_video_buffer` to describe the video properly. If you don't,

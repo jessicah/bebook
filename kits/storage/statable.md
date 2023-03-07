@@ -129,13 +129,13 @@ widths: auto
 These functions set and get the owner, group, and read/write/execute
 permissions for the node:
 
--   The {hparam}`owner` identifier encodes the identity of the user that
+- The {hparam}`owner` identifier encodes the identity of the user that
 "owns" the file.
 
--   The {hparam}`group` identifier encodes the "group" that is permitted group
+- The {hparam}`group` identifier encodes the "group" that is permitted group
 access to the file (as declared by the permissions).
 
--   The {hparam}`permissions` value records nine "permission facts": Whether
+- The {hparam}`permissions` value records nine "permission facts": Whether
 the file can be read, written, and executed by the node's owner, by users
 in the node's group, and by everybody else (read/write/execute *
 owner/group/others = 9 items).
@@ -150,23 +150,23 @@ and group files (which are as currently unimplemented).
 The permissions value is a combination of the following bitfield constants
 (defined in posix/sys/stat.h):
 
--   {cpp:enumerator}`S_IRUSR` owner's read bit.
+- {cpp:enumerator}`S_IRUSR` owner's read bit.
 
--   {cpp:enumerator}`S_IWUSR` owner's write bit.
+- {cpp:enumerator}`S_IWUSR` owner's write bit.
 
--   {cpp:enumerator}`S_IXUSR` owner's execute bit.
+- {cpp:enumerator}`S_IXUSR` owner's execute bit.
 
--   {cpp:enumerator}`S_IRGRP` group's read bit.
+- {cpp:enumerator}`S_IRGRP` group's read bit.
 
--   {cpp:enumerator}`S_IWGRP` group's write bit.
+- {cpp:enumerator}`S_IWGRP` group's write bit.
 
--   {cpp:enumerator}`S_IXGRP` group's execute bit.
+- {cpp:enumerator}`S_IXGRP` group's execute bit.
 
--   {cpp:enumerator}`S_IROTH` others' read bit.
+- {cpp:enumerator}`S_IROTH` others' read bit.
 
--   {cpp:enumerator}`S_IWOTH` others' write bit.
+- {cpp:enumerator}`S_IWOTH` others' write bit.
 
--   {cpp:enumerator}`S_IXOTH` others' execute bit.
+- {cpp:enumerator}`S_IXOTH` others' execute bit.
 
 For example:
 

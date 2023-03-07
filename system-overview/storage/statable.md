@@ -5,17 +5,17 @@ for its two derived class, {cpp:class}`BEntry` and {cpp:class}`BNode`. The
 {hclass}`BStatable` functions let you get and set "statistical" information
 about a node in the file system. You can…
 
--   Determine whether the node is a file, directory, or symbolic link.
+- Determine whether the node is a file, directory, or symbolic link.
 
--   Get and set an node's owner, group, and permissions.
+- Get and set an node's owner, group, and permissions.
 
--   Get and set the node's creation, modification, and access times.
+- Get and set the node's creation, modification, and access times.
 
--   Get the size of the node's data (not counting attributes).
+- Get the size of the node's data (not counting attributes).
 
--   Get a {cpp:class}`BVolume` object for the node's volume.
+- Get a {cpp:class}`BVolume` object for the node's volume.
 
--   Get the {htype}`node_ref` of the node (and pass it to
+- Get the {htype}`node_ref` of the node (and pass it to
 {cpp:func}`watch_node()`, most likely).
 
 ## Nodes and Entries
@@ -63,7 +63,7 @@ The {cpp:class}`BDirectory` class also defines a stat-retrieving function
 that, in some cases, can be more efficient than the
 {cpp:func}`~BStatable::GetStat()` function defined here:
 
--   The {cpp:func}`BDirectory::GetStatFor()` function retrieves the
+- The {cpp:func}`BDirectory::GetStatFor()` function retrieves the
 {htype}`stat` structure for the node of a named entry within a directory.
 If you're interested in getting stat information for a series of nodes
 within the same directory, you should use this function. You have to call
@@ -78,11 +78,11 @@ construct a valid {cpp:class}`BEntry` or {cpp:class}`BNode` to an item,
 then you can invoke any of the info-getting {hclass}`BStatable` functions
 on that object:
 
--   The {hclass}`BStatable` functions aren't denied even if the node that
+- The {hclass}`BStatable` functions aren't denied even if the node that
 you're looking at is read-protected. However, you can only invoke the
 info-setting functions if the node allows writing.
 
--   Similarly, you can get stat info for a locked node, but you won't be able
+- Similarly, you can get stat info for a locked node, but you won't be able
 to write the info (through functions such as
 {cpp:func}`~BStatable::SetOwner()`) unless your object holds the lock. See
 {cpp:class}`BNode` for more on locking.

@@ -19,14 +19,14 @@ Creates a new {hclass}`BVolume` object and initializes it according to the
 argument. The status of the initialization is recorded by the
 {cpp:func}`~BVolume::InitCheck()` function.
 
--   The default constructor does nothing and sets
+- The default constructor does nothing and sets
 {cpp:func}`~BVolume::InitCheck()` to {cpp:enumerator}`B_NO_INIT`.
 
--   The device constructor sets the {hclass}`BVolume` to point to the volume
+- The device constructor sets the {hclass}`BVolume` to point to the volume
 represented by the argument. See the {cpp:func}`~BVolume::SetTo()` function
 for status codes.
 
--   The copy constructor sets the object to point to the same device as does
+- The copy constructor sets the object to point to the same device as does
 the argument.
 ::::
 
@@ -108,14 +108,14 @@ or {cpp:func}`~BVolume::SetTo()`).
 
 These functions answer media-related questions about the volume:
 
--   {hmethod}`IsPersistent()`. Is the storage persistent (such as on a floppy
+- {hmethod}`IsPersistent()`. Is the storage persistent (such as on a floppy
 or hard disk)?
 
--   {hmethod}`IsRemovable()`. Can the media be removed?
+- {hmethod}`IsRemovable()`. Can the media be removed?
 
--   {hmethod}`IsReadOnly()`. Can it be read but not written to?
+- {hmethod}`IsReadOnly()`. Can it be read but not written to?
 
--   {hmethod}`IsShared()`. Is it accessed through the network (as opposed to
+- {hmethod}`IsShared()`. Is it accessed through the network (as opposed to
 being directly connected to this computer)?
 ::::
 
@@ -131,11 +131,11 @@ being directly connected to this computer)?
 
 These functions answer questions about the file system on the volume:
 
--   {hmethod}`KnowsAttr()`. Do its files accept attributes?
+- {hmethod}`KnowsAttr()`. Do its files accept attributes?
 
--   {hmethod}`KnowsMime()`. Does it use MIME to type files?
+- {hmethod}`KnowsMime()`. Does it use MIME to type files?
 
--   {hmethod}`KnowsQuery()`. Can it respond to queries?
+- {hmethod}`KnowsQuery()`. Can it respond to queries?
 ::::
 
 ::::{abi-group}

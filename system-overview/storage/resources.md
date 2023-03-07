@@ -27,12 +27,12 @@ an unlimited amount of data.
 Resources are sort of like attributes in that they store chunks of data
 that are looked up through the use of a key. But note these differences:
 
--   Resources are stored in the file itself, such that if you copy the file,
+- Resources are stored in the file itself, such that if you copy the file,
 you copy the resources, as well.
 
--   Resources can't be queried.
+- Resources can't be queried.
 
--   Only plain files can have resources. (In other words, directories and
+- Only plain files can have resources. (In other words, directories and
 symbolic links can't have resources.)
 
 ## Initializing a BResources Object
@@ -43,25 +43,25 @@ Instead, you must initialize the {hclass}`BResources` object by passing it
 a valid {cpp:class}`BFile` object, either in the constructor or the
 {cpp:func}`~BResources::SetTo()` function. Note the following:
 
--   The {cpp:class}`BFile` that you pass in is copied by the
+- The {cpp:class}`BFile` that you pass in is copied by the
 {hclass}`BResources` object. Thus, initializing a {hclass}`BResources`
 object opens a new file descriptor into the file. You can delete the
 "original" {cpp:class}`BFile` immediately after you use it to initialize
 the {hclass}`BResources` object.
 
--   Care must be taken to avoid writing to a {cpp:class}`BFile` that other
+- Care must be taken to avoid writing to a {cpp:class}`BFile` that other
 applications have open for reading. {hclass}`BResources` can't enforce this
 rule, but if you're not careful to abide by it, problems can (and will)
 occur. Likewise, multiple applications mustn't open the same file for
 writing at the same time.
 
--   If you want to write resources, the {cpp:class}`BFile` must not be locked
+- If you want to write resources, the {cpp:class}`BFile` must not be locked
 when you pass it in. The {hclass}`BResources` needs to be able to lock its
 copy of your object.
 
--   The {cpp:class}`BFile` must be open for reading (at least).
+- The {cpp:class}`BFile` must be open for reading (at least).
 
--   Unfortunately, {hclass}`BResources` lacks an {hmethod}`InitCheck()`
+- Unfortunately, {hclass}`BResources` lacks an {hmethod}`InitCheck()`
 function. If you want to check initialization errors, you should always
 initialize through {cpp:func}`~BResources::SetTo()`, rather than through
 the constructor.
@@ -137,22 +137,22 @@ FiddleResource() functions to examine and manipulate the file's resources:
 
 ### Generative Functions
 
--   {cpp:func}`~BResources::AddResource()` adds a new resource to the file.
+- {cpp:func}`~BResources::AddResource()` adds a new resource to the file.
 
--   {cpp:func}`~BResources::RemoveResource()` removes an existing resource
+- {cpp:func}`~BResources::RemoveResource()` removes an existing resource
 from the file.
 
 ### Data Function
 
--   {cpp:func}`~BResources::LoadResource()` loads a resource from disk and
+- {cpp:func}`~BResources::LoadResource()` loads a resource from disk and
 returns a pointer to it.
 
 ### Info Functions
 
--   {cpp:func}`~BResources::HasResource()` tells you if the file contains a
+- {cpp:func}`~BResources::HasResource()` tells you if the file contains a
 specified resource.
 
--   {cpp:func}`~BResources::GetResourceInfo()` returns information about a
+- {cpp:func}`~BResources::GetResourceInfo()` returns information about a
 resource.
 
 As mentioned earlier, the {cpp:class}`BFile` that you use to initialize a
@@ -165,7 +165,7 @@ modify the resources (by adding, removing, or writing) the
 A single resource within a resource file is tagged with a data type, an
 ID, and a name:
 
--   The data type is one of the {htype}`type_code` types
+- The data type is one of the {htype}`type_code` types
 ({cpp:enumerator}`B_INT32_TYPE`, {cpp:enumerator}`B_STRING_TYPE`, and so
 on) that characterize different types of data. The data type that you
 assign to a resource doesn't restrict the type of data that the resource
@@ -173,10 +173,10 @@ can contain, it simply serves as a way to label the type of data that
 you're putting into the resource so you'll know how to cast it when you
 retrieve it.
 
--   The ID is an arbitrary integer that you invent yourself. It need only be
+- The ID is an arbitrary integer that you invent yourself. It need only be
 meaningful to the application that uses the resource file.
 
--   The name is optional, but can be useful: You can look up a resource by its
+- The name is optional, but can be useful: You can look up a resource by its
 name, if it has one.
 
 Taken singly, none of these tags needs to be unique: Any number of

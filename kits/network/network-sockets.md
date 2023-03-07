@@ -166,7 +166,7 @@ The labelled ovals represent individual computers that are attached to the
 network. The solid circles represent individual sockets. The numbers near
 the sockets are keys to the socket categories, which are:
 
-1.    The stream listener socket. A stream listener socket provides access to a
+1. The stream listener socket. A stream listener socket provides access to a
 service that's running on the "listener" machine (you might want to think
 of the machine as a "server.") The listener socket waits for client
 machines to "call in" and ask to be served. In order to listen for clients,
@@ -175,12 +175,12 @@ IP address and machine-specific port, and then {cpp:func}`listen()`. Thus
 primed, the socket waits for a client message to show up by sitting in an
 {cpp:func}`accept()` call.
 
-2.    The stream client socket. A stream client socket asks for service from a
+2. The stream client socket. A stream client socket asks for service from a
 server machine by attempting to connect to the server's listener socket. It
 does this through the {cpp:func}`connect()` function. A stream client can
 be bound (you can call {cpp:func}`bind()` on it), but it's not mandatory.
 
-3.    The "accept" socket. When a stream listener hears a client in an
+3. The "accept" socket. When a stream listener hears a client in an
 {cpp:func}`accept()` call, the function call creates yet another socket
 called the "accept" socket. Accept sockets are valid sockets, just like
 those you create through socket(). In particular, you have to remember to
@@ -188,7 +188,7 @@ close accept sockets (through closesocket()) just as you would the sockets
 you explicitly create. Note that you can't bind an accept socket—the socket
 is bound automatically by the system.
 
-4.    The datagram receiver socket. A datagram receiver socket is sort of like a
+4. The datagram receiver socket. A datagram receiver socket is sort of like a
 stream listener: It calls {cpp:func}`bind()` and waits for "senders" to
 send messages to it. Unlike the stream listener, the datagram receiver
 doesn't call {cpp:func}`listen()` or {cpp:func}`accept()`. Furthermore,
@@ -196,7 +196,7 @@ when a datagram sender sends a message to the receiver, there's no
 ancillary socket created to handle the message (there's no UDP analog to
 the TCP accept socket).
 
-5.    The datagram sender socket. A datagram sender is the simplest type of
+5. The datagram sender socket. A datagram sender is the simplest type of
 socket—all it has to do is identify a datagram receiver and send messages
 to it, through the {cpp:func}`sendto()` function. Binding a datagram sender
 socket is optional.
@@ -272,11 +272,11 @@ referring to the five categories of sockets enumerated in the
 {cpp:func}`socket()` function description (and illustrated in the charming
 diagram found there), the "do I need to bind?" question is answered thus:
 
-1.    Stream listener sockets must be bound. Furthermore, after binding a
+1. Stream listener sockets must be bound. Furthermore, after binding a
 listener socket, you must then call listen() and, when a client calls,
 {cpp:func}`accept()`.
 
-2.    Stream client sockets can be bound, but they don't have to be. If you're
+2. Stream client sockets can be bound, but they don't have to be. If you're
 going to bind a client socket, you should do so before you call
 {cpp:func}`connect()`. The advantages of binding a stream client escape me
 at the moment. In any case, the client doesn't have to bind to the same
@@ -285,11 +285,11 @@ are utterly separate entities (let alone that they are on different
 machines). However, the client does connect to the interface that the
 listener is bound to.
 
-3.    Stream attach sockets must not be bound.
+3. Stream attach sockets must not be bound.
 
-4.    Datagram receiver sockets must be bound.
+4. Datagram receiver sockets must be bound.
 
-5.    Datagram sender sockets don't have to be bound… but if you're going to
+5. Datagram sender sockets don't have to be bound… but if you're going to
 turn around and use the socket as a receiver, then you'll have to bind it.
 
 Once you've bound a socket, you can't unbind it. If you no longer want the
@@ -526,13 +526,13 @@ widths: auto
 The meaning of the connect() function depends on the type of socket that's
 passed as the first parameter:
 
--   If it's a stream client, then connect() attempts to form a connection to
+- If it's a stream client, then connect() attempts to form a connection to
 the socket that's specified by {hparam}`remote_interface`. The remote
 socket must be a bound stream listener. A client socket can only be
 connected to one listener at a time. Note that you can't call connect() on
 a stream listener.
 
--   If it's a datagram socket (either a sender or a receiver), connect()
+- If it's a datagram socket (either a sender or a receiver), connect()
 simply caches the {hparam}`remote_interface` information in anticipation of
 subsequent {cpp:func}`send()` and {cpp:func}`recv()` calls. By using
 connect(), a datagram avoids the fuss of filling in the remote information
@@ -901,25 +901,25 @@ The send() and recv() functions can be called by stream or datagram
 sockets. However, there are some differences between the way the functions
 work when used by these two types of socket:
 
--   For a stream listener and a stream client to transmit messages, the
+- For a stream listener and a stream client to transmit messages, the
 listener must have previously called {cpp:func}`bind()`,
 {cpp:func}`listen()`, {cpp:func}`accept()`, and the client must have called
 {cpp:func}`connect()`. Having been properly connected, the two sockets can
 send and receive as if they were peers.
 
--   For stream sockets, send() and recv() can both block: send() blocks if the
+- For stream sockets, send() and recv() can both block: send() blocks if the
 amount of data that's sent overwhelms the receiver's ability to read it,
 and recv() blocks if there's no message waiting to be read. You can tell
 these functions to be non-blocking by setting the sending socket's no-block
 socket option (see {cpp:func}`setsockopt()`).
 
--   If you want to call send() or recv() through a datagram socket, you must
+- If you want to call send() or recv() through a datagram socket, you must
 first {cpp:func}`connect()` the socket. In addition, a receiving datagram
 socket must also be bound to an interface (through {cpp:func}`bind()`). See
 the {cpp:func}`connect()` description for more information on what that
 function means to a datagram socket.
 
--   Datagram sockets never block on send(), but they can block in a recv()
+- Datagram sockets never block on send(), but they can block in a recv()
 call. As with stream sockets, you can set a datagram socket to be
 non-blocking (for the recv(), as well as for {cpp:func}`recvfrom()`)
 through {cpp:func}`setsockopt()`.
@@ -1022,12 +1022,12 @@ The four initial parameters to these function are similar to those for
 {cpp:func}`send()` and {cpp:func}`recv()`; the additional parameters are
 the interface specifications:
 
--   For sendto(), the {hparam}`to` parameter is a {htype}`sockaddr_in`
+- For sendto(), the {hparam}`to` parameter is a {htype}`sockaddr_in`
 structure pointer (cast as a pointer to a {htype}`sockaddr` structure) that
 specifies the interface of the remote socket that you're sending to. The
 {hparam}`toLen` parameter is the size of the {hparam}`to` parameter.
 
--   For recvfrom(), the {hparam}`from` parameter returns the interface for the
+- For recvfrom(), the {hparam}`from` parameter returns the interface for the
 remote socket that sent the message that recvfrom() received.
 *{hparam}`fromLen` is set to the size of the from structure. As always, the
 interface structure is a {htype}`sockaddr_in` cast as a pointer to a

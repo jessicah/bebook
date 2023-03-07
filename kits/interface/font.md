@@ -55,9 +55,9 @@ current style and size.
 {hmethod}`Direction()` returns a {htype}`font_direction` constant that
 describes the direction in which the object's text is meant to be read:
 
--   {cpp:enumerator}`B_FONT_LEFT_TO_RIGHT`
+- {cpp:enumerator}`B_FONT_LEFT_TO_RIGHT`
 
--   {cpp:enumerator}`B_FONT_RIGHT_TO_LEFT`
+- {cpp:enumerator}`B_FONT_RIGHT_TO_LEFT`
 
 This is an inherent property of the font and cannot be set.
 
@@ -524,21 +524,21 @@ This function is not yet supported.
 Writes the following information about the font to the standard output (on
 a single line):
 
--   family
+- family
 
--   style
+- style
 
--   size (in points)
+- size (in points)
 
--   shear (in degrees)
+- shear (in degrees)
 
--   rotation (in degrees)
+- rotation (in degrees)
 
--   ascent
+- ascent
 
--   descent
+- descent
 
--   leading
+- leading
 ::::
 
 ::::{abi-group}
@@ -551,29 +551,29 @@ a single line):
 These functions set and return the encoding that maps character values to
 characters. The following encodings are supported:
 
--   {cpp:enumerator}`B_UNICODE_UTF8` (UTF-8)
+- {cpp:enumerator}`B_UNICODE_UTF8` (UTF-8)
 
--   {cpp:enumerator}`B_ISO_8859_1` (Latin 1)
+- {cpp:enumerator}`B_ISO_8859_1` (Latin 1)
 
--   {cpp:enumerator}`B_ISO_8859_2` (Latin 2)
+- {cpp:enumerator}`B_ISO_8859_2` (Latin 2)
 
--   {cpp:enumerator}`B_ISO_8859_3` (Latin 3)
+- {cpp:enumerator}`B_ISO_8859_3` (Latin 3)
 
--   {cpp:enumerator}`B_ISO_8859_4` (Latin 4)
+- {cpp:enumerator}`B_ISO_8859_4` (Latin 4)
 
--   {cpp:enumerator}`B_ISO_8859_5` (Latin/Cyrillic)
+- {cpp:enumerator}`B_ISO_8859_5` (Latin/Cyrillic)
 
--   {cpp:enumerator}`B_ISO_8859_6` (Latin/Arabic)
+- {cpp:enumerator}`B_ISO_8859_6` (Latin/Arabic)
 
--   {cpp:enumerator}`B_ISO_8859_7` (Latin/Greek)
+- {cpp:enumerator}`B_ISO_8859_7` (Latin/Greek)
 
--   {cpp:enumerator}`B_ISO_8859_8` (Latin/Hebrew)
+- {cpp:enumerator}`B_ISO_8859_8` (Latin/Hebrew)
 
--   {cpp:enumerator}`B_ISO_8859_9` (Latin 5)
+- {cpp:enumerator}`B_ISO_8859_9` (Latin 5)
 
--   {cpp:enumerator}`B_ISO_8859_10` (Latin 6)
+- {cpp:enumerator}`B_ISO_8859_10` (Latin 6)
 
--   {cpp:enumerator}`B_MACINTOSH_ROMAN`
+- {cpp:enumerator}`B_MACINTOSH_ROMAN`
 
 UTF-8 is an 8-bit encoding for Unicode™ and is part of the Unicode™
 standard. It matches ASCII values for all 7-bit character codes, but uses

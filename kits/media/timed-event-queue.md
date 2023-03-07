@@ -60,20 +60,20 @@ For each event in the queue matching the specified parameters, the hook
 function is called. The {hparam}`context` pointer is passed through to the
 hook function, and may point to anything your hook function requires.
 
--   Setting {hparam}`direction` to {cpp:enumerator}`B_ALWAYS` indicates that
+- Setting {hparam}`direction` to {cpp:enumerator}`B_ALWAYS` indicates that
 all events of the type indicated by {hparam}`event` should be processed.
 The {hparam}`time` and {hparam}`inclusive` arguments are ignored.
 
--   Setting {hparam}`direction` to {cpp:enumerator}`B_BEFORE_TIME` indicates
+- Setting {hparam}`direction` to {cpp:enumerator}`B_BEFORE_TIME` indicates
 that all matching events occurring before the specified {hparam}`time`
 should be processed. If {hparam}`inclusive` is {cpp:expr}`true`, events
 occurring at {hparam}`time` are also processed.
 
--   Setting {hparam}`direction` to {cpp:enumerator}`B_AT_TIME` processes all
+- Setting {hparam}`direction` to {cpp:enumerator}`B_AT_TIME` processes all
 matching events scheduled at the specified {hparam}`time`. The
 {hparam}`inclusive` argument is ignored.
 
--   If {hparam}`direction` is {cpp:enumerator}`B_AFTER_TIME`, all matching
+- If {hparam}`direction` is {cpp:enumerator}`B_AFTER_TIME`, all matching
 events scheduled to occur after the specified {hparam}`time` are processed.
 If {hparam}`inclusive` is {cpp:expr}`true`, events scheduled to occur at
 {hparam}`time` are also processed.
@@ -138,20 +138,20 @@ Searches the event queue for the first event matching the given
 specifications. The search begins at the time specified by
 {hparam}`eventTime`, and progresses in the specified {hparam}`direction`.
 
--   Setting {hparam}`direction` to {cpp:enumerator}`B_ALWAYS` indicates that
+- Setting {hparam}`direction` to {cpp:enumerator}`B_ALWAYS` indicates that
 all events of the type indicated by {hparam}`event` should be scanned. The
 {hparam}`eventTime` and {hparam}`inclusive` arguments are ignored.
 
--   Setting {hparam}`direction` to {cpp:enumerator}`B_BEFORE_TIME` indicates
+- Setting {hparam}`direction` to {cpp:enumerator}`B_BEFORE_TIME` indicates
 that all matching events occurring before the specified {hparam}`eventTime`
 should be scanned. If {hparam}`inclusive` is {cpp:expr}`true`, events
 occurring at {hparam}`eventTime` are also scanned.
 
--   Setting {hparam}`direction` to {cpp:enumerator}`B_AT_TIME` scans all
+- Setting {hparam}`direction` to {cpp:enumerator}`B_AT_TIME` scans all
 matching events scheduled at the specified {hparam}`eventTime`. The
 {hparam}`inclusive` argument is ignored.
 
--   If {hparam}`direction` is {cpp:enumerator}`B_AFTER_TIME`, all matching
+- If {hparam}`direction` is {cpp:enumerator}`B_AFTER_TIME`, all matching
 events scheduled to occur after the specified {hparam}`eventTime` are
 scanned. If {hparam}`inclusive` is {cpp:expr}`true`, events scheduled to
 occur at {hparam}`eventTime` are also scanned.
@@ -209,20 +209,20 @@ flush by indicating a {hparam}`time` from which events should be flushed, a
 {hparam}`direction` in which to search for events to flush, and the type of
 events to flush:
 
--   Setting {hparam}`direction` to {cpp:enumerator}`B_ALWAYS` indicates that
+- Setting {hparam}`direction` to {cpp:enumerator}`B_ALWAYS` indicates that
 all events of the type indicated by {hparam}`event` should be flushed. The
 {hparam}`eventTime` and {hparam}`inclusive` arguments are ignored.
 
--   Setting {hparam}`direction` to {cpp:enumerator}`B_BEFORE_TIME` indicates
+- Setting {hparam}`direction` to {cpp:enumerator}`B_BEFORE_TIME` indicates
 that all matching events occurring before the specified {hparam}`eventTime`
 should be flushed. If {hparam}`inclusive` is {cpp:expr}`true`, events
 occurring at {hparam}`eventTime` are also flushed.
 
--   Setting {hparam}`direction` to {cpp:enumerator}`B_AT_TIME` flushes all
+- Setting {hparam}`direction` to {cpp:enumerator}`B_AT_TIME` flushes all
 matching events scheduled at the specified {hparam}`eventTime`. The
 {hparam}`inclusive` argument is ignored.
 
--   If {hparam}`direction` is {cpp:enumerator}`B_AFTER_TIME`, all matching
+- If {hparam}`direction` is {cpp:enumerator}`B_AFTER_TIME`, all matching
 events scheduled to occur after the specified {hparam}`eventTime` are
 flushed. If {hparam}`inclusive` is {cpp:expr}`true`, events scheduled to
 occur at {hparam}`eventTime` are also flushed.

@@ -13,30 +13,30 @@ The {cpp:class}`BView` class is one of the largest in the BeOS class
 library. Because of this, the {cpp:class}`BView` documentation is split
 across a number of files:
 
--   {cpp:func}`BView General Functions <BView::General>` describes those
+- {cpp:func}`BView General Functions <BView::General>` describes those
 functions that you use no matter what you're doing with your
 {cpp:class}`BView` object.
 
--   {cpp:func}`BView Drawing-Related Functions <BView::Drawing>`: Anything
+- {cpp:func}`BView Drawing-Related Functions <BView::Drawing>`: Anything
 related to drawing subdivided into Primitive Drawing Functions (to draw
 lines, circles, polygons, etc.) and Other Drawing Functions (such as
 picture recording, and bitmap functions).
 
--   {cpp:func}`BView Graphics State Functions <BView::Graphics>` modify or
+- {cpp:func}`BView Graphics State Functions <BView::Graphics>` modify or
 report on the "graphics state," a set of variables (colors, pen position,
 scaling, etc.) that control how drawing takes place in the
 {cpp:class}`BView`.
 
--   {cpp:func}`BView Hook Functions <BView::Hook>` gives a list of the
+- {cpp:func}`BView Hook Functions <BView::Hook>` gives a list of the
 {cpp:class}`BView` functions that can be implemented in a subclass.
 
--   {cpp:func}`BView View Hierarchy Functions <BView::ViewHierarchy>` relate
+- {cpp:func}`BView View Hierarchy Functions <BView::ViewHierarchy>` relate
 to the nested tree of views associated with a window.
 
--   {cpp:func}`BView Input-Related Functions <BView::Input>` monitor and
+- {cpp:func}`BView Input-Related Functions <BView::Input>` monitor and
 process input activity.
 
--   Scripting and Archival describes the scripting suites and properties, and
+- Scripting and Archival describes the scripting suites and properties, and
 archived fields supported by BView.
 
 ## Developing a BView Subclass

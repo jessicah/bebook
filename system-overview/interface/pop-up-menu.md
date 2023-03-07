@@ -13,7 +13,7 @@ except in certain well-defined cases.
 
 A pop-up menu can be used in any of three ways:
 
-1.    It can be controlled by a {cpp:class}`BMenuBar` object, often one that
+1. It can be controlled by a {cpp:class}`BMenuBar` object, often one that
 contains just a single item. The {cpp:class}`BMenuBar`, in effect,
 functions as a button that pops up a list. The label of the marked item in
 the list can be displayed as the label of the controlling item in the
@@ -21,7 +21,7 @@ the list can be displayed as the label of the controlling item in the
 show the current state of the hidden menu. When this is the case, the menu
 pops up so its marked item is directly over the controlling item.
 
-2.    A {cpp:class}`BPopUpMenu` can also be controlled by a view other than a
+2. A {cpp:class}`BPopUpMenu` can also be controlled by a view other than a
 {cpp:class}`BMenuBar`. It might be associated with a particular image the
 view displays, for example, and appear over the image when the user moves
 the cursor there and presses the mouse button. Or it might be associated
@@ -30,7 +30,7 @@ happens to be. When the view is notified of a mouse-down event, it calls
 {cpp:class}`BPopUpMenu`'s {cpp:func}`~BPopUpMenu::Go()` function to show
 the menu on-screen.
 
-3.    The {cpp:class}`BPopUpMenu` might also be controlled by a particular mouse
+3. The {cpp:class}`BPopUpMenu` might also be controlled by a particular mouse
 button, typically the secondary mouse button. When the user presses the
 button, the menu appears at the location of the cursor. Instead of passing
 responsibility for the mouse-down event to a {cpp:class}`BView`, the
