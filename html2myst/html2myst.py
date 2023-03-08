@@ -192,9 +192,9 @@ class Document:
 			return nodes.Block(f'{{cpp:function}} {declaration}')
 	
 	# not 100% sure on the return type...
-	def process_block(self, element, indent=''):
+	def process_block(self, element):
 		if element.name == 'p':
-			return f'{indent}{self.process_inline(element)}'
+			return f'{self.process_inline(element)}'
 		if element.name == 'div' and has_class(element, 'admonition'):
 			title = text_content(element.select_one(':scope > div.title'))
 			# this is terrible... but works...
@@ -203,7 +203,7 @@ class Document:
 			admonition = nodes.BlockContainer(f'{{admonition}} {title}\n:class: {kind}')
 			# what about other children?
 			for child in element.select(':scope p'):
-				admonition += self.process_block(child, indent)
+				admonition += self.process_block(child)
 			return admonition
 		if element.name == 'pre':
 			if has_class(element, 'cpp'):
@@ -237,7 +237,7 @@ class Document:
 				list_item = nodes.ListItem()
 				if contains_blocks(item):
 					for block in item.children:
-						list_item += self.process_block(block, indent)
+						list_item += self.process_block(block)
 				else:
 					list_item += self.process_inline(item)
 				unordered_list += list_item
@@ -248,7 +248,7 @@ class Document:
 				list_item = nodes.ListItem()
 				if contains_blocks(item):
 					for block in item.children:
-						list_item += self.process_block(block, indent)
+						list_item += self.process_block(block)
 				else:
 					list_item += self.process_inline(item)
 				ordered_list += list_item
@@ -263,7 +263,7 @@ class Document:
 		if element.name == 'div' and has_any_classes(element, classes):
 			wrapper = nodes.BlockContainer()
 			for child in element.children:
-				wrapper += self.process_block(child, indent)
+				wrapper += self.process_block(child)
 			return wrapper
 		
 		if element.name == 'div' and has_class(element, 'section'):
@@ -273,7 +273,7 @@ class Document:
 				if child.name == 'div' and has_class(child, 'titlepage'):
 					continue
 				else:
-					section += self.process_block(child, indent)
+					section += self.process_block(child)
 			return section
 		
 		if element.name == 'img':
@@ -302,9 +302,9 @@ class Document:
 					defdata = nodes.DefinitionData()						
 					if contains_blocks(child):
 						for block in child.children:
-							defdata += self.process_block(block, indent)
+							defdata += self.process_block(block)
 					else:
-						defdata += self.process_inline(child, indent)
+						defdata += self.process_inline(child)
 					deflist += defdata
 			return deflist
 		
