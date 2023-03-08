@@ -34,8 +34,8 @@ There are two Node Monitor functions, watch_node() and stop_watching().
 The names are a wee bit misleading, so before we go on to the full
 technical descriptions, let's nip some buds:
 
-- {cpp:func}`watch_node()` tells the Node Monitor to start __or stop__
-watching a __specific__ node, or to watch for volumes being mounted and
+- {cpp:func}`watch_node()` tells the Node Monitor to start _or stop_
+watching a _specific_ node, or to watch for volumes being mounted and
 unmounted. Memorize the emphasized words.
 
 - {cpp:func}`stop_watching()` tells the Node Monitor to stop sending
@@ -695,7 +695,7 @@ the file's old and new locations.)
 
 :::{admonition} Note
 :class: note
-Moving a node __does not__ change its {htype}`ino_t` number.
+Moving a node _does not_ change its {htype}`ino_t` number.
 :::
 
 Parsing the message is much the same as for

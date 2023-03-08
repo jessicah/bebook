@@ -274,10 +274,10 @@ However, if the characters of a font overlap, the left edge can be a
 negative value and the right edge can be positive. This is illustrated
 below:
 
-Note that the italic '__l__' extends beyond its escapement to the right,
-and that the '__p__' begins before its escapement to the left. In this
-case, instead of separating the adjacent characters, the edges determine
-how much they overlap.
+Note that the italic '_l_' extends beyond its escapement to the right, and
+that the '_p_' begins before its escapement to the left. In this case,
+instead of separating the adjacent characters, the edges determine how much
+they overlap.
 
 Edge values are specific to each character and depend on nothing but the
 character and the font. They don't take into account any contextual

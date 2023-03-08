@@ -914,7 +914,7 @@ size is fixed at around 256k.
 :::{admonition} Warning
 :class: warning
 The two stack pointers are currently inverted such that
-{hparam}`stack_base` is __less__ than {hparam}`stack_end`. (In a
+{hparam}`stack_base` is _less_ than {hparam}`stack_end`. (In a
 stack-grows-down world, the base should be greater than the end.)
 :::
 

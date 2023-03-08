@@ -90,11 +90,11 @@ A {hclass}`BQuery`'s predicate is a logical expression that evaluates to
 {cpp:expr}`true` or {cpp:expr}`false`. The "atoms" of the expression are
 comparisons in the form…
 
-- __attribute op value__
+- _attribute op value_
 
-…where __attribute__ is the name of an existing attribute, __op__ is a
+…where _attribute_ is the name of an existing attribute, _op_ is a
 constant that represents a comparison operation (==, <, >, etc), and
-__value__ is the value that you want to compare the attribute to.
+_value_ is the value that you want to compare the attribute to.
 
 ## Attributes
 

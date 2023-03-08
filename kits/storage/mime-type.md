@@ -541,9 +541,9 @@ widths: auto
 	- {cpp:enumerator}`B_STRING_TYPE` (array)
 
 	- The signatures of the application that know how to handle the MIME type.
-The first __n__ applications (where __n__ is defined by {hparam}`be:sub`,
-below) can handle the full type (supertype __and__ subtype). The rest of
-the applications in the array handle the supertype only.
+The first _n_ applications (where _n_ is defined by {hparam}`be:sub`,
+below) can handle the full type (supertype _and_ subtype). The rest of the
+applications in the array handle the supertype only.
 
 -
 	- {hparam}`be:sub`

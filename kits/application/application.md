@@ -300,7 +300,7 @@ empty.
 
 Also, {hmethod}`Quit()` doesn't delete the {hclass}`BApplication` object.
 It's up to you to delete it after {hmethod}`Run()` returns. (However,
-{hmethod}`Quit()` __does__ delete the object if it's called before the
+{hmethod}`Quit()` _does_ delete the object if it's called before the
 message loop starts i.e. before {hmethod}`Run()` is called.)
 ::::
 

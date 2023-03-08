@@ -218,7 +218,7 @@ the wrong file type, for example). Rejected entries are not shown in the
 panel's file list.
 
 The {hmethod}`SetRefFilter()` function sets the panel's ref filter. You
-can also set it through the constructor. Ownership of the filter is __not__
+can also set it through the constructor. Ownership of the filter is _not_
 handed to the panel. You mustn't delete the ref filter while the panel is
 still extant.
 

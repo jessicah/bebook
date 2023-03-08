@@ -155,8 +155,8 @@ if (entry.GetParent(&entry) != B_OK) {
 }
 :::
 
-This example __is__ legal; for example, you can use destructive iteration
-to loop your way up to the root directory. When you reach the root ("/"),
+This example _is_ legal; for example, you can use destructive iteration to
+loop your way up to the root directory. When you reach the root ("/"),
 {hmethod}`GetParent()` returns {cpp:enumerator}`B_ENTRY_NOT_FOUND`:
 
 :::{code} cpp
@@ -218,7 +218,7 @@ widths: auto
 Gets the {htype}`entry_ref` for the object's entry; {hparam}`ref` must be
 allocated before it's passed in. As with {hclass}`BEntry` objects,
 {htype}`entry_ref` structures can be abstract—getting a valid
-{htype}`entry_ref` does __not__ guarantee that the entry actually exists.
+{htype}`entry_ref` does _not_ guarantee that the entry actually exists.
 
 If the function isn't successful, {hparam}`ref` is unset.
 
@@ -325,8 +325,8 @@ are closed. This means that if you create {cpp:class}`BFile` based on a
 
 :::{admonition} Note
 :class: note
-{hmethod}`Remove()` does __not__ invalidate the {hclass}`BEntry`. It
-simply makes it abstract (see "{ref}`Abstract Entries`").
+{hmethod}`Remove()` does _not_ invalidate the {hclass}`BEntry`. It simply
+makes it abstract (see "{ref}`Abstract Entries`").
 :::
 
 :::{list-table}
@@ -383,8 +383,8 @@ the {hmethod}`Rename()` or {hmethod}`MoveTo()` function fails.
 
 Upon success, this is updated to reflect the change to its entry. For
 example, when you invoke {hmethod}`Rename()` on a {hclass}`BEntry`, the
-name of __that specific__ {hclass}`BEntry` object also changes. If the
-rename or move-to isn't successful, this isn't altered.
+name of _that specific_ {hclass}`BEntry` object also changes. If the rename
+or move-to isn't successful, this isn't altered.
 
 :::{list-table}
 ---
@@ -454,7 +454,7 @@ the link itself.
 See "{ref}`Initializing and Traversing`" for more information.
 
 When you initialize a {hclass}`BEntry`, you're describing a leaf name
-within a directory. The directory __must__ exist, but the leaf doesn't have
+within a directory. The directory _must_ exist, but the leaf doesn't have
 to. This allows you to create a {hclass}`BEntry` to a file that doesn't
 exist (yet). See "{ref}`Abstract Entries`" for more information.
 

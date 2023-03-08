@@ -30,10 +30,10 @@ The default constructor does nothing and sets and sets
 initialize the object, call {cpp:func}`~BFile::SetTo()`.
 
 The copy constructor creates a new {hclass}`BFile` that's open on the same
-file as that of the argument. Note that the two objects maintain
-__separate__ data pointers into the __same__ file:
+file as that of the argument. Note that the two objects maintain _separate_
+data pointers into the _same_ file:
 
-- Separate pointers: Reading and writing through one object __does not__
+- Separate pointers: Reading and writing through one object _does not_
 affect the position of the data pointer in the other object.
 
 - Same file: If one object writes to the file, the other object will see the
@@ -163,7 +163,7 @@ The {hmethod}`Read()` and {hmethod}`ReadAt()` functions read
 {hparam}`size` bytes of data from the file and place this data in
 {hparam}`buffer`. The buffer that {hparam}`buffer` points to must already
 be allocated, and must be large enough to accommodate the read data. Note
-that the read-into buffer is __not__ null-terminated by the reading
+that the read-into buffer is _not_ null-terminated by the reading
 functions.
 
 The two functions differ in that…

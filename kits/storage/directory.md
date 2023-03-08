@@ -360,7 +360,7 @@ time, no matter how many you ask for.
 clear; the {htype}`dirent` version deserves more explanation. You'll find
 this explanation (and an example) in the {cpp:class}`BEntryList` class.
 Also, keep in mind that the set of candidate entries is different for the
-{htype}`dirent` version: {hmethod}`GetNextDirents()` finds __all__ entries,
+{htype}`dirent` version: {hmethod}`GetNextDirents()` finds _all_ entries,
 including the entries for "." and "..". The other two versions skip these
 entries.
 

@@ -17,7 +17,7 @@ Assigns the {hclass}`BLooper` object a {hparam}`name` and then locks it
 that describes the amount of CPU attention the message loop will receive
 once it starts running, and {hparam}`portCapacity` is the number of
 messages the {hclass}`BLooper` can hold in its "message port" (this is
-__not__ the message queue, as explained below).
+_not_ the message queue, as explained below).
 
 After you construct the {hclass}`BLooper`, you have to tell it to
 {cpp:func}`~BLooper::Run()`. Because the object is locked,

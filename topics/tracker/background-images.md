@@ -144,7 +144,7 @@ backgrounds.AddBool( B_BACKGROUND_ERASE_TEXT, true );
 ...
 :::
 
-This is __not__ OK, and results in undefined behaviour:
+This is _not_ OK, and results in undefined behaviour:
 
 :::{code} cpp
 ...

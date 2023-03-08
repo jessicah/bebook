@@ -506,7 +506,7 @@ contents of a specifier.
 -
 	- {hparam}`data`
 
-	- __variable__
+	- _variable_
 
 	- For {cpp:enumerator}`B_SET_PROPERTY` messages only, the data that should
 be set. The data type depends on the targeted property.

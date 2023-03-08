@@ -199,10 +199,9 @@ valid.
 
 But validity doesn't equal existence:
 
-- {cpp:func}`~BEntry::SetTo()` and {cpp:func}`~BEntry::InitCheck()` __do
-not__ tell you if a {hclass}`BEntry`'s entry actually exists. Don't be
-confused; a return value of {cpp:enumerator}`B_OK` simply means the object
-is valid.
+- {cpp:func}`~BEntry::SetTo()` and {cpp:func}`~BEntry::InitCheck()` _do not_
+tell you if a {hclass}`BEntry`'s entry actually exists. Don't be confused;
+a return value of {cpp:enumerator}`B_OK` simply means the object is valid.
 
 If you want to know if a {hclass}`BEntry`'s entry actually exists, use the
 {cpp:func}`~BEntry::Exists()` function.

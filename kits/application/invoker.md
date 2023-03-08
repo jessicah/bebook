@@ -19,8 +19,8 @@ Initializes the {hclass}`BInvoker` by setting its message and its
 messenger.
 
 - The object's {cpp:class}`BMessage` is taken directly as
-{hparam}`message`—the object is __not__ copied. The {hclass}`BInvoker`
-takes over ownership of the {cpp:class}`BMessage` that you pass in.
+{hparam}`message`—the object is _not_ copied. The {hclass}`BInvoker` takes
+over ownership of the {cpp:class}`BMessage` that you pass in.
 
 - The object's {cpp:class}`BMessenger` is copied from {hparam}`messenger`,
 or initialized with {hparam}`looper` and {hparam}`handler`. See the
@@ -219,7 +219,7 @@ widths: auto
 :::
 
 {hmethod}`SetMessage()` sets the {hclass}`BInvoker`'s default message to
-point to {hparam}`message` (the message is __not__ copied). The previous
+point to {hparam}`message` (the message is _not_ copied). The previous
 default message (if any) is deleted; a {cpp:expr}`NULL` {hparam}`message`
 deletes the previous message without setting a new one. The
 {hclass}`BInvoker` owns the {cpp:class}`BMessage` that you pass in; you

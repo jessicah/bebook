@@ -113,7 +113,7 @@ attribute. The name is copied into the buffer, which should be at least
 
 :::{admonition} Warning
 :class: warning
-{hmethod}`GetNextAttrName()` does __not__ clear its argument if it returns
+{hmethod}`GetNextAttrName()` does _not_ clear its argument if it returns
 an error. This will be corrected in a subsequent release.
 :::
 
@@ -132,8 +132,7 @@ while (node.GetNextAttrName(buf) == B_OK) {
 :::
 
 The attribute list is not static; when you ask for the next attribute
-name, you're asking for the next name in the list __as it exists right
-now__.
+name, you're asking for the next name in the list _as it exists right now_.
 
 Furthermore, the ordinal position of an attribute within the list is
 indeterminate. "Newer" attributes are not necessarily added to the end of
@@ -263,7 +262,7 @@ read.
 {hmethod}`WriteAttr()` erases the data currently held by {hparam}`name`
 (if such an attribute exists) and replaces it with a copy of the first
 {hparam}`length` bytes of data in {hparam}`buffer`. The {hparam}`type`
-argument __is__ remembered—you can retrieve an attribute's type through
+argument _is_ remembered—you can retrieve an attribute's type through
 {cpp:func}`~BNode::GetAttrInfo()`, for example—and you need to specify the
 correct type when you're forming a query (see {cpp:class}`BQuery` and the
 note below). But, as mentioned above, you don't need to match types when
@@ -395,7 +394,7 @@ relative. It's reckoned off of the directory given by {hparam}`dir`.
 
 {hclass}`BNode` instances never traverse symbolic links. If the designated
 entry is a symbolic link, the BNode will open the link's node. (Conversely,
-{cpp:class}`BFile` instances __always__ traverse symbolic links.)
+{cpp:class}`BFile` instances _always_ traverse symbolic links.)
 
 {hmethod}`Unset()` closes the {hclass}`BNode`'s file descriptor and sets
 {cpp:func}`~BNode::InitCheck()` to {cpp:enumerator}`B_NO_INIT`.

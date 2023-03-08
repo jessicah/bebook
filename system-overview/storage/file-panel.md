@@ -452,13 +452,13 @@ clobber the file.
 
 :::{admonition} Note
 :class: note
-The file __isn't__ clobbered by the system; it's up to you (as the
-receiver of the save notification) to do the dirty work.
+The file _isn't_ clobbered by the system; it's up to you (as the receiver
+of the save notification) to do the dirty work.
 :::
 
 ## Cancel Notification
 
-A cancel notification is sent __whenever__ the file panel is hidden. This
+A cancel notification is sent _whenever_ the file panel is hidden. This
 includes the Cancel button being clicked, the panel being closed, and the
 panel being hidden after an open or a save (given that the panel is in
 hide-when-done mode).

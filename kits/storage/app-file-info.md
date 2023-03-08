@@ -265,7 +265,7 @@ object represents.
 :class: warning
 {hmethod}`SetSupportedTypes()` clobbers an executable's existing set of
 supported types. If you want to augment an executable's supported types,
-you should retrieve the existing set, add the new ones, and __then__ call
+you should retrieve the existing set, add the new ones, and _then_ call
 {hmethod}`SetSupportedTypes()`.
 :::
 
