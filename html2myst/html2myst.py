@@ -377,7 +377,11 @@ class Document:
 				elif 'keycap' in child['class']:
 					content += f'{{hkey}}`{text_content(child)}`'
 				elif has_any_classes(child, ['emphasis', 'italic']):
-					content += f'_{self.process_inline(child)}_'
+					result = str(self.process_inline(child))
+					if len(result) > 0 and result[0] == '_' and result[-1] == '_':
+						content += result
+					else:
+						content += f'_{result}_'
 				else:
 					print(fg.li_red, 'WARNING:', reset, 'unable to handle span with classes:', fg.li_cyan, child['class'], reset)
 					print('    ', text_content(child))
@@ -385,7 +389,12 @@ class Document:
 			# elif child.name == 'div' or child.name == 'table':
 			# 	content += '\n'.join(str(self.process_block(child)))
 			elif child.name == 'em':
-				content += f'_{self.process_inline(child)}_'
+				result = str(self.process_inline(child))
+				if len(result) > 0 and result[0] == '_' and result[-1] == '_':
+					content += result
+				else:
+					content += f'_{result}_'
+
 			elif child.name == 'acronym':
 				# no acronym support in markdown...
 				print(fg.li_yellow, 'WARNING: missing acronym support in markdown', reset)
