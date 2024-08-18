@@ -75,7 +75,7 @@ language = 'en'
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = None
+pygments_style = "bebook_style.BeBookStyle"
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -117,46 +117,7 @@ html_css_files = [
     #'css/hide.css'
 ]
 
-#pygments_style = 'haiku'
-
-# BEGIN MONKEY-PATCH
-from pygments.style import Style
-from pygments.token import *
-
-
-class MyFancyStyle(Style):
-    background_color = "#f3f3f3"
-    default_style = ""
-    styles = {
-        Text:                      "#253555",
-        Other:                     "#253555",
-        Whitespace:                "#434357",
-        Comment:                   "italic #dc3c01",
-        Comment.Preproc:           "#409090",
-        Comment.PreprocFile:       "bg:#404040 #ffcd8b",
-        Comment.Special:           "#808bed",
-        Name:                      "#000000",
-        Name.Class:                "bold #006400",
-        Name.Function:             "bold #800080"
-        # ... snip (just more colors, you get the idea) ...
-    }
-
-
-def pygments_monkeypatch_style(mod_name, cls):
-    import sys
-    import pygments.styles
-    cls_name = cls.__name__
-    mod = type(__import__("os"))(mod_name)
-    setattr(mod, cls_name, cls)
-    setattr(pygments.styles, mod_name, mod)
-    sys.modules["pygments.styles." + mod_name] = mod
-    from pygments.styles import STYLE_MAP
-    STYLE_MAP[mod_name] = mod_name + "::" + cls_name
-
-
-pygments_monkeypatch_style("my_fancy_style", MyFancyStyle)
-pygments_style = "my_fancy_style"
-# END MONKEY-PATCH
+pygments_style = "bebook_style.BeBookStyle"
 
 # def setup(app):
 #     from sphinx.highlighting import lexers
@@ -191,9 +152,7 @@ pygments_style = "my_fancy_style"
 #                         is_hyphen=False
 #                 else:
 #                     is_hyphen=False
-                
 #                 yield ttype, value
-    
 #     class ApiLexer(CppLexer):
 #         def __init__(self, **options):
 #             CppLexer.__init__(self, **options)

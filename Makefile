@@ -9,7 +9,7 @@ BUILDDIR      = _build
 
 all:
 	# always clean first
-	rm -r _build
+	$(test -d _build && rm -r _build)
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 help:

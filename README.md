@@ -12,6 +12,7 @@ It is hoped that this will result in much more complete API documentation.
 pip install beautifulsoup4
 pip install lxml
 pip install sty
+pip install myst-parser
 ```
 
 # remaining issues
