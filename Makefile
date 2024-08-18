@@ -8,8 +8,8 @@ SOURCEDIR     = .
 BUILDDIR      = _build
 
 all:
-	# always clean first
-	$(test -d _build && rm -r _build)
+	# always clean up the HTML docs
+	$(test -d _build && test -d _build/html && rm -r _build/html)
 	@$(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 help:
