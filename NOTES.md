@@ -36,3 +36,12 @@ follows:
 - Types: something else
 - Constants: blue
 - Variable Names: black
+
+## Breaking Layout Feature
+
+Sphinx 7.2: #11221: C++: Support domain objects in the table of contents.
+
+https://github.com/sphinx-doc/sphinx/pull/11221
+
+I think the above PR is responsible for extra items in my TOC,
+compared to output in Sphinx 7.1.
