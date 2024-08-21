@@ -10,7 +10,7 @@ from myst_parser.config.main import (
 )
 from myst_parser.mdit_to_docutils.sphinx_ import SphinxRenderer
 from myst_parser.parsers.mdit import create_md_parser
-from myst_parser.mdit_to_docutils.sphinx_ import create_warning
+from myst_parser.warnings_ import create_warning
 from myst_parser.parsers.sphinx_ import MystParser
 
 from mdit_py_abbr import abbr_plugin
