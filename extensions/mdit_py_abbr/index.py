@@ -36,7 +36,7 @@ def abbr_def(state: StateBlock, startLine: int, endLine: int, silent: bool):
 
 	if (pos + 2) >= max:
 		return False
-	
+
 	if state.srcCharCode[pos] != 0x2A: # /* * */
 		return False
 	pos += 1
@@ -57,13 +57,13 @@ def abbr_def(state: StateBlock, startLine: int, endLine: int, silent: bool):
 		elif ch == 0x5C: # /* \ */
 			pos += 1
 		pos += 1
-	
+
 	if labelEnd is None or state.srcCharCode[labelEnd + 1] != 0x3A:
 		return False
-	
+
 	if silent:
 		return True
-	
+
 	label = state.src[labelStart : labelEnd].replace("\\\\", "")
 	title = state.src[labelEnd + 2 : max].strip()
 
@@ -75,14 +75,14 @@ def abbr_def(state: StateBlock, startLine: int, endLine: int, silent: bool):
 		state.env["abbreviations"] = {}
 	if (":" + label) not in state.env["abbreviations"]:
 		state.env["abbreviations"][":" + label] = title
-	
+
 	state.line = startLine + 1
 	return True
 
 def abbr_replace(state: StateBlock):
 	if "abbreviations" not in state.env:
 		return
-	
+
 	alternations = []
 	for key in reversed(sorted([key[1:] for key in state.env["abbreviations"].keys()], key=len)):
 		alternations.append(escapeRE(key))
@@ -91,8 +91,6 @@ def abbr_replace(state: StateBlock):
 	otherChars = ''.join([escapeRE(ch) for ch in OTHER_CHARS])
 
 	regText = f"(^|{UNICODE_PUNCT_RE}|{UNICODE_SPACE_RE}|[{otherChars}])({'|'.join(alternations)})($|{UNICODE_PUNCT_RE}|{UNICODE_SPACE_RE}|[{otherChars}])"
-
-	print(regText)
 
 	reg = re.compile(regText)
 
@@ -120,7 +118,7 @@ def abbr_replace(state: StateBlock):
 			nodes: List[Token] = []
 
 			# fast regexp run to determine whether there are any abbreviated
-			# words in the current token			
+			# words in the current token
 			if regSimple.search(text) is None:
 				continue
 
@@ -133,7 +131,7 @@ def abbr_replace(state: StateBlock):
 					token = Token("text", "", 0)
 					token.content = text[pos : match.start() + len(match.group(1))]
 					nodes.append(token)
-				
+
 				token = Token("abbr_open", "abbr", 1)
 				token.attrSet("title", state.env["abbreviations"][":" + match.group(2)])
 				nodes.append(token)
@@ -147,7 +145,7 @@ def abbr_replace(state: StateBlock):
 
 				lastIndex = match.start() + len(match.group(0)) - len(match.group(3))
 				pos = lastIndex
-			
+
 			if len(nodes) == 0:
 				continue
 
@@ -155,6 +153,8 @@ def abbr_replace(state: StateBlock):
 				token = Token("text", "", 0)
 				token.content = text[pos:]
 				nodes.append(token)
-			
+
+			print(nodes)
+
 			# replace current node
 			blockTokens[j].children = tokens = arrayReplaceAt(tokens, i, nodes)

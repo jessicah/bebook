@@ -40,14 +40,16 @@ html_short_title = "API Documentation"
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "myst_parser",
+    #"myst_parser",
+    "custom_parser",
     "abigroup",
 ]
 
 myst_enable_extensions = [
     "colon_fence",
     "deflist",
-    "substitution"
+    "substitution",
+    "linkify"
 ]
 
 # Add any paths that contain templates here, relative to this directory.

@@ -29,7 +29,7 @@ class CustomParser(MystParser):
 					document, msg, wtype, line=1, append_to=document
 				)
 				config = merge_file_level(config, topmatter, warning)
-		
+
 		parser = create_md_parser(config, SphinxRenderer)
 		parser.options["document"] = document
 		parser.use(abbr_plugin)
@@ -38,5 +38,7 @@ class CustomParser(MystParser):
 def setup(app):
 	from myst_parser.sphinx_ext.main import setup_sphinx
 
-	setup_sphinx(app, load_parser=True)
+	setup_sphinx(app, load_parser=False)
+	app.add_source_suffix(".md", "markdown")
+	app.add_source_parser(CustomParser)
 	return {"version": __version__, "parallel_read_safe": True}
