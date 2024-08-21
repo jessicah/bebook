@@ -35,9 +35,9 @@ will instantaneously jump to {hparam}`newPerformanceTime`.
 :::{cpp:function} status_t BTimeSource::GetStartLatency(bigtime_t* outLatency)
 :::
 
-Returns in {hparam}`outLatency` the amount of time, in microseconds,
-needed for the time source to start up, including the time needed to start
-up any slaved nodes that are started.
+Returns in {hparam}`outLatency` the amount of time, in microseconds, needed
+for the time source to start up, including the time needed to start up any
+slaved nodes that are started.
 
 :::{list-table}
 ---
@@ -160,8 +160,8 @@ progressing through time or {cpp:expr}`false` if it's stopped.
 {hmethod}`Now()` returns an approximation of what the current performance
 time is.
 
-{hmethod}`PerformanceTimeFor()` returns an estimate of the performance
-time represented by the specified real time (as returned by
+{hmethod}`PerformanceTimeFor()` returns an estimate of the performance time
+represented by the specified real time (as returned by
 {cpp:func}`BTimeSource::RealTime()`).
 
 {hmethod}`RealTimeFor()`, given a performance time, returns an
@@ -173,8 +173,8 @@ latency.
 :::{cpp:function} void BTimeSource::PublishTime(bigtime_t performanceTime, bigtime_t realTime, float drift)
 :::
 
-While your time source is running, you should repeatedly call this
-function in order to constantly refresh the mapping between real time and
+While your time source is running, you should repeatedly call this function
+in order to constantly refresh the mapping between real time and
 performance time. When your time source is stopped, you should call this
 function once with values of zero for all three arguments.
 
@@ -341,9 +341,9 @@ perform the mapping between real time and performance time.
 :::{cpp:function} virtual void BTimeSource::Stop(bigtime_t realTime)
 :::
 
-{hmethod}`Stop()` is called when someone wants the {hclass}`BTimeSource`
-to stop; the {hparam}`realTime` argument indicates the real time at which
-the time source should stop running. Implement the function to queue the
+{hmethod}`Stop()` is called when someone wants the {hclass}`BTimeSource` to
+stop; the {hparam}`realTime` argument indicates the real time at which the
+time source should stop running. Implement the function to queue the
 request.
 
 Be sure to queue at least one stop request, so stop requests can be filed

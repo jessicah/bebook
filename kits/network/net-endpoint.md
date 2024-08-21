@@ -15,8 +15,8 @@
 :::{cpp:function} BNetEndpoint::BNetEndpoint(BMessage* archive)
 :::
 
-Creates a {hclass}`BNetEndpoint` representing a network connection
-endpoint on the local system. After construction, you must call
+Creates a {hclass}`BNetEndpoint` representing a network connection endpoint
+on the local system. After construction, you must call
 {cpp:func}`~BNetEndpoint::InitCheck()` to ensure that no errors occurred
 during setup.
 
@@ -98,8 +98,8 @@ widths: auto
 :::{cpp:function} virtual void BNetEndpoint::Close()
 :::
 
-Closes the connection, if there is one. If there's unread data buffered
-up, it's disposed of.
+Closes the connection, if there is one. If there's unread data buffered up,
+it's disposed of.
 ::::
 
 ::::{abi-group}
@@ -109,10 +109,10 @@ up, it's disposed of.
 :::{cpp:function} virtual status_t BNetEndpoint::Connect(const char* address, unsigned short port)
 :::
 
-Opens a connection to the specified remote system. The system's address
-can be specified by either using a {hclass}`BNetAddress` or by specifying
-the IP address or domain name and port number. For example, to connect to
-the Megaburger, Inc. web server, your software would call:
+Opens a connection to the specified remote system. The system's address can
+be specified by either using a {hclass}`BNetAddress` or by specifying the
+IP address or domain name and port number. For example, to connect to the
+Megaburger, Inc. web server, your software would call:
 
 :::{code} cpp
 status_t err = myEndpoint->Connect("www.megaburger.com", 80);
@@ -206,11 +206,11 @@ period elapses.
 :::{cpp:function} virtual BNetEndpoint* BNetEndpoint::Accept(int32 timeout = -1)
 :::
 
-{hmethod}`Listen()` tells the {hclass}`BNetEndpoint` to begin listening
-for incoming connection attempts on its local port. These attempts are
-queued; up to backlog attempts can be in the queue at any time. If more
-attempts are backlogged than that, the later attempts will be rejected
-until there's room in the queue.
+{hmethod}`Listen()` tells the {hclass}`BNetEndpoint` to begin listening for
+incoming connection attempts on its local port. These attempts are queued;
+up to backlog attempts can be in the queue at any time. If more attempts
+are backlogged than that, the later attempts will be rejected until there's
+room in the queue.
 
 You can accept an incoming connection attempt by calling
 {hmethod}`Accept()`. If there are no connection attempts queued up, this
@@ -278,10 +278,10 @@ widths: auto
 :::{cpp:function} const BNetAddress& BNetEndpoint::RemoteAddr()
 :::
 
-These functions return a {cpp:class}`BNetAddress` representing the local
-or remote system on the connection. {hmethod}`LocalAddr()` returns the
-address of the local machine, and {hmethod}`RemoteAddr()` (amazingly
-enough) returns the address of the remote system.
+These functions return a {cpp:class}`BNetAddress` representing the local or
+remote system on the connection. {hmethod}`LocalAddr()` returns the address
+of the local machine, and {hmethod}`RemoteAddr()` (amazingly enough)
+returns the address of the remote system.
 
 If there isn't a remote connection, {hmethod}`RemoteAddr()` will return a
 {cpp:class}`BNetAddress` indicating an IP address of 0.0.0.0.
@@ -319,8 +319,8 @@ The {hparam}`flags` argument, which is passed on to the socket.h
 {cpp:func}`recv()` or {cpp:func}`recvfrom()` function, is currently unused
 and must be 0.
 
-When you call these functions in blocking mode (which is the default),
-they block until there's data available to receive or a timeout occurs. The
+When you call these functions in blocking mode (which is the default), they
+block until there's data available to receive or a timeout occurs. The
 timeout period is set by calling {cpp:func}`~BNetEndpoint::SetTimeout()`.
 You can turn on or off blocking by calling
 {cpp:func}`~BNetEndpoint::SetNonBlocking()`. If you're in nonblocking mode
@@ -364,8 +364,8 @@ The {hparam}`flags` argument, which is passed on to the the socket.h
 {cpp:func}`send()` or {cpp:func}`sendto()` function, is currently unused
 and must be 0.
 
-These functions return the number of bytes actually sent, or -1 if an
-error occurred. You can call {cpp:func}`~BNetEndpoint::Error()` to get the
+These functions return the number of bytes actually sent, or -1 if an error
+occurred. You can call {cpp:func}`~BNetEndpoint::Error()` to get the
 specific error that occurred.
 ::::
 
@@ -400,9 +400,9 @@ These functions return 0 if successful; otherwise they return -1.
 :::{cpp:function} status_t BNetEndpoint::SetProtocol(int protocol)
 :::
 
-Sets the protocol type for the connection. Possible values for the
-protocol argument are {cpp:enumerator}`SOCK_STREAM` (to use the stream
-protocol) or {cpp:enumerator}`SOCK_DGRAM` (for datagram protocol).
+Sets the protocol type for the connection. Possible values for the protocol
+argument are {cpp:enumerator}`SOCK_STREAM` (to use the stream protocol) or
+{cpp:enumerator}`SOCK_DGRAM` (for datagram protocol).
 
 :::{list-table}
 ---

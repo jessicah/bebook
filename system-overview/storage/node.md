@@ -11,15 +11,15 @@ to this data:
 The content of the data portion depends on the node's flavor:
 
 - If it's a regular file, the data is whatever it is that the file is meant
-to contain: ASCII text, binary image or sound data, executable code, and so
-on. Note that resources (as created by the {cpp:class}`BResources` class)
-are kept in the data portion.
+  to contain: ASCII text, binary image or sound data, executable code, and
+  so on. Note that resources (as created by the {cpp:class}`BResources`
+  class) are kept in the data portion.
 
 - If it's a directory, the data is the list of entries that the directory
-contains.
+  contains.
 
-- If it's a symbolic link, the data is the path of the "linked-to" file. The
-path can be absolute or relative.
+- If it's a symbolic link, the data is the path of the "linked-to" file.
+  The path can be absolute or relative.
 
 The content of the attributes, on the other hand, isn't qualified by the
 node's flavor: Any node can contain any set of attributes.
@@ -38,14 +38,14 @@ for the identity of its parent. This has some serious implications, the
 most important of which is…
 
 - If you need to store a reference to a file (or directory, or symbolic
-link), don't store the node—in other words, don't cache the BNode object.
-Instead, store the information that you used to create the {hclass}`BNode`
-(typically, a pathname or {htype}`entry_ref` structure).
+  link), don't store the node—in other words, don't cache the BNode object.
+  Instead, store the information that you used to create the
+  {hclass}`BNode` (typically, a pathname or {htype}`entry_ref` structure).
 
 Now that we've got that straight, we'll relax the rules a bit:
 
 - {cpp:class}`BDirectory` objects are node/entry hybrids. A
-{cpp:class}`BDirectory` does know its own name (and parent, and so on).
+  {cpp:class}`BDirectory` does know its own name (and parent, and so on).
 
 This doesn't really change the "store the info" rule. Even if you're
 dealing exclusively with {cpp:class}`BDirectory` objects, you should keep
@@ -53,16 +53,16 @@ the generative information around. The primary reason for this is…
 
 ### The "Node Pool" is Limited (File Descriptors)
 
-Every {hclass}`BNode` object consumes a "file descriptor." Your
-application can only maintain 256 file descriptors at a time. Because of
-this limit, you shouldn't keep {hclass}`BNode`s around that you don't need.
-Keep in mind that {cpp:class}`BEntry` objects also consumes file
-descriptors (one per object).
+Every {hclass}`BNode` object consumes a "file descriptor." Your application
+can only maintain 256 file descriptors at a time. Because of this limit,
+you shouldn't keep {hclass}`BNode`s around that you don't need. Keep in
+mind that {cpp:class}`BEntry` objects also consumes file descriptors (one
+per object).
 
 :::{admonition} Note
 :class: note
-The file descriptor limit will probably be lifted, or at least settable,
-in a subsequent release. But even then you should be frugal.
+The file descriptor limit will probably be lifted, or at least settable, in
+a subsequent release. But even then you should be frugal.
 :::
 
 ## Derived Classes and their Uses
@@ -73,20 +73,21 @@ define functions that let you access the node's data portion in the
 appropriate style; for example…
 
 - {cpp:class}`BFile` implements {cpp:func}`~BFile::Read()` and
-{cpp:func}`~BFile::Write()` functions that let you retrieve arbitrary
-amounts of data from arbitrary positions in the file.
+  {cpp:func}`~BFile::Write()` functions that let you retrieve arbitrary
+  amounts of data from arbitrary positions in the file.
 
 - {cpp:class}`BDirectory` implements functions, such as
-{cpp:func}`~BDirectory::GetNextEntry()` and
-{cpp:func}`~BDirectory::FindEntry()`, that read entries from the directory.
+  {cpp:func}`~BDirectory::GetNextEntry()` and
+  {cpp:func}`~BDirectory::FindEntry()`, that read entries from the
+  directory.
 
 - {cpp:class}`BSymLink`'s {cpp:func}`~BSymLink::ReadLink()` returns the
-pathname that it contains.
+  pathname that it contains.
 
-If you want to (sensibly) look at a node's data portion, you must create
-an instance of the appropriate derived class. In other words, if you want
-to browse a directory, you have to create a {cpp:class}`BDirectory`
-instance; if you want to write to a file, you create a {cpp:class}`BFile`.
+If you want to (sensibly) look at a node's data portion, you must create an
+instance of the appropriate derived class. In other words, if you want to
+browse a directory, you have to create a {cpp:class}`BDirectory` instance;
+if you want to write to a file, you create a {cpp:class}`BFile`.
 
 Be aware that it's not (always) an error to create an instance of the
 "wrong" derived class; setting a {cpp:class}`BFile` to a symbolic link, for
@@ -102,17 +103,17 @@ yourself holding a {hclass}`BNode` instance, here's what you'll be able to
 do with it:
 
 - Read and write attributes. The attribute-accessing functions
-({cpp:func}`~BNode::ReadAttr()`, {cpp:func}`~BNode::WriteAttr()`, and so
-on) are general—they work without regard for the node's flavor. Thus, you
-don't need an instance of a specific derived class to read and write
-attributes.
+  ({cpp:func}`~BNode::ReadAttr()`, {cpp:func}`~BNode::WriteAttr()`, and so
+  on) are general—they work without regard for the node's flavor. Thus, you
+  don't need an instance of a specific derived class to read and write
+  attributes.
 
 - Get stat information. The {cpp:class}`BStatable` functions can be invoked
-on any flavor of node.
+  on any flavor of node.
 
 - Lock the node. This prevents other "agents" (other objects, other apps,
-the user) from accessing reading or writing the node's data and attributes.
-See "{ref}`Node Locking`".
+  the user) from accessing reading or writing the node's data and
+  attributes. See "{ref}`Node Locking`".
 
 ## Converting a BNode to an Instance of a Derived Class
 
@@ -180,14 +181,14 @@ restrict access to the node. The lock is removed when
 is deleted.
 
 - When you lock a node, you prevent other objects (or agents) from reading
-or writing the node's data and attributes. No other agent can even open the
-node—other {hclass}`BNode` constructions and POSIX open() calls (on that
-node) will fail while you hold the lock.
+  or writing the node's data and attributes. No other agent can even open
+  the node—other {hclass}`BNode` constructions and POSIX open() calls (on
+  that node) will fail while you hold the lock.
 
 - You can only acquire a node lock if there are no file descriptors open on
-the node (with one exception). This means that no other {hclass}`BNode` may
-be open on the node (locked or not), nor may the node be held open because
-of a POSIX open() (or opendir()) call.
+  the node (with one exception). This means that no other {hclass}`BNode`
+  may be open on the node (locked or not), nor may the node be held open
+  because of a POSIX open() (or opendir()) call.
 
 The one exception to the no-file descriptors rule has to do with
 {cpp:class}`BEntry`s: Let's say you lock a directory, and then you
@@ -202,10 +203,10 @@ For files (and, less importantly, symlinks), the implications of locking
 are pretty clear: No one else can read or write the file. For directories,
 it's worth a closer look:
 
-- Locking a directory means that the contents of the directory can't change:
-You can't create new nodes in the directory, or rename or remove existing
-ones. (You can, however, create abstract entries within the directory; see
-{cpp:class}`BEntry` for more on abstract entries.)
+- Locking a directory means that the contents of the directory can't
+  change: You can't create new nodes in the directory, or rename or remove
+  existing ones. (You can, however, create abstract entries within the
+  directory; see {cpp:class}`BEntry` for more on abstract entries.)
 
 Locking a node does not lock the node's entry: You can't "lock out" entry
 operations, such as rename, move, and remove. Even if you have a node
@@ -221,6 +222,6 @@ just long enough to ensure consistency.
 
 :::{admonition} Warning
 :class: warning
-You shouldn't use locks to "privatize" data. Locking isn't meant to be
-used as a heightened permissions bit.
+You shouldn't use locks to "privatize" data. Locking isn't meant to be used
+as a heightened permissions bit.
 :::

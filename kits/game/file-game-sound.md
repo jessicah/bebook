@@ -16,10 +16,10 @@ Prepares the object to play the specified sound file, which can be
 specified either by {htype}`entry_ref` or pathname in the {hparam}`inFile`
 argument.
 
-If the {hparam}`looping` flag is {cpp:expr}`true` (which it is by
-default), the sound automatically loops back to the beginning and replays
-when the end of the sound is reached. This is useful for easily playing
-background music (for example).
+If the {hparam}`looping` flag is {cpp:expr}`true` (which it is by default),
+the sound automatically loops back to the beginning and replays when the
+end of the sound is reached. This is useful for easily playing background
+music (for example).
 
 In both cases, {hparam}`device` specifies the sound device that should be
 used for playing the sound; {cpp:expr}`NULL` uses the default sound player.

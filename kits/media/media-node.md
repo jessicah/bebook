@@ -39,9 +39,9 @@ the node will be deleted automatically.
 {hmethod}`Acquire()` returns a pointer to the node, after incrementing the
 node's reference count.
 
-{hmethod}`Release()` releases the node by decrementing its reference
-count. If the count reaches zero, the node is deleted and {cpp:expr}`NULL`
-is returned; otherwise, a pointer to the node is returned.
+{hmethod}`Release()` releases the node by decrementing its reference count.
+If the count reaches zero, the node is deleted and {cpp:expr}`NULL` is
+returned; otherwise, a pointer to the node is returned.
 
 :::{admonition} Note
 :class: note
@@ -56,8 +56,8 @@ than in an add-on).
 :::{cpp:function} void BMediaNode::AddNodeKind(uint64 kind)
 :::
 
-Adds a kind to the set of kinds supported by the node. This lets the
-system know what types of node interfaces are supported by the node's
+Adds a kind to the set of kinds supported by the node. This lets the system
+know what types of node interfaces are supported by the node's
 implementation. Possible values include {cpp:enumerator}`B_BUFFER_PRODUCER`
 (which indicates that the node implements the {cpp:class}`BBufferProducer`
 protocol) and {cpp:enumerator}`B_PHYSICAL_INPUT` (which indicates that the
@@ -81,11 +81,11 @@ device or a mixer, in which case you need to add the
 :::{cpp:function} virtual BMediaAddOn* BMediaNode::AddOn(int32* outInternalID) const = 0
 :::
 
-Implement this function to return a pointer to the
-{cpp:class}`BMediaAddOn` that instantiated the node. If the node lives in
-an application (rather than in an add-on), return {cpp:expr}`NULL`. If the
-node is in an add-on, {hparam}`outInternalID` should be changed to contain
-the internal ID number of the node within the add-on.
+Implement this function to return a pointer to the {cpp:class}`BMediaAddOn`
+that instantiated the node. If the node lives in an application (rather
+than in an add-on), return {cpp:expr}`NULL`. If the node is in an add-on,
+{hparam}`outInternalID` should be changed to contain the internal ID number
+of the node within the add-on.
 ::::
 
 ::::{abi-group}
@@ -252,8 +252,8 @@ Returns a bit mask indicating what interfaces the node implements. See
 :::{cpp:function} const char* BMediaNode::Name() const
 :::
 
-Returns a human-readable string specifying the node's name. This pointer
-is only valid until you {cpp:func}`~BMediaNode::Release()` the node; after
+Returns a human-readable string specifying the node's name. This pointer is
+only valid until you {cpp:func}`~BMediaNode::Release()` the node; after
 that, the pointer may point into empty space.
 ::::
 
@@ -343,8 +343,8 @@ fast as possible.
 :::{cpp:function} status_t BMediaNode::ReportError(node_error whichError, const BMessage* info = NULL)
 :::
 
-Transmits the error code specified by {hparam}`whichError` to anyone
-that's receiving notifications from this node (see
+Transmits the error code specified by {hparam}`whichError` to anyone that's
+receiving notifications from this node (see
 {cpp:func}`BMediaRoster::StartWatching()` and
 {cpp:func}`BMediaRoster::StopWatching()` on  ). If {hparam}`info` isn't
 {cpp:expr}`NULL`, it's used as a model message for the error notification
@@ -375,9 +375,8 @@ widths: auto
 :::{cpp:function} virtual status_t BMediaNode::RequestCompleted(const media_request_info& info = NULL)
 :::
 
-This function is called whenever a request issued by the node is
-completed. The {hparam}`info` structure describes the results of the
-request.
+This function is called whenever a request issued by the node is completed.
+The {hparam}`info` structure describes the results of the request.
 
 The {hparam}`change_tag` field in the {hparam}`info` structure identifies
 the request that has been completed; this is the same value passed into the
@@ -416,8 +415,7 @@ size of these three queues is up to you. When the specified time arrives,
 the request should be filled.
 :::
 
-A {hparam}`mediaTime` value of 0 indicates the beginning of the media
-data.
+A {hparam}`mediaTime` value of 0 indicates the beginning of the media data.
 ::::
 
 ::::{abi-group}
@@ -528,9 +526,9 @@ Your implementation of {hmethod}`TimeWarp()` should call through to
 :::{cpp:function} status_t BMediaNode::WaitForMessage(bigtime_t waitUntil, uint32 flags = 0, void* _reserved_ = NULL)
 :::
 
-This function waits until either real time specified by
-{hparam}`waitUntil` or a message is received on the control port.. The
-{hparam}`flags` are currently unused and should be 0.
+This function waits until either real time specified by {hparam}`waitUntil`
+or a message is received on the control port.. The {hparam}`flags` are
+currently unused and should be 0.
 
 When a message is received, the appropriate
 {cpp:func}`~BMediaNode::HandleMessage()` calls are made given the class
@@ -539,30 +537,30 @@ derivation of the node:
 - {cpp:func}`BMediaNode::HandleMessage()` is always called first.
 
 - If the node is derived from {cpp:class}`BBufferProducer`, and the message
-hasn't been handled yet, {cpp:func}`BBufferProducer::HandleMessage()` is
-called.
+  hasn't been handled yet, {cpp:func}`BBufferProducer::HandleMessage()` is
+  called.
 
 - If the node is derived from {cpp:class}`BBufferConsumer`, and the message
-hasn't been handled yet, {cpp:func}`BBufferConsumer::HandleMessage()` is
-called.
+  hasn't been handled yet, {cpp:func}`BBufferConsumer::HandleMessage()` is
+  called.
 
 - If the node is derived from {cpp:class}`BFileInterface`, and the message
-hasn't been handled yet, {cpp:func}`BFileInterface::HandleMessage()` is
-called.
+  hasn't been handled yet, {cpp:func}`BFileInterface::HandleMessage()` is
+  called.
 
 - If the node is derived from {cpp:class}`BControllable`, and the message
-hasn't been handled yet, {cpp:func}`BControllable::HandleMessage()` is
-called.
+  hasn't been handled yet, {cpp:func}`BControllable::HandleMessage()` is
+  called.
 
 - If the node is derived from {cpp:class}`BTimeSource`, and the message
-hasn't been handled yet, {cpp:func}`BTimeSource::HandleMessage()` is
-called.
+  hasn't been handled yet, {cpp:func}`BTimeSource::HandleMessage()` is
+  called.
 
 - If the message still hasn't been handled, the most-derived interface's
-{hmethod}`HandleMessage()` function is called.
+  {hmethod}`HandleMessage()` function is called.
 
 - If the message hasn't been handled,
-{cpp:func}`~BMediaNode::HandleBadMessage()` is called.
+  {cpp:func}`~BMediaNode::HandleBadMessage()` is called.
 
 Once this has been done, {hmethod}`WaitForMessage()` returns. As you can
 see, this can be called from your control port to handle much of the work
@@ -669,9 +667,9 @@ widths: auto
 		while the render occurs in the background.
 -
 	- {cpp:enumerator}`B_RECORDING`
-	- Time-stamped buffers are being received from a node capturing them from
-		the real world; these buffers are guaranteed to have a time stamp in the
-		past (they're always "late").
+	- Time-stamped buffers are being received from a node capturing them from the
+		real world; these buffers are guaranteed to have a time stamp in the past
+		(they're always "late").
 
 		Recording mode should be used when data is being sampled from a physical
 		input device. These devices always deliver buffers whose time stamps are in
@@ -686,10 +684,10 @@ widths: auto
 	- {cpp:enumerator}`B_DECREASE_PRECISION`
 	- If the performance starts to lag, try to catch up.
 
-		In {cpp:enumerator}`B_DECREASE_PRECISION` mode, your node should attempt
-		to catch up if it falls behind, by playing buffers of media data faster
-		than normal. For audio, this might mean playing back at a higher sampling
-		rate; for video, the frame rate might be temporarily boosted.
+		In {cpp:enumerator}`B_DECREASE_PRECISION` mode, your node should attempt to
+		catch up if it falls behind, by playing buffers of media data faster than
+		normal. For audio, this might mean playing back at a higher sampling rate;
+		for video, the frame rate might be temporarily boosted.
 -
 	- {cpp:enumerator}`B_INCREASE_LATENCY`
 	- If the performance starts to lag, increase playout delay so buffers are

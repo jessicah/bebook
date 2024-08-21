@@ -111,11 +111,10 @@ passed to it. It's the caller's responsibility to free the
 :::{cpp:function} static BArchivable* BPictureButton::Instantiate(BMessage* archive)
 :::
 
-Returns a new {hclass}`BPictureButton` object, allocated by new and
-created with the version of the constructor that takes a
-{cpp:class}`BMessage` archive. However, if the archive message doesn't
-contain data for a {hclass}`BPictureButton` object, this function returns
-{cpp:expr}`NULL`.
+Returns a new {hclass}`BPictureButton` object, allocated by new and created
+with the version of the constructor that takes a {cpp:class}`BMessage`
+archive. However, if the archive message doesn't contain data for a
+{hclass}`BPictureButton` object, this function returns {cpp:expr}`NULL`.
 
 See also: {cpp:func}`BArchivable::Instantiate()`,
 {cpp:func}`instantiate_object()`, {cpp:func}`~BPictureButton::Archive()`

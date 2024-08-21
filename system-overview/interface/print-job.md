@@ -25,15 +25,15 @@ status_t MyDocumentManager::SetUpPage()
 }
 :::
 
-{cpp:func}`~BPrintJob::ConfigPage()` has the Print Server interact with
-the user to set up the page configuration. Configuration settings are
-stored in a {cpp:class}`BMessage` object that will be handed to the server
-when the document is printed. The {cpp:class}`BMessage` is important to the
-server, but the application doesn't need to look at it directly; functions
-are provided to access the useful data it contains. However, you may want
-to get the object and store it with the document so that the configuration
-can be reused whenever the document is printed—and so that the user's
-previous choices can be the default settings when
+{cpp:func}`~BPrintJob::ConfigPage()` has the Print Server interact with the
+user to set up the page configuration. Configuration settings are stored in
+a {cpp:class}`BMessage` object that will be handed to the server when the
+document is printed. The {cpp:class}`BMessage` is important to the server,
+but the application doesn't need to look at it directly; functions are
+provided to access the useful data it contains. However, you may want to
+get the object and store it with the document so that the configuration can
+be reused whenever the document is printed—and so that the user's previous
+choices can be the default settings when
 {cpp:func}`~BPrintJob::ConfigPage()` is called again. This is good behavior
 for an application to follow, and is highly recommended.
 
@@ -80,7 +80,8 @@ To print a document, an application must go through several ordered steps:
 
 - Asking {cpp:class}`BView`s to draw each page.
 
-- After each page is drawn, putting the data for the page in the spool file.
+- After each page is drawn, putting the data for the page in the spool
+  file.
 
 - Committing the spool file to the Print Server.
 
@@ -113,10 +114,10 @@ status_t MyDocumentManager::Print()
 }
 :::
 
-So far, this looks much like the code for configuring the page presented
-in the previous "{ref}`Setting Up the Page Layout`" section. The idea is
-the same. {cpp:func}`~BPrintJob::ConfigJob()` gets the Print Server ready
-for a new printing session and has it interact with the user to set up the
+So far, this looks much like the code for configuring the page presented in
+the previous "{ref}`Setting Up the Page Layout`" section. The idea is the
+same. {cpp:func}`~BPrintJob::ConfigJob()` gets the Print Server ready for a
+new printing session and has it interact with the user to set up the
 parameters for the job—which pages, how many copies, and so on. It uses the
 same settings {cpp:class}`BMessage` to record the user's choices as
 {cpp:func}`~BPrintJob::ConfigPage()` did, though it records information
@@ -183,11 +184,11 @@ job.CommitJob();
 
 ### Drawing on the Page
 
-A page is produced by asking one or more {cpp:class}`BView`s to draw
-within a rectangle that can be mapped to a sheet of paper (excluding the
-margins at the edge of the paper). {cpp:func}`~BPrintJob::DrawView()`
-requests one {cpp:class}`BView` to draw some portion of its data and
-specifies where the data should appear on the page. You can call
+A page is produced by asking one or more {cpp:class}`BView`s to draw within
+a rectangle that can be mapped to a sheet of paper (excluding the margins
+at the edge of the paper). {cpp:func}`~BPrintJob::DrawView()` requests one
+{cpp:class}`BView` to draw some portion of its data and specifies where the
+data should appear on the page. You can call
 {cpp:func}`~BPrintJob::DrawView()` any number of times for a single page to
 ask any number of {cpp:class}`BView`s to contribute to the page. After all
 views have drawn, {cpp:func}`~BPrintJob::SpoolPage()` spools the data to
@@ -215,8 +216,8 @@ of its output by calling the {cpp:func}`~BView::Draw()`
 
 :::{admonition} Note
 :class: note
-Don't use the {cpp:func}`BView::Bounds()` function to determine the area
-to render. Instead, use the update rectangle passed to the
+Don't use the {cpp:func}`BView::Bounds()` function to determine the area to
+render. Instead, use the update rectangle passed to the
 {cpp:func}`BView::Draw()` function.
 :::
 
@@ -353,9 +354,9 @@ coordinates that are local to the printable rectangle—that is, an origin at
 the left top corner of the printable rectangle rather than the paper
 rectangle.
 
-The diagram below shows the left top coordinates of the printable
-rectangle as {cpp:func}`~BPrintJob::PrintableRect()` would report them and
-as {cpp:func}`~BPrintJob::DrawView()` would assume them, given a half-inch
+The diagram below shows the left top coordinates of the printable rectangle
+as {cpp:func}`~BPrintJob::PrintableRect()` would report them and as
+{cpp:func}`~BPrintJob::DrawView()` would assume them, given a half-inch
 margin.
 
 ![Views In Page Layout With Margin](./_static/images/printjob2.png)

@@ -20,7 +20,7 @@ To create a new input filter, you must:
 - create a subclass of {cpp:class}`BInputServerFilter`
 
 - implement the {cpp:func}`instantiate_input_filter()` C function to create
-an instance of your {cpp:class}`BInputServerFilter` subclass
+  an instance of your {cpp:class}`BInputServerFilter` subclass
 
 - compile the class and function as an add-on
 
@@ -42,8 +42,8 @@ subdirectories of {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY`,
 {cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
 
 - You can install your input devices in the latter two directories—i.e.
-those under {cpp:enumerator}`B_COMMON_ADDONS_DIRECTORY`, and
-{cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
+  those under {cpp:enumerator}`B_COMMON_ADDONS_DIRECTORY`, and
+  {cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
 
-- The {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY` is reserved for add-ons that
-are supplied with BeOS.
+- The {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY` is reserved for add-ons
+  that are supplied with BeOS.

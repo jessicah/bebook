@@ -17,9 +17,9 @@ functionally equivalent to the {cpp:class}`BWindow` {cpp:func}`constructor
 <BWindow::BWindow()>`, except the resulting {hclass}`BDirectWindow`
 supports direct window operations.
 
-You will probably want to set up a flag to keep track of whether or not
-the direct window's connection to the screen is viable. In the constructor,
-you should set this flag (let's call it {hparam}`fConnectionDisabled` ) to
+You will probably want to set up a flag to keep track of whether or not the
+direct window's connection to the screen is viable. In the constructor, you
+should set this flag (let's call it {hparam}`fConnectionDisabled` ) to
 {cpp:expr}`false`, which indicates to both
 {cpp:func}`~BDirectWindow::DirectConnected()` and your drawing thread that
 the window is not in the process of being deconstructed. The destructor
@@ -68,10 +68,10 @@ MyDirectWindow::~BDirectWindow
 :::{cpp:function} virtual void BDirectWindow::DirectConnected(direct_buffer_info* info)
 :::
 
-This hook function is the core of {hclass}`BDirectWindow`. Your
-application should override this function to learn about the state of the
-graphics display onto which you're drawing, as well as to be informed of
-any changes that occur.
+This hook function is the core of {hclass}`BDirectWindow`. Your application
+should override this function to learn about the state of the graphics
+display onto which you're drawing, as well as to be informed of any changes
+that occur.
 
 This function is also called to suspend and resume your direct access
 privileges.
@@ -107,8 +107,8 @@ crash your application under the assumption that it's deadlocked. Be sure
 to handle requests as quickly as possible.
 :::
 
-See  "{ref}`Getting Connected (and Staying That Way)`" for more
-information about the {htype}`direct_buffer_info` structure.
+See  "{ref}`Getting Connected (and Staying That Way)`" for more information
+about the {htype}`direct_buffer_info` structure.
 ::::
 
 ## Member Functions
@@ -117,8 +117,8 @@ information about the {htype}`direct_buffer_info` structure.
 :::{cpp:function} status_t BDirectWindow::GetClippingRegion(BRegion* region, BPoint* origin = NULL) const
 :::
 
-Sets the specified {hparam}`region` to match the current clipping region
-of the direct window. If {hparam}`origin` is specified, each point in the
+Sets the specified {hparam}`region` to match the current clipping region of
+the direct window. If {hparam}`origin` is specified, each point in the
 region is offset by the {hparam}`origin`, resulting in a
 {cpp:class}`BRegion` that's localized to your application's vision of where
 in space the origin is (relative to the origin of the screen's frame
@@ -196,8 +196,8 @@ function can be used to determine whether or not the video card is capable
 of supporting window mode. See "{ref}`Window Mode vs. Full Screen Mode`"
 for a detailed explanation of the differences between these modes.
 
-When your window is in full screen mode, it will always have the focus,
-and no other window can come in front of it.
+When your window is in full screen mode, it will always have the focus, and
+no other window can come in front of it.
 
 {hmethod}`SetFullScreen()` can return any of the following result codes.
 

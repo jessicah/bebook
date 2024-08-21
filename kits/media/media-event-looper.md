@@ -20,8 +20,8 @@ version you're compiling under.
 :::{cpp:function} virtual BMediaEventLooper::~BMediaEventLooper()
 :::
 
-Calls {cpp:func}`~BMediaEventLooper::Quit()` to stop the control thread
-and free allocated memory.
+Calls {cpp:func}`~BMediaEventLooper::Quit()` to stop the control thread and
+free allocated memory.
 ::::
 
 ## Member Functions
@@ -47,8 +47,8 @@ when the {hclass}`BMediaEventLooper` is
 
 :::{admonition} Warning
 :class: warning
-If you choose to reimplement this function, be very careful; it's very
-easy to cause Bad Things to happen.
+If you choose to reimplement this function, be very careful; it's very easy
+to cause Bad Things to happen.
 :::
 ::::
 
@@ -63,14 +63,13 @@ Returns the control thread's {cpp:func}`thread_id <thread::id>`.
 :::{cpp:function} void BMediaEventLooper::DispatchEvent(const media_timed_event* event, bigtime_t lateness, bool realTimeEvent = false)
 :::
 
-Calls {cpp:func}`~BMediaEventLooper::HandleEvent()` to let your code
-handle the specified event. If your code doesn't handle it, this function
-may have a default handler to process it. In general, you won't call this
-function.
+Calls {cpp:func}`~BMediaEventLooper::HandleEvent()` to let your code handle
+the specified event. If your code doesn't handle it, this function may have
+a default handler to process it. In general, you won't call this function.
 
-{hclass}`BMediaEventLooper` compensates your performance time by adding
-the event latency (see {cpp:func}`~BMediaEventLooper::SetEventLatency()`)
-and the scheduling latency (or, for real-time events, only the scheduling
+{hclass}`BMediaEventLooper` compensates your performance time by adding the
+event latency (see {cpp:func}`~BMediaEventLooper::SetEventLatency()`) and
+the scheduling latency (or, for real-time events, only the scheduling
 latency).
 
 It's the control loop's job to remove the event from the queue; this
@@ -159,8 +158,8 @@ Returns the scheduling latnecy, in microseconds, of the node.
 :::{cpp:function} bigtime_t BMediaEventLooper::BufferDuration() const
 :::
 
-{hmethod}`SetBufferDuration()` sets the duration of the node's buffers.
-The duration is clamped to 0 if it's less than 0.
+{hmethod}`SetBufferDuration()` sets the duration of the node's buffers. The
+duration is clamped to 0 if it's less than 0.
 
 {hmethod}`BufferDuration()` returns the duration of the nodes' buffers.
 ::::

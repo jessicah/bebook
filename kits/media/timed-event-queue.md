@@ -61,22 +61,22 @@ function is called. The {hparam}`context` pointer is passed through to the
 hook function, and may point to anything your hook function requires.
 
 - Setting {hparam}`direction` to {cpp:enumerator}`B_ALWAYS` indicates that
-all events of the type indicated by {hparam}`event` should be processed.
-The {hparam}`time` and {hparam}`inclusive` arguments are ignored.
+  all events of the type indicated by {hparam}`event` should be processed.
+  The {hparam}`time` and {hparam}`inclusive` arguments are ignored.
 
 - Setting {hparam}`direction` to {cpp:enumerator}`B_BEFORE_TIME` indicates
-that all matching events occurring before the specified {hparam}`time`
-should be processed. If {hparam}`inclusive` is {cpp:expr}`true`, events
-occurring at {hparam}`time` are also processed.
+  that all matching events occurring before the specified {hparam}`time`
+  should be processed. If {hparam}`inclusive` is {cpp:expr}`true`, events
+  occurring at {hparam}`time` are also processed.
 
 - Setting {hparam}`direction` to {cpp:enumerator}`B_AT_TIME` processes all
-matching events scheduled at the specified {hparam}`time`. The
-{hparam}`inclusive` argument is ignored.
+  matching events scheduled at the specified {hparam}`time`. The
+  {hparam}`inclusive` argument is ignored.
 
 - If {hparam}`direction` is {cpp:enumerator}`B_AFTER_TIME`, all matching
-events scheduled to occur after the specified {hparam}`time` are processed.
-If {hparam}`inclusive` is {cpp:expr}`true`, events scheduled to occur at
-{hparam}`time` are also processed.
+  events scheduled to occur after the specified {hparam}`time` are
+  processed. If {hparam}`inclusive` is {cpp:expr}`true`, events scheduled
+  to occur at {hparam}`time` are also processed.
 
 This provides a means for you to scan through the queue and perform a
 particular act on every node (or all nodes of a certain type, or that occur
@@ -139,22 +139,23 @@ specifications. The search begins at the time specified by
 {hparam}`eventTime`, and progresses in the specified {hparam}`direction`.
 
 - Setting {hparam}`direction` to {cpp:enumerator}`B_ALWAYS` indicates that
-all events of the type indicated by {hparam}`event` should be scanned. The
-{hparam}`eventTime` and {hparam}`inclusive` arguments are ignored.
+  all events of the type indicated by {hparam}`event` should be scanned.
+  The {hparam}`eventTime` and {hparam}`inclusive` arguments are ignored.
 
 - Setting {hparam}`direction` to {cpp:enumerator}`B_BEFORE_TIME` indicates
-that all matching events occurring before the specified {hparam}`eventTime`
-should be scanned. If {hparam}`inclusive` is {cpp:expr}`true`, events
-occurring at {hparam}`eventTime` are also scanned.
+  that all matching events occurring before the specified
+  {hparam}`eventTime` should be scanned. If {hparam}`inclusive` is
+  {cpp:expr}`true`, events occurring at {hparam}`eventTime` are also
+  scanned.
 
 - Setting {hparam}`direction` to {cpp:enumerator}`B_AT_TIME` scans all
-matching events scheduled at the specified {hparam}`eventTime`. The
-{hparam}`inclusive` argument is ignored.
+  matching events scheduled at the specified {hparam}`eventTime`. The
+  {hparam}`inclusive` argument is ignored.
 
 - If {hparam}`direction` is {cpp:enumerator}`B_AFTER_TIME`, all matching
-events scheduled to occur after the specified {hparam}`eventTime` are
-scanned. If {hparam}`inclusive` is {cpp:expr}`true`, events scheduled to
-occur at {hparam}`eventTime` are also scanned.
+  events scheduled to occur after the specified {hparam}`eventTime` are
+  scanned. If {hparam}`inclusive` is {cpp:expr}`true`, events scheduled to
+  occur at {hparam}`eventTime` are also scanned.
 
 If you want to scan all events, you can specify a time of
 {cpp:enumerator}`B_INFINITE_TIMEOUT` and a direction of
@@ -210,22 +211,23 @@ flush by indicating a {hparam}`time` from which events should be flushed, a
 events to flush:
 
 - Setting {hparam}`direction` to {cpp:enumerator}`B_ALWAYS` indicates that
-all events of the type indicated by {hparam}`event` should be flushed. The
-{hparam}`eventTime` and {hparam}`inclusive` arguments are ignored.
+  all events of the type indicated by {hparam}`event` should be flushed.
+  The {hparam}`eventTime` and {hparam}`inclusive` arguments are ignored.
 
 - Setting {hparam}`direction` to {cpp:enumerator}`B_BEFORE_TIME` indicates
-that all matching events occurring before the specified {hparam}`eventTime`
-should be flushed. If {hparam}`inclusive` is {cpp:expr}`true`, events
-occurring at {hparam}`eventTime` are also flushed.
+  that all matching events occurring before the specified
+  {hparam}`eventTime` should be flushed. If {hparam}`inclusive` is
+  {cpp:expr}`true`, events occurring at {hparam}`eventTime` are also
+  flushed.
 
 - Setting {hparam}`direction` to {cpp:enumerator}`B_AT_TIME` flushes all
-matching events scheduled at the specified {hparam}`eventTime`. The
-{hparam}`inclusive` argument is ignored.
+  matching events scheduled at the specified {hparam}`eventTime`. The
+  {hparam}`inclusive` argument is ignored.
 
 - If {hparam}`direction` is {cpp:enumerator}`B_AFTER_TIME`, all matching
-events scheduled to occur after the specified {hparam}`eventTime` are
-flushed. If {hparam}`inclusive` is {cpp:expr}`true`, events scheduled to
-occur at {hparam}`eventTime` are also flushed.
+  events scheduled to occur after the specified {hparam}`eventTime` are
+  flushed. If {hparam}`inclusive` is {cpp:expr}`true`, events scheduled to
+  occur at {hparam}`eventTime` are also flushed.
 
 If you want to flush all events, you can specify a time of
 {cpp:enumerator}`B_INFINITE_TIMEOUT` and a direction of
@@ -334,9 +336,9 @@ widths: auto
 :::{cpp:function} void BTimedEventQueue::SetCleanupHook(cleanup_hook hook, void* context)
 :::
 
-Sets up the cleanup hook function specified by hook to be called for
-events as they're removed from the queue. The hook will be called only for
-events with {cpp:any}`cleanup_flag` values of {cpp:enumerator}`B_DELETE` or
+Sets up the cleanup hook function specified by hook to be called for events
+as they're removed from the queue. The hook will be called only for events
+with {cpp:any}`cleanup_flag` values of {cpp:enumerator}`B_DELETE` or
 {cpp:enumerator}`B_USER_CLEANUP` or greater.
 ::::
 
@@ -528,8 +530,8 @@ typedef queue_action (*for_each_hook)(media_timed_event* event,
                                       void* context);
 :::
 
-The {htype}`for_each_hook` type is used to define a hook function called
-by {cpp:func}`~BTimedEventQueue::DoForEach()`.
+The {htype}`for_each_hook` type is used to define a hook function called by
+{cpp:func}`~BTimedEventQueue::DoForEach()`.
 
 ### media_timed_event
 

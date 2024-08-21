@@ -1,10 +1,10 @@
 # BButton
 
-A {cpp:class}`BButton` object draws a labeled button on-screen and
-responds when the button is clicked or when it's operated from the
-keyboard. If the {cpp:class}`BButton` is the default button for its window
-and the window is the active window, the user can operate it by pressing
-the {hkey}`Enter` key.
+A {cpp:class}`BButton` object draws a labeled button on-screen and responds
+when the button is clicked or when it's operated from the keyboard. If the
+{cpp:class}`BButton` is the default button for its window and the window is
+the active window, the user can operate it by pressing the {hkey}`Enter`
+key.
 
 {cpp:class}`BButton`s have a single state. Unlike check boxes and radio
 buttons, the user can't toggle a button on and off. However, the button's
@@ -36,8 +36,8 @@ inherited from {cpp:class}`BInvoker`. A model for the message is set by the
 IsEnabled(). To determine how the button should be drawn and whether it's
 enabled to post a message.
 
-: You can call {cpp:class}`BControl`'s {cpp:func}`~BControl::SetEnabled()`
-to enable and disable the button.
+: You can call {cpp:class}`BControl`'s {cpp:func}`~BControl::SetEnabled()` to
+enable and disable the button.
 
 A {cpp:class}`BButton` is an appropriate control device for initiating an
 action. Use a {cpp:class}`BCheckBox`, a {cpp:class}`BPictureButton`, or

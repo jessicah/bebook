@@ -82,8 +82,8 @@ buffer ID. Otherwise, a negative number is returned.
 :::{cpp:function} void BBuffer::Recycle()
 :::
 
-Sends the buffer back to the BBufferGroup that owns it so the buffer can
-be reused. You can only call Recycle() on a buffer that you received from
+Sends the buffer back to the BBufferGroup that owns it so the buffer can be
+reused. You can only call Recycle() on a buffer that you received from
 either the {cpp:func}`BBufferGroup::RequestBuffer()` call or the
 {cpp:func}`BBufferConsumer::BufferReceived()` call.
 

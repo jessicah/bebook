@@ -21,8 +21,8 @@ Draw into a Bitmap`").
 
 :::{admonition} Warning
 :class: warning
-The {hclass}`BBitmap` class insists that a {cpp:class}`BApplication`
-object be present (but not necessarily running).
+The {hclass}`BBitmap` class insists that a {cpp:class}`BApplication` object
+be present (but not necessarily running).
 :::
 
 If {cpp:class}`BView`s are to be used, the {hparam}`acceptsViews` argument
@@ -60,13 +60,13 @@ sent to the newly add children.
 
 :::{admonition} Warning
 :class: warning
-If {hparam}`aView` already has a parent, the application may crash. Be
-sure to remove the view from a previous parent before trying to add it to a
+If {hparam}`aView` already has a parent, the application may crash. Be sure
+to remove the view from a previous parent before trying to add it to a
 bitmap.
 :::
 
-{hmethod}`AddChild()` fails if the {hclass}`BBitmap` was not constructed
-to accept views.
+{hmethod}`AddChild()` fails if the {hclass}`BBitmap` was not constructed to
+accept views.
 
 See also: {cpp:func}`BWindow::AddChild()`,
 {cpp:func}`BView::AttachedToWindow()`, {cpp:func}`~BBitmap::RemoveChild()`,
@@ -107,17 +107,16 @@ See also: {cpp:func}`~BBitmap::Bounds()`,
 
 Returns the number of bytes that were allocated to store the bitmap data.
 
-See also: {cpp:func}`~BBitmap::Bits()`,
-{cpp:func}`~BBitmap::BytesPerRow()`
+See also: {cpp:func}`~BBitmap::Bits()`, {cpp:func}`~BBitmap::BytesPerRow()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} BRect BBitmap::Bounds() const
 :::
 
-Returns the bounds rectangle that defines the size and coordinate system
-of the bitmap. This should be identical to the rectangle used in
-constructing the object.
+Returns the bounds rectangle that defines the size and coordinate system of
+the bitmap. This should be identical to the rectangle used in constructing
+the object.
 ::::
 
 ::::{abi-group}
@@ -157,10 +156,10 @@ views.
 :::{cpp:function} color_space BBitmap::ColorSpace() const
 :::
 
-Returns the color space of the data being stored (not necessarily the
-color space of the data passed to the {cpp:func}`~BBitmap::SetBits()`
-function). Once set by the {hclass}`BBitmap` constructor, the color space
-doesn't change.
+Returns the color space of the data being stored (not necessarily the color
+space of the data passed to the {cpp:func}`~BBitmap::SetBits()` function).
+Once set by the {hclass}`BBitmap` constructor, the color space doesn't
+change.
 ::::
 
 ::::{abi-group}
@@ -170,10 +169,10 @@ doesn't change.
 :::{cpp:function} BView* BBitmap::FindView(const char* name) const
 :::
 
-Returns the {cpp:class}`BView`  at {hparam}`point` within the bitmap or
-the {cpp:class}`BView` tagged with {hparam}`name`. The point must be
-somewhere within the {hclass}`BBitmap`'s bounds rectangle, which must have
-the coordinate origin, (0.0, 0.0), at its left top corner.
+Returns the {cpp:class}`BView`  at {hparam}`point` within the bitmap or the
+{cpp:class}`BView` tagged with {hparam}`name`. The point must be somewhere
+within the {hclass}`BBitmap`'s bounds rectangle, which must have the
+coordinate origin, (0.0, 0.0), at its left top corner.
 
 If the {hclass}`BBitmap` doesn't accept views, this function fails. If no
 view draws at the {hparam}`point` given, or no view associated with the
@@ -252,10 +251,10 @@ to store the data. If not, the following conversions are automatically
 made:
 
 - {cpp:enumerator}`B_GRAY1` and {cpp:enumerator}`B_RGB32` to
-{cpp:enumerator}`B_CMAP8`.
+  {cpp:enumerator}`B_CMAP8`.
 
 - {cpp:enumerator}`B_CMAP8` and {cpp:enumerator}`B_GRAY1` to
-{cpp:enumerator}`B_RGB32`.
+  {cpp:enumerator}`B_RGB32`.
 
 :::{admonition} Note
 :class: note
@@ -263,9 +262,9 @@ These are the only color conversions {hmethod}`SetBits()` understands; all
 other conversions must be performed manually.
 :::
 
-Colors may be dithered in a conversion to {cpp:enumerator}`B_CMAP8` so
-that the resulting image will match the original as closely as possible,
-despite the lost information.
+Colors may be dithered in a conversion to {cpp:enumerator}`B_CMAP8` so that
+the resulting image will match the original as closely as possible, despite
+the lost information.
 
 If the color space {hparam}`mode` is {cpp:enumerator}`B_RGB32`, the
 {hparam}`data` should be triplets of three 8-bit components—red, green, and

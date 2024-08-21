@@ -60,8 +60,7 @@ See also: the {cpp:class}`BView` {cpp:func}`constructor <BView::BView()>`,
 :::{cpp:function} virtual BControl::~BControl()
 :::
 
-Frees the model message and all memory allocated by the
-{hclass}`BControl`.
+Frees the model message and all memory allocated by the {hclass}`BControl`.
 ::::
 
 ## Hook Functions
@@ -77,9 +76,8 @@ the {hclass}`BControl` has become attached the default target for the
 {cpp:func}`~BControl::Invoke()` function, provided that another target
 hasn't already been set.
 
-{hmethod}`AttachedToWindow()` is called for you when the
-{hclass}`BControl` becomes a child of a view already associated with the
-window.
+{hmethod}`AttachedToWindow()` is called for you when the {hclass}`BControl`
+becomes a child of a view already associated with the window.
 
 See also: {cpp:func}`BView::AttachedToWindow()`,
 {cpp:func}`~BControl::Invoke()`, {cpp:func}`BInvoker::SetTarget()`
@@ -89,8 +87,8 @@ See also: {cpp:func}`BView::AttachedToWindow()`,
 :::{cpp:function} virtual void BControl::KeyDown(const char* bytes, int32 numBytes)
 :::
 
-Augments the {cpp:class}`BView` version of {cpp:func}`~BView::KeyDown()`
-to toggle the {hclass}`BControl`'s value and call
+Augments the {cpp:class}`BView` version of {cpp:func}`~BView::KeyDown()` to
+toggle the {hclass}`BControl`'s value and call
 {cpp:func}`~BControl::Invoke()` when the character encoded in bytes is
 either {cpp:enumerator}`B_SPACE` or {cpp:enumerator}`B_ENTER`. This is done
 to facilitate keyboard navigation and make all derived control devices
@@ -129,8 +127,8 @@ See also: {cpp:func}`BHandler::MessageReceived()`
 {cpp:expr}`false`. {hmethod}`IsEnabled()` returns whether or not the object
 is currently enabled. {hclass}`BControl`s are enabled by default.
 
-While disabled, a {hclass}`BControl` won't let the user navigate to it;
-the {cpp:enumerator}`B_NAVIGABLE` flag is turned off if enabled is
+While disabled, a {hclass}`BControl` won't let the user navigate to it; the
+{cpp:enumerator}`B_NAVIGABLE` flag is turned off if enabled is
 {cpp:expr}`false` and turned on again if {hparam}`enabled` is
 {cpp:expr}`true`.
 
@@ -159,8 +157,8 @@ void MyControl::SetEnabled(bool enabled)
 }
 :::
 
-Note, however, that you don't have to override {hmethod}`SetEnabled()`
-just to update the on-screen display when the control becomes enabled or
+Note, however, that you don't have to override {hmethod}`SetEnabled()` just
+to update the on-screen display when the control becomes enabled or
 disabled. If the {hclass}`BControl` is attached to a window, the kit's
 version of {hmethod}`SetEnabled()` always calls the
 {cpp:func}`~BView::Draw()` function. Therefore, the device on-screen will
@@ -318,9 +316,9 @@ the focus view or it has just lost that status and the
 {cpp:func}`~BView::Draw()` function has been called to update the on-screen
 display.
 
-This function can be called from inside {cpp:func}`~BView::Draw()` to
-learn whether it's necessary to draw or erase the visible indication that
-the {hclass}`BControl` is the focus view. {hmethod}`IsFocusChanging()` will
+This function can be called from inside {cpp:func}`~BView::Draw()` to learn
+whether it's necessary to draw or erase the visible indication that the
+{hclass}`BControl` is the focus view. {hmethod}`IsFocusChanging()` will
 return the new status of the view.
 
 See also: {cpp:func}`~BControl::MakeFocus()`
@@ -344,8 +342,8 @@ the function.
 When {cpp:func}`~BView::Draw()` is called from this function,
 {cpp:func}`~BControl::IsFocusChanging()` returns {cpp:expr}`true`.
 
-See also: {cpp:func}`BView::MakeFocus()`,
-{cpp:func}`~BControl::KeyDown()`, {cpp:func}`~BControl::IsFocusChanging()`
+See also: {cpp:func}`BView::MakeFocus()`, {cpp:func}`~BControl::KeyDown()`,
+{cpp:func}`~BControl::IsFocusChanging()`
 ::::
 
 ::::{abi-group}
@@ -377,9 +375,8 @@ be displayed to the user—but only if the string that's passed differs from
 the current label. The label is first set by the {cpp:func}`constructor
 <BControl::BControl()>` and can be modified thereafter by this function.
 
-{hmethod}`Label()` returns the current label. The string it returns
-belongs to the {hclass}`BControl` and may be altered or freed in due
-course.
+{hmethod}`Label()` returns the current label. The string it returns belongs
+to the {hclass}`BControl` and may be altered or freed in due course.
 
 See also: the {hclass}`BControl` constructor,
 {cpp:func}`BView::AttachedToWindow()`
@@ -568,6 +565,6 @@ widths: auto
 
 :::
 
-Some of these fields may not be present if the setting they represent
-isn't used, or is the default value. For example, if the value is 0, the
+Some of these fields may not be present if the setting they represent isn't
+used, or is the default value. For example, if the value is 0, the
 {hparam}`_val` field won't be found in the archive.

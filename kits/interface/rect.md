@@ -142,19 +142,19 @@ Sorting out the different versions, there are three basic
 rectangle-manipulation functions here:
 
 - {hmethod}`InsetBy()` insets the sides of the {hclass}`BRect`'s rectangle
-by {hparam}`x` units (left and right sides) and {hparam}`y` units (top and
-bottom). Positive inset values shrink the rectangle; negative values expand
-it. Note that both sides of each pair moves the full amount. For example,
-if you inset a {hclass}`BRect` by (4,4), the left side moves (to the right)
-four units and the right side moves (to the left) four units (and similarly
-with the top and bottom).
+  by {hparam}`x` units (left and right sides) and {hparam}`y` units (top
+  and bottom). Positive inset values shrink the rectangle; negative values
+  expand it. Note that both sides of each pair moves the full amount. For
+  example, if you inset a {hclass}`BRect` by (4,4), the left side moves (to
+  the right) four units and the right side moves (to the left) four units
+  (and similarly with the top and bottom).
 
 - {hmethod}`OffsetBy()` moves the {hclass}`BRect` horizontally by
-{hparam}`x` units and vertically by {hparam}`y` units. The rectangle's size
-doesn't change.
+  {hparam}`x` units and vertically by {hparam}`y` units. The rectangle's
+  size doesn't change.
 
 - {hmethod}`OffsetTo()` moves the {hclass}`BRect` to the location
-({hparam}`x`,{hparam}`y`).
+  ({hparam}`x`,{hparam}`y`).
 
 If a {cpp:class}`BPoint` argument is used, the {cpp:class}`BPoint`'s
 {hparam}`x` and {hparam}`y` values are used as the {hparam}`x` and
@@ -218,8 +218,8 @@ form:
 :::{cpp:function} BPoint BRect::RightBottom() const
 :::
 
-{hmethod}`Set()` sets the object's rectangle by defining the coordinates
-of all four sides. The other {hmethod}`Set…()` functions move one of the
+{hmethod}`Set()` sets the object's rectangle by defining the coordinates of
+all four sides. The other {hmethod}`Set…()` functions move one of the
 rectangle's corners to the {cpp:class}`BPoint` argument; the other corners
 and sides are modified concomittantly. None of these functions prevents you
 from creating an invalid rectangle.
@@ -241,8 +241,8 @@ of the rectangle's four corners.
 :::{cpp:function} inline int32 BRect::IntegerHeight() const
 :::
 
-{hmethod}`Width()` returns the numerical difference between the
-rectangle's right and left sides (i.e. {hparam}`right` - {hparam}`left`).
+{hmethod}`Width()` returns the numerical difference between the rectangle's
+right and left sides (i.e. {hparam}`right` - {hparam}`left`).
 {hmethod}`IntegerWidth()` does the same, but rounds up in the case of a
 fractional difference.
 
@@ -273,8 +273,8 @@ Copies {hparam}`from`'s rectangle data into the left-side object.
 {hmethod}`==` returns {cpp:expr}`true` if the two objects' rectangles
 exactly coincide.
 
-{hmethod}`!=` returns {cpp:expr}`true` if the two objects' rectangles
-don't coincide.
+{hmethod}`!=` returns {cpp:expr}`true` if the two objects' rectangles don't
+coincide.
 ::::
 
 ::::{abi-group}

@@ -51,9 +51,9 @@ Notice that we had to explicitly reset the view's font (through
 
 ## System Fonts
 
-The Interface Kit constructs three {cpp:class}`BFont` objects (plain,
-bold, and fixed)for each application when the application starts up. The
-values of these fonts are set by the user through the FontPanel preferences
+The Interface Kit constructs three {cpp:class}`BFont` objects (plain, bold,
+and fixed)for each application when the application starts up. The values
+of these fonts are set by the user through the FontPanel preferences
 application. You can get to these objects through global pointers :
 
 :::{list-table}
@@ -69,13 +69,12 @@ widths: auto
 
 -
 	- constBFont*be_plain_font
-	- The font that's used to display most gadgets in the user interface, such
-		as check box labels and menu items. All {cpp:class}`BControl` objects use
-		this font.
+	- The font that's used to display most gadgets in the user interface, such as
+		check box labels and menu items. All {cpp:class}`BControl` objects use this
+		font.
 -
 	- constBFont*be_bold_font
-	- The font that's used to display window titles and {cpp:class}`BBox`
-		labels.
+	- The font that's used to display window titles and {cpp:class}`BBox` labels.
 -
 	- constBFont*be_fixed_font
 	- The font that's used to display fixed-width characters.
@@ -102,7 +101,7 @@ font.SetSize(13.0);
 myView->SetFont(&font);
 :::
 
-Applications should respect the user's choices and base all font choices
-on these three system fonts, rather than hard-code font names into the
+Applications should respect the user's choices and base all font choices on
+these three system fonts, rather than hard-code font names into the
 application. You should not try to predict the fonts that will be installed
 on the user's machine.

@@ -81,13 +81,12 @@ Removes all items from the {hclass}`BDiscreteParameter`.
 :::{cpp:function} void BDiscreteParameter::MakeItemsFromOutputs()
 :::
 
-These functions add all inputs or outputs as selections, where the input
-or output's name is used as the item's name, and the input or output's
-index number is used as the value of the item.
+These functions add all inputs or outputs as selections, where the input or
+output's name is used as the item's name, and the input or output's index
+number is used as the value of the item.
 
-These shortcuts let you easily create the item lists for MUX-like
-controls, which allow the user to choose one of a number of inputs or
-outputs.
+These shortcuts let you easily create the item lists for MUX-like controls,
+which allow the user to choose one of a number of inputs or outputs.
 
 :::{admonition} Note
 :class: note

@@ -130,8 +130,8 @@ Alternately, you can use the second form of {hmethod}`SetLabel()` to
 specify a view to be used as the {hclass}`BBox`'s label. This view can be
 anything, including controls.
 
-{hmethod}`Label()` returns a pointer to the {hclass}`BBox`'s current
-label, or {cpp:expr}`NULL` if it doesn't have one (or the label is a view).
+{hmethod}`Label()` returns a pointer to the {hclass}`BBox`'s current label,
+or {cpp:expr}`NULL` if it doesn't have one (or the label is a view).
 
 {hmethod}`LabelView()` returns a pointer to the {cpp:class}`BView` that's
 being used as the {hclass}`BBox`'s label, or {cpp:expr}`NULL` if either

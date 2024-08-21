@@ -20,8 +20,8 @@ typedef vlong spinlock
 
 Declared in: drivers/KernelExport.h
 
-Spinlocks are mutually exclusive locks that are used to protect sections
-of code that must execute atomically. Unlike semaphores, spinlocks can be
+Spinlocks are mutually exclusive locks that are used to protect sections of
+code that must execute atomically. Unlike semaphores, spinlocks can be
 safely used when interrupts are disabled (in fact, you must have interrupts
 disabled).
 
@@ -337,14 +337,14 @@ disables the irq. Setting the {cpp:enumerator}`B_NO_ENABLE_COUNTER` flag
 instructs the OS to ignore the handler for the purpose of enabling and
 disabling the irq.
 
-install_io_interrupt_handler() returns {cpp:enumerator}`B_OK` if
-successful in installing the handler, and {cpp:enumerator}`B_ERROR` if not.
-An error occurs when either the {hparam}`interrupt_number` is out of range
-or there is not enough room left in the interrupt chain to add the handler.
+install_io_interrupt_handler() returns {cpp:enumerator}`B_OK` if successful
+in installing the handler, and {cpp:enumerator}`B_ERROR` if not. An error
+occurs when either the {hparam}`interrupt_number` is out of range or there
+is not enough room left in the interrupt chain to add the handler.
 
-remove_io_interrupt() removes the named interrupt from the interrupt
-chain. It returns {cpp:enumerator}`B_OK` if successful in removing the
-handler, and {cpp:enumerator}`B_ERROR` if not.
+remove_io_interrupt() removes the named interrupt from the interrupt chain.
+It returns {cpp:enumerator}`B_OK` if successful in removing the handler,
+and {cpp:enumerator}`B_ERROR` if not.
 
 ## kernel_debugger(), add_debugger_command(), remove_debugger_command(), load_driver_symbols(), kprintf(), parse_expression()
 
@@ -386,8 +386,8 @@ driver which must be located in one of the standard kernel driver
 directories. The function returns {cpp:enumerator}`B_OK` on success and
 {cpp:enumerator}`B_ERROR` on failure.
 
-kprintf() outputs messages to the serial port. It should be used instead
-of {cpp:func}`dprintf()` from new debugger commands because
+kprintf() outputs messages to the serial port. It should be used instead of
+{cpp:func}`dprintf()` from new debugger commands because
 {cpp:func}`dprintf()` depends too much upon the state of the kernel to be
 reliable from within the debugger.
 
@@ -456,9 +456,9 @@ mapped into a memory location aligned on a multiple of
 {cpp:enumerator}`B_READ_AREA` and {cpp:enumerator}`B_WRITE_AREA`, as
 discussed in {cpp:func}`create_area()`.
 
-{cpp:func}`create_area()` returns an {htype}`area_id` for the
-newly-created memory if successful or an error code on failure. The error
-codes are the same as those for {cpp:func}`create_area()`.
+{cpp:func}`create_area()` returns an {htype}`area_id` for the newly-created
+memory if successful or an error code on failure. The error codes are the
+same as those for {cpp:func}`create_area()`.
 
 ## motherboard_version(), io_card_version()
 
@@ -503,8 +503,8 @@ Declared in: drivers/KernelExport.h
 This function is a counterpart to send_signal() in the Posix layer, which
 is not exported for drivers.
 
-{hparam}`thid` is the {htype}`thread_id` of the thread the signal should
-be sent to, and {hparam}`sig` is the signal type to send, just like in
+{hparam}`thid` is the {htype}`thread_id` of the thread the signal should be
+sent to, and {hparam}`sig` is the signal type to send, just like in
 send_signal(). The {hparam}`flags` argument can be used to specify flags to
 control the function:
 

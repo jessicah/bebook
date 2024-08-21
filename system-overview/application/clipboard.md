@@ -1,7 +1,7 @@
 # BClipboard
 
-A {cpp:class}`BClipboard` object is an interface to a clipboard, a
-resource that provides system-wide, temporary data storage. Clipboards are
+A {cpp:class}`BClipboard` object is an interface to a clipboard, a resource
+that provides system-wide, temporary data storage. Clipboards are
 identified by name; if two apps want to refer to the same clipboard, they
 simply create respective {cpp:class}`BClipboard` objects with the same
 name:
@@ -28,33 +28,32 @@ transfer data through the system clipboard.
 
 :::{admonition} Note
 :class: note
-To access the system clipboard without creating a
-{cpp:class}`BApplication` object, construct a {cpp:class}`BClipboard`
-object with the name "system". The system clipboard is under the control of
-the user; you should only read or write the system clipboard as a direct
-result of the user's actions. If you create your own clipboards don't name
-them "system".
+To access the system clipboard without creating a {cpp:class}`BApplication`
+object, construct a {cpp:class}`BClipboard` object with the name "system".
+The system clipboard is under the control of the user; you should only read
+or write the system clipboard as a direct result of the user's actions. If
+you create your own clipboards don't name them "system".
 :::
 
 ## The Clipboard Message
 
-To access a clipboard's data, you call functions on a
-{cpp:class}`BMessage` that the {cpp:class}`BClipboard` object hands you
-(through its {cpp:func}`~BClipboard::Data()` function). The
-{cpp:class}`BMessage` follows these conventions:
+To access a clipboard's data, you call functions on a {cpp:class}`BMessage`
+that the {cpp:class}`BClipboard` object hands you (through its
+{cpp:func}`~BClipboard::Data()` function). The {cpp:class}`BMessage`
+follows these conventions:
 
 - The {cpp:var}`what` value is unused.
 
 - The data is stored in a message field. The field should be typed as
-{cpp:enumerator}`B_MIME_TYPE`; the MIME type that describes the data should
-be used as the name of the field that holds the data (see "{ref}`Writing to
-the Clipboard`" for an example).
+  {cpp:enumerator}`B_MIME_TYPE`; the MIME type that describes the data
+  should be used as the name of the field that holds the data (see
+  "{ref}`Writing to the Clipboard`" for an example).
 
 - If the {cpp:class}`BMessage` contains more than one field, each field
-should present the same data in a different format. For example, the
-StyledEdit app writes text data in its own format (in order to encode the
-fonts, colors, etc.) and also writes the data as plain ASCII text (MIME
-type "text/plain").
+  should present the same data in a different format. For example, the
+  StyledEdit app writes text data in its own format (in order to encode the
+  fonts, colors, etc.) and also writes the data as plain ASCII text (MIME
+  type "text/plain").
 
 ## Writing to the Clipboard
 
@@ -104,9 +103,9 @@ widths: auto
 -
 	- {ref}``
 
-	- Write the data by invoking {cpp:func}`~BMessage::AddData()` directly on
-		the {cpp:class}`BMessage`. In the example, we write the data in two
-		different formats.
+	- Write the data by invoking {cpp:func}`~BMessage::AddData()` directly on the
+		{cpp:class}`BMessage`. In the example, we write the data in two different
+		formats.
 -
 	- {ref}``
 
@@ -181,10 +180,9 @@ persistence flag but it's currently unused.
 
 Intra-boot persistence:
 
-: Once you've created a clipboard, that clipboard will exist until you
-reboot your computer. For example, let's say you design an app that creates
-a clipboard called "MyClip": You launch the app, write something to
-"MyClip", and then quit the app. The clipboard and the data that you wrote
-to it will still exist: If you relaunch your app (or any app that knows
-about "MyClip"), you can pick up the data by reading from the "MyClip"
-clipboard.
+: Once you've created a clipboard, that clipboard will exist until you reboot
+your computer. For example, let's say you design an app that creates a
+clipboard called "MyClip": You launch the app, write something to "MyClip",
+and then quit the app. The clipboard and the data that you wrote to it will
+still exist: If you relaunch your app (or any app that knows about
+"MyClip"), you can pick up the data by reading from the "MyClip" clipboard.

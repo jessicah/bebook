@@ -61,9 +61,8 @@ live query update messages start rolling in when you tell the object to
 {hmethod}`Fetch()`. They stop when you {cpp:func}`~BQuery::Clear()` or
 destroy the object.
 
-The fetch fails if the object's predicate or volume isn't set, or if
-you've already fetched but haven' {cpp:func}`~BQuery::Clear()`'d since
-then.
+The fetch fails if the object's predicate or volume isn't set, or if you've
+already fetched but haven' {cpp:func}`~BQuery::Clear()`'d since then.
 
 :::{admonition} Warning
 :class: warning
@@ -124,7 +123,7 @@ When you reach the end of the entry list, the {hmethod}`Get…()` function
 returns an indicative value:
 
 - {hmethod}`GetNextRef()` and {hmethod}`GetNextEntry()` return
-{cpp:enumerator}`B_ENTRY_NOT_FOUND`.
+  {cpp:enumerator}`B_ENTRY_NOT_FOUND`.
 
 - {hmethod}`GetNextDirents()` returns 0.
 
@@ -191,22 +190,22 @@ widths: auto
 :::{cpp:function} void BQuery::PushString(const char* attr_name, bool case_insensitive = false)
 :::
 
-You use these functions to construct the {hclass}`BQuery`'s predicate.
-They create a predicate expression by pushing attribute names, operators,
-and values in Reverse Polish Notation (post-fix) order.
+You use these functions to construct the {hclass}`BQuery`'s predicate. They
+create a predicate expression by pushing attribute names, operators, and
+values in Reverse Polish Notation (post-fix) order.
 
 - {hmethod}`PushAttr()` pushes an attribute name.
 
 - {hmethod}`PushOp()` pushes one of the {cpp:func}`query_op <query::op>`
-operators.
+  operators.
 
 - The rest of the functions push values of the designated types.
 
 For details on how the push method works, see "{ref}`Constructing a
 Predicate`."
 
-The predicate that you construct through these functions can be returned
-as a string through the {cpp:func}`~BQuery::GetPredicate()` function.
+The predicate that you construct through these functions can be returned as
+a string through the {cpp:func}`~BQuery::GetPredicate()` function.
 ::::
 
 ::::{abi-group}
@@ -221,8 +220,8 @@ Sets the {hclass}`BQuery`'s target. The target identifies the
 {cpp:class}`BInvoker` target protocol) that will receive subsequent live
 query update messages. Calling this function declares the query to be live.
 
-If {hparam}`target` is {cpp:expr}`NULL`, the {hclass}`BQuery` is told to
-be "not live". However, you can only turn off liveness (in this way) before
+If {hparam}`target` is {cpp:expr}`NULL`, the {hclass}`BQuery` is told to be
+"not live". However, you can only turn off liveness (in this way) before
 you {cpp:func}`~BQuery::Fetch()`. In other words, if you set the target,
 and then call {cpp:func}`~BQuery::Fetch()` and then call `SetTarget(NULL)`,
 the {hclass}`BQuery` will think that it (itself) is not live, but it really
@@ -334,8 +333,8 @@ widths: auto
 	- ({hmethod}`Get`) length is shorter than the predicate's length.
 -
 	- {cpp:enumerator}`B_NOT_ALLOWED`.
-	- ({hmethod}`Set`) You've already {cpp:func}`~BQuery::Fetch()`'d; you have
-		to {cpp:func}`~BQuery::Clear()`.
+	- ({hmethod}`Set`) You've already {cpp:func}`~BQuery::Fetch()`'d; you have to
+		{cpp:func}`~BQuery::Clear()`.
 -
 	- {cpp:enumerator}`B_NO_MEMORY`.
 	- ({hmethod}`Set`) Not enough memory to store the predicate string.
@@ -373,8 +372,8 @@ widths: auto
 	- The volume was set.
 -
 	- {cpp:enumerator}`B_NOT_ALLOWED`.
-	- You've already fetched, you need to {cpp:func}`~BQuery::Clear()` before
-		you can reset the volume.
+	- You've already fetched, you need to {cpp:func}`~BQuery::Clear()` before you
+		can reset the volume.
 
 :::
 ::::

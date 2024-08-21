@@ -91,8 +91,8 @@ See also: {cpp:func}`BView::GetPreferredSize()`,
 :::{cpp:function} virtual void BRadioButton::KeyDown(const char* bytes, int32 numBytes)
 :::
 
-Augments the inherited versions of {cpp:func}`~BControl::KeyDown()` to
-turn the radio button on and deliver a message to the target
+Augments the inherited versions of {cpp:func}`~BControl::KeyDown()` to turn
+the radio button on and deliver a message to the target
 {cpp:class}`BHandler` when the character passed in {hparam}`bytes` is
 {cpp:enumerator}`B_SPACE or B_ENTER`.
 
@@ -135,8 +135,8 @@ Augments the {cpp:class}`BControl` version of
 :::{cpp:function} virtual status_t BRadioButton::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`~BControl::Archive()` and
-doesn't add anything specific to the {hclass}`BRadioButton` class to the
+Calls the inherited version of {cpp:func}`~BControl::Archive()` and doesn't
+add anything specific to the {hclass}`BRadioButton` class to the
 {cpp:class}`BMessage` archive.
 
 {cpp:func}`BArchivable::Archive()`,

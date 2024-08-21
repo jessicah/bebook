@@ -1,10 +1,9 @@
 # BRadioButton
 
-A {cpp:class}`BRadioButton` object draws a labeled, two-state button
-that's displayed in a group along with other similar buttons. The button
-itself is a round icon that has a filled center when the
-{cpp:class}`BRadioButton` is turned on, and is empty when it's off. The
-label appears next to the icon.
+A {cpp:class}`BRadioButton` object draws a labeled, two-state button that's
+displayed in a group along with other similar buttons. The button itself is
+a round icon that has a filled center when the {cpp:class}`BRadioButton` is
+turned on, and is empty when it's off. The label appears next to the icon.
 
 Only one radio button in the group can be on at a time; when the user
 clicks a button to turn it on, the button that's currently on is turned

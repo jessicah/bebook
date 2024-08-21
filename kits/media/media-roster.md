@@ -112,8 +112,8 @@ widths: auto
 	- The connection couldn't be made.
 -
 	- Other errors.
-	- The nodes that are being connected may return other error codes as they
-		see fit.
+	- The nodes that are being connected may return other error codes as they see
+		fit.
 
 :::
 ::::
@@ -164,8 +164,7 @@ widths: auto
 	- The node isn't of the correct type for the call you issued.
 -
 	- Other errors.
-	- An error occurred communicating with the producer or with the Media
-		Server.
+	- An error occurred communicating with the producer or with the Media Server.
 
 :::
 ::::
@@ -388,8 +387,7 @@ widths: auto
 	- The node isn't a buffer producer.
 -
 	- Other errors.
-	- An error occurred communicating with the producer or with the Media
-		Server.
+	- An error occurred communicating with the producer or with the Media Server.
 
 :::
 ::::
@@ -426,8 +424,8 @@ widths: auto
 :::{cpp:function} status_t BMediaRoster::GetDormantNodes(dormant_node_info* outDormantNodeList, int32* inOutNumNodes, const media_format* hasInputFormat = NULL, const media_format* hasOutputFormat = NULL, char* name = NULL, uint64 requireKinds = 0, uint64 denyKinds = 0)
 :::
 
-Queries dormant nodes (those nodes that live in add-ons, rather than in
-the application) and returns those who match the specified inputs. If
+Queries dormant nodes (those nodes that live in add-ons, rather than in the
+application) and returns those who match the specified inputs. If
 {hparam}`hasInputFormat` isn't {cpp:expr}`NULL`, the node has to be a
 {cpp:class}`BBufferConsumer` and have an input format compatible with the
 format described in {hparam}`hasInputFormat`. Likewise, if
@@ -489,8 +487,8 @@ contain the actual number of formats returned, unless
 
 :::{admonition} Note
 :class: note
-This function will deadlock if called from a node's control thread or
-while the control thread is blocked.
+This function will deadlock if called from a node's control thread or while
+the control thread is blocked.
 :::
 
 :::{list-table}
@@ -647,8 +645,8 @@ If an error occurs, the value in {hparam}`outLatency` is unreliable.
 
 :::{admonition} Note
 :class: note
-This function will deadlock if called from a node's control thread or
-while the control thread is blocked.
+This function will deadlock if called from a node's control thread or while
+the control thread is blocked.
 :::
 
 :::{list-table}
@@ -689,8 +687,8 @@ available for use, as opposed to a dormant node, which resides in an add-on
 and is only loaded when instantiated using
 {cpp:func}`~BMediaRoster::InstantiateDormantNode()`.
 
-You can obtain a more specific result list by specifying one or more of
-the {hparam}`hasInput`, {hparam}`hasOutput`, {hparam}`name`, and
+You can obtain a more specific result list by specifying one or more of the
+{hparam}`hasInput`, {hparam}`hasOutput`, {hparam}`name`, and
 {hparam}`nodeKinds` arguments. {hparam}`hasInput` and {hparam}`hasOutput`
 let you restrict the resulting list to containing nodes that accept as
 input (or output) the specified format.
@@ -779,8 +777,8 @@ configuring nodes.
 
 :::{admonition} Note
 :class: note
-This function will deadlock if called from a node's control thread or
-while the control thread is blocked.
+This function will deadlock if called from a node's control thread or while
+the control thread is blocked.
 :::
 
 :::{list-table}
@@ -888,8 +886,8 @@ widths: auto
 		using {cpp:func}`media_realtime_init_thread()`.
 -
 	- {cpp:enumerator}`B_MEDIA_REALTIME_ANYKIND`
-	- All Media add-ons are locked in memory, and should lock their thread
-		stacks using {cpp:func}`media_realtime_init_thread()`.
+	- All Media add-ons are locked in memory, and should lock their thread stacks
+		using {cpp:func}`media_realtime_init_thread()`.
 
 :::
 
@@ -929,8 +927,8 @@ If an error occurs, the value in {hparam}`outLatency` is unreliable.
 
 :::{admonition} Note
 :class: note
-This function will deadlock if called from a node's control thread or
-while the control thread is blocked.
+This function will deadlock if called from a node's control thread or while
+the control thread is blocked.
 :::
 
 :::{list-table}
@@ -1073,8 +1071,8 @@ Media Server know you're finished with it. This lets the Media Server track
 whether or not the node's add-on can be unloaded, based on the number of
 applications still using it.
 
-The difference between these two functions is that the second form lets
-you specify flags controlling how the node is instantiated. The
+The difference between these two functions is that the second form lets you
+specify flags controlling how the node is instantiated. The
 {cpp:enumerator}`B_FLAVOR_IS_GLOBAL` flag instantiates the node in the
 Media Add-on Server's memory space, while the
 {cpp:enumerator}`B_FLAVOR_IS_LOCAL` flag instantiates the node in your
@@ -1142,8 +1140,8 @@ running.
 :::{cpp:function} media_node_id BMediaRoster::NodeIDFor(port_id sourceOrDestinationPort)
 :::
 
-Given a source or destination port, this function returns the
-corresponding node's ID number.
+Given a source or destination port, this function returns the corresponding
+node's ID number.
 ::::
 
 ::::{abi-group}
@@ -1165,8 +1163,8 @@ may improve real-time performance once the node is started.
 
 :::{admonition} Note
 :class: note
-This function will deadlock if called from a node's control thread or
-while the control thread is blocked.
+This function will deadlock if called from a node's control thread or while
+the control thread is blocked.
 :::
 
 :::{list-table}
@@ -1207,9 +1205,9 @@ some other participant in the Media Server.
 from add-ons, but your application will have to call it for any nodes it
 creates itself.
 
-If you create your own subclass of {cpp:class}`BMediaNode`, its
-constructor can call {hmethod}`RegisterNode()` itself just before returning
-(it must be the last thing the constructor does).
+If you create your own subclass of {cpp:class}`BMediaNode`, its constructor
+can call {hmethod}`RegisterNode()` itself just before returning (it must be
+the last thing the constructor does).
 
 {hmethod}`UnregisterNode()` unregisters a node from the Media Server. It's
 called automatically by the {cpp:class}`BMediaNode` destructor, but it
@@ -1319,20 +1317,19 @@ widths: auto
 :::{cpp:function} static BMediaRoster* BMediaRoster::CurrentRoster()
 :::
 
-{hmethod}`Roster()` returns a pointer to the default
-{hclass}`BMediaRoster` instance, or creates the {hclass}`BMediaRoster`
-instance if it doesn't exist yet, then returns a pointer to it. If you
-don't want to create the roster if it doesn't already exist, use the
-{hmethod}`CurrentRoster()` function (it returns {cpp:expr}`NULL` if there's
-no roster).
+{hmethod}`Roster()` returns a pointer to the default {hclass}`BMediaRoster`
+instance, or creates the {hclass}`BMediaRoster` instance if it doesn't
+exist yet, then returns a pointer to it. If you don't want to create the
+roster if it doesn't already exist, use the {hmethod}`CurrentRoster()`
+function (it returns {cpp:expr}`NULL` if there's no roster).
 
 Since {hmethod}`CurrentRoster()` doesn't create a media roster, you
 obviously must use {hmethod}`Roster()` at least once in your application to
 create one.
 
-These static member functions should be called by explicit scope, and
-never by dereference; this is how you get the {hclass}`BMediaRoster`
-through which all other media roster functions are called. For example:
+These static member functions should be called by explicit scope, and never
+by dereference; this is how you get the {hclass}`BMediaRoster` through
+which all other media roster functions are called. For example:
 
 :::{code} cpp
 BMediaRoster* r = BMediaRoster::Roster();
@@ -1542,8 +1539,8 @@ The format of the data should be unchanged.
 
 :::{admonition} Note
 :class: note
-Nodes are not required to support this mechanism for controlling their
-data rate, so this call may have no effect.
+Nodes are not required to support this mechanism for controlling their data
+rate, so this call may have no effect.
 :::
 
 :::{list-table}
@@ -1691,13 +1688,12 @@ whenever timeSource is stopped, and so forth.
 
 :::{admonition} Note
 :class: note
-By default, nodes are slaved to the system time source, so you only need
-to call this function if you need to slave a node to a different time
-source.
+By default, nodes are slaved to the system time source, so you only need to
+call this function if you need to slave a node to a different time source.
 :::
 
-The node will take whatever precautions are necessary to remain faithful
-to the notion of time presented by {hparam}`timeSource` without causing
+The node will take whatever precautions are necessary to remain faithful to
+the notion of time presented by {hparam}`timeSource` without causing
 glitches in the presentation of its media. For example, if a sound card
 node has a DAC that drifts from {hparam}`timeSource`, it might try to fix
 the problem by varying the sampling rate slightly, or by dropping or
@@ -1839,9 +1835,9 @@ widths: auto
 streaming data at the performance time specified by the
 {hparam}`atPerformanceTime` argument, according to that node's time source.
 
-By default, nodes are in a stopped state upon creation, so you have to
-call {hmethod}`StartNode()` once you have a reference to it before anything
-will happen. Starting a node that's already running has no effect.
+By default, nodes are in a stopped state upon creation, so you have to call
+{hmethod}`StartNode()` once you have a reference to it before anything will
+happen. Starting a node that's already running has no effect.
 
 {hmethod}`StopNode()` sends node a request to stop streaming data once the
 specified performance time {hparam}`atPerformanceTime` is reached,
@@ -1964,10 +1960,10 @@ See also: {cpp:func}`~BMediaRoster::SeekTimeSource()`
 :::{cpp:function} status_t BMediaRoster::StopWatching(const BMessenger& notifyHandler, const media_node& node, int32 notificationType)
 :::
 
-{hmethod}`StartWatching()` registers the specified {cpp:class}`BHandler`
-or {cpp:class}`BLooper` as a recipient of notification messages from the
-Media Server. {hmethod}`StopWatching()` cancels this registration so that
-no further notifications will be sent.
+{hmethod}`StartWatching()` registers the specified {cpp:class}`BHandler` or
+{cpp:class}`BLooper` as a recipient of notification messages from the Media
+Server. {hmethod}`StopWatching()` cancels this registration so that no
+further notifications will be sent.
 
 If you're only interested in a particular notification type, you can
 specify that code in the {hparam}`notificationType` argument. If you don't
@@ -2015,10 +2011,10 @@ widths: auto
 :::{cpp:function} status_t BMediaRoster::SyncToNode(const media_node node, bigtime_t atPerformanceTime, bigtime_t timeout = B_INFINITE_TIMEOUT)
 :::
 
-If you want to detect the arrival of a specific performance time on a
-given node, you can do that by calling {hmethod}`SyncToNode()`. Specify the
-node you want to monitor in {hparam}`node`, and the time you want to be
-notified of in {hparam}`atPerformanceTime`. You can, optionally, specify a
+If you want to detect the arrival of a specific performance time on a given
+node, you can do that by calling {hmethod}`SyncToNode()`. Specify the node
+you want to monitor in {hparam}`node`, and the time you want to be notified
+of in {hparam}`atPerformanceTime`. You can, optionally, specify a
 {hparam}`timeout`; if the sync hasn't occurred in {hparam}`timeout`
 microseconds, the request will time out.
 

@@ -18,17 +18,17 @@
 :::{cpp:function} BTimeCode::BTimeCode(const BTimeCode& clone)
 :::
 
-The constructor prepares the {hclass}`BTimeCode` object for use. If you
-use the first form of the constructor, without arguments, you'll have to
-call an appropriate function to set the {hclass}`BTimeCode`'s time
-information before using it for translation purposes. This can be done by
-calling one or more of {cpp:func}`~BTimeCode::SetData()`,
+The constructor prepares the {hclass}`BTimeCode` object for use. If you use
+the first form of the constructor, without arguments, you'll have to call
+an appropriate function to set the {hclass}`BTimeCode`'s time information
+before using it for translation purposes. This can be done by calling one
+or more of {cpp:func}`~BTimeCode::SetData()`,
 {cpp:func}`~BTimeCode::SetType()`,
 {cpp:func}`~BTimeCode::SetMicroseconds()`, or
 {cpp:func}`~BTimeCode::SetLinearFrames()`.
 
-The second form of the constructor accepts as input a time in
-microseconds, {hparam}`us`, and the timecode {hparam}`type`.
+The second form of the constructor accepts as input a time in microseconds,
+{hparam}`us`, and the timecode {hparam}`type`.
 
 The third form accepts as input a time in {hparam}`hours`,
 {hparam}`minutes`, {hparam}`seconds`, and {hparam}`frames`, as well as the
@@ -107,8 +107,8 @@ specifying the new time in linear frames.
 :::{cpp:function} void BTimeCode::SetMicroseconds(bigtime_t us)
 :::
 
-{hmethod}`Microseconds()` returns the {hclass}`BTimeCode` object's time,
-in microseconds. {hmethod}`SetMicroseconds()` lets you change the time,
+{hmethod}`Microseconds()` returns the {hclass}`BTimeCode` object's time, in
+microseconds. {hmethod}`SetMicroseconds()` lets you change the time,
 specifying the new time in microseconds.
 ::::
 
@@ -181,8 +181,8 @@ Adds the time of the {hclass}`BTimeCode` object other to the current
 :::{cpp:function} BTimeCode& operator -=(const BTimeCode& other)
 :::
 
-Subtracts the time of the {hclass}`BTimeCode` object other from the
-current {hclass}`BTimeCode`'s time.
+Subtracts the time of the {hclass}`BTimeCode` object other from the current
+{hclass}`BTimeCode`'s time.
 ::::
 
 ::::{abi-group}
@@ -273,9 +273,9 @@ us_to_timecode() converts the time {hparam}`micros`, which is specified in
 microseconds, into {hparam}`hours`, {hparam}`minutes`, {hparam}`seconds`,
 and {hparam}`frames`.
 
-timecode_to_us() converts the time from {hparam}`hours`,
-{hparam}`minutes`, {hparam}`seconds`, and {hparam}`frames` into
-microseconds, storing the result in {hparam}`micros`.
+timecode_to_us() converts the time from {hparam}`hours`, {hparam}`minutes`,
+{hparam}`seconds`, and {hparam}`frames` into microseconds, storing the
+result in {hparam}`micros`.
 
 The {htype}`timecode_info` structure code is used to determine how the
 conversion should be made, if you specify it. Otherwise
@@ -355,9 +355,9 @@ struct timecode_info {
 };
 :::
 
-The {htype}`timecode_info` structure describes the attributes of a
-timecode type. You probably should just use the {hclass}`BTimeCode` class,
-or the global C functions, though. It just makes your life easier.
+The {htype}`timecode_info` structure describes the attributes of a timecode
+type. You probably should just use the {hclass}`BTimeCode` class, or the
+global C functions, though. It just makes your life easier.
 
 :::{list-table}
 ---

@@ -59,8 +59,8 @@ the public constructor. (A column is the default for ordinary menus; a row
 is the default for {cpp:class}`BMenuBar`s.) This version of the constructor
 isn't designed for {cpp:enumerator}`B_ITEMS_IN_MATRIX` layouts.
 
-A {hclass}`BMenu` object can arrange items that are laid out in a column
-or a row entirely on its own. The menu will be resized to exactly fit the
+A {hclass}`BMenu` object can arrange items that are laid out in a column or
+a row entirely on its own. The menu will be resized to exactly fit the
 items that are added to it.
 
 However, when items are laid out in a custom matrix, the menu needs more
@@ -112,9 +112,9 @@ See also: {cpp:func}`BView::AttachedToWindow()`
 :::{cpp:function} virtual void BMenu::Draw(BRect updateRect)
 :::
 
-Draws the menu. This function is called for you whenever the menu is
-placed on-screen or is updated while on-screen. It's not a function you
-need to call yourself.
+Draws the menu. This function is called for you whenever the menu is placed
+on-screen or is updated while on-screen. It's not a function you need to
+call yourself.
 
 See also: {cpp:func}`BView::Draw()`
 ::::
@@ -185,8 +185,8 @@ class, {cpp:func}`~BMenu::RemoveItem()`
 :::{cpp:function} bool BMenu::AddSeparatorItem()
 :::
 
-Creates an instance of the {cpp:class}`BSeparatorItem` class and adds it
-to the end of the menu list, returning {cpp:expr}`true` if successful and
+Creates an instance of the {cpp:class}`BSeparatorItem` class and adds it to
+the end of the menu list, returning {cpp:expr}`true` if successful and
 {cpp:expr}`false` if not (a very unlikely possibility). This function is a
 shorthand for:
 
@@ -207,11 +207,10 @@ See also: {cpp:func}`~BMenu::AddItem()`
 :::{cpp:function} virtual status_t BMenu::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`~BView::Archive()`, then
-archives the {hclass}`BMenu` by recording its layout and all current
-settings in the {cpp:class}`BMessage` {hparam}`archive`. If the
-{hparam}`deep` flag is {cpp:expr}`true`, all of the menu items are also
-archived.
+Calls the inherited version of {cpp:func}`~BView::Archive()`, then archives
+the {hclass}`BMenu` by recording its layout and all current settings in the
+{cpp:class}`BMessage` {hparam}`archive`. If the {hparam}`deep` flag is
+{cpp:expr}`true`, all of the menu items are also archived.
 
 See also: {cpp:func}`BArchivable::Archive()`,
 {cpp:func}`~BMenu::Instantiate()` static function
@@ -231,13 +230,13 @@ Returns the total number of items in the menu, including separator items.
 :::{cpp:function} BMenuItem* BMenu::FindItem(uint32 command) const
 :::
 
-Returns the item with the specified {hparam}`label`—or the one that sends
-a message with the specified {hparam}`command`. If there's more than one
-item in the menu hierarchy with that particular {hparam}`label` or
-associated with that particular {hparam}`command`, this function returns
-the first one it finds. It recursively searches the menu by working down
-the list of items in order. If an item controls a submenu, it searches the
-submenu before returning to check any remaining items in the menu.
+Returns the item with the specified {hparam}`label`—or the one that sends a
+message with the specified {hparam}`command`. If there's more than one item
+in the menu hierarchy with that particular {hparam}`label` or associated
+with that particular {hparam}`command`, this function returns the first one
+it finds. It recursively searches the menu by working down the list of
+items in order. If an item controls a submenu, it searches the submenu
+before returning to check any remaining items in the menu.
 
 If none of the items in the menu hierarchy meet the stated criterion,
 {hmethod}`FindItem()` returns {cpp:expr}`NULL`.
@@ -272,8 +271,8 @@ the first item in the menu will be selected when it's shown. If
 {hparam}`selectFirst` is {cpp:expr}`false`, the menu is shown without a
 selected item.
 
-The version of {hmethod}`Show()` that doesn't take an argument simply
-calls the version that does and passes it a {hparam}`selectFirst` value of
+The version of {hmethod}`Show()` that doesn't take an argument simply calls
+the version that does and passes it a {hparam}`selectFirst` value of
 {cpp:expr}`false`.
 
 These functions are not ones that you'd ordinarily call, even when
@@ -307,10 +306,10 @@ See also: {cpp:func}`~BMenu::AddItem()`
 :::{cpp:function} void BMenu::InvalidateLayout()
 :::
 
-Forces the {hclass}`BMenu` to recalculate the layout of all menu items
-and, consequently, its own size. It can do this only if the items are
-arranged in a row or a column. If the items are arranged in a matrix, it's
-up to you to keep their layout up-to-date.
+Forces the {hclass}`BMenu` to recalculate the layout of all menu items and,
+consequently, its own size. It can do this only if the items are arranged
+in a row or a column. If the items are arranged in a matrix, it's up to you
+to keep their layout up-to-date.
 
 All {hclass}`BMenu` and {cpp:class}`BMenuItem` functions that change an
 item in a way that might affect the overall menu automatically invalidate
@@ -319,9 +318,9 @@ label of an item might cause the menu to become wider (if it needs more
 room to accommodate the longer label) or narrower (if it no longer needs as
 much room as before).
 
-Therefore, you don't need to call {hmethod}`InvalidateLayout()` after
-using a kit function to change a menu or menu item; it's called for you.
-You'd call it only when making some other change to a menu.
+Therefore, you don't need to call {hmethod}`InvalidateLayout()` after using
+a kit function to change a menu or menu item; it's called for you. You'd
+call it only when making some other change to a menu.
 
 See also: the {hclass}`BMenu` {cpp:func}`constructor <BMenu::BMenu()>`
 ::::
@@ -379,15 +378,16 @@ the item that controls the specified {hparam}`submenu`. Removing the item
 doesn't free it.
 
 - If passed an {hparam}`index`, this function returns a pointer to the item
-so you can free it. It returns a {cpp:expr}`NULL` pointer if the item
-couldn't be removed (for example, if the {hparam}`index` is out-of-range).
+  so you can free it. It returns a {cpp:expr}`NULL` pointer if the item
+  couldn't be removed (for example, if the {hparam}`index` is
+  out-of-range).
 
 - If passed an {hparam}`item`, it returns {cpp:expr}`true` if the item was
-in the list and could be removed, and {cpp:expr}`false` if not.
+  in the list and could be removed, and {cpp:expr}`false` if not.
 
 - If passed a {hparam}`submenu`, it returns {cpp:expr}`true` if the submenu
-is controlled by an item in the menu and that item could be removed, and
-{cpp:expr}`false` otherwise.
+  is controlled by an item in the menu and that item could be removed, and
+  {cpp:expr}`false` otherwise.
 
 When an item is removed from a menu, it loses its target; the cached value
 is set to {cpp:expr}`NULL`. If the item controls a submenu, it remains
@@ -404,10 +404,10 @@ Returns the point where the left top corner of the menu should appear when
 the menu is shown on-screen. The point is specified in the screen
 coordinate system.
 
-This function is called each time a hidden menu (a submenu of another
-menu) is brought to the screen. It can be overridden in a derived class to
-change where the menu appears. For example, the {cpp:class}`BPopUpMenu`
-class overrides it so that a pop-up menu pops up over the controlling item.
+This function is called each time a hidden menu (a submenu of another menu)
+is brought to the screen. It can be overridden in a derived class to change
+where the menu appears. For example, the {cpp:class}`BPopUpMenu` class
+overrides it so that a pop-up menu pops up over the controlling item.
 ::::
 
 ::::{abi-group}
@@ -428,8 +428,8 @@ on-screen.
 Disabling a menu disables its entire branch of the menu hierarchy. All
 items in the menu, including those that control other menus, are disabled.
 
-{hmethod}`IsEnabled()` returns {cpp:expr}`true` if the {hclass}`BMenu`,
-and every {hclass}`BMenu` above it in the menu hierarchy, is enabled. It
+{hmethod}`IsEnabled()` returns {cpp:expr}`true` if the {hclass}`BMenu`, and
+every {hclass}`BMenu` above it in the menu hierarchy, is enabled. It
 returns {cpp:expr}`false` if the {hclass}`BMenu`, or any {hclass}`BMenu`
 above it in the menu hierarchy, is disabled.
 
@@ -481,11 +481,11 @@ See also: {cpp:func}`~BMenu::SetRadioMode()`
 :::{cpp:function} float BMenu::MaxContentWidth() const
 :::
 
-These functions set and return the maximum width of an item's content
-area. The content area is where the item label is drawn; it excludes the
-margin on the left where a check mark might be placed and the margin on the
-right where a shortcut character or a submenu symbol might appear. The
-content area is the same size for all items in the menu.
+These functions set and return the maximum width of an item's content area.
+The content area is where the item label is drawn; it excludes the margin
+on the left where a check mark might be placed and the margin on the right
+where a shortcut character or a submenu symbol might appear. The content
+area is the same size for all items in the menu.
 
 Normally, a menu will be wide enough to accommodate its longest item.
 However, items wider than the maximum set by
@@ -584,10 +584,10 @@ See also: {cpp:func}`BMenuItem::SetTrigger()`
 :::{cpp:function} BMenu * BMenu::Supermenu() const
 :::
 
-These functions return the supermenu item that controls the
-{hclass}`BMenu` and the supermenu where that item is located. The supermenu
-could be a {cpp:class}`BMenuBar` object. If the {hclass}`BMenu` hasn't been
-made the submenu of another menu, both functions return {cpp:expr}`NULL`.
+These functions return the supermenu item that controls the {hclass}`BMenu`
+and the supermenu where that item is located. The supermenu could be a
+{cpp:class}`BMenuBar` object. If the {hclass}`BMenu` hasn't been made the
+submenu of another menu, both functions return {cpp:expr}`NULL`.
 
 See also: {cpp:func}`~BMenu::AddItem()`
 ::::
@@ -612,8 +612,8 @@ click-to-open preference, {hmethod}`Track()` will leave the menu open if
 the user releases the mouse button while the cursor is inside the
 rectangle. The rectangle should be stated in the screen coordinate system.
 
-{hmethod}`Track()` is called by the {hclass}`BMenu` to initiate tracking
-in the menu hierarchy. You would need to call it yourself only if you're
+{hmethod}`Track()` is called by the {hclass}`BMenu` to initiate tracking in
+the menu hierarchy. You would need to call it yourself only if you're
 implementing a different kind of menu that starts to track the cursor under
 nonstandard circumstances.
 ::::
@@ -624,8 +624,8 @@ nonstandard circumstances.
 :::{cpp:function} static BArchivable* BMenu::Instantiate(BMessage* archive)
 :::
 
-Returns a new {hclass}`BMenu` object, allocated by new and created with
-the version of the constructor that takes a {cpp:class}`BMessage` archive.
+Returns a new {hclass}`BMenu` object, allocated by new and created with the
+version of the constructor that takes a {cpp:class}`BMessage` archive.
 However, if the {hparam}`archive` message doesn't contain data for a
 {hclass}`BMenu` object, {hmethod}`Instantiate()` returns {cpp:expr}`NULL`.
 
@@ -640,8 +640,8 @@ consisting of the following messages:
 
 ### The Enabled Property
 
-The "Enabled" property reflects whether the menu or menu item is enabled
-or disabled.
+The "Enabled" property reflects whether the menu or menu item is enabled or
+disabled.
 
 :::{list-table}
 ---
@@ -661,8 +661,8 @@ widths: auto
 
 	- {cpp:enumerator}`B_DIRECT_SPECIFIER`
 
-	- Returns {cpp:expr}`true` if menu or menu item is enabled;
-{cpp:expr}`false` otherwise.
+	- Returns {cpp:expr}`true` if menu or menu item is enabled; {cpp:expr}`false`
+otherwise.
 
 -
 	- {cpp:enumerator}`B_SET_PROPERTY`
@@ -765,7 +765,7 @@ widths: auto
 	- {cpp:enumerator}`B_CREATE_PROPERTY`
 
 	- {cpp:enumerator}`B_NAME_SPECIFIER`,   {cpp:enumerator}`B_INDEX_SPECIFIER`,
-{cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
+ {cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
 
 	- Adds a new menu item at the specified index with the text label found in
 "data" and the {htype}`int32` command found in "what" (used as the
@@ -775,7 +775,7 @@ widths: auto
 	- {cpp:enumerator}`B_DELETE_PROPERTY`
 
 	- {cpp:enumerator}`B_NAME_SPECIFIER`,   {cpp:enumerator}`B_INDEX_SPECIFIER`,
-{cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
+ {cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
 
 	- Removes the selected menu or menus.
 
@@ -820,7 +820,7 @@ widths: auto
 	- {cpp:enumerator}`B_CREATE_PROPERTY`
 
 	- {cpp:enumerator}`B_NAME_SPECIFIER`,   {cpp:enumerator}`B_INDEX_SPECIFIER`,
-{cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
+ {cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
 
 	- Adds a new menu item at the specified index with the text label found in
 "data" and the {htype}`int32` command found in "what" (used as the
@@ -830,7 +830,7 @@ widths: auto
 	- {cpp:enumerator}`B_DELETE_PROPERTY`
 
 	- {cpp:enumerator}`B_NAME_SPECIFIER`,   {cpp:enumerator}`B_INDEX_SPECIFIER`,
-{cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
+ {cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
 
 	- Removes the specified menu item from its parent menu.
 
@@ -838,7 +838,7 @@ widths: auto
 	- {cpp:enumerator}`B_EXECUTE_PROPERTY`
 
 	- {cpp:enumerator}`B_NAME_SPECIFIER`,   {cpp:enumerator}`B_INDEX_SPECIFIER`,
-{cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
+ {cpp:enumerator}`B_REVERSE_INDEX_SPECIFIER`
 
 	- Invokes the specified menu item.
 
@@ -856,8 +856,8 @@ specifier off the stack.
 
 ## Archived Fields
 
-The {cpp:func}`~BMenu::Archive()` function adds the following fields to
-its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BMenu::Archive()` function adds the following fields to its
+{cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---
@@ -939,6 +939,6 @@ widths: auto
 
 :::
 
-Some of these fields may not be present if the setting they represent
-isn't used, or is the default value. For example, if the menu is disabled,
-the {hparam}`_disable` field won't be found in the archive.
+Some of these fields may not be present if the setting they represent isn't
+used, or is the default value. For example, if the menu is disabled, the
+{hparam}`_disable` field won't be found in the archive.

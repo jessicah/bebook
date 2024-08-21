@@ -5,8 +5,8 @@
 
 ## Constructor and Destructor
 
-The {hclass}`BTranslationUtils` class only contains static functions and
-so there is no constructor or destructor.
+The {hclass}`BTranslationUtils` class only contains static functions and so
+there is no constructor or destructor.
 
 ## Static Functions
 

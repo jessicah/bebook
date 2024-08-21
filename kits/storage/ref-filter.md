@@ -25,8 +25,8 @@ the file panel's file list. Simply return {cpp:expr}`true` or
 Technically, {hmethod}`Filter()` is invoked when…
 
 - …the file panel's panel directory is set, either through the
-{hclass}`BFilePanel` constructor or the
-{cpp:func}`~BFilePanel::SetPanelDirectory()`, and when…
+  {hclass}`BFilePanel` constructor or the
+  {cpp:func}`~BFilePanel::SetPanelDirectory()`, and when…
 
 - …the file panel's {cpp:func}`~BFilePanel::Refresh()` function is called.
 
@@ -38,9 +38,9 @@ not a great idea to do so: At any particular invocation of
 {hmethod}`Filter()`, the {hclass}`BRefFilter` doesn't which
 {cpp:class}`BFilePanel` object it's working for.
 
-You maintain ownership of the {hclass}`BRefFilter` objects that you
-create. Assigning a ref filter to a file panel does not hand ownership of
-the {hclass}`BRefFilter` to the {cpp:class}`BFilePanel`. You shouldn't
-delete a {hclass}`BRefFilter` while a {cpp:class}`BFilePanel` is still
-using it; but it's your responsibility to delete it when it's done.
+You maintain ownership of the {hclass}`BRefFilter` objects that you create.
+Assigning a ref filter to a file panel does not hand ownership of the
+{hclass}`BRefFilter` to the {cpp:class}`BFilePanel`. You shouldn't delete a
+{hclass}`BRefFilter` while a {cpp:class}`BFilePanel` is still using it; but
+it's your responsibility to delete it when it's done.
 ::::

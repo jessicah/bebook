@@ -12,9 +12,9 @@
 :::{cpp:function} BResources::BResources(BFile* file, bool clobber = false)
 :::
 
-Creates a new {hclass}`BResources` object. You can initialize the object
-by passing a pointer to a valid {cpp:class}`BFile`; without the argument,
-the object won't refer to a file until {cpp:func}`~BResources::SetTo()` is
+Creates a new {hclass}`BResources` object. You can initialize the object by
+passing a pointer to a valid {cpp:class}`BFile`; without the argument, the
+object won't refer to a file until {cpp:func}`~BResources::SetTo()` is
 called.
 
 If {hparam}`clobber` is {cpp:expr}`true`, the file that's referred to by
@@ -45,16 +45,16 @@ Adds a new resource to the file. For this function to have an effect, the
 file must be open for writing. The arguments are:
 
 - {hparam}`type` is one of the {htype}`type_code` constants defined in
-support/TypeConstants.h.
+  support/TypeConstants.h.
 
-- {hparam}`id` is the ID number that you want to assign to the resource. The
-value of the ID has no meaning other than that which your application gives
-it; the only restriction on the ID is that the combination of it and the
-data type constant must be unique across all resources in this resource
-file.
+- {hparam}`id` is the ID number that you want to assign to the resource.
+  The value of the ID has no meaning other than that which your application
+  gives it; the only restriction on the ID is that the combination of it
+  and the data type constant must be unique across all resources in this
+  resource file.
 
 - {hparam}`data` is a pointer to the data that you want the resource to
-hold.
+  hold.
 
 - {hparam}`length` is the length of the data buffer, in bytes.
 
@@ -118,25 +118,25 @@ Returns the {cpp:class}`BFile` the {hclass}`BResource` object references.
 :::{cpp:function} bool BResources::GetResourceInfo(const void* byPointer, type_code* typeFound, int32* idFound, size_t* lengthFound, const char** nameFound)
 :::
 
-These functions return information about a specific resource, as
-identified by the first one or two arguments:
+These functions return information about a specific resource, as identified
+by the first one or two arguments:
 
 - The first version ({hparam}`byIndex`) searches for the
-{hparam}`byIndex`'th resource in the file.
+  {hparam}`byIndex`'th resource in the file.
 
 - The second ({hparam}`byType`/{hparam}`andIndex`) searches for the
-{hparam}`byIndex`'th resource that has the given type.
+  {hparam}`byIndex`'th resource that has the given type.
 
 - The third ({hparam}`byType`/{hparam}`andId`) looks for the resource with
-the unique combination of type and ID.
+  the unique combination of type and ID.
 
 - The fourth ({hparam}`byType`/{hparam}`andName`) looks for the first
-resource that has the given type and name.
+  resource that has the given type and name.
 
 - The last ({hparam}`byPointer`) returns information about the resource
-whose data is pointed to by {hparam}`byPointer`. This can be used to trace
-a resource that's already been loaded with
-{cpp:func}`~BResources::LoadResource()` back to its information.
+  whose data is pointed to by {hparam}`byPointer`. This can be used to
+  trace a resource that's already been loaded with
+  {cpp:func}`~BResources::LoadResource()` back to its information.
 
 The other arguments return the other statistics about the resource (if
 found).
@@ -170,9 +170,9 @@ is unique. See "{ref}`Identifying a Resource within a Resource File`."
 :::{cpp:function} const void* BResources::LoadResource(type_code type, const char* name, size_t* outSize)
 :::
 
-Loads the specified resource into memory. The resource can be identified
-by either type code and ID or by type code and name. See "{ref}`Identifying
-a Resource within a Resource File`."
+Loads the specified resource into memory. The resource can be identified by
+either type code and ID or by type code and name. See "{ref}`Identifying a
+Resource within a Resource File`."
 
 The returned pointer belongs to the resource file; it's valid until the
 resource gets changed. If an error occurs while trying to load the
@@ -284,8 +284,8 @@ widths: auto
 	- The file is opened read-only.
 -
 	- {cpp:enumerator}`B_NOT_ALLOWED`.
-	- Couldn't find the specified resource, or an error occurred trying to
-		remove it (first form of {cpp:func}`~BResources::RemoveResource()`).
+	- Couldn't find the specified resource, or an error occurred trying to remove
+		it (first form of {cpp:func}`~BResources::RemoveResource()`).
 -
 	- {cpp:enumerator}`B_ERROR`.
 	- Couldn't find the specified resource, the pointer doesn't indicate a valid

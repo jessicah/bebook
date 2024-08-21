@@ -34,8 +34,8 @@ int main(void) {
 }
 :::
 
-Because {cpp:class}`BMediaRoster` is derived from {cpp:class}`BLooper`,
-you should create your {cpp:class}`BApplication` before calling
+Because {cpp:class}`BMediaRoster` is derived from {cpp:class}`BLooper`, you
+should create your {cpp:class}`BApplication` before calling
 {cpp:func}`BMediaRoster::Roster()`, although the {cpp:class}`BApplication`
 doesn't have to be running yet.
 
@@ -52,65 +52,65 @@ you can register to receive such notifications by calling
 
 To play a media file from disk, you would follow the following steps:
 
-- Create an {cpp:func}`entry_ref <entry::ref>` that refers to the file to be
-played.
+- Create an {cpp:func}`entry_ref <entry::ref>` that refers to the file to
+  be played.
 
 - Call {cpp:func}`~BMediaRoster::SniffRef()` to obtain a
-{cpp:any}`dormant_node_info` reference to the node that is best capable of
-playing back the media file.
+  {cpp:any}`dormant_node_info` reference to the node that is best capable
+  of playing back the media file.
 
 - Call {cpp:func}`~BMediaRoster::InstantiateDormantNode()` to instantiate
-the node; this returns a {cpp:func}`media_node <media::node>` that you can
-use for other {cpp:class}`BMediaRoster` calls.
+  the node; this returns a {cpp:func}`media_node <media::node>` that you
+  can use for other {cpp:class}`BMediaRoster` calls.
 
 - Use {cpp:func}`~BMediaRoster::SetRefFor()` to pass the
-{cpp:func}`entry_ref <entry::ref>` of the file to be played to the node.
+  {cpp:func}`entry_ref <entry::ref>` of the file to be played to the node.
 
 - Call {cpp:func}`~BMediaRoster::GetFreeOutputsFor()` to obtain a
-{cpp:func}`media_output <media::output>` structure describing an available
-output on the producer node. This structure contains a
-{cpp:func}`media_source <media::source>` you can pass to
-{cpp:func}`~BMediaRoster::Connect()` as the source of the media data.
+  {cpp:func}`media_output <media::output>` structure describing an
+  available output on the producer node. This structure contains a
+  {cpp:func}`media_source <media::source>` you can pass to
+  {cpp:func}`~BMediaRoster::Connect()` as the source of the media data.
 
 - The {cpp:func}`media_output <media::output>` structure returned by
-{cpp:func}`~BMediaRoster::GetFreeOutputsFor()` contains a
-{cpp:func}`media_format <media::format>` field that indicates the general
-type of media data contained by the media file; if you don't already know
-what type of data you're playing back (audio or video or whatever), this
-will let you determine what you'll be playing.
+  {cpp:func}`~BMediaRoster::GetFreeOutputsFor()` contains a
+  {cpp:func}`media_format <media::format>` field that indicates the general
+  type of media data contained by the media file; if you don't already know
+  what type of data you're playing back (audio or video or whatever), this
+  will let you determine what you'll be playing.
 
 - You can use this value to determine what type of destination is needed to
-output the data (for example, {cpp:enumerator}`B_MEDIA_RAW_AUDIO` would go
-to an audio output, and {cpp:enumerator}`B_MEDIA_RAW_VIDEO` would go to a
-video output).
+  output the data (for example, {cpp:enumerator}`B_MEDIA_RAW_AUDIO` would
+  go to an audio output, and {cpp:enumerator}`B_MEDIA_RAW_VIDEO` would go
+  to a video output).
 
 - Call {cpp:func}`GetAudioMixer() <BMediaRoster::StartWatching>` to get a
-{cpp:func}`media_node <media::node>` for the default audio mixer (if the
-media data is audio), or {cpp:func}`~BMediaRoster::GetVideoOutput()` to get
-a {cpp:func}`media_node <media::node>` for the default video output (if the
-media data is video).
+  {cpp:func}`media_node <media::node>` for the default audio mixer (if the
+  media data is audio), or {cpp:func}`~BMediaRoster::GetVideoOutput()` to
+  get a {cpp:func}`media_node <media::node>` for the default video output
+  (if the media data is video).
 
 - Use {cpp:func}`~BMediaRoster::GetFreeInputsFor()` to obtain a
-{cpp:func}`media_input <media::input>` structure describing an available
-input on the consumer node (the audio mixer or video output); this
-structure contains a {cpp:func}`media_destination <media::destination>` you
-can pass to {cpp:func}`~BMediaRoster::Connect()`.
+  {cpp:func}`media_input <media::input>` structure describing an available
+  input on the consumer node (the audio mixer or video output); this
+  structure contains a {cpp:func}`media_destination <media::destination>`
+  you can pass to {cpp:func}`~BMediaRoster::Connect()`.
 
 - Call {cpp:func}`~BMediaRoster::Connect()` to connect the source to the
-destination.
+  destination.
 
 - Next, you need to set the time source for the media file's node. Normally
-you'll set this to the preferred time source. The audio mixer or video
-output is already slaved to an appropriate time source.
+  you'll set this to the preferred time source. The audio mixer or video
+  output is already slaved to an appropriate time source.
 
 - Finally, you can use {cpp:func}`~BMediaRoster::StartNode()` to start the
-producer, consumer, and time source. The media file should begin playing
-back.
+  producer, consumer, and time source. The media file should begin playing
+  back.
 
-Let's look at actual sample code that does this. This example is
-particular to playing movie files; in particular, it assumes that the video
-is encoded ({cpp:enumerator}`B_MEDIA_ENCODED_VIDEO`) and that the audio is
-in a raw audio format ({cpp:enumerator}`B_MEDIA_RAW_AUDIO`). However, it
+Let's look at actual sample code that does this. This example is particular
+to playing movie files; in particular, it assumes that the video is encoded
+({cpp:enumerator}`B_MEDIA_ENCODED_VIDEO`) and that the audio is in a raw
+audio format ({cpp:enumerator}`B_MEDIA_RAW_AUDIO`). However, it
 demonstrates the principles of playing both encoded and raw media formats,
 and you can easily extrapolate from it any type of playback you need. First
 it's necessary to identify an appropriate node to handle the file, and to
@@ -176,32 +176,32 @@ resides in an add-on, instead of within the application itself. The
 {hparam}`nodeInfo` structure is passed into the function, and on return,
 the {hparam}`mediaFileNode` has been set up for the appropriate node.
 
-Since the {cpp:func}`media_node <media::node>` {hparam}`mediaFileNode` is
-a file handling node, the {cpp:func}`~BMediaRoster::SetRefFor()` function
-is then called to tell the newly-instantiated file handler node what file
-it should handle. The inputs here are:
+Since the {cpp:func}`media_node <media::node>` {hparam}`mediaFileNode` is a
+file handling node, the {cpp:func}`~BMediaRoster::SetRefFor()` function is
+then called to tell the newly-instantiated file handler node what file it
+should handle. The inputs here are:
 
 - {hparam}`mediaFileNode` is the node whose file reference is to be set.
 
 - {hparam}`ref` is the file that the node should reference.
 
-- {cpp:expr}`false` indicates that the file must already exist. If this flag
-were {cpp:expr}`true`, and the file indicated by {hparam}`ref` were
-nonexistent, the node would create a new file. Since we're playing a file,
-we don't want to do that.
+- {cpp:expr}`false` indicates that the file must already exist. If this
+  flag were {cpp:expr}`true`, and the file indicated by {hparam}`ref` were
+  nonexistent, the node would create a new file. Since we're playing a
+  file, we don't want to do that.
 
 - {hparam}`duration` is a {htype}`bigtime_t` variable that will receive the
-duration of the media file, in microseconds.
+  duration of the media file, in microseconds.
 
 Once this has been accomplished, it's time to instantiate the other nodes
 needed to perform the media playback. Note that your code should check the
 error results from each of these calls and only proceed if
 {cpp:enumerator}`B_OK` is returned.
 
-The {hmethod}`Setup()` and {hmethod}`Start()` functions used in the
-example above are given below. {hmethod}`Setup()` actually sets up the
-connections and instantiates the various other nodes (such as codecs and
-output nodes) required to play back the media data. Let's take a look at
+The {hmethod}`Setup()` and {hmethod}`Start()` functions used in the example
+above are given below. {hmethod}`Setup()` actually sets up the connections
+and instantiates the various other nodes (such as codecs and output nodes)
+required to play back the media data. Let's take a look at
 {hmethod}`Setup()` next:
 
 :::{code} cpp
@@ -319,9 +319,8 @@ structure. Information about the node is returned in {hparam}`nodeInfo`.
 {hparam}`nodeCount` indicates the number of matching nodes that were found.
 If it's zero, an error is returned.
 
-Note that in real life you should ask for several nodes, and search
-through them, looking at the formats until you find one that best meets
-your needs.
+Note that in real life you should ask for several nodes, and search through
+them, looking at the formats until you find one that best meets your needs.
 
 Then we use {cpp:func}`~BMediaRoster::InstantiateDormantNode()` to
 instantiate the codec node, and locate inputs into the node (that accept
@@ -356,9 +355,8 @@ output by the {hparam}`mediaFileNode`.
 output from the media node's video output ({hparam}`fileNodeOutput`) to the
 codec node's input.
 
-You may wonder what's up with the
-{hparam}`fileNodeOutput`.{hparam}`source` and
-{hparam}`codecInput`.{hparam}`destination` structures. These
+You may wonder what's up with the {hparam}`fileNodeOutput`.{hparam}`source`
+and {hparam}`codecInput`.{hparam}`destination` structures. These
 {cpp:func}`media_source <media::source>` and {cpp:func}`media_destination
 <media::destination>` structures are simplified descriptors of the two ends
 of the connection. They contain only the data absolutely needed for the
@@ -439,14 +437,14 @@ time a few moments in the future for playback to begin, and schedule each
 node to start playing at that time. So we begin by computing that time in
 the future.
 
-The {cpp:func}`BTimeSource::RealTime()` static member function is called
-to obtain the current real system time. We add a fiftieth of a second to
-that time, and convert it into performance time units. This is the time at
-which the performance of the movie will begin (basically a fiftieth of a
-second from "now"). This value is saved in {hparam}`startTime`. These are
-added to the value returned by
-{cpp:func}`~BMediaRoster::GetStartLatencyFor()`, which returns the time
-required to actually start the time source and all the nodes slaved to it.
+The {cpp:func}`BTimeSource::RealTime()` static member function is called to
+obtain the current real system time. We add a fiftieth of a second to that
+time, and convert it into performance time units. This is the time at which
+the performance of the movie will begin (basically a fiftieth of a second
+from "now"). This value is saved in {hparam}`startTime`. These are added to
+the value returned by {cpp:func}`~BMediaRoster::GetStartLatencyFor()`,
+which returns the time required to actually start the time source and all
+the nodes slaved to it.
 
 Then we simply call {cpp:func}`BMediaRoster::StartNode()` for each node,
 specifying {hparam}`startTime` as the performance time at which playback
@@ -527,8 +525,8 @@ if (currentTime >= startTime+duration) {
 }
 :::
 
-This works by obtaining the time source's performance time and comparing
-it to the time at which playback of the movie was begun plus the movie's
+This works by obtaining the time source's performance time and comparing it
+to the time at which playback of the movie was begun plus the movie's
 duration (both of which were saved when we initially set up and began
 playback of the movie, as seen in the code in the previous section above).
 
@@ -539,22 +537,21 @@ set {hparam}`isPlaying` to {cpp:expr}`false`; otherwise, this value remains
 
 ### Using BMediaRoster Functions from Nodes
 
-You can issue {cpp:class}`BMediaRoster` function calls from within your
-own node, however, as a general rule, you shouldn't call
+You can issue {cpp:class}`BMediaRoster` function calls from within your own
+node, however, as a general rule, you shouldn't call
 {cpp:class}`BMediaRoster` functions from within your control thread, or
 while the control thread is blocked. Many {cpp:class}`BMediaRoster`
 functions use synchronous turnarounds, and will deadlock in this situation.
 You should assume, for safety's sake, that all {cpp:class}`BMediaRoster`
 functions will deadlock if used in these cases.
 
-For example, if you have an application that's playing video into a
-window, and you call {cpp:func}`~BMediaRoster::StopNode()` from the
-window's {cpp:func}`~BWindow::MessageReceived()` function, a deadlock would
-occur if the video player node blocks waiting on the window to be unlocked,
-and the {cpp:func}`~BMediaRoster::StopNode()` function is keeping the
-window locked while it waits for the video producer node, which is blocked
-waiting on the consumer node, and so forth. Deadlock results, and that's a
-bad thing.
+For example, if you have an application that's playing video into a window,
+and you call {cpp:func}`~BMediaRoster::StopNode()` from the window's
+{cpp:func}`~BWindow::MessageReceived()` function, a deadlock would occur if
+the video player node blocks waiting on the window to be unlocked, and the
+{cpp:func}`~BMediaRoster::StopNode()` function is keeping the window locked
+while it waits for the video producer node, which is blocked waiting on the
+consumer node, and so forth. Deadlock results, and that's a bad thing.
 
 Instead, you should consider creating a seperate {cpp:class}`BLooper` that
 manages your nodes. Future versions of the Media Kit will provide

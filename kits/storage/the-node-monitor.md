@@ -19,8 +19,8 @@ You can also ask to be notified when…
 
 :::{admonition} Note
 :class: note
-Volume monitoring is also provided by the {cpp:class}`BVolumeRoster`
-class: {cpp:class}`BVolumeRoster` can talk to the Node Monitor for you. The
+Volume monitoring is also provided by the {cpp:class}`BVolumeRoster` class:
+{cpp:class}`BVolumeRoster` can talk to the Node Monitor for you. The
 {cpp:class}`BVolumeRoster` volume-watching API is more humane than that
 which you'll find here.
 :::
@@ -30,16 +30,16 @@ sending a {cpp:class}`BMessage` to the target of your choice.
 
 ## Node Monitor Functions
 
-There are two Node Monitor functions, watch_node() and stop_watching().
-The names are a wee bit misleading, so before we go on to the full
-technical descriptions, let's nip some buds:
+There are two Node Monitor functions, watch_node() and stop_watching(). The
+names are a wee bit misleading, so before we go on to the full technical
+descriptions, let's nip some buds:
 
 - {cpp:func}`watch_node()` tells the Node Monitor to start _or stop_
-watching a _specific_ node, or to watch for volumes being mounted and
-unmounted. Memorize the emphasized words.
+  watching a _specific_ node, or to watch for volumes being mounted and
+  unmounted. Memorize the emphasized words.
 
 - {cpp:func}`stop_watching()` tells the Node Monitor to stop sending
-notifications to a particular target.
+  notifications to a particular target.
 
 ::::{abi-group}
 :::{cpp:function} status_t The Node Monitor::watch_node(const node_ref* nref, uint32 flags, BMessenger messenger)
@@ -51,21 +51,21 @@ notifications to a particular target.
 watch_node() tells the Node Monitor to…
 
 - …start paying attention to the node specified by the {cpp:func}`node_ref
-<node::ref>` argument. If you're watching for volumes (only),
-{hparam}`nref` can be {cpp:expr}`NULL`. The easiest way to get a
-{cpp:func}`node_ref <node::ref>` is to invoke
-{cpp:func}`BStatable::GetNodeRef()` on any {cpp:class}`BEntry` or
-{cpp:class}`BNode` object.
+  <node::ref>` argument. If you're watching for volumes (only),
+  {hparam}`nref` can be {cpp:expr}`NULL`. The easiest way to get a
+  {cpp:func}`node_ref <node::ref>` is to invoke
+  {cpp:func}`BStatable::GetNodeRef()` on any {cpp:class}`BEntry` or
+  {cpp:class}`BNode` object.
 
 - The {hparam}`flags` argument lists the changes that you want the Monitor
-to pay attention to. See below for details.
+  to pay attention to. See below for details.
 
 - The target of the change notification messages is specified either as a
-{cpp:class}`BMessenger`, or as a {cpp:class}`BHandler` /
-{cpp:class}`BLooper` pair. (The target specification follows the
-{cpp:func}`BInvoker::SetTarget()` protocol; see the {cpp:class}`BInvoker`
-class for details.) The notification shows up as a {cpp:class}`BMessage` in
-the target's {cpp:func}`~BHandler::MessageReceived()` function.
+  {cpp:class}`BMessenger`, or as a {cpp:class}`BHandler` /
+  {cpp:class}`BLooper` pair. (The target specification follows the
+  {cpp:func}`BInvoker::SetTarget()` protocol; see the {cpp:class}`BInvoker`
+  class for details.) The notification shows up as a {cpp:class}`BMessage`
+  in the target's {cpp:func}`~BHandler::MessageReceived()` function.
 
 :::{admonition} Note
 :class: note
@@ -110,10 +110,10 @@ widths: auto
 		directory, or removing the node altogether.
 -
 	- {cpp:enumerator}`B_WATCH_STAT`
-	- Watches for any change to the node's {htype}`stat` structure. This
-		includes changes to the size, modification date, owner, and so on. See
-		"The stat Structure" in the {cpp:class}`BStatable` class for a description
-		of what's in the {htype}`stat` structure.
+	- Watches for any change to the node's {htype}`stat` structure. This includes
+		changes to the size, modification date, owner, and so on. See  "The stat
+		Structure" in the {cpp:class}`BStatable` class for a description of what's
+		in the {htype}`stat` structure.
 -
 	- {cpp:enumerator}`B_WATCH_ATTR`
 	- Watches for changes to any of the node's attributes. This includes adding
@@ -210,10 +210,10 @@ this:
 - The {hparam}`what` value is {cpp:enumerator}`B_NODE_MONITOR`.
 
 - The field named {hparam}`opcode` is an {htype}`int32` constant that tells
-you what happened.
+  you what happened.
 
 - Additional fields give you information (device, node, name, and so on)
-about the node (or volume) that it happened to.
+  about the node (or volume) that it happened to.
 
 The {hparam}`opcode` constants and additional fields are described in
 "{ref}`Opcode Constants`." In general, the opcodes correspond to the flags
@@ -403,8 +403,8 @@ So, what do you do with these fields?
 
 #### Create an entry_ref to the entry.
 
-The {hparam}`device`, {hparam}`directory`, and {hparam}`name` fields can
-be used to create an {htype}`entry_ref` to the new entry:
+The {hparam}`device`, {hparam}`directory`, and {hparam}`name` fields can be
+used to create an {htype}`entry_ref` to the new entry:
 
 :::{code} cpp
 entry_ref ref;
@@ -435,9 +435,9 @@ err = watch_node(&nref, B_WATCH_ALL, be_app_messenger);
 
 #### Create a node_ref to the entry's parent.
 
-Note that the {hparam}`directory` field is a node number. By combining
-this number with the {hparam}`device` field, you can create a
-{htype}`node_ref` that points to the entry's parent. From there, you're a
+Note that the {hparam}`directory` field is a node number. By combining this
+number with the {hparam}`device` field, you can create a {htype}`node_ref`
+that points to the entry's parent. From there, you're a
 {cpp:func}`~BDirectory::SetTo()` away from a {cpp:class}`BDirectory`
 object:
 
@@ -525,16 +525,16 @@ the node's entry is "unlinked" from its directory. The node itself may
 linger for while after that. Follow this logic:
 
 - When a file (regardless of flavor) is removed, the entry for that file is
-immediately removed ("unlinked") from the file hierarchy, and the Node
-Monitor message is immediately sent—even if you have an object that has
-opened the file's node.
+  immediately removed ("unlinked") from the file hierarchy, and the Node
+  Monitor message is immediately sent—even if you have an object that has
+  opened the file's node.
 
 - The node isn't actually destroyed until the last open object (to that
-node) is destroyed. (In POSIX speak, the node is destroyed when the last
-file descriptor to the node is closed.)
+  node) is destroyed. (In POSIX speak, the node is destroyed when the last
+  file descriptor to the node is closed.)
 
-- Until the node is destroyed, the open objects (file descriptors) can still
-access the node's data.
+- Until the node is destroyed, the open objects (file descriptors) can
+  still access the node's data.
 
 You can take advantage of this to warn a user that a file is going to go
 away, or to make a backup, or whatever. For example, let's say you have an
@@ -571,8 +571,8 @@ status_t YourApp::OpenFile(const char *pathname)
 }
 :::
 
-Now we receive a Node Monitor message telling us the node has been
-removed. We stuff the {hparam}`device` and {hparam}`node` fields into a
+Now we receive a Node Monitor message telling us the node has been removed.
+We stuff the {hparam}`device` and {hparam}`node` fields into a
 {htype}`node_ref` and pass them to a (fictitious) {hmethod}`AlertUser()`
 function:
 
@@ -679,9 +679,9 @@ to.
 
 	- {cpp:enumerator}`B_INT32_TYPE`
 
-	- The {htype}`dev_t` number of the device that the moved node entry lives
-on. (You can't move a file between devices, so this value will be apply to
-the file's old and new locations.)
+	- The {htype}`dev_t` number of the device that the moved node entry lives on.
+(You can't move a file between devices, so this value will be apply to the
+file's old and new locations.)
 
 -
 	- {hparam}`node`
@@ -703,17 +703,16 @@ Parsing the message is much the same as for
 changes. See "{cpp:func}`Parsing and Tricks
 <TheNodeMonitor::ParsingAndTricks>`"
 
-Moving a node doesn't affect the objects that hold the node open. They
-(the objects) can continue to read and write data from the node.
+Moving a node doesn't affect the objects that hold the node open. They (the
+objects) can continue to read and write data from the node.
 ::::
 
 ::::{abi-group}
 :::{cpp:enumerator} B_STAT_CHANGED
 :::
 
-A field in the node's {htype}`stat` structure changed (this doesn't
-include the {htype}`stat` structure disappearing because the node was
-deleted).
+A field in the node's {htype}`stat` structure changed (this doesn't include
+the {htype}`stat` structure disappearing because the node was deleted).
 
 You get this if you applied {cpp:enumerator}`B_WATCH_STAT` on the node
 itself. The message's fields are:
@@ -736,8 +735,8 @@ widths: auto
 
 	- {cpp:enumerator}`B_INT32_TYPE`
 
-	- {cpp:enumerator}`B_STAT_CHANGED indicates that some statistic of a node
-(as recorded in its stat structure) changed.`
+	- {cpp:enumerator}`B_STAT_CHANGED indicates that some statistic of a node (as
+recorded in its stat structure) changed.`
 
 -
 	- {hparam}`node`
@@ -760,21 +759,21 @@ The stat structure is described in "The stat Structure" in the
 {cpp:class}`BStatable` class. The fields that you can change are:
 
 - Owner ({hparam}`st_uid`), group ({hparam}`st_gid`), and permissions (low
-four bytes of {hparam}`st_mode`).
+  four bytes of {hparam}`st_mode`).
 
 - Creation ({hparam}`st_ctime`), modification ({hparam}`st_mtime`), and
-access times ({hparam}`st_atime`; currently unused).
+  access times ({hparam}`st_atime`; currently unused).
 
 - The size of the node's data ({hparam}`st_size`). The measurement doesn't
-include attributes.
+  include attributes.
 
 A couple of important points:
 
 - The {cpp:enumerator}`B_STAT_CHANGED` message doesn't give you enough
-information to construct an object from which you can get a {htype}`stat`
-structure. In other words, you can't play the same games that were
-described in "{cpp:func}`Parsing and Tricks
-<TheNodeMonitor::ParsingAndTricks>`."
+  information to construct an object from which you can get a {htype}`stat`
+  structure. In other words, you can't play the same games that were
+  described in "{cpp:func}`Parsing and Tricks
+  <TheNodeMonitor::ParsingAndTricks>`."
 
 - The message also doesn't tell you which stat field changed.
 
@@ -885,8 +884,8 @@ system volume) has been mounted.`
 
 	- {cpp:enumerator}`B_INT32_TYPE`
 
-	- The {htype}`dev_t` number of the device that holds the directory of the
-new device's mount point.
+	- The {htype}`dev_t` number of the device that holds the directory of the new
+device's mount point.
 
 -
 	- "directory"

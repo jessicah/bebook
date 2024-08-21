@@ -29,8 +29,8 @@ Using the API is very simple. Just follow these basic steps:
 - Call {cpp:func}`load_driver_settings()` to load the settings data.
 
 - Use {cpp:func}`get_driver_settings()` or
-{cpp:func}`get_driver_parameter()` and
-{cpp:func}`get_driver_boolean_parameter()` to read the settings.
+  {cpp:func}`get_driver_parameter()` and
+  {cpp:func}`get_driver_boolean_parameter()` to read the settings.
 
 - Call {cpp:func}`unload_driver_settings()` when you're done.
 
@@ -41,22 +41,20 @@ Driver settings files are kept in ~/config/settings/kernel/drivers.
 The settings file is formatted like this:
 
 - Words beginning with "#" indicate that the rest of the line should be
-treated as a comment.
+  treated as a comment.
 
 - Parameters can have values and subparameters. A parameter has the
-following form in the settings file:
+  following form in the settings file:
 
-  :::{code} sh
-name [value]* [{
+  :::{code} sh name [value]* [{
 [parameter]*
-}] ['n',',']
-:::
+}] ['n',','] :::
 
   Where [ … ] indicates an optional part, and [ … ]* indicates an optional
-repeated part.
+  repeated part.
 
 - Names and values may not contain spaces unless the spaces are preceded by
-a backslash ('\') or the words are enclosed in quotes.
+  a backslash ('\') or the words are enclosed in quotes.
 
 Here's an example settings file:
 
@@ -131,21 +129,21 @@ opaque reference protects you against any future changes in the kernel.
 There are three functions you can use to read driver settings:
 
 - {cpp:func}`get_driver_boolean_parameter()` returns a boolean parameter's
-value.
+  value.
 
 - {cpp:func}`get_driver_parameter()` returns a string parameter's value.
 
 - {cpp:func}`get_driver_settings()` returns all the settings at once,
-encapsulated in a hierarchical format.
+  encapsulated in a hierarchical format.
 
 #### Reading a Boolean Parameter
 
-Let's look at a simple driver that has one boolean parameter, "debug",
-that enables a special debug mode. The value of this parameter is
-represented in the settings file by a line "debug value", where value is
-either "true" or "false". By default, if there's no setting for the debug
-parameter, false should be assumed. If the parameter is specified but no
-value is included, we want to assume that the user means true.
+Let's look at a simple driver that has one boolean parameter, "debug", that
+enables a special debug mode. The value of this parameter is represented in
+the settings file by a line "debug value", where value is either "true" or
+"false". By default, if there's no setting for the debug parameter, false
+should be assumed. If the parameter is specified but no value is included,
+we want to assume that the user means true.
 
 Our code to read this setting looks like this:
 
@@ -156,10 +154,10 @@ bool debug = get_driver_boolean_parameter(handle, "debug",
 unload_driver_settings(handle);
 :::
 
-If there's no settings file, {cpp:func}`load_driver_settings()` will
-return {cpp:expr}`NULL`. In this case,
-{cpp:func}`get_driver_boolean_parameter()` will return {cpp:expr}`false`
-(the value we're passing as the {hparam}`unknownValue` argument).
+If there's no settings file, {cpp:func}`load_driver_settings()` will return
+{cpp:expr}`NULL`. In this case, {cpp:func}`get_driver_boolean_parameter()`
+will return {cpp:expr}`false` (the value we're passing as the
+{hparam}`unknownValue` argument).
 
 If there's a settings file, but the debug entry isn't found, the
 {hparam}`unknownValue` argument is returned. Even though the handle is
@@ -173,16 +171,16 @@ returned (the value of the {hparam}`noArgValue` argument to
 done:
 
 - If the value is "1", "true", "yes", "on", "enable", or "enabled",
-{cpp:expr}`true` is returned.
+  {cpp:expr}`true` is returned.
 
 - If the value is "0", "false", "no", "off", "disable", or "disabled",
-{cpp:expr}`false` is returned.
+  {cpp:expr}`false` is returned.
 
 - If the value matches none of these strings, it's treated as if no entry
-were found, and {hparam}`unknownValue` is returned.
+  were found, and {hparam}`unknownValue` is returned.
 
-If more than one line containing the word "debug" is found, the last one
-in the file is used. This lets the user override, at boot time, the value
+If more than one line containing the word "debug" is found, the last one in
+the file is used. This lets the user override, at boot time, the value
 previously specified in the settings file.
 
 #### Reading a String Parameter
@@ -231,14 +229,13 @@ bool get_driver_boolean_parameter(void*handle,
     bool noArgValue)
 :::
 
-Returns the value of a given boolean parameter. The driver settings file
-is specified by the handle, as returned by
-{cpp:func}`load_driver_settings()`. The parameter's name is given by
-{hparam}`keyName`. If the parameter isn't found, {hparam}`unknownValue` is
-returned. If the parameter exists but has no value, {hparam}`noArgValue` is
-returned. This lets you easily deal with these two conditions, providing
-appropriate default values without additional code to check for error
-conditions.
+Returns the value of a given boolean parameter. The driver settings file is
+specified by the handle, as returned by {cpp:func}`load_driver_settings()`.
+The parameter's name is given by {hparam}`keyName`. If the parameter isn't
+found, {hparam}`unknownValue` is returned. If the parameter exists but has
+no value, {hparam}`noArgValue` is returned. This lets you easily deal with
+these two conditions, providing appropriate default values without
+additional code to check for error conditions.
 
 If the {hparam}`handle` is {cpp:expr}`NULL`, {hparam}`unknownValue` is
 returned.
@@ -290,9 +287,9 @@ other driver settings functions. If you want to access the safe mode
 settings, pass {cpp:enumerator}`B_SAFEMODE_DRIVER_SETTINGS` Returns
 {cpp:expr}`NULL` if no settings are available for the driver.
 
-unload_driver_settings() unloads the settings for the driver whose
-settings file is specified by {hparam}`handle`. You should always call this
-function when you're done reading the settings.
+unload_driver_settings() unloads the settings for the driver whose settings
+file is specified by {hparam}`handle`. You should always call this function
+when you're done reading the settings.
 
 ## Defined Types
 

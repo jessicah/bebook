@@ -56,11 +56,11 @@ widths: auto
 		<button::spacing>` for details.
 -
 	- type
-	- Is a constant that determines which of the five alert icons is displayed
-		in the panel: {cpp:enumerator}`B_EMPTY_ALERT`,
-		{cpp:enumerator}`B_INFO_ALERT`, {cpp:enumerator}`B_IDEA_ALERT`,
-		{cpp:enumerator}`B_WARNING_ALERT`, or {cpp:enumerator}`B_STOP_ALERT`. See
-		{cpp:func}`alert_type <alert::type>` for pictures.
+	- Is a constant that determines which of the five alert icons is displayed in
+		the panel: {cpp:enumerator}`B_EMPTY_ALERT`, {cpp:enumerator}`B_INFO_ALERT`,
+		{cpp:enumerator}`B_IDEA_ALERT`, {cpp:enumerator}`B_WARNING_ALERT`, or
+		{cpp:enumerator}`B_STOP_ALERT`. See {cpp:func}`alert_type <alert::type>`
+		for pictures.
 
 :::
 
@@ -119,14 +119,14 @@ Displays the alert panel. {hmethod}`Go()` can operate synchronously or
 asynchronously:
 
 - The no-argument version is synchronous: The function doesn't return until
-the user has clicked a button and the panel has been removed from the
-screen.. The value it returns is the index of the clicked button (0,1, or
-2, left-to-right)..
+  the user has clicked a button and the panel has been removed from the
+  screen.. The value it returns is the index of the clicked button (0,1, or
+  2, left-to-right)..
 
 - The {cpp:class}`BInvoker` argument version is asynchronous: The function
-returns immediately (with {cpp:enumerator}`B_OK`) and the button index is
-delivered as the {htype}`int32` "which" field of the {cpp:class}`BMessage`
-that's sent to the {cpp:class}`BInvoker`'s target.
+  returns immediately (with {cpp:enumerator}`B_OK`) and the button index is
+  delivered as the {htype}`int32` "which" field of the
+  {cpp:class}`BMessage` that's sent to the {cpp:class}`BInvoker`'s target.
 
 If you call {hmethod}`Go()` with a (literal) {cpp:expr}`NULL` argument…
 
@@ -243,8 +243,8 @@ widths: auto
 ---
 -
 	- {cpp:enumerator}`B_EVEN_SPACING`
-	- The buttons are evenly spaced. (This is used by the constructor without
-		the spacing argument.)
+	- The buttons are evenly spaced. (This is used by the constructor without the
+		spacing argument.)
 -
 	- {cpp:enumerator}`B_OFFSET_SPACING`
 	- If the alert has more than one button, the leftmost button is shifted left

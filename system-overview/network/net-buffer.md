@@ -1,11 +1,11 @@
 # BNetBuffer
 
-The {cpp:class}`BNetBuffer` class provides an easy way to construct
-network buffers consisting of any sort of data, for use by the
+The {cpp:class}`BNetBuffer` class provides an easy way to construct network
+buffers consisting of any sort of data, for use by the
 {cpp:class}`BNetEndpoint` class.
 
-Once you've created a {cpp:class}`BNetBuffer`, you can append data to it
-by using a series of functions designed to add various types of data. For
+Once you've created a {cpp:class}`BNetBuffer`, you can append data to it by
+using a series of functions designed to add various types of data. For
 example, to create a buffer and place the long integer 2 followed by the
 string "This is a test." in it, you could do this:
 

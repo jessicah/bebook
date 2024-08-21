@@ -19,10 +19,9 @@ If necessary, the bottom coordinate of the object's frame rectangle is
 increased to accommodate the height of the label, given the object's font
 ({cpp:enumerator}`be_plain_font`, by default).
 
-Freshly constructed, the object's state is
-{cpp:enumerator}`B_CONTROL_OFF`. Like all controls, the check box's view
-and low colors are set to those of its parent when the object is attached
-to a window.
+Freshly constructed, the object's state is {cpp:enumerator}`B_CONTROL_OFF`.
+Like all controls, the check box's view and low colors are set to those of
+its parent when the object is attached to a window.
 ::::
 
 ::::{abi-group}

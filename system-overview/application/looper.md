@@ -34,11 +34,11 @@ You do have to delete {hparam}`be_app`; you can't just
 You can deliver messages to a {cpp:class}`BLooper`'s thread by…
 
 - Posting them directly by calling {cpp:class}`BLooper`'s
-{cpp:func}`~BLooper::PostMessage()` function.
+  {cpp:func}`~BLooper::PostMessage()` function.
 
 - Sending them through {cpp:class}`BMessenger`'s
-{cpp:func}`~BMessenger::SendMessage()` or {cpp:class}`BMessage`'s
-{cpp:func}`~BMessage::SendReply()` function.
+  {cpp:func}`~BMessenger::SendMessage()` or {cpp:class}`BMessage`'s
+  {cpp:func}`~BMessage::SendReply()` function.
 
 As messages arrive, they're added to the {cpp:class}`BLooper`'s
 {cpp:class}`BMessageQueue` object. The {cpp:class}`BLooper` takes messages
@@ -51,18 +51,18 @@ handler's {cpp:func}`~BHandler::MessageReceived()` function. But which
 Here's the path:
 
 - If an incoming message targets a specific {cpp:class}`BHandler`, and if
-that {cpp:class}`BHandler` is one of the {cpp:class}`BLooper`'s eligible
-handlers (as set through the {cpp:func}`~BLooper::AddHandler()` function),
-the {cpp:class}`BLooper` uses that {cpp:class}`BHandler`. (See the
-{cpp:class}`BMessage` and {cpp:class}`BMessenger` classes for instructions
-on how to target a {cpp:class}`BHandler`.)
+  that {cpp:class}`BHandler` is one of the {cpp:class}`BLooper`'s eligible
+  handlers (as set through the {cpp:func}`~BLooper::AddHandler()`
+  function), the {cpp:class}`BLooper` uses that {cpp:class}`BHandler`. (See
+  the {cpp:class}`BMessage` and {cpp:class}`BMessenger` classes for
+  instructions on how to target a {cpp:class}`BHandler`.)
 
 - Otherwise it hands the message to its _preferred handler_, as set through
-{cpp:func}`~BLooper::SetPreferredHandler()`.
+  {cpp:func}`~BLooper::SetPreferredHandler()`.
 
 - If no preferred handler is set, the {cpp:class}`BLooper` itself handles
-the message (its own implementation of
-{cpp:func}`~BLooper::MessageReceived()` is invoked).
+  the message (its own implementation of
+  {cpp:func}`~BLooper::MessageReceived()` is invoked).
 
 After the handler is finished (when its
 {cpp:func}`~BLooper::MessageReceived()` returns), the {cpp:class}`BMessage`

@@ -130,8 +130,8 @@ item is currently marked) and the keyboard shortcut (if any). It finishes
 by calling {cpp:func}`~BMenuItem::Highlight()` if the item is currently
 selected.
 
-Both functions draw by calling functions of the {cpp:class}`BMenu` in
-which the item is located. For example:
+Both functions draw by calling functions of the {cpp:class}`BMenu` in which
+the item is located. For example:
 
 :::{code} cpp
 void MyItem::DrawContent()
@@ -283,8 +283,8 @@ Returns {cpp:expr}`true` if the menu item is currently selected, and
 :::{cpp:function} BMenu* BMenuItem::Menu() const
 :::
 
-Returns the menu where the item is located, or {cpp:expr}`NULL` if the
-item hasn't yet been added to a menu.
+Returns the menu where the item is located, or {cpp:expr}`NULL` if the item
+hasn't yet been added to a menu.
 
 See also: {cpp:func}`BMenu::AddItem()`
 ::::
@@ -313,12 +313,12 @@ Items and menus are enabled by default.
 When using these functions, keep in mind that:
 
 - Disabling a {hclass}`BMenuItem` that controls a submenu serves to disable
-the entire menu hierarchy under the item.
+  the entire menu hierarchy under the item.
 
 - Passing an argument of {cpp:expr}`true` to {hmethod}`SetEnabled()` is not
-sufficient to enable the item if it's located in a disabled branch of the
-menu hierarchy. It can only undo a previous {hmethod}`SetEnabled()` call
-(with an argument of {cpp:expr}`false`) on the same item.
+  sufficient to enable the item if it's located in a disabled branch of the
+  menu hierarchy. It can only undo a previous {hmethod}`SetEnabled()` call
+  (with an argument of {cpp:expr}`false`) on the same item.
 
 See also: {cpp:func}`BMenu::SetEnabled()`
 ::::
@@ -338,10 +338,10 @@ become wider (or narrower) so that it fits the new label.
 The Interface Kit calls this virtual function to:
 
 - Set the initial label of an item that controls a submenu to the name of
-the submenu, and
+  the submenu, and
 
-- Subsequently set the item's label to match the marked item in the submenu,
-if the submenu was set up to have this feature.
+- Subsequently set the item's label to match the marked item in the
+  submenu, if the submenu was set up to have this feature.
 
 {hmethod}`Label()` returns a pointer to the current label.
 
@@ -406,20 +406,20 @@ can type to invoke the item while the item's menu is open on-screen. If a
 {hparam}`trigger` is not set, the Interface Kit will select one for the
 item, so it's not necessary to call {hmethod}`SetTrigger()`.
 
-The character passed to this function has to match a character displayed
-in the item—either the keyboard shortcut or a character in the label. The
-case of the character doesn't matter; lowercase arguments will match
-uppercase characters in the item and uppercase arguments will match
-lowercase characters. When the item can be invoked by its trigger, the
-trigger character is underlined.
+The character passed to this function has to match a character displayed in
+the item—either the keyboard shortcut or a character in the label. The case
+of the character doesn't matter; lowercase arguments will match uppercase
+characters in the item and uppercase arguments will match lowercase
+characters. When the item can be invoked by its trigger, the trigger
+character is underlined.
 
 If more than one character in the item matches the character passed,
 {hmethod}`SetTrigger()` tries first to mark the keyboard shortcut. Failing
 that, it tries to mark an uppercase letter at the beginning of a word.
 Failing that, it marks the first instance of the character in the label.
 
-If the {hparam}`trigger` doesn't match any characters in the item, the
-item won't have a trigger, not even one selected by the system.
+If the {hparam}`trigger` doesn't match any characters in the item, the item
+won't have a trigger, not even one selected by the system.
 
 {hmethod}`Trigger()` returns the character set by {hmethod}`SetTrigger()`,
 or {cpp:expr}`NULL` if {hmethod}`SetTrigger()` didn't succeed or if
@@ -444,18 +444,18 @@ See also: the {hclass}`BMenuItem` {cpp:func}`constructor
 :::{cpp:function} virtual void BMenuItem::TruncateLabel(float maxWidth, char* newLabel)
 :::
 
-Removes characters from the middle of the item label and replaces them
-with an ellipsis. This is done so that the label will fit within
+Removes characters from the middle of the item label and replaces them with
+an ellipsis. This is done so that the label will fit within
 {hparam}`maxWidth` coordinate units. The shortened string is copied into
 the {hparam}`newLabel` buffer.
 
-This function is called by the {hclass}`BMenuItem` when it draws the
-item's label, but only if it's necessary to fit a long item into a smaller
-space. It can be reimplemented by derived classes to do a better job of
-shortening the string based on the actual content of the label.
+This function is called by the {hclass}`BMenuItem` when it draws the item's
+label, but only if it's necessary to fit a long item into a smaller space.
+It can be reimplemented by derived classes to do a better job of shortening
+the string based on the actual content of the label.
 
-Your version of {hmethod}`TruncateLabel()` should be careful to not cut
-the trigger character from the string.
+Your version of {hmethod}`TruncateLabel()` should be careful to not cut the
+trigger character from the string.
 
 See also: {cpp:func}`BFont::GetTruncatedStrings()`
 ::::
@@ -466,9 +466,9 @@ See also: {cpp:func}`BFont::GetTruncatedStrings()`
 :::{cpp:function} static BArchivable* BMenuItem::Instantiate(BMessage* archive)
 :::
 
-Returns a new {hclass}`BMenuItem` object, allocated by new and created
-with the version of the constructor that takes a {cpp:class}`BMessage`
-archive. However, if the archive message doesn't contain data for a
+Returns a new {hclass}`BMenuItem` object, allocated by new and created with
+the version of the constructor that takes a {cpp:class}`BMessage` archive.
+However, if the archive message doesn't contain data for a
 {hclass}`BMenuItem` object, this function returns {cpp:expr}`NULL`.
 
 See also: {cpp:func}`BArchivable::Instantiate()`,
@@ -552,7 +552,7 @@ widths: auto
 
 :::
 
-Some of these fields may not be present if the setting they represent
-isn't used, or is the default value. For example, if no shortcut key was
-defined, the {hparam}`_shortcut` and {hparam}`_mods` fields won't be found
-in the archive.
+Some of these fields may not be present if the setting they represent isn't
+used, or is the default value. For example, if no shortcut key was defined,
+the {hparam}`_shortcut` and {hparam}`_mods` fields won't be found in the
+archive.

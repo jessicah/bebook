@@ -156,14 +156,14 @@ the type code it should associate with the data. Objects that are added
 through {hmethod}`AddFlat()` must inherit from {cpp:class}`BFlattenable`
 (defined in the {ref}`Support Kit`).
 
-You can also provide a {hparam}`numItems` hint to {hmethod}`AddFlat()`
-when you call it to set up a new array. {hmethod}`AddFlat()` calls the
-object's {cpp:func}`~BFlattenable::IsFixedSize()` function to discover
-whether all items in the array will be the same size.
+You can also provide a {hparam}`numItems` hint to {hmethod}`AddFlat()` when
+you call it to set up a new array. {hmethod}`AddFlat()` calls the object's
+{cpp:func}`~BFlattenable::IsFixedSize()` function to discover whether all
+items in the array will be the same size.
 
-These functions return {cpp:enumerator}`B_ERROR` if the data is too
-massive to be added to the message, {cpp:enumerator}`B_BAD_TYPE` if the
-data can't be added to an existing array because it's the wrong type,
+These functions return {cpp:enumerator}`B_ERROR` if the data is too massive
+to be added to the message, {cpp:enumerator}`B_BAD_TYPE` if the data can't
+be added to an existing array because it's the wrong type,
 {cpp:enumerator}`B_NO_MEMORY` if the {hclass}`BMessage` can't get enough
 memory to hold the data, and {cpp:enumerator}`B_BAD_VALUE` if the proposed
 {hparam}`name` for the data is longer than 255 bytes. If all goes well,
@@ -233,9 +233,9 @@ store data of the specified {hparam}`type`. An array of information held
 under a single name counts as one field; each name is counted only once, no
 matter how many data items are stored under that name.
 
-If {hparam}`type` is {cpp:enumerator}`B_ANY_TYPE`, this function counts
-all named fields. If {hparam}`type` is a specific type, it counts only
-fields that store data registered as that type.
+If {hparam}`type` is {cpp:enumerator}`B_ANY_TYPE`, this function counts all
+named fields. If {hparam}`type` is a specific type, it counts only fields
+that store data registered as that type.
 
 See also: {cpp:func}`~BMessage::GetInfo()`
 ::::
@@ -368,9 +368,9 @@ provides a pointer to the data no matter what type it actually is. But if
 {hparam}`type` is a specific data type, it provides the pointer only if the
 {hparam}`name` field holds data of that particular type.
 
-The other functions are specialized versions of {hmethod}`FindData()`.
-They match the corresponding {cpp:func}`Add…() <BMessage::AddData>` methods
-and search for named data of a particular type, as described below:
+The other functions are specialized versions of {hmethod}`FindData()`. They
+match the corresponding {cpp:func}`Add…() <BMessage::AddData>` methods and
+search for named data of a particular type, as described below:
 
 :::{list-table}
 ---
@@ -486,9 +486,9 @@ widths: auto
 
 :::
 
-The other type-specific functions retrieve the requested data item from
-the message by copying it to the variable referred to by the last argument;
-you get the data, not just a pointer to it. For example,
+The other type-specific functions retrieve the requested data item from the
+message by copying it to the variable referred to by the last argument; you
+get the data, not just a pointer to it. For example,
 {hmethod}`FindMessenger()` assigns the {cpp:class}`BMessenger` it finds in
 the message to the {hparam}`messenger` object, whereas
 {hmethod}`FindData()` would provide only a pointer to a
@@ -512,8 +512,8 @@ function must return {cpp:expr}`true` when tested with the type code stored
 in the message; if not, {hmethod}`FindFlat()` fails and returns
 {cpp:enumerator}`B_BAD_VALUE`.
 
-If these functions can't find any data associated with {hparam}`name`,
-they return a {cpp:enumerator}`B_NAME_NOT_FOUND` error. If they can't find
+If these functions can't find any data associated with {hparam}`name`, they
+return a {cpp:enumerator}`B_NAME_NOT_FOUND` error. If they can't find
 {hparam}`name` data of the requested {hparam}`type` (or the type the
 function returns), they return {cpp:enumerator}`B_BAD_TYPE`. If the
 {hparam}`index` is out of range, they return {cpp:enumerator}`B_BAD_INDEX`.
@@ -566,9 +566,9 @@ provide in the buffer to hold the flattened object. {hmethod}`Flatten()`
 places the number of bytes actually written in the variable that its
 {hparam}`numBytes` argument refers to.
 
-{hmethod}`Unflatten()` empties the {hclass}`BMessage` of any information
-it may happen to contain, then initializes the object from data read from
-the buffer. If passed a {cpp:class}`BDataIO` {hparam}`object`, it calls the
+{hmethod}`Unflatten()` empties the {hclass}`BMessage` of any information it
+may happen to contain, then initializes the object from data read from the
+buffer. If passed a {cpp:class}`BDataIO` {hparam}`object`, it calls the
 object's {hmethod}`Read()` function to read the message data. If passed a
 buffer {hparam}`address`, it begins reading at the start of the buffer.
 It's up to the caller to make sure that {hmethod}`Unflatten()` reads data
@@ -617,15 +617,14 @@ with the greatest index, is the current specifier.
 {hmethod}`PopSpecifier()` merely decrements the index that picks the
 current specifier; it doesn't delete anything from the {hclass}`BMessage`.
 
-{hmethod}`GetCurrentSpecifier()` puts the index of the current specifier
-in the variable that its first argument, {hparam}`index`, refers to. If
-other arguments are provided, it makes the {hparam}`specifier`
-{hclass}`BMessage` a copy of the current specifier. It also extracts two
-pieces of information from the {hparam}`specifier`: It places the
-{hparam}`what` data member of the specifier in the {hparam}`what` variable
-and a pointer to the property name in the {hparam}`property` variable.
-These last two output arguments won't be valid if the {hparam}`specifier`
-argument is {cpp:expr}`NULL`.
+{hmethod}`GetCurrentSpecifier()` puts the index of the current specifier in
+the variable that its first argument, {hparam}`index`, refers to. If other
+arguments are provided, it makes the {hparam}`specifier` {hclass}`BMessage`
+a copy of the current specifier. It also extracts two pieces of information
+from the {hparam}`specifier`: It places the {hparam}`what` data member of
+the specifier in the {hparam}`what` variable and a pointer to the property
+name in the {hparam}`property` variable. These last two output arguments
+won't be valid if the {hparam}`specifier` argument is {cpp:expr}`NULL`.
 
 Both functions fail if the {hclass}`BMessage` doesn't contain specifiers.
 In addition, {hmethod}`GetCurrentSpecifier()` fails if it can't find data
@@ -690,25 +689,25 @@ If successful in finding data of the {hparam}`type` requested at
 {hparam}`index`, {hmethod}`GetInfo()` returns {cpp:enumerator}`B_OK` and
 provides information about the data through the last three arguments:
 
-- It places a pointer to the name of the data field in the variable referred
-to by {hparam}`nameFound`.
+- It places a pointer to the name of the data field in the variable
+  referred to by {hparam}`nameFound`.
 
 - It puts the code for the type of data the field contains in the variable
-referred to by {hparam}`typeFound`. This will be the same as the
-{hparam}`type` requested, unless the requested type is
-{cpp:enumerator}`B_ANY_TYPE`, in which case {hparam}`typeFound` will be the
-actual type stored under the name.
+  referred to by {hparam}`typeFound`. This will be the same as the
+  {hparam}`type` requested, unless the requested type is
+  {cpp:enumerator}`B_ANY_TYPE`, in which case {hparam}`typeFound` will be
+  the actual type stored under the name.
 
 - It records the number of data items stored within the field in the
-variable referred to by {hparam}`countFound`.
+  variable referred to by {hparam}`countFound`.
 
 If {hmethod}`GetInfo()` can't find data of the requested {hparam}`type` at
 {hparam}`index`, it sets the {hparam}`countFound` variable to 0, and
 returns {cpp:enumerator}`B_BAD_TYPE`. If the index is out of range, it
 returns {cpp:enumerator}`B_BAD_INDEX`.
 
-This version of {hmethod}`GetInfo()` can be used to iterate through all
-the {hclass}`BMessage`'s data. For example:
+This version of {hmethod}`GetInfo()` can be used to iterate through all the
+{hclass}`BMessage`'s data. For example:
 
 :::{code} cpp
 char *name;
@@ -995,19 +994,20 @@ reply is synchronous or asynchronous depends on how the {hclass}`BMessage`
 that's sending the reply was itself sent:
 
 - The reply is delivered synchronously if the message sender is waiting for
-one to arrive. The function that sent the {hclass}`BMessage` doesn't return
-until it receives the reply (or a timeout expires). If an expected reply
-has not been sent by the time the {hclass}`BMessage` object is deleted, a
-default {cpp:enumerator}`B_NO_REPLY` message is returned to the sender. If
-a reply is sent after the sender gave up waiting for it to arrive, the
-reply {hparam}`message` disappears into the bowels of the system.
+  one to arrive. The function that sent the {hclass}`BMessage` doesn't
+  return until it receives the reply (or a timeout expires). If an expected
+  reply has not been sent by the time the {hclass}`BMessage` object is
+  deleted, a default {cpp:enumerator}`B_NO_REPLY` message is returned to
+  the sender. If a reply is sent after the sender gave up waiting for it to
+  arrive, the reply {hparam}`message` disappears into the bowels of the
+  system.
 
 - The reply is delivered asynchronously if the message sender isn't waiting
-for a reply. In this case, the sending function designates a target
-{cpp:class}`BHandler` and {cpp:class}`BLooper` for any replies that might
-be sent, then returns immediately after putting the {hclass}`BMessage` in
-the pipeline. Posted messages and messages that are dragged and dropped are
-also eligible for asynchronous replies.
+  for a reply. In this case, the sending function designates a target
+  {cpp:class}`BHandler` and {cpp:class}`BLooper` for any replies that might
+  be sent, then returns immediately after putting the {hclass}`BMessage` in
+  the pipeline. Posted messages and messages that are dragged and dropped
+  are also eligible for asynchronous replies.
 
 {hmethod}`SendReply()` works only for {hclass}`BMessage` objects that have
 been processed through a message loop and delivered to you. The caller
@@ -1020,12 +1020,12 @@ message nonetheless. It behaves exactly like the other message-sending
 function, {cpp:class}`BMessenger`'s {cpp:func}`~BMessenger::SendMessage()`:
 
 - By passing it a {hparam}`reply` argument, you can ask for a synchronous
-reply to the reply message it sends. It won't return until it receives the
-reply.
+  reply to the reply message it sends. It won't return until it receives
+  the reply.
 
 - By supplying a {hparam}`replyHandler` argument, you can arrange for an
-expected asynchronous reply. If a specific target isn't specified, the
-{cpp:class}`BApplication` object will handle the reply if one is sent.
+  expected asynchronous reply. If a specific target isn't specified, the
+  {cpp:class}`BApplication` object will handle the reply if one is sent.
 
 By default, {hmethod}`SendReply()` doesn't return until the reply message
 is delivered (placed in the {cpp:class}`BLooper`'s port queue). It's
@@ -1086,11 +1086,10 @@ widths: auto
 
 :::
 
-If you want to delay sending a reply and keep the {hclass}`BMessage`
-object beyond the time it's scheduled to be deleted, you may be able to
-detach it from the message loop. See
-{cpp:func}`~BLooper::DetachCurrentMessage()` in the {cpp:class}`BLooper`
-class.
+If you want to delay sending a reply and keep the {hclass}`BMessage` object
+beyond the time it's scheduled to be deleted, you may be able to detach it
+from the message loop. See {cpp:func}`~BLooper::DetachCurrentMessage()` in
+the {cpp:class}`BLooper` class.
 
 See also: {cpp:func}`BMessenger::SendMessage()`,
 {cpp:func}`BLooper::DetachCurrentMessage()`,
@@ -1122,13 +1121,13 @@ posted, sent, or dropped – that is, one that has been processed through a
 message loop—and {cpp:expr}`false` for a message that has not yet been
 delivered by any means.
 
-{hmethod}`IsSourceRemote()` returns {cpp:expr}`true` if the message had
-its source in another application, and {cpp:expr}`false` if the source is
-local or the message hasn't been delivered yet.
+{hmethod}`IsSourceRemote()` returns {cpp:expr}`true` if the message had its
+source in another application, and {cpp:expr}`false` if the source is local
+or the message hasn't been delivered yet.
 
-{hmethod}`IsSourceWaiting()` returns {cpp:expr}`true` if the message
-source is waiting for a synchronous reply, and {cpp:expr}`false` if not.
-The source thread can request and wait for a reply when calling either
+{hmethod}`IsSourceWaiting()` returns {cpp:expr}`true` if the message source
+is waiting for a synchronous reply, and {cpp:expr}`false` if not. The
+source thread can request and wait for a reply when calling either
 {cpp:class}`BMessenger`'s {cpp:func}`~BMessenger::SendMessage()` or
 {hclass}`BMessage`'s {cpp:func}`~BMessage::SendReply()` function.
 
@@ -1182,8 +1181,8 @@ See also: {cpp:func}`BView::DragMessage()`
 :::{cpp:function} BMessage BMessage::operator=(const BMessage&)
 :::
 
-Assigns one {hclass}`BMessage` object to another. After the assignment,
-the two objects are duplicates of each other without shared data.
+Assigns one {hclass}`BMessage` object to another. After the assignment, the
+two objects are duplicates of each other without shared data.
 ::::
 
 ::::{abi-group}
@@ -1200,8 +1199,8 @@ periods of time, as {hclass}`BMessage`s typically are.
 :::{cpp:function} void BMessage::operator delete(void* memory, size_t numBytes)
 :::
 
-Frees memory allocated by the {hclass}`BMessage` version of
-{hmethod}`new`, which may mean restoring the memory to the cache.
+Frees memory allocated by the {hclass}`BMessage` version of {hmethod}`new`,
+which may mean restoring the memory to the cache.
 ::::
 
 ## Constants

@@ -215,8 +215,8 @@ call this before using any of the other {hclass}`BMediaFormats` functions.
 Returns {cpp:expr}`true` if it's safe to use the {hclass}`BMediaFormats`
 object; otherwise returns {cpp:expr}`false`.
 
-{hmethod}`Unlock()` releases the {hclass}`BMediaFormats` object when
-you're done with it; be sure to call it when you've finished your work.
+{hmethod}`Unlock()` releases the {hclass}`BMediaFormats` object when you're
+done with it; be sure to call it when you've finished your work.
 
 :::{admonition} Note
 :class: note
@@ -541,8 +541,8 @@ typedef struct {
 } media_mpeg_description;
 :::
 
-Describes the format of media data as an MPEG format ID; this can be any
-of the following values:
+Describes the format of media data as an MPEG format ID; this can be any of
+the following values:
 
 :::{list-table}
 ---

@@ -15,9 +15,9 @@
 :::{cpp:function} BNetBuffer::BNetBuffer(BMessage* archive)
 :::
 
-Creates a {hclass}`BNetBuffer`. The first form creates a new buffer
-capable of holding up to {hparam}`size` bytes of data. In this case, the
-buffer begins life empty.
+Creates a {hclass}`BNetBuffer`. The first form creates a new buffer capable
+of holding up to {hparam}`size` bytes of data. In this case, the buffer
+begins life empty.
 
 The second form creates a new buffer which is an exact duplicate of the
 {hclass}`BNetBuffer` specified by the {hparam}`from` argument, including
@@ -81,8 +81,8 @@ and {htype}`double`s are not, nor are values inside structures added using
 
 Strings are appended as null-terminated strings.
 
-{hmethod}`AppendData()` copies {hparam}`size` bytes from the buffer
-pointed at by {hparam}`data`.
+{hmethod}`AppendData()` copies {hparam}`size` bytes from the buffer pointed
+at by {hparam}`data`.
 
 :::{list-table}
 ---
@@ -169,8 +169,8 @@ automatically converted from network byte ordering (but {htype}`float`s and
 {htype}`double`s are not, nor are values inside structures removed using
 {hmethod}`RemoveData()`).
 
-Strings are removed as null-terminated strings, up to {hparam}`size`
-bytes. Be sure the string buffer is at least {hparam}`size` bytes long.
+Strings are removed as null-terminated strings, up to {hparam}`size` bytes.
+Be sure the string buffer is at least {hparam}`size` bytes long.
 
 {hmethod}`RemoveData()` removes {hparam}`size` bytes and copies them into
 the buffer pointed at by {hparam}`data`. Be sure the {hparam}`data` buffer

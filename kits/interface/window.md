@@ -78,8 +78,8 @@ message loop) by calling {cpp:func}`~BWindow::Show()`.
 
 ### ~BWindow()
 
-You never delete your {hclass}`BWindow`s; call
-{cpp:func}`~BWindow::Quit()` instead.
+You never delete your {hclass}`BWindow`s; call {cpp:func}`~BWindow::Quit()`
+instead.
 
 ## Hook Functions
 
@@ -198,10 +198,10 @@ appendix, {cpp:func}`~BWindow::SetWorkspaces()`
 :::{cpp:function} virtual void BWindow::Zoom(BPoint origin, float width, float height)
 :::
 
-The non-virtual {hmethod}`Zoom()` (which is called when the user clicks
-the zoom button, but can also be called programatically) figures out a new
-size and location for the window (as described below), and then passes
-these dimensions to the virtual {hmethod}`Zoom()` hook function. It's hook
+The non-virtual {hmethod}`Zoom()` (which is called when the user clicks the
+zoom button, but can also be called programatically) figures out a new size
+and location for the window (as described below), and then passes these
+dimensions to the virtual {hmethod}`Zoom()` hook function. It's hook
 {hmethod}`Zoom()`'s responsibility to actually resize and move the window;
 the default version applies the arguments explicitly by calling
 {cpp:func}`~BWindow::MoveTo()` and {cpp:func}`~BWindow::ResizeTo()`. You
@@ -276,16 +276,16 @@ window, adds it to the window's view list, and adds it to the window's list
 of handlers:
 
 - Graphically, the view is placed in the window's coordinate system at the
-location defined by the view's frame rectangle.
+  location defined by the view's frame rectangle.
 
 - In the window's view list, {hparam}`aView` is inserted before
-{hparam}`sibling`. if {hparam}`sibling` is {cpp:expr}`NULL`,
-{hparam}`aView` is added at the end of the list. Note, however, that window
-list order is of little significance; for example, it doesn't affect the
-order in which sibling views are drawn.
+  {hparam}`sibling`. if {hparam}`sibling` is {cpp:expr}`NULL`,
+  {hparam}`aView` is added at the end of the list. Note, however, that
+  window list order is of little significance; for example, it doesn't
+  affect the order in which sibling views are drawn.
 
 - {hparam}`aView` and its children are added to the window's handler list;
-{hparam}`aView`'s next handler is set to this {hclass}`BWindow`.
+  {hparam}`aView`'s next handler is set to this {hclass}`BWindow`.
 
 Each {cpp:class}`BView` in aView's hierarchy is sent an
 {cpp:func}`~BView::AttachedToWindow()` call. When they've all had a chance
@@ -342,46 +342,28 @@ Don't use these functions to create and remove menu shortcuts; use
 
 Notes on the arguments:
 
-- {hparam}`key` is a case-insensitive character value. If you want to map to
-an uppercase character, you have to include {cpp:enumerator}`B_SHIFT_KEY`
-in the {hparam}`modifiers` mask.
+- {hparam}`key` is a case-insensitive character value. If you want to map
+  to an uppercase character, you have to include
+  {cpp:enumerator}`B_SHIFT_KEY` in the {hparam}`modifiers` mask.
 
 - {hparam}`modifiers` is an OR'd list of modifier key numbers.
-{cpp:enumerator}`B_COMMAND_KEY`, which is always assumed, needn't be added
-to the mask. See {ref}`modifiers()` for a list of modifier keys.
+  {cpp:enumerator}`B_COMMAND_KEY`, which is always assumed, needn't be
+  added to the mask. See {ref}`modifiers()` for a list of modifier keys.
 
 - {hparam}`message` is a model of the {cpp:class}`BMessage` you want sent
-when the user types the shortcut. The {hclass}`BWindow` takes ownership of
-the {hparam}`message` object and adds a {hparam}`when` field to it:
+  when the user types the shortcut. The {hclass}`BWindow` takes ownership
+  of the {hparam}`message` object and adds a {hparam}`when` field to it:
 
-	:::{list-table}
-	---
-	header-rows: 1
-	align: left
-	widths: auto
-	---
-	-
-		- Field name
-
-		- Type code
-
-		- Description
-
-	-
-		- {hparam}`when`
-
-		- {cpp:enumerator}`B_INT64_TYPE`
-
-		- The time of the key-down, in microseconds since 01/01/70.
-
-
-	:::
+  :::{list-table} --- header-rows: 1 align: left widths: auto --- - 	-
+  Field name  	- Type code  	- Description  - 	- {hparam}`when`  	-
+  {cpp:enumerator}`B_INT64_TYPE`  	- The time of the key-down, in
+  microseconds since 01/01/70.   :::
 
 - {hparam}`handler` must be in the window's handler list (or the message
-won't be sent). If you exclude the argument, this {hclass}`BWindow` handles
-the message. If handler is (literally) {cpp:expr}`NULL`, the message is
-sent to the {hclass}`BWindow`'s focus view (or to the {hclass}`BWindow` if
-no view is in focus).
+  won't be sent). If you exclude the argument, this {hclass}`BWindow`
+  handles the message. If handler is (literally) {cpp:expr}`NULL`, the
+  message is sent to the {hclass}`BWindow`'s focus view (or to the
+  {hclass}`BWindow` if no view is in focus).
 
 As with all Command events, a {cpp:enumerator}`B_KEY_DOWN` message isn't
 sent when the user invokes a keyboard shortcut, but the subsequent
@@ -514,8 +496,8 @@ functions doesn't incur a trip to the App Server.
 :::{cpp:function} void BWindow::ConvertFromScreen(BRect* windowRect) const
 :::
 
-Converts the argument from window coordinates to screen coordinates or
-vice versa. The point or rect needn't fall within this {hclass}`BWindow`'s
+Converts the argument from window coordinates to screen coordinates or vice
+versa. The point or rect needn't fall within this {hclass}`BWindow`'s
 bounds.
 
 If the argument is passed by value, the function returns the converted
@@ -546,11 +528,11 @@ this same object (but as a {cpp:class}`BHandler`).
 :::{cpp:function} void BWindow::EnableUpdates()
 :::
 
-These functions disable automatic updating within the window, and
-re-enable it again. Any drawing that's done while updates are disabled is
-suppressed until updates are re-enabled. If you're doing a lot of drawing
-within the window, and you want the results of the drawing to appear all at
-once, you should disable updates, draw, and then re-enable updates.
+These functions disable automatic updating within the window, and re-enable
+it again. Any drawing that's done while updates are disabled is suppressed
+until updates are re-enabled. If you're doing a lot of drawing within the
+window, and you want the results of the drawing to appear all at once, you
+should disable updates, draw, and then re-enable updates.
 
 See also: {cpp:func}`BView::Invalidate()`,
 {cpp:func}`~BWindow::UpdateIfNeeded()`
@@ -586,8 +568,8 @@ view is found.
 :::{cpp:function} void BWindow::Sync() const
 :::
 
-Both of these functions cause this window's App Server-bound messages to
-be sent immediately. {hmethod}`Flush()` sends the messages and returns
+Both of these functions cause this window's App Server-bound messages to be
+sent immediately. {hmethod}`Flush()` sends the messages and returns
 immediately; {hmethod}`Sync()` send the messages and waits for the App
 Server to respond. In other words, when {hmethod}`Sync()` returns you're
 guaranteed that all of the flushed messages have been processed.
@@ -656,11 +638,11 @@ None of the values passed to these functions should specify fractional
 coordinates; a window must be aligned on screen pixels. Fractional values
 will be rounded to the closest whole number.
 
-Neither function alters the {hclass}`BWindow`'s coordinate system or
-bounds rectangle.
+Neither function alters the {hclass}`BWindow`'s coordinate system or bounds
+rectangle.
 
-When these functions move a window, a window-moved event is reported to
-the window. This results in the {hclass}`BWindow`'s
+When these functions move a window, a window-moved event is reported to the
+window. This results in the {hclass}`BWindow`'s
 {cpp:func}`~BWindow::FrameMoved()` function being called.
 ::::
 
@@ -768,8 +750,8 @@ current default (without promoting another button) call
 `SetDefaultButton(NULL)`. There can only be one default button at a time;
 {hmethod}`SetDefaultButton()` demotes the previous default.
 
-When you promote or demote a default button, it's automatically
-redisplayed and receives a {cpp:func}`BButton::MakeDefault()` call.
+When you promote or demote a default button, it's automatically redisplayed
+and receives a {cpp:func}`BButton::MakeDefault()` call.
 ::::
 
 ::::{abi-group}
@@ -807,9 +789,9 @@ See "{ref}`Window Flags`". for a list of the flag values.
 :::{cpp:function} BMenuBar* BWindow::KeyMenuBar() const
 :::
 
-{hmethod}`SetKeyMenuBar()` makes the specified {cpp:class}`BMenuBar`
-object the "key" menu bar for the window—the object that's at the root of
-the menu hierarchy that users can navigate using the keyboard.
+{hmethod}`SetKeyMenuBar()` makes the specified {cpp:class}`BMenuBar` object
+the "key" menu bar for the window—the object that's at the root of the menu
+hierarchy that users can navigate using the keyboard.
 {hmethod}`KeyMenuBar()` returns the object with key status, or
 {cpp:expr}`NULL` if the window doesn't have a {cpp:class}`BMenuBar` object
 in its view hierarchy.
@@ -944,9 +926,9 @@ to the {hclass}`BWindow` {cpp:func}`constructor <BWindow::BWindow()>`.
 :::{cpp:function} window_type BWindow::Type() const
 :::
 
-{hmethod}`SetType()` changes the type of the window to the specified
-value. {hmethod}`Type()` returns the type. You normally set the window's
-type when it's constructed.
+{hmethod}`SetType()` changes the type of the window to the specified value.
+{hmethod}`Type()` returns the type. You normally set the window's type when
+it's constructed.
 
 The type is set at construction (or by {hmethod}`SetType()`) as one of the
 following constants (full descriptions can be found in the discussion of
@@ -988,9 +970,9 @@ origins would be …, -7, -3, 1, 5, 9, … Similarly,
 {hparam}`height`/{hparam}`heightOffset` give you control over the other
 window parameters.
 
-If {hparam}`mode` is {cpp:enumerator}`B_BYTE_ALIGNMENT`, then the
-alignment is given in terms of frame buffer offsets. However, the setting
-only affects the horizontal origin and width. You can't align the right and
+If {hparam}`mode` is {cpp:enumerator}`B_BYTE_ALIGNMENT`, then the alignment
+is given in terms of frame buffer offsets. However, the setting only
+affects the horizontal origin and width. You can't align the right and
 bottom edges in {cpp:enumerator}`B_BYTE_ALIGNMENT` mode.
 
 {hmethod}`GetWindowAlignment()` returns the current window alignment.
@@ -1050,11 +1032,11 @@ See also: the {hclass}`BWindow` {cpp:func}`constructor
 
 These functions hide and show the window.
 
-{hmethod}`Show()` places the window frontmost on the screen (but behind
-any applicable floating or modal windows), places it on Deskbar's window
-list, and makes it the active window. If this is the {hclass}`BWindow`'s
-first {hmethod}`Show()`, the object's message loop is started, and the
-object is unlocked.
+{hmethod}`Show()` places the window frontmost on the screen (but behind any
+applicable floating or modal windows), places it on Deskbar's window list,
+and makes it the active window. If this is the {hclass}`BWindow`'s first
+{hmethod}`Show()`, the object's message loop is started, and the object is
+unlocked.
 
 {hmethod}`Hide()` removes the window from the screen, removes it from
 Deskbar's window list, and passes active status to some other window (if
@@ -1259,10 +1241,10 @@ widths: auto
 
 ### Window Flags
 
-The window flags (or "user attributes") define miscellaneous aspects of
-the window's interface, such as whether it can be moved or closed by the
-user. You combine the flags that you want and pass them to the
-{hclass}`BWindow` {cpp:func}`constructor <BWindow::BWindow()>` or
+The window flags (or "user attributes") define miscellaneous aspects of the
+window's interface, such as whether it can be moved or closed by the user.
+You combine the flags that you want and pass them to the {hclass}`BWindow`
+{cpp:func}`constructor <BWindow::BWindow()>` or
 {cpp:func}`~BWindow::SetFlags()`.
 
 The default behavior is the inverse of all these flags–i.e. a window is
@@ -1318,11 +1300,11 @@ resized, and doesn't refresh its contents.
 -
 	- {cpp:enumerator}`B_WILL_ACCEPT_FIRST_CLICK`
 
-	- Tells a non-active window to process an activating mouse click (the
-"first" mouse click) as if it were already active. The {cpp:class}`BView`
-that responds to the mouse-down message must activate the window. By
-default, the first mouse click in a non-active window activates the window,
-and then the mouse click event is thrown away.
+	- Tells a non-active window to process an activating mouse click (the "first"
+mouse click) as if it were already active. The {cpp:class}`BView` that
+responds to the mouse-down message must activate the window. By default,
+the first mouse click in a non-active window activates the window, and then
+the mouse click event is thrown away.
 
 -
 	- {cpp:enumerator}`B_AVOID_FRONT`
@@ -1337,9 +1319,8 @@ and then the mouse click event is thrown away.
 -
 	- {cpp:enumerator}`B_NO_WORKSPACE_ACTIVATION`
 
-	- When a window is first shown, the workspace normally switches to the one
-in which the window is displayed. Setting this flag keeps this from
-happening.
+	- When a window is first shown, the workspace normally switches to the one in
+which the window is displayed. Setting this flag keeps this from happening.
 
 -
 	- {cpp:enumerator}`B_NOT_ANCHORED_ON_ACTIVATE`
@@ -1535,8 +1516,8 @@ widths: auto
 
 #### Hidden
 
-The "Hidden" property determines the visibility of the window. The
-messages are equivalent to manipulating the window with the
+The "Hidden" property determines the visibility of the window. The messages
+are equivalent to manipulating the window with the
 {cpp:func}`~BWindow::IsHidden()`, {cpp:func}`~BWindow::Hide()` and
 {cpp:func}`~BWindow::Show()` methods with one caveat: nested
 {cpp:func}`~BWindow::Hide()` and {cpp:func}`~BWindow::Show()` calls are
@@ -1706,8 +1687,8 @@ widths: auto
 
 #### View
 
-The "View" property redirects all requests to the window's top view
-without popping the specifier from the stack.
+The "View" property redirects all requests to the window's top view without
+popping the specifier from the stack.
 
 :::{list-table}
 ---

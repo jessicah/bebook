@@ -32,11 +32,11 @@ There are three types of kernel add-on:
 
 1. Device drivers are add-ons that communicate directly with devices.
 
-2. Modules are kernel space add-ons that export an API for use by drivers (or
-by other modules).
+2. Modules are kernel space add-ons that export an API for use by drivers
+  (or by other modules).
 
 3. File systems are add-ons that support specific file systems, such as BFS,
-DOSFS, HFS, and so forth.
+  DOSFS, HFS, and so forth.
 
 Device drivers and file systems, while extending the functionality of the
 kernel, are still accessible from user space: Applications can open and
@@ -46,8 +46,8 @@ strictly for use by the kernel and other kernel add-ons.
 
 #### Device Drivers
 
-A device driver is an add-on that recognizes a specific device (or class
-of devices) and provides a means for the rest of the system to communicate
+A device driver is an add-on that recognizes a specific device (or class of
+devices) and provides a means for the rest of the system to communicate
 with it. Usually this communication involves some form of device-specific
 protocol. For example, if the system wants to use an Ethernet card or
 graphics card, it needs to load a device driver add-on that knows how to
@@ -61,16 +61,16 @@ Modules provide a uniform API for use by other modules and drivers. A
 module is like a library in that it acts as a repository for common code
 that's shared among several drivers.
 
-For example: Let's say you have a device driver that talks to a SCSI
-device connected to a SCSI bus. A computer can have multiple SCSI busses.
-Because all SCSI devices use the same command set independent of the
-particular controller used to send the commands, the command set can be
-(and is) implemented as a module. The SCSI module knows how to handle all
-SCSI cards the BeOS supports; the API that the SCSI module defines is
-adopted by and augmented by the modules for specific SCSI device types
-(hard disks, scanners, CD drives, etc). The SCSI device modules are managed
-by a SCSI bus manager module, which knows how to cope with multiple busses
-and presents them in encapulated form to the drivers. The drivers then only
+For example: Let's say you have a device driver that talks to a SCSI device
+connected to a SCSI bus. A computer can have multiple SCSI busses. Because
+all SCSI devices use the same command set independent of the particular
+controller used to send the commands, the command set can be (and is)
+implemented as a module. The SCSI module knows how to handle all SCSI cards
+the BeOS supports; the API that the SCSI module defines is adopted by and
+augmented by the modules for specific SCSI device types (hard disks,
+scanners, CD drives, etc). The SCSI device modules are managed by a SCSI
+bus manager module, which knows how to cope with multiple busses and
+presents them in encapulated form to the drivers. The drivers then only
 need to deal with the bus manager's API, which makes the life of a driver
 author much simpler.
 
@@ -78,10 +78,10 @@ Be provides bus managers for SCSI, USB, IDE, and PCMCIA.
 
 #### File Systems
 
-File system add-ons provide support for disk and network file systems,
-such as BFS, HFS, FAT, ISO 9660, CIFS, and so forth. By creating new file
-system add-ons, developers can provide access to disks that are formatted
-using other file system.
+File system add-ons provide support for disk and network file systems, such
+as BFS, HFS, FAT, ISO 9660, CIFS, and so forth. By creating new file system
+add-ons, developers can provide access to disks that are formatted using
+other file system.
 
 ### Interactions with the Kernel
 
@@ -94,9 +94,9 @@ These include:
 
 - Access to other devices and modules.
 
-The kernel also provides, at the user level, a Posix-like API for
-accessing devices. An application can open a device through open(), and use
-read(), write(), and ioctl() to access the device.
+The kernel also provides, at the user level, a Posix-like API for accessing
+devices. An application can open a device through open(), and use read(),
+write(), and ioctl() to access the device.
 
 The Posix functions are converted into system calls into the kernel, which
 then passes them, via devfs, to the appropriate device driver.
@@ -117,14 +117,14 @@ publish drivers based on their location in
 publishes drivers in /dev/disk/ide/atapi, the driver is located in
 /boot/beos/system/add-ons/kernel/drivers/dev/disk/ide/atapi. Whew.
 
-You can see this device hierarchy by using the "ls" command from a
-Terminal window. ls /dev will show you the root of the device hierarchy, ls
+You can see this device hierarchy by using the "ls" command from a Terminal
+window. ls /dev will show you the root of the device hierarchy, ls
 /dev/disk will show you disk device busses, ls /dev/disk/ide will show you
 the IDE devices, and so forth.
 
-In reality, drivers tend to publish themselves in multiple locations in
-the /dev hierarchy, so instead of putting duplicate copies of the driver in
-the …/drivers/dev tree, the driver binaries are put at
+In reality, drivers tend to publish themselves in multiple locations in the
+/dev hierarchy, so instead of putting duplicate copies of the driver in the
+…/drivers/dev tree, the driver binaries are put at
 /boot/beos/system/add-ons/kernel/drivers/bin, and symlinks are created in
 the …/drivers/dev tree at the appropriate place. (The same is also done for
 drivers in /boot/home/config/add-ons/kernel/drivers/…)
@@ -148,8 +148,8 @@ low-level interactions that absolutely have to be done in kernel space,
 then load code into user space to handle the rest of the work. If the
 add-on fails, the system will keep running—only your driver will fail.
 
-Another plus to placing as much of your code as possible into user space
-is that it's much easier to debug code running in user space. Conventional
+Another plus to placing as much of your code as possible into user space is
+that it's much easier to debug code running in user space. Conventional
 debugging techniques that don't work for kernel code can be applied, and
 there's much less chance of taking down the system in the process.
 
@@ -167,7 +167,8 @@ spinlock. Put simply:
 
 - Use spinlocks to protect critical sections in interrupt-handling code.
 
-- Use semaphores in any other situation that calls for code synchronization.
+- Use semaphores in any other situation that calls for code
+  synchronization.
 
 Anywhere you use a spinlock to protect a critical section, you should
 disable interrupts. Of course, in an interrupt handler, you know that
@@ -182,18 +183,18 @@ While your spinlock is running, you can perform the following actions. If
 it's not on this list, you can't do it.
 
 - You can examine and alter hardware registers by using the appropriate bus
-manager hooks.
+  manager hooks.
 
 - You can examine and alter any locked-down memory.
 
 - You can call the following kernel functions: system_time(), atomic_add(),
-atomic_or(), atomic_and().
+  atomic_or(), atomic_and().
 
 - You can call the following bus manager functions: read_io_*() and
-write_io*().
+  write_io*().
 
-If you do anything else inside your spinlock, you're breaking the rules,
-so don't do it.
+If you do anything else inside your spinlock, you're breaking the rules, so
+don't do it.
 
 #### Using Spinlocks
 
@@ -206,14 +207,14 @@ The kernel keeps track of which spinlocks are being held and which are
 being waited upon. The kernel assumes that spinlocks are initialized to 0,
 and then acquired and released in logical order.
 
-By keeping track of spinlocks, the kernel can detect and break deadlocks
-on multiprocessor systems.
+By keeping track of spinlocks, the kernel can detect and break deadlocks on
+multiprocessor systems.
 
 ### Disabling Interrupts
 
-The only time you should ever disable interrupts in a device driver is
-just before entering a spinlock-protected critical section. There is
-absolutely no other reason to do it, so don't.
+The only time you should ever disable interrupts in a device driver is just
+before entering a spinlock-protected critical section. There is absolutely
+no other reason to do it, so don't.
 
 After disabling interrupts, you should reenable them as quickly as
 possible. You must never, under any circumstances, leave interrupts
@@ -228,7 +229,7 @@ following things in addition to those listed above in "Functions Available
 During Spinlocks":
 
 - You can call release_sem_etc() with the
-{cpp:enumerator}`B_DO_NOT_RESCHEDULE` flag set.
+  {cpp:enumerator}`B_DO_NOT_RESCHEDULE` flag set.
 
 - You can call get_sem_count(), add_timer(), cancel_timer(), and dprintf().
 
@@ -338,8 +339,8 @@ if (writev(fd, &v, 2) != B_OK) {
 }
 :::
 
-Performing vectored I/O like this is often faster than doing multiple
-calls to read() and write().
+Performing vectored I/O like this is often faster than doing multiple calls
+to read() and write().
 
 #### The Driver Settings API
 

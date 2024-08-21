@@ -26,8 +26,8 @@ message = "Hi, Uncle Bob!";
 mail->AddContent(message, strlen(message));
 :::
 
-This is a pretty basic message. The subject is "Hi," the message is sent
-to "bob@uncle.com," and the message body is "Hi, Uncle Bob!"
+This is a pretty basic message. The subject is "Hi," the message is sent to
+"bob@uncle.com," and the message body is "Hi, Uncle Bob!"
 
 You can add other fields, including carbon-copy (CC) and blind-carbon-copy
 (BCC) fields, and you can add attachments. For example, if you want to also

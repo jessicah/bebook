@@ -51,8 +51,8 @@ widths: auto
 	- Sets the device to use blocking I/O.
 -
 	- {cpp:enumerator}`B_GET_READ_STATUS`
-	- Returns {cpp:expr}`true` if the device can read without blocking,
-		otherwise {cpp:expr}`false`.
+	- Returns {cpp:expr}`true` if the device can read without blocking, otherwise
+		{cpp:expr}`false`.
 -
 	- {cpp:enumerator}`B_GET_WRITE_STATUS`
 	- Returns {cpp:expr}`true` if the device can write without blocking,
@@ -397,8 +397,8 @@ widths: auto
 
 -
 	- offset
-	- Is the offset, in bytes, from the beginning of the disk to the beginning
-		of the partition.
+	- Is the offset, in bytes, from the beginning of the disk to the beginning of
+		the partition.
 -
 	- size
 	- Is the size, in bytes, of the partition.

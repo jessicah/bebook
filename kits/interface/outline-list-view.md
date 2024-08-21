@@ -43,9 +43,9 @@ combinations.
 :::{cpp:function} virtual void BOutlineListView::MouseDown(BPoint point)
 :::
 
-Augments the inherited version of {cpp:func}`~BView::MouseDown()` to
-permit users to expand and collapse sections of the outline by clicking on
-an item's latch.
+Augments the inherited version of {cpp:func}`~BView::MouseDown()` to permit
+users to expand and collapse sections of the outline by clicking on an
+item's latch.
 ::::
 
 ## Member Functions
@@ -68,8 +68,8 @@ override their {cpp:class}`BListView` counterparts to ensure that the item
 is correctly entered into the outline. If the item is added to a portion of
 the list that is collapsed, it won't be visible.
 
-{hmethod}`AddUnder()` adds an {hparam}`item` immediately after another
-item in the list and at one outline level deeper. The level of the
+{hmethod}`AddUnder()` adds an {hparam}`item` immediately after another item
+in the list and at one outline level deeper. The level of the
 {hparam}`item` is modified accordingly. Thus, the item already in the list
 becomes the superitem for the newly added {hparam}`item`. If its new
 superitem is collapsed or is in a collapsed part of the list, the item will
@@ -231,8 +231,8 @@ applied to a {hclass}`BOutlineListView` object, the inherited functions
 consider only items in sections of the outline that can be displayed
 on-screen—that is, they skip over items in collapsed portions of the list.
 
-These {hclass}`BOutlineListView` functions, on the other hand, consider
-all items in the list. For example, {cpp:func}`~BListView::IndexOf()` and
+These {hclass}`BOutlineListView` functions, on the other hand, consider all
+items in the list. For example, {cpp:func}`~BListView::IndexOf()` and
 {hmethod}`FullListIndexOf()` both return an index to a given item. However,
 for {cpp:func}`~BListView::IndexOf()` the index is to the position of the
 item in the list that can be currently displayed, but for
@@ -295,15 +295,15 @@ a {hclass}`BOutlineListView`.
 :::{cpp:function} virtual bool BOutlineListView::RemoveItems(int32 index, int32 count)
 :::
 
-These functions work like their {cpp:class}`BListView` counterparts,
-except that:
+These functions work like their {cpp:class}`BListView` counterparts, except
+that:
 
 - They can remove items from any part of the list, including collapsed
-sections. The index counts all items assigned to the
-{hclass}`BOutlineListView`; the specified item can be hidden.
+  sections. The index counts all items assigned to the
+  {hclass}`BOutlineListView`; the specified item can be hidden.
 
 - If the item being removed is a superitem, they also remove all of its
-subitems.
+  subitems.
 
 :::{admonition} Warning
 :class: warning
@@ -345,8 +345,8 @@ item in the full list.
 :::{cpp:function} BListItem* BOutlineListView::Superitem(const BListItem* item)
 :::
 
-Returns the superitem for the {hparam}`item` passed as an argument—that
-is, the item under which the argument {hparam}`item` is grouped—or
+Returns the superitem for the {hparam}`item` passed as an argument—that is,
+the item under which the argument {hparam}`item` is grouped—or
 {cpp:expr}`NULL` if the {hparam}`item` is at the outermost level of the
 outline (level 0) or isn't in the list.
 ::::

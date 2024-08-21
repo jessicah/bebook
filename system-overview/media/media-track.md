@@ -1,7 +1,7 @@
 # BMediaTrack
 
-The {cpp:class}`BMediaTrack` class provides access to a particular track
-in a media file. It's always instantiated using the
+The {cpp:class}`BMediaTrack` class provides access to a particular track in
+a media file. It's always instantiated using the
 {cpp:func}`BMediaFile::TrackAt()` or {cpp:func}`BMediaFile::CreateTrack()`
 function.
 

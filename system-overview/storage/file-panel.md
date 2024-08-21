@@ -6,42 +6,42 @@ the user's actions on the panel. The Save Panel looks like this:
 
 ![File Save Panel](./_static/images/FilePanel1.png)
 
-The Open Panel looks pretty much the same, but without the text view in
-the lower left corner.
+The Open Panel looks pretty much the same, but without the text view in the
+lower left corner.
 
 ## Creating and Using a BFilePanel
 
 To create and use a {hclass}`BFilePanel`, follow these steps:
 
 1. Construct a {hclass}`BFilePanel` object in response to the user's request
-(most likely, a click on an "Open" or "Save"/"Save As" menu item). When you
-construct the panel, you have to specify its "mode" (Open or Save).
+  (most likely, a click on an "Open" or "Save"/"Save As" menu item). When
+  you construct the panel, you have to specify its "mode" (Open or Save).
 
 2. Fine-tune the panel by telling it which directory to display, whether it
-allows multiple selection, whether it can open a directory, which target it
-should send notifications to, and so on. (Most of these parameters can also
-be set in the constructor.)
+  allows multiple selection, whether it can open a directory, which target
+  it should send notifications to, and so on. (Most of these parameters can
+  also be set in the constructor.)
 
 3. Invoke {hmethod}`Show()` on the panel, and then wait for the user to
-confirm a selection (or close the panel).
+  confirm a selection (or close the panel).
 
 4. Receive a message. When the user confirms a selection (or cancels the
-panel), the panel disappears and a notification message (Open, Save, or
-Cancel) is sent to the panel's target. The message identifies the confirmed
-file(s).
+  panel), the panel disappears and a notification message (Open, Save, or
+  Cancel) is sent to the panel's target. The message identifies the
+  confirmed file(s).
 
 5. Delete the {hclass}`BFilePanel` object…or don't. When the user closes a
-file panel, the object is not automatically deleted; you have to do it
-yourself. But you may not want to. If you don't delete the panel, you can
-simply call {hmethod}`Show()` the next time you want to display it; the
-state from the previous invocation (the panel's size and location, the
-directory it points to) is remembered.
+  file panel, the object is not automatically deleted; you have to do it
+  yourself. But you may not want to. If you don't delete the panel, you can
+  simply call {hmethod}`Show()` the next time you want to display it; the
+  state from the previous invocation (the panel's size and location, the
+  directory it points to) is remembered.
 
 ## Constructing and Fine-tuning the Panel
 
-The {hclass}`BFilePanel` constructor has about two thousand arguments.
-They all have default values, and most of the parameters that they control
-can be set through individual functions. The following sections list and
+The {hclass}`BFilePanel` constructor has about two thousand arguments. They
+all have default values, and most of the parameters that they control can
+be set through individual functions. The following sections list and
 describe the constructor arguments and tell you if there's an analogous
 function.
 
@@ -169,43 +169,43 @@ to be able to confirm. Before describing the flavor settings, keep this in
 mind…
 
 - Double-clicking a directory in the file list always enters the directory,
-regardless of the panel's flavor setting.
+  regardless of the panel's flavor setting.
 
 If you understand the following, you can save yourself some reading:
 
 - If your app wants to open files only, then stick with the default
-({cpp:enumerator}`B_FILE_NODE`); the user will be able to confirm files and
-symlinks to files. If you want directories as well (for example, a
-compression app might want to work on files and directories) then add in
-{cpp:enumerator}`B_DIRECTORY_NODE` (symlinks to directories are okay, as
-well). If you only want directories (unusual, but possible), then leave
-{cpp:enumerator}`B_FILE_NODE` out of it.
+  ({cpp:enumerator}`B_FILE_NODE`); the user will be able to confirm files
+  and symlinks to files. If you want directories as well (for example, a
+  compression app might want to work on files and directories) then add in
+  {cpp:enumerator}`B_DIRECTORY_NODE` (symlinks to directories are okay, as
+  well). If you only want directories (unusual, but possible), then leave
+  {cpp:enumerator}`B_FILE_NODE` out of it.
 
 If you're not convinced, read on:
 
-- If the setting includes {cpp:enumerator}`B_FILE_NODE` and the user selects
-and confirms a file or a symlink to a file, the file (or symlink) is
-delivered to your target. If it doesn't include
-{cpp:enumerator}`B_FILE_NODE` and the user selects a file (or symlink to a
-file), the Open button is disabled.
+- If the setting includes {cpp:enumerator}`B_FILE_NODE` and the user
+  selects and confirms a file or a symlink to a file, the file (or symlink)
+  is delivered to your target. If it doesn't include
+  {cpp:enumerator}`B_FILE_NODE` and the user selects a file (or symlink to
+  a file), the Open button is disabled.
 
 - If the setting includes {cpp:enumerator}`B_DIRECTORY_NODE` and the user
-selects and Opens (i.e. clicks the Open button) a directory or a symlink to
-a directory, the directory (or symlink) is delivered to your target. If it
-doesn't include {cpp:enumerator}`B_DIRECTORY_NODE` and the user Opens a
-directory (or symlink to a directory), the directory is entered (the
-contents of the directory are displayed in the file list).
+  selects and Opens (i.e. clicks the Open button) a directory or a symlink
+  to a directory, the directory (or symlink) is delivered to your target.
+  If it doesn't include {cpp:enumerator}`B_DIRECTORY_NODE` and the user
+  Opens a directory (or symlink to a directory), the directory is entered
+  (the contents of the directory are displayed in the file list).
 
 - If the setting includes {cpp:enumerator}`B_SYMLINK_NODE` and the user
-confirms a symlink, the symlink is delivered to your target. If it doesn't
-include {cpp:enumerator}`B_SYMLINK_NODE` and the user selects symlink, the
-panel's response depends on the inclusion of the other two flavors. Note
-that including {cpp:enumerator}`B_SYMLINK_NODE` is an odd thing to do—it
-only makes sense if it's not combined with either of the other two flavors,
-and even then it doesn't make much sense.
+  confirms a symlink, the symlink is delivered to your target. If it
+  doesn't include {cpp:enumerator}`B_SYMLINK_NODE` and the user selects
+  symlink, the panel's response depends on the inclusion of the other two
+  flavors. Note that including {cpp:enumerator}`B_SYMLINK_NODE` is an odd
+  thing to do—it only makes sense if it's not combined with either of the
+  other two flavors, and even then it doesn't make much sense.
 
-As implied by the here, when the user confirms a symlink (regardless of
-the flavor setting), you always receive the symlink itself in the Open
+As implied by the here, when the user confirms a symlink (regardless of the
+flavor setting), you always receive the symlink itself in the Open
 message—you don't get the file or directory it points to.
 
 ### Multiple Selection
@@ -301,12 +301,12 @@ object through a {cpp:class}`BRefFilter` hook function. In your
 implementation of the hook function, you can reject individual entries;
 rejected entries won't be displayed in the file list.
 
-By default, a file panel has no {cpp:class}`BRefFilter`. To supply one,
-you have to subclass {cpp:class}`BRefFilter` (in order to implement the
-hook function) and pass it in.
+By default, a file panel has no {cpp:class}`BRefFilter`. To supply one, you
+have to subclass {cpp:class}`BRefFilter` (in order to implement the hook
+function) and pass it in.
 
 - Note that the ref filter isn't asked to "re-review" the entry list when
-the file panel is Show()'d after being hidden.
+  the file panel is Show()'d after being hidden.
 
 ### Is Modal?
 
@@ -374,8 +374,8 @@ When the user confirms a selection or cancels a file panel, a
 {cpp:class}`BMessenger`) through the {hclass}`BFilePanel` constructor, or
 through the {cpp:func}`~BFilePanel::SetTarget()` function.
 
-The format of the {cpp:class}`BMessage` that the target receives depends
-on whether the user is opening, saving, or canceling.
+The format of the {cpp:class}`BMessage` that the target receives depends on
+whether the user is opening, saving, or canceling.
 
 ## Open Notification
 
@@ -385,17 +385,17 @@ the {cpp:func}`~BApplication::RefsReceived()` function. Otherwise it's sent
 to the target's {cpp:func}`~BHandler::MessageReceived()`.
 
 - By default, the {cpp:var}`what` field is
-{cpp:enumerator}`B_REFS_RECEIVED`. You can override the default by
-supplying your own {cpp:class}`BMessage`
-({cpp:func}`~BFilePanel::SetMessage()`).
+  {cpp:enumerator}`B_REFS_RECEIVED`. You can override the default by
+  supplying your own {cpp:class}`BMessage`
+  ({cpp:func}`~BFilePanel::SetMessage()`).
 
 - The {hparam}`refs` field (type {cpp:enumerator}`B_REF_TYPE`) contains
-{htype}`entry_ref` structures, one for each entry that the user has
-confirmed.
+  {htype}`entry_ref` structures, one for each entry that the user has
+  confirmed.
 
 - The message may contain other fields, as copied from the
-{cpp:class}`BMessage` you (optionally) supplied. The data in these fields
-won't be changed.
+  {cpp:class}`BMessage` you (optionally) supplied. The data in these fields
+  won't be changed.
 
 Keep in mind that the refs that you receive through this message point to
 the literal entries that the user confirmed. In other words, if the
@@ -428,21 +428,21 @@ Save notifications are always sent to the target's
 {cpp:func}`~BHandler::MessageReceived()` function.
 
 - By default, the {cpp:var}`what` field is
-{cpp:enumerator}`B_SAVE_REQUESTED`. You can override the default by
-supplying your own {cpp:class}`BMessage`
-({cpp:func}`~BFilePanel::SetMessage()`).
+  {cpp:enumerator}`B_SAVE_REQUESTED`. You can override the default by
+  supplying your own {cpp:class}`BMessage`
+  ({cpp:func}`~BFilePanel::SetMessage()`).
 
 - The {hparam}`directory` field (type {cpp:enumerator}`B_REF_TYPE`) contain
-a single {htype}`entry_ref` structure that points to the directory in which
-the user has requested the entry be saved (in other words, the ref refers
-to the panel directory).
+  a single {htype}`entry_ref` structure that points to the directory in
+  which the user has requested the entry be saved (in other words, the ref
+  refers to the panel directory).
 
-- The {hparam}`name` field ({cpp:enumerator}`B_STRING_TYPE`) is the text the
-user typed in the Save Panel's text view.
+- The {hparam}`name` field ({cpp:enumerator}`B_STRING_TYPE`) is the text
+  the user typed in the Save Panel's text view.
 
 - The message may contain other fields, as copied from the
-{cpp:class}`BMessage` you (optionally) supplied. The data in these fields
-won't be changed.
+  {cpp:class}`BMessage` you (optionally) supplied. The data in these fields
+  won't be changed.
 
 Note that if the user confirms a name that collides with an existing file,
 an alert is automatically displayed. The user can then back out of the
@@ -467,20 +467,20 @@ Cancel notifications are always sent to the target's
 {cpp:func}`~BHandler::MessageReceived()` function.
 
 - The {cpp:var}`what` field is always {cpp:enumerator}`B_CANCEL`, even if
-you supplied your own {cpp:class}`BMessage`.
+  you supplied your own {cpp:class}`BMessage`.
 
-- The {hparam}`old_what` field ({cpp:enumerator}`B_UINT32_TYPE`) records the
-"previous" what value. This is only useful (and dependable) if you supplied
-your own {cpp:class}`BMessage`: The {cpp:var}`what` from your message is
-moved to the {hparam}`old_what` field. If you didn't supply a
-{cpp:var}`what`, you should ignore this field (it could contain garbage).
+- The {hparam}`old_what` field ({cpp:enumerator}`B_UINT32_TYPE`) records
+  the "previous" what value. This is only useful (and dependable) if you
+  supplied your own {cpp:class}`BMessage`: The {cpp:var}`what` from your
+  message is moved to the {hparam}`old_what` field. If you didn't supply a
+  {cpp:var}`what`, you should ignore this field (it could contain garbage).
 
 - The {hparam}`source` ({cpp:enumerator}`B_POINTER_TYPE`) is a pointer to
-the {hclass}`BFilePanel` object that was closed.
+  the {hclass}`BFilePanel` object that was closed.
 
 - The message may contain other fields, as copied from the
-{cpp:class}`BMessage`: you (optionally) supplied. The data in these fields
-won't be changed.
+  {cpp:class}`BMessage`: you (optionally) supplied. The data in these
+  fields won't be changed.
 
 Keep in mind that when a file panel is closed—regardless of how it's
 closed—the {hclass}`BFilePanel` object is not destroyed. It's merely
@@ -492,12 +492,12 @@ There are two ways you can modify the look of your {hclass}`BFilePanel`
 object.
 
 - You can do some simple text twiddling by calling the label- and
-text-setting functions SetButtonLabel() and SetSaveText().
+  text-setting functions SetButtonLabel() and SetSaveText().
 
-- If you need to really change the look, you can get a handle on the panel's
-BWindow and BView objects in order to move them around, add your own, or
-whatever. You get the window through the Window() function. Finding
-specific views within the window is described below.
+- If you need to really change the look, you can get a handle on the
+  panel's BWindow and BView objects in order to move them around, add your
+  own, or whatever. You get the window through the Window() function.
+  Finding specific views within the window is described below.
 
 ### Finding Views in the Panel
 
@@ -511,7 +511,8 @@ The views in the panel are (mostly) named, as listed and shown below
 
 - "PoseView" is the scrollable list of files.
 
-- "VScrollBar" and "HScrollBar" are the vertical and horizontal scroll bars.
+- "VScrollBar" and "HScrollBar" are the vertical and horizontal scroll
+  bars.
 
 - "CountVw" is the item counter to the left of the horizontal scroll bar.
 
@@ -530,9 +531,9 @@ window's list of views:
 BView* background = filepanel->Window()->ChildAt(0);
 :::
 
-The other views can be found by name, reckoning off of the background
-view. For example, here we get the "PoseView" view (the view that contains
-the file list):
+The other views can be found by name, reckoning off of the background view.
+For example, here we get the "PoseView" view (the view that contains the
+file list):
 
 :::{code} cpp
 BView* files = background->FindView("PoseView");

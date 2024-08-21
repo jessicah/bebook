@@ -1,7 +1,7 @@
 # BParameterWeb
 
-{cpp:class}`BParameterWeb` serves as a container for information
-describing the relationships among the configurable parameters of a
+{cpp:class}`BParameterWeb` serves as a container for information describing
+the relationships among the configurable parameters of a
 {cpp:class}`BControllable` node. A {cpp:class}`BControllable` subclass
 should, when constructed, create a {cpp:class}`BParameterWeb` and populate
 it with controls through one or more {cpp:class}`BParameterGroup`s. This

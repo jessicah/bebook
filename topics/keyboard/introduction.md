@@ -6,9 +6,9 @@ configuration of the user's keyboard.
 
 Definitions
 
-: This section provides definitions of some keyboard-related terminology,
-and describes some basic concepts, including the different kinds of keys,
-an overview of keyboard mapping, and modifier keys.
+: This section provides definitions of some keyboard-related terminology, and
+describes some basic concepts, including the different kinds of keys, an
+overview of keyboard mapping, and modifier keys.
 
 Modifier Keys
 
@@ -47,5 +47,5 @@ which are not, using a bit-array of key states.
 
 Input Functions (from the Input Server chapter)
 
-: Lists all keyboard-related functions, and includes specifics on how to
-read and understand the keymap-related structures.
+: Lists all keyboard-related functions, and includes specifics on how to read
+and understand the keymap-related structures.

@@ -200,12 +200,12 @@ These functions get and set the file extensions that are associated with
 the object's MIME type.
 
 - If you're getting the extensions, you'll find them copied into your
-{cpp:class}`BMessage`'s {hparam}`extensions` field (the
-{cpp:class}`BMessage` must be allocated). They're given as an indexed array
-of strings ({cpp:enumerator}`B_STRING_TYPE`).
+  {cpp:class}`BMessage`'s {hparam}`extensions` field (the
+  {cpp:class}`BMessage` must be allocated). They're given as an indexed
+  array of strings ({cpp:enumerator}`B_STRING_TYPE`).
 
 - Similarly, you pass in the extensions by adding strings to the message's
-{hparam}`extensions` field.
+  {hparam}`extensions` field.
 
 - The {cpp:class}`BMessage`'s {hparam}`what` field is unimportant.
 
@@ -331,18 +331,18 @@ object's MIME type as a signature uses to display the given file type.
 The icon is passed in or returned through the {hparam}`icon` argument:
 
 - If you're getting the icon, the {cpp:class}`BBitmap` must be allocated;
-the icon data is copied into your {cpp:class}`BBitmap` object.
+  the icon data is copied into your {cpp:class}`BBitmap` object.
 
 - If you're setting the icon, the bitmap must be the proper size: 32x32 for
-the large icon, 16x16 for the small one. In {cpp:class}`BRect` lingo,
-that's `BRect(0, 0, 31, 31)` and `BRect(0, 0, 15, 15)`.
+  the large icon, 16x16 for the small one. In {cpp:class}`BRect` lingo,
+  that's `BRect(0, 0, 31, 31)` and `BRect(0, 0, 15, 15)`.
 
 - If you're setting the icon, the bitmap must be in the
-{cpp:enumerator}`B_CMAP8` color space (8-bit color), or the application
-will crash.
+  {cpp:enumerator}`B_CMAP8` color space (8-bit color), or the application
+  will crash.
 
-- You can remove an icon by passing {cpp:expr}`NULL` as the icon argument to
-{hmethod}`SetIconForType()`.
+- You can remove an icon by passing {cpp:expr}`NULL` as the icon argument
+  to {hmethod}`SetIconForType()`.
 
 :::{list-table}
 ---
@@ -477,11 +477,11 @@ the Tracker will ask the File Type database for the preferred app that's
 associated with the file's type.
 
 - The preferred app is identified by {hparam}`signature`, a MIME string. A
-value of {cpp:expr}`NULL` indicates that there is no preferred app for the
-MIME type.
+  value of {cpp:expr}`NULL` indicates that there is no preferred app for
+  the MIME type.
 
 - The {htype}`app_verb` argument specifies the type of access; currently,
-the only {htype}`app_verb` is {cpp:enumerator}`B_OPEN`.
+  the only {htype}`app_verb` is {cpp:enumerator}`B_OPEN`.
 
 :::{list-table}
 ---
@@ -592,8 +592,8 @@ for (n = 0; n < supers; n++) {
 }
 :::
 
-If an application supports both the full type and the supertype, it will
-be listed only once in the "applications" array (as a full supporter).
+If an application supports both the full type and the supertype, it will be
+listed only once in the "applications" array (as a full supporter).
 
 To set the types that an application supports, use
 {cpp:func}`BAppFileInfo::SetSupportedTypes()`. To tell an app to support
@@ -646,8 +646,8 @@ See {cpp:func}`~BMimeType::SetTo()`.
 :::{cpp:function} bool BMimeType::IsInstalled() const
 :::
 
-{hmethod}`Install()` adds the object's MIME type to the File Type
-database. {hmethod}`Delete()` removes the type from the database.
+{hmethod}`Install()` adds the object's MIME type to the File Type database.
+{hmethod}`Delete()` removes the type from the database.
 {hmethod}`IsInstalled()` tells you if the type is currently installed.
 
 None of these functions affect the object's copy of the MIME type; for
@@ -692,9 +692,9 @@ widths: auto
 :::{cpp:function} bool BMimeType::IsSupertypeOnly() const
 :::
 
-The `static` {hmethod}`IsValid()` tests its argument for MIME validity.
-See "{ref}`Valid MIME Strings`" for the rules. The non-static version
-checks the validity of the object's MIME string.
+The `static` {hmethod}`IsValid()` tests its argument for MIME validity. See
+"{ref}`Valid MIME Strings`" for the rules. The non-static version checks
+the validity of the object's MIME string.
 
 {hmethod}`IsSupertypeOnly()` returns {cpp:expr}`true` if the object's MIME
 string doesn't include a subtype.
@@ -707,11 +707,11 @@ string doesn't include a subtype.
 :::{cpp:function} void BMimeType::Unset()
 :::
 
-{hmethod}`SetTo()` initializes this {hclass}`BMimeType` object to
-represent {hparam}`MIME_string`. The object's previous MIME string is
-freed; the argument is then copied. The argument can be a full
-supertype/subtype string, or simply a supertype. In any case, it must pass
-the validity test described in "{ref}`Valid MIME Strings`".
+{hmethod}`SetTo()` initializes this {hclass}`BMimeType` object to represent
+{hparam}`MIME_string`. The object's previous MIME string is freed; the
+argument is then copied. The argument can be a full supertype/subtype
+string, or simply a supertype. In any case, it must pass the validity test
+described in "{ref}`Valid MIME Strings`".
 
 {hmethod}`Unset()` frees the object's current MIME string, and sets the
 object's status to {cpp:enumerator}`B_NO_INIT`.
@@ -803,10 +803,9 @@ icon was changed; {cpp:expr}`false` otherwise
 
 :::
 
-{hparam}`be:which` is a bitmask describing the changes made to the
-database for MIME type {hparam}`be:type`. The following masks are defined
-along with the {hclass}`BMimeType` methods used to effect the changes they
-signal:
+{hparam}`be:which` is a bitmask describing the changes made to the database
+for MIME type {hparam}`be:type`. The following masks are defined along with
+the {hclass}`BMimeType` methods used to effect the changes they signal:
 
 :::{list-table}
 ---

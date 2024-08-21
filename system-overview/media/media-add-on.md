@@ -66,8 +66,8 @@ widths: auto
 		flavor.
 -
 	- kinds
-	- Should indicate all the relevant kinds that the node matches; this is a
-		bit field, and it's possible that more than one flag may be relevant. See
+	- Should indicate all the relevant kinds that the node matches; this is a bit
+		field, and it's possible that more than one flag may be relevant. See
 		{cpp:any}`node_kind`.
 -
 	- flavor_flags
@@ -83,16 +83,16 @@ widths: auto
 		: The flavor will be forced into the loading application, and many instances
 		of it may exist.
 
-		If neither flag is specified, the Media Kit will decide what to do with
-		the flavor.
+		If neither flag is specified, the Media Kit will decide what to do with the
+		flavor.
 -
 	- internal_id
 	- Is an internal ID number that your add-on can use to identify the flavor;
 		the flavor will be requested by the Media Kit using this ID number.
 -
 	- possible_count
-	- Specifies to the Media Kit the maximum number of instances of your node
-		can be in existence at the same time. For example, if your node provides
+	- Specifies to the Media Kit the maximum number of instances of your node can
+		be in existence at the same time. For example, if your node provides
 		support for a particular sound card, this value should be equal to the
 		number of cards you support that are currently installed in the computer.
 -

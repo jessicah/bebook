@@ -73,14 +73,13 @@ widths: auto
 Copies the item's {htype}`node_ref` structure into the {hparam}`nref`
 argument, which must be allocated.
 
-Typically, you use an node's {htype}`node_ref` as a key to the Node
-Monitor by passing the {htype}`node_ref` structure to the
-{cpp:func}`watch_node()` function. The Node Monitor watches the node for
-specific changes; see "{ref}`The Node Monitor`" section of this chapter for
-details.
+Typically, you use an node's {htype}`node_ref` as a key to the Node Monitor
+by passing the {htype}`node_ref` structure to the {cpp:func}`watch_node()`
+function. The Node Monitor watches the node for specific changes; see
+"{ref}`The Node Monitor`" section of this chapter for details.
 
-As a convenience, you can use a {htype}`node_ref` structure to initialize
-a {cpp:class}`BDirectory` object (through the constructor or
+As a convenience, you can use a {htype}`node_ref` structure to initialize a
+{cpp:class}`BDirectory` object (through the constructor or
 {cpp:func}`BDirectory::SetTo()` function).
 
 :::{list-table}
@@ -130,18 +129,18 @@ These functions set and get the owner, group, and read/write/execute
 permissions for the node:
 
 - The {hparam}`owner` identifier encodes the identity of the user that
-"owns" the file.
+  "owns" the file.
 
-- The {hparam}`group` identifier encodes the "group" that is permitted group
-access to the file (as declared by the permissions).
+- The {hparam}`group` identifier encodes the "group" that is permitted
+  group access to the file (as declared by the permissions).
 
 - The {hparam}`permissions` value records nine "permission facts": Whether
-the file can be read, written, and executed by the node's owner, by users
-in the node's group, and by everybody else (read/write/execute *
-owner/group/others = 9 items).
+  the file can be read, written, and executed by the node's owner, by users
+  in the node's group, and by everybody else (read/write/execute *
+  owner/group/others = 9 items).
 
-The {htype}`uid_t`, {htype}`gid_t`, and {htype}`mode_t` types used here
-are standard POSIX types. All three are 32-bit unsigned integers and are
+The {htype}`uid_t`, {htype}`gid_t`, and {htype}`mode_t` types used here are
+standard POSIX types. All three are 32-bit unsigned integers and are
 defined in posix/sys/types.h.
 
 The owner and group encodings must match values found in the system's user

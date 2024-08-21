@@ -22,8 +22,8 @@ Prepares the object to play the specified sound. The first form of the
 constructor preloads the entire sound specified by {hparam}`inFile` into
 memory, while the second accepts a {hparam}`inFile` as a pathname string.
 
-The third form takes {hparam}`inData` as a pointer to sound data already
-in memory; this sound data is copied into a buffer owned by the
+The third form takes {hparam}`inData` as a pointer to sound data already in
+memory; this sound data is copied into a buffer owned by the
 {hclass}`BSimpleGameSound` object; once the constructor returns, you can
 delete the original data if you wish. The data is copied since some sound
 cards have an onboard sound buffer, and the API allows support for these

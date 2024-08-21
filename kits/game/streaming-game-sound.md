@@ -43,8 +43,8 @@ Stops playing the sound.
 Fills the buffer specified by {hparam}`inBuffer` with {hparam}`byteCount`
 bytes of audio data.
 
-In the {hclass}`BStreamingGameSound` implemenation, this function calls
-the stream hook, if one exists.
+In the {hclass}`BStreamingGameSound` implemenation, this function calls the
+stream hook, if one exists.
 
 See also: {cpp:func}`~BStreamingGameSound::SetStreamHook()`
 ::::

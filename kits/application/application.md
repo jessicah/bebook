@@ -31,9 +31,9 @@ resource). The signature is a MIME type string that must have the supertype
 "application". For more information on application signatures and how to
 set them, see TODO.
 
-If you specify {hparam}`error`, a pointer to a {htype}`status_t`, any
-error that occurs while constructing the {hclass}`BApplication` will be
-returned in that variable. Alternately, you can call
+If you specify {hparam}`error`, a pointer to a {htype}`status_t`, any error
+that occurs while constructing the {hclass}`BApplication` will be returned
+in that variable. Alternately, you can call
 {cpp:func}`~BApplication::InitCheck()` to check the results. If an error is
 returned by the constructor, you shouldn't call
 {cpp:func}`~BApplication::Run()`.
@@ -50,10 +50,10 @@ Closes and deletes the application's {cpp:class}`BWindow`s (and the
 {cpp:class}`BView`s they contain), and severs the application's connection
 to the Application Server.
 
-Never delete a {hclass}`BApplication` object while it's running; wait
-until {cpp:func}`~BApplication::Run()` returns. To stop a
-{hclass}`BApplication` (and so cause {cpp:func}`~BApplication::Run()` to
-return), send it a {cpp:enumerator}`B_QUIT_REQUESTED` message:
+Never delete a {hclass}`BApplication` object while it's running; wait until
+{cpp:func}`~BApplication::Run()` returns. To stop a {hclass}`BApplication`
+(and so cause {cpp:func}`~BApplication::Run()` to return), send it a
+{cpp:enumerator}`B_QUIT_REQUESTED` message:
 
 :::{code} cpp
 be_app->PostMessage(B_QUIT_REQUESTED);
@@ -129,10 +129,10 @@ $ MyApp file1 file2
 {hparam}`argc` arguments, but adds the executable name to the front of the
 {hparam}`argv` array and increments the {hparam}`argc` value.
 
-Normally, the {cpp:enumerator}`B_ARGV_RECEIVED` message (if sent at all)
-is sent once, just before {cpp:enumerator}`B_READY_TO_RUN` is sent.
-However, if the user tries to re-launch (from the command line and with
-arguments) an already-running application that's set to
+Normally, the {cpp:enumerator}`B_ARGV_RECEIVED` message (if sent at all) is
+sent once, just before {cpp:enumerator}`B_READY_TO_RUN` is sent. However,
+if the user tries to re-launch (from the command line and with arguments)
+an already-running application that's set to
 {cpp:enumerator}`B_EXCLUSIVE_LAUNCH` or {cpp:enumerator}`B_SINGLE_LAUNCH`,
 the re-launch will generate a {cpp:enumerator}`B_ARGV_RECEIVED` message
 that's sent to the already-running image. Thus, for such apps, the
@@ -288,8 +288,8 @@ See {cpp:func}`BHandler::ResolveSpecifier()`
 These functions, inherited from {cpp:class}`BLooper`, are different enough
 from their parent versions to warrant description.
 
-{hmethod}`Run()` doesn't spawn a new thread—it runs the message loop in
-the thread that it's called from, and doesn't return until the message loop
+{hmethod}`Run()` doesn't spawn a new thread—it runs the message loop in the
+thread that it's called from, and doesn't return until the message loop
 stops.
 
 {hmethod}`Quit()` doesn't kill the looper thread it tells the thread to
@@ -342,8 +342,7 @@ are {cpp:enumerator}`B_CURSOR_SYSTEM_DEFAULT` for the hand cursor and
 
 {hmethod}`ShowCursor()` restores it.
 
-{hmethod}`ObscureCursor()` hides the cursor until the user moves the
-mouse.
+{hmethod}`ObscureCursor()` hides the cursor until the user moves the mouse.
 
 {hmethod}`IsCursorHidden()` returns {cpp:expr}`true` if the cursor is
 hidden (but not obscured), and {cpp:expr}`false` if not.
@@ -373,12 +372,11 @@ sent.
 object in the application's window list. If {hparam}`index` is out of
 range, the function returns {cpp:expr}`NULL`.
 
-{hmethod}`CountWindows()` returns the number of windows in the window
-list.
+{hmethod}`CountWindows()` returns the number of windows in the window list.
 
-The windows list includes all windows explicitly created by the
-app—whether they're normal, floating, or modal, and whether or not they're
-actually displayed—but excludes private windows created by Be classes.
+The windows list includes all windows explicitly created by the app—whether
+they're normal, floating, or modal, and whether or not they're actually
+displayed—but excludes private windows created by Be classes.
 
 The order of windows in the list has no signficance.
 
@@ -432,10 +430,9 @@ subclass:
 BMessenger* be_app_messenger;
 :::
 
-{hparam}`be_app_messenger` is a global {cpp:class}`BMessenger` that
-targets your {hparam}`be_app` object. It's created in the
-{hclass}`BApplication` {cpp:func}`constructor
-<BApplication::BApplication()>`.
+{hparam}`be_app_messenger` is a global {cpp:class}`BMessenger` that targets
+your {hparam}`be_app` object. It's created in the {hclass}`BApplication`
+{cpp:func}`constructor <BApplication::BApplication()>`.
 
 ## Archived Fields
 

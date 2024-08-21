@@ -8,9 +8,9 @@ does this by implementing the {cpp:func}`~BFile::Read()` /
 
 ## Initializing and Opening
 
-When you construct (or otherwise initialize) a {hclass}`BFile`, the file
-is automatically opened. The file is closed when you re-initialize or
-destroy the object.
+When you construct (or otherwise initialize) a {hclass}`BFile`, the file is
+automatically opened. The file is closed when you re-initialize or destroy
+the object.
 
 At each initialization, you're asked to supply an "open mode" value. this
 is a combination of flags that tells the object whether you want to read
@@ -26,11 +26,11 @@ named file already exists.)
 
 ## Access to Directories and Symbolic Links
 
-Although {hclass}`BFile`s are meant to be used to access regular files,
-you aren't prevented from opening and reading a directory (you won't be
-able to write the directory, however). This isn't exactly a feature—there's
-not much reason to access a directory this way—you should simply be aware
-that it's not an error.
+Although {hclass}`BFile`s are meant to be used to access regular files, you
+aren't prevented from opening and reading a directory (you won't be able to
+write the directory, however). This isn't exactly a feature—there's not
+much reason to access a directory this way—you should simply be aware that
+it's not an error.
 
 Symbolic links, however, can't be opened by a {hclass}`BFile`—not because
 it's illegal, but because if you ask to open a symbolic link, the link is

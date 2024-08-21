@@ -35,7 +35,7 @@ These functions return the "next" entry in the entry list as a
 end of the list is signalled by…
 
 - {hmethod}`GetNextEntry()` and {hmethod}`GetNextRef()` return
-{cpp:enumerator}`B_ENTRY_NOT_FOUND`.
+  {cpp:enumerator}`B_ENTRY_NOT_FOUND`.
 
 - {hmethod}`GetNextDirents()` returns 0.
 

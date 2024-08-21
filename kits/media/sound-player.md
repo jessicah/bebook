@@ -71,16 +71,15 @@ The {hparam}`cookie` parameter is a pointer that you can use for your own
 purposes; it's most useful if you're using a custom {hparam}`PlayBuffer` or
 {hparam}`Notifier`.
 
-The second form of the constructor lets you specify in the
-{hparam}`format` argument the format of the audio that the
-{hclass}`BSoundPlayer` will perform. Since {hclass}`BSoundPlayer` can only
-play raw sound formats, this is specified using the
-{cpp:any}`media_raw_audio_format` structure.
+The second form of the constructor lets you specify in the {hparam}`format`
+argument the format of the audio that the {hclass}`BSoundPlayer` will
+perform. Since {hclass}`BSoundPlayer` can only play raw sound formats, this
+is specified using the {cpp:any}`media_raw_audio_format` structure.
 
-The third form of the constructor lets you specify a node through which
-the sound should be played, and also uses a
-{cpp:any}`media_multi_audio_format` to specify the sound's format, instead
-of the older {cpp:any}`media_raw_audio_format`.
+The third form of the constructor lets you specify a node through which the
+sound should be played, and also uses a {cpp:any}`media_multi_audio_format`
+to specify the sound's format, instead of the older
+{cpp:any}`media_raw_audio_format`.
 
 You should call {cpp:func}`~BSoundPlayer::InitCheck()` before using your
 {hclass}`BSoundPlayer` object; this will let you determine whether or not
@@ -169,10 +168,9 @@ raw sound format, the {cpp:any}`media_raw_audio_format` structure is used.
 :::{cpp:function} EventNotifierFunc BSoundPlayer::EventNotifier(media_node* outNode, int32* outParameter, float* outMinDB, float* outMaxDB) const
 :::
 
-Returns information about the {hclass}`BSoundPlayer`'s volume control.
-Pass pointers to variables to be filled ({cpp:expr}`NULL` is not
-permitted), and on return these values will be set to describe the player
-as follows:
+Returns information about the {hclass}`BSoundPlayer`'s volume control. Pass
+pointers to variables to be filled ({cpp:expr}`NULL` is not permitted), and
+on return these values will be set to describe the player as follows:
 
 :::{list-table}
 ---
@@ -326,8 +324,8 @@ widths: auto
 :::{cpp:function} bool BSoundPlayer::IsPlaying(play_id id)
 :::
 
-{hmethod}`StartPlaying()` schedules the specified {hclass}`BSound` to
-begin playback at the performance time specified by {hparam}`atTime`; if
+{hmethod}`StartPlaying()` schedules the specified {hclass}`BSound` to begin
+playback at the performance time specified by {hparam}`atTime`; if
 {hparam}`atTime` is 0, the sound begins playing immediately (or as soon as
 {hmethod}`Start()` is called, if the {hclass}`BSoundPlayer` hasn't been
 started yet). The {htype}`play_id` returned by this function is used to

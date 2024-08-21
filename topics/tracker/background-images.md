@@ -40,17 +40,16 @@ widths: auto
 
 	- {cpp:enumerator}`B_STRING_TYPE`
 
-	- The full path to the image. The image needs to be in a format understood
-by one of the translators (see the Translation Kit) installed on the
-system.
+	- The full path to the image. The image needs to be in a format understood by
+one of the translators (see the Translation Kit) installed on the system.
 
 -
 	- {cpp:enumerator}`B_BACKGROUND_MODE`
 
 	- {cpp:enumerator}`B_INT32_TYPE`
 
-	- Specifies how the background is placed (tiled, centered, etc). See the
-list of mode constants after this table.
+	- Specifies how the background is placed (tiled, centered, etc). See the list
+of mode constants after this table.
 
 -
 	- {cpp:enumerator}`B_BACKGROUND_ORIGIN`

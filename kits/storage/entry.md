@@ -250,8 +250,8 @@ widths: auto
 :::{cpp:function} virtual status_t BEntry::GetStat(struct stat* st) const
 :::
 
-{hmethod}`GetStat()` returns the {htype}`stat` structure for the entry.
-The structure is copied into the {hparam}`st` argument, which must be
+{hmethod}`GetStat()` returns the {htype}`stat` structure for the entry. The
+structure is copied into the {hparam}`st` argument, which must be
 allocated. The {cpp:class}`BStatable` object does not cache the
 {htype}`stat` structure; every time you call {hmethod}`GetStat()`, fresh
 stat information is retrieved.
@@ -370,11 +370,11 @@ a relative path. In the former case (simple leaf) the entry is renamed
 within its current directory. In the latter, the entry is moved into a
 subdirectory of its current directory, as given by the argument.
 
-{hmethod}`MoveTo()` moves the entry to a different directory and
-optionally renames the leaf. Again, {hparam}`path` can be a simple leaf or
-a relative path; in both cases, {hparam}`path` is reckoned off of
-{hparam}`dir`. If path is {cpp:expr}`NULL`, the entry is moved to
-{hparam}`dir`, but retains its old leaf name.
+{hmethod}`MoveTo()` moves the entry to a different directory and optionally
+renames the leaf. Again, {hparam}`path` can be a simple leaf or a relative
+path; in both cases, {hparam}`path` is reckoned off of {hparam}`dir`. If
+path is {cpp:expr}`NULL`, the entry is moved to {hparam}`dir`, but retains
+its old leaf name.
 
 If the entry's new location is already taken, the clobber argument decides
 whether the existing entry is removed to make way for yours. If it's
@@ -430,26 +430,26 @@ widths: auto
 :::{cpp:function} void BEntry::Unset()
 :::
 
-Frees the {hclass}`BEntry`'s current entry reference, and initializes it
-to refer to the entry identified by the argument(s):
+Frees the {hclass}`BEntry`'s current entry reference, and initializes it to
+refer to the entry identified by the argument(s):
 
-- In the {hparam}`ref` version, the {hclass}`BEntry` is initialized to refer
-to the given {htype}`entry_ref`.
+- In the {hparam}`ref` version, the {hclass}`BEntry` is initialized to
+  refer to the given {htype}`entry_ref`.
 
-- In the {hparam}`path` version, {hparam}`path` can be absolute or relative,
-and can contain "." and ".." elements. If {hparam}`path` is relative, it's
-reckoned off of the current working directory.
+- In the {hparam}`path` version, {hparam}`path` can be absolute or
+  relative, and can contain "." and ".." elements. If {hparam}`path` is
+  relative, it's reckoned off of the current working directory.
 
 - In the {hparam}`dir`/{hparam}`path` version, {hparam}`path` must be
-relative. It's reckoned off of the directory given by {hparam}`dir`.
+  relative. It's reckoned off of the directory given by {hparam}`dir`.
 
 The {hparam}`traverse` argument is used to resolve (or not) entries that
 are symlinks:
 
 - If {hparam}`traverse` is {cpp:expr}`true`, the link is resolved.
 
-- If {hparam}`traverse` is {cpp:expr}`false`, the {hclass}`BEntry` refers to
-the link itself.
+- If {hparam}`traverse` is {cpp:expr}`false`, the {hclass}`BEntry` refers
+  to the link itself.
 
 See "{ref}`Initializing and Traversing`" for more information.
 
@@ -464,9 +464,8 @@ Remember—successfully initializing a {hclass}`BEntry` consumes a file
 descriptor. When you re-initialize, the old file descriptor is closed.
 :::
 
-{hmethod}`Unset()` removes the object's association with its current
-entry, and sets {cpp:func}`~BEntry::InitCheck()` to
-{cpp:enumerator}`B_NO_INIT`.
+{hmethod}`Unset()` removes the object's association with its current entry,
+and sets {cpp:func}`~BEntry::InitCheck()` to {cpp:enumerator}`B_NO_INIT`.
 
 :::{list-table}
 ---
@@ -524,9 +523,8 @@ assigned-to {hclass}`BEntry` will also be uninitialized
 :::{cpp:function} bool BEntry::operator!=(const BEntry& entry) const
 :::
 
-Two {hclass}`BEntry` objects are said to be equal if they refer to the
-same entry (even if the entry is abstract), or if they're both
-uninitialized.
+Two {hclass}`BEntry` objects are said to be equal if they refer to the same
+entry (even if the entry is abstract), or if they're both uninitialized.
 ::::
 
 ## Global C Function
@@ -591,11 +589,11 @@ struct entry_ref {
 
 The {htype}`entry_ref` structure describes a single entry in a directory.
 
-- {hparam}`device` contains the device number on which the entry's target is
-located.
+- {hparam}`device` contains the device number on which the entry's target
+  is located.
 
 - {hparam}`directory` contains the inode of the directory that contains the
-entry's target.
+  entry's target.
 
 - {hparam}`name` contains the name of the entry.
 

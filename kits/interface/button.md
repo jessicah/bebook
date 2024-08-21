@@ -61,26 +61,25 @@ bar. Its response is to:
 - Momentarily highlight the button and change its value.
 
 - Call {cpp:func}`~BControl::Invoke()` to deliver a copy of the model
-{cpp:class}`BMessage` to the target receiver.
+  {cpp:class}`BMessage` to the target receiver.
 
 The {hclass}`BButton` gets {hmethod}`KeyDown()` function calls when it's
 the focus view for the active window (which results when the user navigates
 to it) and also when it's the default button for the window and the
 character the user types is {cpp:enumerator}`B_ENTER`.
 
-See also: {cpp:func}`BView::KeyDown()`,
-{cpp:func}`~BButton::MakeDefault()`
+See also: {cpp:func}`BView::KeyDown()`, {cpp:func}`~BButton::MakeDefault()`
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BButton::MakeDefault(bool flag)
 :::
 
-{hmethod}`MakeDefault()` makes the {hclass}`BButton` the default button
-for its window when {hparam}`flag` is {cpp:expr}`true`, and removes that
-status when {hparam}`flag` is {cpp:expr}`false`. The default button is the
-button the user can operate by striking the {hkey}`Enter` key when the
-window is the active window.
+{hmethod}`MakeDefault()` makes the {hclass}`BButton` the default button for
+its window when {hparam}`flag` is {cpp:expr}`true`, and removes that status
+when {hparam}`flag` is {cpp:expr}`false`. The default button is the button
+the user can operate by striking the {hkey}`Enter` key when the window is
+the active window.
 
 A window can have only one default button at a time. Setting a new default
 button, therefore, may deprive another button of that status. When
@@ -95,10 +94,10 @@ that the button that's forced to give up default status and the button that
 obtains it are both notified through {hmethod}`MakeDefault()` function
 calls.
 
-{hmethod}`MakeDefault()` is therefore a hook function that can be
-augmented to take note each time the default status of the button changes.
-It's called once for each change in status, no matter which function
-initiated the change.
+{hmethod}`MakeDefault()` is therefore a hook function that can be augmented
+to take note each time the default status of the button changes. It's
+called once for each change in status, no matter which function initiated
+the change.
 
 See also: {cpp:func}`BWindow::SetDefaultButton()`
 ::::
@@ -107,12 +106,11 @@ See also: {cpp:func}`BWindow::SetDefaultButton()`
 :::{cpp:function} virtual void BButton::MouseDown(BPoint point)
 :::
 
-Overrides the {cpp:class}`BView` version of
-{cpp:func}`~BView::MouseDown()` to track the cursor while the user holds
-the mouse button down. As the cursor moves in and out of the button, the
-{hclass}`BButton`'s value is reset accordingly. The
-{cpp:func}`~BControl::SetValue()` virtual function is called to make the
-change each time.
+Overrides the {cpp:class}`BView` version of {cpp:func}`~BView::MouseDown()`
+to track the cursor while the user holds the mouse button down. As the
+cursor moves in and out of the button, the {hclass}`BButton`'s value is
+reset accordingly. The {cpp:func}`~BControl::SetValue()` virtual function
+is called to make the change each time.
 
 If the cursor is inside the {hclass}`BButton`'s bounds rectangle when the
 user releases the mouse button, this function posts a copy of the model

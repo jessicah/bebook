@@ -137,8 +137,8 @@ maximum rate is 20, though even 10 is too fast for most users.
 get_mouse_acceleration() writes the current acceleration into the variable
 referred to by {hparam}`acceleration`.
 
-All six functions return {cpp:enumerator}`B_OK` if successful, and an
-error code, typically {cpp:enumerator}`B_ERROR`, if not.
+All six functions return {cpp:enumerator}`B_OK` if successful, and an error
+code, typically {cpp:enumerator}`B_ERROR`, if not.
 ::::
 
 ## Keyboard Functions
@@ -168,12 +168,12 @@ widths: auto
 
 -
 	- uint32modifiers
-	- A mask indicating which modifier keys are down and which keyboard locks
-		are on.
+	- A mask indicating which modifier keys are down and which keyboard locks are
+		on.
 -
 	- uint8key_states[16]
-	- A bit array that records the state of all the keys on the keyboard, and
-		all the keyboard locks. This array works identically to the "states" array
+	- A bit array that records the state of all the keys on the keyboard, and all
+		the keyboard locks. This array works identically to the "states" array
 		passed in a key-down message. See "{ref}`Key States`" in the {ref}`The
 		Keyboard` chapter for information on how to read information from the
 		array.
@@ -218,21 +218,21 @@ can be broken down into these six parts:
 1. A version number.
 
 2. A series of fields that determine which keys will function as modifier
-keys—such as {hkey}`Shift`, {hkey}`Control`, or {hkey}`Num Lock`.
+  keys—such as {hkey}`Shift`, {hkey}`Control`, or {hkey}`Num Lock`.
 
 3. A field that sets the initial state of the keyboard locks in the default
-key map.
+  key map.
 
 4. A series of ordered tables that assign character values to keys. Except
-for a handful of modifier keys, all keys are mapped to characters, though
-they may not be mapped for all modifier combinations.
+  for a handful of modifier keys, all keys are mapped to characters, though
+  they may not be mapped for all modifier combinations.
 
 5. A series of tables that locate the dead keys for diacritical marks and
-determine how a combination of a dead key plus another key is mapped to a
-particular character.
+  determine how a combination of a dead key plus another key is mapped to a
+  particular character.
 
 6. A set of masks that determine which modifier keys are required for a key
-to be considered dead.
+  to be considered dead.
 
 The following sections describe the parts of the {htype}`key_map`
 structure.
@@ -258,18 +258,18 @@ and shouldn't be changed programmatically either. You can ignore it.
 
 #### Modifiers
 
-Modifier keys set states that affect other user actions on the keyboard
-and mouse. Eight modifier states are defined—{hkey}`Shift`,
-{hkey}`Control`, {hkey}`Option`, {hkey}`Command`, {hkey}`Menu`, {hkey}`Caps
-Lock`, {hkey}`Num Lock`, and {hkey}`Scroll Lock`. These states are
-discussed under "{ref}`Modifier Keys`" in the {ref}`Keyboard Information`
-appendix. They fairly closely match the key caps found on a Macintosh
-keyboard, but only partially match those on a standard PC keyboard—which
-generally has a set of {hkey}`Alt`(ernate) keys, rarely {hkey}`Option`
-keys, and only sometimes {hkey}`Command` and {hkey}`Menu` keys. Because of
-these differences, the mapping of keys to modifiers is the area of the key
-map most open to the user's personal judgement and taste, and consequently
-to changes in the default configuration.
+Modifier keys set states that affect other user actions on the keyboard and
+mouse. Eight modifier states are defined—{hkey}`Shift`, {hkey}`Control`,
+{hkey}`Option`, {hkey}`Command`, {hkey}`Menu`, {hkey}`Caps Lock`,
+{hkey}`Num Lock`, and {hkey}`Scroll Lock`. These states are discussed under
+"{ref}`Modifier Keys`" in the {ref}`Keyboard Information` appendix. They
+fairly closely match the key caps found on a Macintosh keyboard, but only
+partially match those on a standard PC keyboard—which generally has a set
+of {hkey}`Alt`(ernate) keys, rarely {hkey}`Option` keys, and only sometimes
+{hkey}`Command` and {hkey}`Menu` keys. Because of these differences, the
+mapping of keys to modifiers is the area of the key map most open to the
+user's personal judgement and taste, and consequently to changes in the
+default configuration.
 
 Since two keys, one on the left and one on the right, can be mapped to the
 {hkey}`Shift`, {hkey}`Control`, {hkey}`Option`, and {hkey}`Command`
@@ -297,12 +297,12 @@ widths: auto
 		the key labeled "Scroll Lock," key 0x0f.
 -
 	- uint32num_key
-	- The key that functions as the {hkey}`Num Lock` key; by default, this is
-		the key labeled "Num Lock," key 0x22.
+	- The key that functions as the {hkey}`Num Lock` key; by default, this is the
+		key labeled "Num Lock," key 0x22.
 -
 	- uint32left_shift_key
-	- A key that functions as a {hkey}`Shift` key; by default, this is the key
-		on the left labeled "Shift," key 0x4b.
+	- A key that functions as a {hkey}`Shift` key; by default, this is the key on
+		the left labeled "Shift," key 0x4b.
 -
 	- uint32right_shift_key
 	- Another key that functions as a {hkey}`Shift` key; by default, this is the
@@ -340,15 +340,14 @@ widths: auto
 		is mapped to the key labeled "Control" on the right, key 0x60.
 -
 	- uint32menu_key
-	- A key that initiates keyboard navigation of the menu hierarchy; by
-		default, this is the key labeled with a menu symbol, key 0x68. This key
-		doesn't exist on, and therefore isn't mapped for, a standard 101-key
-		keyboard.
+	- A key that initiates keyboard navigation of the menu hierarchy; by default,
+		this is the key labeled with a menu symbol, key 0x68. This key doesn't
+		exist on, and therefore isn't mapped for, a standard 101-key keyboard.
 
 :::
 
-Each field names the key that functions as that modifier. For example,
-when the user holds down the key whose code is set in the
+Each field names the key that functions as that modifier. For example, when
+the user holds down the key whose code is set in the
 {hparam}`right_option_key` field, the {cpp:enumerator}`B_OPTION_KEY` and
 {cpp:enumerator}`B_RIGHT_OPTION_KEY` bits are turned on in the modifiers
 mask that the {cpp:func}`modifiers()` function returns. When the user then
@@ -391,8 +390,8 @@ The mask can be 0 or may contain any combination of these three constants:
 
 It's 0 by default; there are no initial locks.
 
-Altering the {hparam}`lock_settings` field has no effect unless the
-altered key map is made the default.
+Altering the {hparam}`lock_settings` field has no effect unless the altered
+key map is made the default.
 
 #### Character Maps
 
@@ -461,9 +460,9 @@ characters are encoded as Unicode UTF-8 strings. Character values of 127 or
 less (7-bit ASCII) are just a single byte, but UTF-8 takes two, three, or
 (rarely) four bytes to encode values over 127.
 
-The chars array represents each character as a Pascal string—the first
-byte in the string tells how many other bytes the string contains. For
-example, the string for the trademark symbol (™) looks like this:
+The chars array represents each character as a Pascal string—the first byte
+in the string tells how many other bytes the string contains. For example,
+the string for the trademark symbol (™) looks like this:
 
 :::{code} sh
 x03xE2x84xA2
@@ -562,13 +561,13 @@ paired, with a table that names the {hkey}`Shift` key
 
 - {hparam}`shift_map` with {hparam}`normal_map`.
 
-These pairings are important for a special rule that applies to keys on
-the numerical keypad when {hkey}`Num Lock` is on:
+These pairings are important for a special rule that applies to keys on the
+numerical keypad when {hkey}`Num Lock` is on:
 
 - If the {hkey}`Shift` key is down, the non-{hkey}`Shift` table is used.
 
 - However, if the {hkey}`Shift` key is not down, the {hkey}`Shift` table is
-used.
+  used.
 
 In other words, {hkey}`Num Lock` inverts the {hkey}`Shift` and
 non-{hkey}`Shift` tables for keys on the numerical keypad.
@@ -581,14 +580,14 @@ tables. Key-down events are not generated for unmapped keys.
 
 #### Dead keys
 
-Next are the tables that map combinations of keys to single characters.
-The first key in the combination is "dead"—it doesn't produce a key-down
-event until the user strikes another character key. When the user hits the
-second key, one of two things will happen: If the second key is one that
-can be used in combination with the dead key, a single key-down event
-reports the combination character. If the second key doesn't combine with
-the dead key, two key-down events occur, one reporting the dead-key
-character and one reporting the second character.
+Next are the tables that map combinations of keys to single characters. The
+first key in the combination is "dead"—it doesn't produce a key-down event
+until the user strikes another character key. When the user hits the second
+key, one of two things will happen: If the second key is one that can be
+used in combination with the dead key, a single key-down event reports the
+combination character. If the second key doesn't combine with the dead key,
+two key-down events occur, one reporting the dead-key character and one
+reporting the second character.
 
 There are five dead-key tables:
 
@@ -670,9 +669,9 @@ Usually, there's a requirement that the user must hold down certain
 modifier keys (often the {hkey}`Option` key). In other words, a key is dead
 only if selected character-map tables map it to the requisite character.
 
-Five additional fields of the {htype}`key_map` structure specify what
-those character-map tables are—which modifiers are required for each of the
-dead keys:
+Five additional fields of the {htype}`key_map` structure specify what those
+character-map tables are—which modifiers are required for each of the dead
+keys:
 
 :::{list-table}
 ---
@@ -740,8 +739,8 @@ character of the second offset in the {hparam}`grave_dead_key` array ('Q'
 in the example above). A key mapped to the same character by another table
 would not be dead.
 
-See also: {cpp:func}`get_key_info()`, {cpp:func}`modifiers()`, the
-Keyboard Information appendix, {cpp:func}`set_modifier_key()`
+See also: {cpp:func}`get_key_info()`, {cpp:func}`modifiers()`, the Keyboard
+Information appendix, {cpp:func}`set_modifier_key()`
 ::::
 
 ::::{abi-group}
@@ -768,9 +767,9 @@ If unsuccessful for any reason, get_keyboard_id() returns
 
 Declared in: interface/InterfaceDefs.h
 
-Returns a mask that has a bit set for each modifier key the user is
-holding down and for each keyboard lock that's set. The mask can be tested
-against these constants:
+Returns a mask that has a bit set for each modifier key the user is holding
+down and for each keyboard lock that's set. The mask can be tested against
+these constants:
 
 - {cpp:enumerator}`B_SHIFT_KEY`
 

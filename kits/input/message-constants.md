@@ -64,8 +64,8 @@ speed is. This is because the Input Server maintains the state of the
 keyboard and pointing device environments and can answer these requests
 itself.
 
-Furthermore, the Be-defined control messages don't contain the value of
-the parameter that's being set. For example, the
+Furthermore, the Be-defined control messages don't contain the value of the
+parameter that's being set. For example, the
 {cpp:enumerator}`B_MOUSE_SPEED_CHANGED` message doesn't contain the
 requested mouse speed. The input device must ask the Input Server for the
 new value through a global function ({cpp:func}`get_mouse_speed()`, in this
@@ -87,22 +87,22 @@ widths: auto
 
 -
 	- {cpp:enumerator}`B_CLICK_SPEED_CHANGED`
-	- Requests that the receiver change the mouse double-click speed to the
-		value retrieved through {cpp:func}`get_click_speed()`.
+	- Requests that the receiver change the mouse double-click speed to the value
+		retrieved through {cpp:func}`get_click_speed()`.
 -
 	- {cpp:enumerator}`B_MOUSE_MAP_CHANGED`
-	- Requests that the receiver change the mouse map (the correspondence
-		between physical mouse buttons and the
-		{cpp:enumerator}`B_PRIMARY_MOUSE_BUTTON`, et. al., constants) to the map
-		retrieved through {cpp:func}`get_mouse_map()`.
+	- Requests that the receiver change the mouse map (the correspondence between
+		physical mouse buttons and the {cpp:enumerator}`B_PRIMARY_MOUSE_BUTTON`,
+		et. al., constants) to the map retrieved through
+		{cpp:func}`get_mouse_map()`.
 -
 	- {cpp:enumerator}`B_MOUSE_SPEED_CHANGED`
 	- Requests that the receiver change the mouse speed to the value retrieved
 		through {cpp:func}`get_mouse_speed()`.
 -
 	- {cpp:enumerator}`B_MOUSE_TYPE_CHANGED`
-	- Requests that the receiver change the mouse type (the number of buttons)
-		to the type retrieved through {cpp:func}`get_mouse_type()`.
+	- Requests that the receiver change the mouse type (the number of buttons) to
+		the type retrieved through {cpp:func}`get_mouse_type()`.
 
 :::
 

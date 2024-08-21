@@ -185,8 +185,8 @@ widths: auto
 
 -
 	- name
-	- Is the name that you wish to assign to the area. It needn't be unique.
-Area names are, at most, {cpp:enumerator}`B_OS_NAME_LENGTH` (32) characters
+	- Is the name that you wish to assign to the area. It needn't be unique. Area
+names are, at most, {cpp:enumerator}`B_OS_NAME_LENGTH` (32) characters
 long.
 
 -
@@ -200,10 +200,10 @@ long.
 
 		:::{code} c
 		/* Set the address to a page boundary. */
-		char *addr = (char *)(B_PAGE_SIZE * 100);
+char *addr = (char *)(B_PAGE_SIZE * 100);
 
-		/* Pass the address of addr as the second argument. */
-		create_area( "my area", &addr, ...);
+/* Pass the address of addr as the second argument. */
+create_area( "my area", &addr, ...);
 		:::
 
 		The function sets the value of `*addr` to the area's actual starting
@@ -275,8 +275,8 @@ long.
 	- This is only meaningful to the {cpp:func}`clone_area()` function.
 -
 	- size
-	- Is the size, in bytes, of the area. The size must be an integer multiple
-		of {cpp:enumerator}`B_PAGE_SIZE` (4096). The upper limit of size depends on
+	- Is the size, in bytes, of the area. The size must be an integer multiple of
+		{cpp:enumerator}`B_PAGE_SIZE` (4096). The upper limit of size depends on
 		the available swap space (or RAM, if the area is to be locked).
 -
 	- lock
@@ -296,8 +296,8 @@ long.
 
 		-
 			- {cpp:enumerator}`B_FULL_LOCK`
-			- The area's memory is locked into RAM when the area is created, and won't
-				be swapped out.
+			- The area's memory is locked into RAM when the area is created, and won't be
+				swapped out.
 		-
 			- {cpp:enumerator}`B_CONTIGUOUS`
 			- Not only is the area's memory locked into RAM, it's also guaranteed to be
@@ -324,8 +324,8 @@ long.
 
 -
 	- {cpp:enumerator}`B_FULL_LOCK`
-	- The area's memory is locked into RAM when the area is created, and won't
-		be swapped out.
+	- The area's memory is locked into RAM when the area is created, and won't be
+		swapped out.
 -
 	- {cpp:enumerator}`B_CONTIGUOUS`
 	- Not only is the area's memory locked into RAM, it's also guaranteed to be
@@ -353,8 +353,8 @@ long.
 
 :::
 
-If create_area() is successful, the new area_id number is returned. If
-it's unsuccessful, one of the following error constants is returned.
+If create_area() is successful, the new area_id number is returned. If it's
+unsuccessful, one of the following error constants is returned.
 
 :::{list-table}
 ---
@@ -434,12 +434,12 @@ value may not return the same {htype}`area_id`.
 
 What you do with the area you've found depends on where it came from:
 
-- If you're finding an area that your own application created or cloned, you
-can use the returned ID directly.
+- If you're finding an area that your own application created or cloned,
+  you can use the returned ID directly.
 
 - If the area was created or cloned by some other application, you should
-immediately clone the area (unless you're doing something truly innocuous,
-such as simply examining the area's info structure).
+  immediately clone the area (unless you're doing something truly
+  innocuous, such as simply examining the area's info structure).
 
 :::{list-table}
 ---
@@ -476,10 +476,10 @@ Copies information about a particular area into the {htype}`area_info`
 structure designated by {hparam}`info`. The first version of the function
 designates the area directly, by {htype}`area_id`.
 
-The get_next_area_info() version lets you step through the list of a
-team's areas through iterated calls on the function. The {hparam}`team`
-argument identifies the team you want to look at; a {hparam}`team` value of
-0 means the team of the calling thread. The {hparam}`cookie` argument is a
+The get_next_area_info() version lets you step through the list of a team's
+areas through iterated calls on the function. The {hparam}`team` argument
+identifies the team you want to look at; a {hparam}`team` value of 0 means
+the team of the calling thread. The {hparam}`cookie` argument is a
 placemark; you set it to 0 on your first call, and let the function do the
 rest. The function returns {cpp:enumerator}`B_BAD_VALUE` when there are no
 more areas to visit:
@@ -549,8 +549,8 @@ widths: auto
 	- Is the {htype}`team_id` of the team that created or cloned this area.
 -
 	- address
-	- Is a pointer to the area's starting address. Keep in mind that this
-		address is only meaningful to the team that created (or cloned) the area.
+	- Is a pointer to the area's starting address. Keep in mind that this address
+		is only meaningful to the team that created (or cloned) the area.
 
 :::
 
@@ -621,12 +621,12 @@ Sets the size of the designated area to {hparam}`new_size`, measured in
 bytes. The {hparam}`new_size` argument must be a multiple of
 {cpp:enumerator}`B_PAGE_SIZE` (4096).
 
-Size modifications affect the end of the area's existing memory
-allocation: If you're increasing the size of the area, the new memory is
-added to the end of area; if you're shrinking the area, end pages are
-released and freed. In neither case does the area's starting address
-change, nor is existing data modified (except, of course, for data that's
-lost due to shrinkage).
+Size modifications affect the end of the area's existing memory allocation:
+If you're increasing the size of the area, the new memory is added to the
+end of area; if you're shrinking the area, end pages are released and
+freed. In neither case does the area's starting address change, nor is
+existing data modified (except, of course, for data that's lost due to
+shrinkage).
 
 Resizing affects all areas that refer to this areas physical memory. For
 example, if B is a clone of A, and you resize A, B will be automatically

@@ -3,9 +3,9 @@
 If you want to play back audio from a disk file, such as background music,
 or low-priority sound effects, {cpp:class}`BFileGameSound` is for you.
 
-Keep in mind that if the sound needs to play at precise moments, or
-latency is an issue, that {cpp:class}`BFileGameSound` may not be
-appropriate for your needs.
+Keep in mind that if the sound needs to play at precise moments, or latency
+is an issue, that {cpp:class}`BFileGameSound` may not be appropriate for
+your needs.
 
 Using {cpp:class}`BFileGameSound` is easy, and it supports automatically
 looping sounds. The following code snippet starts up the theme music for

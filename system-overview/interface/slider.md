@@ -20,9 +20,8 @@ slider = new BSlider(r, "const:slider1",
                      0, 140);
 :::
 
-This creates a slider named "const:slider1" with the label "Construct
-Speed (%)" above it. The range of possible values for the slider is 0 to
-140.
+This creates a slider named "const:slider1" with the label "Construct Speed
+(%)" above it. The range of possible values for the slider is 0 to 140.
 
 You can add a splash of color to the slider, too. For example, if you want
 the slider bar to be light blue, you might add:
@@ -38,8 +37,8 @@ slider->SetHashMarks(B_HASH_MARKS_BOTTOM);
 slider->SetHashMarkCount(10);
 :::
 
-In this example, {hmethod}`SetHashMarks()` is used to specify that the
-hash marks should be below the slider; you can also specify
+In this example, {hmethod}`SetHashMarks()` is used to specify that the hash
+marks should be below the slider; you can also specify
 {cpp:enumerator}`B_HASH_MARKS_TOP` to put them above the slider,
 {cpp:enumerator}`B_HASH_MARKS_BOTH` to put them both above and below the
 slider, and {cpp:enumerator}`B_HASH_MARKS_NONE` to omit them entirely

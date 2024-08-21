@@ -58,8 +58,8 @@ contains {hparam}`inputSize` bytes of media data. On return,
 {hparam}`outFrameCount` is set to indicate how many frames of data were
 decoded, and outMH is the header for the decoded buffer.
 
-The {cpp:any}`media_decode_info` structure info is used on input to
-specify decoding parameters.
+The {cpp:any}`media_decode_info` structure info is used on input to specify
+decoding parameters.
 
 :::{list-table}
 ---

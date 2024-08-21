@@ -63,8 +63,8 @@ they're provided primarily for backward compatibility.
 :::{cpp:function} BJoystick::BJoystick()
 :::
 
-Initializes the {hclass}`BJoystick` object so that all values are set to
-0. Before using the object, you must call {cpp:func}`~BJoystick::Open()` to
+Initializes the {hclass}`BJoystick` object so that all values are set to 0.
+Before using the object, you must call {cpp:func}`~BJoystick::Open()` to
 open a particular joystick port. For the object to register any meaningful
 values, you must call {cpp:func}`~BJoystick::Update()` to query the open
 port.
@@ -160,8 +160,7 @@ if (buttonValues & (1 << whichButton)) {
 :::{cpp:function} status_t BJoystick::GetDeviceName(int32 index, char* outName, size_t bufSize = B_OS_NAME_LENGTH)
 :::
 
-{hmethod}`CountDevices()` returns the number of game ports on the
-computer.
+{hmethod}`CountDevices()` returns the number of game ports on the computer.
 
 {hmethod}`GetDeviceName()` returns the name of the device specified by the
 given {hparam}`index`. The buffer pointed to by {hparam}`outName` is filled
@@ -327,9 +326,9 @@ Returns the number of joysticks connected to the opened game port.
 :::{cpp:function} status_t BJoystick::GetButtonNameAt(int32 index, BString* outName)
 :::
 
-Returns the name of the control specified by the given {hparam}`index`.
-The {cpp:class}`BString` object pointed to by {hparam}`outName` is set to
-the control's name.
+Returns the name of the control specified by the given {hparam}`index`. The
+{cpp:class}`BString` object pointed to by {hparam}`outName` is set to the
+control's name.
 
 {hmethod}`GetAxisNameAt()` returns the specified axis' name,
 {hmethod}`GetHatNameAt()` returns the specified hat's name, and
@@ -367,9 +366,9 @@ widths: auto
 that represents the opened joystick device. If the device isn't in enhanced
 mode, this always returns "Legacy".
 
-{hmethod}`GetControllerName()` returns the name of the joystick that's
-been configured for the opened device. This is the same string that appears
-in the Joysticks preference application. The returned string is always
+{hmethod}`GetControllerName()` returns the name of the joystick that's been
+configured for the opened device. This is the same string that appears in
+the Joysticks preference application. The returned string is always
 "2-axis" if the device isn't in enhanced mode.
 
 :::{list-table}
@@ -492,9 +491,9 @@ a port open.
 :::{cpp:function} status_t BJoystick::SetMaxLatency(bigtime_t maxLatency)
 :::
 
-Specifies the maximum latency to allow when accessing the joystick.
-Returns {cpp:enumerator}`B_OK` if the change is applied successfully,
-otherwise returns an error code.
+Specifies the maximum latency to allow when accessing the joystick. Returns
+{cpp:enumerator}`B_OK` if the change is applied successfully, otherwise
+returns an error code.
 ::::
 
 ::::{abi-group}

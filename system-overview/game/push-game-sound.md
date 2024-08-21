@@ -23,8 +23,8 @@ can do this.
 
 ### Exclusive Access
 
-The first way is to ask the {cpp:class}`BPushGameSound` class to give you
-a page to fill with audio data. This is done by calling
+The first way is to ask the {cpp:class}`BPushGameSound` class to give you a
+page to fill with audio data. This is done by calling
 {cpp:func}`~BPushGameSound::LockNextPage()`. This gives you exclusive
 access to the next audio page that needs to be filled; you can fill it with
 whatever sound you want to push, then call
@@ -34,8 +34,8 @@ as quickly as possible.
 
 ### The Neverending Story
 
-The second way takes better planning, but can give you lower overhead.
-Call {cpp:func}`~BPushGameSound::LockForCyclic()` to request access to the
+The second way takes better planning, but can give you lower overhead. Call
+{cpp:func}`~BPushGameSound::LockForCyclic()` to request access to the
 entire sound buffer area. This doesn't give you exclusive access, so
 playback never stops—it keeps looping the entire time, while you write into
 it. The {cpp:func}`~BPushGameSound::CurrentPosition()` function tells you

@@ -44,8 +44,8 @@ widths: auto
 		{cpp:enumerator}`B_ANY_DELIVERY`.
 -
 	- source
-	- Specifes whether the sender of the message must be local vis-a-vis this
-		app ({cpp:enumerator}`B_LOCAL_SOURCE`), remote
+	- Specifes whether the sender of the message must be local vis-a-vis this app
+		({cpp:enumerator}`B_LOCAL_SOURCE`), remote
 		({cpp:enumerator}`B_REMOTE_SOURCE`), or either
 		({cpp:enumerator}`B_ANY_SOURCE`). The default is
 		{cpp:enumerator}`B_ANY_SOURCE`.
@@ -56,8 +56,8 @@ widths: auto
 
 :::
 
-Messages that don't fit the definition won't be sent to the object's
-filter function.
+Messages that don't fit the definition won't be sent to the object's filter
+function.
 
 The {hparam}`filter` argument is a pointer to a {cpp:func}`filter_hook`
 function. This is the function that's invoked when a message needs to be
@@ -200,12 +200,12 @@ typedef enum filter_result {
 }
 :::
 
-filter_hook defines the protocol for message-filtering functions. The
-first two arguments are the {hparam}`message` that's being considered, and
-the proposed {cpp:class}`BHandler` target. You can alter the contents of
-the message, and alter or even replace the handler. If you replace the
-handler, the new handler must belong to the same looper as the original.
-The new handler is given an opportunity to filter the message before it's
+filter_hook defines the protocol for message-filtering functions. The first
+two arguments are the {hparam}`message` that's being considered, and the
+proposed {cpp:class}`BHandler` target. You can alter the contents of the
+message, and alter or even replace the handler. If you replace the handler,
+the new handler must belong to the same looper as the original. The new
+handler is given an opportunity to filter the message before it's
 dispatched.
 
 {hparam}`messageFilter` is a pointer to the object on whose behalf this

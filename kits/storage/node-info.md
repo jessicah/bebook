@@ -38,11 +38,11 @@ initialize the object isn't touched.
 :::{cpp:function} status_t BNodeInfo::SetAppHint(const entry_ref app_ref)
 :::
 
-These functions get and set the "app hint" for the node. The app hint is
-an {htype}`entry_ref` that identifies the executable that should be used
-when launching the node. Of course, the {htype}`entry_ref` may not point to
-an application, or it might point to an application with the wrong
-signature (and so on)—that's why this is merely a hint.
+These functions get and set the "app hint" for the node. The app hint is an
+{htype}`entry_ref` that identifies the executable that should be used when
+launching the node. Of course, the {htype}`entry_ref` may not point to an
+application, or it might point to an application with the wrong signature
+(and so on)—that's why this is merely a hint.
 
 {hmethod}`GetAppHint()` function initializes the {htype}`entry_ref` to the
 hint recorded in the "BEOS:PPATH" attribute of the node; the argument must
@@ -112,25 +112,25 @@ The icon attributes are stored as "BEOS: L:STD_ICON" (large icon) and
 "BEOS: M:STD_ICON" (small, or "mini" icon).
 :::
 
-{hmethod}`GetTrackerIcon()` finds the icon that the Tracker uses to
-display the node. The `static` version lets you identify the node as an
+{hmethod}`GetTrackerIcon()` finds the icon that the Tracker uses to display
+the node. The `static` version lets you identify the node as an
 {htype}`entry_ref`. Both versions follow the same ordered path in trying to
 find the icon:
 
 1. First, it looks in the node's attributes. If the attribute doesn't exist,
-it…
+  it…
 
 2. …gets the node's preferred app (as a signature), and asks the File Type
-database if that signature declares an icon for this node's file type. If
-the node doesn't have a preferred app, or if the app doesn't designate an
-icon for the node's type, the function…
+  database if that signature declares an icon for this node's file type. If
+  the node doesn't have a preferred app, or if the app doesn't designate an
+  icon for the node's type, the function…
 
 3. …asks the File Type database for the icon based on the node's file type.
-If still empty-handed, the function…
+  If still empty-handed, the function…
 
 4. …asks the File Type database for the preferred app based on the node's
-file type, and then asks that app for the icon it uses to display this
-node's file type. If still nothing, we…
+  file type, and then asks that app for the icon it uses to display this
+  node's file type. If still nothing, we…
 
 5. …quit.
 
@@ -179,7 +179,7 @@ double-clicks the node in a Tracker window.
 - The preferred app is identified by {hparam}`signature`, a MIME string.
 
 - The {hparam}`app_verb` argument specifies the type of access; currently,
-the only {hparam}`app_verb` is {cpp:enumerator}`B_OPEN`.
+  the only {hparam}`app_verb` is {cpp:enumerator}`B_OPEN`.
 
 If a node doesn't have a preferred app, the Tracker looks in the File Type
 database for an app that can open the node's file type.

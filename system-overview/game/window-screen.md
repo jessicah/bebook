@@ -1,8 +1,8 @@
 # BWindowScreen
 
-A {cpp:class}`BWindowScreen` object provides exclusive access to the
-entire screen, bypassing the Application Server's window system. The object
-has direct access to the graphics card driver: It can set up the graphics
+A {cpp:class}`BWindowScreen` object provides exclusive access to the entire
+screen, bypassing the Application Server's window system. The object has
+direct access to the graphics card driver: It can set up the graphics
 environment on the graphics card, call driver-implemented drawing
 functions, and directly manipulate the frame buffer.
 
@@ -20,10 +20,10 @@ be visible to the user—no other windows and no desktop. When the
 {cpp:class}`BWindowScreen` gives up active status, the Application Server
 automatically refreshes the screen with its old contents.
 
-Although the {cpp:class}`BWindowScreen` object provides a connection to
-the screen, you shouldn't draw from the {cpp:class}`BWindowScreen`'s
-thread. Use the thread only to regulate the access of other threads to the
-frame buffer.
+Although the {cpp:class}`BWindowScreen` object provides a connection to the
+screen, you shouldn't draw from the {cpp:class}`BWindowScreen`'s thread.
+Use the thread only to regulate the access of other threads to the frame
+buffer.
 
 ## Keyboard and Mouse
 

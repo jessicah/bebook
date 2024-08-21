@@ -195,9 +195,8 @@ gracefully.
 :::{cpp:function} virtual void BGLView::FrameResized(float width, float height)
 :::
 
-Calls the inherited version of {cpp:func}`~BView::FrameResized()`,
-releases tables that need to be recalculated, and resizes the OpenGL
-buffers.
+Calls the inherited version of {cpp:func}`~BView::FrameResized()`, releases
+tables that need to be recalculated, and resizes the OpenGL buffers.
 
 You can augment this function to perform other necessary tasks, such as
 adjusting your {hclass}`BGLView`'s coordinate system.

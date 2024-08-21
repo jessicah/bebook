@@ -60,9 +60,8 @@ Creates a new {cpp:class}`BNullParameter` within the group, with the
 internal ID specified by {hparam}`id`, which should be unique within the
 {cpp:class}`BParameterWeb` that owns the group.
 
-The type of media data that travels through the null parameter is
-indicated by {hparam}`type`, which could be
-{cpp:enumerator}`B_MEDIA_UNKNOWN_TYPE` or
+The type of media data that travels through the null parameter is indicated
+by {hparam}`type`, which could be {cpp:enumerator}`B_MEDIA_UNKNOWN_TYPE` or
 {cpp:enumerator}`B_MEDIA_NO_TYPE`. The parameter's {hparam}`name` will be
 displayed by client applications that display information about the node,
 and the parameter has the specified {hparam}`kind`.
@@ -128,13 +127,13 @@ needs.
 :::{cpp:function} BDiscreteParameter* BParameterGroup::MakeDiscreteParameter(int32 id, media_type type, const char* name, const char* kind)
 :::
 
-Creates a new {cpp:class}`BDiscreteParameter` object and attaches it to
-the group. The {cpp:class}`BDiscreteParameter` will have the specified
-internal {hparam}`id`, which should be unique within the
-{cpp:class}`BParameterWeb` that owns the group.
+Creates a new {cpp:class}`BDiscreteParameter` object and attaches it to the
+group. The {cpp:class}`BDiscreteParameter` will have the specified internal
+{hparam}`id`, which should be unique within the {cpp:class}`BParameterWeb`
+that owns the group.
 
-The {cpp:class}`BDiscreteParameter` will affect media data of the
-specified {hparam}`type`, and will have the specified {hparam}`name`.
+The {cpp:class}`BDiscreteParameter` will affect media data of the specified
+{hparam}`type`, and will have the specified {hparam}`name`.
 
 The kind of discrete parameter is specified by {hparam}`kind`, and may be
 any of the following values:
@@ -255,8 +254,8 @@ widths: auto
 		compression, 100 for no compression.
 -
 	- {cpp:enumerator}`B_GOP_SIZE`
-	- The parameter indicates a "group of pictures" such as how many frames
-		apart a keyframe should be inserted into a video stream.
+	- The parameter indicates a "group of pictures" such as how many frames apart
+		a keyframe should be inserted into a video stream.
 -
 	- {cpp:enumerator}`B_TUNER_CHANNEL`
 	- The parameter represents a channel tuner (like a TV channel); the value
@@ -289,9 +288,9 @@ displayed to the user; for example, it could be used as the label of a
 :::{cpp:function} BParameter* BParameterGroup::ParameterAt(int32 index)
 :::
 
-Returns the {cpp:class}`BParameter` at the specified {hparam}`index`
-within the {hclass}`BParameterGroup`. If the {hparam}`index` is negative,
-or is greater than {cpp:func}`~BParameterGroup::CountParameters()`-1,
+Returns the {cpp:class}`BParameter` at the specified {hparam}`index` within
+the {hclass}`BParameterGroup`. If the {hparam}`index` is negative, or is
+greater than {cpp:func}`~BParameterGroup::CountParameters()`-1,
 {cpp:expr}`NULL` is returned.
 ::::
 

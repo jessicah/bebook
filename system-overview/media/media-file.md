@@ -10,8 +10,8 @@ To read an existing media file, you can then call
 objects fot the file's tracks; these can in turn be used to decode media
 data from the file.
 
-You can also write data to the file. In this case, you construct the
-object by specifying an {cpp:func}`entry_ref <entry::ref>` and a
+You can also write data to the file. In this case, you construct the object
+by specifying an {cpp:func}`entry_ref <entry::ref>` and a
 {cpp:any}`media_file_format` specification describing the format of the
 media data you plan to write into the file. You then call
 {cpp:func}`~BMediaFile::CreateTrack()` to create each track you want to

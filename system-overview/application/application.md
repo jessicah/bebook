@@ -92,16 +92,15 @@ widths: auto
 -
 	- {ref}``
 
-	- Why no pointer assignment? The constructor automatically assigns the
-		object to {cpp:var}`be_app`, so you don't have to assign it yourself.
+	- Why no pointer assignment? The constructor automatically assigns the object
+		to {cpp:var}`be_app`, so you don't have to assign it yourself.
 -
 	- {ref}``
 
-	- The string passed to the constructor sets the application's signature.
-		This is a precautionary measure it's better to add the signature as a
-		resource than to define it here (a resource signature overrides the
-		constructor signature). Use the FileTypes app to set the signature as a
-		resource.
+	- The string passed to the constructor sets the application's signature. This
+		is a precautionary measure it's better to add the signature as a resource
+		than to define it here (a resource signature overrides the constructor
+		signature). Use the FileTypes app to set the signature as a resource.
 -
 	- {ref}``
 
@@ -124,8 +123,8 @@ expected fashion: They show up in {cpp:class}`BApplication`'s
 designated {cpp:class}`BHandler`; for more on how messages are dispatched
 to handlers, see ("{ref}`From Looper to Handler`").
 
-But {cpp:class}`BApplication` also recognizes a set of application
-messages that it handles by invoking corresponding hook functions. The hook
+But {cpp:class}`BApplication` also recognizes a set of application messages
+that it handles by invoking corresponding hook functions. The hook
 functions are invoked by {cpp:func}`~BApplication::DispatchMessage()` so
 the application messages never show up in
 {cpp:func}`~BApplication::MessageReceived()`.
@@ -180,8 +179,8 @@ created and displayed an initial window, you should do so here.
 
 	- {cpp:func}`~BApplication::AppActivated()`
 
-	- The application has just become the active application, or has
-relinquished that status.
+	- The application has just become the active application, or has relinquished
+that status.
 
 -
 	- {cpp:enumerator}`B_PULSE`

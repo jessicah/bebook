@@ -20,10 +20,10 @@ sends the message to the Application Server by calling the
 
 ## Step 2: The Application Server
 
-The Aplication Server receives the message from the Input Server add-on
-and decides what to do with it. If the key pressed is something the
-Application Server traps, like a workspace change keystroke, it gets
-handled internally.
+The Aplication Server receives the message from the Input Server add-on and
+decides what to do with it. If the key pressed is something the Application
+Server traps, like a workspace change keystroke, it gets handled
+internally.
 
 Otherwise, the Application server locates the active window and passes the
 {cpp:class}`BMessage` along to its {cpp:func}`BWindow::DispatchMessage()`

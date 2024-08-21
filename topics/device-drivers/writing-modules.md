@@ -49,9 +49,9 @@ module, the reference count is decremented. When the counter reaches zero,
 the module is unloaded. {cpp:enumerator}`B_KEEP_LOADED` prevents unloading
 from taking place.
 
-{hparam}`std_ops` is a pointer to a function that your module must
-provide. This function is called to handle standard module operations.
-Currently, there are only two of these operations (initialization and
+{hparam}`std_ops` is a pointer to a function that your module must provide.
+This function is called to handle standard module operations. Currently,
+there are only two of these operations (initialization and
 uninitialization). Your module's std_ops() function will probably look
 something like this:
 

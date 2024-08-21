@@ -37,9 +37,9 @@ responds only to scripting requests. It passes all other messages to the
 next handler by calling that object's version of
 {hmethod}`MessageReceived()`.
 
-A typical {hmethod}`MessageReceived()` implementation distinguishes
-between messages by looking at its command constant (i.e. the
-{hparam}`what` field). For example:
+A typical {hmethod}`MessageReceived()` implementation distinguishes between
+messages by looking at its command constant (i.e. the {hparam}`what`
+field). For example:
 
 :::{code} cpp
 void MyHandler::MessageReceived(BMessage* message)
@@ -83,8 +83,8 @@ message source.
 
 :::{admonition} Important
 :class: important
-Do not delete the argument message when you're done with. It doesn't
-belong to you.
+Do not delete the argument message when you're done with. It doesn't belong
+to you.
 :::
 ::::
 
@@ -168,8 +168,8 @@ Except for an additional return value in
 {cpp:class}`BLooper` analogues. See {cpp:func}`BLooper::Lock()` for
 details.
 
-{hmethod}`LockLooper()` returns {cpp:expr}`true` if it was able to lock
-the looper, or if it's already locked by the calling thread, and
+{hmethod}`LockLooper()` returns {cpp:expr}`true` if it was able to lock the
+looper, or if it's already locked by the calling thread, and
 {cpp:expr}`false` otherwise. If the handler changes loopers during the
 call, {cpp:expr}`false` is returned.
 
@@ -293,10 +293,10 @@ if ( proxy ) {
 }
 :::
 
-This, in effect, puts the returned object in the {hclass}`BHandler`'s
-place as the designated handler for the message. The {cpp:class}`BLooper`
-will give the returned handler a chance to respond to the message or
-resolve the next specifier.
+This, in effect, puts the returned object in the {hclass}`BHandler`'s place
+as the designated handler for the message. The {cpp:class}`BLooper` will
+give the returned handler a chance to respond to the message or resolve the
+next specifier.
 
 Again, {cpp:func}`~BMessage::PopSpecifier()` should be called so that an
 attempt isn't made to resolve the same specifier twice.
@@ -427,8 +427,8 @@ are handled (as explained in "{ref}`Inheritance and the Handler Chain`". By
 default handlers are placed in the order that they're added (through
 {cpp:func}`BLooper::AddHandler()`).
 
-{hmethod}`NextHandler()` returns this object's next handler. If this
-object is at the end of the chain, it returns {cpp:expr}`NULL`.
+{hmethod}`NextHandler()` returns this object's next handler. If this object
+is at the end of the chain, it returns {cpp:expr}`NULL`.
 ::::
 
 ::::{abi-group}

@@ -9,8 +9,8 @@
 :::{cpp:function} BInputServerDevice::BInputServerDevice()
 :::
 
-Creates a new BInputServerDevice object. You can initialize your
-object—set initial values, spawn (but not necessarily resume; do that in
+Creates a new BInputServerDevice object. You can initialize your object—set
+initial values, spawn (but not necessarily resume; do that in
 {cpp:func}`~BInputServerDevice::Start()`) threads, open drivers,
 etc.—either here or in the {cpp:func}`~BInputServerDevice::InitCheck()`
 function, which is called immediately after the constructor.
@@ -58,8 +58,8 @@ and {hparam}`cookie` identify the device that this message applies to. The
 control message itself is represented by the {hparam}`command` constant,
 optionally supplemented by {hparam}`message`.
 
-See "Input Device Control Messages" for a list of the control messages
-that the BeOS defines, and instructions for how to respond to them. An
+See "Input Device Control Messages" for a list of the control messages that
+the BeOS defines, and instructions for how to respond to them. An
 application can send a custom control message through a
 {cpp:class}`BInputDevice` object; see {cpp:func}`BInputDevice::Control()`
 for details.
@@ -282,9 +282,9 @@ them to watch for physical devices that are attached and detached, as
 indicated by changes to subdirectories of the system device directory
 (/dev).
 
-{hparam}`deviceDir` is the name of the device subdirectory that you want
-to watch. The /dev/ root is automatically prepended; for example, if you
-want to watch for new ps2 mice, you would pass input/mouse/ps2 as the
+{hparam}`deviceDir` is the name of the device subdirectory that you want to
+watch. The /dev/ root is automatically prepended; for example, if you want
+to watch for new ps2 mice, you would pass input/mouse/ps2 as the
 {hparam}`deviceDir` name. The Node Monitor is told to look for changes to
 the directory ({cpp:enumerator}`B_WATCH_DIRECTORY` opcode). When an entry
 is added or removed, this object receives a

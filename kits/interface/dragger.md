@@ -84,8 +84,8 @@ area instead, if all {hclass}`BDragger`s are hidden.
 :::{cpp:function} virtual void BDragger::MessageReceived(BMessage* message)
 :::
 
-Responds to messages that regulate the visibility of the
-{hclass}`BDragger` handle.
+Responds to messages that regulate the visibility of the {hclass}`BDragger`
+handle.
 ::::
 
 ::::{abi-group}
@@ -118,7 +118,7 @@ Returns {cpp:expr}`true` if two things are true:
 1. The {hclass}`BDragger` is the parent of its target.
 
 2. The {hclass}`BDragger` handle was visible but now should not be, or it
-wasn't visible and now should be.
+  wasn't visible and now should be.
 
 Otherwise, this function returns {cpp:expr}`false`.
 

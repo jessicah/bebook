@@ -1,8 +1,8 @@
 # Functions
 
-This section describes the global C functions defined in the Interface
-Kit. All these functions deal with aspects of the system-wide environment
-for the user interface—the screen, workspaces, installed fonts, the list of
+This section describes the global C functions defined in the Interface Kit.
+All these functions deal with aspects of the system-wide environment for
+the user interface—the screen, workspaces, installed fonts, the list of
 possible colors, and various user preferences. For mouse and keyboard
 functions, see "{ref}`Input Functions`" in {ref}`The Input Server`.
 
@@ -153,14 +153,14 @@ tuned counterparts. If you set a {cpp:class}`BFont` so that it has those
 properties and make it a {cpp:class}`BView`'s current font, the tuned
 version will be used when the {cpp:class}`BView` draws to the screen.
 
-It's possible for the user to install or remove fonts while the
-application is running. However, unless {cpp:func}`update_font_families()`
-has been called to get the updated list, {hmethod}`get_font_family()` will
-provide information on the same set of fonts each time it's called. The
-list isn't automatically updated.
+It's possible for the user to install or remove fonts while the application
+is running. However, unless {cpp:func}`update_font_families()` has been
+called to get the updated list, {hmethod}`get_font_family()` will provide
+information on the same set of fonts each time it's called. The list isn't
+automatically updated.
 
-See also: {cpp:func}`update_font_families()`,
-{cpp:func}`BView::SetFont()`, {cpp:func}`BFont::SetFamilyAndStyle()`
+See also: {cpp:func}`update_font_families()`, {cpp:func}`BView::SetFont()`,
+{cpp:func}`BFont::SetFamilyAndStyle()`
 
 ## get_pixel_size_for()
 
@@ -188,11 +188,10 @@ Declared in: interface/InterfaceDefs.h
 
 
 
-Returns the color that should be used to mark the {cpp:class}`BView`
-that's currently in focus, when the user can change the focus from the
-keyboard. The keyboard navigation color is typically used to underline the
-labels of control devices and to outline text fields where the user can
-type.
+Returns the color that should be used to mark the {cpp:class}`BView` that's
+currently in focus, when the user can change the focus from the keyboard.
+The keyboard navigation color is typically used to underline the labels of
+control devices and to outline text fields where the user can type.
 
 ## run_add_printer_panel(), run_select_printer_panel()
 
@@ -325,9 +324,9 @@ the following:
 
 - {cpp:enumerator}`B_32_BIT_1600x1200`
 
-The first part of the constant designates the screen depth and color
-space. {cpp:enumerator}`B_8_BIT…` refers to the {cpp:enumerator}`B_CMAP8`
-color space. The other values correspond to the {cpp:enumerator}`B_RGB15`,
+The first part of the constant designates the screen depth and color space.
+{cpp:enumerator}`B_8_BIT…` refers to the {cpp:enumerator}`B_CMAP8` color
+space. The other values correspond to the {cpp:enumerator}`B_RGB15`,
 {cpp:enumerator}`B_RGB16`, and {cpp:enumerator}`B_RGB32` color spaces, as
 appropriate. Although constants are defined for 15-bit screen depths, the
 operating system currently doesn't support them. The second part of the
@@ -358,8 +357,7 @@ them.
 The current screen configuration can be obtained from the
 {cpp:class}`BScreen` object.
 
-See also: {cpp:func}`BWindow::ScreenChanged()`, {ref}`The Game Kit`
-chapter
+See also: {cpp:func}`BWindow::ScreenChanged()`, {ref}`The Game Kit` chapter
 
 ## set_scroll_bar_info(), get_scroll_bar_info()
 
@@ -369,12 +367,12 @@ chapter
 
 Declared in: interface/InterfaceDefs.h
 
-These functions set and report preferences that the
-{cpp:class}`BScrollBar` class uses when it creates a new scroll bar.
-set_scroll_bar_info() reads the values contained in the
-{htype}`scroll_bar_info` structure that {hparam}`info` refers to and sets
-the system-wide preferences accordingly; get_scroll_bar_info() writes the
-current preferences into the structure provided.
+These functions set and report preferences that the {cpp:class}`BScrollBar`
+class uses when it creates a new scroll bar. set_scroll_bar_info() reads
+the values contained in the {htype}`scroll_bar_info` structure that
+{hparam}`info` refers to and sets the system-wide preferences accordingly;
+get_scroll_bar_info() writes the current preferences into the structure
+provided.
 
 The {htype}`scroll_bar_info` structure contains the following fields:
 
@@ -463,8 +461,7 @@ Declared in:  interface/InterfaceDefs.h
 tint_color() lightens or darkens the color {hparam}`color` by the
 {hparam}`tint` amount.
 
-Tints less than 1.0 lighten the color and tints greater than 1.0 darken
-it.
+Tints less than 1.0 lighten the color and tints greater than 1.0 darken it.
 
 Various {hparam}`tint` constants are defined by the Interface Kit as seen
 {cpp:func}`here <tint::color>`.
@@ -485,9 +482,9 @@ the specified user interface element.
 
 Declared in:  interface/Font.h
 
-Updates the list of installed fonts, so that it reflects any that have
-been added or removed since the last time the list was updated. Until the
-list is updated, {cpp:func}`get_font_family()` operates assuming the set of
+Updates the list of installed fonts, so that it reflects any that have been
+added or removed since the last time the list was updated. Until the list
+is updated, {cpp:func}`get_font_family()` operates assuming the set of
 fonts that were installed when the application started up. If the list is
 unchanged since the last update (or since startup), this function returns
 {cpp:expr}`false`; if a font has been installed or an installed font has

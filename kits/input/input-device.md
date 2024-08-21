@@ -93,8 +93,8 @@ stop all devices of the given type.
 
 :::{admonition} Warning
 :class: warning
-The Input Server tells a device to start and stop without asking the
-device if the operation was successful. This means, for example, that
+The Input Server tells a device to start and stop without asking the device
+if the operation was successful. This means, for example, that
 {hmethod}`Start()` can return {cpp:enumerator}`B_OK` (and
 {hmethod}`IsRunning()` can return {cpp:expr}`true`) even if the device
 isn't really running. For the Be-provided devices this isn't an

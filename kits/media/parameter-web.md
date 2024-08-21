@@ -23,8 +23,8 @@ Once you've called {cpp:func}`BControllable::SetParameterWeb()`, the node
 takes responsibility for the parameter web object and you shouldn't delete
 it.
 
-If you don't call {cpp:func}`BControllable::SetParameterWeb()`, then
-delete the {hclass}`BParameterWeb` object when you're done with it.
+If you don't call {cpp:func}`BControllable::SetParameterWeb()`, then delete
+the {hclass}`BParameterWeb` object when you're done with it.
 ::::
 
 ## Member Functions
@@ -41,8 +41,8 @@ currently attached to the {hclass}`BParameterWeb`.
 :::{cpp:function} int32 BParameterWeb::CountParameters()
 :::
 
-Returns the number of {cpp:class}`BParameter`s in the entire web,
-including those in all {cpp:class}`BParameterGroup`s attached to it.
+Returns the number of {cpp:class}`BParameter`s in the entire web, including
+those in all {cpp:class}`BParameterGroup`s attached to it.
 ::::
 
 ::::{abi-group}
@@ -93,9 +93,9 @@ If the {hclass}`BParameterWeb` hasn't been attached to a
 :::{cpp:function} BParameter* BParameterWeb::ParameterAt(int32 index)
 :::
 
-Returns the {cpp:class}`BParameter` at the specified {hparam}`index`
-within the entire {hclass}`BParameterWeb`, including those in all attached
-groups. The first parameter is numbered 0, so the maximum legal value for
+Returns the {cpp:class}`BParameter` at the specified {hparam}`index` within
+the entire {hclass}`BParameterWeb`, including those in all attached groups.
+The first parameter is numbered 0, so the maximum legal value for
 {hparam}`index` is {cpp:func}`~BParameterGroup::CountParameters()`-1. If
 the specified {hparam}`index` is outside that range, {cpp:expr}`NULL` is
 returned.

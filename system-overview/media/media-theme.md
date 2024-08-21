@@ -33,7 +33,7 @@ have any name you like.
 
 :::{admonition} Warning
 :class: warning
-At this time, theme add-on support has not been sufficiently tested and
-may or may not work. If you have problems with it, please file a bug report
-at http://bebugs.be.com.
+At this time, theme add-on support has not been sufficiently tested and may
+or may not work. If you have problems with it, please file a bug report at
+http://bebugs.be.com.
 :::

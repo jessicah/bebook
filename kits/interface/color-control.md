@@ -65,8 +65,8 @@ See also: {cpp:func}`BHandler::SetName()`
 :::{cpp:function} virtual BColorControl::~BColorControl()
 :::
 
-Gets rid of the off-screen bitmap, if one was requested when the object
-was constructed.
+Gets rid of the off-screen bitmap, if one was requested when the object was
+constructed.
 ::::
 
 ## Hook Functions
@@ -127,9 +127,8 @@ See also: {cpp:func}`BHandler::MessageReceived()`
 :::{cpp:function} virtual void BColorControl::MouseDown(BPoint point)
 :::
 
-Overrides the {cpp:class}`BView` version of
-{cpp:func}`~BView::MouseDown()` to allow the user to operate the color
-control with the mouse.
+Overrides the {cpp:class}`BView` version of {cpp:func}`~BView::MouseDown()`
+to allow the user to operate the color control with the mouse.
 ::::
 
 ## Member Functions
@@ -138,9 +137,9 @@ control with the mouse.
 :::{cpp:function} virtual status_t BColorControl::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`~BControl::Archive()` , then
-adds the layout, cell size, and whether the object uses buffered drawing to
-the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BControl::Archive()` , then adds
+the layout, cell size, and whether the object uses buffered drawing to the
+{cpp:class}`BMessage` archive.
 
 See also: {cpp:func}`BArchivable::Archive()`,
 {cpp:func}`~BColorControl::Instantiate()` static function
@@ -178,8 +177,8 @@ function doesn't need augmenting and therefore isn't reimplemented.
 :::{cpp:function} color_control_layout BColorControl::Layout() const
 :::
 
-These functions set and return the layout of the matrix of 256 color
-cells. The matrix is first arranged by the constructor. See the
+These functions set and return the layout of the matrix of 256 color cells.
+The matrix is first arranged by the constructor. See the
 {cpp:func}`constructor <BColorControl::BColorControl()>` for permissible
 layout values.
 ::::

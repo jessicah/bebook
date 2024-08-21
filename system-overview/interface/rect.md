@@ -1,10 +1,10 @@
 # BRect
 
-A {cpp:class}`BRect` object represents a rectangle. {cpp:class}`BRect`s
-are used throughout the Interface Kit to define the frames of windows,
-views, bitmaps—even the screen itself. A {cpp:class}`BRect` is defined by
-its four sides, expressed as the public data members {hparam}`left`,
-{hparam}`top`, {hparam}`right`, and {hparam}`bottom`.
+A {cpp:class}`BRect` object represents a rectangle. {cpp:class}`BRect`s are
+used throughout the Interface Kit to define the frames of windows, views,
+bitmaps—even the screen itself. A {cpp:class}`BRect` is defined by its four
+sides, expressed as the public data members {hparam}`left`, {hparam}`top`,
+{hparam}`right`, and {hparam}`bottom`.
 
 ![A rectangle](./_static/images/rect1.png)
 

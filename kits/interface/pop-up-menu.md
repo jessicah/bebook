@@ -24,8 +24,8 @@ operate in radio mode (regardless of the value passed as the
 so that the marked item appears directly over the controlling item in the
 {cpp:class}`BMenuBar`.
 
-If {hparam}`labelFromMarked` is {cpp:expr}`false`, the menu pops up so
-that its first item is over the controlling item.
+If {hparam}`labelFromMarked` is {cpp:expr}`false`, the menu pops up so that
+its first item is over the controlling item.
 
 If the {hparam}`radioMode` flag is {cpp:expr}`true` (as it is by default),
 the last item selected by the user will always be marked. In this mode, one
@@ -65,8 +65,8 @@ after a {hclass}`BPopUpMenu`.
 :::{cpp:function} virtual status_t BPopUpMenu::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`~BMenu::Archive()` and stores
-the {hclass}`BPopUpMenu` in the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BMenu::Archive()` and stores the
+{hclass}`BPopUpMenu` in the {cpp:class}`BMessage` archive.
 
 See also: {cpp:func}`BArchivable::Archive()`,
 {cpp:func}`~BPopUpMenu::Instantiate()` static function
@@ -112,29 +112,29 @@ void MyView::MouseDown(BPoint point)
 {hmethod}`Go()` operates in two modes:
 
 - If the {hparam}`deliversMessage` flag is {cpp:expr}`true`, the
-{hclass}`BPopUpMenu` works just like a menu that's controlled by a
-{cpp:class}`BMenuBar`. When the user invokes an item in the menu, the item
-posts a message to its target.
+  {hclass}`BPopUpMenu` works just like a menu that's controlled by a
+  {cpp:class}`BMenuBar`. When the user invokes an item in the menu, the
+  item posts a message to its target.
 
 - If the {hparam}`deliversMessage` flag is {cpp:expr}`false`, a message is
-not posted. Invoking an item doesn't automatically accomplish anything.
-It's up to the application to look at the returned {cpp:class}`BMenuItem`
-and decide what to do. It can mimic the behavior of other menus and post
-the message—as shown in the example above—or it can take some other course
-of action.
+  not posted. Invoking an item doesn't automatically accomplish anything.
+  It's up to the application to look at the returned {cpp:class}`BMenuItem`
+  and decide what to do. It can mimic the behavior of other menus and post
+  the message—as shown in the example above—or it can take some other
+  course of action.
 
-{hmethod}`Go()` always puts the pop-up menu on-screen, but ordinarily
-keeps it there only as long as the user holds a mouse button down. When the
-user releases the button, the menu is hidden and {hmethod}`Go()` returns.
+{hmethod}`Go()` always puts the pop-up menu on-screen, but ordinarily keeps
+it there only as long as the user holds a mouse button down. When the user
+releases the button, the menu is hidden and {hmethod}`Go()` returns.
 However, the {hparam}`openAnyway` flag and the {hparam}`clickToOpenRect`
 arguments can alter this behavior so that the menu will stay open even when
 the user releases the mouse button (or even if a mouse button was never
 down). It will take another user action—such as invoking an item in the
 menu or clicking elsewhere—to dismiss the menu.
 
-If the {hparam}`openAnyway` flag is {cpp:expr}`true`, {hmethod}`Go()`
-keeps the menu on-screen even if no mouse buttons are held down. This
-permits a user to open and operate a pop-up menu from the keyboard. If
+If the {hparam}`openAnyway` flag is {cpp:expr}`true`, {hmethod}`Go()` keeps
+the menu on-screen even if no mouse buttons are held down. This permits a
+user to open and operate a pop-up menu from the keyboard. If
 {hparam}`openAnyway` is {cpp:expr}`false`, mouse actions determine whether
 the menu stays on-screen.
 
@@ -162,11 +162,11 @@ of the class constructor, this largely depends on whether the label of the
 superitem changes to reflect the item that's currently marked in the menu.
 The point returned is stated in the screen coordinate system.
 
-This function is called only for {hclass}`BPopUpMenu`s that have been
-added to a menu hierarchy (a {cpp:class}`BMenuBar`). You should not call it
-to determine the point to pass to {hmethod}`Go()`. However, you can
-override it to change where a customized pop-up menu defined in a derived
-class appears on-screen when it's controlled by a {cpp:class}`BMenuBar`.
+This function is called only for {hclass}`BPopUpMenu`s that have been added
+to a menu hierarchy (a {cpp:class}`BMenuBar`). You should not call it to
+determine the point to pass to {hmethod}`Go()`. However, you can override
+it to change where a customized pop-up menu defined in a derived class
+appears on-screen when it's controlled by a {cpp:class}`BMenuBar`.
 
 See also: {cpp:func}`BMenu::SetLabelFromMarked()`,
 {cpp:func}`BMenu::ScreenLocation()`, the {hclass}`BPopUpMenu` constructor

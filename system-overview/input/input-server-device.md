@@ -62,10 +62,10 @@ When generating a {cpp:enumerator}`B_MOUSE_MOVED` message, you add x and y
 fields in one of two ways:
 
 - an offset relative to the cursor's previous position
-({cpp:enumerator}`B_INT32_TYPE` values)
+  ({cpp:enumerator}`B_INT32_TYPE` values)
 
 - an absolute position expressed in the range 0.0 to 1.0
-({cpp:enumerator}`B_FLOAT_TYPE` values)
+  ({cpp:enumerator}`B_FLOAT_TYPE` values)
 
 Mice always use relative locations; tablets can use either (though they
 usually provide absolute values).
@@ -193,7 +193,7 @@ To create a new input device, you must:
 - create a subclass of {cpp:class}`BInputServerDevice`
 
 - implement the {cpp:func}`instantiate_input_device()` C function to create
-an instance of your {cpp:class}`BInputServerDevice` subclass
+  an instance of your {cpp:class}`BInputServerDevice` subclass
 
 - compile the class and the function as an add-on
 
@@ -217,8 +217,8 @@ subdirectories of {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY`,
 {cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
 
 - You can install your input devices in the latter two directories—i.e.
-those under {cpp:enumerator}`B_COMMON_ADDONS_DIRECTORY`, and
-{cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
+  those under {cpp:enumerator}`B_COMMON_ADDONS_DIRECTORY`, and
+  {cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
 
-- The {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY` is reserved for add-ons that
-are supplied by the BeOS.
+- The {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY` is reserved for add-ons
+  that are supplied by the BeOS.

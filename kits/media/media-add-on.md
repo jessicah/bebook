@@ -14,11 +14,10 @@ perform whatever initialization is necessary in the constructor, and handle
 any activities necessary in order to properly comply with the media add-on
 protocol.
 
-The {htype}`image_id` identifies the add-on image from which the add-on
-was loaded. Your make_media_addon() function should be sure to save the
-image ID passed to it and pass that value through to the
-{hclass}`BMediaAddOn` constructor, or the Media Kit will be unhappy with
-you.
+The {htype}`image_id` identifies the add-on image from which the add-on was
+loaded. Your make_media_addon() function should be sure to save the image
+ID passed to it and pass that value through to the {hclass}`BMediaAddOn`
+constructor, or the Media Kit will be unhappy with you.
 ::::
 
 ::::{abi-group}
@@ -48,8 +47,8 @@ than the previous pass. After creating the new node, store a pointer to it
 in {hparam}`outNode`, and set {hparam}`outInternalID` to the internal ID of
 the flavor represented by that node.
 
-Before returning, set {hparam}`outHasMore` to {cpp:expr}`true` if there
-are more nodes to start, and {cpp:expr}`false` if there aren't.
+Before returning, set {hparam}`outHasMore` to {cpp:expr}`true` if there are
+more nodes to start, and {cpp:expr}`false` if there aren't.
 
 Return {cpp:enumerator}`B_OK` if you return a valid node. If there aren't
 any more nodes to be started, return {cpp:enumerator}`B_BAD_INDEX`. If the
@@ -88,12 +87,12 @@ error code.
 :::{cpp:function} virtual status_t BMediaAddOn::GetFileFormatList(int32 flavorID, media_file_format* outWritableFormats, int32 inWriteItems, int32* outWriteItems, media_file_format* outReadableFormats, int32 inReadItems, int32* outReadItems, void* reserved)
 :::
 
-If your add-on provides nodes that can either read or write media data
-from files, you should implement this function to describe the
+If your add-on provides nodes that can either read or write media data from
+files, you should implement this function to describe the
 {htype}`media_file_format`s you can read and write.
 
-On input, the {hparam}`flavorID` argument indicates which flavor you
-should return information about. You should fill the array
+On input, the {hparam}`flavorID` argument indicates which flavor you should
+return information about. You should fill the array
 {hparam}`outWritableFormats` with a list of the file formats the
 corresponding flavor can write, and the {hparam}`outReadableFormats` array
 with a list of the file formats the flavor can read. The
@@ -195,9 +194,9 @@ you support), return {cpp:enumerator}`B_ERROR`. Otherwise, return
 Returns the add-on's image ID, as specified by the {hclass}`BMediaAddOn`
 {cpp:func}`constructor <BMediaAddOn::BMediaAddOn()>`.
 
-Your make_media_addon() function should be sure to save the image ID
-passed to it and pass that value through to the {hclass}`BMediaAddOn`
-constructor, or the Media Kit will be unhappy with you.
+Your make_media_addon() function should be sure to save the image ID passed
+to it and pass that value through to the {hclass}`BMediaAddOn` constructor,
+or the Media Kit will be unhappy with you.
 ::::
 
 ::::{abi-group}
@@ -460,16 +459,16 @@ widths: auto
 		: The flavor will be forced into the loading application, and many instances
 		of it may exist.
 
-		If neither flag is specified, the Media Kit will decide what to do with
-		the flavor.
+		If neither flag is specified, the Media Kit will decide what to do with the
+		flavor.
 -
 	- internal_id
 	- Is an internal ID number that your add-on can use to identify the flavor;
 		the flavor will be requested by the Media Kit using this ID number.
 -
 	- possible_count
-	- Specifies to the Media Kit the maximum number of instances of your node
-		can be in existence at the same time. For example, if your node provides
+	- Specifies to the Media Kit the maximum number of instances of your node can
+		be in existence at the same time. For example, if your node provides
 		support for a particular sound card, this value should be equal to the
 		number of cards you support that are currently installed in the computer.
 -

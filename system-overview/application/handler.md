@@ -35,8 +35,8 @@ delivered to its designated destination.
 
 ## Filtering
 
-Messages can be filtered before they're dispatched; that is, you can
-define a function that will look at the message before the target
+Messages can be filtered before they're dispatched; that is, you can define
+a function that will look at the message before the target
 {cpp:class}`BHandler`'s hook function is called. The filter function is
 associated with a {cpp:class}`BMessageFilter` object, which records the
 criteria for calling the function.

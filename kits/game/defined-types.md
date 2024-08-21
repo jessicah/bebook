@@ -80,8 +80,7 @@ in microseconds, over which the attribute's change takes effect, and a
 target {hparam}`value`. Additional {hparam}`flags` can be specified for the
 attribute as well; these vary depending on the attribute.
 
-Currently, there are no flags defined for any of the predefined
-attributes.
+Currently, there are no flags defined for any of the predefined attributes.
 
 ## gs_attribute_info
 
@@ -96,10 +95,10 @@ struct gs_attribute_info {
 };
 :::
 
-Describes the possible values the attribute can take. The granularity
-field indicates how finely the value of the attribute can be controlled,
-and minimum and maximum specify the minimum and maximum values the
-attribute can take on.
+Describes the possible values the attribute can take. The granularity field
+indicates how finely the value of the attribute can be controlled, and
+minimum and maximum specify the minimum and maximum values the attribute
+can take on.
 
 ## gs_audio_format
 

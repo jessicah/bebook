@@ -9,13 +9,13 @@
 :::{cpp:function} BPropertyInfo::BPropertyInfo(property_info* p = NULL, bool free_on_delete = false)
 :::
 
-Initializes the object with the specified zero-terminated array
-{hparam}`p` of {cpp:func}`property_info <property::info>`. Passing
-{cpp:expr}`true` in {hparam}`free_on_delete` instructs the object to free
-the memory associated with the {cpp:func}`property_info <property::info>`
-when the object is destroyed. {hclass}`BPropertyInfo` does not copy the
-array, so it is important that the array is not deleted or otherwise
-destroyed while the {hclass}`BPropertyInfo` is in use.
+Initializes the object with the specified zero-terminated array {hparam}`p`
+of {cpp:func}`property_info <property::info>`. Passing {cpp:expr}`true` in
+{hparam}`free_on_delete` instructs the object to free the memory associated
+with the {cpp:func}`property_info <property::info>` when the object is
+destroyed. {hclass}`BPropertyInfo` does not copy the array, so it is
+important that the array is not deleted or otherwise destroyed while the
+{hclass}`BPropertyInfo` is in use.
 ::::
 
 ::::{abi-group}
@@ -77,8 +77,8 @@ Prints information about the {hclass}`BPropertyInfo` to standard output.
 :::{cpp:function} const property_info* BPropertyInfo::PropertyInfo() const
 :::
 
-Returns the {cpp:func}`property_info <property::info>` list associated
-with the object.
+Returns the {cpp:func}`property_info <property::info>` list associated with
+the object.
 ::::
 
 ### Unflatten()

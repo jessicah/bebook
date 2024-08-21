@@ -113,8 +113,8 @@ control's value most recently changed.
 {hmethod}`GetParameterValue()` should return {cpp:enumerator}`B_OK` when
 done, or an appropriate error code if something goes wrong.
 
-Likewise, you should implement {hmethod}`SetParameterValue()` to change
-the value of the parameter; the {hparam}`changeTime` argument is the
+Likewise, you should implement {hmethod}`SetParameterValue()` to change the
+value of the parameter; the {hparam}`changeTime` argument is the
 performance time at which the change should occur; in other words, you may
 need to queue the request so it can be handled at the requested time.
 {hparam}`value` points to the value to which the parameter should be set,
@@ -135,9 +135,9 @@ parameter), the {hparam}`value` argument would point to an array of two
 :::{cpp:function} virtual status_t BControllable::HandleMessage(int32 message, const void* data, size_t* size_t)
 :::
 
-When your node's service loop receives a message, in addition to passing
-it to {cpp:class}`BMediaNode` and other superclasses of your node, you
-should also pass it to {hmethod}`HandleMessage()`. You should start at the
+When your node's service loop receives a message, in addition to passing it
+to {cpp:class}`BMediaNode` and other superclasses of your node, you should
+also pass it to {hmethod}`HandleMessage()`. You should start at the
 most-derived class' implementation of {hmethod}`HandleMessage()` and work
 your way upward until {cpp:enumerator}`B_OK` is returned.
 
@@ -219,10 +219,10 @@ the values in the specified {hparam}`buffer` until the size specified in
 {hparam}`ioSize` is filled, or all the parameters are read. The number of
 bytes of the buffer used will be returned in {hparam}`ioSize`.
 
-If your {hclass}`BControllable` is also a {cpp:class}`BBufferConsumer`
-that accepts {cpp:enumerator}`B_MEDIA_PARAMETERS` type data on some input,
-call {hmethod}`ApplyParameterData()` with {hparam}`value` set to the result
-of {cpp:func}`BBuffer::Data()` and {hparam}`size` set to
+If your {hclass}`BControllable` is also a {cpp:class}`BBufferConsumer` that
+accepts {cpp:enumerator}`B_MEDIA_PARAMETERS` type data on some input, call
+{hmethod}`ApplyParameterData()` with {hparam}`value` set to the result of
+{cpp:func}`BBuffer::Data()` and {hparam}`size` set to
 {cpp:func}`BBuffer::SizeUsed()`. This function will then parse the
 parameter change requests in the buffer and dispatch them to your
 {hmethod}`SetParameterValue()` function to fulfill the requests.
@@ -263,14 +263,14 @@ widths: auto
 :::{cpp:function} BParameterWeb* BControllable::SetParameterWeb()
 :::
 
-Your constructor should create a {cpp:class}`BParameterWeb` object and
-call {hmethod}`SetParameterWeb()` with it as an argument. This will
-describe to the outside world what parameters are available and how they
-relate to each other; in other words, this describes your internal signal
-path, and how it can be manipulated.
+Your constructor should create a {cpp:class}`BParameterWeb` object and call
+{hmethod}`SetParameterWeb()` with it as an argument. This will describe to
+the outside world what parameters are available and how they relate to each
+other; in other words, this describes your internal signal path, and how it
+can be manipulated.
 
-If the {hparam}`web` argument isn't {cpp:expr}`NULL`, and is different
-from the previously-established web for the {hclass}`BControllable` node, a
+If the {hparam}`web` argument isn't {cpp:expr}`NULL`, and is different from
+the previously-established web for the {hclass}`BControllable` node, a
 {cpp:enumerator}`B_MEDIA_WEB_CHANGED` message is sent to everyone watching
 for media notifications. See {cpp:func}`~BMediaRoster::StartWatching()` for
 more information.
@@ -290,8 +290,8 @@ This hook function is called whenever a client application wants the node
 to present its own control panel user interface (so that the user can
 configure the node).
 
-On return, {hparam}`outMessenger` is a {cpp:class}`BMessenger` that you
-can use to communicate with the control panel.
+On return, {hparam}`outMessenger` is a {cpp:class}`BMessenger` that you can
+use to communicate with the control panel.
 
 Because the add-on lives in the Media Server, and a problem in the user
 interface could bring down the entire system, it's recommended that the
@@ -339,8 +339,8 @@ widths: auto
 	- Node wasn't loaded from an add-on.
 -
 	- {cpp:enumerator}`B_BAD_VALUE`.
-	- An error occurred locating the image from which the node was loaded, or
-		the add-on can't be launched as an application.
+	- An error occurred locating the image from which the node was loaded, or the
+		add-on can't be launched as an application.
 -
 	- {cpp:enumerator}`B_LAUNCH_FAILED`.
 	- The control panel couldn't be launched for some other reason, such as

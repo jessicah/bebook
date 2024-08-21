@@ -89,8 +89,8 @@ widths: auto
 
 -
 	- id.
-	- The 64-bit number (encoded as two {htype}`int32`s) that uniquely
-		identifies this machine.
+	- The 64-bit number (encoded as two {htype}`int32`s) that uniquely identifies
+		this machine.
 -
 	- boot_time.
 	- The time at which the computer was last booted, measured in microseconds
@@ -155,8 +155,8 @@ widths: auto
 
 -
 	- active_time
-	- Is the number of microseconds spent doing useful work since the machine
-		was booted.
+	- Is the number of microseconds spent doing useful work since the machine was
+		booted.
 
 :::
 

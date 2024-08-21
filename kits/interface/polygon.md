@@ -21,8 +21,8 @@ If one polygon is constructed from another, the original and the copy won't
 share any data; independent memory is allocated for the copy to hold a
 duplicate list of points.
 
-If a {hclass}`BPolygon` is constructed without a point list, points must
-be set with the {cpp:func}`~BPolygon::AddPoints()` function.
+If a {hclass}`BPolygon` is constructed without a point list, points must be
+set with the {cpp:func}`~BPolygon::AddPoints()` function.
 ::::
 
 ::::{abi-group}

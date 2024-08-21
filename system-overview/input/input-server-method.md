@@ -24,9 +24,9 @@ Technical Support (devsupport@be.com) for additional information.
 
 ## Input Method Events
 
-Input methods insert {cpp:enumerator}`B_INPUT_METHOD_EVENT` messages
-(using their {cpp:func}`~BInputServerMethod::EnqueueMessage()` function)
-into the Input Server's event stream. These messages let {cpp:class}`BView`
+Input methods insert {cpp:enumerator}`B_INPUT_METHOD_EVENT` messages (using
+their {cpp:func}`~BInputServerMethod::EnqueueMessage()` function) into the
+Input Server's event stream. These messages let {cpp:class}`BView`
 subclasses work together with your input method to create a seamless
 experience for the user.
 
@@ -130,8 +130,8 @@ close the transaction) or another {cpp:enumerator}`B_INPUT_METHOD_CHANGED`
 
 :::
 
-{cpp:enumerator}`B_INPUT_METHOD_LOCATION_REQUEST` is the input method's
-way of asking for the on-screen location of each character in
+{cpp:enumerator}`B_INPUT_METHOD_LOCATION_REQUEST` is the input method's way
+of asking for the on-screen location of each character in
 {hparam}`be:string`. This information can be used by the input method to
 pop up additional windows giving the user an opportunity to select
 characters from a list or anything else that makes sense. When you send a
@@ -187,7 +187,7 @@ To create a new input method, you must:
 - Create a subclass of {cpp:class}`BInputServerMethod`
 
 - Implement the instantiate_input_method() C function to create an instance
-of your {cpp:class}`BInputServerMethod` subclass
+  of your {cpp:class}`BInputServerMethod` subclass
 
 - Compile the class and function as an add-on
 
@@ -209,8 +209,8 @@ subdirectories of {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY`,
 {cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
 
 - You can install your input devices in the latter two directories—i.e.
-those under {cpp:enumerator}`B_COMMON_ADDONS_DIRECTORY`, and
-{cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
+  those under {cpp:enumerator}`B_COMMON_ADDONS_DIRECTORY`, and
+  {cpp:enumerator}`B_USER_ADDONS_DIRECTORY`.
 
-- The {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY` is reserved for add-ons that
-are supplied by the BeOS.
+- The {cpp:enumerator}`B_BEOS_ADDONS_DIRECTORY` is reserved for add-ons
+  that are supplied by the BeOS.

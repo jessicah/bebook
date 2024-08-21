@@ -1,8 +1,8 @@
 # BEntryList
 
-{hclass}`BEntryList` is a pure abstract class that defines the protocol
-for iterating over a set of file system entries. Each derived class must
-figure out how to create (or "discover") the entry list in the first place:
+{hclass}`BEntryList` is a pure abstract class that defines the protocol for
+iterating over a set of file system entries. Each derived class must figure
+out how to create (or "discover") the entry list in the first place:
 {hclass}`BEntryList` only supplies functions for getting entries out of the
 list, it doesn't let you put them in. The {hclass}`BEntryList` class has
 two derived classes: {cpp:class}`BDirectory` and {cpp:class}`BQuery`.
@@ -15,7 +15,7 @@ At the heart of the {hclass}`BEntryList` class are the three
 - {htype}`entry_ref` structures ({cpp:func}`~BEntryList::GetNextRef()`),
 
 - or {htype}`dirent` ("directory entry") structures
-({cpp:func}`~BEntryList::GetNextDirents()`).
+  ({cpp:func}`~BEntryList::GetNextDirents()`).
 
 You call these functions iteratively; each call gets the "next" entry (or
 set of entries in the case of {cpp:func}`~BEntryList::GetNextDirents()`).
@@ -23,19 +23,20 @@ You check the {hmethod}`GetNext…()` return value to detect the end of the
 list:
 
 - For {cpp:func}`~BEntryList::GetNextEntry()` and
-{cpp:func}`~BEntryList::GetNextRef()`, {cpp:enumerator}`B_ENTRY_NOT_FOUND`
-indicates that there are no more entries to get.
+  {cpp:func}`~BEntryList::GetNextRef()`,
+  {cpp:enumerator}`B_ENTRY_NOT_FOUND` indicates that there are no more
+  entries to get.
 
 - {cpp:func}`~BEntryList::GetNextDirents()` returns 0 when it's at the end
-of the list.
+  of the list.
 
 To get back to the top of an entry list, you call
 {cpp:func}`~BEntryList::Rewind()`, but note…
 
 :::{admonition} Warning
 :class: warning
-{cpp:func}`~BEntryList::Rewind()` applies to {cpp:class}`BDirectory`s
-only. You can't rewind a {cpp:class}`BQuery`'s entry list.
+{cpp:func}`~BEntryList::Rewind()` applies to {cpp:class}`BDirectory`s only.
+You can't rewind a {cpp:class}`BQuery`'s entry list.
 :::
 
 Here's an example of an iteration over all the entries in a
@@ -64,9 +65,9 @@ the {hmethod}`GetNext…()` functions. You mustn't intermingle a
 One more {cpp:class}`BDirectory` wrinkle:
 
 - Entries are retrieved in "directory order". (This is a POSIX term that
-means, roughly, ASCII order.) If the user renames a file while you're
-iterating over the directory, it's possible that the file won't be seen, or
-will show up under its old name and its new name.
+  means, roughly, ASCII order.) If the user renames a file while you're
+  iterating over the directory, it's possible that the file won't be seen,
+  or will show up under its old name and its new name.
 
 ## The Entry List Pointer
 
@@ -100,18 +101,18 @@ So, which flavor of {hmethod}`GetNext…()` should you use? Here's how they
 compare:
 
 - {cpp:func}`~BEntryList::GetNextDirents()` is by far the fastest (even in
-the current one-struct-at-a-time version), but it's also the least
-wieldy—the protocol isn't nearly as nice as the other two functions. The
-{htype}`dirent` structure, while jam-packed with fun facts, usually has to
-be turned into other structures ({htype}`node_ref`s or {htype}`entry_ref`s)
-in order to be useful.
+  the current one-struct-at-a-time version), but it's also the least
+  wieldy—the protocol isn't nearly as nice as the other two functions. The
+  {htype}`dirent` structure, while jam-packed with fun facts, usually has
+  to be turned into other structures ({htype}`node_ref`s or
+  {htype}`entry_ref`s) in order to be useful.
 
 - {cpp:func}`~BEntryList::GetNextRef()` is slower, but the
-{htype}`entry_ref` structure can be immediately usable (or, at least,
-cachable). Nonetheless, you're still a step away from a "real" object.
+  {htype}`entry_ref` structure can be immediately usable (or, at least,
+  cachable). Nonetheless, you're still a step away from a "real" object.
 
 - {cpp:func}`~BEntryList::GetNextEntry()` is the slowest, but at least it
-hands you an object that you can sink your teeth into.
+  hands you an object that you can sink your teeth into.
 
 The actual timing numbers depend on your machine, the class that you're
 invoking the functions through, and some other factors. But the difference
@@ -144,19 +145,19 @@ typedef struct dirent {
 
 The fields are:
 
-- {hparam}`d_dev` is a device id that identifies the device (file system) on
-which this entry lies.
+- {hparam}`d_dev` is a device id that identifies the device (file system)
+  on which this entry lies.
 
 - {hparam}`d_ino` is the node number for this entry's node.
 
-- {hparam}`d_pdev` and {hparam}`d_pino` are the device and inode numbers for
-the parent directory.
+- {hparam}`d_pdev` and {hparam}`d_pino` are the device and inode numbers
+  for the parent directory.
 
 - {hparam}`d_reclen` is the length of this {htype}`dirent` structure. The
-length is variable because…
+  length is variable because…
 
 - {hparam}`d_name` is a buffer that's allocated to hold the
-({cpp:expr}`NULL`-terminated) name of this entry.
+  ({cpp:expr}`NULL`-terminated) name of this entry.
 
 So—let's pretend we've retrieved a {htype}`dirent` and we want to do
 something with it. In addition to looking at individual fields, we can
@@ -165,10 +166,10 @@ combine some of them to make other structures:
 - {hparam}`d_dev` + {hparam}`d_ino` = {htype}`node_ref` of the entry's node
 
 - {hparam}`d_pdev` + {hparam}`d_pino` = {htype}`node_ref` of the parent
-directory
+  directory
 
 - {hparam}`d_pdev` + {hparam}`d_pino` + {hparam}`d_name` =
-{htype}`entry_ref` for the entry
+  {htype}`entry_ref` for the entry
 
 In code:
 

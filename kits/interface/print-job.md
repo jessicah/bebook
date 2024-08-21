@@ -102,8 +102,8 @@ return values that are declared {htype}`int32`. They return
 server or if the job can't be established for any reason. They return
 {cpp:enumerator}`B_OK` if all goes well.
 
-See also: {cpp:func}`~BPrintJob::SetSettings()`, "{ref}`Setting Up the
-Page Layout`" and "{ref}`Setting Up a Print Job`" in the class overview
+See also: {cpp:func}`~BPrintJob::SetSettings()`, "{ref}`Setting Up the Page
+Layout`" and "{ref}`Setting Up a Print Job`" in the class overview
 ::::
 
 ::::{abi-group}
@@ -139,19 +139,19 @@ attached to the specified {cpp:class}`BView`.
 Note the following bugs (which will be fixed in subsequent releases):
 
 - BeOS 5 (and earlier) renders only the first two hierarchy levels
-correctly.
+  correctly.
 
 - Hidden {cpp:class}`BView`s (and views without
-{cpp:enumerator}`B_WILL_DRAW` specified) are rendered.
+  {cpp:enumerator}`B_WILL_DRAW` specified) are rendered.
 
 - {cpp:class}`BScrollBar` and derived {cpp:class}`BView`s aren't rendered.
 
 - View background and overlay bitmaps are ignored; instead, the view color
-is printed.
+  is printed.
 
-After all views have drawn and the page is complete,
-{hmethod}`SpoolPage()` adds it to the spool file. {hmethod}`SpoolPage()`
-must be called once to terminate each page.
+After all views have drawn and the page is complete, {hmethod}`SpoolPage()`
+adds it to the spool file. {hmethod}`SpoolPage()` must be called once to
+terminate each page.
 
 See also: {cpp:func}`~BPrintJob::PrintableRect()`,
 {cpp:func}`BView::Draw()`, "{ref}`Drawing on the Page`" in the class
@@ -193,12 +193,12 @@ of the paper that the printer will use. Its {hparam}`left` and
 coordinates reflect the size of a sheet of paper. The size depends on
 choices made by the user when setting up the page layout.
 
-{hmethod}`PrintableRect()` returns a rectangle that encloses the portion
-of a page where printing can appear. It's stated in the same coordinate
-system as the rectangle returned by {hmethod}`PaperRect()`, but excludes
-the margins around the edge of the paper. When drawing on the printed page,
-the {hparam}`left` {hparam}`top` corner of this rectangle is taken to be
-the coordinate origin, (0.0, 0.0).
+{hmethod}`PrintableRect()` returns a rectangle that encloses the portion of
+a page where printing can appear. It's stated in the same coordinate system
+as the rectangle returned by {hmethod}`PaperRect()`, but excludes the
+margins around the edge of the paper. When drawing on the printed page, the
+{hparam}`left` {hparam}`top` corner of this rectangle is taken to be the
+coordinate origin, (0.0, 0.0).
 
 The "{ref}`Drawing Coordinates`" section in the class overview illustrates
 these rectangles and their coordinate systems.
@@ -210,8 +210,8 @@ See also: {cpp:func}`~BPrintJob::DrawView()`
 :::{cpp:function} int32 BPrintJob::PrinterType(void* type = NULL)
 :::
 
-Returns a code identifying whether the printer is color or black and
-white. The argument is currently not used.
+Returns a code identifying whether the printer is color or black and white.
+The argument is currently not used.
 
 The return value will be either {cpp:enumerator}`B_BW_PRINTER` or
 {cpp:enumerator}`B_COLOR_PRINTER`.
@@ -244,9 +244,9 @@ recorded in a {cpp:class}`BMessage` object that can be regarded as a black
 box; the data in the message are interpreted by the Print Server and will
 be documented where the print driver API is documented.
 
-Instead of looking in the {hmethod}`Settings()` {cpp:class}`BMessage`,
-rely on {hclass}`BPrintJob` functions to provide specific information about
-the layout and the print job. Currently, there are only two functions –
+Instead of looking in the {hmethod}`Settings()` {cpp:class}`BMessage`, rely
+on {hclass}`BPrintJob` functions to provide specific information about the
+layout and the print job. Currently, there are only two functions –
 {cpp:func}`~BPrintJob::FirstPage()` and {cpp:func}`~BPrintJob::LastPage()`,
 which return the first and last pages that need to be printed.
 

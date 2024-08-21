@@ -28,8 +28,8 @@ These functions are responsible for all drawing of the {cpp:class}`BTab`.
 mark: it draws the borders and calls {cpp:func}`~BTab::DrawLabel()` to
 render the text of the label.
 
-{cpp:func}`~BTab::DrawFocusMark()` draws the indicator that shows which
-tab is the current focus for keyboard navigation.
+{cpp:func}`~BTab::DrawFocusMark()` draws the indicator that shows which tab
+is the current focus for keyboard navigation.
 
 By default, tabs have a beveled, rounded look. Let's look at an example in
 which we replace this appearance with a square shape:
@@ -150,8 +150,7 @@ widths: auto
 
 :::
 
-This is a fairly trivial example, and is self-explanatory—with two
-caveats:
+This is a fairly trivial example, and is self-explanatory—with two caveats:
 
 :::{code} cpp
 // Do the bottom left corner, visible

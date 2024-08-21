@@ -32,8 +32,8 @@ successfully sniffed. If sniffing was successful, the {hclass}`BMediaFile`
 object can then be used to instantiate the {cpp:class}`BMediaTrack` objects
 necessary to read the file's data.
 
-The second two forms prepare a {hclass}`BMediaFile` object for writing to
-a media file, which is specified by either {hparam}`ref` or
+The second two forms prepare a {hclass}`BMediaFile` object for writing to a
+media file, which is specified by either {hparam}`ref` or
 {hparam}`destination`. The format of the file to be written is specified by
 {hparam}`fileFormat`.
 
@@ -58,9 +58,8 @@ widths: auto
 	- Don't read ahead in the file.
 -
 	- {cpp:enumerator}`B_MEDIA_FILE_UNBUFFERED`
-	- Use smaller reads. This can be handy if you're trying to stream
-		low-bitrate files without waiting for the extractor to fill a large
-		outgoing buffer.
+	- Use smaller reads. This can be handy if you're trying to stream low-bitrate
+		files without waiting for the extractor to fill a large outgoing buffer.
 -
 	- {cpp:enumerator}`B_MEDIA_FILE_BIG_BUFFERS`
 	- Use large buffers.
@@ -88,11 +87,11 @@ indicates the size of the data to write to the file.
 
 :::{admonition} Warning
 :class: warning
-The {hclass}`BMediaFile` class doesn't automatically perform any locking
-to prevent multiple writes to the file from occurring at the same time. If
-you have multiple threads writing into the same {hclass}`BMediaFile`, you
-must use a locking mechanism (such as a {ref}`semaphore`) to keep writes
-from overlapping.
+The {hclass}`BMediaFile` class doesn't automatically perform any locking to
+prevent multiple writes to the file from occurring at the same time. If you
+have multiple threads writing into the same {hclass}`BMediaFile`, you must
+use a locking mechanism (such as a {ref}`semaphore`) to keep writes from
+overlapping.
 :::
 
 :::{list-table}
@@ -136,11 +135,11 @@ copied, so the original belongs to you.
 
 :::{admonition} Warning
 :class: warning
-The {hclass}`BMediaFile` class doesn't automatically perform any locking
-to prevent multiple writes to the file from occurring at the same time. If
-you have multiple threads writing into the same {hclass}`BMediaFile`, you
-must use a locking mechanism (such as a {ref}`semaphore`) to keep writes
-from overlapping.
+The {hclass}`BMediaFile` class doesn't automatically perform any locking to
+prevent multiple writes to the file from occurring at the same time. If you
+have multiple threads writing into the same {hclass}`BMediaFile`, you must
+use a locking mechanism (such as a {ref}`semaphore`) to keep writes from
+overlapping.
 :::
 
 :::{list-table}
@@ -404,8 +403,8 @@ widths: auto
 :::{cpp:function} status_t BMediaFile::GetParameterValue(int32 id, const void* value, size_t size)
 :::
 
-{hmethod}`SetParameterValue()` sets the value of the parameter specified
-by {hparam}`id` to the data pointed to by {hparam}`value`; this data is
+{hmethod}`SetParameterValue()` sets the value of the parameter specified by
+{hparam}`id` to the data pointed to by {hparam}`value`; this data is
 {hparam}`size` bytes long.
 
 {hmethod}`GetParameterValue()` returns in {hparam}`value` the value of the
@@ -485,9 +484,8 @@ widths: auto
 	- Don't read ahead in the file.
 -
 	- {cpp:enumerator}`B_MEDIA_FILE_UNBUFFERED`
-	- Use smaller reads. This can be handy if you're trying to stream
-		low-bitrate files without waiting for the extractor to fill a large
-		outgoing buffer.
+	- Use smaller reads. This can be handy if you're trying to stream low-bitrate
+		files without waiting for the extractor to fill a large outgoing buffer.
 -
 	- {cpp:enumerator}`B_MEDIA_FILE_BIG_BUFFERS`
 	- Use large buffers.

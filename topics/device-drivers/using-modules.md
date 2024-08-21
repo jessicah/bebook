@@ -1,9 +1,8 @@
 # Using Modules
 
-Modules provide a means for multiple drivers to share common
-functionality; for example, if a variety of types of device might be
-accessed on the same bus, a module might be created to provide a common
-interface to the bus.
+Modules provide a means for multiple drivers to share common functionality;
+for example, if a variety of types of device might be accessed on the same
+bus, a module might be created to provide a common interface to the bus.
 
 Your driver can access these modules via the kernel functions
 {cpp:func}`get_module()` and {cpp:func}`put_module()`, which obtain and

@@ -26,8 +26,8 @@ be called directly once the node is registered—if you do this, be sure you
 don't call them after the node is destroyed.
 :::
 
-Calling a node's member functions directly from outside the node itself
-can result in the chain of functions involved in coordinating nodes to be
+Calling a node's member functions directly from outside the node itself can
+result in the chain of functions involved in coordinating nodes to be
 called out of order. Worse, deadlock can result. So just don't do it, even
 if you think you've found a safe way to pull it off.
 
@@ -84,9 +84,9 @@ locking down the image itself can help performance even further.
 
 :::{admonition} Note
 :class: note
-Standard BeOS system libraries are Be's responsibility. If it's
-appropriate for them to be locked, they're locked for you. Don't lock them
-yourself. Both libmedia.so and libroot.so have
+Standard BeOS system libraries are Be's responsibility. If it's appropriate
+for them to be locked, they're locked for you. Don't lock them yourself.
+Both libmedia.so and libroot.so have
 {cpp:func}`media_realtime_init_image()` called on them.
 :::
 
@@ -107,9 +107,9 @@ function. The format your node returns from
 poing in the negotiation process; the more wildcards you support, the
 better.
 
-An application that wants to establish a connection between some other
-node and your node will determine the format from the inputs into your node
-and the outputs from the other node, then call
+An application that wants to establish a connection between some other node
+and your node will determine the format from the inputs into your node and
+the outputs from the other node, then call
 {cpp:func}`BMediaRoster::Connect()` with that format.
 
 If there are any wildcards in the format passed to

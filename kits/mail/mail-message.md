@@ -117,8 +117,8 @@ Adds a header field to the {hclass}`BMailMessage` object. The value of the
 field whose name is specified by {hparam}`field_name` is set to the string
 specified by {hparam}`field_str`.
 
-If {hparam}`replace` is {cpp:expr}`true`, all existing header fields of
-the specified name are deleted before adding the new header field; if
+If {hparam}`replace` is {cpp:expr}`true`, all existing header fields of the
+specified name are deleted before adding the new header field; if
 {hparam}`replace` is {cpp:expr}`false`, a new header whose field is named
 {cpp:enumerator}`field_name` is added.
 
@@ -152,8 +152,8 @@ Queues the message for transmission. If {hparam}`send_now` is
 in the queue to be sent the next time {cpp:func}`check_for_mail()` is
 called or the mail daemon performs an automatic mail check.
 
-If the {hparam}`remove_when_sent` argument is {cpp:expr}`true`, the
-message will be deleted from the user's disk drive after it has been sent;
+If the {hparam}`remove_when_sent` argument is {cpp:expr}`true`, the message
+will be deleted from the user's disk drive after it has been sent;
 otherwise, it will be saved for posterity.
 
 :::{list-table}

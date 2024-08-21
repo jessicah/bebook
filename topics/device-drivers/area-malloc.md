@@ -10,8 +10,8 @@ a pool argument as their first input.
 
 :::{admonition} Warning
 :class: warning
-These functions aren't safe to call from interrupt handlers; they may
-block on semaphores.
+These functions aren't safe to call from interrupt handlers; they may block
+on semaphores.
 :::
 
 The area_malloc functions are thread-safe in relation to one another, but
@@ -55,8 +55,8 @@ deleted, otherwise {cpp:enumerator}`B_ERROR`.
 :::{cpp:function} void* realloc(const void* poolID, void* ptr, size_t size)
 :::
 
-malloc() allocates a block of {hparam}`size` bytes and returns a pointer
-to it.
+malloc() allocates a block of {hparam}`size` bytes and returns a pointer to
+it.
 
 calloc() allocates a block that can contain {hparam}`numMembers` items of
 the specified {hparam}`size` and returns a poiner to it.

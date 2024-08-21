@@ -9,8 +9,8 @@
 :::{cpp:function} virtual BMediaTrack::BMediaTrack()
 :::
 
-Destructor. You shouldn't delete a {hclass}`BMediaTrack` directly;
-instead, use {cpp:func}`BMediaFile::ReleaseTrack()` or
+Destructor. You shouldn't delete a {hclass}`BMediaTrack` directly; instead,
+use {cpp:func}`BMediaFile::ReleaseTrack()` or
 {cpp:func}`BMediaFile::ReleaseAllTracks()`, or let {cpp:class}`BMediaFile`
 destroy the track objects when it's deleted.
 ::::
@@ -61,10 +61,10 @@ widths: auto
 :::{cpp:function} status_t BMediaTrack::AddTrackInfo(uint32 code, const void* data, size_t size, uint32 flags = 0) const
 :::
 
-Adds an informational record of the specified type to the track. The
-record is specified by the {hparam}`data` pointer, and is {hparam}`size`
-bytes long. flags contains flags that modify the operation (none are
-defined at this time).
+Adds an informational record of the specified type to the track. The record
+is specified by the {hparam}`data` pointer, and is {hparam}`size` bytes
+long. flags contains flags that modify the operation (none are defined at
+this time).
 
 :::{admonition} Warning
 :class: warning
@@ -107,8 +107,8 @@ Returns the total number of frames in the track.
 :::{cpp:function} int64 BMediaTrack::CurrentFrame() const
 :::
 
-Returns the current frame in the track (the frame that will be read next
-by {cpp:func}`~BMediaTrack::ReadFrames()`.
+Returns the current frame in the track (the frame that will be read next by
+{cpp:func}`~BMediaTrack::ReadFrames()`.
 ::::
 
 ::::{abi-group}
@@ -168,8 +168,8 @@ Returns the total duration of the track, in microseconds.
 :::{cpp:function} status_t BMediaTrack::EncodedFormat(media_format* outFormat) const
 :::
 
-Returns the "native" encoded format of the track's data. This is the
-format of the data returned by {cpp:func}`~BMediaTrack::ReadChunk()`.
+Returns the "native" encoded format of the track's data. This is the format
+of the data returned by {cpp:func}`~BMediaTrack::ReadChunk()`.
 
 :::{list-table}
 ---
@@ -199,10 +199,10 @@ widths: auto
 :::{cpp:function} status_t BMediaTrack::FindKeyFrameForFrame(int64* inOutFrame, int32 flags = 0) const
 :::
 
-{hmethod}`FindKeyFrameForTime()` accepts in {hparam}`inOutTime` a time,
-and returns in {hparam}`inOutTime` the time at which the closest key frame
-to that time begins. Likewise, {hmethod}`FindKeyFrameForFrame()` returns
-the closest key frame number to the specified frame.
+{hmethod}`FindKeyFrameForTime()` accepts in {hparam}`inOutTime` a time, and
+returns in {hparam}`inOutTime` the time at which the closest key frame to
+that time begins. Likewise, {hmethod}`FindKeyFrameForFrame()` returns the
+closest key frame number to the specified frame.
 
 The {hparam}`flags` argument lets you indicate whether to seek forward or
 backward for the key frame.
@@ -246,8 +246,8 @@ widths: auto
 :::{cpp:function} status_t BMediaTrack::GetCodecInfo(media_codec_info* codecInfo) const
 :::
 
-Returns information about the codec being used to read or write the
-track's data.
+Returns information about the codec being used to read or write the track's
+data.
 
 :::{list-table}
 ---
@@ -325,13 +325,13 @@ widths: auto
 :::{cpp:function} status_t BMediaTrack::ReadChunk(char** outBuffer, int32* ioSize, media_header* header = NULL)
 :::
 
-Returns in {hparam}`outBuffer` a pointer to the next {hparam}`ioSize`
-bytes of the media track; the actual number of bytes returned is returned
-in {hparam}`ioSize`; this may be different if the end of the track is
-reached. The header is set to describe the returned buffer.
+Returns in {hparam}`outBuffer` a pointer to the next {hparam}`ioSize` bytes
+of the media track; the actual number of bytes returned is returned in
+{hparam}`ioSize`; this may be different if the end of the track is reached.
+The header is set to describe the returned buffer.
 
-The data returned by this function isn't decoded. Typically you'll only
-use this function if there's no codec available to decode the media data.
+The data returned by this function isn't decoded. Typically you'll only use
+this function if there's no codec available to decode the media data.
 
 :::{list-table}
 ---
@@ -372,11 +372,11 @@ audio tracks, the buffer is filled with the number of frames negotiated
 using {cpp:func}`~BMediaTrack::DecodedFormat()`. If the end of the track is
 reached before the buffer is filled, a partial buffer will be returned.
 
-On return, {hparam}`outFrameCount` indicates the number of frames
-returned, and {hparam}`outHeader`, if you specified a non-{cpp:expr}`NULL`
-value, contains the header of the buffer containing the frame or frames.
-You can obtain useful information (such as the media start time for the
-buffer) from the header.
+On return, {hparam}`outFrameCount` indicates the number of frames returned,
+and {hparam}`outHeader`, if you specified a non-{cpp:expr}`NULL` value,
+contains the header of the buffer containing the frame or frames. You can
+obtain useful information (such as the media start time for the buffer)
+from the header.
 
 The second form of this function lets you provide a
 {cpp:any}`media_decode_info` structure to provide additional information to
@@ -428,8 +428,8 @@ accepts a destination position as a frame number, and
 microseconds. They each return (in {hparam}`ioFrame` or in
 {hparam}`ioTime`) the position to which they actually moved.
 
-For example, if a video codec is only capable of seeking to key frames,
-the returned {hparam}`ioFrame` might be different than the one specified on
+For example, if a video codec is only capable of seeking to key frames, the
+returned {hparam}`ioFrame` might be different than the one specified on
 input.
 
 If you want to seek explicitly to the nearest key frame before the current
@@ -465,8 +465,8 @@ widths: auto
 :::{cpp:function} status_t BMediaTrack::GetParameterValue(int32 id, const void* value, size_t* size)
 :::
 
-{hmethod}`SetParameterValue()` sets the value of the parameter specified
-by {hparam}`id` to the data pointed to by {hparam}`value`; this data is
+{hmethod}`SetParameterValue()` sets the value of the parameter specified by
+{hparam}`id` to the data pointed to by {hparam}`value`; this data is
 {hparam}`size` bytes long.
 
 {hmethod}`GetParameterValue()` returns in {hparam}`value` the value of the
@@ -504,8 +504,8 @@ widths: auto
 :::{cpp:function} status_t BMediaTrack::GetQuality(float* quality)
 :::
 
-These functions set and return the codec's quality setting (where 1.0
-means maximum quality).
+These functions set and return the codec's quality setting (where 1.0 means
+maximum quality).
 
 :::{list-table}
 ---
@@ -544,10 +544,10 @@ configuration.
 :::{cpp:function} status_t BMediaTrack::WriteChunk(void* data, size_t size, int32 flags = 0)
 :::
 
-Writes the data pointed to by {hparam}`data`, which contains
-{hparam}`size` bytes of data, into the track. Specify
-{cpp:enumerator}`B_MEDIA_KEY_FRAME` for {hparam}`flags` if the frame is a
-key frame. It's assumed that the data is already encoded.
+Writes the data pointed to by {hparam}`data`, which contains {hparam}`size`
+bytes of data, into the track. Specify {cpp:enumerator}`B_MEDIA_KEY_FRAME`
+for {hparam}`flags` if the frame is a key frame. It's assumed that the data
+is already encoded.
 
 :::{admonition} Note
 :class: note

@@ -43,13 +43,13 @@ deleted, reset (through {cpp:func}`~BNode::SetTo()`), or unset
 ({cpp:func}`~BNode::Unset()`).
 
 - Default constructor. The object's status will be
-{cpp:enumerator}`B_NO_INIT`, and the file descriptor isn't allocated until
-you actually initialize the object with a call to
-{cpp:func}`~BNode::SetTo()`.
+  {cpp:enumerator}`B_NO_INIT`, and the file descriptor isn't allocated
+  until you actually initialize the object with a call to
+  {cpp:func}`~BNode::SetTo()`.
 
 - Copy constructor. The new {hclass}`BNode` is set to the same node as the
-argument. Each of the two {hclass}`BNode` objects has its own file
-descriptor.
+  argument. Each of the two {hclass}`BNode` objects has its own file
+  descriptor.
 
 - Other constructors. See the {cpp:func}`~BNode::SetTo()` functions.
 ::::
@@ -113,8 +113,8 @@ attribute. The name is copied into the buffer, which should be at least
 
 :::{admonition} Warning
 :class: warning
-{hmethod}`GetNextAttrName()` does _not_ clear its argument if it returns
-an error. This will be corrected in a subsequent release.
+{hmethod}`GetNextAttrName()` does _not_ clear its argument if it returns an
+error. This will be corrected in a subsequent release.
 :::
 
 {hmethod}`RewindAttrs()` resets the {hclass}`BNode`'s attribute pointer to
@@ -131,8 +131,8 @@ while (node.GetNextAttrName(buf) == B_OK) {
 }
 :::
 
-The attribute list is not static; when you ask for the next attribute
-name, you're asking for the next name in the list _as it exists right now_.
+The attribute list is not static; when you ask for the next attribute name,
+you're asking for the next name in the list _as it exists right now_.
 
 Furthermore, the ordinal position of an attribute within the list is
 indeterminate. "Newer" attributes are not necessarily added to the end of
@@ -252,15 +252,14 @@ These functions read, write, and remove the node's attributes. Attributes
 are name/data pairs, where names must be unique (within a given node) and
 the data can be of arbitrary length.
 
-{hmethod}`ReadAttr()` reads the data in the attribute named
-{hparam}`name`, and copies it in {hparam}`buffer`. The length of the buffer
-(the maximum number of bytes to copy) is given by {hparam}`length`.
-Currently, the {hparam}`type` and {hparam}`offset` arguments are unused (or
-unreliable). The function returns the number of bytes that were actually
-read.
+{hmethod}`ReadAttr()` reads the data in the attribute named {hparam}`name`,
+and copies it in {hparam}`buffer`. The length of the buffer (the maximum
+number of bytes to copy) is given by {hparam}`length`. Currently, the
+{hparam}`type` and {hparam}`offset` arguments are unused (or unreliable).
+The function returns the number of bytes that were actually read.
 
-{hmethod}`WriteAttr()` erases the data currently held by {hparam}`name`
-(if such an attribute exists) and replaces it with a copy of the first
+{hmethod}`WriteAttr()` erases the data currently held by {hparam}`name` (if
+such an attribute exists) and replaces it with a copy of the first
 {hparam}`length` bytes of data in {hparam}`buffer`. The {hparam}`type`
 argument _is_ remembered—you can retrieve an attribute's type through
 {cpp:func}`~BNode::GetAttrInfo()`, for example—and you need to specify the
@@ -287,8 +286,8 @@ The value of an indexed attribute must be no more than 255 bytes long.
 
 {hmethod}`RemoveAttr()` deletes the attribute given by {hparam}`name`.
 
-{hmethod}`ReadAttr()` and {hmethod}`WriteAttr()`, if successful, return
-the number of bytes read or written.
+{hmethod}`ReadAttr()` and {hmethod}`WriteAttr()`, if successful, return the
+number of bytes read or written.
 
 :::{list-table}
 ---
@@ -385,12 +384,12 @@ widths: auto
 Closes the {hclass}`BNode`'s current file descriptor and opens it on the
 node (of the entry) that's designated by the arguments.
 
-- In the {hparam}`path` version, {hparam}`path` can be absolute or relative,
-and can contain "." and ".." elements. If {hparam}`path` is relative, it's
-reckoned off of the current working directory.
+- In the {hparam}`path` version, {hparam}`path` can be absolute or
+  relative, and can contain "." and ".." elements. If {hparam}`path` is
+  relative, it's reckoned off of the current working directory.
 
 - In the {hparam}`dir`/{hparam}`path` version, {hparam}`path` must be
-relative. It's reckoned off of the directory given by {hparam}`dir`.
+  relative. It's reckoned off of the directory given by {hparam}`dir`.
 
 {hclass}`BNode` instances never traverse symbolic links. If the designated
 entry is a symbolic link, the BNode will open the link's node. (Conversely,
@@ -460,8 +459,8 @@ a {hclass}`BNode` to itself.
 :::{cpp:function} bool BNode::operator!=(const BNode& node) const
 :::
 
-Two {hclass}`BNode` objects are said to be equal if they're set to the
-same node, or if they're both {cpp:enumerator}`B_NO_INIT`.
+Two {hclass}`BNode` objects are said to be equal if they're set to the same
+node, or if they're both {cpp:enumerator}`B_NO_INIT`.
 ::::
 
 ## Defined Types
@@ -507,11 +506,11 @@ The destructor for {htype}`node_ref`.
 
 {hmethod}`operator ==`
 
-Lets you perform comparisons of {htype}`node_ref` structures to see if
-they refer to the same node.
+Lets you perform comparisons of {htype}`node_ref` structures to see if they
+refer to the same node.
 
 {hmethod}`operator !=`
 
-Lets you test to see if two {htype}`node_ref` structures refer to
-different nodes.
+Lets you test to see if two {htype}`node_ref` structures refer to different
+nodes.
 ::::

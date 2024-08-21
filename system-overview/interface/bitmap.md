@@ -16,10 +16,10 @@ functions such as {cpp:func}`~BView::DrawBitmap()`.
 
 ## Bitmap Data
 
-A bitmap records the color values of every pixel within a rectangular
-area. The data is specified in rows, beginning with the top row of pixels
-in the image and working downward to the bottom row. Each row is aligned on
-a long word boundary.
+A bitmap records the color values of every pixel within a rectangular area.
+The data is specified in rows, beginning with the top row of pixels in the
+image and working downward to the bottom row. Each row is aligned on a long
+word boundary.
 
 When you construct a {cpp:class}`BBitmap` object, you give it a bounds
 rectangle (integer coordinates only!) and a color space. For example, this
@@ -111,10 +111,10 @@ widths: auto
 
 :::
 
-Opaque pixels should have an alpha value of 255 for 8-bit alpha channels
-or 1 for 1-bit alpha channels; values of 0 indicate 100% transparent
-pixels. Values in between (for 8-bit alpha channels) represent varying
-degrees of transparency.
+Opaque pixels should have an alpha value of 255 for 8-bit alpha channels or
+1 for 1-bit alpha channels; values of 0 indicate 100% transparent pixels.
+Values in between (for 8-bit alpha channels) represent varying degrees of
+transparency.
 
 Transparency is covered in more detail under "{ref}`Drawing Modes`".
 

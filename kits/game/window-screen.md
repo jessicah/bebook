@@ -165,22 +165,20 @@ hook functions (indices 0, 1, and 2) are not available through the Game
 Kit; if you pass an index of 0, 1, or 2 to {hmethod}`CardHookAt()`, it will
 return {cpp:expr}`NULL` even if the function is implemented.
 
-An application can cache the pointers that {hmethod}`CardHookAt()`
-returns, but it should ask for a new set each time the depth or dimensions
-of the screen changes and each time the {hclass}`BWindowScreen` object
-releases or regains control of the screen. You'd typically call
-{hmethod}`CardHookAt()` in your implementation of
-{cpp:func}`~BWindowScreen::ScreenConnected()`.
+An application can cache the pointers that {hmethod}`CardHookAt()` returns,
+but it should ask for a new set each time the depth or dimensions of the
+screen changes and each time the {hclass}`BWindowScreen` object releases or
+regains control of the screen. You'd typically call {hmethod}`CardHookAt()`
+in your implementation of {cpp:func}`~BWindowScreen::ScreenConnected()`.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} graphics_card_info* BWindowScreen::CardInfo()
 :::
 
-Returns a description of the current configuration of the graphics card,
-as kept by the driver for the card. The returned
-{htype}`graphics_card_info` structure is defined in
-addons/graphics/GraphicsCard.h
+Returns a description of the current configuration of the graphics card, as
+kept by the driver for the card. The returned {htype}`graphics_card_info`
+structure is defined in addons/graphics/GraphicsCard.h
 
 :::{admonition} Note
 :class: note
@@ -247,10 +245,10 @@ sure that the {hclass}`BWindowScreen` is disconnected from the screen
 before it's hidden and that it's ready to establish a connection when it
 becomes the active window.
 
-{hmethod}`Hide()` calls {cpp:func}`~BWindowScreen::ScreenConnected()`
-(with an argument of {cpp:expr}`false`) and breaks the connection to the
-screen when {cpp:func}`~BWindowScreen::ScreenConnected()` returns. It then
-hides the window.
+{hmethod}`Hide()` calls {cpp:func}`~BWindowScreen::ScreenConnected()` (with
+an argument of {cpp:expr}`false`) and breaks the connection to the screen
+when {cpp:func}`~BWindowScreen::ScreenConnected()` returns. It then hides
+the window.
 
 {hmethod}`Show()` shows the window on-screen and makes it the active
 window, which will cause it to establish a direct connection to the
@@ -265,8 +263,8 @@ See also: {cpp:func}`BWindow::Hide()`
 :::{cpp:function} void* BWindowScreen::IOBase()
 :::
 
-Returns a pointer to the base address for the input/output registers on
-the graphics card. Registers are addressed by 16-bit offsets from this base
+Returns a pointer to the base address for the input/output registers on the
+graphics card. Registers are addressed by 16-bit offsets from this base
 address. (This function may not be supported in future releases.)
 ::::
 
@@ -279,11 +277,11 @@ to the screen. This function moves the area's left-top corner to
 ({hparam}`x`, {hparam}`y`); by default, the corner lies at (0, 0). The
 display area must lie entirely within the frame buffer.
 
-{hmethod}`MoveDisplayArea()` only works if the graphics card driver
-permits application control over the frame buffer. It must also permit a
-frame buffer with a total area larger than the display area. If successful
-in relocating the display area, this function returns
-{cpp:enumerator}`B_OK`; if not, it returns {cpp:enumerator}`B_ERROR`.
+{hmethod}`MoveDisplayArea()` only works if the graphics card driver permits
+application control over the frame buffer. It must also permit a frame
+buffer with a total area larger than the display area. If successful in
+relocating the display area, this function returns {cpp:enumerator}`B_OK`;
+if not, it returns {cpp:enumerator}`B_ERROR`.
 
 See also: {cpp:func}`~BWindowScreen::CanControlFrameBuffer()`
 ::::
@@ -292,12 +290,12 @@ See also: {cpp:func}`~BWindowScreen::CanControlFrameBuffer()`
 :::{cpp:function} virtual void BWindowScreen::Quit()
 :::
 
-Augments the {cpp:class}`BWindow` version of {hmethod}`Quit()` to force
-the {hclass}`BWindowScreen` object to disconnect itself from the screen, so
+Augments the {cpp:class}`BWindow` version of {hmethod}`Quit()` to force the
+{hclass}`BWindowScreen` object to disconnect itself from the screen, so
 that it doesn't quit while in control of the frame buffer.
 
-Although {hmethod}`Quit()` disconnects the object before quitting, this
-may not be soon enough for your application. For example, if you need to
+Although {hmethod}`Quit()` disconnects the object before quitting, this may
+not be soon enough for your application. For example, if you need to
 destroy some drawing threads before the {hclass}`BWindowScreen` object is
 itself destroyed, you should get rid of them after the screen connection is
 severed. You can force the object to disconnect itself by calling
@@ -335,25 +333,25 @@ relevance only if the {hclass}`BWindowScreen` is running in debugging mode.
 To set up the mode, you must:
 
 1. Construct the {hclass}`BWindowScreen` with the {hparam}`debugging` flag
-set to {cpp:expr}`true`. The flag is {cpp:expr}`false` by default.
+  set to {cpp:expr}`true`. The flag is {cpp:expr}`false` by default.
 
 2. Register all drawing threads (all threads that can touch the frame buffer
-in any way) by passing the {htype}`thread_id` to
-{cpp:func}`~BWindowScreen::RegisterThread()` immediately after the thread
-is spawned—before {hmethod}`resume_thread()` is called to start the
-thread's execution. The window thread for the {hclass}`BWindowScreen`
-object should not draw and should not be registered.
+  in any way) by passing the {htype}`thread_id` to
+  {cpp:func}`~BWindowScreen::RegisterThread()` immediately after the thread
+  is spawned—before {hmethod}`resume_thread()` is called to start the
+  thread's execution. The window thread for the {hclass}`BWindowScreen`
+  object should not draw and should not be registered.
 
 3. Launch the application from the command line in a Terminal window. The
-window will collect debugging output from the application while the
-{hclass}`BWindowScreen` runs in a different workspace, generally the one at
-the immediately preceding index. For example, if the Terminal window is in
-the fifth workspace ({hkey}`Command`+{hkey}`F5`), the game will run in the
-fourth ({hkey}`Command`+{hkey}`F4`); if the Terminal is in the fourth
-({hkey}`Command`+{hkey}`F4`), the game runs in the third
-({hkey}`Command`+{hkey}`F3`); and so on. However, if the Terminal window is
-in the first workspace ({hkey}`Command`+{hkey}`F1`), the game runs in the
-second ({hkey}`Command`+{hkey}`F2`).
+  window will collect debugging output from the application while the
+  {hclass}`BWindowScreen` runs in a different workspace, generally the one
+  at the immediately preceding index. For example, if the Terminal window
+  is in the fifth workspace ({hkey}`Command`+{hkey}`F5`), the game will run
+  in the fourth ({hkey}`Command`+{hkey}`F4`); if the Terminal is in the
+  fourth ({hkey}`Command`+{hkey}`F4`), the game runs in the third
+  ({hkey}`Command`+{hkey}`F3`); and so on. However, if the Terminal window
+  is in the first workspace ({hkey}`Command`+{hkey}`F1`), the game runs in
+  the second ({hkey}`Command`+{hkey}`F2`).
 
 The Terminal window is the destination for all messages the game writes to
 the standard error stream or to the standard output—from printf(), for
@@ -413,8 +411,8 @@ See also: {cpp:func}`BWindow::ScreenChanged()`
 :::{cpp:function} rgb_color* BWindowScreen::ColorList()
 :::
 
-These functions set and return the list of 256 colors that can be
-displayed when the frame buffer has a depth of 8 bits per pixel (the
+These functions set and return the list of 256 colors that can be displayed
+when the frame buffer has a depth of 8 bits per pixel (the
 {cpp:enumerator}`B_CMAP8` color space). {hmethod}`SetColorList()` is passed
 an array of one or more colors to replace the colors currently in the list.
 The first color in the array replaces the color in the list at the
@@ -444,9 +442,9 @@ configurations (as reported by
 {cpp:func}`~BWindowScreen::CanControlFrameBuffer()`) and the
 {hclass}`BWindowScreen` object is currently connected to the screen.
 
-The new dimensions of the frame buffer must be large enough to hold all
-the pixels displayed on-screen—that is, they must be at least as large as
-the dimensions of the display area. If the driver can't accommodate the
+The new dimensions of the frame buffer must be large enough to hold all the
+pixels displayed on-screen—that is, they must be at least as large as the
+dimensions of the display area. If the driver can't accommodate the
 proposed width and height, {cpp:func}`~BWindowScreen::SetFrameBuffer()`
 returns {cpp:enumerator}`B_ERROR`. If the change is made, it returns
 {cpp:enumerator}`B_OK`.

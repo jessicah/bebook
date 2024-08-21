@@ -24,8 +24,8 @@ examples of how to write them.
 
 ## Symbols Drivers Export
 
-The kernel communicates with drivers by calling certain known entry
-points, which the driver must implement and export. These entry points are:
+The kernel communicates with drivers by calling certain known entry points,
+which the driver must implement and export. These entry points are:
 
 :::{list-table}
 ---
@@ -209,9 +209,9 @@ pointer to it in *{hparam}`cookie`.
 :::{cpp:function} status_t close_hook(void** cookie)
 :::
 
-This hook is called when an open instance of the driver is closed using
-the close() Posix function. Note that because of the multithreaded nature
-of the BeOS, it's possible there may still be transactions pending, and you
+This hook is called when an open instance of the driver is closed using the
+close() Posix function. Note that because of the multithreaded nature of
+the BeOS, it's possible there may still be transactions pending, and you
 may receive more calls on the device. For that reason, you shouldn't free
 instance-wide system resources here. Instead, you should do this in
 {cpp:func}`free_hook()`. However, if there are any blocked transactions
@@ -295,10 +295,10 @@ and return an appropriate result code.
 :::{cpp:function} status_t control_hook(void* cookie, uint32 op, void* data, size_t* len)
 :::
 
-This hook handles the ioctl() function for an open instance of your
-driver. The control hook provides a means to perform operations that don't
-map directly to either read() or write(). It receives the {hparam}`cookie`
-for the open instance, plus the command code {hparam}`op` and the
+This hook handles the ioctl() function for an open instance of your driver.
+The control hook provides a means to perform operations that don't map
+directly to either read() or write(). It receives the {hparam}`cookie` for
+the open instance, plus the command code {hparam}`op` and the
 {hparam}`data` and {hparam}`len` arguments specified by ioctl()'s caller.
 These arguments have no inherent relationship; they're simply arguments to
 ioctl() that are forwarded to your hook function. Their definitions are
@@ -328,16 +328,16 @@ your {htype}`device_hooks` structure to {cpp:expr}`NULL`.
 Keep the following rules in mind for each instance of your driver:
 
 - open() will be called first, and no other hooks will be called until
-open() returns.
+  open() returns.
 
 - close() may be called while other requests are pending. As previously
-mentioned, if you have blocked transactions, you must unblock them when
-close() is called. Further calls to other driver hooks my continue to occur
-after close() is called; however, you should return an error to any such
-requests.
+  mentioned, if you have blocked transactions, you must unblock them when
+  close() is called. Further calls to other driver hooks my continue to
+  occur after close() is called; however, you should return an error to any
+  such requests.
 
 - free() isn't called until all pending transactions for the open instance
-are completed.
+  are completed.
 
-- Multiple threads may be accessing the driver's hooks simultaneously, so be
-sure to lock and unlock where appropriate.
+- Multiple threads may be accessing the driver's hooks simultaneously, so
+  be sure to lock and unlock where appropriate.

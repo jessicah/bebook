@@ -15,8 +15,8 @@
 :::{cpp:function} BFont::BFont()
 :::
 
-Initializes the new {hclass}`BFont` object as a copy of another font. If
-no font is specified, {cpp:enumerator}`be_plain_font` is used.
+Initializes the new {hclass}`BFont` object as a copy of another font. If no
+font is specified, {cpp:enumerator}`be_plain_font` is used.
 
 The system {hclass}`BFont` objects, including
 {cpp:enumerator}`be_plain_font`, are initialized only when you create a
@@ -100,9 +100,9 @@ character in a {hparam}`string`.
 of strings, one {cpp:class}`BRect` per string. These rectangles enclose the
 entire string they represent.
 
-In all cases, the {hparam}`mode` indicates whether the rectangles should
-be returned in the screen's metric ({cpp:enumerator}`B_SCREEN_METRIC`), or
-in printing metrics ({cpp:enumerator}`B_PRINTING_METRIC`).
+In all cases, the {hparam}`mode` indicates whether the rectangles should be
+returned in the screen's metric ({cpp:enumerator}`B_SCREEN_METRIC`), or in
+printing metrics ({cpp:enumerator}`B_PRINTING_METRIC`).
 
 The {hparam}`delta` argument for {hmethod}`GetBoundingBoxesAsString()` and
 the {hparam}`deltas` argument for {hmethod}`GetBoundingBoxesForStrings()`
@@ -218,9 +218,9 @@ escapement by the font size should yield an integral value. In
 {cpp:enumerator}`B_FIXED_SPACING` mode, all characters have the same
 escapement.
 
-If a {hparam}`delta` argument is provided, {hmethod}`GetEscapements()`
-will adjust the escapements it reports so that, after multiplying by the
-font size, the character widths will include the specified increments. An
+If a {hparam}`delta` argument is provided, {hmethod}`GetEscapements()` will
+adjust the escapements it reports so that, after multiplying by the font
+size, the character widths will include the specified increments. An
 {htype}`escapement_delta` structure contains two values:
 
 :::{list-table}
@@ -258,8 +258,8 @@ typedef struct {
 } edge_info;
 :::
 
-Edge values, like escapements, are stated in per-point-size units that
-need to be multiplied by the font size.
+Edge values, like escapements, are stated in per-point-size units that need
+to be multiplied by the font size.
 
 The illustration below shows typical character edges. As in the
 illustration above, the solid vertical lines mark escapement boundaries.
@@ -494,10 +494,10 @@ family and style represented by the {hclass}`BFont` object.
 Indices begin at 0 and count only tuned fonts for the {hclass}`BFont`'s
 family and style.
 
-With this information, you can set the {hclass}`BFont` to values that
-match those of a tuned font. When a {cpp:class}`BView` draws to the screen,
-it picks a tuned font if there's one that corresponds to its current font
-in all respects.
+With this information, you can set the {hclass}`BFont` to values that match
+those of a tuned font. When a {cpp:class}`BView` draws to the screen, it
+picks a tuned font if there's one that corresponds to its current font in
+all respects.
 
 See also: {cpp:func}`get_font_family()`
 ::::
@@ -506,8 +506,7 @@ See also: {cpp:func}`get_font_family()`
 :::{cpp:function} bool BFont::IsFixed() const
 :::
 
-Returns {cpp:expr}`true` if the font is fixed; {cpp:expr}`false`
-otherwise.
+Returns {cpp:expr}`true` if the font is fixed; {cpp:expr}`false` otherwise.
 ::::
 
 ::::{abi-group}
@@ -608,9 +607,9 @@ See also: "{ref}`Character Encoding`" {cpp:func}`convert_to_utf8()`,
 :::{cpp:function} uint16 BFont::Face() const
 :::
 
-These functions set and return a mask that record secondary
-characteristics of the font, such as whether characters are underlined or
-drawn in outline. The values that form the face mask are:
+These functions set and return a mask that record secondary characteristics
+of the font, such as whether characters are underlined or drawn in outline.
+The values that form the face mask are:
 
 :::{list-table}
 ---
@@ -631,12 +630,11 @@ widths: auto
 	- Characters are drawn underlined.
 -
 	- {cpp:enumerator}`B_NEGATIVE_FACE`
-	- Characters are drawn in the low color, while the background is drawn in
-		the high color.
+	- Characters are drawn in the low color, while the background is drawn in the
+		high color.
 -
 	- {cpp:enumerator}`B_OUTLINED_FACE`
-	- Characters are drawn hollow, with a line around their border, but
-		unfilled.
+	- Characters are drawn hollow, with a line around their border, but unfilled.
 -
 	- {cpp:enumerator}`B_STRIKEOUT_FACE`
 	- Characters are drawn "struck-out," with a line drawn horizontally through
@@ -711,9 +709,9 @@ machine is rebooted.
 :::{cpp:function} uint32 BFont::Flags() const
 :::
 
-These functions set and return a mask that records various behaviors of
-the font. There are two flags: {cpp:enumerator}`B_DISABLE_ANTIALIASING`,
-which turns off all antialiasing for characters displayed in the font, and
+These functions set and return a mask that records various behaviors of the
+font. There are two flags: {cpp:enumerator}`B_DISABLE_ANTIALIASING`, which
+turns off all antialiasing for characters displayed in the font, and
 {cpp:enumerator}`B_FORCE_ANTIALIASING`, which forces all font rendering to
 be anti-aliased. The default mask has antialiasing turned on.
 ::::
@@ -838,8 +836,8 @@ widths: auto
 		{cpp:enumerator}`B_CHAR_SPACING` mode.
 -
 	- {cpp:enumerator}`B_FIXED_SPACING`
-	- Positions characters according to a constant, integral width. This mode
-		can only be used with fixed-width fonts (fonts with the
+	- Positions characters according to a constant, integral width. This mode can
+		only be used with fixed-width fonts (fonts with the
 		{cpp:enumerator}`B_IS_FIXED` flag set); trying to use
 		{cpp:enumerator}`B_FIXED_SPACING` on other fonts will result in
 		{cpp:enumerator}`B_CHAR_SPACING` being used by default. All characters have
@@ -865,8 +863,8 @@ range, the screen resolution isn't great enough for the different modes to
 produce significantly different results, so again
 {cpp:enumerator}`B_CHAR_SPACING` is used.
 
-In addition, {cpp:enumerator}`B_CHAR_SPACING` is always used for rotated
-or sheared text and when antialiasing is disabled.
+In addition, {cpp:enumerator}`B_CHAR_SPACING` is always used for rotated or
+sheared text and when antialiasing is disabled.
 
 See also: {cpp:func}`BView::DrawString()`,
 {cpp:func}`~BFont::GetEscapements()`
@@ -882,12 +880,12 @@ See also: {cpp:func}`BView::DrawString()`,
 :::{cpp:function} void BFont::GetStringWidths(const char* stringArray[], const int32 lengthArray[], int32 numStrings, float widthArray[]) const
 :::
 
-{hmethod}`StringWidth()` returns how much room is required to draw a
-string in the font. It measures the characters encoded in {hparam}`length`
-bytes of the {hparam}`string`—or, if no length is specified, the entire
-string up to the null character, '0', which terminates it. The return value
-totals the width of all the characters in coordinate units; it's the length
-of the baseline required to draw the string.
+{hmethod}`StringWidth()` returns how much room is required to draw a string
+in the font. It measures the characters encoded in {hparam}`length` bytes
+of the {hparam}`string`—or, if no length is specified, the entire string up
+to the null character, '0', which terminates it. The return value totals
+the width of all the characters in coordinate units; it's the length of the
+baseline required to draw the string.
 
 {hmethod}`GetStringWidth()` provides the same information for a group of
 strings. It works its way through the {hparam}`stringArray` looking at a
@@ -1005,8 +1003,8 @@ The constants name the various character encodings that the BeOS supports.
 values for 7-bit character codes but uses multiple bytes to encode other
 values in the {ref}`Unicode standard.`
 
-See also: {cpp:func}`BFont::SetEncoding()`, the "{ref}`Character
-Encoding`" section of this chapter
+See also: {cpp:func}`BFont::SetEncoding()`, the "{ref}`Character Encoding`"
+section of this chapter
 
 ### Font Flags
 

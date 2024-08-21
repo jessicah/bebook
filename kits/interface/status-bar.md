@@ -46,8 +46,8 @@ Frees the labels and the text.
 Resizes the frame rectangle to accommodate the object's graphical parts.
 The width isn't altered.
 
-This function also sets the view and low colors of the
-{hclass}`BStatusBar` to match the background view color of its new parent.
+This function also sets the view and low colors of the {hclass}`BStatusBar`
+to match the background view color of its new parent.
 ::::
 
 ::::{abi-group}
@@ -102,11 +102,11 @@ See also: {cpp:func}`~BStatusBar::Reset()`
 :::{cpp:function} virtual void BStatusBar::Reset(const char* label = NULL, const char* trailingLabel = NULL)
 :::
 
-Empties the status bar, sets its current value to 0.0 and its maximum
-value to 100.0, deletes and erases the text and trailing text, and replaces
-the label and trailing label with copies of the strings passed as
-arguments. If either argument is {cpp:expr}`NULL`, the label or trailing
-label will also be deleted and erased.
+Empties the status bar, sets its current value to 0.0 and its maximum value
+to 100.0, deletes and erases the text and trailing text, and replaces the
+label and trailing label with copies of the strings passed as arguments. If
+either argument is {cpp:expr}`NULL`, the label or trailing label will also
+be deleted and erased.
 
 This gets the {hclass}`BStatusBar` ready to be reused for another
 operation. For example, if several large files are being downloaded, the
@@ -136,8 +136,8 @@ much of an operation has been completed. The default bar color is blue (50,
 :::{cpp:function} float BStatusBar::BarHeight() const
 :::
 
-These functions set and return the height of the bar itself, minus the
-text and labels. The default height is 16.0 coordinate units. The frame
+These functions set and return the height of the bar itself, minus the text
+and labels. The default height is 16.0 coordinate units. The frame
 rectangle is adjusted to accommodate the new height, and the object is
 redrawn.
 ::::
@@ -179,10 +179,10 @@ The amount of "filling" in the status bar reflects the ratio
 :::{cpp:function} const char* BStatusBar::TrailingText() const
 :::
 
-These {hmethod}`SetText()` and {hmethod}`SetTrailingText()` functions
-erase the previous text or trailing text and replace them with copies of
-the string argument. string can be {cpp:expr}`NULL`. The view is
-automatically redrawn.
+These {hmethod}`SetText()` and {hmethod}`SetTrailingText()` functions erase
+the previous text or trailing text and replace them with copies of the
+string argument. string can be {cpp:expr}`NULL`. The view is automatically
+redrawn.
 
 {hmethod}`Text()` and {hmethod}`TrailingText()` return pointers to the
 current text strings.
@@ -192,8 +192,8 @@ current text strings.
 :::{cpp:function} virtual void BStatusBar::Update(float delta, const char* text = NULL, const char* trailingText = NULL)
 :::
 
-{hmethod}`Update()` updates the {hclass}`BStatusBar` by adding delta to
-its current value and resetting its text and trailing text. Passing
+{hmethod}`Update()` updates the {hclass}`BStatusBar` by adding delta to its
+current value and resetting its text and trailing text. Passing
 {cpp:expr}`NULL` for the {hparam}`text` or {hparam}`trailingText` argument
 retains the existing string(s). The status bar is automatically redrawn.
 
@@ -293,6 +293,6 @@ widths: auto
 
 :::
 
-Some of these fields may not be present if the setting they represent
-isn't used, or is the default value. For example, if there is no trailing
-text, the {hparam}`_ttext` field won't be found in the archive.
+Some of these fields may not be present if the setting they represent isn't
+used, or is the default value. For example, if there is no trailing text,
+the {hparam}`_ttext` field won't be found in the archive.

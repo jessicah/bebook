@@ -66,8 +66,8 @@ widths: auto
 	- Sampling rate in hertz.
 -
 	- {cpp:enumerator}`B_GS_LOOPING`
-	- If the attribute's value is nonzero, the sound automatically loops. If
-		it's 0, the sound plays through just once.
+	- If the attribute's value is nonzero, the sound automatically loops. If it's
+		0, the sound plays through just once.
 -
 	- {cpp:enumerator}`B_GS_FIRST_PRIVATE_ATTRIBUTE`
 	- Beginning of private attribute range

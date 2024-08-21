@@ -226,10 +226,10 @@ widths: auto
 Note that key 0x30 {hkey}`P` is also mapped to
 {cpp:enumerator}`B_FUNCTION_KEY` when the {hkey}`Control` key is held down.
 
-Each of the character constants listed above is a one-byte value falling
-in the range of values where ASCII and Unicode™ overlap. For convenience,
-the Interface Kit also defines some constants for common characters that
-fall outside that range. These characters have multibyte representations in
+Each of the character constants listed above is a one-byte value falling in
+the range of values where ASCII and Unicode™ overlap. For convenience, the
+Interface Kit also defines some constants for common characters that fall
+outside that range. These characters have multibyte representations in
 UTF-8, so the constant is defined as a character string. For example:
 
 :::{code} cpp

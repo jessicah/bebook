@@ -39,9 +39,9 @@ what this book is intended to cover; for complete information on OpenGL,
 see the OpenGL web site at http://www.opengl.org, where you'll find
 complete documentation and sample code.
 
-However, it's important to understand how OpenGL fits into the framework
-of a BeOS application. The example that follows will draw a pattern of
-lines around a central point, as seen in the picture below.
+However, it's important to understand how OpenGL fits into the framework of
+a BeOS application. The example that follows will draw a pattern of lines
+around a central point, as seen in the picture below.
 
 ![Info Icon](./_static/images/gltest.png)
 
@@ -187,9 +187,9 @@ that information when the view is attached to the window, and the
 {cpp:class}`BGLView` class doesn't include {hmethod}`Width()` and
 {hmethod}`Height()` functions.
 
-The {cpp:func}`~BGLView::AttachedToWindow()` function, which is called
-when the {hclass}`SampleGLView` is attached to its parent window, looks
-like this:
+The {cpp:func}`~BGLView::AttachedToWindow()` function, which is called when
+the {hclass}`SampleGLView` is attached to its parent window, looks like
+this:
 
 :::{code} cpp
 void SampleGLView::AttachedToWindow(void) {
@@ -293,8 +293,8 @@ This function doesn't call {cpp:func}`~BGLView::LockGL()` and
 function (and if you look at the {cpp:func}`~BGLView::AttachedToWindow()`
 code above, you'll see that this is the case).
 
-There are some global variables used by this program (some of them
-accessed in the above code), so lets' take a quick look at those:
+There are some global variables used by this program (some of them accessed
+in the above code), so lets' take a quick look at those:
 
 :::{code} cpp
 GLenum float use_stipple_mode;      // GL_TRUE to use dashed lines
@@ -369,10 +369,10 @@ by clearing the context's buffer and setting the line width. It then
 enables the features selected by the {hparam}`use_stipple_mode` and
 {hparam}`use_line_mode` variables.
 
-Once that's done, it establishes a matrix to be used for rotating the
-lines and draws the lines with points at each end, drawing one every five
-degrees in a 360-degree circle around the center of the window. After
-drawing all the lines, the matrix is destroyed and the function returns.
+Once that's done, it establishes a matrix to be used for rotating the lines
+and draws the lines with points at each end, drawing one every five degrees
+in a 360-degree circle around the center of the window. After drawing all
+the lines, the matrix is destroyed and the function returns.
 
 The {hmethod}`gReshape()` function handles adjusting the OpenGL context's
 coordinate system and viewport when the {hclass}`SampleGLView` is first
@@ -397,8 +397,7 @@ is considered to be (0,0) and the window is 300 units wide and 300 units
 tall. This lets the rendering code draw without having to worry about
 scaling; OpenGL handles it for us.
 
-The details of how this works are, again, beyond the scope of this
-chapter.
+The details of how this works are, again, beyond the scope of this chapter.
 
 Finally, the {hmethod}`Render()` function is the high-level function used
 to actually update the contents of the {hclass}`SampleGLView` whenever we
@@ -415,9 +414,9 @@ void SampleGLView::Render(void) {
 }
 :::
 
-{cpp:func}`~BGLView::LockGL()` is called to lock the context before
-calling {hmethod}`gDraw()` to do the actual OpenGL calls to draw the view.
-Then the {cpp:func}`~BGLView::SwapBuffers()` function is called to swap the
+{cpp:func}`~BGLView::LockGL()` is called to lock the context before calling
+{hmethod}`gDraw()` to do the actual OpenGL calls to draw the view. Then the
+{cpp:func}`~BGLView::SwapBuffers()` function is called to swap the
 backbuffer that was just drawn to the screen, and the context is unlocked.
 
 ## Adapting OpenGL Sample Code

@@ -9,9 +9,9 @@
 :::{cpp:function} BClipboard::BClipboard(const char* name, bool discard = false)
 :::
 
-Creates a new {hclass}`BClipboard` object that refers to the
-{hparam}`name` clipboard. The clipboard itself is created if a clipboard of
-that name doesn't already exist.
+Creates a new {hclass}`BClipboard` object that refers to the {hparam}`name`
+clipboard. The clipboard itself is created if a clipboard of that name
+doesn't already exist.
 
 The {hparam}`discard` flag is currently unused.
 ::::
@@ -20,8 +20,8 @@ The {hparam}`discard` flag is currently unused.
 :::{cpp:function} virtual BClipboard::~BClipboard()
 :::
 
-Destroys the {hclass}`BClipboard` object. The clipboard itself and the
-data it contains are not affected by the object's destruction.
+Destroys the {hclass}`BClipboard` object. The clipboard itself and the data
+it contains are not affected by the object's destruction.
 ::::
 
 ## Member Functions
@@ -114,8 +114,8 @@ and {cpp:expr}`false` if the {hclass}`BClipboard` object was deleted while
 There's no way to tell {hmethod}`Lock()` to time out.
 :::
 
-{hmethod}`Unlock()` unlocks the object so other threads in your
-application can use it.
+{hmethod}`Unlock()` unlocks the object so other threads in your application
+can use it.
 
 {hmethod}`IsLocked()` hardly needs to be documented.
 ::::

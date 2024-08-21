@@ -24,9 +24,9 @@ data. {hclass}`BEntry`s don't know how to operate on data. You can't use a
 operations, you have to turn your {hclass}`BEntry` into a
 {cpp:class}`BNode`.
 
-Nonetheless, it's often convenient to speak of a {hclass}`BEntry` as
-having data; for example, the phrase "the entry's data" really means "the
-data that lies in the file that's located by the entry."
+Nonetheless, it's often convenient to speak of a {hclass}`BEntry` as having
+data; for example, the phrase "the entry's data" really means "the data
+that lies in the file that's located by the entry."
 
 ## Talents and Abilities
 
@@ -34,29 +34,29 @@ A properly initialized {hclass}`BEntry` object (we'll get to the rules of
 initialization later) knows the following:
 
 - Location info. A {hclass}`BEntry` knows its own (leaf) name
-({cpp:func}`~BEntry::GetName()`), its full pathname
-({cpp:func}`~BEntry::GetPath()`), and the identity of its parent directory
-({cpp:func}`~BEntry::GetParent()`).
+  ({cpp:func}`~BEntry::GetName()`), its full pathname
+  ({cpp:func}`~BEntry::GetPath()`), and the identity of its parent
+  directory ({cpp:func}`~BEntry::GetParent()`).
 
 - {cpp:class}`BStatable` info. As a descendant of {cpp:class}`BStatable`, a
-{hclass}`BEntry` can return statistical information about the entry's
-data—its size, creation date, owner, and so on.
+  {hclass}`BEntry` can return statistical information about the entry's
+  data—its size, creation date, owner, and so on.
 
 - {htype}`entry_ref` identifier. A {hclass}`BEntry` can return the
-{htype}`entry_ref` that globally identifies the entry
-({cpp:func}`~BEntry::GetRef()`).
+  {htype}`entry_ref` that globally identifies the entry
+  ({cpp:func}`~BEntry::GetRef()`).
 
 A {hclass}`BEntry` can do these things:
 
-- Perform hierarchical operations. A {hclass}`BEntry` can change the name of
-its entry ({cpp:func}`~BEntry::Rename()`), move it to another directory
-({cpp:func}`~BEntry::MoveTo()`), and remove it from the file hierarchy
-({cpp:func}`~BEntry::Remove()`).
+- Perform hierarchical operations. A {hclass}`BEntry` can change the name
+  of its entry ({cpp:func}`~BEntry::Rename()`), move it to another
+  directory ({cpp:func}`~BEntry::MoveTo()`), and remove it from the file
+  hierarchy ({cpp:func}`~BEntry::Remove()`).
 
 - Initialize {cpp:class}`BNode` objects. The constructors and
-{cpp:func}`~BEntry::SetTo()` initializers for {cpp:class}`BNode` and its
-children ({cpp:class}`BFile`, {cpp:class}`BDirectory`, and
-{cpp:class}`BSymLink`) accept {hclass}`BEntry` arguments.
+  {cpp:func}`~BEntry::SetTo()` initializers for {cpp:class}`BNode` and its
+  children ({cpp:class}`BFile`, {cpp:class}`BDirectory`, and
+  {cpp:class}`BSymLink`) accept {hclass}`BEntry` arguments.
 
 As mentioned above, the most important thing that a {hclass}`BEntry` can't
 do is access its own data: A {hclass}`BEntry` can't read or write data or
@@ -78,14 +78,15 @@ can initialize a {hclass}`BEntry` object directly…
 
 - or through the assignment operator.
 
-Or you can have some other object initialize your {hclass}`BEntry` for
-you, by passing the {hclass}`BEntry` as an argument to…
+Or you can have some other object initialize your {hclass}`BEntry` for you,
+by passing the {hclass}`BEntry` as an argument to…
 
 - {cpp:class}`BDirectory`'s {cpp:func}`~BDirectory::FindEntry()` or
-{cpp:func}`~BDirectory::GetEntry()` function,
+  {cpp:func}`~BDirectory::GetEntry()` function,
 
-- {cpp:class}`BEntryList`'s {cpp:func}`~BEntryList::GetNextEntry()` function
-(implemented by {cpp:class}`BDirectory` and {cpp:class}`BQuery`).
+- {cpp:class}`BEntryList`'s {cpp:func}`~BEntryList::GetNextEntry()`
+  function (implemented by {cpp:class}`BDirectory` and
+  {cpp:class}`BQuery`).
 
 - {hclass}`BEntry`'s {cpp:func}`~BEntry::GetParent()` function.
 
@@ -94,10 +95,10 @@ In all cases (except the assignment operator) you're asked if you want to
 symbolic links:
 
 - If you traverse: The {hclass}`BEntry` will point to the entry that the
-symbolic link is linked to.
+  symbolic link is linked to.
 
 - If you don't traverse: The {hclass}`BEntry` will point to the symbolic
-link itself.
+  link itself.
 
 For example, let's say /boot/home/fidoLink is linked to /fido, to wit:
 
@@ -138,18 +139,19 @@ traversal flag is ignored.
 When should you traverse, and when not? Here are a few rules of thumbs:
 
 - If somebody hands you a file reference—if your app gets a
-{cpp:func}`~BApplication::RefsReceived()` message—then you probably want to
-traverse the entry.
+  {cpp:func}`~BApplication::RefsReceived()` message—then you probably want
+  to traverse the entry.
 
 - If you're pawing over the contents of a directory (through
-{cpp:class}`BDirectory`'s {cpp:func}`~BDirectory::GetNextEntry()`), then
-you probably don't want to traverse.
+  {cpp:class}`BDirectory`'s {cpp:func}`~BDirectory::GetNextEntry()`), then
+  you probably don't want to traverse.
 
 - If you're looking at the result of a query (through {cpp:class}`BQuery`'s
-{cpp:func}`~BQuery::GetNextEntry()`), then you almost certainly don't want
-to traverse. The query finds entries that satisfy certain criteria; if a
-symbolic link is in the list, it's because the link itself was a winner. If
-the linked-to file is also a winner, it will show up on its own.
+  {cpp:func}`~BQuery::GetNextEntry()`), then you almost certainly don't
+  want to traverse. The query finds entries that satisfy certain criteria;
+  if a symbolic link is in the list, it's because the link itself was a
+  winner. If the linked-to file is also a winner, it will show up on its
+  own.
 
 ### Traverso Post Facto
 
@@ -176,13 +178,13 @@ if (entry1.IsSymLink()) {
 
 ## Abstract Entries
 
-As we all should know by now, a {hclass}`BEntry` identifies a name within
-a specific directory. The directory that a {hclass}`BEntry` identifies must
+As we all should know by now, a {hclass}`BEntry` identifies a name within a
+specific directory. The directory that a {hclass}`BEntry` identifies must
 exist, but the entry that corresponds to the name doesn't have to. In other
 words…
 
 - A {hclass}`BEntry` can represent a file that doesn't exist. The entry is
-said to be "abstract."
+  said to be "abstract."
 
 For example, the following construction creates a {hclass}`BEntry` object
 based on a {cpp:class}`BDirectory` and a name:
@@ -199,9 +201,10 @@ valid.
 
 But validity doesn't equal existence:
 
-- {cpp:func}`~BEntry::SetTo()` and {cpp:func}`~BEntry::InitCheck()` _do not_
-tell you if a {hclass}`BEntry`'s entry actually exists. Don't be confused;
-a return value of {cpp:enumerator}`B_OK` simply means the object is valid.
+- {cpp:func}`~BEntry::SetTo()` and {cpp:func}`~BEntry::InitCheck()` _do
+  not_ tell you if a {hclass}`BEntry`'s entry actually exists. Don't be
+  confused; a return value of {cpp:enumerator}`B_OK` simply means the
+  object is valid.
 
 If you want to know if a {hclass}`BEntry`'s entry actually exists, use the
 {cpp:func}`~BEntry::Exists()` function.
@@ -274,11 +277,11 @@ One more time: A {hclass}`BEntry` identifies an entry as a name in a
 directory. As described above, the directory is maintained internally as a
 file descriptor; the name is simply a string. This means that…
 
-- The directory for a given BEntry is persistent. If you move the directory,
-the file descriptor, and so the BEntry, moves with it.
+- The directory for a given BEntry is persistent. If you move the
+  directory, the file descriptor, and so the BEntry, moves with it.
 
 - The name isn't persistent. If the user renames the leaf that a BEntry is
-pointing to, the BEntry will become abstract.
+  pointing to, the BEntry will become abstract.
 
 For example, take the following {hclass}`BEntry`…
 
@@ -359,5 +362,5 @@ Furthermore, the destination directories in {hclass}`BEntry`'s
 unlocked for the functions to succeed. And all directories in the path to
 the entry must be unlocked for {cpp:func}`~BEntry::GetPath()` to succeed.
 
-If you get a {cpp:enumerator}`B_BUSY` error, you may want to try
-again—it's strongly advised that locks be held as briefly as possible.
+If you get a {cpp:enumerator}`B_BUSY` error, you may want to try again—it's
+strongly advised that locks be held as briefly as possible.

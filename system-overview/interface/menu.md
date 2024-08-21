@@ -23,10 +23,10 @@ typical root menu is a menu bar displayed across the top of a window.
 
 ## Menu Items
 
-Each item in a menu is a kind of {cpp:class}`BMenuItem` object. An item
-can be marked (displayed with a check mark to its left), assigned a
-keyboard shortcut, enabled and disabled, and given a "trigger" character
-that the user can type to invoke the item when its menu is open on-screen.
+Each item in a menu is a kind of {cpp:class}`BMenuItem` object. An item can
+be marked (displayed with a check mark to its left), assigned a keyboard
+shortcut, enabled and disabled, and given a "trigger" character that the
+user can type to invoke the item when its menu is open on-screen.
 
 Every item has a particular job to do. If an item controls a submenu, its
 job is to show the submenu on-screen and hide it again. All other items

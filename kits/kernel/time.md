@@ -36,14 +36,13 @@ January 1, 1970.
 
 real_time_clock_usecs() measures the same time span in microseconds.
 
-set_real_time_clock() sets the value that the other two functions refer
-to.
+set_real_time_clock() sets the value that the other two functions refer to.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} bigtime_t system_time()
 :::
 
-Returns the number of microseconds that have elapsed since the computer
-was booted.
+Returns the number of microseconds that have elapsed since the computer was
+booted.
 ::::

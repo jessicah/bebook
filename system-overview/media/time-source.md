@@ -1,8 +1,8 @@
 # BTimeSource
 
-The {cpp:class}`BTimeSource` class represents a clock to which nodes can
-be slaved. By slaving all your nodes to a single master time source, they
-can be kept in sync with each other.
+The {cpp:class}`BTimeSource` class represents a clock to which nodes can be
+slaved. By slaving all your nodes to a single master time source, they can
+be kept in sync with each other.
 
 If a node can, either by design or as a side benefit of the underlying
 hardware, provide reliable timing services, it might make sense for it to
@@ -24,11 +24,10 @@ protocol that serve as stand-ins for other nodes, so if you call
 other node, the other node might see a system stand-in object, not the
 actual {cpp:class}`BTimeSource`-derived object.
 
-This abstraction layer serves a valuable purpose: it enforces the desire
-to prevent any two nodes from having to know anything about each other
-beyond the Media Kit protocols defined in this chapter; this sort of
-low-level interdependency is discouraged, because it decreases
-interoperability.
+This abstraction layer serves a valuable purpose: it enforces the desire to
+prevent any two nodes from having to know anything about each other beyond
+the Media Kit protocols defined in this chapter; this sort of low-level
+interdependency is discouraged, because it decreases interoperability.
 
 ## Keeping Time
 

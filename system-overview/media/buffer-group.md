@@ -12,13 +12,13 @@ You can create a new {cpp:class}`BBufferGroup` by simply calling:
 new BBufferGroup;
 :::
 
-If you pass in some arguments describing what sort of buffers you want,
-and how many of them, the group will even create the {cpp:class}`BBuffer`s
-for you. This is how you'll usually use {cpp:class}`BBufferGroup`, from
-within your {cpp:class}`BBufferProducer` subclass' constructor so you'll
-know there are buffers ready and waiting when it's time to start sending
-data. A possible exception is if your node is a filter that simply
-processes buffers it receives and passes them along.
+If you pass in some arguments describing what sort of buffers you want, and
+how many of them, the group will even create the {cpp:class}`BBuffer`s for
+you. This is how you'll usually use {cpp:class}`BBufferGroup`, from within
+your {cpp:class}`BBufferProducer` subclass' constructor so you'll know
+there are buffers ready and waiting when it's time to start sending data. A
+possible exception is if your node is a filter that simply processes
+buffers it receives and passes them along.
 
 A {cpp:class}`BBufferGroup` instance runs a thread that reclaims
 {cpp:class}`BBuffer`s whose {cpp:func}`~BBuffer::Recycle()` function has

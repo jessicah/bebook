@@ -25,7 +25,7 @@ exclusive mode direct window.
 Another difference between  {cpp:class}`BDirectWindow` and
 {cpp:class}`BWindowScreen` is that  {cpp:class}`BDirectWindow` lets you
 access all the {cpp:class}`BWindow` functions; you can literally treat your
-{cpp:class}`BDirectWindow` just like another window. There are two
+ {cpp:class}`BDirectWindow` just like another window. There are two
 caveats:
 
 :::{admonition} Warning
@@ -51,9 +51,9 @@ The key to the  {cpp:class}`BDirectWindow` class is the
 must implement. This function is called whenever a change that your drawing
 code may need to be aware of occurs.
 
-When your {cpp:func}`~BDirectWindow::DirectConnected()` function is
-called, it's passed a pointer to a {htype}`direct_buffer_info` structure,
-as follows:
+When your {cpp:func}`~BDirectWindow::DirectConnected()` function is called,
+it's passed a pointer to a {htype}`direct_buffer_info` structure, as
+follows:
 
 :::{code} c
 typedef struct {
@@ -122,8 +122,8 @@ widths: auto
 		until you can guarantee to the application server that your code will abide
 		by the frame buffer configuration it received.
 
-		You can get further information about what changed by testing against
-		other flags in the {hparam}`buffer_state` field:
+		You can get further information about what changed by testing against other
+		flags in the {hparam}`buffer_state` field:
 
 		{cpp:enumerator}`B_BUFFER_MOVED`
 
@@ -134,8 +134,8 @@ widths: auto
 
 		{cpp:enumerator}`B_BUFFER_RESET`
 
-		: The entire direct access buffer has been reset. This can happen if the
-		user changes the depth or resolution of the screen, or if the window had
+		: The entire direct access buffer has been reset. This can happen if the user
+		changes the depth or resolution of the screen, or if the window had
 		previously been hidden and has been made visible again.
 
 		{cpp:enumerator}`B_BUFFER_RESIZED`
@@ -144,10 +144,10 @@ widths: auto
 
 		{cpp:enumerator}`B_CLIPPING_MODIFIED`
 
-		: The visible region of the content area of your window changed. This
-		doesn't imply anything about the position of the window or the size of the
-		content area of the window—it simply means that the part of the window
-		that's visible has changed shape.
+		: The visible region of the content area of your window changed. This doesn't
+		imply anything about the position of the window or the size of the content
+		area of the window—it simply means that the part of the window that's
+		visible has changed shape.
 -
 	- driver_state
 	- Indicates changes in the state of the graphics card on which your direct
@@ -250,9 +250,9 @@ access to the frame buffer while in window mode,
 can only use {cpp:class}`BWindow` and {cpp:class}`BView` APIs to work in
 the window.
 
-In full-screen exclusive mode, the {hparam}`window_bounds` are actually
-the size and shape of the entire screen, even if the screen isn't the same
-size as the direct window you created. You have to handle the difference
+In full-screen exclusive mode, the {hparam}`window_bounds` are actually the
+size and shape of the entire screen, even if the screen isn't the same size
+as the direct window you created. You have to handle the difference
 yourself.
 
 Full-screen exclusive mode also guarantees that your window will always be
@@ -272,16 +272,15 @@ MoveTo(0,0);
 ResizeTo(screen.width, screen.height);
 :::
 
-This will make the non-exclusive direct window fill the entire screen.
-Keep in mind that in this case, other windows may appear in front of yours,
-and if the screen resolution changes, you will have to resize the window
+This will make the non-exclusive direct window fill the entire screen. Keep
+in mind that in this case, other windows may appear in front of yours, and
+if the screen resolution changes, you will have to resize the window
 yourself if you want to continue to fill the entire screen.
 
 ## Using a Direct Window
 
-Let's put together a simple class, derived from
-{cpp:class}`BDirectWindow`, that demonstrates the basics of drawing into a
-direct window.
+Let's put together a simple class, derived from {cpp:class}`BDirectWindow`,
+that demonstrates the basics of drawing into a direct window.
 
 :::{code} cpp
 class DirectSample : public BDirectWindow {
@@ -357,18 +356,18 @@ widths: auto
 	- Is {cpp:expr}`true` if the window is in the process of being closed.
 -
 	- locker
-	- Is a {cpp:class}`BLocker` that will be used to ensure mutual exclusion
-		when the frame buffer or buffer information data we've cached is being
+	- Is a {cpp:class}`BLocker` that will be used to ensure mutual exclusion when
+		the frame buffer or buffer information data we've cached is being
 		manipulated.
 -
 	- fDrawThreadID
-	- Contains the {htype}`thread_id` of the drawing thread, which is
-		responsible for drawing the contents of the window.
+	- Contains the {htype}`thread_id` of the drawing thread, which is responsible
+		for drawing the contents of the window.
 
 :::
 
-The specifics of what these variables are and why the information
-contained in them is maintained will be discussed when we get to the
+The specifics of what these variables are and why the information contained
+in them is maintained will be discussed when we get to the
 {cpp:func}`~BDirectWindow::DirectConnected()` and
 {hmethod}`DrawingThread()` functions.
 
@@ -536,9 +535,9 @@ cache the information that interests us and set the {hparam}`fDirty` flag
 to {cpp:expr}`true` (to indicate that the display needs to be redrawn to
 reflect the changed graphics settings).
 
-The clip list is also cached by saving the number of rectangles in the
-list in the {hparam}`fNumClipRects` field and by making a copy of the clip
-list into a newly malloc()d block of memory.
+The clip list is also cached by saving the number of rectangles in the list
+in the {hparam}`fNumClipRects` field and by making a copy of the clip list
+into a newly malloc()d block of memory.
 
 If the state is {cpp:enumerator}`B_DIRECT_STOP`, the {hparam}`fConnected`
 flag is set to {cpp:expr}`false`, to indicate that we shouldn't draw into
@@ -652,9 +651,9 @@ flag when something happens to cause the screen to need a refresh, and
 other code elsewhere in the application could also set the {hparam}`fDirty`
 flag to indicate that the screen should be redrawn.
 
-Since we're taking over drawing the contents of the window, we need to
-tell the application server not to draw anything. This is done by adding
-the following line to the constructor for the SampleView:
+Since we're taking over drawing the contents of the window, we need to tell
+the application server not to draw anything. This is done by adding the
+following line to the constructor for the SampleView:
 
 :::{code} cpp
 SetViewColor(B_TRANSPARENT_32_BIT);

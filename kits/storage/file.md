@@ -34,10 +34,10 @@ file as that of the argument. Note that the two objects maintain _separate_
 data pointers into the _same_ file:
 
 - Separate pointers: Reading and writing through one object _does not_
-affect the position of the data pointer in the other object.
+  affect the position of the data pointer in the other object.
 
-- Same file: If one object writes to the file, the other object will see the
-written data.
+- Same file: If one object writes to the file, the other object will see
+  the written data.
 
 For information on the other constructors, see the analogous
 {cpp:func}`~BFile::SetTo()` functions.
@@ -65,8 +65,8 @@ These functions get and set the size, in bytes, of the object's file.
 {hmethod}`GetSize()` returns the size of the file's data portion in the
 {hparam}`size` argument; the measurement doesn't include attributes.
 
-{hmethod}`SetSize()` sets the size of the data portion to the size given
-by the argument:
+{hmethod}`SetSize()` sets the size of the data portion to the size given by
+the argument:
 
 - Enlarging a file adds (uninitialized) bytes to its end.
 
@@ -137,9 +137,9 @@ These functions tell you whether the {hclass}`BFile` was initialized to
 read or write its file. If the object isn't (properly) initialized, they
 both return {cpp:expr}`false`.
 
-Note that these functions don't query the actual file to check
-permissions, they only tell you what the access request was when the
-{hclass}`BFile` object was initialized.
+Note that these functions don't query the actual file to check permissions,
+they only tell you what the access request was when the {hclass}`BFile`
+object was initialized.
 ::::
 
 ::::{abi-group}
@@ -159,22 +159,21 @@ These functions, which are inherited from {cpp:class}`BPositionIO`, read
 and write the file's data; note that they don't touch the file's
 attributes.
 
-The {hmethod}`Read()` and {hmethod}`ReadAt()` functions read
-{hparam}`size` bytes of data from the file and place this data in
-{hparam}`buffer`. The buffer that {hparam}`buffer` points to must already
-be allocated, and must be large enough to accommodate the read data. Note
-that the read-into buffer is _not_ null-terminated by the reading
-functions.
+The {hmethod}`Read()` and {hmethod}`ReadAt()` functions read {hparam}`size`
+bytes of data from the file and place this data in {hparam}`buffer`. The
+buffer that {hparam}`buffer` points to must already be allocated, and must
+be large enough to accommodate the read data. Note that the read-into
+buffer is _not_ null-terminated by the reading functions.
 
 The two functions differ in that…
 
 - {hmethod}`Read()` reads the data starting at the current location of the
-file's data pointer, and increments the file pointer as it reads.
+  file's data pointer, and increments the file pointer as it reads.
 
 - {hmethod}`ReadAt()` reads the data from the location specified by the
-{hparam}`location` argument, which is taken as a measure in bytes from the
-beginning of the file. {hmethod}`ReadAt()` does not bump the file's data
-pointer.
+  {hparam}`location` argument, which is taken as a measure in bytes from
+  the beginning of the file. {hmethod}`ReadAt()` does not bump the file's
+  data pointer.
 
 {hmethod}`Write()` and {hmethod}`WriteAt()` write {hparam}`size` bytes of
 data into the file; the data is taken from the {hparam}`buffer` argument.
@@ -200,8 +199,8 @@ else
    buf[amt_read] = '0';
 :::
 
-A successful {hmethod}`Write()` or {hmethod}`WriteAt()`, on the other
-hand, will always write exactly the number of bytes you requested. In other
+A successful {hmethod}`Write()` or {hmethod}`WriteAt()`, on the other hand,
+will always write exactly the number of bytes you requested. In other
 words, {hmethod}`Write()` returns either the {hparam}`size` value that you
 passed to it, or else it returns a negative (error) value.
 
@@ -315,11 +314,11 @@ you're not prevented from opening a directory as a {hclass}`BFile`, but you
 are prevented from writing to it.
 
 - In the {hparam}`path` function, {hparam}`path` can be absolute or
-relative, and can contain "." and ".." elements. If {hparam}`path` is
-relative, it's reckoned off of the current working directory.
+  relative, and can contain "." and ".." elements. If {hparam}`path` is
+  relative, it's reckoned off of the current working directory.
 
 - In the {hparam}`dir`/{hparam}`path` function, {hparam}`path` must be
-relative and is reckoned off of {hparam}`dir`.
+  relative and is reckoned off of {hparam}`dir`.
 
 {hparam}`openMode` is a combination of flags that determines how the file
 is opened and what this object can do with it once it is open. There are

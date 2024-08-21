@@ -104,8 +104,8 @@ controls rather than letting {cpp:func}`~BMediaTheme::ViewFor()` set up the
 entire view, the application assumes responsibility for setting the
 control's value in response to value change messages.
 
-If you want the control to send a specific message when invoked, you
-should call {cpp:func}`BInvoker::SetMessage()` on it.
+If you want the control to send a specific message when invoked, you should
+call {cpp:func}`BInvoker::SetMessage()` on it.
 ::::
 
 ::::{abi-group}
@@ -137,9 +137,9 @@ the BeOS.
 :::{cpp:function} virtual BView* BMediaTheme::MakeViewFor(BParameterWeb* web, const BRect* hintRect = NULL) = 0
 :::
 
-Given the specified {cpp:class}`BParameterWeb` and {hparam}`hintRect`,
-your implementation of this function should construct a {cpp:class}`BView`
-that contains the {cpp:class}`BControl`s for manipulating the
+Given the specified {cpp:class}`BParameterWeb` and {hparam}`hintRect`, your
+implementation of this function should construct a {cpp:class}`BView` that
+contains the {cpp:class}`BControl`s for manipulating the
 {cpp:class}`BParameter`s in the web. The {hparam}`hintRect` is an area the
 caller thinks is appropriate for you to fill with your {cpp:class}`BView`;
 your theme should try to stay within that rectangle if possible.
@@ -214,9 +214,9 @@ user configure each control point.
 
 :::{admonition} Note
 :class: note
-This function is the public interface for creating a view for configuring
-a node (the {cpp:func}`~BMediaTheme::MakeViewFor()` function is the hook
-you override if you're implementing your own theme).
+This function is the public interface for creating a view for configuring a
+node (the {cpp:func}`~BMediaTheme::MakeViewFor()` function is the hook you
+override if you're implementing your own theme).
 :::
 
 The returned view is created using the theme specified by
@@ -231,8 +231,8 @@ view should try to occupy, and is passed to {hmethod}`MakeViewFor()`.
 :::{cpp:function} status_t get_theme_at(int32 n, const char** outName, int32* outID)
 :::
 
-This function is called after the theme add-on is loaded, to determine
-what themes are available in the add-on. It's called repeatedly, with
+This function is called after the theme add-on is loaded, to determine what
+themes are available in the add-on. It's called repeatedly, with
 successively-higher values of {hparam}`n`, until it returns an error.
 
 Your add-on's implementation of this function should set {hparam}`outName`

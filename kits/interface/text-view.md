@@ -37,22 +37,22 @@ The text rectangle, {hparam}`textRect`, is stated in the
 within the view's bounds rectangle:
 
 - The first line of text is placed at the top of the text rectangle. As
-additional lines of text are entered into the view, the text grows downward
-and may actually extend beyond the bottom of the rectangle.
+  additional lines of text are entered into the view, the text grows
+  downward and may actually extend beyond the bottom of the rectangle.
 
 - The left and right sides of the text rectangle determine where lines of
-text are placed within the view. Lines can be aligned to either side of the
-rectangle, or they can be centered between the two sides. See the
-{cpp:func}`~BTextView::SetAlignment()` function.
+  text are placed within the view. Lines can be aligned to either side of
+  the rectangle, or they can be centered between the two sides. See the
+  {cpp:func}`~BTextView::SetAlignment()` function.
 
 - When lines wrap on word boundaries, the width of the text rectangle
-determines the maximum length of a line; each line of text can be as long
-as the rectangle is wide. When word wrapping isn't turned on, lines can
-extend beyond the boundaries of the text rectangle. See the
-{cpp:func}`~BTextView::SetWordWrap()` function.
+  determines the maximum length of a line; each line of text can be as long
+  as the rectangle is wide. When word wrapping isn't turned on, lines can
+  extend beyond the boundaries of the text rectangle. See the
+  {cpp:func}`~BTextView::SetWordWrap()` function.
 
-The bottom of the text rectangle is ignored; it doesn't limit the amount
-of text the view can contain. The text can be limited by the number of
+The bottom of the text rectangle is ignored; it doesn't limit the amount of
+text the view can contain. The text can be limited by the number of
 characters, but not by the number of lines.
 
 If a default font is provided, the {hclass}`BTextView` will display its
@@ -67,30 +67,30 @@ The constructor establishes the following default properties for a new
 {hclass}`BTextView`:
 
 - The text is selectable and editable. (See
-{cpp:func}`~BTextView::MakeSelectable()` and
-{cpp:func}`~BTextView::MakeEditable()`.)
+  {cpp:func}`~BTextView::MakeSelectable()` and
+  {cpp:func}`~BTextView::MakeEditable()`.)
 
 - Multiple character formats are not permitted. (See
-{cpp:func}`~BTextView::SetStylable()`.)
+  {cpp:func}`~BTextView::SetStylable()`.)
 
 - The text is left-aligned. (See {cpp:func}`~BTextView::SetAlignment()`.)
 
 - The tab width is 28.0 coordinate units. (See
-{cpp:func}`~BTextView::SetTabWidth()`.)
+  {cpp:func}`~BTextView::SetTabWidth()`.)
 
 - Word wrapping is turned on. (See {cpp:func}`~BTextView::SetWordWrap()`.)
 
 - Automatic indenting is turned off. (See
-{cpp:func}`~BTextView::SetAutoindent()`.)
+  {cpp:func}`~BTextView::SetAutoindent()`.)
 
 - The maximum amount of data is permitted. (See
-{cpp:func}`~BTextView::SetMaxBytes()`.)
+  {cpp:func}`~BTextView::SetMaxBytes()`.)
 
 - The view doesn't grow to accommodate more characters. (See
-{cpp:func}`~BTextView::MakeResizable()`.)
+  {cpp:func}`~BTextView::MakeResizable()`.)
 
 - All characters the user may type are acceptable. (See
-{cpp:func}`~BTextView::DisallowChar()`.)
+  {cpp:func}`~BTextView::DisallowChar()`.)
 
 See also: {cpp:func}`~BTextView::AttachedToWindow()`,
 {cpp:func}`~BTextView::SetFontAndColor()`, the {cpp:class}`BView`
@@ -179,29 +179,29 @@ See also: {cpp:func}`BView::FrameResized()`
 :::{cpp:function} virtual void BTextView::KeyDown(const char* bytes, int32 numBytes)
 :::
 
-Enters text at the current selection in response to the user's typing.
-This function is called from the window's message loop for every report of
-a key-down event—typically once for every character the user types.
-However, it does nothing unless the {hclass}`BTextView` is the focus view
-and the text it contains is editable.
+Enters text at the current selection in response to the user's typing. This
+function is called from the window's message loop for every report of a
+key-down event—typically once for every character the user types. However,
+it does nothing unless the {hclass}`BTextView` is the focus view and the
+text it contains is editable.
 
 If the character encoded in the bytes string is an editing instruction,
 {hmethod}`KeyDown()` takes the appropriate action:
 
 - If the character is from one of the arrow keys
-({cpp:enumerator}`B_UP_ARROW`, {cpp:enumerator}`B_LEFT_ARROW`,
-{cpp:enumerator}`B_DOWN_ARROW`, or {cpp:enumerator}`B_RIGHT_ARROW`), it
-extends the selection or moves the insertion point in the appropriate
-direction, depending on the modifiers
+  ({cpp:enumerator}`B_UP_ARROW`, {cpp:enumerator}`B_LEFT_ARROW`,
+  {cpp:enumerator}`B_DOWN_ARROW`, or {cpp:enumerator}`B_RIGHT_ARROW`), it
+  extends the selection or moves the insertion point in the appropriate
+  direction, depending on the modifiers
 
 - If the character is {cpp:enumerator}`B_BACKSPACE` or
-{cpp:enumerator}`B_DELETE`, it deletes the current selection—or the
-character preceding or following the current insertion point.
+  {cpp:enumerator}`B_DELETE`, it deletes the current selection—or the
+  character preceding or following the current insertion point.
 
 - If the character comes from one of the paging keys
-({cpp:enumerator}`B_HOME`, {cpp:enumerator}`B_END`,
-{cpp:enumerator}`B_PAGE_UP`, or {cpp:enumerator}`B_PAGE_DOWN`), it scrolls
-the display.
+  ({cpp:enumerator}`B_HOME`, {cpp:enumerator}`B_END`,
+  {cpp:enumerator}`B_PAGE_UP`, or {cpp:enumerator}`B_PAGE_DOWN`), it
+  scrolls the display.
 
 Otherwise, it checks whether the character was registered as unacceptable
 (by {cpp:func}`~BTextView::DisallowChar()`). If not disallowed, it calls
@@ -268,10 +268,10 @@ See also: {cpp:func}`BView::MouseDown()`
 :::{cpp:function} virtual void BTextView::MouseMoved(BPoint point, uint32 transit, BMessage* message)
 :::
 
-Responds to {cpp:enumerator}`B_MOUSE_MOVED` messages by changing the
-cursor to the standard I-beam image for editing text whenever the cursor
-enters the view and by resetting it to the standard hand image when the
-cursor exits the view. The cursor is changed to an I-beam for text that is
+Responds to {cpp:enumerator}`B_MOUSE_MOVED` messages by changing the cursor
+to the standard I-beam image for editing text whenever the cursor enters
+the view and by resetting it to the standard hand image when the cursor
+exits the view. The cursor is changed to an I-beam for text that is
 selectable or editable, but only if the {hclass}`BTextView` is the current
 focus view in the active window. However, when the cursor moves over the
 current selection, this function changes it from the I-beam back to the
@@ -336,7 +336,7 @@ These functions look at the data in their arguments, and return
 - the {hclass}`BTextView` is editable
 
 - the message or clipboard contains {cpp:enumerator}`B_MIME_TYPE` data
-stored under the name "text/plain".
+  stored under the name "text/plain".
 
 If the data isn't acceptable, the drop or paste operation is aborted.
 
@@ -354,8 +354,8 @@ message or clipboard.
 :::{cpp:function} virtual status_t BTextView::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`~BView::Archive()` and stores
-the {hclass}`BTextView` in the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BView::Archive()` and stores the
+{hclass}`BTextView` in the {cpp:class}`BMessage` archive.
 
 See also: {cpp:func}`BArchivable::Archive()`,
 {cpp:func}`~BTextView::Instantiate()` static function
@@ -380,8 +380,8 @@ B_TAB   +  > *
 B_ENTER -- ^ | '\0'
 :::
 
-The default implementation also understands the line-ending conventions
-for Chinese and Japanese. Because these languages are written without the
+The default implementation also understands the line-ending conventions for
+Chinese and Japanese. Because these languages are written without the
 spaces that typically end lines in other languages, lines can potentially
 break anywhere. However, certain characters are prohibited from ending a
 line and others are prohibited from beginning a new line.
@@ -394,10 +394,10 @@ where lines end, possibly looking at the context of the offset character.
 You can also augment the current implementation so that it understands the
 conventions for other languages.
 
-If you override this function to look to the left or right of the
-character at offset, be sure to check that you haven't stepped beyond the
-range of the text. For example, this version of the function makes sure
-that the first hyphen of a pair doesn't break a line:
+If you override this function to look to the left or right of the character
+at offset, be sure to check that you haven't stepped beyond the range of
+the text. For example, this version of the function makes sure that the
+first hyphen of a pair doesn't break a line:
 
 :::{code} cpp
 bool MyTextView::CanEndLine(int32 offset)
@@ -455,8 +455,8 @@ The {hmethod}`Clear()` function simply removes the currently-selected text
 from the {hclass}`BTextView` without affecting any clipboard. If there's no
 selection, nothing happens.
 
-See also: {cpp:func}`~BTextView::AcceptsPaste()`, "{ref}`Shortcuts and
-Menu Items`" in the overview
+See also: {cpp:func}`~BTextView::AcceptsPaste()`, "{ref}`Shortcuts and Menu
+Items`" in the overview
 ::::
 
 ::::{abi-group}
@@ -508,8 +508,8 @@ malformed text,
 it would allow the user to select the words "You" and "what," the group of
 spaces between the words, and the group of punctuation marks at the end.
 
-The function also defines similar groups of Japanese characters that can
-be selected together.
+The function also defines similar groups of Japanese characters that can be
+selected together.
 ::::
 
 ::::{abi-group}
@@ -597,12 +597,11 @@ the {hclass}`BTextView` isn't visible.
 :::{cpp:function} inline void BTextView::Highlight(int32 start, int32 finish)
 :::
 
-Highlights (or unhighlights) the characters between the {hparam}`start`
-and {hparam}`finish` offsets. This is the function that the
-{hclass}`BTextView` calls to highlight and unhighlight the current
-selection. You don't need to call it yourself for this purpose. It's in the
-public API just in case you may need to highlight a range of text in some
-other circumstance.
+Highlights (or unhighlights) the characters between the {hparam}`start` and
+{hparam}`finish` offsets. This is the function that the {hclass}`BTextView`
+calls to highlight and unhighlight the current selection. You don't need to
+call it yourself for this purpose. It's in the public API just in case you
+may need to highlight a range of text in some other circumstance.
 
 If the text is not currently highlighted, this function highlights it. But
 if the text is already highlighted, it unhighlights it. If you highlight
@@ -660,8 +659,8 @@ and {hparam}`finish` offsets from the display and deletes them from the
 deleted. If offsets are not provided, {hmethod}`Delete()` deletes the
 current selection.
 
-See also: {cpp:func}`~BTextView::SetText()`,
-{cpp:func}`~BTextView::Cut()`, {cpp:func}`~BTextView::SetRunArray()`
+See also: {cpp:func}`~BTextView::SetText()`, {cpp:func}`~BTextView::Cut()`,
+{cpp:func}`~BTextView::SetRunArray()`
 ::::
 
 ::::{abi-group}
@@ -676,8 +675,8 @@ These protected functions are the vehicles through which the
 exception). You can augment them in a subclass to take note of pending
 changes to the text, and to modify or prevent the change.
 
-Don't call {hmethod}`Insert()`, {hmethod}`Delete()` or any other
-high-level text-manipulating function in your implementation.
+Don't call {hmethod}`Insert()`, {hmethod}`Delete()` or any other high-level
+text-manipulating function in your implementation.
 
 {hmethod}`InsertText()` adds {hparam}`length` bytes of text to the
 {hclass}`BTextView`, inserting it at {hparam}`offset` within the text
@@ -698,10 +697,10 @@ file; in this case the text goes directly from the file to the
 {hclass}`BTextView`; it's not stored in a temporary buffer while
 {hmethod}`InsertText()` is called.
 
-{hmethod}`DeleteText()` removes the text bounded by the {hparam}`start`
-and {hparam}`finish` offsets. It fails if the offsets don't differ, or if
-the {hparam}`finish` offset isn't greater than the {hparam}`start` offset.
-This function is called for every deletion.
+{hmethod}`DeleteText()` removes the text bounded by the {hparam}`start` and
+{hparam}`finish` offsets. It fails if the offsets don't differ, or if the
+{hparam}`finish` offset isn't greater than the {hparam}`start` offset. This
+function is called for every deletion.
 
 See also: {cpp:func}`~BTextView::Insert()`,
 {cpp:func}`~BTextView::Delete()`
@@ -723,9 +722,9 @@ See also: {cpp:func}`~BTextView::Insert()`,
 :::{cpp:function} int32 BTextView::OffsetAt(BPoint point) const
 :::
 
-These functions translate between coordinate values, text offsets, and
-line indices. {hmethod}`LineAt()` returns the index of the line containing
-the character at {hparam}`offset` in the text, or the line located at the
+These functions translate between coordinate values, text offsets, and line
+indices. {hmethod}`LineAt()` returns the index of the line containing the
+character at {hparam}`offset` in the text, or the line located at the
 specified {hparam}`point` in the {hclass}`BTextView`'s coordinate system.
 Line indices begin at 0.
 
@@ -775,9 +774,8 @@ the width of the first line. The value returned is the sum of the widths
 (in coordinate units) of all the characters in the line, from the first
 through the last, including tabs and spaces. Line indices begin at 0.
 
-If the {hparam}`index` passed is out-of-range, it's reinterpreted to be
-the nearest in-range index—that is, as the index to the first or the last
-line.
+If the {hparam}`index` passed is out-of-range, it's reinterpreted to be the
+nearest in-range index—that is, as the index to the first or the last line.
 
 See also: {cpp:func}`BFont::StringWidth()`
 ::::
@@ -804,13 +802,13 @@ See also: {cpp:func}`~BTextView::MakeSelectable()`
 :::{cpp:function} virtual void BTextView::MakeFocus(bool flag = true)
 :::
 
-Overrides the {cpp:class}`BView` version of
-{cpp:func}`~BView::MakeFocus()` to highlight the current selection when the
-{hclass}`BTextView` becomes the focus view (when {hparam}`flag` is
-{cpp:expr}`true`) and to unhighlight it when the {hclass}`BTextView` no
-longer is the focus view (when {hparam}`flag` is {cpp:expr}`false`).
-However, the current selection is highlighted only if the
-{hclass}`BTextView`'s window is the current active window.
+Overrides the {cpp:class}`BView` version of {cpp:func}`~BView::MakeFocus()`
+to highlight the current selection when the {hclass}`BTextView` becomes the
+focus view (when {hparam}`flag` is {cpp:expr}`true`) and to unhighlight it
+when the {hclass}`BTextView` no longer is the focus view (when
+{hparam}`flag` is {cpp:expr}`false`). However, the current selection is
+highlighted only if the {hclass}`BTextView`'s window is the current active
+window.
 
 This function is called for you whenever the user's actions make the
 {hclass}`BTextView` become the focus view, or force it to give up that
@@ -999,9 +997,9 @@ The default value is {cpp:expr}`false`.
 :::{cpp:function} color_space BTextView::ColorSpace() const
 :::
 
-These functions set and return the color space of the offscreen bitmap
-that buffers the drawing the {hclass}`BTextView` does. The default color
-space is {cpp:enumerator}`B_CMAP8`.
+These functions set and return the color space of the offscreen bitmap that
+buffers the drawing the {hclass}`BTextView` does. The default color space
+is {cpp:enumerator}`B_CMAP8`.
 
 See also: the {cpp:class}`BBitmap` class
 ::::
@@ -1085,9 +1083,9 @@ you're using a custom clipboard in your {hclass}`BTextView` subclass, you
 should pass along your clipboard when you invoke the inherited version of
 {hmethod}`Undo()`.
 
-Don't try to do too much in a subclass implementation of
-{hmethod}`Undo()`. In particular, you probably won't get too far if you're
-trying to "broaden" the undo tree.
+Don't try to do too much in a subclass implementation of {hmethod}`Undo()`.
+In particular, you probably won't get too far if you're trying to "broaden"
+the undo tree.
 ::::
 
 ::::{abi-group}
@@ -1103,8 +1101,8 @@ trying to "broaden" the undo tree.
 :::{cpp:function} void BTextView::GetFontAndColor(BFont* font, uint32* sameProperties = B_FONT_ALL, rgb_color* color = NULL, bool* sameColor = NULL) const
 :::
 
-These functions set and get the font and color used to display the text.
-If the {hclass}`BTextView` supports multiple character formats,
+These functions set and get the font and color used to display the text. If
+the {hclass}`BTextView` supports multiple character formats,
 {hmethod}`SetFontAndColor()` sets the font and color of the characters
 bounded by the {hparam}`start` and {hparam}`finish` offsets. If no offsets
 are given, it sets the font and color of the current selection. However, if
@@ -1132,9 +1130,9 @@ properties mask. The mask is formed by combining the following constants:
 
 - {cpp:enumerator}`B_FONT_FLAGS`
 
-In addition, {cpp:enumerator}`B_FONT_ALL` is a shorthand for all
-properties of the specified font. However, the {hclass}`BTextView` modifies
-the font to ensure that:
+In addition, {cpp:enumerator}`B_FONT_ALL` is a shorthand for all properties
+of the specified font. However, the {hclass}`BTextView` modifies the font
+to ensure that:
 
 - Characters are not rotated.
 
@@ -1144,8 +1142,8 @@ the font to ensure that:
 
 - The character encoding is UTF-8 ({cpp:enumerator}`B_UNICODE_UTF8`).
 
-If the {hparam}`font` argument is {cpp:expr}`NULL`, the font is not set
-and the properties mask is ignored.
+If the {hparam}`font` argument is {cpp:expr}`NULL`, the font is not set and
+the properties mask is ignored.
 
 The color of the characters is set by a pointer to an {htype}`rgb_color`
 structure. If the pointer is {cpp:expr}`NULL`, as it is by default, the
@@ -1211,8 +1209,8 @@ widths: auto
 	- The number of {htype}`text_run` structures in the array.
 -
 	- text_runruns[1]
-	- A structure describing the font and color formats in effect at a
-		particular offset in the {hclass}`BTextView`'s text.
+	- A structure describing the font and color formats in effect at a particular
+		offset in the {hclass}`BTextView`'s text.
 
 :::
 
@@ -1232,8 +1230,8 @@ widths: auto
 
 -
 	- int32offset
-	- An offset to the first byte of a character in the text buffer. The text
-		run begins with this character; it continues until another run begins.
+	- An offset to the first byte of a character in the text buffer. The text run
+		begins with this character; it continues until another run begins.
 -
 	- BFontfont
 	- The font that's used to display the run of characters beginning at the
@@ -1323,8 +1321,8 @@ beginning at the {hparam}`offset` byte. If the {hparam}`text` or
 {hparam}`file` is {cpp:expr}`NULL` or {hparam}`length` is 0, it empties the
 {hclass}`BTextView` without replacing the text.
 
-If a {hparam}`runs` {htype}`text_run_array` is provided, it will be used
-to set the font and color formats of the new text—provided that the
+If a {hparam}`runs` {htype}`text_run_array` is provided, it will be used to
+set the font and color formats of the new text—provided that the
 {hclass}`BTextView` permits multiple character formats. If not, the
 {hparam}`runs` array is ignored.
 
@@ -1426,9 +1424,9 @@ it's more efficient to have {hmethod}`GetText()` do it for you. If you're
 going to index into the text, it may be more efficient to call
 {hmethod}`ByteAt()`.
 
-The pointer that {hmethod}`Text()` returns may no longer be valid after
-the user or the program next changes the text. Even if valid, the string
-may no longer be null-terminated and gaps may appear.
+The pointer that {hmethod}`Text()` returns may no longer be valid after the
+user or the program next changes the text. Even if valid, the string may no
+longer be null-terminated and gaps may appear.
 
 See also: {cpp:func}`~BTextView::TextLength()`
 ::::
@@ -1487,8 +1485,8 @@ See also: {cpp:func}`BArchivable::Instantiate()`,
 
 ## Scripting Support
 
-The {hclass}`BTextView` class implements an unnamed suite consisting of
-the following messages:
+The {hclass}`BTextView` class implements an unnamed suite consisting of the
+following messages:
 
 ### The Selection Property
 
@@ -1586,9 +1584,8 @@ widths: auto
 
 Font and color information for the text
 
-These messages correspond to the methods
-{cpp:func}`~BTextView::RunArray()` and
-{cpp:func}`~BTextView::SetRunArray()`, storing the result as a
+These messages correspond to the methods {cpp:func}`~BTextView::RunArray()`
+and {cpp:func}`~BTextView::SetRunArray()`, storing the result as a
 {cpp:enumerator}`B_RAW_TYPE`. As with the "Text" property, the values
 specifying the range are given in byte rather than character offsets. The
 range counts towards the end of the text, even for
@@ -1630,8 +1627,8 @@ widths: auto
 
 ## Archived Fields
 
-The {cpp:func}`~BTextView::Archive()` function adds the following fields
-to its {cpp:class}`BMessage` argument:
+The {cpp:func}`~BTextView::Archive()` function adds the following fields to
+its {cpp:class}`BMessage` argument:
 
 :::{list-table}
 ---
@@ -1747,6 +1744,6 @@ widths: auto
 
 :::
 
-Some of these fields may not be present if the setting they represent
-isn't used, or is the default value. For example, if word wrapping is off,
-the {hparam}`_wrap` field won't be found in the archive.
+Some of these fields may not be present if the setting they represent isn't
+used, or is the default value. For example, if word wrapping is off, the
+{hparam}`_wrap` field won't be found in the archive.

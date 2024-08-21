@@ -74,14 +74,14 @@ supplied, is set to the added item's unique id number.
 You can also add an item to the Deskbar by passing an {htype}`entry_ref`,
 {hparam}`addon`, to the Deskbar add-on to place there.
 
-{hmethod}`RemoveItem()` removes the shelf item identified by
-{hparam}`name` or {hparam}`id`.
+{hmethod}`RemoveItem()` removes the shelf item identified by {hparam}`name`
+or {hparam}`id`.
 
 {hmethod}`CountItems()` returns the number of items currently on the shelf
 (keep in mind that it doesn't count the date/time view).
 
-{hmethod}`HasItem()` returns {cpp:expr}`true` if the Deskbar shelf
-contains the item identified by {hparam}`name` or {hparam}`id`.
+{hmethod}`HasItem()` returns {cpp:expr}`true` if the Deskbar shelf contains
+the item identified by {hparam}`name` or {hparam}`id`.
 
 {hmethod}`GetItemInfo()` points *{hparam}`found_name` to the name of the
 item identified by {hparam}`for_id`, or sets {hparam}`found_id` of the item

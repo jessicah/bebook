@@ -19,8 +19,8 @@ view is visible. The target view for the "Construct" tab contains two
 
 ![A BTabView](./_static/images/slider.png)
 
-The {cpp:class}`BTabView` in this window is constructed using the
-following code, which can be used in the constructor of the parent window:
+The {cpp:class}`BTabView` in this window is constructed using the following
+code, which can be used in the constructor of the parent window:
 
 :::{code} cpp
 BRect r;

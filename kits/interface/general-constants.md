@@ -11,8 +11,8 @@ enum alignment {
     B_ALIGN_CENTER
 :::
 
-These constants define the {htype}`alignment` data type. They determine
-how lines of text and labels are aligned by {cpp:class}`BTextView`,
+These constants define the {htype}`alignment` data type. They determine how
+lines of text and labels are aligned by {cpp:class}`BTextView`,
 {cpp:class}`BStringView`, and {cpp:class}`BMenuField` objects.
 
 See also: {cpp:func}`BTextView::SetAlignment()`
@@ -473,8 +473,8 @@ describes three properties of screens and bitmap images:
 
 - How many bits of information there are per pixel (the depth of the image)
 
-- How those bits are to be interpreted (whether as colors or on a grayscale,
-what the color components are, and so on).
+- How those bits are to be interpreted (whether as colors or on a
+  grayscale, what the color components are, and so on).
 
 - How are components are arranged
 
@@ -814,8 +814,8 @@ Declared in: interface/Screen.h
 
 const screen_id {cpp:enumerator}`B_MAIN_SCREEN_ID`
 
-This constant stands for the main screen, the screen that has the origin
-of the screen coordinate system at its left top corner. (Currently only one
+This constant stands for the main screen, the screen that has the origin of
+the screen coordinate system at its left top corner. (Currently only one
 screen can be attached to the computer and it is the main screen.)
 
 See also: {cpp:func}`screen_id <screen::id>`
@@ -889,11 +889,11 @@ widths: auto
 
 :::
 
-These constants define the {htype}`menu_layout` data type. They
-distinguish the ways that items can be arranged in a menu or menu bar—they
-can be laid out from end to end in a row like a typical menu bar, stacked
-from top to bottom in a column like a typical menu, or arranged in some
-custom fashion like a matrix.
+These constants define the {htype}`menu_layout` data type. They distinguish
+the ways that items can be arranged in a menu or menu bar—they can be laid
+out from end to end in a row like a typical menu bar, stacked from top to
+bottom in a column like a typical menu, or arranged in some custom fashion
+like a matrix.
 
 See also: The {cpp:class}`BMenu` and {cpp:class}`BMenuBar` constructors
 
@@ -1029,9 +1029,9 @@ widths: auto
 
 :::
 
-These constants define the orientation data type that distinguishes
-between the vertical and horizontal orientation of graphic objects. It's
-currently used only to differentiate scroll bars.
+These constants define the orientation data type that distinguishes between
+the vertical and horizontal orientation of graphic objects. It's currently
+used only to differentiate scroll bars.
 
 See also: The {cpp:class}`BScrollBar` and {cpp:class}`BScrollView` classes
 
@@ -1053,21 +1053,20 @@ const pattern B_MIXED_COLORS =
 These constants name the three standard patterns defined in the Interface
 Kit.
 
-{cpp:enumerator}`B_SOLID_HIGH` is a pattern that consists of the high
-color only. It's the default pattern for all BView drawing functions that
-stroke lines and fill shapes.
+{cpp:enumerator}`B_SOLID_HIGH` is a pattern that consists of the high color
+only. It's the default pattern for all BView drawing functions that stroke
+lines and fill shapes.
 
 {cpp:enumerator}`B_SOLID_LOW` is a pattern with only the low color. It's
 used mainly to erase images (to replace them with the background color).
 
-{cpp:enumerator}`B_MIXED_COLORS` alternates pixels between the high and
-low colors in a checkerboard pattern. The result is a halftone midway
-between the two colors. This pattern can produce fine gradations of color,
+{cpp:enumerator}`B_MIXED_COLORS` alternates pixels between the high and low
+colors in a checkerboard pattern. The result is a halftone midway between
+the two colors. This pattern can produce fine gradations of color,
 especially when the high and low colors are set to two colors that are
 already quite similar.
 
-See also: "{ref}`Patterns`" in the "{ref}`Drawing`" section of this
-chapter
+See also: "{ref}`Patterns`" in the "{ref}`Drawing`" section of this chapter
 
 ## Resizing Modes
 
@@ -1146,8 +1145,8 @@ B_8_BIT_1600x1200  B_15_BIT_1600x1200
 B_16_BIT_1600x1200 B_32_BIT_1600x1200
 :::
 
-These constants are currently used to configure the screen—to set its
-depth and the size of the pixel grid it displays—as well as to report which
+These constants are currently used to configure the screen—to set its depth
+and the size of the pixel grid it displays—as well as to report which
 configurations are possible. However, they may not be supported in the
 future. 15-bit depths are not currently supported
 
@@ -1279,8 +1278,7 @@ zero.
 -
 	- {cpp:enumerator}`B_DISABLED_LABEL_TINT`
 
-	- Use this constant when generating colors with which to disable text
-labels.
+	- Use this constant when generating colors with which to disable text labels.
 
 -
 	- {cpp:enumerator}`B_HIGHLIGHT_BACKGROUND_TINT`
@@ -1520,8 +1518,8 @@ widths: auto
 
 :::
 
-These constants describe the various kinds of windows that can be
-requested from the Application Server.
+These constants describe the various kinds of windows that can be requested
+from the Application Server.
 
 See also: The {hclass}`BWindow` {cpp:func}`constructor
 <BWindow::BWindow()>`

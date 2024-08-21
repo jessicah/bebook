@@ -19,8 +19,8 @@ widths: auto
 
 :::
 
-A port is a system-wide message repository into which any thread can copy
-a buffer of data, and from which any thread can then retrieve the buffer.
+A port is a system-wide message repository into which any thread can copy a
+buffer of data, and from which any thread can then retrieve the buffer.
 This repository is implemented as a first-in/first-out message queue: A
 port stores its messages in the order in which they're received, and it
 relinquishes them in the order in which they're stored. Each port has its
@@ -44,19 +44,18 @@ For more information on ports, see "{ref}`Ports Overview`".
 :::{cpp:function} port_id create_port(int32 queue_length, const char* name)
 :::
 
-Creates a new port and returns its {htype}`port_id` number. The port's
-name is set to {hparam}`name` and the length of its message queue is set to
+Creates a new port and returns its {htype}`port_id` number. The port's name
+is set to {hparam}`name` and the length of its message queue is set to
 {hparam}`queue_length`. Neither the name nor the queue length can be
 changed once they're set. The name shouldn't exceed
 {cpp:enumerator}`B_OS_NAME_LENGTH` (32) characters.
 
-In setting the length of a port's message queue, you're telling it how
-many messages it can hold at a time. When the queue is filled—when it's
-holding queue_length messages—subsequent invocations of
-{cpp:func}`write_port()` (on that port) block until room is made in the
-queue (through calls to {cpp:func}`read_port()`) for the additional
-messages. Once the queue length is set by create_port(), it can't be
-changed.
+In setting the length of a port's message queue, you're telling it how many
+messages it can hold at a time. When the queue is filled—when it's holding
+queue_length messages—subsequent invocations of {cpp:func}`write_port()`
+(on that port) block until room is made in the queue (through calls to
+{cpp:func}`read_port()`) for the additional messages. Once the queue length
+is set by create_port(), it can't be changed.
 
 This function sets the owner of the port to be the team of the calling
 thread. Ownership can subsequently be transferred through the
@@ -90,8 +89,8 @@ widths: auto
 :::{cpp:function} status_t close_port(port_id port)
 :::
 
-Closes the port so no more messages can be written to it. After you close
-a port, you can call {cpp:func}`read_port()` on it, but a
+Closes the port so no more messages can be written to it. After you close a
+port, you can call {cpp:func}`read_port()` on it, but a
 {cpp:func}`write_port()` call will return {cpp:enumerator}`B_BAD_PORT_ID`.
 You can't reopen a closed port; you call this function so you can read
 through a port's unread messages prior to deleting the port, while ensuring
@@ -129,8 +128,8 @@ are blocked in {cpp:func}`read_port()` or {cpp:func}`write_port()` calls on
 the port are automatically unblocked (and return
 {cpp:enumerator}`B_BAD_SEM_ID`).
 
-The thread that calls delete_port() doesn't have to be a member of the
-team that owns the port; any thread can delete any port.
+The thread that calls delete_port() doesn't have to be a member of the team
+that owns the port; any thread can delete any port.
 
 :::{list-table}
 ---
@@ -189,10 +188,10 @@ Copies information about a particular {hparam}`port` into the
 {htype}`port_info` structure designated by {hparam}`info`. The first
 version of the function designates the port directly, by {htype}`port_id`.
 
-The get_next_port_info() version lets you step through the list of a
-team's ports through iterated calls on the function. The {hparam}`team`
-argument identifies the team you want to look at; a {hparam}`team` value of
-0 means the team of the calling thread. The {hparam}`cookie` argument is a
+The get_next_port_info() version lets you step through the list of a team's
+ports through iterated calls on the function. The {hparam}`team` argument
+identifies the team you want to look at; a {hparam}`team` value of 0 means
+the team of the calling thread. The {hparam}`cookie` argument is a
 placemark; you set it to 0 on your first call, and let the function do the
 rest. The function returns {cpp:enumerator}`B_BAD_VALUE` when there are no
 more ports to visit:
@@ -339,8 +338,8 @@ function will block. It returns when some other thread writes a message to
 the port through {cpp:func}`write_port()`. A blocked read is also unblocked
 if the port is deleted.
 
-The read_port_etc() function lets you set a limit on the amount of time
-the function will wait for a message to show up. To set the limit, you pass
+The read_port_etc() function lets you set a limit on the amount of time the
+function will wait for a message to show up. To set the limit, you pass
 {cpp:enumerator}`B_TIMEOUT` as the {hparam}`flags` argument, and set
 timeout to the amount of time, in microseconds, that you're willing to
 wait.
@@ -387,8 +386,8 @@ be part of the team that currently owns the port, nor must you only assign
 ports to the team that owns the calling thread (although these two are the
 most likely scenarios).
 
-Port ownership is meaningful for one reason: When a team dies (when all
-its threads are dead), the ports that are owned by that team are freed.
+Port ownership is meaningful for one reason: When a team dies (when all its
+threads are dead), the ports that are owned by that team are freed.
 Ownership, otherwise, has no significance—it carries no special privileges
 or obligations.
 
@@ -445,9 +444,9 @@ widths: auto
 		that gives a general representation of the message.
 -
 	- msg_buffer
-	- Is a pointer to a buffer that can be used to supply additional
-		information. You pass the length of the buffer, in bytes, as the value of
-		the {hparam}`buffer_size` argument. The buffer can be arbitrarily long.
+	- Is a pointer to a buffer that can be used to supply additional information.
+		You pass the length of the buffer, in bytes, as the value of the
+		{hparam}`buffer_size` argument. The buffer can be arbitrarily long.
 
 :::
 
@@ -479,8 +478,8 @@ widths: auto
 
 -
 	- {cpp:enumerator}`B_BAD_PORT_ID`.
-	- {hparam}`port` doesn't identify an open port, or the port was deleted
-		while the function was blocked.
+	- {hparam}`port` doesn't identify an open port, or the port was deleted while
+		the function was blocked.
 -
 	- {cpp:enumerator}`B_TIMED_OUT`.
 	- The timeout limit expired.

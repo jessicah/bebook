@@ -318,11 +318,11 @@ See also: {cpp:func}`~BScreen::ProposeMode()`
 :::{cpp:function} status_t BScreen::GetPixelClockLimits(display_mode* mode, uint32* low, uint32* high)
 :::
 
-This function returns, in {hparam}`low` and {hparam}`high`, the minimum
-and maximum "pixel clock" rates (in thousands-of-pixels per second) that
-are possible for the given {hparam}`mode`. Given the pixel clock and a
-display mode, you can determine the refresh rate range by dividing the
-pixel clock by the "real" size of the screen, thus:
+This function returns, in {hparam}`low` and {hparam}`high`, the minimum and
+maximum "pixel clock" rates (in thousands-of-pixels per second) that are
+possible for the given {hparam}`mode`. Given the pixel clock and a display
+mode, you can determine the refresh rate range by dividing the pixel clock
+by the "real" size of the screen, thus:
 
 :::{code} cpp
 uint32 hi_clock, lo_clock;
@@ -408,9 +408,8 @@ diconnected and then reconnected.
 
 :::{admonition} Warning
 :class: warning
-Currently, this function always returns
-{cpp:enumerator}`B_MAIN_SCREEN_ID`, even if the {hclass}`BScreen` object is
-invalid.
+Currently, this function always returns {cpp:enumerator}`B_MAIN_SCREEN_ID`,
+even if the {hclass}`BScreen` object is invalid.
 :::
 ::::
 
@@ -435,10 +434,9 @@ possibly-adjusted {hparam}`candidate` to the limits declared in
 return value. Note that the function doesn't adjust {hparam}`candidate` so
 that it is, of necessity, between {hparam}`low` and {hparam}`high`.
 
-Exactly how {hmethod}`ProposeMode()` works is up to the individual
-graphics driver. It's expected that the function will adjust
-{hparam}`candidate`'s screen size fields while holding the color space
-constant.
+Exactly how {hmethod}`ProposeMode()` works is up to the individual graphics
+driver. It's expected that the function will adjust {hparam}`candidate`'s
+screen size fields while holding the color space constant.
 
 :::{admonition} Note
 :class: note
@@ -507,10 +505,10 @@ against which windows are displayed on the screen.
 displayed on-screen; {hmethod}`DesktopColor()` returns the color currently
 displayed.
 
-If the {hparam}`makeDefault` flag is {cpp:expr}`true`, the color that's
-set becomes the default color for the screen; it's the color that will be
-shown the next time the machine is booted. If the flag is
-{cpp:expr}`false`, the color is set only for the current session.
+If the {hparam}`makeDefault` flag is {cpp:expr}`true`, the color that's set
+becomes the default color for the screen; it's the color that will be shown
+the next time the machine is booted. If the flag is {cpp:expr}`false`, the
+color is set only for the current session.
 
 :::{admonition} Note
 :class: note

@@ -101,8 +101,8 @@ const char *region_names[] = {
 };
 :::
 
-A {hclass}`CityItem` object contains two pieces of data: a city name, and
-a region code. The region code is used as an index into the array of region
+A {hclass}`CityItem` object contains two pieces of data: a city name, and a
+region code. The region code is used as an index into the array of region
 names.
 
 ### The CityItem Definition
@@ -123,24 +123,22 @@ drawing the item. {cpp:func}`~BListItem::DrawItem()` receives three
 parameters:
 
 - A {cpp:class}`BView` "owner"; this is the view that contains the
-{cpp:class}`BListItem`. All drawing calls you issue should be made through
-this BView. For example:
+  {cpp:class}`BListItem`. All drawing calls you issue should be made
+  through this BView. For example:
 
-  :::{code} cpp
-owner->DrawString(item_text);
-:::
+  :::{code} cpp owner->DrawString(item_text); :::
 
 - A {cpp:class}`BRect`, which is the rectangle in which the item should be
-drawn.
+  drawn.
 
 - A {htype}`bool`, which is {cpp:expr}`true` if the item needs to be erased
-and redrawn, or {cpp:expr}`false` if the item's contents can be safely
-redrawn without erasing the current contents.
+  and redrawn, or {cpp:expr}`false` if the item's contents can be safely
+  redrawn without erasing the current contents.
 
-{cpp:func}`~BListItem::DrawItem()` begins by checking to see if the item
-is selected (by calling {cpp:func}`~BListItem::IsSelected()`) or if a
-complete redraw is required. In either of these cases, we want to redraw
-the background, to either the highlight color, or the owner's view color:
+{cpp:func}`~BListItem::DrawItem()` begins by checking to see if the item is
+selected (by calling {cpp:func}`~BListItem::IsSelected()`) or if a complete
+redraw is required. In either of these cases, we want to redraw the
+background, to either the highlight color, or the owner's view color:
 
 :::{code} cpp
 void CityItem::DrawItem(BView *owner, BRect frame,

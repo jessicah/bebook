@@ -7,8 +7,8 @@ file format parser.
 
 ## Supported Families
 
-The {cpp:class}`BMediaFormats` class currently knows how to translate
-among the following formats' codec identification methods:
+The {cpp:class}`BMediaFormats` class currently knows how to translate among
+the following formats' codec identification methods:
 
 :::{list-table}
 ---
@@ -34,8 +34,8 @@ widths: auto
 	- The media format is indicated by a 128-bit UUID value.
 -
 	- MPEG
-	- The media format is specified by a word that indicates the MPEG version
-		and layer.
+	- The media format is specified by a word that indicates the MPEG version and
+		layer.
 -
 	- AIFF
 	- The media format is specified by a codec ID word.

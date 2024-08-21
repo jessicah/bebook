@@ -10,9 +10,8 @@ Each {cpp:class}`BMenuItem` object can have its own invocation message and
 target. A menu item needn't send any message—it can be used simply for its
 visual presence (see {cpp:class}`BSeparatorItem` for an example).
 
-Menu items can't be used outside of a menu; to add a
-{cpp:class}`BMenuItem` to a {cpp:class}`BMenu`, call
-{cpp:func}`BMenu::AddItem()`.
+Menu items can't be used outside of a menu; to add a {cpp:class}`BMenuItem`
+to a {cpp:class}`BMenu`, call {cpp:func}`BMenu::AddItem()`.
 
 ## Kinds of Items
 
@@ -20,12 +19,12 @@ Some menu items set up the menu hierarchy by giving users access to
 submenus. A submenu remains hidden until the user operates the item that
 controls it.
 
-Other items accomplish specific actions. When the user invokes the item,
-it sends a message to a target {cpp:class}`BLooper` and
-{cpp:class}`BHandler`, usually the window where the menu at the root of the
-hierarchy (a {cpp:class}`BMenuBar` object) is displayed. The action that
-the item initiates, or the state that it sets, depends entirely on the
-message and the target's response to it.
+Other items accomplish specific actions. When the user invokes the item, it
+sends a message to a target {cpp:class}`BLooper` and {cpp:class}`BHandler`,
+usually the window where the menu at the root of the hierarchy (a
+{cpp:class}`BMenuBar` object) is displayed. The action that the item
+initiates, or the state that it sets, depends entirely on the message and
+the target's response to it.
 
 ## Shortcuts and Triggers
 
@@ -34,8 +33,8 @@ with a keyboard shortcut, a character the user can type in combination with
 a {hkey}`Command` key (and possibly other modifiers) to invoke the item.
 The shortcut character is displayed in the item to the right of the label.
 
-A shortcut works even when the item it invokes isn't visible on-screen.
-It, therefore, has to be unique within the window (within the entire menu
+A shortcut works even when the item it invokes isn't visible on-screen. It,
+therefore, has to be unique within the window (within the entire menu
 hierarchy).
 
 Every menu item is also associated with a trigger, a character that the

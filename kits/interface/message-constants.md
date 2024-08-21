@@ -374,8 +374,8 @@ second key down message) has a key repeat value of 1.
 
 	- {cpp:enumerator}`B_INT32_TYPE`
 
-	- The modifier keys that were in effect at the time of the event. See <x>
-for a list of values.
+	- The modifier keys that were in effect at the time of the event. See <x> for
+a list of values.
 
 -
 	- {hparam}`states`
@@ -846,10 +846,9 @@ widths: auto
 
 :::
 
-Sent whenever the user changes printers. Applications that support
-printing should watch for this message, and if they receive it, they should
-suggest that the user check their page setup the next time they choose to
-print.
+Sent whenever the user changes printers. Applications that support printing
+should watch for this message, and if they receive it, they should suggest
+that the user check their page setup the next time they choose to print.
 
 ## B_SCREEN_CHANGED
 
@@ -1246,8 +1245,7 @@ widths: auto
 
 :::
 
-You can send this message to a window to resize it by the specified
-deltas.
+You can send this message to a window to resize it by the specified deltas.
 
 :::{list-table}
 ---
@@ -1776,9 +1774,8 @@ widths: auto
 
 :::
 
-Sent when the user double-clicks a window's title bar (to hide the
-window), or selects a window from the DeskBar's window list (to unhide the
-window).
+Sent when the user double-clicks a window's title bar (to hide the window),
+or selects a window from the DeskBar's window list (to unhide the window).
 
 :::{list-table}
 ---

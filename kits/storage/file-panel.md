@@ -41,9 +41,9 @@ is currently displaying a file panel, the panel is closed.
 :::{cpp:function} virtual void BFilePanel::SelectionChanged()
 :::
 
-This hook function is invoked whenever the user changes the set of
-selected files. Within your implementation of this function, you iterate
-over {cpp:func}`~BFilePanel::GetNextSelectedRef()` to retrieve refs to the
+This hook function is invoked whenever the user changes the set of selected
+files. Within your implementation of this function, you iterate over
+{cpp:func}`~BFilePanel::GetNextSelectedRef()` to retrieve refs to the
 currently selected files.
 ::::
 
@@ -71,8 +71,8 @@ invoked.
 function returns {cpp:enumerator}`B_ENTRY_NOT_FOUND` when it reaches the
 end of the list. {hmethod}`Rewind()` gets you back to the top of the list.
 
-Although you can call these functions anytime you want, they're intended
-to be used in implementations of the
+Although you can call these functions anytime you want, they're intended to
+be used in implementations of the
 {cpp:func}`~BFilePanel::SelectionChanged()` hook function.
 ::::
 
@@ -139,9 +139,8 @@ widths: auto
 
 :::
 
-{hmethod}`SetSaveText()` sets the text that's displayed in the Save
-Panel's text view (the area in which the user types and confirms a file
-name).
+{hmethod}`SetSaveText()` sets the text that's displayed in the Save Panel's
+text view (the area in which the user types and confirms a file name).
 ::::
 
 ::::{abi-group}
@@ -217,8 +216,8 @@ the entries, one-by-one, and can reject specific entries (because they're
 the wrong file type, for example). Rejected entries are not shown in the
 panel's file list.
 
-The {hmethod}`SetRefFilter()` function sets the panel's ref filter. You
-can also set it through the constructor. Ownership of the filter is _not_
+The {hmethod}`SetRefFilter()` function sets the panel's ref filter. You can
+also set it through the constructor. Ownership of the filter is _not_
 handed to the panel. You mustn't delete the ref filter while the panel is
 still extant.
 
@@ -238,11 +237,11 @@ set a target, {hparam}`be_app_messenger` is used. See the
 {cpp:class}`BInvoker` class (in the Application Kit) for an explanation of
 how a {cpp:class}`BMessenger` can be used as a target.
 
-A copy is made of the {cpp:class}`BMessenger`, so it is your
-responsibility to delete {hparam}`bellhop` when you no longer need it.
+A copy is made of the {cpp:class}`BMessenger`, so it is your responsibility
+to delete {hparam}`bellhop` when you no longer need it.
 
-{hmethod}`Messenger()` returns (a copy of) the messenger that's used as
-the file panel's target.
+{hmethod}`Messenger()` returns (a copy of) the messenger that's used as the
+file panel's target.
 ::::
 
 ::::{abi-group}

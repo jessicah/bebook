@@ -12,9 +12,9 @@
 :::{cpp:function} BAppFileInfo::BAppFileInfo(BFile* file)
 :::
 
-The default constructor creates a new, uninitialized
-{hclass}`BAppFileInfo` object. To initialize you have to follow this
-construction with a call to {cpp:func}`~BAppFileInfo::SetTo()`.
+The default constructor creates a new, uninitialized {hclass}`BAppFileInfo`
+object. To initialize you have to follow this construction with a call to
+{cpp:func}`~BAppFileInfo::SetTo()`.
 
 The {cpp:class}`BFile` version intializes the {hclass}`BAppFileInfo` by
 passing the argument to {cpp:func}`~BAppFileInfo::SetTo()`.
@@ -124,8 +124,8 @@ argument to {hmethod}`SetIcon()`.
 
 :::{admonition} Note
 :class: note
-To create a {cpp:class}`BBitmap` you must have a {cpp:var}`be_app` object
-; the object needn't be running.
+To create a {cpp:class}`BBitmap` you must have a {cpp:var}`be_app` object ;
+the object needn't be running.
 :::
 
 :::{list-table}
@@ -306,8 +306,8 @@ syntax, see {cpp:func}`BNodeInfo::SetType()`.
 :::{cpp:function} status_t BAppFileInfo::SetVersionInfo(const version_info* info, version_kind kind)
 :::
 
-The functions get and set the application's "version info." The
-information is recorded in the {htype}`version_info` structure:
+The functions get and set the application's "version info." The information
+is recorded in the {htype}`version_info` structure:
 
 :::{code} c
 struct version_info {
@@ -510,15 +510,14 @@ widths: auto
 
 :::
 
-These constants are used when setting or retrieving the version
-information attached to an application. There are two version information
-records for each application, and these two constants select which one you
-wish to reference. Although there is no prescribed use for these structures
-or their constants, it is suggested that
-{cpp:enumerator}`B_APP_VERSION_KIND` be used for application-specific
-version information, and {cpp:enumerator}`B_SYSTEM_VERSION_KIND` be used
-for information about the suite of applications to which the application
-belongs.
+These constants are used when setting or retrieving the version information
+attached to an application. There are two version information records for
+each application, and these two constants select which one you wish to
+reference. Although there is no prescribed use for these structures or
+their constants, it is suggested that {cpp:enumerator}`B_APP_VERSION_KIND`
+be used for application-specific version information, and
+{cpp:enumerator}`B_SYSTEM_VERSION_KIND` be used for information about the
+suite of applications to which the application belongs.
 
 ## Defined Types
 

@@ -37,22 +37,22 @@ downstream (as is or modified), or replace it with one or more other
 messages:
 
 - To discard message, implement {hmethod}`Filter()` to return
-{cpp:enumerator}`B_SKIP_MESSAGE` (don't delete the {cpp:class}`BMessage`
-yourself—it's owned by the Input Server).
+  {cpp:enumerator}`B_SKIP_MESSAGE` (don't delete the {cpp:class}`BMessage`
+  yourself—it's owned by the Input Server).
 
 - If you implement {hmethod}`Filter()` to return
-{cpp:enumerator}`B_DISPATCH_MESSAGE` (and if you leave {hparam}`outList`
-unchanged), {hparam}`message` is allowed to continue downstream. You're
-allowed to modify (but not destroy or replace) {hparam}`message`.
+  {cpp:enumerator}`B_DISPATCH_MESSAGE` (and if you leave {hparam}`outList`
+  unchanged), {hparam}`message` is allowed to continue downstream. You're
+  allowed to modify (but not destroy or replace) {hparam}`message`.
 
 - To replace {hparam}`message`, place one or more {cpp:class}`BMessage` in
-{hparam}`outList` and return {cpp:enumerator}`B_DISPATCH_MESSAGE`.
-{hparam}`message` is discarded; the messages in {hparam}`outList` are
-passed downstream in the order that they appear in the list. The Input
-Server owns all of the messages you pass back in {hparam}`outList`, so
-don't delete them yourself. Note that if you want to include
-{hparam}`message` in {hparam}`outList`, you must copy the object before
-adding it to the list.
+  {hparam}`outList` and return {cpp:enumerator}`B_DISPATCH_MESSAGE`.
+  {hparam}`message` is discarded; the messages in {hparam}`outList` are
+  passed downstream in the order that they appear in the list. The Input
+  Server owns all of the messages you pass back in {hparam}`outList`, so
+  don't delete them yourself. Note that if you want to include
+  {hparam}`message` in {hparam}`outList`, you must copy the object before
+  adding it to the list.
 
 The default implementation returns {cpp:enumerator}`B_DISPATCH_MESSAGE`
 without modifying the message.

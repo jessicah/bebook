@@ -29,15 +29,15 @@ arguments, and sets {cpp:func}`~BNode::InitCheck()` to return the status of
 the initialization.
 
 - The default constructor does nothing and sets
-{cpp:func}`~BNode::InitCheck()` to {cpp:enumerator}`B_NO_INIT`. To
-initialize the object, call {cpp:func}`~BNode::SetTo()`.
+  {cpp:func}`~BNode::InitCheck()` to {cpp:enumerator}`B_NO_INIT`. To
+  initialize the object, call {cpp:func}`~BNode::SetTo()`.
 
 - The copy constructor creates a new {hclass}`BSymLink` that's open on the
-same node as that of the argument.
+  same node as that of the argument.
 
 - For information on the other constructors, see the analogous
-{cpp:func}`~BNode::SetTo()` functions in the {cpp:class}`BNode` class;
-{hclass}`BSymLink` inherits them without change.
+  {cpp:func}`~BNode::SetTo()` functions in the {cpp:class}`BNode` class;
+  {hclass}`BSymLink` inherits them without change.
 ::::
 
 ::::{abi-group}

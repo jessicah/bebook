@@ -5,22 +5,22 @@ mounted in the file system hierarchy. It lets you know about volumes in two
 ways:
 
 - It lists the volumes that are currently mounted. You can step through the
-list through iterative calls to the
-{cpp:func}`~BVolumeRoster::GetNextVolume()` function.
+  list through iterative calls to the
+  {cpp:func}`~BVolumeRoster::GetNextVolume()` function.
 
 - It lets you know when new volumes are mounted, and when existing volumes
-are unmounted. (See {cpp:func}`~BVolumeRoster::StartWatching()`.)
+  are unmounted. (See {cpp:func}`~BVolumeRoster::StartWatching()`.)
 
 How you create your {hclass}`BVolumeRoster` object depends on what you're
 going to do with it:
 
 - If you simply want to step through the volume list, then creating a
-{hclass}`BVolumeRoster` on the stack is sufficient.
+  {hclass}`BVolumeRoster` on the stack is sufficient.
 
 - However, if you want to watch for volumes being mounted and unmounted,
-then you must keep your {hclass}`BVolumeRoster` object around. The watching
-stops when the object is deleted.
+  then you must keep your {hclass}`BVolumeRoster` object around. The
+  watching stops when the object is deleted.
 
-A single {hclass}`BVolumeRoster` object can perform both functions: You
-can use it to step through the volume list at the same time that it's
-watching volumes.
+A single {hclass}`BVolumeRoster` object can perform both functions: You can
+use it to step through the volume list at the same time that it's watching
+volumes.

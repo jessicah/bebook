@@ -1,22 +1,23 @@
 # BTextView
 
-A {cpp:class}`BTextView` object displays text on-screen, and provides
-these text manipulating features:
+A {cpp:class}`BTextView` object displays text on-screen, and provides these
+text manipulating features:
 
-- It lets the user enter, select, and edit text from the keyboard and mouse.
+- It lets the user enter, select, and edit text from the keyboard and
+  mouse.
 
 - It supports standard Cut, Copy, Paste, Delete, and Select All editing
-commands
+  commands
 
 - It provides an Undo mechanism.
 
-By default, a {cpp:class}`BTextView` displays all its text in a single
-font and color. The {cpp:func}`~BTextView::SetStylable()` turns on support
-for multiple character formats.
+By default, a {cpp:class}`BTextView` displays all its text in a single font
+and color. The {cpp:func}`~BTextView::SetStylable()` turns on support for
+multiple character formats.
 
-Paragraph formats—such as alignment and tab widths—are uniform for all
-text the BTextView displays. These properties can be set, but the setting
-always applies to the entire text.
+Paragraph formats—such as alignment and tab widths—are uniform for all text
+the BTextView displays. These properties can be set, but the setting always
+applies to the entire text.
 
 :::{admonition} Warning
 :class: warning
@@ -28,16 +29,16 @@ thread that created the {cpp:class}`BTextView` should issue calls on it.
 
 ## Offsets
 
-The {cpp:class}`BTextView` locates particular characters in its text
-buffer by offsets from the beginning of the data. The offsets count bytes,
-not characters, and begin at 0. A single character is identified by the
-offset of the first byte of the character. A group of characters—the
-current selection, for example—is delimited by the offsets that bound its
-first and last characters; all characters beginning with the first offset
-up to, but not including, the last offset are part of the group.
+The {cpp:class}`BTextView` locates particular characters in its text buffer
+by offsets from the beginning of the data. The offsets count bytes, not
+characters, and begin at 0. A single character is identified by the offset
+of the first byte of the character. A group of characters—the current
+selection, for example—is delimited by the offsets that bound its first and
+last characters; all characters beginning with the first offset up to, but
+not including, the last offset are part of the group.
 
-For example, suppose the {cpp:class}`BTextView` contains the following
-text in Unicode UTF-8 encoding,
+For example, suppose the {cpp:class}`BTextView` contains the following text
+in Unicode UTF-8 encoding,
 
 :::{code} sh
 The BeOS(TM) is . . .
@@ -63,20 +64,20 @@ character-internal offset is specified instead.
 
 ## Graphics Primitives
 
-The {cpp:class}`BTextView`'s mechanism for formatting and drawing text
-uses the graphics primitives it inherits from the {cpp:class}`"BView`
-class. However, it largely presents its own API for determining the
-appearance of the text it draws. You should not attempt to affect the
+The {cpp:class}`BTextView`'s mechanism for formatting and drawing text uses
+the graphics primitives it inherits from the {cpp:class}`"BView` class.
+However, it largely presents its own API for determining the appearance of
+the text it draws. You should not attempt to affect the
 {cpp:class}`BTextView` by calling primitive {cpp:class}`BView` functions
 like {cpp:func}`~BView::MovePenTo()`, {cpp:func}`~BView::SetFont()`, or
 {cpp:func}`~BView::SetHighColor()`. Instead, use {cpp:class}`BTextView`
 functions like {cpp:func}`~BTextView::SetFontAndColor()` and let the object
 take care of formatting and drawing the text.
 
-The one inherited function that can influence the {cpp:class}`BTextView`
-is {cpp:func}`~BView::SetViewColor()`. This function determines the
-background against which the text is drawn and the color that is used in
-antialiasing calculations.
+The one inherited function that can influence the {cpp:class}`BTextView` is
+{cpp:func}`~BView::SetViewColor()`. This function determines the background
+against which the text is drawn and the color that is used in antialiasing
+calculations.
 
 ## Resizing
 
@@ -113,7 +114,7 @@ automatically responds to a set of keyboard shortcuts:
 - {hkey}`Command`+{hkey}`v` pastes text taken from the clipboard
 
 - {hkey}`Command`+{hkey}`a` selects all of the text in the
-{cpp:class}`BTextView`
+  {cpp:class}`BTextView`
 
 - {hkey}`Command`+{hkey}`z` undoes the previous action
 

@@ -53,10 +53,10 @@ outline->AddUnder(new BStringItem("Menlo Park"), state);
 outline->AddUnder(new BStringItem("Los Angeles"), state);
 :::
 
-California is then further divided into cities: Menlo Park and Los
-Angeles, which reside at level 2 of our outline list. These are inserted
-under the California item by specifying the pointer to that item (locality)
-when calling {cpp:func}`~BOutlineListView::AddUnder()`.
+California is then further divided into cities: Menlo Park and Los Angeles,
+which reside at level 2 of our outline list. These are inserted under the
+California item by specifying the pointer to that item (locality) when
+calling {cpp:func}`~BOutlineListView::AddUnder()`.
 
 This process is repeated for New York state, which has three cities
 available in our list:
@@ -118,12 +118,12 @@ item in the list is at a deeper level of the outline—it is a superitem; the
 items grouped under it are its subitems. Superitems are marked by a
 triangular icon or latch, in the usual interface for hypertext lists.
 
-The user can collapse or expand sections of the outline by manipulating
-the latch. When a section is collapsed, only the superitem for that section
-is visible (and the latch points to the superitem). All items that follow
-the superitem are hidden, up to the next item that's not at a deeper
-outline level. When a section is expanded, subitems are visible (and the
-latch points downward).
+The user can collapse or expand sections of the outline by manipulating the
+latch. When a section is collapsed, only the superitem for that section is
+visible (and the latch points to the superitem). All items that follow the
+superitem are hidden, up to the next item that's not at a deeper outline
+level. When a section is expanded, subitems are visible (and the latch
+points downward).
 
 ## Inherited Functions
 

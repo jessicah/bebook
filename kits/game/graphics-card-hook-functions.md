@@ -93,17 +93,17 @@ If the driver is asked to show the cursor before
 Tells the driver to draw a straight, 8-bit color, minimally thin line.
 
 - The line begins at ({hparam}`startX`, {hparam}`startY`) and ends at
-({hparam}`endX`, {hparam}`endY`), inclusive. The arguments are frame buffer
-coordinates.
+  ({hparam}`endX`, {hparam}`endY`), inclusive. The arguments are frame
+  buffer coordinates.
 
 - {hparam}`colorIndex` gives the color of the line as an index into the
-8-bit color table.
+  8-bit color table.
 
-- If {hparam}`clipToRect` is {cpp:expr}`true`, the function should draw only
-the portion of the line that lies within the clipping rectangle defined by
-the last four arguments. The sides of the rectangle are included in the
-drawing area. If {hparam}`clipToRect` is {cpp:expr}`false`, the final four
-arguments should be ignored
+- If {hparam}`clipToRect` is {cpp:expr}`true`, the function should draw
+  only the portion of the line that lies within the clipping rectangle
+  defined by the last four arguments. The sides of the rectangle are
+  included in the drawing area. If {hparam}`clipToRect` is
+  {cpp:expr}`false`, the final four arguments should be ignored
 
 To produce minimal thinness, the line should color only one pixel per row
 or column, as the absolute slope of the line is more or less than 45
@@ -119,8 +119,8 @@ Depth](./_static/images/draw_line_with_8_bit_depth.png)
 
 
 
-This is the same as {cpp:func}`draw_line_with_8_bit_depth()` except for
-the color argument. Here, {hparam}`color` is a 32-bit value with 8-bit red,
+This is the same as {cpp:func}`draw_line_with_8_bit_depth()` except for the
+color argument. Here, {hparam}`color` is a 32-bit value with 8-bit red,
 green, blue, and alpha components. The components are arranged in the order
 that the driver specified when it received the
 {cpp:enumerator}`B_GET_GRAPHICS_CARD_INFO` request.
@@ -138,8 +138,8 @@ should be included in the area being filled.
 
 
 
-This is the same as {cpp:func}`draw_rect_with_8_bit_depth()` except for
-the {hparam}`color` argument. Here, {hparam}`color` is a 32-bit value with
+This is the same as {cpp:func}`draw_rect_with_8_bit_depth()` except for the
+{hparam}`color` argument. Here, {hparam}`color` is a 32-bit value with
 8-bit red, green, blue, and alpha components. The components are arranged
 in the order that the driver specified when it received the
 {cpp:enumerator}`B_GET_GRAPHICS_CARD_INFO` request.
@@ -272,18 +272,18 @@ arguments. The sides of the rectangle are included in the inversion.
 
 
 
-This is the same as {cpp:func}`draw_line_with_8_bit_depth()` except for
-the color argument. Here, {hparam}`color` is a 16-bit value with red,
-green, blue, and (possibly) alpha components. The components are arranged
-in the order that the driver specified when it received the
+This is the same as {cpp:func}`draw_line_with_8_bit_depth()` except for the
+color argument. Here, {hparam}`color` is a 16-bit value with red, green,
+blue, and (possibly) alpha components. The components are arranged in the
+order that the driver specified when it received the
 {cpp:enumerator}`B_GET_GRAPHICS_CARD_INFO` request.
 
 ## draw_rect_with_16_bit_depth()Index: 13
 
 
 
-This is the same as {cpp:func}`draw_rect_with_8_bit_depth()` except for
-the color argument. Here, {hparam}`color` is a 16-bit value with red,
-green, blue, and (possibly) alpha components. The components are arranged
-in the order that the driver specified when it received the
+This is the same as {cpp:func}`draw_rect_with_8_bit_depth()` except for the
+color argument. Here, {hparam}`color` is a 16-bit value with red, green,
+blue, and (possibly) alpha components. The components are arranged in the
+order that the driver specified when it received the
 {cpp:enumerator}`B_GET_GRAPHICS_CARD_INFO` request.

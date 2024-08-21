@@ -30,14 +30,14 @@ The other arguments, {hparam}`frame` and {hparam}`name`, are the same as
 for other {cpp:class}`BView`s:
 
 - The {hparam}`frame` rectangle locates the scroll bar within its parent
-view. For consistency in the user interface, a horizontal scroll bar should
-be {cpp:enumerator}`B_H_SCROLL_BAR_HEIGHT` coordinate units high, and a
-vertical scroll bar should be {cpp:enumerator}`B_V_SCROLL_BAR_WIDTH` units
-wide.
+  view. For consistency in the user interface, a horizontal scroll bar
+  should be {cpp:enumerator}`B_H_SCROLL_BAR_HEIGHT` coordinate units high,
+  and a vertical scroll bar should be
+  {cpp:enumerator}`B_V_SCROLL_BAR_WIDTH` units wide.
 
 - The {hclass}`BScrollBar`'s {hparam}`name` identifies it and permits it to
-be located by the {cpp:func}`~BView::FindView()` function. It can be
-{cpp:expr}`NULL`.
+  be located by the {cpp:func}`~BView::FindView()` function. It can be
+  {cpp:expr}`NULL`.
 
 Unlike other {cpp:class}`BView`s, the {hclass}`BScrollBar` constructor
 doesn't set an automatic resizing mode. By default, scroll bars have the
@@ -116,10 +116,10 @@ See also: {cpp:func}`~BScrollBar::SetTarget()`,
 :::{cpp:function} virtual status_t BScrollBar::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`~BView::Archive()`, then adds
-the {hclass}`BScrollBar`'s range, orientation, current value and
-proportion, and the size of its big and little steps to the
-{cpp:class}`BMessage` {hparam}`archive`.
+Calls the inherited version of {cpp:func}`~BView::Archive()`, then adds the
+{hclass}`BScrollBar`'s range, orientation, current value and proportion,
+and the size of its big and little steps to the {cpp:class}`BMessage`
+{hparam}`archive`.
 
 See also: {cpp:func}`BArchivable::Archive()`,
 {cpp:func}`~BScrollBar::Instantiate()` static function
@@ -205,8 +205,8 @@ user clicks in the bar itself (other than on the knob), it changes by a
 step of a vertical scroll bar should be large enough to bring another line
 of text into view.
 
-The default small step is 1.0, which should be too small for most
-purposes; the default large step is 10.0, which is also probably too small.
+The default small step is 1.0, which should be too small for most purposes;
+the default large step is 10.0, which is also probably too small.
 
 :::{admonition} Note
 :class: note
@@ -259,10 +259,10 @@ See also: The {hclass}`BScrollBar` {cpp:func}`constructor
 :::{cpp:function} float BScrollBar::Value() const
 :::
 
-These functions modify and return the value of the scroll bar. The value
-is usually set as the result of user actions; {hmethod}`SetValue()`
-provides a way to do it programmatically. {hmethod}`Value()` returns the
-current value, whether set by {hmethod}`SetValue()` or by the user.
+These functions modify and return the value of the scroll bar. The value is
+usually set as the result of user actions; {hmethod}`SetValue()` provides a
+way to do it programmatically. {hmethod}`Value()` returns the current
+value, whether set by {hmethod}`SetValue()` or by the user.
 
 {hmethod}`SetValue()` assigns a new {hparam}`value` to the scroll bar and
 calls the {cpp:func}`~BScrollBar::ValueChanged()` hook function, whether or

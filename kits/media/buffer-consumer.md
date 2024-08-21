@@ -77,8 +77,8 @@ become late, you should still process it as usual, but you should also call
 {cpp:func}`~BBufferConsumer::NotifyLateProducer()` to let the producer know
 things are starting to lag.
 
-Information about the contents and timing requirements of the buffer can
-be obtained by calling {cpp:func}`BBuffer::Header()` on it.
+Information about the contents and timing requirements of the buffer can be
+obtained by calling {cpp:func}`BBuffer::Header()` on it.
 
 :::{admonition} Warning
 :class: warning
@@ -92,9 +92,9 @@ before returning.
 :::{cpp:function} virtual status_t BBufferConsumer::Connected(const media_source & destination, const media_format* format, media_input* outInput) = 0
 :::
 
-This hook function is called when a connection is being established to
-your input destination from the specified source producer. The connection
-will be composed of media data with the specified format (which you've
+This hook function is called when a connection is being established to your
+input destination from the specified source producer. The connection will
+be composed of media data with the specified format (which you've
 previously accepted via {cpp:func}`~BBufferConsumer::AcceptFormat()`).
 
 Your implementation of {hmethod}`Connected()` should do whatever
@@ -188,12 +188,11 @@ otherwise, return an appropriate error.
 :::{cpp:function} virtual status_t BBufferConsumer::GetNextInput(int32 * cookie, media_input* outInput) = 0
 :::
 
-The first time a client calls this function, the value pointed to by
-cookie will be 0. You should fill the buffer pointed to by
-{hparam}`outInput` with information about your first input, and set the
-value at {hparam}`cookie` to something (other than zero) that will let you
-keep track of what to return the next time {hmethod}`GetNextInput()` is
-called.
+The first time a client calls this function, the value pointed to by cookie
+will be 0. You should fill the buffer pointed to by {hparam}`outInput` with
+information about your first input, and set the value at {hparam}`cookie`
+to something (other than zero) that will let you keep track of what to
+return the next time {hmethod}`GetNextInput()` is called.
 
 Each successive call to {hmethod}`GetNextInput()` will pass back, in
 {hparam}`cookie`, the value you returned in {hparam}`cookie` the last time
@@ -216,8 +215,8 @@ indicate that there aren't any more inputs.
 :::{cpp:function} virtual status_t BBufferConsumer::HandleMessage(int32 message, const void* data, size_t size)
 :::
 
-When your node derived from {hclass}`BBufferConsumer` receives a message
-on its control port, you should try dispatching it by calling
+When your node derived from {hclass}`BBufferConsumer` receives a message on
+its control port, you should try dispatching it by calling
 {hmethod}`HandleMessage()`. If {hclass}`BBufferConsumer` doesn't understand
 the message, it'll return {cpp:enumerator}`B_ERROR` and you can try
 dispatching it to another class from which your node is derived, or handle
@@ -341,8 +340,8 @@ appropriate action.
 :::{cpp:function} static status_t BBufferConsumer::RegionToClipData(const BRegion* region, int32* format, int32* ioSize, void* data)
 :::
 
-Converts a {cpp:class}`BRegion` into the clipping format used internally
-by the Media Kit. Prior to calling {hmethod}`RegionToClipData()`,
+Converts a {cpp:class}`BRegion` into the clipping format used internally by
+the Media Kit. Prior to calling {hmethod}`RegionToClipData()`,
 {hparam}`ioSize` is set to the size of the buffer pointed to by
 {hparam}`data`. On return, {hparam}`format` is the format of the clipping
 data, {hparam}`ioSize` is changed to the actual number of bytes of data
@@ -532,12 +531,12 @@ widths: auto
 :::{cpp:function} status_t BBufferConsumer::SetOutputBuffersFor(const media_source& source, const media_destination& destination, BBufferGroup* group, void* userData, int32* changeTag, bool willReclaim = false, void* _reserved_ = NULL)
 :::
 
-Specifies that the {cpp:class}`BBufferGroup` group will provide the
-buffers for the connection between source and destination. If
-{hparam}`willReclaim` is {cpp:expr}`false`, the Media Kit will dispose of
-the group for you; you can forget about it once this call returns.
-Otherwise, you're informing the Media Server that you want the group back,
-and that you'll delete it when you're done with it.
+Specifies that the {cpp:class}`BBufferGroup` group will provide the buffers
+for the connection between source and destination. If {hparam}`willReclaim`
+is {cpp:expr}`false`, the Media Kit will dispose of the group for you; you
+can forget about it once this call returns. Otherwise, you're informing the
+Media Server that you want the group back, and that you'll delete it when
+you're done with it.
 
 The Media Kit returns in {hparam}`changeTag` the tag value that will be
 received by your {cpp:func}`~BMediaNode::RequestCompleted()` function once

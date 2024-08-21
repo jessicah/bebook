@@ -56,8 +56,8 @@ The encoded data is written into the buffer indicated by
 {hparam}`outputBuffer`. On return, {hparam}`outputSize` indicates how many
 bytes of data were written into the buffer.
 
-The {cpp:any}`media_encode_info` structure info is used on input to
-specify encoding parameters.
+The {cpp:any}`media_encode_info` structure info is used on input to specify
+encoding parameters.
 
 :::{list-table}
 ---

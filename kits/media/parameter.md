@@ -57,8 +57,8 @@ widths: auto
 :::{cpp:function} void BParameter::SetChannelCount(int32 numChannels)
 :::
 
-Some {hclass}`BParameter`s have more than one channel of the same type.
-For example, a stereo volume parameter with independent left and right gain
+Some {hclass}`BParameter`s have more than one channel of the same type. For
+example, a stereo volume parameter with independent left and right gain
 would have two channels, while a single parameter value that affects both
 the left and right by the same amount would have only one channel.
 {hmethod}`CountChannels()` returns the number of channels manipulated by
@@ -332,8 +332,8 @@ widths: auto
 	- The parameter indicates bit rate in bits per second.
 -
 	- {cpp:enumerator}`B_GOP_SIZE`
-	- The parameter indicates a "group of pictures" such as how many frames
-		apart a keyframe should be inserted into a video stream.
+	- The parameter indicates a "group of pictures" such as how many frames apart
+		a keyframe should be inserted into a video stream.
 -
 	- {cpp:enumerator}`B_MUTE`
 	- The parameter represents a mute control; a value of 0 passes data through

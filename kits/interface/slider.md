@@ -26,8 +26,8 @@ The {hparam}`frame`, {hparam}`name`, {hparam}`resizingMode`, and
 {cpp:class}`BView` class and are passed up the inheritance hierarchy to the
 {cpp:class}`BView` constructor without change.
 
-The {hparam}`minValue` and {hparam}`maxValue` parameters define the
-minimum and maximum values to which the slider can be set.
+The {hparam}`minValue` and {hparam}`maxValue` parameters define the minimum
+and maximum values to which the slider can be set.
 
 If you want to control whether the slider is horizontal or vertical, use
 the second form of the constructor, and set the {hparam}`posture` argument
@@ -97,8 +97,8 @@ See also: {cpp:func}`BView::Draw()`
 :::{cpp:function} virtual BRect BSlider::BarFrame() const
 :::
 
-{hmethod}`DrawBar()` draws the slider bar. The bar is the narrow region
-the thumb slides through. The bar should be drawn into the offscreen view.
+{hmethod}`DrawBar()` draws the slider bar. The bar is the narrow region the
+thumb slides through. The bar should be drawn into the offscreen view.
 
 {hmethod}`BarFrame()` returns the frame rectangle that encloses the slider
 bar.
@@ -182,8 +182,8 @@ drawn if both of them have been configured to a value other than
 drawn.
 :::
 
-This function can be augmented or replaced by your own version to alter
-the appearance or placement of the text.
+This function can be augmented or replaced by your own version to alter the
+appearance or placement of the text.
 ::::
 
 ::::{abi-group}
@@ -237,9 +237,9 @@ two sets of marks.
 {hmethod}`ResizeToPreferred()` resizes the slider control to be the
 preferred size.
 
-You can override these functions to alter the preferred size of the
-slider; this is particularly important if you override other functions to
-change the appearance of the slider.
+You can override these functions to alter the preferred size of the slider;
+this is particularly important if you override other functions to change
+the appearance of the slider.
 ::::
 
 ::::{abi-group}
@@ -257,17 +257,17 @@ See also: {cpp:func}`BControl::Invoke()`, {cpp:func}`BView::KeyDown()`
 :::{cpp:function} virtual void BSlider::MouseDown(BPoint point)
 :::
 
-Overrides the {cpp:class}`BView` version of
-{cpp:func}`~BView::MouseDown()` to track mouse the mouse when the button is
-pressed. A single click causes the thumb to immediately reposition itself
-to the clicked location, and a click and drag motion causes the slider to
-follow the mouse cursor until the button is released.
+Overrides the {cpp:class}`BView` version of {cpp:func}`~BView::MouseDown()`
+to track mouse the mouse when the button is pressed. A single click causes
+the thumb to immediately reposition itself to the clicked location, and a
+click and drag motion causes the slider to follow the mouse cursor until
+the button is released.
 
-If a modification message has been established, it is sent repeatedly
-while the mouse button is down. This can be used, for example, to let the
-changes to the value of the slider be instantly reflected in an onscreen
-display. When the mouse button is released and the slider has been set to
-its resting position, the slider's model message is sent.
+If a modification message has been established, it is sent repeatedly while
+the mouse button is down. This can be used, for example, to let the changes
+to the value of the slider be instantly reflected in an onscreen display.
+When the mouse button is released and the slider has been set to its
+resting position, the slider's model message is sent.
 
 See also: {cpp:func}`BControl::Invoke()`,
 {cpp:func}`BInvoker::SetTarget()`,
@@ -322,9 +322,9 @@ the appearance of a custom slider control.
 {hmethod}`SetBarThickness()` sets the slider bar's thickness and
 {hmethod}`BarThickness()` returns the current thickness.
 
-The slider bar's thickness determines how many pixels across the slider
-bar is. If no thickness is defined, the bar occupies the entire unused
-width or height of the slider's bounding rectangle.
+The slider bar's thickness determines how many pixels across the slider bar
+is. If no thickness is defined, the bar occupies the entire unused width or
+height of the slider's bounding rectangle.
 ::::
 
 ::::{abi-group}
@@ -442,8 +442,8 @@ while the mouse is being tracked. The modification message is sent
 repeatedly as long as the mouse button is held down after being initially
 clicked inside the slider.
 
-{hmethod}`ModificationMessage()` returns the modification message
-currently set up.
+{hmethod}`ModificationMessage()` returns the modification message currently
+set up.
 
 See also: {cpp:func}`~BSlider::MouseDown()`
 ::::
@@ -467,10 +467,10 @@ values are {cpp:enumerator}`B_HORIZONTAL` and {cpp:enumerator}`B_VERTICAL`.
 :::{cpp:function} virtual float BSlider::Position() const
 :::
 
-{hmethod}`SetPosition()` sets the value of the slider given a value
-between 0.0 and 1.0, where 0.0 is the minimum value of the slider, and 1.0
-is the maximum value. This lets you set the slider to a relative position
-without having to look up the maximum and minimum values of the slider.
+{hmethod}`SetPosition()` sets the value of the slider given a value between
+0.0 and 1.0, where 0.0 is the minimum value of the slider, and 1.0 is the
+maximum value. This lets you set the slider to a relative position without
+having to look up the maximum and minimum values of the slider.
 
 {hmethod}`Position()` returns the slider value scaled to the range 0.0 to
 1.0.
@@ -497,8 +497,8 @@ the mouse is being tracked.
 :::{cpp:function} thumb_style BSlider::Style() const
 :::
 
-{hmethod}`SetStyle()` sets the thumb style for the slider. The style can
-be either of the following two values:
+{hmethod}`SetStyle()` sets the thumb style for the slider. The style can be
+either of the following two values:
 
 :::{list-table}
 ---
@@ -694,6 +694,6 @@ widths: auto
 
 :::
 
-Some of these fields may not be present if the setting they represent
-isn't used, or is the default value. For example, if there is no minimum
-limit label set, the {hparam}`_min_lbl` field doesn't exist.
+Some of these fields may not be present if the setting they represent isn't
+used, or is the default value. For example, if there is no minimum limit
+label set, the {hparam}`_min_lbl` field doesn't exist.

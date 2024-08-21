@@ -23,12 +23,12 @@ The user should be able to operate this menu bar from the keyboard (using
 the arrow keys and Enter). There are two ways that the user can put the
 {cpp:class}`BMenuBar` and its hierarchy in focus for keyboard events:
 
-- Clicking an item in the menu bar. If the "click to open" preference is not
-turned off, this opens the submenu the item controls so that it stays
-visible on-screen and puts the submenu in focus.
+- Clicking an item in the menu bar. If the "click to open" preference is
+  not turned off, this opens the submenu the item controls so that it stays
+  visible on-screen and puts the submenu in focus.
 
-- Pressing the {hkey}`Menu` key or {hkey}`Command`+{hkey}`Escape`. This puts
-the {cpp:class}`BMenuBar` in focus and selects its first item.
+- Pressing the {hkey}`Menu` key or {hkey}`Command`+{hkey}`Escape`. This
+  puts the {cpp:class}`BMenuBar` in focus and selects its first item.
 
 Either method opens the entire menu hierarchy to keyboard navigation.
 

@@ -19,7 +19,7 @@ This class works closely with the {cpp:class}`BShelf` class. A
 reconstructs them from their archives, and installs them in another view
 hierarchy.
 
-{cpp:class}`BDragger`s are under the control of DeskBar's "Show
-Replicants" / "Hide Replicants" menu item. Showing replicants means that
-the {cpp:class}`BDragger` handles are visible on-screen; hiding replicants
+{cpp:class}`BDragger`s are under the control of DeskBar's "Show Replicants"
+/ "Hide Replicants" menu item. Showing replicants means that the
+{cpp:class}`BDragger` handles are visible on-screen; hiding replicants
 means that the handles are hidden.

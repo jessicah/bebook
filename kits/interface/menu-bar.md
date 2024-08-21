@@ -48,10 +48,10 @@ Two kinds of adjustments are made if the layout is
 - The height of the menu bar is adjusted to the height of a single item.
 
 - If the {hparam}`resizingMode` includes
-{cpp:enumerator}`B_FOLLOW_LEFT_RIGHT`, the width of the menu bar is
-adjusted to match the width of its parent view. This means that a true menu
-bar (one that's a child of the window's top view) will always be as wide as
-the window.
+  {cpp:enumerator}`B_FOLLOW_LEFT_RIGHT`, the width of the menu bar is
+  adjusted to match the width of its parent view. This means that a true
+  menu bar (one that's a child of the window's top view) will always be as
+  wide as the window.
 
 Two similar adjustments are made if the menu bar layout is
 {cpp:enumerator}`B_ITEMS_IN_COLUMN`:
@@ -59,8 +59,8 @@ Two similar adjustments are made if the menu bar layout is
 - The width of the menu bar is adjusted to the width of the widest item.
 
 - If the {hparam}`resizingMode` includes
-{cpp:enumerator}`B_FOLLOW_TOP_BOTTOM`, the height of the menu bar is
-adjusted to match the height of its parent view.
+  {cpp:enumerator}`B_FOLLOW_TOP_BOTTOM`, the height of the menu bar is
+  adjusted to match the height of its parent view.
 
 After setting up the key menu bar and adding items to it, you may want to
 set the minimum width of the window so that certain items won't be hidden
@@ -107,10 +107,9 @@ at the top of the window. It can be explicitly set with
 :::{cpp:function} virtual void BMenuBar::Draw(BRect updateRect)
 :::
 
-Draws the menu—whether as a true menu bar, as some other kind of menu
-list, or as a single item that controls a pop-up menu. This function is
-called as the result of update messages; you don't need to call it
-yourself.
+Draws the menu—whether as a true menu bar, as some other kind of menu list,
+or as a single item that controls a pop-up menu. This function is called as
+the result of update messages; you don't need to call it yourself.
 
 See also: {cpp:func}`BView::Draw()`
 ::::
@@ -138,9 +137,8 @@ to archive the {hclass}`BMenuBar`'s current state and, if the
 then adds the {hclass}`BMenuBar`'s border style to the
 {cpp:class}`BMessage` archive.
 
-See also: {cpp:func}`BArchivable::Archive()`,
-{cpp:func}`BMenu::Archive()`, {cpp:func}`~BMenuBar::Instantiate()` static
-function
+See also: {cpp:func}`BArchivable::Archive()`, {cpp:func}`BMenu::Archive()`,
+{cpp:func}`~BMenuBar::Instantiate()` static function
 ::::
 
 ::::{abi-group}

@@ -44,8 +44,8 @@ deletes it.
 {hmethod}`CountMessages()` returns the number of messages currently in the
 queue.
 
-{hmethod}`IsEmpty()` returns {cpp:expr}`true` if the object doesn't
-contain any messages, and {cpp:expr}`false` otherwise.
+{hmethod}`IsEmpty()` returns {cpp:expr}`true` if the object doesn't contain
+any messages, and {cpp:expr}`false` otherwise.
 ::::
 
 ::::{abi-group}

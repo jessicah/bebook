@@ -1,42 +1,42 @@
 # BPath
 
-A {hclass}`BPath` object represents an absolute pathname, and provides
-some simple path manipulation and querying functions. The primary features
-of the class are:
+A {hclass}`BPath` object represents an absolute pathname, and provides some
+simple path manipulation and querying functions. The primary features of
+the class are:
 
 - It allocates storage for you. When you tell your {hclass}`BPath` object
-which pathname you want it to represent, the object allocates storage for
-the pathname automatically. When you delete the object, the storage is
-freed.
+  which pathname you want it to represent, the object allocates storage for
+  the pathname automatically. When you delete the object, the storage is
+  freed.
 
 - It always represents an absolute path. The pathname strings that you use
-to initialize a {hclass}`BPath` can be relative, and they can include
-references to "." and "..". The {hclass}`BPath` "normalizes" the passed-in
-strings to create an absolute pathname, as described in "{ref}`Initializing
-and Normalizing`".
+  to initialize a {hclass}`BPath` can be relative, and they can include
+  references to "." and "..". The {hclass}`BPath` "normalizes" the
+  passed-in strings to create an absolute pathname, as described in
+  "{ref}`Initializing and Normalizing`".
 
-{hclass}`BPath`s are handy, but don't expect them to actually do very
-much: A {hclass}`BPath` is just a pathname. It identifies the location of a
-file, but it can't manipulate the file, nor can it change the structure of
-the file system.
+{hclass}`BPath`s are handy, but don't expect them to actually do very much:
+A {hclass}`BPath` is just a pathname. It identifies the location of a file,
+but it can't manipulate the file, nor can it change the structure of the
+file system.
 
 ## So what do you use BPaths for?
 
 - You can use your {hclass}`BPath` to initialize other, more powerful
-objects ({cpp:class}`BEntry`, {cpp:class}`BNode` and its kids). See
-"{ref}`Converting a BPath`".
+  objects ({cpp:class}`BEntry`, {cpp:class}`BNode` and its kids). See
+  "{ref}`Converting a BPath`".
 
 - {hclass}`BPath`s can be passed through {cpp:class}`BMessage`s. To add a
-{hclass}`BPath` to a {cpp:class}`BMessage`, you have to flatten it first:
-{hclass}`BPath` implements {cpp:class}`BFlattenable` for exactly this
-reason. The receiver of the {cpp:class}`BMessage` can resurrect the
-flattened object as a {hclass}`BPath` object or as an {htype}`entry_ref`
-structure. See "{ref}`Passing a BPath in a BMessage`".
+  {hclass}`BPath` to a {cpp:class}`BMessage`, you have to flatten it first:
+  {hclass}`BPath` implements {cpp:class}`BFlattenable` for exactly this
+  reason. The receiver of the {cpp:class}`BMessage` can resurrect the
+  flattened object as a {hclass}`BPath` object or as an {htype}`entry_ref`
+  structure. See "{ref}`Passing a BPath in a BMessage`".
 
 - {hclass}`BPath` objects are ideal for caching references to files.
-{hclass}`BPath`s don't consume much in the way of system resources—they
-don't contain file descriptors, for example. So they're great for keeping
-track of the files that your application is interested in.
+  {hclass}`BPath`s don't consume much in the way of system resources—they
+  don't contain file descriptors, for example. So they're great for keeping
+  track of the files that your application is interested in.
 
 In the way that they're used, {hclass}`BPath`s and {htype}`entry_ref`s are
 nearly identical. In particular, {htype}`entry_ref`s can do all three of
@@ -143,8 +143,8 @@ Since forcing normalization makes {hclass}`BPath`'s behaviour more
 consistent and reliable, why not always normalize? Because normalization
 can be expensive.
 
-During normalization, the pathname is stat'd and prodded rather heavily.
-If you're planning on using your {hclass}`BPath`'s pathname to initialize a
+During normalization, the pathname is stat'd and prodded rather heavily. If
+you're planning on using your {hclass}`BPath`'s pathname to initialize a
 {cpp:class}`BEntry` or {cpp:class}`BNode`, this prodding will happen again.
 Rather than incur the expense twice, you may want to live with unnormalized
 {hclass}`BPath` objects, and take the normalization hit during the
@@ -153,8 +153,8 @@ subsequent initialization.
 ### Other Normalization Details
 
 - You can't force the {hclass}`BPath` constructor or
-{cpp:func}`~BPath::SetTo()` function to skip the normalization. If the path
-needs to be normalized, it will be normalized.
+  {cpp:func}`~BPath::SetTo()` function to skip the normalization. If the
+  path needs to be normalized, it will be normalized.
 
 - {hclass}`BPath` doesn't let you ask if its pathname was normalized.
 
@@ -165,8 +165,8 @@ of Storage Kit functions. However, you shouldn't find any functions that
 ask for a {hclass}`BPath` object. This is a convention of usage:
 
 - If an API element returns a pathname to you, it does so in the form of a
-{hclass}`BPath`. If it asks for a pathname from you (as an argument), it
-asks for a {htype}`const char*`.
+  {hclass}`BPath`. If it asks for a pathname from you (as an argument), it
+  asks for a {htype}`const char*`.
 
 As an example of a function that returns a {hclass}`BPath` to you, recall
 {cpp:class}`BEntry`'s {cpp:func}`~BEntry::GetPath()` function:
@@ -179,8 +179,8 @@ status_t BEntry::GetPath(BPath *path)
 {hclass}`BPath` allocates the pathname storage for you, you don't have to
 mess around with ugly buffer and length arguments.)
 
-On the other hand, {cpp:class}`BEntry`'s {cpp:func}`~BEntry::SetTo()`
-takes a pathname as a {htype}`const char*`:
+On the other hand, {cpp:class}`BEntry`'s {cpp:func}`~BEntry::SetTo()` takes
+a pathname as a {htype}`const char*`:
 
 :::{code} cpp
 status_t BEntry::SetTo(const char *path)
@@ -193,14 +193,14 @@ this function thus:
 entry.SetTo(path.Path());
 :::
 
-The constructors and {cpp:func}`~BPath::SetTo()` functions in (most of)
-the Storage Kit classes have {htype}`const char*` versions that can be
-called as shown here.
+The constructors and {cpp:func}`~BPath::SetTo()` functions in (most of) the
+Storage Kit classes have {htype}`const char*` versions that can be called
+as shown here.
 
 ## Passing a BPath in a BMessage
 
-Let's say you've got a {hclass}`BPath` object that you want to send to
-some other application. To do this, you have to add it to a
+Let's say you've got a {hclass}`BPath` object that you want to send to some
+other application. To do this, you have to add it to a
 {cpp:class}`BMessage` object through the latter's
 {cpp:func}`~BMessage::AddFlat()` function. As an inheritor from
 {cpp:class}`BFlattenable` the {hclass}`BPath` knows how to flatten itself
@@ -272,8 +272,8 @@ normalization.
 
 ## Converting a BPath
 
-As mentioned earlier, most of the Storage Kit classes have constructors
-and {cpp:func}`~BPath::SetTo()` functions that accept {htype}`const char*`
+As mentioned earlier, most of the Storage Kit classes have constructors and
+{cpp:func}`~BPath::SetTo()` functions that accept {htype}`const char*`
 arguments. If you want to turn your {hclass}`BPath` into a
 {cpp:class}`BFile` (for example), you would do this (including error
 checks):
@@ -291,8 +291,8 @@ or
 err = file.SetTo(path.Path());
 :::
 
-To convert a {hclass}`BPath` to an {htype}`entry_ref`, pass the pathname
-to the {cpp:func}`get_ref_for_path()` function:
+To convert a {hclass}`BPath` to an {htype}`entry_ref`, pass the pathname to
+the {cpp:func}`get_ref_for_path()` function:
 
 :::{code} cpp
 entry_ref ref;
@@ -319,7 +319,7 @@ Remember, a {hclass}`BPath` represents a pathname, not a node. It isn't
 "updated" when the file system changes:
 
 - A {hclass}`BPath`'s pathname string never changes behind your back, even
-if the entry that it originally pointed to is renamed, moved, or deleted.
+  if the entry that it originally pointed to is renamed, moved, or deleted.
 
 For example:
 

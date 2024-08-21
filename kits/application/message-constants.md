@@ -6,8 +6,8 @@ member of a {cpp:class}`BMessage`.
 
 ## Application Messages
 
-These constants represent the system messages that are recognized and
-given special treatment by {cpp:class}`BApplication`. Application messages
+These constants represent the system messages that are recognized and given
+special treatment by {cpp:class}`BApplication`. Application messages
 concern the application as a whole, rather than any particular window
 thread. See the introduction to this chapter and the
 {cpp:class}`BApplication` class for details.
@@ -104,8 +104,7 @@ widths: auto
 
 	- {cpp:enumerator}`B_BOOL_TYPE`
 
-	- {cpp:expr}`true` if the app has become active; otherwise
-{cpp:expr}`false`.
+	- {cpp:expr}`true` if the app has become active; otherwise {cpp:expr}`false`.
 
 
 :::
@@ -221,8 +220,8 @@ widths: auto
 
 :::
 
-Sent at regular intervals, but with no particular intent. You can
-implement {hmethod}`Pulse()` to do whatever you want. The message is to the
+Sent at regular intervals, but with no particular intent. You can implement
+{hmethod}`Pulse()` to do whatever you want. The message is to the
 {cpp:class}`BWindow` only if a {cpp:class}`BView` within the window
 declares {cpp:enumerator}`B_PULSE_NEEDED` in its constructor flags.
 ::::
@@ -508,8 +507,8 @@ contents of a specifier.
 
 	- _variable_
 
-	- For {cpp:enumerator}`B_SET_PROPERTY` messages only, the data that should
-be set. The data type depends on the targeted property.
+	- For {cpp:enumerator}`B_SET_PROPERTY` messages only, the data that should be
+set. The data type depends on the targeted property.
 
 
 :::
@@ -661,14 +660,14 @@ is. Messages are sent to targets in response to the
 {cpp:func}`BHandler::SendNotices()` function. The logic is:
 
 1. Take the message to broadcast and place its what code into the
-{hparam}`be:observe_change_orig_what` field.
+  {hparam}`be:observe_change_orig_what` field.
 
 2. Add the {hparam}`be:observe_change_what` field, which is set to the
-{hparam}`what` code specified by the call to
-{cpp:func}`~BHandler::SendNotices()`.
+  {hparam}`what` code specified by the call to
+  {cpp:func}`~BHandler::SendNotices()`.
 
 3. Set the message's {hparam}`what` code to
-{cpp:enumerator}`B_OBSERVER_NOTICE_CHANGE`.
+  {cpp:enumerator}`B_OBSERVER_NOTICE_CHANGE`.
 
 The resulting message is then sent to all interested parties.
 ::::
@@ -829,6 +828,5 @@ widths: auto
 
 :::
 
-Used to cancel an ongoing operation. The Application Kit sends this
-message to the Application Server to cancel a shutdown if a window refuses
-to quit.
+Used to cancel an ongoing operation. The Application Kit sends this message
+to the Application Server to cancel a shutdown if a window refuses to quit.

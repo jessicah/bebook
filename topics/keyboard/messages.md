@@ -60,8 +60,8 @@ widths: auto
 
 	- {cpp:enumerator}`B_INT32_TYPE`
 
-	- The code for the physical key that was pressed. See "{ref}`More On
-Keyboard Mapping`" for a discussion of the keymap.
+	- The code for the physical key that was pressed. See "{ref}`More On Keyboard
+Mapping`" for a discussion of the keymap.
 
 -
 	- {hparam}`be:key_repeat`

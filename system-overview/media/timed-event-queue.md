@@ -40,5 +40,5 @@ You specify the cleanup hook function by calling
 SetCleanupHook(MyCleanupFunction, contextPtr);
 :::
 
-The {hparam}`contextPtr` is a pointer that your cleanup hook function
-uses, and can contain whatever data you require.
+The {hparam}`contextPtr` is a pointer that your cleanup hook function uses,
+and can contain whatever data you require.

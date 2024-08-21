@@ -167,26 +167,24 @@ timeout through {hparam}`deliveryTimeout`.
 The target can respond to the message:
 
 - If you supply a {hparam}`reply` {cpp:class}`BMessage`, the response is
-synchronous, with an optional timeout ({hparam}`replyTimeout`) that starts
-ticking after the original message has been delivered. If the response
-times out, or the target deletes the original message without responding,
-the {hparam}`reply`->{hparam}`what` is set to {cpp:enumerator}`B_NO_REPLY`.
-The caller is responsible for allocating and freeing {hparam}`reply`.
-{hparam}`message` and {hparam}`reply` can be the same object.
+  synchronous, with an optional timeout ({hparam}`replyTimeout`) that
+  starts ticking after the original message has been delivered. If the
+  response times out, or the target deletes the original message without
+  responding, the {hparam}`reply`->{hparam}`what` is set to
+  {cpp:enumerator}`B_NO_REPLY`. The caller is responsible for allocating
+  and freeing {hparam}`reply`. {hparam}`message` and {hparam}`reply` can be
+  the same object.
 
-  :::{admonition} Warning
-:class: warning
-Use caution when requesting a synchronous reply: If you call
-{hmethod}`SendMessage()` from the target looper's thread, you'll deadlock
-(or, at best, time out).
-:::
+  :::{admonition} Warning :class: warning Use caution when requesting a
+  synchronous reply: If you call {hmethod}`SendMessage()` from the target
+  looper's thread, you'll deadlock (or, at best, time out). :::
 
 - If you supply a reply target ({hparam}`replyMessenger` or
-{hparam}`replyHandler`), the response is asynchronous, and is sent to the
-reply target.
+  {hparam}`replyHandler`), the response is asynchronous, and is sent to the
+  reply target.
 
 - If you supply neither a reply message nor a reply target, the target's
-response is sent to {hparam}`be_app_messenger`.
+  response is sent to {hparam}`be_app_messenger`.
 
 :::{list-table}
 ---
@@ -205,12 +203,11 @@ widths: auto
 		applicable).
 -
 	- {cpp:enumerator}`B_TIMED_OUT`.
-	- {hparam}`deliveryTimeout` expired; the message never made it to the
-		target.
+	- {hparam}`deliveryTimeout` expired; the message never made it to the target.
 -
 	- {cpp:enumerator}`B_WOULD_BLOCK`.
-	- You requested a 0 {hparam}`deliveryTimeout`, and the target's message
-		queue is full.
+	- You requested a 0 {hparam}`deliveryTimeout`, and the target's message queue
+		is full.
 -
 	- {cpp:enumerator}`B_BAD_PORT_ID`.
 	- The messenger's target is invalid, or the reply port was deleted while
@@ -248,16 +245,16 @@ one of four things:
 1. The target is remote; {hparam}`looper` is set to {cpp:expr}`NULL`.
 
 2. The {hclass}`BMessenger` hasn't been initialized; {hparam}`looper` is set
-to {cpp:expr}`NULL`.
+  to {cpp:expr}`NULL`.
 
 3. The handler is the looper's preferred handler; {hparam}`looper` will be
-valid.
+  valid.
 
-4. The handler has been deleted; {hparam}`looper` will be valid given that it
-hasn't been deleted as well.
+4. The handler has been deleted; {hparam}`looper` will be valid given that
+  it hasn't been deleted as well.
 
-{hmethod}`IsTargetLocal()` returns {cpp:expr}`true` if the target is
-local. {hmethod}`Team()` returns a target's team.
+{hmethod}`IsTargetLocal()` returns {cpp:expr}`true` if the target is local.
+{hmethod}`Team()` returns a target's team.
 ::::
 
 ## Operators

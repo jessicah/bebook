@@ -110,8 +110,8 @@ by the user or by {cpp:func}`BListView::Select()` , but it can be selected
 through {cpp:func}`BListItem::Select()`. If an item is already selected,
 {hmethod}`SetEnabled`({cpp:expr}`false`) doesn't deselect it.
 
-After calling {hmethod}`SetEnabled()`, you must tell the owner list view
-to redraw the item (see {cpp:func}`BListView::InvalidateItem()`).
+After calling {hmethod}`SetEnabled()`, you must tell the owner list view to
+redraw the item (see {cpp:func}`BListView::InvalidateItem()`).
 
 Note that {cpp:class}`BListView` doesn't provide smart versions of these
 functions (as it does for {hmethod}`Select()`).
@@ -153,9 +153,8 @@ redraw the affected part of the list for you.
 :::{cpp:function} float BListItem::Width() const
 :::
 
-These functions set and return the width and height of the item. The
-item's dimensions are adjusted when {cpp:func}`~BListItem::Update()` is
-called.
+These functions set and return the width and height of the item. The item's
+dimensions are adjusted when {cpp:func}`~BListItem::Update()` is called.
 ::::
 
 ## Archived Fields
@@ -207,6 +206,6 @@ widths: auto
 
 :::
 
-Some of these fields may not be present if the setting they represent
-isn't used, or is the default value. For example, if the item is not
-selectable, the {hparam}`_sel` field won't be found in the archive.
+Some of these fields may not be present if the setting they represent isn't
+used, or is the default value. For example, if the item is not selectable,
+the {hparam}`_sel` field won't be found in the archive.

@@ -111,18 +111,17 @@ widths: auto
 
 -
 	- {cpp:enumerator}`B_LINEAR`.
-	- For every unit of change in the parameter's value, the displayed value
-		also changes by 1. The factor should be 1.
+	- For every unit of change in the parameter's value, the displayed value also
+		changes by 1. The factor should be 1.
 
-		Indicates that the user interface will display the parameter's value
-		as-is.
+		Indicates that the user interface will display the parameter's value as-is.
 -
 	- {cpp:enumerator}`B_POLYNOMIAL`.
 	- The {hparam}`factor` is a power to which the control's value is raised
 		before being displayed.
 
-		Displays the parameter's value raised to the factor power. For instance,
-		if factor is 2, the displayed value would be the parameter's value squared.
+		Displays the parameter's value raised to the factor power. For instance, if
+		factor is 2, the displayed value would be the parameter's value squared.
 -
 	- {cpp:enumerator}`B_EXPONENTIAL`.
 	- The {hparam}`factor` is the base; the displayed value is the factor raised

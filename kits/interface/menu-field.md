@@ -77,19 +77,18 @@ See also: {cpp:func}`BView::Draw()`
 :::{cpp:function} virtual void BMenuField::KeyDown(const char* bytes, int32 numBytes)
 :::
 
-Augments the {cpp:class}`BView` version of {cpp:func}`~BView::KeyDown()`
-to permit keyboard navigation to and from the view and to allow users to
-open the menu by pressing the space bar.
+Augments the {cpp:class}`BView` version of {cpp:func}`~BView::KeyDown()` to
+permit keyboard navigation to and from the view and to allow users to open
+the menu by pressing the space bar.
 ::::
 
 ::::{abi-group}
 :::{cpp:function} virtual void BMenuField::MouseDown(BPoint point)
 :::
 
-Overrides the {cpp:class}`BView` version of
-{cpp:func}`~BView::MouseDown()` to enable users to pop up the menu using
-the mouse, even if the cursor isn't directly over the menu portion of the
-bounds rectangle.
+Overrides the {cpp:class}`BView` version of {cpp:func}`~BView::MouseDown()`
+to enable users to pop up the menu using the mouse, even if the cursor
+isn't directly over the menu portion of the bounds rectangle.
 ::::
 
 ::::{abi-group}
@@ -157,8 +156,8 @@ See also: The {hclass}`BMenuField` {cpp:func}`constructor
 :::{cpp:function} alignment BMenuField::Alignment() const
 :::
 
-These functions set and return the alignment of the label in its portion
-of the frame rectangle.
+These functions set and return the alignment of the label in its portion of
+the frame rectangle.
 
 :::{list-table}
 ---

@@ -16,7 +16,7 @@ about a node in the file system. You can…
 - Get a {cpp:class}`BVolume` object for the node's volume.
 
 - Get the {htype}`node_ref` of the node (and pass it to
-{cpp:func}`watch_node()`, most likely).
+  {cpp:func}`watch_node()`, most likely).
 
 ## Nodes and Entries
 
@@ -64,12 +64,12 @@ that, in some cases, can be more efficient than the
 {cpp:func}`~BStatable::GetStat()` function defined here:
 
 - The {cpp:func}`BDirectory::GetStatFor()` function retrieves the
-{htype}`stat` structure for the node of a named entry within a directory.
-If you're interested in getting stat information for a series of nodes
-within the same directory, you should use this function. You have to call
-it iteratively (once for each named entry), but the accumulation of the
-iterated calls will be faster than the {cpp:func}`~BStatable::GetStat()`
-calls made on the analogous {cpp:class}`BEntry` objects.
+  {htype}`stat` structure for the node of a named entry within a directory.
+  If you're interested in getting stat information for a series of nodes
+  within the same directory, you should use this function. You have to call
+  it iteratively (once for each named entry), but the accumulation of the
+  iterated calls will be faster than the {cpp:func}`~BStatable::GetStat()`
+  calls made on the analogous {cpp:class}`BEntry` objects.
 
 ## Accessing Unreadable and Unwritable Entries
 
@@ -79,13 +79,13 @@ then you can invoke any of the info-getting {hclass}`BStatable` functions
 on that object:
 
 - The {hclass}`BStatable` functions aren't denied even if the node that
-you're looking at is read-protected. However, you can only invoke the
-info-setting functions if the node allows writing.
+  you're looking at is read-protected. However, you can only invoke the
+  info-setting functions if the node allows writing.
 
 - Similarly, you can get stat info for a locked node, but you won't be able
-to write the info (through functions such as
-{cpp:func}`~BStatable::SetOwner()`) unless your object holds the lock. See
-{cpp:class}`BNode` for more on locking.
+  to write the info (through functions such as
+  {cpp:func}`~BStatable::SetOwner()`) unless your object holds the lock.
+  See {cpp:class}`BNode` for more on locking.
 
 ## Other Details
 

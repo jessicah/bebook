@@ -14,30 +14,30 @@ library. Because of this, the {cpp:class}`BView` documentation is split
 across a number of files:
 
 - {cpp:func}`BView General Functions <BView::General>` describes those
-functions that you use no matter what you're doing with your
-{cpp:class}`BView` object.
+  functions that you use no matter what you're doing with your
+  {cpp:class}`BView` object.
 
 - {cpp:func}`BView Drawing-Related Functions <BView::Drawing>`: Anything
-related to drawing subdivided into Primitive Drawing Functions (to draw
-lines, circles, polygons, etc.) and Other Drawing Functions (such as
-picture recording, and bitmap functions).
+  related to drawing subdivided into Primitive Drawing Functions (to draw
+  lines, circles, polygons, etc.) and Other Drawing Functions (such as
+  picture recording, and bitmap functions).
 
 - {cpp:func}`BView Graphics State Functions <BView::Graphics>` modify or
-report on the "graphics state," a set of variables (colors, pen position,
-scaling, etc.) that control how drawing takes place in the
-{cpp:class}`BView`.
+  report on the "graphics state," a set of variables (colors, pen position,
+  scaling, etc.) that control how drawing takes place in the
+  {cpp:class}`BView`.
 
 - {cpp:func}`BView Hook Functions <BView::Hook>` gives a list of the
-{cpp:class}`BView` functions that can be implemented in a subclass.
+  {cpp:class}`BView` functions that can be implemented in a subclass.
 
 - {cpp:func}`BView View Hierarchy Functions <BView::ViewHierarchy>` relate
-to the nested tree of views associated with a window.
+  to the nested tree of views associated with a window.
 
 - {cpp:func}`BView Input-Related Functions <BView::Input>` monitor and
-process input activity.
+  process input activity.
 
 - Scripting and Archival describes the scripting suites and properties, and
-archived fields supported by BView.
+  archived fields supported by BView.
 
 ## Developing a BView Subclass
 
@@ -98,8 +98,8 @@ child, i.e.
 existingWindowOrView.AddChild(yourNewView);
 :::
 
-Ultimately, all views displayed in a window end up as a tree of views,
-with the window as the root of the tree.
+Ultimately, all views displayed in a window end up as a tree of views, with
+the window as the root of the tree.
 
 See the BView View Hierarchy Functions section for BView functions related
 to this view structuring.
@@ -120,9 +120,9 @@ if (window.LockLooper() ) {
 }
 :::
 
-{cpp:class}`BView` functions check to ensure sure the caller has the
-window locked. If the window isn't properly locked, they print warning
-messages and fail.
+{cpp:class}`BView` functions check to ensure sure the caller has the window
+locked. If the window isn't properly locked, they print warning messages
+and fail.
 
 Whenever the system calls a {cpp:class}`BView` hook function, it
 automatically locks the {cpp:class}`BWindow` for you—you never have to lock
@@ -144,12 +144,12 @@ focus. {hkey}`shift`+{hkey}`tab` cycles the focus backward. Holding down
 the {hkey}`control` key while cycling groups causes the focus to jump from
 one navigation group to the next.
 
-When a view has the focus, some sort of indicator should be drawn to
-inform the user that the view is the focus. Typically, this involves
-drawing a line under a label in the view, or possibly drawing a box around
-the view or some portion of it. The global
-{cpp:func}`keyboard_navigation_color()` function should be used to obtain
-the color used to draw the focus indicator.
+When a view has the focus, some sort of indicator should be drawn to inform
+the user that the view is the focus. Typically, this involves drawing a
+line under a label in the view, or possibly drawing a box around the view
+or some portion of it. The global {cpp:func}`keyboard_navigation_color()`
+function should be used to obtain the color used to draw the focus
+indicator.
 
 The view's {cpp:func}`~BView::MakeFocus()` function is called to specify
 whether or not the control has the focus; it's called with an argument of

@@ -131,8 +131,8 @@ widths: auto
 	- Invalid team value.
 -
 	- {cpp:enumerator}`B_NO_MEMORY`.
-	- Returned by on_exit_thread() if there's no memory to construct the
-		internal callback record.
+	- Returned by on_exit_thread() if there's no memory to construct the internal
+		callback record.
 
 :::
 ::::
@@ -196,8 +196,7 @@ while (get_next_team_info(0, &cookie, &info) == B_OK)
    ...
 :::
 
-See {cpp:func}`team_info <team::info>` for a description of that
-structure.
+See {cpp:func}`team_info <team::info>` for a description of that structure.
 
 :::{list-table}
 ---
@@ -251,10 +250,10 @@ while (get_next_thread_info(0, &cookie, &info) == B_OK)
    ...
 :::
 
-The value of the {hparam}`priority` field describes the thread's
-"urgency"; the higher the value, the more urgent the thread. The more
-urgent the thread, the more attention it gets from the CPU. Expected
-priority values fall between 0 and 120. See "{cpp:func}`Thread Priorities
+The value of the {hparam}`priority` field describes the thread's "urgency";
+the higher the value, the more urgent the thread. The more urgent the
+thread, the more attention it gets from the CPU. Expected priority values
+fall between 0 and 120. See "{cpp:func}`Thread Priorities
 <Constants::ThreadPriorities>`" for the full story.
 
 :::{admonition} Warning
@@ -362,8 +361,8 @@ been placed there through a previous {cpp:func}`send_data()` function call.
 If the cache is empty, receive_data() blocks until one shows up—it never
 returns empty-handed.
 
-The {htype}`thread_id` of the thread that called {cpp:func}`send_data()`
-is returned by reference in the sender argument. Note that there's no
+The {htype}`thread_id` of the thread that called {cpp:func}`send_data()` is
+returned by reference in the sender argument. Note that there's no
 guarantee that the sender will still be alive by the time you get its ID.
 Also, the value of sender going into the function is ignored—you can't ask
 for a message from a particular sender.
@@ -371,26 +370,28 @@ for a message from a particular sender.
 The {cpp:func}`send_data()` function copies two pieces of data into a
 thread's message cache:
 
-- A single four-byte code that's delivered as receive_data()'s return value,
+- A single four-byte code that's delivered as receive_data()'s return
+  value,
 
 - and an arbitrarily long data buffer that's copied into receive_data()'s
-buffer argument (you must allocate and free buffer yourself). The
-{hparam}`buffer_size` argument tells the function how many bytes of data to
-copy. If you don't need the data buffer—if the code value returned directly
-by the function is sufficient—you set {hparam}`buffer` to {cpp:expr}`NULL`
-and {hparam}`buffer_size` to 0.
+  buffer argument (you must allocate and free buffer yourself). The
+  {hparam}`buffer_size` argument tells the function how many bytes of data
+  to copy. If you don't need the data buffer—if the code value returned
+  directly by the function is sufficient—you set {hparam}`buffer` to
+  {cpp:expr}`NULL` and {hparam}`buffer_size` to 0.
 
 Unfortunately, there's no way to tell how much data is in the cache before
 you call receive_data():
 
 - If there's more data than buffer can accommodate, the unaccommodated
-portion is discarded—a second receive_data() call will not read the rest of
-the message.
+  portion is discarded—a second receive_data() call will not read the rest
+  of the message.
 
 - Conversely, if receive_data() asks for more data than was sent, the
-function returns with the excess portion of buffer
-unmodified—receive_data() doesn't wait for another {cpp:func}`send_data()`
-call to provide more data with which to fill up the buffer.
+  function returns with the excess portion of buffer
+  unmodified—receive_data() doesn't wait for another
+  {cpp:func}`send_data()` call to provide more data with which to fill up
+  the buffer.
 
 Each receive_data() corresponds to exactly one {cpp:func}`send_data()`.
 Lacking a previous invocation of its mate, receive_data() will block until
@@ -423,21 +424,21 @@ widths: auto
 :::{cpp:function} status_t send_data(thread_id sender, void* buffer, size_t buffer_size)
 :::
 
-send_data() copies a message into thread's message cache. The target
-thread retrieves the message (and empties the cache) by calling
+send_data() copies a message into thread's message cache. The target thread
+retrieves the message (and empties the cache) by calling
 {cpp:func}`receive_data()`.
 
 There are two parts to the message:
 
 - A single four-byte code passed as an argument to send_data() and returned
-directly by {cpp:func}`receive_data()`.
+  directly by {cpp:func}`receive_data()`.
 
 - A {hparam}`buffer` of data that's {hparam}`buffer_size` bytes long
-({hparam}`buffer` can be {cpp:expr}`NULL`, in which case
-{hparam}`buffer_size` should be 0). The data is copied into the target
-thread's cache, and then copied into {cpp:func}`receive_data()`'s
-{hparam}`buffer` (which must be allocated). The calling threads retain
-responsibility for freeing their buffers.
+  ({hparam}`buffer` can be {cpp:expr}`NULL`, in which case
+  {hparam}`buffer_size` should be 0). The data is copied into the target
+  thread's cache, and then copied into {cpp:func}`receive_data()`'s
+  {hparam}`buffer` (which must be allocated). The calling threads retain
+  responsibility for freeing their buffers.
 
 In addition to returning the {hparam}`code` directly, and copying the
 message data into its {hparam}`buffer` argument, {cpp:func}`receive_data()`
@@ -674,10 +675,10 @@ widths: auto
 		{cpp:enumerator}`B_OS_NAME_LENGTH` (32) characters long.
 -
 	- priority
-	- Is the CPU priority level of the thread. This value should be between 0
-		and 120; he higher the priority, the more attention the thread gets. See
-		Thread Priorities for a description of the priorities, and Thread Priority
-		Values for a list of priority constants.
+	- Is the CPU priority level of the thread. This value should be between 0 and
+		120; he higher the priority, the more attention the thread gets. See Thread
+		Priorities for a description of the priorities, and Thread Priority Values
+		for a list of priority constants.
 -
 	- data
 	- Is forwarded as the argument to the thread function.
@@ -798,9 +799,8 @@ widths: auto
 	- {hparam}`thread` isn't a valid {htype}`thread_id` number.
 -
 	- {cpp:enumerator}`B_INTERRUPTED`.
-	- The target was killed by a signal. This includes
-		{cpp:func}`kill_thread()`, {cpp:func}`kill_team()`, and
-		{cpp:func}`exit_thread()`.
+	- The target was killed by a signal. This includes {cpp:func}`kill_thread()`,
+		{cpp:func}`kill_team()`, and {cpp:func}`exit_thread()`.
 
 :::
 ::::
@@ -851,8 +851,8 @@ that was launched through the user interface (by double-clicking, or by
 accepting a dropped icon), then {hparam}`argc` is 1 and {hparam}`args` is
 the name of the application's executable file.
 
-{hparam}`uid` and {hparam}`gid` identify the user and group that "owns"
-the team. You can use these values to play permission games.
+{hparam}`uid` and {hparam}`gid` identify the user and group that "owns" the
+team. You can use these values to play permission games.
 
 ### thread_func
 
@@ -868,9 +868,9 @@ argument. When the thread function exits, the spawned thread is
 automatically killed. To retrieve a {htype}`thread_func`'s return value,
 some other thread must be waiting in a {cpp:func}`wait_for_thread()` call.
 
-Note that {cpp:func}`spawn_thread()` doesn't copy the data that data
-points to. It simply passes the pointer through literally. Never pass a
-pointer that's allocated locally (on the stack).
+Note that {cpp:func}`spawn_thread()` doesn't copy the data that data points
+to. It simply passes the pointer through literally. Never pass a pointer
+that's allocated locally (on the stack).
 
 ### thread_info
 
@@ -893,8 +893,8 @@ The {htype}`thread_info` structure contains information about a thread. To
 retrieve one of these structure, use {cpp:func}`get_thread_info()` or
 {cpp:func}`get_next_thread_info()`.
 
-The {hparam}`thread`, {hparam}`team`, and {hparam}`name` fields contain
-the indicated information.
+The {hparam}`thread`, {hparam}`team`, and {hparam}`name` fields contain the
+indicated information.
 
 {hparam}`state` describes what the thread is currently doing (see
 {cpp:func}`thread_state <thread::state>` for the list of states). If the
@@ -907,9 +907,9 @@ thread gets (see Thread Priority).
 microseconds, the thread has spent executing user code and the amount of
 time the kernel has run on the thread's behalf, respectively.
 
-{hparam}`stack_base` and {hparam}`stack_end` are pointers to the first
-byte and last bytes in the thread's execution stack. Currently, the stack
-size is fixed at around 256k.
+{hparam}`stack_base` and {hparam}`stack_end` are pointers to the first byte
+and last bytes in the thread's execution stack. Currently, the stack size
+is fixed at around 256k.
 
 :::{admonition} Warning
 :class: warning
@@ -940,8 +940,8 @@ get team information about the kernel).
 #define B_SYSTEM_TIMEBASE ...
 :::
 
-The system timebase constant is used as a basis for time measurement in
-the {cpp:func}`snooze_until()` function. (Currently, it's the only timebase
+The system timebase constant is used as a basis for time measurement in the
+{cpp:func}`snooze_until()` function. (Currently, it's the only timebase
 available.)
 ::::
 
@@ -991,8 +991,8 @@ widths: auto
 	- The thread is handling user input.
 -
 	- {cpp:enumerator}`B_LIVE_VIDEO_MANIPULATION`.
-	- The thread is processing live video (filtering, compression,
-		decompression, etc.).
+	- The thread is processing live video (filtering, compression, decompression,
+		etc.).
 -
 	- {cpp:enumerator}`B_VIDEO_PLAYBACK`.
 	- The thread is playing back video from a hardware device.

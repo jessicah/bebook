@@ -107,9 +107,8 @@ widths: auto
 		add-on image.
 -
 	- sequenceandinit_order.
-	- These are zero-based ordinal numbers that give the order in which the
-		image was loaded and initialized, compared to all the other images in this
-		team.
+	- These are zero-based ordinal numbers that give the order in which the image
+		was loaded and initialized, compared to all the other images in this team.
 -
 	- init_routineandterm_routine.
 	- These are pointers to the functions that are used to intialize and
@@ -171,8 +170,8 @@ widths: auto
 :::{cpp:function} status_t get_nth_image_symbol(image_id image, int32 n, int32* name_length, int32* symbol_type, void** location)
 :::
 
-get_image_symbol() returns, in {hparam}`location`, a pointer to the
-address of the symbol that's identified by the {hparam}`image`,
+get_image_symbol() returns, in {hparam}`location`, a pointer to the address
+of the symbol that's identified by the {hparam}`image`,
 {hparam}`symbol_name`, and {hparam}`symbol_type` arguments. An example
 demonstrating the use of this function is given in "Symbols."
 
@@ -180,19 +179,19 @@ get_nth_image_symbol() returns information about the {hparam}`n`'th symbol
 in the given {hparam}`image`. The information is returned in the arguments:
 
 - {hparam}`name` is the name of the symbol. You have to allocate the
-{hparam}`name` buffer before you pass it in—the function copies the name
-into the buffer.
+  {hparam}`name` buffer before you pass it in—the function copies the name
+  into the buffer.
 
-- You point {hparam}`name_length` to an integer that gives the length of the
-name buffer that you're passing in. The function uses this value to
-truncate the string that it copies into name. The function then resets
-{hparam}`name_length` to the full (untruncated) length of the symbol's name
-(plus one byte to accommodate a terminating {cpp:expr}`NULL`). To ensure
-that you've gotten the symbol's full name, you should compare the in-going
-value of {hparam}`name_length` with the value that the function sets it to.
-If the in-going value is less than the full length, you can then re-invoke
-get_nth_image_symbol() with an adequately lengthened {hparam}`name` buffer,
-and an increased {hparam}`name_length` value.
+- You point {hparam}`name_length` to an integer that gives the length of
+  the name buffer that you're passing in. The function uses this value to
+  truncate the string that it copies into name. The function then resets
+  {hparam}`name_length` to the full (untruncated) length of the symbol's
+  name (plus one byte to accommodate a terminating {cpp:expr}`NULL`). To
+  ensure that you've gotten the symbol's full name, you should compare the
+  in-going value of {hparam}`name_length` with the value that the function
+  sets it to. If the in-going value is less than the full length, you can
+  then re-invoke get_nth_image_symbol() with an adequately lengthened
+  {hparam}`name` buffer, and an increased {hparam}`name_length` value.
 
 Keep in mind that name_length is reset each time you call
 get_nth_image_symbol(). If you're calling the function iteratively (to
@@ -200,16 +199,16 @@ retrieve all the symbols in an image), you need to reset the
 {hparam}`name_length` value between calls.
 
 - The function sets {hparam}`symbol_type` to
-{cpp:enumerator}`B_SYMBOL_TYPE_DATA` if the symbol is a variable,
-{cpp:enumerator}`B_SYMBOL_TYPE_TEXT` if the symbol is a function, or
-{cpp:enumerator}`B_SYMBOL_TYPE_ANY` if the executable format doesn't
-distinguish between the two. The argument's value going into the function
-is of no consequence.
+  {cpp:enumerator}`B_SYMBOL_TYPE_DATA` if the symbol is a variable,
+  {cpp:enumerator}`B_SYMBOL_TYPE_TEXT` if the symbol is a function, or
+  {cpp:enumerator}`B_SYMBOL_TYPE_ANY` if the executable format doesn't
+  distinguish between the two. The argument's value going into the function
+  is of no consequence.
 
 - The function sets {hparam}`location` to point to the symbol's address.
 
-To retrieve {htype}`image_id` numbers on which these functions can act,
-use the {cpp:func}`get_next_image_info()` function. Such numbers are also
+To retrieve {htype}`image_id` numbers on which these functions can act, use
+the {cpp:func}`get_next_image_info()` function. Such numbers are also
 returned directly when you load an add-on image through the
 {cpp:func}`load_add_on()` function.
 
@@ -244,15 +243,16 @@ widths: auto
 :::{cpp:function} status_t unload_add_on(image_id image)
 :::
 
-load_add_on() loads an add-on image, identified by {hparam}`pathname`,
-into your application's address space.
+load_add_on() loads an add-on image, identified by {hparam}`pathname`, into
+your application's address space.
 
 - {hparam}`pathname` can be absolute or relative; if it's relative, it's
-reckoned off the base path specified by the ADDON_PATH environment
-variable.
+  reckoned off the base path specified by the ADDON_PATH environment
+  variable.
 
 - The function returns an {htype}`image_id` (a positive integer) that
-represents the loaded image. Image ID numbers are unique across the system.
+  represents the loaded image. Image ID numbers are unique across the
+  system.
 
 An example that demonstrates the use of load_add_on() is given in
 "{cpp:func}`Loading an Add-on Image <Images::LoadingAnAddOnImage>`."
@@ -296,8 +296,8 @@ caller's address space), creates a separate team for the new application,
 and spawns and returns the ID of the team's main thread. The image is
 identified by the pathname given in {hparam}`argv`[0].
 
-The arguments are passed to the image's main() function (they show up
-there as the function's similarly named arguments):
+The arguments are passed to the image's main() function (they show up there
+as the function's similarly named arguments):
 
 :::{list-table}
 ---
@@ -328,7 +328,7 @@ widths: auto
 		:::{code} c
 		extern char **environ;
 
-		load_image(..., environ);
+load_image(..., environ);
 		:::
 
 :::

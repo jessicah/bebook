@@ -34,8 +34,8 @@ parent-child, child-parent, or as siblings (as explained in the
 added as a child of the container view; if they're siblings, the two
 objects are both added as children.
 
-You can also send or post {cpp:enumerator}`B_ARCHIVED_OBJECT` messages to
-a {cpp:class}`BShelf` to simulate a drag and drop.
+You can also send or post {cpp:enumerator}`B_ARCHIVED_OBJECT` messages to a
+{cpp:class}`BShelf` to simulate a drag and drop.
 
 ## Other BShelf Features
 
@@ -49,8 +49,8 @@ function.
 
 Replicant rejection.
 
-: A {cpp:class}`BShelf` can reject replicants, and can adjust the position
-of the replicants that it accepts. These features are provided through the
+: A {cpp:class}`BShelf` can reject replicants, and can adjust the position of
+the replicants that it accepts. These features are provided through the
 hook functions {cpp:func}`~BShelf::CanAcceptReplicantMessage()`,
 {cpp:func}`~BShelf::CanAcceptReplicantView()`, and
 {cpp:func}`~BShelf::AdjustReplicantBy()`. A named shelf can also reject

@@ -19,13 +19,13 @@ Initializes the {hclass}`BInvoker` by setting its message and its
 messenger.
 
 - The object's {cpp:class}`BMessage` is taken directly as
-{hparam}`message`—the object is _not_ copied. The {hclass}`BInvoker` takes
-over ownership of the {cpp:class}`BMessage` that you pass in.
+  {hparam}`message`—the object is _not_ copied. The {hclass}`BInvoker`
+  takes over ownership of the {cpp:class}`BMessage` that you pass in.
 
 - The object's {cpp:class}`BMessenger` is copied from {hparam}`messenger`,
-or initialized with {hparam}`looper` and {hparam}`handler`. See the
-{cpp:class}`BMessenger` class for details on how a {cpp:class}`BMessenger`
-identifies a target.
+  or initialized with {hparam}`looper` and {hparam}`handler`. See the
+  {cpp:class}`BMessenger` class for details on how a
+  {cpp:class}`BMessenger` identifies a target.
 
 If you want a reply handler, you have to call
 {cpp:func}`~BInvoker::SetHandlerForReply()` after the constructor returns.
@@ -72,9 +72,9 @@ with no time limit on the reply.
 
 :::{admonition} Note
 :class: note
-Regarding the use of the default message vs the argument, a common
-practice is to reserve the default message as a template, and pass a
-fine-tuned copy to {hmethod}`Invoke()`
+Regarding the use of the default message vs the argument, a common practice
+is to reserve the default message as a template, and pass a fine-tuned copy
+to {hmethod}`Invoke()`
 :::
 
 The {hmethod}`InvokeNotify()` function sends the {hparam}`message` to the
@@ -283,9 +283,9 @@ reference. If the target was set as a looper's preferred handler (i.e.
 within the {hclass}`BInvoker`'s application, and {cpp:expr}`false` if it
 belongs to some other application.
 
-{hmethod}`Messenger()` returns a copy of the {cpp:class}`BMessenger`
-object the {hclass}`BInvoker` uses to send messages. If a target hasn't
-been set yet, the return will be invalid.
+{hmethod}`Messenger()` returns a copy of the {cpp:class}`BMessenger` object
+the {hclass}`BInvoker` uses to send messages. If a target hasn't been set
+yet, the return will be invalid.
 
 :::{list-table}
 ---
@@ -324,8 +324,8 @@ widths: auto
 :::{cpp:function} bigtime_t BInvoker::Timeout() const
 :::
 
-{hmethod}`SetTimeout()` sets the timeout that will be used when sending
-the invocation message to the invoker's target. By default this is
+{hmethod}`SetTimeout()` sets the timeout that will be used when sending the
+invocation message to the invoker's target. By default this is
 {cpp:enumerator}`B_INFINITE_TIMEOUT`.
 
 {hmethod}`Timeout()` returns the current setting for this value.

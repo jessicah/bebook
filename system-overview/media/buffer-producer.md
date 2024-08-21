@@ -38,8 +38,8 @@ widths: auto
 These values indicate the offset for the X and Y coordinates indicated
 throughout the rest of the clipping data.
 
-The remainder of the clipping data consists of entries indicating each
-line of video data, as follows:
+The remainder of the clipping data consists of entries indicating each line
+of video data, as follows:
 
 :::{list-table}
 ---
@@ -147,8 +147,8 @@ FindSeekTag(&destination, 0.2*1000000, &tag, &time);
 /* now we can use the tag to seek */
 :::
 
-If the tag contains a file offset, we can simply seek to that offset in
-the file and we're ready to go.
+If the tag contains a file offset, we can simply seek to that offset in the
+file and we're ready to go.
 
 In this example, the returned tag is "2" and the time is 0.2 seconds,
 because there's a seek tag located precisely at the requested time.

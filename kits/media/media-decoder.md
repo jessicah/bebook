@@ -75,8 +75,8 @@ Decodes a chunk of media data into the output buffer specified by
 how many frames of data were decoded, and {hparam}`outMH` is the header for
 the decoded buffer.
 
-The {cpp:any}`media_decode_info` structure info is used on input to
-specify decoding parameters.
+The {cpp:any}`media_decode_info` structure info is used on input to specify
+decoding parameters.
 
 The amount of data decoded is part of the format determined by
 {cpp:func}`~BMediaDecoder::SetTo()` or
@@ -235,9 +235,8 @@ will be input into the decoder. {hparam}`info`, if specified, will be
 filled out with text information about the node; you must specify a buffer
 {hparam}`infoSize` bytes long.
 
-The second form of {hmethod}`SetTo()` accepts a
-{cpp:any}`media_codec_info` structure, {hparam}`mci`, that determines which
-codec should be used.
+The second form of {hmethod}`SetTo()` accepts a {cpp:any}`media_codec_info`
+structure, {hparam}`mci`, that determines which codec should be used.
 
 :::{list-table}
 ---

@@ -13,7 +13,7 @@ delete a {cpp:class}`BTranslator` from outside the class. Insead, you
 {cpp:func}`~BTranslator::Release()` it. See
 {cpp:func}`~BTranslator::Acquire()` for details.
 
-The primary {cpp:class}`BTranslator` functions are similar to the
-functions and data that a translator add-on supplies. Most of the
+The primary {cpp:class}`BTranslator` functions are similar to the functions
+and data that a translator add-on supplies. Most of the
 {cpp:class}`BTranslator` functions take you to the Translator Add-ons
 descriptions.

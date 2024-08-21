@@ -53,16 +53,16 @@ The {hmethod}`DrawFocusMark()` function draws the mark indicating that the
 the keyboard navigation color, drawn across the bottom of the tab's frame
 rectangle.
 
-{hmethod}`DrawTab()` is called to draw the tab. It draws the tab's title
-by calling {hmethod}`DrawLabel()`, then renders the lines to create the tab
+{hmethod}`DrawTab()` is called to draw the tab. It draws the tab's title by
+calling {hmethod}`DrawLabel()`, then renders the lines to create the tab
 itself. The position of the tab may affect how the tab is rendered—for
 example, if the tab is frontmost, it may have a different appearance than
 the other tabs.
 
-If {hparam}`full` is {cpp:expr}`true`, the complete tab is drawn inside
-the frame rectangle. If {hparam}`full` is {cpp:expr}`false`, the right side
-of the tab is being obscured by the tab to its left, so the right edge
-should be eliminated or truncated as necessary.
+If {hparam}`full` is {cpp:expr}`true`, the complete tab is drawn inside the
+frame rectangle. If {hparam}`full` is {cpp:expr}`false`, the right side of
+the tab is being obscured by the tab to its left, so the right edge should
+be eliminated or truncated as necessary.
 ::::
 
 ## Member Functions
@@ -85,9 +85,9 @@ See also: {cpp:func}`BArchivable::Archive()`,
 :::{cpp:function} virtual void BTab::SetEnabled(bool enabled)
 :::
 
-The {hmethod}`IsEnabled()` function returns the {cpp:expr}`true` if the
-tab is enabled (and can therefore be selected by the user) or
-{cpp:expr}`false` if the tab is disabled.
+The {hmethod}`IsEnabled()` function returns the {cpp:expr}`true` if the tab
+is enabled (and can therefore be selected by the user) or {cpp:expr}`false`
+if the tab is disabled.
 
 {hmethod}`SetEnabled()` is called to enable or disable the tab. Pass a
 value of {cpp:expr}`true` to enable the tab, or {cpp:expr}`false` to
@@ -107,8 +107,8 @@ disable it.
 The {hmethod}`IsSelected()` function returns true if the tab is currently
 selected, {cpp:expr}`false` if it's not.
 
-{hmethod}`Deselect()` is called to deselect the tab. This removes the
-tab's target view from the owner window by calling the target view's
+{hmethod}`Deselect()` is called to deselect the tab. This removes the tab's
+target view from the owner window by calling the target view's
 {cpp:func}`~BView::RemoveSelf()` function.
 
 {hmethod}`Select()` is called to select the tab. This also adds the tab's
@@ -205,8 +205,7 @@ widths: auto
 
 	- {cpp:enumerator}`B_BOOL_TYPE`
 
-	- {cpp:expr}`true` if the tab is disabled. Not present if the tab is
-enabled.
+	- {cpp:expr}`true` if the tab is disabled. Not present if the tab is enabled.
 
 
 :::

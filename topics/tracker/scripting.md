@@ -1,16 +1,16 @@
 # Scripting
 
-Each Tracker window defines a "Poses" property representing the contents
-of the window. Each poses, in turn, defines the two properties "Entry" and
+Each Tracker window defines a "Poses" property representing the contents of
+the window. Each poses, in turn, defines the two properties "Entry" and
 "Selection". An "Entry" is an item in the window, e.g. either a file or a
 directory, while a "Selection" represents a selected "Entry".
 
-When a Tracker window receives a scripting message with a "Poses"
-property, it pops the current specifier off the specifier stack and then
-forwards the scripting message to the view handling the "Poses" property.
-From there, the "Entry" and "Selection" properties are processed. For
-example, the following function returns the number of entries present in a
-given Tracker window:
+When a Tracker window receives a scripting message with a "Poses" property,
+it pops the current specifier off the specifier stack and then forwards the
+scripting message to the view handling the "Poses" property. From there,
+the "Entry" and "Selection" properties are processed. For example, the
+following function returns the number of entries present in a given Tracker
+window:
 
 :::{code} cpp
 int32 CountEntries(const char *name)
@@ -36,8 +36,8 @@ int32 CountEntries(const char *name)
 }
 :::
 
-The Tracker scripting API defines a number of ways of specifying entries
-in a Poses. These methods are summarized below:
+The Tracker scripting API defines a number of ways of specifying entries in
+a Poses. These methods are summarized below:
 
 :::{list-table}
 ---
@@ -69,8 +69,8 @@ specified with a pair of indices.
 -
 	- 'sprv'
 
-	- Refers to item immediately following file whose {htype}`entry_ref` is
-found in "data."
+	- Refers to item immediately following file whose {htype}`entry_ref` is found
+in "data."
 
 -
 	- 'snxt'

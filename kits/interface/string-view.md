@@ -38,8 +38,8 @@ Frees the text string.
 :::{cpp:function} virtual void BStringView::AttachedToWindow()
 :::
 
-Sets the {hclass}`BStringView`'s low color and its background view color
-to match the background color of its new parent view.
+Sets the {hclass}`BStringView`'s low color and its background view color to
+match the background color of its new parent view.
 
 See also: {cpp:func}`BView::AttachedToWindow()`
 ::::
@@ -58,8 +58,8 @@ rectangle in the current high color.
 :::{cpp:function} virtual status_t BStringView::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`~BView::Archive()`, then adds
-the string and its alignment to the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BView::Archive()`, then adds the
+string and its alignment to the {cpp:class}`BMessage` archive.
 ::::
 
 ::::{abi-group}
@@ -91,8 +91,8 @@ widths: auto
 	- The string is aligned at the right side of the frame rectangle.
 -
 	- {cpp:enumerator}`B_ALIGN_CENTER`
-	- The string is aligned so that the center of the string falls midway
-		between the left and right sides of the frame rectangle.
+	- The string is aligned so that the center of the string falls midway between
+		the left and right sides of the frame rectangle.
 
 :::
 

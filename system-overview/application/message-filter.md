@@ -33,7 +33,7 @@ A {cpp:class}`BMessageFilter` object can be assigned to only one
 
 :::{admonition} Warning
 :class: warning
-The {cpp:class}`BMessageFilter` class is intended to be used as part of
-the system-defined messaging system. If you try to use one outside this
-system, your results may not be what you expect.
+The {cpp:class}`BMessageFilter` class is intended to be used as part of the
+system-defined messaging system. If you try to use one outside this system,
+your results may not be what you expect.
 :::

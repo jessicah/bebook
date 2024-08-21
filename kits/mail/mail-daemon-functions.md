@@ -76,8 +76,8 @@ You would typically specify {hparam}`replace_cr` as {cpp:expr}`true` if
 you're decoding an ASCII text document, and as {cpp:expr}`false` if
 decoding a binary file.
 
-This function returns the size of the output data that's been stored in
-the {hparam}`out` buffer.
+This function returns the size of the output data that's been stored in the
+{hparam}`out` buffer.
 
 :::{admonition} Warning
 :class: warning
@@ -93,8 +93,8 @@ Encodes the data pointed to by {hparam}`in`, which is {hparam}`length`
 bytes long, and writes the base-64 encoded output into the buffer pointed
 to by {hparam}`out`.
 
-This function returns the size of the output data that's been stored in
-the {hparam}`out` buffer.
+This function returns the size of the output data that's been stored in the
+{hparam}`out` buffer.
 
 :::{admonition} Warning
 :class: warning
@@ -106,8 +106,8 @@ hold the encoded data, or this function will do bad things.
 
 
 
-Forwards the mail message specified by {hparam}`message_ref` to the list
-of users given by {hparam}`recipients`. The list of user names specified in
+Forwards the mail message specified by {hparam}`message_ref` to the list of
+users given by {hparam}`recipients`. The list of user names specified in
 {hparam}`recipients` must be separated by commas and/or whitespace, and
 must be null-terminated.
 
@@ -299,9 +299,9 @@ widths: auto
 
 
 
-get_smtp_host() returns in the buffer pointed to by {hparam}`smtp_host`
-the name of the SMTP host as currently configured. The buffer should be at
-lest {cpp:enumerator}`B_MAX_HOST_NAME_LENGTH` bytes long.
+get_smtp_host() returns in the buffer pointed to by {hparam}`smtp_host` the
+name of the SMTP host as currently configured. The buffer should be at lest
+{cpp:enumerator}`B_MAX_HOST_NAME_LENGTH` bytes long.
 
 set_smtp_host() sets the SMTP host through which mail will be sent in the
 future to the specified host. If {hparam}`save` is {cpp:expr}`true`, the

@@ -33,10 +33,10 @@ Does nothing.
 :::{cpp:function} status_t BRoster::ActivateApp(team_id team) const
 :::
 
-Activates the {hparam}`team` application (by bringing one of its windows
-to the front and making it the active window). This function works only if
-the target application has a window on-screen. The newly activated
-application is notified with a {cpp:enumerator}`B_APP_ACTIVATED` message.
+Activates the {hparam}`team` application (by bringing one of its windows to
+the front and making it the active window). This function works only if the
+target application has a window on-screen. The newly activated application
+is notified with a {cpp:enumerator}`B_APP_ACTIVATED` message.
 
 See also: {cpp:func}`BApplication::AppActivated()`
 ::::
@@ -114,11 +114,11 @@ The {hparam}`message` is sent asynchronously with a timeout of 0. As is the
 case for other message-sending functions, the caller retains ownership of
 the message.
 
-This function returns immediately after setting up the broadcast
-operation. It doesn't wait for the messages to be sent and doesn't report
-any errors encountered when they are. It returns an error only if it can't
-start the broadcast operation. If successful in getting the operation
-started, it returns {cpp:enumerator}`B_OK`.
+This function returns immediately after setting up the broadcast operation.
+It doesn't wait for the messages to be sent and doesn't report any errors
+encountered when they are. It returns an error only if it can't start the
+broadcast operation. If successful in getting the operation started, it
+returns {cpp:enumerator}`B_OK`.
 
 Replies to the broadcasted {hparam}`message` will be sent via the
 {hparam}`reply_to` {cpp:class}`BMessenger`, if specified. If
@@ -144,8 +144,8 @@ an application executable, {hmethod}`FindApp()` merely copies the file
 reference to the {hparam}`app` argument. Otherwise, it finds the preferred
 application for the filetype.
 
-In other words, this function goes about finding an application in the
-same way that {cpp:func}`~BRoster::Launch()` finds the application it will
+In other words, this function goes about finding an application in the same
+way that {cpp:func}`~BRoster::Launch()` finds the application it will
 launch.
 
 If it can translate the {hparam}`type` or {hparam}`file` into a reference
@@ -205,8 +205,8 @@ widths: auto
 
 -
 	- thread_idthread
-	- The identifier for the application's main thread of execution, or -1 if
-		the application isn't running. (The main thread is the thread in which the
+	- The identifier for the application's main thread of execution, or -1 if the
+		application isn't running. (The main thread is the thread in which the
 		application is launched and in which its main() function runs.)
 -
 	- thread_idteam
@@ -219,8 +219,7 @@ widths: auto
 		the application isn't running.
 -
 	- uint32flags
-	- A bitfield that contains information about the behavior of the
-		application.
+	- A bitfield that contains information about the behavior of the application.
 
 		The {hparam}`flags` bitfield can be tested (with the bitwise & operator)
 		against these two constants:
@@ -417,8 +416,8 @@ widths: auto
 		application).
 -
 	- {cpp:enumerator}`B_LAUNCH_FAILED`.
-	- The attempt to launch the application failed for some other reason, such
-		as insufficient memory.
+	- The attempt to launch the application failed for some other reason, such as
+		insufficient memory.
 -
 	- A file system error.
 	- The {hparam}`file` or {hparam}`type` can't be matched to an application.

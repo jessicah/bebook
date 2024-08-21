@@ -49,8 +49,8 @@ appFileInfo.SetTo(&file);
 
 ## Attributes, Resources, and the File Type Database
 
-When you ask a {cpp:class}`BAppFileInfo` object to get some information,
-it looks in its {cpp:class}`BFile`'s attributes; if the information isn't
+When you ask a {cpp:class}`BAppFileInfo` object to get some information, it
+looks in its {cpp:class}`BFile`'s attributes; if the information isn't
 there, it then looks in the file's resources. When you ask it to set some
 information, the info is written as an attribute and also stored as a
 resource. You can modify this behavior through

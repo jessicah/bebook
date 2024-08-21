@@ -15,13 +15,13 @@
 :::{cpp:function} BShelf::BShelf(BDataIO* stream, BView* view, bool allowsDragging = true, const char* name = NULL)
 :::
 
-Initializes the {hclass}`BShelf` object so that it serves a container
-view. The versions that accept an {htype}`entry_ref` or
-{cpp:class}`BDataIO` argument prime the shelf so that it (initially)
-contains the replicants that are archived in the referred to file or stream
-using {cpp:func}`~BShelf::Save()`. The {hparam}`ref`/{hparam}`stream`
-argument is also used as the archival repository when you tell your
-{hclass}`BShelf` to {cpp:func}`~BShelf::Save()` itself.
+Initializes the {hclass}`BShelf` object so that it serves a container view.
+The versions that accept an {htype}`entry_ref` or {cpp:class}`BDataIO`
+argument prime the shelf so that it (initially) contains the replicants
+that are archived in the referred to file or stream using
+{cpp:func}`~BShelf::Save()`. The {hparam}`ref`/{hparam}`stream` argument is
+also used as the archival repository when you tell your {hclass}`BShelf` to
+{cpp:func}`~BShelf::Save()` itself.
 
 If the {hparam}`allowsDragging` flag is {cpp:expr}`true`, the user will be
 able to drag replicant view within the container's bounds. If the flag is
@@ -62,12 +62,12 @@ rectangle means depends on the relationship between the dragger and its
 target:
 
 - If the dragger is the target's parent, then {hparam}`destRect` encloses
-the {cpp:class}`BDragger`'s frame.
+  the {cpp:class}`BDragger`'s frame.
 
-- Otherwise (if the target is the parent, or if the two views are siblings),
-{hparam}`destRect` encloses the target's frame. Note that in the case of
-siblings, the {cpp:class}`BDragger`'s frame isn't included in the
-rectangle.
+- Otherwise (if the target is the parent, or if the two views are
+  siblings), {hparam}`destRect` encloses the target's frame. Note that in
+  the case of siblings, the {cpp:class}`BDragger`'s frame isn't included in
+  the rectangle.
 
 {hparam}`archive` is the archive message that was dropped on the shelf.
 
@@ -95,9 +95,9 @@ These hook functions are invoked from within
 {hclass}`BShelf`. You can implement these functions to reject unwanted
 replicants.
 
-{hmethod}`CanAcceptReplicantMessage()` is called first; the argument is
-the archive that (should) contain the replicated view. If you don't like
-the look of the archive, return {cpp:expr}`false` and the message will be
+{hmethod}`CanAcceptReplicantMessage()` is called first; the argument is the
+archive that (should) contain the replicated view. If you don't like the
+look of the archive, return {cpp:expr}`false` and the message will be
 thrown away. Note that you shouldn't return {cpp:expr}`false` if the
 archive doesn't seem to be in the correct form (specifically, if it doesn't
 contain any views). Rejection of such messages is handled more elegantly
@@ -110,8 +110,8 @@ occupy in the {hclass}`BShelf`'s container view's coordinates.
 {hparam}`view` is the replicated view itself. {hparam}`archive` is the
 original message.
 
-If either function returns {cpp:expr}`false`, the replicant is rejected
-and the message is thrown away (it isn't passed on to another handler). A
+If either function returns {cpp:expr}`false`, the replicant is rejected and
+the message is thrown away (it isn't passed on to another handler). A
 return of {cpp:expr}`true` does the obvious thing.
 ::::
 
@@ -139,32 +139,34 @@ where, within the container view's bounds, the message was dropped. The
 function goes through these steps to reject and adjust the replicant:
 
 - First, it invokes the {cpp:func}`~BShelf::CanAcceptReplicantMessage()`
-hook function. If the hook returns {cpp:expr}`false`, then
-{hmethod}`AddReplicant()` doesn't add the replicant.
+  hook function. If the hook returns {cpp:expr}`false`, then
+  {hmethod}`AddReplicant()` doesn't add the replicant.
 
 - Next, it looks for a {hparam}`shelf_type` string field in the
-{cpp:class}`BMessage`. If it finds one and the value of the field doesn't
-match the {hclass}`BShelf`'s name, the replicant is rejected.
+  {cpp:class}`BMessage`. If it finds one and the value of the field doesn't
+  match the {hclass}`BShelf`'s name, the replicant is rejected.
 
 - If type enforcement is {cpp:expr}`true` (see
-{cpp:func}`~BShelf::SetTypeEnforced()`) and the shelf has a name, then the
-{cpp:class}`BMessage` must have a {hparam}`shelf_type` string and this
-string must match the shelf name. Otherwise, the replicant is rejected.
+  {cpp:func}`~BShelf::SetTypeEnforced()`) and the shelf has a name, then
+  the {cpp:class}`BMessage` must have a {hparam}`shelf_type` string and
+  this string must match the shelf name. Otherwise, the replicant is
+  rejected.
 
   There's no specific API for adding the {hparam}`shelf_type` field to a
-view. If you want to configure your views to accept only certain
-{hclass}`BShelf` objects, you have to add the field directly as part of the
-view's {cpp:func}`~BView::Archive()` implementation.
+  view. If you want to configure your views to accept only certain
+  {hclass}`BShelf` objects, you have to add the field directly as part of
+  the view's {cpp:func}`~BView::Archive()` implementation.
 
-- The archive message is then unarchived (the replicant is instantiated). If
-the archive doesn't contain a {cpp:class}`BView`, the message is passed on
-to another handler ({cpp:enumerator}`B_DISPATCH_MESSAGE` is returned).
+- The archive message is then unarchived (the replicant is instantiated).
+  If the archive doesn't contain a {cpp:class}`BView`, the message is
+  passed on to another handler ({cpp:enumerator}`B_DISPATCH_MESSAGE` is
+  returned).
 
-- {cpp:func}`~BShelf::CanAcceptReplicantView()` hook function is called next
-(with a return of {cpp:expr}`false` meaning rejection).
+- {cpp:func}`~BShelf::CanAcceptReplicantView()` hook function is called
+  next (with a return of {cpp:expr}`false` meaning rejection).
 
 - Finally, {cpp:func}`~BShelf::AdjustReplicantBy()` is called, and the
-replicant is drawn in the container view.
+  replicant is drawn in the container view.
 
 Except in the case of a no-view archive, {hmethod}`AddReplicant()` returns
 {cpp:enumerator}`B_SKIP_MESSAGE`.
@@ -208,8 +210,8 @@ Returns the number of replicants attached to the shelf.
 :::{cpp:function} status_t BShelf::DeleteReplicant(uint32 uid)
 :::
 
-Removes the specified replicant from the shelf. It identifies replicants
-by either a view, a replicant message, or a unique id.
+Removes the specified replicant from the shelf. It identifies replicants by
+either a view, a replicant message, or a unique id.
 ::::
 
 ::::{abi-group}
@@ -257,10 +259,10 @@ initializing the given replicant.
 :::{cpp:function} bool BShelf::IsDirty()
 :::
 
-Writes the shelf's contents (the replicants that it contains) as an
-archive to the {htype}`entry_ref` or {cpp:class}`BDataIO` object that was
-specified in the constructor. You can also set the location where the shelf
-is saved with {hmethod}`SetSaveLocation()` and fetch it with
+Writes the shelf's contents (the replicants that it contains) as an archive
+to the {htype}`entry_ref` or {cpp:class}`BDataIO` object that was specified
+in the constructor. You can also set the location where the shelf is saved
+with {hmethod}`SetSaveLocation()` and fetch it with
 {hmethod}`SaveLocation()`. The {htype}`entry_ref` is stored in
 {hparam}`ref` (if ref is non-{cpp:expr}`NULL`) and the {cpp:class}`BDataIO`
 the shelf will be written to is returned. If the shelf will be written to
@@ -341,8 +343,8 @@ archive something, archive the shelf's contents by calling
 
 ## Scripting Support
 
-The {hclass}`BShelf` class implements the suite called
-"suite/vnd.Be-shelf" consisting of the following message:
+The {hclass}`BShelf` class implements the suite called "suite/vnd.Be-shelf"
+consisting of the following message:
 
 ### The Replicant Property
 
@@ -376,8 +378,8 @@ widths: auto
 
 	- {cpp:enumerator}`B_DIRECT_SPECIFIER`
 
-	- Adds the archived replicant in the {cpp:class}`BMessage` "data" to the
-view at the {cpp:class}`BPoint` in "location."
+	- Adds the archived replicant in the {cpp:class}`BMessage` "data" to the view
+at the {cpp:class}`BPoint` in "location."
 
 -
 	- {cpp:enumerator}`B_DELETE_PROPERTY`

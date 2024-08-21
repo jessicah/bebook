@@ -16,8 +16,8 @@ the ones that you passed in.
 
 :::{admonition} Warning
 :class: warning
-The {cpp:class}`BRegion` class is designed to be used with coordinates
-with integral values only; if any non-integral values are used in the
+The {cpp:class}`BRegion` class is designed to be used with coordinates with
+integral values only; if any non-integral values are used in the
 {cpp:class}`BRegion`, functions in the class may behave unpredictably.
 :::
 

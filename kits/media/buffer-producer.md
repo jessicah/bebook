@@ -9,9 +9,8 @@
 :::{cpp:function} explicit BBufferProducer::BBufferProducer(media_type producerType)
 :::
 
-Constructs the {hclass}`BBufferProducer` object. The
-{hparam}`producerType` specifies the type of media data that will be output
-by the node.
+Constructs the {hclass}`BBufferProducer` object. The {hparam}`producerType`
+specifies the type of media data that will be output by the node.
 
 If the node will produce more than one type of data, your
 {hclass}`BBufferProducer` subclass should set the kind to the default
@@ -25,8 +24,8 @@ television signal.
 
 :::{admonition} Note
 :class: note
-In BeOS Release 4.5.2 and earlier, the {hparam}`producerType` has a
-default value; it no longer does, and you'll have to specify the media type
+In BeOS Release 4.5.2 and earlier, the {hparam}`producerType` has a default
+value; it no longer does, and you'll have to specify the media type
 yourself.
 :::
 ::::
@@ -109,8 +108,7 @@ clipping region.
 
 The {hparam}`region` you specify must already exist.
 
-The only format currently supported is
-{cpp:enumerator}`B_CLIP_SHORT_RUNS`.
+The only format currently supported is {cpp:enumerator}`B_CLIP_SHORT_RUNS`.
 
 :::{list-table}
 ---
@@ -187,9 +185,8 @@ function with the last value you returned as a {hparam}`cookie`. This gives
 you the opportunity to dispose of any memory you may have allocated for the
 iteration process.
 
-Return {cpp:enumerator}`B_OK` if the cookie is successfully disposed of
-(or if nothing needs to be done); otherwise, return an appropriate error
-code.
+Return {cpp:enumerator}`B_OK` if the cookie is successfully disposed of (or
+if nothing needs to be done); otherwise, return an appropriate error code.
 ::::
 
 ::::{abi-group}
@@ -248,8 +245,8 @@ widths: auto
 :::{cpp:function} status_t BBufferProducer::FindSeekTag(const media_destination& forDestination, bigtime_t inTargetTime, media_seek_tag* outTag, bigtime_t* outTaggedTime, uint32* outFlags = 0, uint32* inFlags = 0)
 :::
 
-In order to improve seek performance, the Media Kit provides the concept
-of seek tags. These are special tags that identify easily-located points in
+In order to improve seek performance, the Media Kit provides the concept of
+seek tags. These are special tags that identify easily-located points in
 media data (such as key frames in Cinepak video). The
 {hmethod}`FindSeekTag()` function asks the consumer specified by
 {hparam}`forDestination` for the nearest seek tag to the time specified by
@@ -351,9 +348,9 @@ You must implement {hmethod}`FormatSuggestionRequested()` to return fill
 the buffer pointed to by format that your producer is capable of emitting
 that meets the desired type and quality requirements.
 
-If your producer can work with a range of possible formats, let the
-quality argument guide your selection. For example, you might choose to use
-10 fps for previews, and 60 fps interlaced 640x480 for full-quality video.
+If your producer can work with a range of possible formats, let the quality
+argument guide your selection. For example, you might choose to use 10 fps
+for previews, and 60 fps interlaced 640x480 for full-quality video.
 
 If {hparam}`type` is a media class that your producer doesn't want to work
 with, return {cpp:enumerator}`B_BAD_MEDIA_FORMAT`. If you're preapared to
@@ -373,9 +370,9 @@ Implement this hook function to store, in {hparam}`outLatency`, the total
 amount of latency your {hclass}`BBufferProducer` incurs from receiving a
 buffer of data until it reaches its ultimate destination.
 
-Call {cpp:func}`~BBufferProducer::FindLatencyFor()` on whatever outputs
-the data is being forwarded to, add your own latency to the largest of
-those values, and return that value.
+Call {cpp:func}`~BBufferProducer::FindLatencyFor()` on whatever outputs the
+data is being forwarded to, add your own latency to the largest of those
+values, and return that value.
 
 The default implementation of {hmethod}`GetLatency()` finds the maximum
 latency of your currently-available outputs by iterating over them, and
@@ -408,12 +405,12 @@ widths: auto
 :::{cpp:function} virtual status_t BBufferProducer::GetNextOutput(int32* cookie, media_output* outOutput) = 0
 :::
 
-Implement this function to return information about your available
-outputs. The first time it's called for a new iteration loop, the value
-pointed to by {hparam}`cookie` will be 0. Each time
-{hmethod}`GetNextOutput()` is called, you should set it to some value that
-makes sense to you so you can keep track of where in the iteration process
-the client is, but never set it to 0.
+Implement this function to return information about your available outputs.
+The first time it's called for a new iteration loop, the value pointed to
+by {hparam}`cookie` will be 0. Each time {hmethod}`GetNextOutput()` is
+called, you should set it to some value that makes sense to you so you can
+keep track of where in the iteration process the client is, but never set
+it to 0.
 
 For each call to {hmethod}`GetNextOutput()`, including the first, you
 should return one of your outputs that the client hasn't seen during the
@@ -427,8 +424,8 @@ Once all outputs have been reported, you should return
 :::{cpp:function} virtual status_t BBufferProducer::HandleMessage(int32 message, const void* data, size_t size)
 :::
 
-When your node derived from {hclass}`BBufferProducer` receives a message
-on its control port, you should handle it yourself if you know how, or
+When your node derived from {hclass}`BBufferProducer` receives a message on
+its control port, you should handle it yourself if you know how, or
 dispatch to each ancestor class in turn (starting with
 {hclass}`BBufferProducer`'s {hmethod}`HandleMessage()`) until one of the
 {hmethod}`HandleMessage()` implementations returns {cpp:enumerator}`B_OK`.
@@ -491,10 +488,10 @@ between the source {hparam}`whichSource` and the destination
 one last chance to specialize any wildcards that remain in the format
 (although by this point there shouldn't be any, you should check anyway).
 
-Your implementation should, additionally, return in {hparam}`outSource`
-the source to be used for the connection, and should fill the
-{hparam}`outName` buffer with the name the connection will be given; the
-consumer will see this in the `outInput->name` argument specified to
+Your implementation should, additionally, return in {hparam}`outSource` the
+source to be used for the connection, and should fill the {hparam}`outName`
+buffer with the name the connection will be given; the consumer will see
+this in the `outInput->name` argument specified to
 {cpp:func}`BBufferConsumer::Connected()`. If your node doesn't care what
 the name is, you can leave the {hparam}`outName` untouched.
 
@@ -609,10 +606,10 @@ widths: auto
 :::{cpp:function} status_t BBufferProducer::SendDataStatus(int32 status, media_destination& destination, bigtime_t atTime)
 :::
 
-Call this function to inform the specified {hparam}`destination` whether
-or not there's data available from your producer node. Specify the
-appropriate status flag as the {hparam}`status` argument, and the time at
-which the status takes effect as the atTime argument.
+Call this function to inform the specified {hparam}`destination` whether or
+not there's data available from your producer node. Specify the appropriate
+status flag as the {hparam}`status` argument, and the time at which the
+status takes effect as the atTime argument.
 
 Possible values for the status argument are:
 
@@ -721,8 +718,8 @@ the specified factor. Specifying a value of 1 (ie,
 should be output at the same playback rate that it comes into the node at.
 The format of the data should be unchanged.
 
-For example, if you're playing a sound at 48 kHz, and you receive a call
-to {hmethod}`SetPlayRate()` with a {hparam}`numerator` of 2 and a
+For example, if you're playing a sound at 48 kHz, and you receive a call to
+{hmethod}`SetPlayRate()` with a {hparam}`numerator` of 2 and a
 {hparam}`demoninator` of 1 (double speed), you should resample so that you
 move twice as fast through the source data while keeping the output rate
 constant. You might do this by doing a brute-force resample to 24 kHz

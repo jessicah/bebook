@@ -5,19 +5,19 @@ A {cpp:class}`BMessage` is a bundle of structured information. Every
 fields.
 
 - The command constant is an {htype}`int32` value that describes, roughly,
-the purpose of the {cpp:class}`BMessage`. It's stored as the public
-{hparam}`what` data member. You always set and examine the {hparam}`what`
-value directly, you don't need to call a function. (As a convenience, you
-can set the command constant when you create your {cpp:class}`BMessage`
-object.)
+  the purpose of the {cpp:class}`BMessage`. It's stored as the public
+  {hparam}`what` data member. You always set and examine the {hparam}`what`
+  value directly, you don't need to call a function. (As a convenience, you
+  can set the command constant when you create your {cpp:class}`BMessage`
+  object.)
 
 - The data fields are name-type-value triplets. A field is be primarily
-identified by name, but you can look for fields by name, type, or a
-combination of the two. The type is encoded as a constant
-({cpp:enumerator}`B_INT32_TYPE`, {cpp:enumerator}`B_STRING_TYPE` etc), and
-is meant to describe the type of value that the field holds. A single field
-can have only one name and one type, but can contain an array of values.
-Individual values in a field are accessible by index.
+  identified by name, but you can look for fields by name, type, or a
+  combination of the two. The type is encoded as a constant
+  ({cpp:enumerator}`B_INT32_TYPE`, {cpp:enumerator}`B_STRING_TYPE` etc),
+  and is meant to describe the type of value that the field holds. A single
+  field can have only one name and one type, but can contain an array of
+  values. Individual values in a field are accessible by index.
 
 Neither the command constant nor the data fields are mandatory. You can
 create a {cpp:class}`BMessage` that has data but no command, or that _only_
@@ -31,8 +31,8 @@ notifications) to another threadpossibly in another application. To
 understand how {cpp:class}`BMessage`s fit into the messaging system, see
 "{ref}`Messaging`".
 
-The {cpp:class}`BMessage` class also contributes a number of functions
-that help define the scripting system. See "{ref}`Scripting`" for an
+The {cpp:class}`BMessage` class also contributes a number of functions that
+help define the scripting system. See "{ref}`Scripting`" for an
 introduction to this system.
 
 {cpp:class}`BMessage`s are also used by a number of classes
@@ -72,8 +72,8 @@ Scripting functions.
 
 Flattening functions.
 
-: The data in a {cpp:class}`BMessage` can be flattened into an untyped
-stream of bytes. See {cpp:func}`~BMessage::Flatten()`.
+: The data in a {cpp:class}`BMessage` can be flattened into an untyped stream
+of bytes. See {cpp:func}`~BMessage::Flatten()`.
 
 ## BMessage Ownership
 

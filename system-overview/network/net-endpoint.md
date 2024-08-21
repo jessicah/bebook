@@ -19,7 +19,7 @@ system when it's archived, the reinstantiated archive will also be
 connected to that system. You can actually archive active connections to
 restore them later.
 
-Obviously, however, protocol-specific information won't be saved unless
-you add that data to the archive yourself. For example, if you archive an
-FTP connection, then restore the connection from the archive, the working
+Obviously, however, protocol-specific information won't be saved unless you
+add that data to the archive yourself. For example, if you archive an FTP
+connection, then restore the connection from the archive, the working
 directory or any ongoing downloads won't be restored automatically.

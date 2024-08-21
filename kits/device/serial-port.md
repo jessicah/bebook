@@ -15,13 +15,13 @@ values:
 - Hardware flow control (see {cpp:func}`~BSerialPort::SetFlowControl()`)
 
 - A data rate of 19,200 bits per second (see
-{cpp:func}`~BSerialPort::SetDataRate()`)
+  {cpp:func}`~BSerialPort::SetDataRate()`)
 
 - A serial unit with 8 bits of data, 1 stop bit, and no parity (see
-{cpp:func}`~BSerialPort::SetDataBits()`)
+  {cpp:func}`~BSerialPort::SetDataBits()`)
 
 - Blocking with no time limit—an infinite timeout—for reading data (see
-{cpp:func}`~BSerialPort::Read()`)
+  {cpp:func}`~BSerialPort::Read()`)
 
 The new object doesn't represent any particular serial port. After
 construction, it's necessary to open one of the ports by name.
@@ -49,8 +49,8 @@ Makes sure the port is closed before the object is destroyed.
 :::{cpp:function} void BSerialPort::ClearOutput()
 :::
 
-These functions empty the serial port driver's input and output buffers,
-so that the contents of the input buffer won't be read (by the
+These functions empty the serial port driver's input and output buffers, so
+that the contents of the input buffer won't be read (by the
 {cpp:func}`~BSerialPort::Read()` function) and the contents of the output
 buffer (after having been written by {cpp:func}`~BSerialPort::Write()`)
 won't be transmitted over the connection.
@@ -203,31 +203,31 @@ depends not only on {hparam}`maxBytes`, but also on the
 {hparam}`shouldBlock` flag and the {hparam}`timeout` set by the other two
 functions.
 
-- {hmethod}`SetBlocking()` determines whether {hmethod}`Read()` should block
-and wait for {hparam}`maxBytes` of data to arrive at the serial port if
-that number isn't already available to be read. If the
-{hparam}`shouldBlock` flag is {cpp:expr}`true`, {hmethod}`Read()` will
-block. However, if {hparam}`shouldBlock` is {cpp:expr}`false`,
-{hmethod}`Read()` will take however many bytes are waiting to be read, up
-to the maximum asked for, then return immediately. If no data is waiting at
-the serial port, it returns without reading anything.
+- {hmethod}`SetBlocking()` determines whether {hmethod}`Read()` should
+  block and wait for {hparam}`maxBytes` of data to arrive at the serial
+  port if that number isn't already available to be read. If the
+  {hparam}`shouldBlock` flag is {cpp:expr}`true`, {hmethod}`Read()` will
+  block. However, if {hparam}`shouldBlock` is {cpp:expr}`false`,
+  {hmethod}`Read()` will take however many bytes are waiting to be read, up
+  to the maximum asked for, then return immediately. If no data is waiting
+  at the serial port, it returns without reading anything.
 
 - The default {hparam}`shouldBlock` setting is {cpp:expr}`true`.
 
 - {hmethod}`SetTimeout()` sets a time limit on how long {hmethod}`Read()`
-will block while waiting for data to arrive at the port's input buffer. The
-timeout is relevant to {hmethod}`Read()` only if the {hparam}`shouldBlock`
-flag is {cpp:expr}`true`. However, the time limit also applies to the
-{cpp:func}`~BSerialPort::WaitForInput()` function, which always blocks,
-regardless of the {hparam}`shouldBlock` setting.
+  will block while waiting for data to arrive at the port's input buffer.
+  The timeout is relevant to {hmethod}`Read()` only if the
+  {hparam}`shouldBlock` flag is {cpp:expr}`true`. However, the time limit
+  also applies to the {cpp:func}`~BSerialPort::WaitForInput()` function,
+  which always blocks, regardless of the {hparam}`shouldBlock` setting.
 
 - There is no time limit if the timeout is set to
-{cpp:enumerator}`B_INFINITE_TIMEOUT`—{hmethod}`Read()` and
-{cpp:func}`~BSerialPort::WaitForInput()` will block forever. Otherwise, the
-timeout is expressed in microseconds and can range from a minimum of
-100,000 (0.1 second) through a maximum of 25,500,000 (25.5 seconds);
-differences less than 100,000 microseconds are not recognized; they're
-rounded to the nearest tenth of a second.
+  {cpp:enumerator}`B_INFINITE_TIMEOUT`—{hmethod}`Read()` and
+  {cpp:func}`~BSerialPort::WaitForInput()` will block forever. Otherwise,
+  the timeout is expressed in microseconds and can range from a minimum of
+  100,000 (0.1 second) through a maximum of 25,500,000 (25.5 seconds);
+  differences less than 100,000 microseconds are not recognized; they're
+  rounded to the nearest tenth of a second.
 
 - The default timeout is {cpp:enumerator}`B_INFINITE_TIMEOUT`.
 
@@ -315,15 +315,15 @@ typedef enum { B_EVEN_PARITY, B_ODD_PARITY, B_NO_PARITY } parity_mode
 These functions set and return characteristics of the serial unit used to
 send and receive data.
 
-- {hmethod}`SetDataBits()` sets the number of bits of data in each unit; the
-default is {cpp:enumerator}`B_DATA_BITS_8`.
+- {hmethod}`SetDataBits()` sets the number of bits of data in each unit;
+  the default is {cpp:enumerator}`B_DATA_BITS_8`.
 
 - {hmethod}`SetStopBits()` sets the number of stop bits in each unit; the
-default is {cpp:enumerator}`B_STOP_BITS_2`.
+  default is {cpp:enumerator}`B_STOP_BITS_2`.
 
 - {hmethod}`SetParityMode()` sets whether the serial unit contains a parity
-bit and, if so, the type of parity used; the default is
-{cpp:enumerator}`B_NO_PARITY`.
+  bit and, if so, the type of parity used; the default is
+  {cpp:enumerator}`B_NO_PARITY`.
 ::::
 
 ::::{abi-group}
@@ -379,10 +379,9 @@ widths: auto
 :::{cpp:function} status_t BSerialPort::SetDTR(bool pinAsserted)
 :::
 
-Asserts the Data Terminal Ready (DTR) pin if the {hparam}`pinAsserted`
-flag is {cpp:expr}`true`, and de-asserts it if the flag is
-{cpp:expr}`false`. The function should always return
-{cpp:enumerator}`B_OK`.
+Asserts the Data Terminal Ready (DTR) pin if the {hparam}`pinAsserted` flag
+is {cpp:expr}`true`, and de-asserts it if the flag is {cpp:expr}`false`.
+The function should always return {cpp:enumerator}`B_OK`.
 ::::
 
 ::::{abi-group}
@@ -441,8 +440,8 @@ function always returns {cpp:enumerator}`B_OK`.
 :::{cpp:function} ssize_t BSerialPort::WaitForInput()
 :::
 
-Waits for input data to arrive at the serial port and returns the number
-of bytes available to be read. If data is already waiting, the function
+Waits for input data to arrive at the serial port and returns the number of
+bytes available to be read. If data is already waiting, the function
 returns immediately.
 
 This function doesn't respect the flag set by
@@ -457,8 +456,8 @@ returns 0.
 :::{cpp:function} ssize_t BSerialPort::Write(const void* data, size_t numBytes)
 :::
 
-Writes up to {hparam}`numBytes` of data to the serial port's output
-buffer. This function will be successful in writing the data only if the
+Writes up to {hparam}`numBytes` of data to the serial port's output buffer.
+This function will be successful in writing the data only if the
 {hclass}`BSerialPort` object has a port open. The output buffer holds a
 maximum of 512 bytes (1024 on Mac hardware).
 

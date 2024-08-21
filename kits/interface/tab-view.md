@@ -15,10 +15,10 @@
 :::{cpp:function} BTabView::BTabView(BMessage* archive)
 :::
 
-Initializes the {hclass}`BTabView` to the {hparam}`frame` rectangle,
-stated in its eventual parent's coordinate system, and assigns it the
-specified {hparam}`name`, {hparam}`resizingMode`, and {hparam}`flags`.
-These are described in detail in the {cpp:class}`BView` section.
+Initializes the {hclass}`BTabView` to the {hparam}`frame` rectangle, stated
+in its eventual parent's coordinate system, and assigns it the specified
+{hparam}`name`, {hparam}`resizingMode`, and {hparam}`flags`. These are
+described in detail in the {cpp:class}`BView` section.
 
 The {hparam}`width` parameter, which can be one of the following values,
 specifies the widths of the tabs in the {hclass}`BTabView`. All tabs in a
@@ -37,8 +37,7 @@ widths: auto
 
 -
 	- {cpp:enumerator}`B_WIDTH_FROM_WIDEST`
-	- Each tab's width is determined based upon the width of the widest tab
-		name.
+	- Each tab's width is determined based upon the width of the widest tab name.
 -
 	- {cpp:enumerator}`B_WIDTH_AS_USUAL`
 	- The default tab width is used for all tabs.
@@ -82,13 +81,13 @@ the selected tab's target view.
 :::{cpp:function} virtual void BTabView::DrawBox(BRect selTabRect)
 :::
 
-Draws the box that encloses the container view. {hparam}`selTabRect` is
-the frame rectangle of the currently-selected tab; this information is used
-to allow the box to attach properly to the current tab. This is the same
+Draws the box that encloses the container view. {hparam}`selTabRect` is the
+frame rectangle of the currently-selected tab; this information is used to
+allow the box to attach properly to the current tab. This is the same
 rectangle that the {cpp:func}`~BTabView::DrawTabs()` function returns.
 
-This is called for you by the {cpp:func}`~BTabView::Draw()` function and
-is provided primarily as a hook for customizing the appearance of your
+This is called for you by the {cpp:func}`~BTabView::Draw()` function and is
+provided primarily as a hook for customizing the appearance of your
 {hclass}`BTabView`.
 ::::
 
@@ -101,8 +100,8 @@ rectangle of the currently-selected tab. This rectangle should then be
 passed to {cpp:func}`~BTabView::DrawBox()` to draw the container view's
 enclosing box.
 
-This is called for you by the {cpp:func}`~BTabView::Draw()` function and
-is provided primarily as a hook for customizing the appearance of your
+This is called for you by the {cpp:func}`~BTabView::Draw()` function and is
+provided primarily as a hook for customizing the appearance of your
 {hclass}`BTabView`.
 ::::
 
@@ -126,9 +125,9 @@ Protocols appendix, {cpp:func}`BView::KeyDown()`, {cpp:func}`modifiers()`
 :::{cpp:function} virtual void BTabView::MouseDown(BPoint point)
 :::
 
-Identifies which tab (if any) the user clicked and selects that tab. If
-the mouse was not inside a tab when clicked, the
-{cpp:func}`BView::MouseDown()` function is called.
+Identifies which tab (if any) the user clicked and selects that tab. If the
+mouse was not inside a tab when clicked, the {cpp:func}`BView::MouseDown()`
+function is called.
 
 See also: "B_MOUSE_DOWN" in the Message Protocols appendix,
 {cpp:func}`BView::GetMouse()`
@@ -175,8 +174,8 @@ need it anymore, you can do that yourself.
 :::{cpp:function} virtual BTabView::Archive(BMessage* archive, bool deep = true) const
 :::
 
-Calls the inherited version of {cpp:func}`~BView::Archive()` and stores
-the {hclass}`BTabView` in the {cpp:class}`BMessage` archive.
+Calls the inherited version of {cpp:func}`~BView::Archive()` and stores the
+{hclass}`BTabView` in the {cpp:class}`BMessage` archive.
 
 See also: {cpp:func}`BArchivable::Archive()`,
 {cpp:func}`~BTabView::Instantiate()` static function
@@ -218,8 +217,8 @@ focus; if {hparam}`focused` is {cpp:expr}`false`, the focus is removed from
 the currently-focused tab but no new focus is set (the {hclass}`BTabView`
 becomes focusless).
 
-{hmethod}`FocusTab()` returns the index number of the tab that is
-currently the focus.
+{hmethod}`FocusTab()` returns the index number of the tab that is currently
+the focus.
 ::::
 
 ::::{abi-group}
@@ -263,8 +262,7 @@ widths: auto
 
 -
 	- {cpp:enumerator}`B_WIDTH_FROM_WIDEST`
-	- Each tab's width is determined based upon the width of the widest tab
-		name.
+	- Each tab's width is determined based upon the width of the widest tab name.
 -
 	- {cpp:enumerator}`B_WIDTH_AS_USUAL`
 	- The default tab width is used for all tabs.
@@ -284,8 +282,8 @@ The leftmost tab is index number 0.
 :::{cpp:function} virtual BRect BTabView::TabFrame(int32 tab_index)
 :::
 
-Returns the frame rectangle of the tab whose index number is specified.
-The leftmost tab is index number 0.
+Returns the frame rectangle of the tab whose index number is specified. The
+leftmost tab is index number 0.
 
 See also: {cpp:func}`~BTabView::DrawTabs()`,
 {cpp:func}`~BTabView::DrawBox()`, {cpp:func}`~BTabView::Draw()`

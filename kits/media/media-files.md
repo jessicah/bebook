@@ -96,8 +96,8 @@ name pair. For example, if you wanted to retrieve the sound file that's
 been assigned as the system startup sound, you might specify type as
 "sound" and item as "startup sound."
 
-{hmethod}`SetRefFor()` sets, by {htype}`entry_ref`, the file to be used
-for the specified {hparam}`type`/{hparam}`item` pairing.
+{hmethod}`SetRefFor()` sets, by {htype}`entry_ref`, the file to be used for
+the specified {hparam}`type`/{hparam}`item` pairing.
 
 {hmethod}`RemoveRefFor()` removes the specified {htype}`entry_ref` for the
 given {hparam}`type`/{hparam}`item` pairing.

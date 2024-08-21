@@ -74,8 +74,8 @@ no longer using it; the {hclass}`BBufferGroup` won't do it for you.
 
 :::{admonition} Note
 :class: note
-You shouldn't pass the result of a {cpp:func}`BBuffer::CloneInfo()` call
-to this function, as doing so would create an "alias" buffer for the same
+You shouldn't pass the result of a {cpp:func}`BBuffer::CloneInfo()` call to
+this function, as doing so would create an "alias" buffer for the same
 memory area. This is probably not the effect you want.
 :::
 
@@ -305,8 +305,8 @@ buffer to request yourself, based on the value returned by
 example. Use the second form of {hmethod}`RequestBuffer()` to obtain a
 specific buffer.
 
-The first version of {hmethod}`RequestBuffer()` returns {cpp:expr}`NULL`
-if no buffer can be obtained, and sets {hparam}`errno` to the appropriate
+The first version of {hmethod}`RequestBuffer()` returns {cpp:expr}`NULL` if
+no buffer can be obtained, and sets {hparam}`errno` to the appropriate
 error code. The second version returns an appropriate error code.
 
 :::{admonition} Warning

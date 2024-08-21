@@ -11,8 +11,8 @@ can be absolute or relative. If it's relative, the linked-to entry is found
 by reckoning the pathname of off the directory in which the symlink lives.
 Relative pathnames can contain "." and ".." components.
 
-The thing to keep in mind, when dealing with symlinks, is that they link
-to entries, not nodes. If you link a symlink to an (existing) entry named
+The thing to keep in mind, when dealing with symlinks, is that they link to
+entries, not nodes. If you link a symlink to an (existing) entry named
 /boot/home/fido and then the user moves fido to rover (or deletes fido),
 the symlink is not updated. It will still link to /boot/home/fido.
 

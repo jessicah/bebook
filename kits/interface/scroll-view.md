@@ -65,8 +65,8 @@ widths: auto
 		scroll bars.
 -
 	- {cpp:enumerator}`B_FANCY_BORDER`
-	- Draw a fancier border that looks like a 3D groove inset into the surface
-		of the view.
+	- Draw a fancier border that looks like a 3D groove inset into the surface of
+		the view.
 -
 	- {cpp:enumerator}`B_NO_BORDER`
 	- Don't draw a border.
@@ -122,8 +122,8 @@ See also: {cpp:func}`BView::AttachedToWindow()`
 :::{cpp:function} virtual void BScrollView::Draw(BRect updateRect)
 :::
 
-Draws the border around the target view and scroll views, provided a
-border was requested when the {hclass}`BScrollView` was constructed.
+Draws the border around the target view and scroll views, provided a border
+was requested when the {hclass}`BScrollView` was constructed.
 
 See also: The {hclass}`BScrollView` {cpp:func}`constructor
 <BScrollView::BScrollView()>`, {cpp:func}`BView::Draw()`
@@ -193,8 +193,8 @@ the {cpp:enumerator}`B_FANCY_BORDER` style. If successful, it returns
 highlighted. The return value is always {cpp:expr}`false` for a
 {hclass}`BScrollView` that doesn't have a border or has only a "plain" one.
 
-Highlighting a {hclass}`BScrollView`'s border shows that the target view
-is the current focus view for the window. Typically, the target view calls
+Highlighting a {hclass}`BScrollView`'s border shows that the target view is
+the current focus view for the window. Typically, the target view calls
 {hmethod}`SetBorderHighlighted()` from its {cpp:func}`~BView::MakeFocus()`
 function when the focus changes. (The target knows that it's inside a
 {hclass}`BScrollView` because of the
@@ -285,7 +285,7 @@ widths: auto
 
 :::
 
-Some of these fields may not be present if the setting they represent
-isn't used, or is the default value. For example, if the border type is
+Some of these fields may not be present if the setting they represent isn't
+used, or is the default value. For example, if the border type is
 {cpp:enumerator}`B_FANCY_BORDER`, the {hparam}`_style` field won't be found
 in the archive.
