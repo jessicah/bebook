@@ -121,6 +121,10 @@ html_css_files = [
 
 pygments_style = "bebook_style.BeBookStyle"
 
+# possibly introduced in #11221, creates duplicate TOC entries if
+# enabled.
+toc_object_entries = False
+
 # def setup(app):
 #     from sphinx.highlighting import lexers
 #     from pygments.lexers import CppLexer
