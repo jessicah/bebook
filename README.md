@@ -13,6 +13,7 @@ pip install beautifulsoup4
 pip install lxml
 pip install sty
 pip install myst-parser
+pip install linkify-it-py
 ```
 
 # remaining issues
