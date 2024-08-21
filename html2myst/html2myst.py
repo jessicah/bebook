@@ -61,25 +61,25 @@ class Document:
 			self.soup = BeautifulSoup(file, 'lxml')
 		self.outfile = outfile
 		self.debugfile = debugfile
-	
+
 	def __str__(self):
 		contents = ''
 		if self.is_class:
 			contents += f':::{{cpp:class}} {self.title}\n:::\n\n'
-		
+
 		contents += str(self.section)
 		return contents
-	
+
 	def add_class_name(self, match):
 		return f'{self.title}::{match.group(1)}('
-	
+
 	def process(self):
 		main = self.soup.select_one('body > div.section')
 		self.title = text_content(main.select_one(':scope > div.titlepage'))
 		self.is_class = False
 
 		self.section = main_section = nodes.SectionContainer(self.title, 1)
-		
+
 		for child in main.children:
 			# skip the following...
 			if child.name == 'div':
@@ -90,7 +90,7 @@ class Document:
 					continue
 			if child.name == 'a' and has_class(child, 'indexterm'):
 				continue
-			
+
 			# otherwise content to add...
 			if child.name == 'div' and has_class(child, 'section'):
 				# typically contains sub-sections, which will often
@@ -99,7 +99,9 @@ class Document:
 			else:
 				# generally for non-class pages...
 				main_section += self.process_block(child)
-	
+		#print('Document outline:\n')
+		#self.section.walk(0)
+
 	# generally grouping of abi-sections... e.g.
 	# - Constructor and Destructor
 	# - Hook Functions
@@ -115,7 +117,7 @@ class Document:
 			else:
 				section += self.process_block(child)
 		return section
-	
+
 	# a bunch of blocks with class declarations (fields, methods)
 	def process_subsection(self, element):
 		title = text_content(element.select_one(':scope > div.titlepage'))
@@ -154,13 +156,13 @@ class Document:
 				continue
 			else:
 				section += self.process_block(child)
-		
+
 		if needs_abi_group:
 			section.set_directive('{abi-group}', 4)
 			section.output_title(False)
 
 		return section
-	
+
 	# adds a class name, and removes global keyword
 	# doesn't work correctly for fieldsynopsis
 	def process_declaration(self, element):
@@ -180,7 +182,7 @@ class Document:
 				declaration = operator_re.sub(self.add_class_name, declaration)
 			elif add_class_name:
 				declaration = function_re.sub(self.add_class_name, declaration)
-		
+
 		declaration = declaration.replace(';', '').strip()
 
 		#print('  ', declaration)
@@ -190,7 +192,7 @@ class Document:
 			return nodes.Block(f'{{cpp:member}} {declaration}')
 		else:
 			return nodes.Block(f'{{cpp:function}} {declaration}')
-	
+
 	# not 100% sure on the return type...
 	def process_block(self, element):
 		if element.name == 'p':
@@ -199,7 +201,7 @@ class Document:
 			title = text_content(element.select_one(':scope > div.title'))
 			# this is terrible... but works...
 			kind = ''.join([cls for cls in element['class'] if cls != 'admonition'])
-			
+
 			admonition = nodes.BlockContainer(f'{{admonition}} {title}\n:class: {kind}')
 			# what about other children?
 			for child in element.select(':scope p'):
@@ -215,7 +217,7 @@ class Document:
 			else:
 				print(fg.li_red, 'Unknown code listing:', fg.li_cyan, element['class'], reset)
 				code = nodes.Block('{code}')
-			code += text_content(element, clean=False)
+			code += text_content(element, clean=False).replace('\n', '\r')
 			return code
 		if element.name == 'table':
 			num_headers = len(list(element.select(':scope > thead > tr')))
@@ -253,7 +255,7 @@ class Document:
 					list_item += self.process_inline(item)
 				ordered_list += list_item
 			return ordered_list
-		
+
 		classes = [
 			'mediaobject',
 			'orderedlist',
@@ -265,7 +267,7 @@ class Document:
 			for child in element.children:
 				wrapper += self.process_block(child)
 			return wrapper
-		
+
 		if element.name == 'div' and has_class(element, 'section'):
 			title = text_content(element.select_one(':scope > div.titlepage'))
 			section = nodes.SectionContainer(title, 4)
@@ -275,7 +277,7 @@ class Document:
 				else:
 					section += self.process_block(child)
 			return section
-		
+
 		if element.name == 'img':
 			alt_text = None
 			if element.has_attr('alt'):
@@ -292,14 +294,14 @@ class Document:
 				return nodes.Text(f'![]({path})')
 			else:
 				return nodes.Text(f'![{alt_text}]({path})')
-		
+
 		if element.name == 'dl':
 			deflist = nodes.DefinitionList()
 			for child in element.select(':scope > dt, :scope > dd'):
 				if child.name == 'dt':
 					deflist += nodes.DefinitionTerm(self.process_inline(child))
 				else:
-					defdata = nodes.DefinitionData()						
+					defdata = nodes.DefinitionData()
 					if contains_blocks(child):
 						for block in child.children:
 							defdata += self.process_block(block)
@@ -307,7 +309,7 @@ class Document:
 						defdata += self.process_inline(child)
 					deflist += defdata
 			return deflist
-		
+
 		if element.name == 'a' and has_class(element, 'indexterm'):
 			return None
 
@@ -315,14 +317,14 @@ class Document:
 
 		print(fg.li_red, 'unhandled block:', element.name, reset)
 		print(fg.li_cyan, element, reset)
-		
+
 		#return self.process_inline(element)
 		return nodes.Text()
-	
+
 	def process_inline(self, element):
 		if not hasattr(element, 'contents'):
 			return nodes.Text(element.string.strip())
-		
+
 		content = ''
 		for child in element.children:
 			if not hasattr(child, 'contents'):
@@ -349,7 +351,7 @@ class Document:
 					enum = text_content(child)
 					if enum == 'NULL' or enum == 'true' or enum == 'false':
 						is_expr = True
-				
+
 				if is_expr:
 					content += f'{{cpp:expr}}`{text_content(child)}`'
 				elif is_enum:
@@ -405,9 +407,9 @@ class Document:
 				print(fg.li_red, 'WARNING: unable to handle child of type:', fg.li_cyan, child.name, reset)
 				print('    ', child.parent)
 				content += text_content(child)
-	
+
 		return nodes.Text(content.strip())
-	
+
 	def process_link(self, element):
 		match = reference_re.search(element['href'])
 		ref_type = 'ref'
@@ -433,7 +435,7 @@ class Document:
 					# could be an enum, or a struct, or maybe even a
 					# typedef?
 					ref_type = 'cpp:any'
-				
+
 		content = text_content(element)
 
 		if match and not (code is not None and has_any_classes(code, ['constant', 'varname', 'function'])):
@@ -457,10 +459,10 @@ class Document:
 			if ref_type == 'ref':
 				print(fg.li_red, 'WARNING:', reset, 'unable to parse reference:', reset, fg.li_green, element, reset)
 			return f'{{{ref_type}}}`{content}`'
-	
+
 if __name__ == '__main__':
 	document = Document(sys.argv[1], sys.argv[2], None)
 	document.process()
 	#print('document:', document)
 	with open(sys.argv[2], 'w') as file:
-		print(document, file=file)
+		print(str(document).replace('\r','\n'), file=file)
