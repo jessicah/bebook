@@ -107,22 +107,6 @@ div.highlight > pre {
 	padding: 1px 0.8em
 }
 
-div.sphinxsidebar {
-	position: fixed;
-	margin-left: -230px;
-	overflow-x: hidden;
-	overflow-y: auto;
-	height: calc(100vh - 105px)
-}
-
-div.sphinxsidebar a:link {
-	font-weight: normal
-}
-
-div.sphinxsidebarwrapper {
-	padding-bottom: 20px
-}
-
 @media screen and (min-width: calc(79em + 230px)) {
 	div.content {
 		margin-left: 30px
@@ -142,34 +126,6 @@ div.sphinxsidebarwrapper {
 code {
 	background: none;
 	font-size: 1.2em
-}
-
-h1.heading {
-	background: url('../haiku_logo_black.png') no-repeat scroll 0 0 transparent
-}
-
-/* some temporary hackage */
-div.header {
-	font: 400 14px/22px "Noto Sans",Arial,sans-serif
-}
-h1.heading {
-	height: calc(100% - 15px)
-}
-
-h1.heading > a {
-	position: relative;
-	top: 40px;
-	left: 272px;
-	color: #333;
-	text-transform: uppercase;
-	letter-spacing: 3px;
-	font-family: "Myriad Pro","Lucida Grande","Geneva","Trebuchet MS",sans-serif;
-	font-weight: normal;
-	font-size: 75%;
-}
-
-h2.heading {
-	display: none
 }
 
 div.note {
