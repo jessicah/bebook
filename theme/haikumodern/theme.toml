@@ -1,7 +1,11 @@
 [theme]
 inherit = "basic"
-stylesheet = "haiku.css"
-sidebars = "localtoc.html"
+stylesheets = [
+	"haikumodern.css",
+]
+sidebars = [
+	"localtoc.html",
+]
 
 [theme.pygments_style]
 default = "autumn"
