@@ -1,0 +1,621 @@
+<document source="/home/jessi/source/haiku/bebook/kits/application/message.md">
+	<section ids="bmessage" names="bmessage">
+		<title>BMessage</title>
+		<paragraph>Documentation Organisation in Haiku Book:</paragraph>
+		<bullet_list bullet="-">
+			<list_item>
+				<paragraph>Public Member Functions (ctor/dtor here)</paragraph>
+			</list_item>
+			<list_item>
+				<paragraph>Allocation Operations</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>operator=</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>operator new</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>operator delete</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Statistics and Miscellaneous Information</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>GetInfo</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>CountNames</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>IsEmpty</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>IsSystem – really?</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>IsReply – one of the others seems better to me…</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>PrintToStream</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>Rename – uh?</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Delivery Information</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>WasDelivered</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>IsSourceWaiting</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>IsSourceRemote</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>ReturnAddress</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>Previous</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>WasDropped</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>DropPoint</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Replying</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>SendReply</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Flattening</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>FlattenedSize</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>Flatten</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>Unflatten</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Specifiers (Scripting)</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>AddSpecifier</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>SetCurrentSpecifier</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>GetCurrentSpecifier</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>HasSpecifiers</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Adding Data</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>Add…</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Removing Data</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>RemoveData</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>RemoveName</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>MakeEmpty</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Finding Data</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>Find… returning status_t</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Replacing Data</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>Replace…</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Message Comparison</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>HasSameData</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Finding Data (Deprecated)</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>Has…</paragraph>
+					</list_item>
+					<list_item>
+						<paragraph>Find… returning value</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Getting Data</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>Get…</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+			<list_item>
+				<paragraph>Setting Data</paragraph>
+				<bullet_list bullet="-">
+					<list_item>
+						<paragraph>Set…</paragraph>
+					</list_item>
+				</bullet_list>
+			</list_item>
+		</bullet_list>
+		<paragraph>A container that can be sent and received using the Haiku messaging subsystem.</paragraph>
+		<paragraph>This class is at the center of the web of messaging classes, in the sense that it defines the actual
+structure of the messages. Messages have two <strong>important elements</strong>: the <highlightField>what</highlightField> identifier, and the
+data members. The first can be directly manipulated, the latter can be manipulated through
+			<reference internal="True" refid="_CPPv4N8BMessage7AddDataEPKc9type_codePKv7ssize_tb5int32" reftitle="BMessage::AddData">
+				<literal classes="xref cpp cpp-func">AddData()</literal>
+			</reference>,			<reference internal="True" refid="_CPPv4NK8BMessage8FindDataEPKc9type_code5int32PPKvP7ssize_t" reftitle="BMessage::FindData">
+				<literal classes="xref cpp cpp-func">FindData()</literal>
+			</reference> and
+			<reference internal="True" refid="_CPPv4N8BMessage11ReplaceDataEPKc9type_codePKv7ssize_t" reftitle="BMessage::ReplaceData">
+				<literal classes="xref cpp cpp-func">ReplaceData()</literal>
+			</reference> and their derivatives. Neither of these elements are mandatory.</paragraph>
+		<paragraph>The second important role of <literal classes="xref cpp cpp-class">BMessage</literal> is that it stores <strong>metadata</strong>: who sent the
+message and with what intention? The methods of <literal classes="xref cpp cpp-class">BMessage</literal> will disclose if the message
+was a reply (<reference internal="True" refid="_CPPv4NK8BMessage7IsReplyEv" reftitle="BMessage::IsReply">
+			<literal classes="xref cpp cpp-func">IsReply()</literal>
+		</reference>), where it came from
+(		<reference internal="True" refid="_CPPv4NK8BMessage14IsSourceRemoteEv" reftitle="BMessage::IsSourceRemote">
+			<literal classes="xref cpp cpp-func">IsSourceRemote()</literal>
+		</reference>), whether a reply is expected
+(		<reference internal="True" refid="_CPPv4NK8BMessage15IsSourceWaitingEv" reftitle="BMessage::IsSourceWaiting">
+			<literal classes="xref cpp cpp-func">IsSourceWaiting()</literal>
+		</reference>), and in case the message is a reply, what it’s a reply to
+(		<reference internal="True" refid="_CPPv4NK8BMessage8PreviousEv" reftitle="BMessage::Previous">
+			<literal classes="xref cpp cpp-func">Previous()</literal>
+		</reference>).
+	</paragraph>
+	<paragraph>Mostly, messages are used to pass information between the objects in your application, but because
+messages ae such flexible data containers, they are also often used for other <strong>data storage
+purposes</strong>. Many applications store their settings as messages. Because messages can be flattened to
+data streams (such as files), they provide an easy but powerful tool for data storage.</paragraph>
+	<paragraph>All methods can be classified in these areas:</paragraph>
+	<bullet_list bullet="-">
+		<list_item>
+			<paragraph>Adding, Finding, Replacing and Removing data.</paragraph>
+		</list_item>
+		<list_item>
+			<paragraph>Statistics and miscellaneous information.</paragraph>
+		</list_item>
+		<list_item>
+			<paragraph>Delivery information.</paragraph>
+		</list_item>
+		<list_item>
+			<paragraph>Utilities to reply to messages.</paragraph>
+		</list_item>
+	</bullet_list>
+	<paragraph>To see how messages fit in with the greater picture, have a look at the “Messaging Introduction”.</paragraph>
+	<section ids="data-members" names="data\ members">
+		<title>Data Members</title>
+		<section ids="_CPPv4N8BMessage4whatE">
+			<title>what</title>
+		</section>
+		<abigrouptitle/>
+		<abigroup>
+			<index entries="[('single', 'BMessage::what (C++ member)', '_CPPv4N8BMessage4whatE', '', None)]"/>
+			<desc classes="cpp member" desctype="member" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="member">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage4whatE _CPPv3N8BMessage4whatE _CPPv2N8BMessage4whatE BMessage::what__uint32" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<inline classes="n">uint32</inline>
+						<inline classes="w"></inline>
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">what</inline>
+						</desc_name>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<paragraph>A coded constant that captures what the message is about.</paragraph>
+		</abigroup>
+	</section>
+	<section ids="constructor-and-destructor" names="constructor\ and\ destructor">
+		<title>Constructor and Destructor</title>
+		<section ids="_CPPv4N8BMessage8BMessageE6uint32">
+			<title>BMessage</title>
+		</section>
+		<abigrouptitle/>
+		<abigroup>
+			<index entries="[('single', 'BMessage::BMessage (C++ function)', '_CPPv4N8BMessage8BMessageE6uint32', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage8BMessageE6uint32 _CPPv3N8BMessage8BMessageE6uint32 _CPPv2N8BMessage8BMessageE6uint32 BMessage::BMessage__uint32" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<reference internal="True" refid="_CPPv4N8BMessage8BMessageE6uint32" reftitle="BMessage::BMessage">
+								<inline classes="n">BMessage</inline>
+							</reference>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+						</desc_name>
+						<desc_parameterlist xml:space="preserve">
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="n">uint32</inline>
+								<inline classes="w"></inline>
+								<inline classes="n sig-param">command</inline>
+							</desc_parameter>
+						</desc_parameterlist>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<index entries="[('single', 'BMessage::BMessage (C++ function)', '_CPPv4N8BMessage8BMessageERK8BMessage', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage8BMessageERK8BMessage _CPPv3N8BMessage8BMessageERK8BMessage _CPPv2N8BMessage8BMessageERK8BMessage BMessage::BMessage__BMessageCR" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<reference internal="True" refid="_CPPv4N8BMessage8BMessageERK8BMessage" reftitle="BMessage::BMessage">
+								<inline classes="n">BMessage</inline>
+							</reference>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+						</desc_name>
+						<desc_parameterlist xml:space="preserve">
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="k">const</inline>
+								<inline classes="w"></inline>
+								<reference internal="True" refid="_CPPv4N8BMessage8BMessageERK8BMessage" reftitle="BMessage::BMessage">
+									<inline classes="n">BMessage</inline>
+								</reference>
+								<inline classes="w"></inline>
+								<inline classes="p">&</inline>
+								<inline classes="n sig-param">message</inline>
+							</desc_parameter>
+						</desc_parameterlist>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<index entries="[('single', 'BMessage::BMessage (C++ function)', '_CPPv4N8BMessage8BMessageEv', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage8BMessageEv _CPPv3N8BMessage8BMessageEv _CPPv2N8BMessage8BMessageEv BMessage::BMessage" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<reference internal="True" refid="_CPPv4N8BMessage8BMessageEv" reftitle="BMessage::BMessage">
+								<inline classes="n">BMessage</inline>
+							</reference>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+						</desc_name>
+						<desc_parameterlist xml:space="preserve"/>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<paragraph>Creates a new <highlightClass>BMessage</highlightClass> object that has the given <highlightParameter>command</highlightParameter> constant, or that’s a copy of another
+				<literal>BMessage</literal>. If it’s a copy, the new object contains the same command constant and data fields as
+				<highlightParameter>message</highlightParameter>.
+			</paragraph>
+			<paragraph>See also: <literal classes="xref cpp cpp-func">BLooper::DetachCurrentMessage()</literal>.
+			</paragraph>
+		</abigroup>
+		<section ids="_CPPv4N8BMessageD0Ev">
+			<title>~BMessage</title>
+		</section>
+		<abigrouptitle/>
+		<abigroup>
+			<index entries="[('single', 'BMessage::~BMessage (C++ function)', '_CPPv4N8BMessageD0Ev', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessageD0Ev _CPPv3N8BMessageD0Ev _CPPv2N8BMessageD0Ev BMessage::~BMessage" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<inline classes="k">virtual</inline>
+						<inline classes="w"></inline>
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">~BMessage</inline>
+						</desc_name>
+						<desc_parameterlist xml:space="preserve"/>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<paragraph>Frees all memory allocated to hold message data. If the message sender is expecting a reply but
+hasn’t received one, a default reply (with <literal classes="xref cpp cpp-enum">B_NO_REPLY</literal> as the <highlightField>what</highlightField> data member) is sent
+before the message is destroyed.</paragraph>
+			<paragraph>The system retains ownership of the messages it delivers to you. Each message loop routinely deletes
+delivered <highlightClass>BMessage</highlightClass>s after the application is finished responding to them.</paragraph>
+		</abigroup>
+	</section>
+	<section ids="member-functions" names="member\ functions">
+		<title>Member Functions</title>
+		<section ids="_CPPv4N8BMessage7AddDataEPKc9type_codePKv7ssize_tb5int32">
+			<title>AddData</title>
+		</section>
+		<section ids="_CPPv4N8BMessage7AddBoolEPKcb">
+			<title>AddBool</title>
+		</section>
+		<section ids="_CPPv4N8BMessage7AddInt8EPKc4int8">
+			<title>AddInt8</title>
+		</section>
+		<section ids="_CPPv4N8BMessage8AddInt16EPKc5int16">
+			<title>AddInt16</title>
+		</section>
+		<section ids="_CPPv4N8BMessage8AddInt32EPKc5int32">
+			<title>AddInt32</title>
+		</section>
+		<section ids="_CPPv4N8BMessage8AddInt64EPKc5int64">
+			<title>AddInt64</title>
+		</section>
+		<section ids="_CPPv4N8BMessage8AddFloatEPKcf">
+			<title>AddFloat</title>
+		</section>
+		<section ids="_CPPv4N8BMessage9AddDoubleEPKcd">
+			<title>AddDouble</title>
+		</section>
+		<section ids="_CPPv4N8BMessage9AddStringEPKcPKc">
+			<title>AddString</title>
+		</section>
+		<section ids="_CPPv4N8BMessage8AddPointEPKc6BPoint">
+			<title>AddPoint</title>
+		</section>
+		<section ids="_CPPv4N8BMessage7AddRectEPKc5BRect">
+			<title>AddRect</title>
+		</section>
+		<section ids="_CPPv4N8BMessage6AddRefEPKcPK9entry_ref">
+			<title>AddRef</title>
+		</section>
+		<section ids="_CPPv4N8BMessage10AddMessageEPKcPK8BMessage">
+			<title>AddMessage</title>
+		</section>
+		<section ids="_CPPv4N8BMessage12AddMessengerEPKc10BMessenger">
+			<title>AddMessenger</title>
+		</section>
+		<section ids="_CPPv4N8BMessage10AddPointerEPKcPKv">
+			<title>AddPointer</title>
+		</section>
+		<section ids="_CPPv4N8BMessage7AddFlatEPKcP12BFlattenable5int32">
+			<title>AddFlat</title>
+		</section>
+		<abigrouptitle/>
+		<abigroup>
+			<index entries="[('single', 'BMessage::AddData (C++ function)', '_CPPv4N8BMessage7AddDataEPKc9type_codePKv7ssize_tb5int32', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage7AddDataEPKc9type_codePKv7ssize_tb5int32 _CPPv3N8BMessage7AddDataEPKc9type_codePKv7ssize_tb5int32 _CPPv2N8BMessage7AddDataEPKc9type_codePKv7ssize_tb5int32 BMessage::AddData__cCP.type_code.voidCP.ssize_t.b.int32" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<inline classes="n">status_t</inline>
+						<inline classes="w"></inline>
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">AddData</inline>
+						</desc_name>
+						<desc_parameterlist xml:space="preserve">
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="k">const</inline>
+								<inline classes="w"></inline>
+								<inline classes="kt">char</inline>
+								<inline classes="w"></inline>
+								<inline classes="p">*</inline>
+								<inline classes="n sig-param">name</inline>
+							</desc_parameter>
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="n">type_code</inline>
+								<inline classes="w"></inline>
+								<inline classes="n sig-param">type</inline>
+							</desc_parameter>
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="k">const</inline>
+								<inline classes="w"></inline>
+								<inline classes="kt">void</inline>
+								<inline classes="w"></inline>
+								<inline classes="p">*</inline>
+								<inline classes="n sig-param">data</inline>
+							</desc_parameter>
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="n">ssize_t</inline>
+								<inline classes="w"></inline>
+								<inline classes="n sig-param">numBytes</inline>
+							</desc_parameter>
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="kt">bool</inline>
+								<inline classes="w"></inline>
+								<inline classes="n sig-param">fixedSize</inline>
+								<inline classes="w"></inline>
+								<inline classes="p">=</inline>
+								<inline classes="w"></inline>
+								<inline classes="k">true</inline>
+							</desc_parameter>
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="n">int32</inline>
+								<inline classes="w"></inline>
+								<inline classes="n sig-param">numItems</inline>
+								<inline classes="w"></inline>
+								<inline classes="p">=</inline>
+								<inline classes="w"></inline>
+								<inline classes="m">1</inline>
+							</desc_parameter>
+						</desc_parameterlist>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<index entries="[('single', 'BMessage::AddBool (C++ function)', '_CPPv4N8BMessage7AddBoolEPKcb', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage7AddBoolEPKcb _CPPv3N8BMessage7AddBoolEPKcb _CPPv2N8BMessage7AddBoolEPKcb BMessage::AddBool__cCP.b" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<inline classes="n">status_t</inline>
+						<inline classes="w"></inline>
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">AddBool</inline>
+						</desc_name>
+						<desc_parameterlist xml:space="preserve">
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="k">const</inline>
+								<inline classes="w"></inline>
+								<inline classes="kt">char</inline>
+								<inline classes="w"></inline>
+								<inline classes="p">*</inline>
+								<inline classes="n sig-param">name</inline>
+							</desc_parameter>
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="kt">bool</inline>
+								<inline classes="w"></inline>
+								<inline classes="n sig-param">data</inline>
+							</desc_parameter>
+						</desc_parameterlist>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<index entries="[('single', 'BMessage::AddInt8 (C++ function)', '_CPPv4N8BMessage7AddInt8EPKc4int8', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage7AddInt8EPKc4int8 _CPPv3N8BMessage7AddInt8EPKc4int8 _CPPv2N8BMessage7AddInt8EPKc4int8 BMessage::AddInt8__cCP.int8" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<inline classes="n">status_t</inline>
+						<inline classes="w"></inline>
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">AddInt8</inline>
+						</desc_name>
+						<desc_parameterlist xml:space="preserve">
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="k">const</inline>
+								<inline classes="w"></inline>
+								<inline classes="kt">char</inline>
+								<inline classes="w"></inline>
+								<inline classes="p">*</inline>
+								<inline classes="n sig-param">name</inline>
+							</desc_parameter>
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="n">int8</inline>
+								<inline classes="w"></inline>
+								<inline classes="n sig-param">data</inline>
+							</desc_parameter>
+						</desc_parameterlist>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<index entries="[('single', 'BMessage::AddInt16 (C++ function)', '_CPPv4N8BMessage8AddInt16EPKc5int16', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage8AddInt16EPKc5int16 _CPPv3N8BMessage8AddInt16EPKc5int16 _CPPv2N8BMessage8AddInt16EPKc5int16 BMessage::AddInt16__cCP.int16" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<inline classes="n">status_t</inline>
+						<inline classes="w"></inline>
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">AddInt16</inline>
+						</desc_name>
+						<desc_parameterlist xml:space="preserve">
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="k">const</inline>
+								<inline classes="w"></inline>
+								<inline classes="kt">char</inline>
+								<inline classes="w"></inline>
+								<inline classes="p">*</inline>
+								<inline classes="n sig-param">name</inline>
+							</desc_parameter>
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="n">int16</inline>
+								<inline classes="w"></inline>
+								<inline classes="n sig-param">data</inline>
+							</desc_parameter>
+						</desc_parameterlist>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<index entries="[('single', 'BMessage::AddInt32 (C++ function)', '_CPPv4N8BMessage8AddInt32EPKc5int32', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+				<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage8AddInt32EPKc5int32 _CPPv3N8BMessage8AddInt32EPKc5int32 _CPPv2N8BMessage8AddInt32EPKc5int32 BMessage::AddInt32__cCP.int32" is_multiline="True">
+					<desc_signature_line add_permalink="True" xml:space="preserve">
+						<inline classes="n">status_t</inline>
+						<inline classes="w"></inline>
+						<desc_addname classes="sig-prename descclassname" xml:space="preserve">
+							<inline classes="n">BMessage</inline>
+							<inline classes="p">::</inline>
+						</desc_addname>
+						<desc_name classes="sig-name descname" xml:space="preserve">
+							<inline classes="n">AddInt32</inline>
+						</desc_name>
+						<desc_parameterlist xml:space="preserve">
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="k">const</inline>
+								<inline classes="w"></inline>
+								<inline classes="kt">char</inline>
+								<inline classes="w"></inline>
+								<inline classes="p">*</inline>
+								<inline classes="n sig-param">name</inline>
+							</desc_parameter>
+							<desc_parameter noemph="True" xml:space="preserve">
+								<inline classes="n">int32</inline>
+								<inline classes="w"></inline>
+								<inline classes="n sig-param">data</inline>
+							</desc_parameter>
+						</desc_parameterlist>
+					</desc_signature_line>
+				</desc_signature>
+				<desc_content/>
+			</desc>
+			<index entries="[('single', 'BMessage::AddInt64 (C++ function)', '_CPPv4N8BMessage8AddInt64EPKc5int64', '', None)]"/>
+			<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="

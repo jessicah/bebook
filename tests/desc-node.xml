@@ -1,0 +1,48 @@
+<desc classes="c macro" desctype="macro" domain="c" nocontentsentry="False" noindex="False" noindexentry="False" objtype="macro">
+        <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object c">
+                <desc_name classes="sig-name descname" xml:space="preserve">char* class_name(object)</desc_name>
+        </desc_signature>
+        <desc_content/>
+</desc>
+
+<desc classes="cpp member" desctype="member" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="member">
+        <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage4whatE _CPPv3N8BMessage4whatE _CPPv2N8BMessage4whatE BMessage::what__uint32" is_multiline="True">
+                <desc_signature_line add_permalink="True" xml:space="preserve">
+                        <inline classes="n">uint32</inline>
+                        <inline classes="w"></inline>
+                        <desc_addname classes="sig-prename descclassname" xml:space="preserve">
+                                <inline classes="n">BMessage</inline>
+                                <inline classes="p">::</inline>
+                        </desc_addname>
+                        <desc_name classes="sig-name descname" xml:space="preserve">
+                                <inline classes="n">what</inline>
+                        </desc_name>
+                </desc_signature_line>
+        </desc_signature>
+        <desc_content/>
+</desc>
+
+<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+        <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv4N8BMessage8BMessageE6uint32 _CPPv3N8BMessage8BMessageE6uint32 _CPPv2N8BMessage8BMessageE6uint32 BMessage::BMessage__uint32" is_multiline="True">
+                <desc_signature_line add_permalink="True" xml:space="preserve">
+                        <desc_addname classes="sig-prename descclassname" xml:space="preserve">
+                                <reference internal="True" refid="_CPPv4N8BMessage8BMessageE6uint32" reftitle="BMessage::BMessage">
+                                        <inline classes="n">BMessage</inline>
+                                </reference>
+                                <inline classes="p">::</inline>
+                        </desc_addname>
+                        <desc_name classes="sig-name descname" xml:space="preserve">
+                                <inline classes="n">BMessage</inline>
+                        </desc_name>
+                        <desc_parameterlist xml:space="preserve">
+                                <desc_parameter noemph="True" xml:space="preserve">
+                                        <inline classes="n">uint32</inline>
+                                        <inline classes="w"></inline>
+                                        <inline classes="n sig-param">command</inline>
+                                </desc_parameter>
+                        </desc_parameterlist>
+                </desc_signature_line>
+        </desc_signature>
+        <desc_content/>
+</desc>
+                        

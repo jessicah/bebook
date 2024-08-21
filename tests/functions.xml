@@ -1,0 +1,411 @@
+<document source="/home/jessi/source/haiku/bebook/kits/support/functions.md">
+        <section ids="functions-and-macros" names="functions\ and\ macros">
+                <title>Functions and Macros</title>
+                <paragraph>This section lists the Support Kit’s general-purpose functions and macros.</paragraph>
+                <section ids="_CPPv410atomic_addP6vint325int32">
+                        <title>atomic_add</title>
+                </section>
+                <section ids="_CPPv410atomic_andP6vint325int32">
+                        <title>atomic_and</title>
+                </section>
+                <section ids="_CPPv49atomic_orP6vint325int32">
+                        <title>atomic_or</title>
+                </section>
+                <abigrouptitle/>
+                <abigroup>
+                        <paragraph>Declared in: <literal>support/SupportDefs.h</literal>
+                        </paragraph>
+                        <index entries="[('single', 'atomic_add (C++ function)', '_CPPv410atomic_addP6vint325int32', '', None)]"/>
+                        <desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+                                <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv410atomic_addP6vint325int32 _CPPv310atomic_addP6vint325int32 _CPPv210atomic_addP6vint325int32 atomic_add__vint32P.int32" is_multiline="True">
+                                        <desc_signature_line add_permalink="True" xml:space="preserve">
+                                                <inline classes="n">int32</inline>
+                                                <inline classes="w"></inline>
+                                                <desc_name classes="sig-name descname" xml:space="preserve">
+                                                        <inline classes="n">atomic_add</inline>
+                                                </desc_name>
+                                                <desc_parameterlist xml:space="preserve">
+                                                        <desc_parameter noemph="True" xml:space="preserve">
+                                                                <inline classes="n">vint32</inline>
+                                                                <inline classes="w"></inline>
+                                                                <inline classes="p">*</inline>
+                                                                <inline classes="n sig-param">atomicVariable</inline>
+                                                        </desc_parameter>
+                                                        <desc_parameter noemph="True" xml:space="preserve">
+                                                                <inline classes="n">int32</inline>
+                                                                <inline classes="w"></inline>
+                                                                <inline classes="n sig-param">addValue</inline>
+                                                        </desc_parameter>
+                                                </desc_parameterlist>
+                                        </desc_signature_line>
+                                </desc_signature>
+                                <desc_content/>
+                        </desc>
+                        <index entries="[('single', 'atomic_and (C++ function)', '_CPPv410atomic_andP6vint325int32', '', None)]"/>
+                        <desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+                                <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv410atomic_andP6vint325int32 _CPPv310atomic_andP6vint325int32 _CPPv210atomic_andP6vint325int32 atomic_and__vint32P.int32" is_multiline="True">
+                                        <desc_signature_line add_permalink="True" xml:space="preserve">
+                                                <inline classes="n">int32</inline>
+                                                <inline classes="w"></inline>
+                                                <desc_name classes="sig-name descname" xml:space="preserve">
+                                                        <inline classes="n">atomic_and</inline>
+                                                </desc_name>
+                                                <desc_parameterlist xml:space="preserve">
+                                                        <desc_parameter noemph="True" xml:space="preserve">
+                                                                <inline classes="n">vint32</inline>
+                                                                <inline classes="w"></inline>
+                                                                <inline classes="p">*</inline>
+                                                                <inline classes="n sig-param">atomicVariable</inline>
+                                                        </desc_parameter>
+                                                        <desc_parameter noemph="True" xml:space="preserve">
+                                                                <inline classes="n">int32</inline>
+                                                                <inline classes="w"></inline>
+                                                                <inline classes="n sig-param">andValue</inline>
+                                                        </desc_parameter>
+                                                </desc_parameterlist>
+                                        </desc_signature_line>
+                                </desc_signature>
+                                <desc_content/>
+                        </desc>
+                        <index entries="[('single', 'atomic_or (C++ function)', '_CPPv49atomic_orP6vint325int32', '', None)]"/>
+                        <desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+                                <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv49atomic_orP6vint325int32 _CPPv39atomic_orP6vint325int32 _CPPv29atomic_orP6vint325int32 atomic_or__vint32P.int32" is_multiline="True">
+                                        <desc_signature_line add_permalink="True" xml:space="preserve">
+                                                <inline classes="n">int32</inline>
+                                                <inline classes="w"></inline>
+                                                <desc_name classes="sig-name descname" xml:space="preserve">
+                                                        <inline classes="n">atomic_or</inline>
+                                                </desc_name>
+                                                <desc_parameterlist xml:space="preserve">
+                                                        <desc_parameter noemph="True" xml:space="preserve">
+                                                                <inline classes="n">vint32</inline>
+                                                                <inline classes="w"></inline>
+                                                                <inline classes="p">*</inline>
+                                                                <inline classes="n sig-param">atomicVariable</inline>
+                                                        </desc_parameter>
+                                                        <desc_parameter noemph="True" xml:space="preserve">
+                                                                <inline classes="n">int32</inline>
+                                                                <inline classes="w"></inline>
+                                                                <inline classes="n sig-param">orValue</inline>
+                                                        </desc_parameter>
+                                                </desc_parameterlist>
+                                        </desc_signature_line>
+                                </desc_signature>
+                                <desc_content/>
+                        </desc>
+                        <paragraph>These functions perform the named operations (addition, bitwise AND, or bitwise OR) on the 32-bit
+value found in <highlightParameter>atomicVariable</highlightParameter>, thus:</paragraph>
+                        <literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">*atomicVariable += addValue;
+*atomicVariable &= andValue;
+*atomicVariable |= orValue;</literal_block>
+                        <paragraph>Each function returns the previous value of the <desc_inline classes="cpp-expr sig sig-inline cpp">
+                                <inline classes="n">vint32</inline>
+                        </desc_inline> variable that <highlightParameter>atomicVariable</highlightParameter>
+points to (in other words, they each return the value that was in <highlightParameter>*atomicVariable</highlightParameter> before
+the operation was performed).</paragraph>
+                <paragraph>These functions are guaranteed to be atomic: if two threads attempt to access the same atomic
+variable at the same time (through these functions), one of the threads will be made to wait until
+the other thread has completed the operation and updated the <highlightParameter>atomicVariable</highlightParameter> value.</paragraph>
+        </abigroup>
+        <section ids="_CPPv44beepv">
+                <title>beep</title>
+        </section>
+        <section ids="_CPPv411system_beepPc6uint32">
+                <title>system_beep</title>
+        </section>
+        <abigrouptitle/>
+        <abigroup>
+                <paragraph>Declared in: <literal>support/Beep.h</literal>
+                </paragraph>
+                <index entries="[('single', 'beep (C++ function)', '_CPPv44beepv', '', None)]"/>
+                <desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+                        <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv44beepv _CPPv34beepv _CPPv24beepv beep" is_multiline="True">
+                                <desc_signature_line add_permalink="True" xml:space="preserve">
+                                        <inline classes="n">status_t</inline>
+                                        <inline classes="w"></inline>
+                                        <desc_name classes="sig-name descname" xml:space="preserve">
+                                                <inline classes="n">beep</inline>
+                                        </desc_name>
+                                        <desc_parameterlist xml:space="preserve"/>
+                                </desc_signature_line>
+                        </desc_signature>
+                        <desc_content/>
+                </desc>
+                <index entries="[('single', 'system_beep (C++ function)', '_CPPv411system_beepPc6uint32', '', None)]"/>
+                <desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+                        <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp" ids="_CPPv411system_beepPc6uint32 _CPPv311system_beepPc6uint32 _CPPv211system_beepPc6uint32 system_beep__cP.uint32" is_multiline="True">
+                                <desc_signature_line add_permalink="True" xml:space="preserve">
+                                        <inline classes="n">status_t</inline>
+                                        <inline classes="w"></inline>
+                                        <desc_name classes="sig-name descname" xml:space="preserve">
+                                                <inline classes="n">system_beep</inline>
+                                        </desc_name>
+                                        <desc_parameterlist xml:space="preserve">
+                                                <desc_parameter noemph="True" xml:space="preserve">
+                                                        <inline classes="kt">char</inline>
+                                                        <inline classes="w"></inline>
+                                                        <inline classes="p">*</inline>
+                                                        <inline classes="n sig-param">eventName</inline>
+                                                </desc_parameter>
+                                                <desc_parameter noemph="True" xml:space="preserve">
+                                                        <inline classes="n">uint32</inline>
+                                                        <inline classes="w"></inline>
+                                                        <inline classes="n sig-param">flags</inline>
+                                                        <inline classes="w"></inline>
+                                                        <inline classes="p">=</inline>
+                                                        <inline classes="w"></inline>
+                                                        <inline classes="m">0</inline>
+                                                </desc_parameter>
+                                        </desc_parameterlist>
+                                </desc_signature_line>
+                        </desc_signature>
+                        <desc_content/>
+                </desc>
+                <paragraph>
+                        <highlightMethod>beep()</highlightMethod> produces the basic system beep. This function engages the Media Server, but
+doesn’t wait for the sound to play. If it can’t contact the server to play the beep, it returns
+                        <literal classes="xref cpp cpp-enum">B_ERROR</literal>. If it can make contact but can’t get a satisfactory reply back from the server,
+it returns <literal classes="xref cpp cpp-enum">B_BAD_REPLY</literal>. Otherwise, it returns <literal classes="xref cpp cpp-enum">B_OK</literal>.
+                </paragraph>
+                <paragraph>
+                        <highlightMethod>system_beep()</highlightMethod> plays the system beep configured for the event specified by the given
+                        <highlightParameter>eventName</highlightParameter>.
+                </paragraph>
+                <paragraph>Applications can add new system beep events by calling <literal classes="xref cpp cpp-func">add_system_beep_event()</literal>, passing
+the name to assign to the event; the <highlightParameter>flags</highlightParameter> argument is currently unused and should be
+zero. Once this has been done, the user can use the Sounds preference application to configure a
+sound for the event.</paragraph>
+                <paragraph>See also: <literal classes="xref cpp cpp-func">play_sound()</literal> in the Media Kit.</paragraph>
+        </abigroup>
+        <abigrouptitle/>
+        <abigroup>
+                <paragraph>Declared in: <literal>support/ClassInfo.h</literal>
+                </paragraph>
+                <paragraph>DERP: the AST nodes for this don’t work…</paragraph>
+                <index entries="[]"/>
+                <desc classes="c macro" desctype="macro" domain="c" nocontentsentry="False" noindex="False" noindexentry="False" objtype="macro">
+                        <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object c">
+                                <desc_name classes="sig-name descname" xml:space="preserve">char* class_name(object)</desc_name>
+                        </desc_signature>
+                        <desc_content/>
+                </desc>
+                <index entries="[]"/>
+                <desc classes="c macro" desctype="macro" domain="c" nocontentsentry="False" noindex="False" noindexentry="False" objtype="macro">
+                        <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object c">
+                                <desc_name classes="sig-name descname" xml:space="preserve">bool is_instance_of(object, class)</desc_name>
+                        </desc_signature>
+                        <desc_content/>
+                </desc>
+                <index entries="[]"/>
+                <desc classes="c macro" desctype="macro" domain="c" nocontentsentry="False" noindex="False" noindexentry="False" objtype="macro">
+                        <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object c">
+                                <desc_name classes="sig-name descname" xml:space="preserve">bool is_kind_of(object, class)</desc_name>
+                        </desc_signature>
+                        <desc_content/>
+                </desc>
+                <index entries="[]"/>
+                <desc classes="c macro" desctype="macro" domain="c" nocontentsentry="False" noindex="False" noindexentry="False" objtype="macro">
+                        <desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object c">
+                                <desc_name classes="sig-name descname" xml:space="preserve">class* cast_as(object, class)</desc_name>
+                        </desc_signature>
+                        <desc_content/>
+                </desc>
+                <paragraph>These macros deliver information about an object’s type, including the name of its class and its
+standing in the class hierarchy. In each case, the object argument is a pointer to an object; it can
+be an object of any type (it doesn’t have to descend from any particular class). The class argument
+is a class name—not a string such as “<highlightClass>BApplication</highlightClass>”, but the type name itself (literally
+                        <highlightClass>BApplication</highlightClass>).
+                </paragraph>
+                <paragraph>
+                        <highlightMethod>class_name()</highlightMethod> returns a pointer to the name of the object’s class.</paragraph>
+                <paragraph>
+                        <highlightMethod>is_instance_of()</highlightMethod> returns <desc_inline classes="cpp-expr sig sig-inline cpp">
+                        <inline classes="k">true</inline>
+                </desc_inline> if object is an instance of class, and
+                <desc_inline classes="cpp-expr sig sig-inline cpp">
+                        <inline classes="k">false</inline>
+                </desc_inline> otherwise.</paragraph>
+        <paragraph>
+                <highlightMethod>is_kind_of()</highlightMethod> returns <desc_inline classes="cpp-expr sig sig-inline cpp">
+                <inline classes="k">true</inline>
+        </desc_inline> if object is an instance of class or an instance of
+any class that inherits from class, and <desc_inline classes="cpp-expr sig sig-inline cpp">
+        <inline classes="k">false</inline>
+</desc_inline> if not.</paragraph>
+<paragraph>
+<highlightMethod>cast_as()</highlightMethod> returns a pointer to object cast as a pointer to an object of class, but only if
+object is a kind of class. If not, object cannot be safely cast as a pointer to class, so
+<highlightMethod>cast_as()</highlightMethod> returns <desc_inline classes="cpp-expr sig sig-inline cpp">
+<inline classes="n">NULL</inline>
+</desc_inline>.
+</paragraph>
+<paragraph>For example, given this slice of the inheritance hierarchy from the Interface Kit, and code like
+this that creates an instance of the <highlightClass>BPictureButton</highlightClass> class,</paragraph>
+<literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">BButton* button = new BPictureButton(/* ... */);</literal_block>
+<paragraph>the first three macros would work as follows:</paragraph>
+<bullet_list bullet="-">
+<list_item>
+<paragraph>The <highlightMethod>class_name()</highlightMethod> macro would return a pointer to the string “BPictureButton”:</paragraph>
+<literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">const char *s = class_name(button);</literal_block>
+</list_item>
+<list_item>
+<paragraph>The <highlightMethod>is_instance_of()</highlightMethod> macro would return <desc_inline classes="cpp-expr sig sig-inline cpp">
+        <inline classes="k">true</inline>
+</desc_inline> only if the <highlightParameter>class</highlightParameter>
+passed to it is <literal classes="xref cpp cpp-class">BPictureButton</literal>. In the following example, it would return
+<desc_inline classes="cpp-expr sig sig-inline cpp">
+        <inline classes="k">false</inline>
+</desc_inline>, and the message would not be printed. Even though <literal classes="xref cpp cpp-class">BPictureButton</literal>
+inherits from <literal classes="xref cpp cpp-class">BView</literal>, the object is an instance of the <literal classes="xref cpp cpp-class">BPictureButton</literal>
+class, not <literal classes="xref cpp cpp-class">BView</literal>:
+</paragraph>
+<literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">if (is_instance_of(button, BView))
+        printf("The button is an instance of BView.\n");</literal_block>
+</list_item>
+<list_item>
+<paragraph>The <highlightMethod>is_kind_of()</highlightMethod> macro would return <desc_inline classes="cpp-expr sig sig-inline cpp">
+<inline classes="k">true</inline>
+</desc_inline> if <highlightParameter>class</highlightParameter> is
+<literal classes="xref cpp cpp-class">BPictureButton</literal> or any class that <literal classes="xref cpp cpp-class">BPictureButton</literal> inherits from. In the
+following example, it would return <desc_inline classes="cpp-expr sig sig-inline cpp">
+<inline classes="k">true</inline>
+</desc_inline> and the message would be printed. A
+<literal classes="xref cpp cpp-class">BPictureButton</literal> is a kind of <literal classes="xref cpp cpp-class">BView</literal>:
+</paragraph>
+<literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">if (is_kind_of(button, BView))
+        printf("The button is a kind of BView.\n");</literal_block>
+</list_item>
+</bullet_list>
+<paragraph>Note that class names are not passed as strings, but <highlightMethod>class_name()</highlightMethod> returns the name as a
+string.</paragraph>
+<paragraph>The <highlightMethod>cast_as()</highlightMethod> macro is most useful when you want to treat a generic object as an instance
+of a more specific class. Support, for example, that the <literal classes="xref cpp cpp-class">BPictureButton</literal> mentioned above
+becomes the focus view for a window and you retrieve it by calling the <literal classes="xref cpp cpp-class">BWindow</literal>s
+<literal classes="xref cpp cpp-func">CurrentFocus()</literal> function:</paragraph>
+<literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">BView* focus = window->CurrentFocus();</literal_block>
+<paragraph>Since the focus view might be any type of view, <literal classes="xref cpp cpp-func">CurrentFocus()</literal> returns a
+pointer to an object of the base <literal classes="xref cpp cpp-class">BView</literal> class. Unless you know otherwise, you cannot
+treat the object as anything more specific than a <literal classes="xref cpp cpp-class">BView</literal> instance. However, you can ask
+the object if it’s a kind of <literal classes="xref cpp cpp-class">BPictureButton</literal> and, if it is, cast it to the
+<literal classes="xref cpp cpp-class">BPictureButton</literal> type:</paragraph>
+<literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">if (is_kind_of(focus, BPictureButton)) {
+        BPictureButton* pictureButton = (BPictureButton*)focus);
+        if (pictureButton->Behavior() == B_TWO_STATE_BUTTON)
+                // . . .
+}</literal_block>
+<paragraph>The <highlightMethod>cast_as()</highlightMethod> macro does the same thing, but more efficiently. It casts the object to the
+target class if it is safe to do so—if the object is an instance of a class that inherits from the
+target class or an instance of the target class itself—and returns <desc_inline classes="cpp-expr sig sig-inline cpp">
+<inline classes="n">NULL</inline>
+</desc_inline> if not.</paragraph>
+<literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">BPictureButton* pictureButton = cast_as(focus, BPictureButton);
+if (pictureButton != NULL) {
+        if (pictureButton->Behavior() == B_TWO_STATE_BUTTON)
+                // . . .
+}</literal_block>
+<paragraph>
+<highlightMethod>cast_as()</highlightMethod> is often used in place of the cast operator to assure code safety even where an
+expected result is anticipated and there’s no need for an intermediate variable (like <literal>focus</literal>):
+</paragraph>
+<literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">BPictureButton* pictureButton = cast_as(window->CurrentFocus(), BPictureButton);
+if (pictureButton != NULL) {
+        // . . .
+}</literal_block>
+<paragraph>The <highlightMethod>cast_as()</highlightMethod> and <highlightMethod>is_kind_of()</highlightMethod> macros work alike; they’re both based on the
+C++ <desc_inline classes="cpp-expr sig sig-inline cpp">dynamic_cast</desc_inline> operator and they reflect its behavior. To describe that behavior more
+precisely, let’s adopt the following shorthand terms for an object’s type:</paragraph>
+<bullet_list bullet="-">
+<list_item>
+<paragraph>The real type of an object is its type on construction. For example, if you construct an instance
+of the <highlightClass>BButton</highlightClass> class, as shown above, <literal classes="xref cpp cpp-class">BButton</literal> is its real type.</paragraph>
+</list_item>
+<list_item>
+<paragraph>The declared type of an object is the class label it currently bears. For example,
+<highlightMethod>CurrentFocus()</highlightMethod> returns an object whose declared class is <literal classes="xref cpp cpp-class">BView</literal>.
+</paragraph>
+</list_item>
+</bullet_list>
+<paragraph>Either of these types can be compared to a target type, the type you want to cast the object to or
+test it against. The target type is the class argument passed to the macros.</paragraph>
+<paragraph>In the best of all possible worlds, you’d want to ignore the declared type of an object and compare
+only the real type to the target type. However, the <desc_inline classes="cpp-expr sig sig-inline cpp">dynamic_cast</desc_inline> operator—and by
+extensions <highlightMethod>cast_as()</highlightMethod> and <highlightMethod>is_kind_of()</highlightMethod>—considers the real type only if it has
+to. It first compares the object’s declared type to the target type. It assumes that the declared
+type is accurate (that the object is truly the kind of object it’s represented to be) and it
+summarily handles the obvious cases: If the target type is the same as the declared type or if it’s
+a class that the declared type inherits from, the operation will succeed. Consequently,
+<highlightMethod>cast_as()</highlightMethod> will cast the object to the target type and <highlightMethod>is_kind_of()</highlightMethod> will return
+<desc_inline classes="cpp-expr sig sig-inline cpp">
+<inline classes="k">true</inline>
+</desc_inline>, regardless of the object’s real type. In other words, if the target class is above
+or at the same level as the declared class in the inheritance hierarchy, the real class is ignored.</paragraph>
+<paragraph>However, if the declared type doesn’t match or derive from the target type, <desc_inline classes="cpp-expr sig sig-inline cpp">dynamic_cast</desc_inline>
+and the macros look at the real type: If the target class is identical to the real type, or if it’s
+a class that the real type derives from, the operation succeeds. If not, it fails.</paragraph>
+<paragraph>Therefore, the <highlightMethod>is_kind_of()</highlightMethod> and <highlightMethod>cast_as()</highlightMethod> macros will produce reliable results
+as long as objects are not arbitrarily cast to types that may not be accurate. For example, you
+should not cast an object to a target type and then attempt to use the <highlightMethod>is_kind_of()</highlightMethod> to
+determine if the cast was correct. This code is unreliable:</paragraph>
+<literal_block force="False" highlight_args="{}" language="cpp" linenos="False" xml:space="preserve">BPictureButton* pictureButton = (BPictureButton)window->CurrentFocus();
+if (is_kind_of(pictureButton, BPictureButton)) {
+        // . . .
+}</literal_block>
+<paragraph>In this example, <highlightMethod>is_kind_of()</highlightMethod> will always return <desc_inline classes="cpp-expr sig sig-inline cpp">
+<inline classes="k">true</inline>
+</desc_inline>, no matter what the
+class of the current focus view. The general rule is that the declared type of an object must always
+be accurate; an object should be typed only to its own class or to a class that it inherits from.
+The amcros cannot rescue you from an inaccurate cast.</paragraph>
+</abigroup>
+<abigrouptitle/>
+<abigroup>
+<paragraph>Declared in: <literal>support/UTF8.h</literal>
+</paragraph>
+<index entries="[]"/>
+<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp">
+<desc_name classes="sig-name descname" xml:space="preserve">status_t convert_to_utf8(uint32 sourceEncoding, const char* source, int32*</desc_name>
+</desc_signature>
+<desc_content>
+<paragraph>sourceLength, char* destination, int32* destinationLength, int32* state, char substitute =
+B_SUBSTITUTE)</paragraph>
+</desc_content>
+</desc>
+<index entries="[]"/>
+<desc classes="cpp function" desctype="function" domain="cpp" nocontentsentry="False" noindex="False" noindexentry="False" objtype="function">
+<desc_signature _toc_name="" _toc_parts="()" classes="sig sig-object cpp">
+<desc_name classes="sig-name descname" xml:space="preserve">status_t convert_from_utf8(uint32 destinationEncoding, const char* source, int32*</desc_name>
+</desc_signature>
+<desc_content>
+<paragraph>sourceLength, char* destination, int32* destinationLength, int32* state, char substitute =
+B_SUBSTITUTE)</paragraph>
+</desc_content>
+</desc>
+<paragraph>These functions convert text to and from the Unicode(TM) UTF-8 encoding that’s standard for Haiku
+and is assumed in most contexts. UTF-8 is described under “Character Encoding” section of The
+Interface Kit chapter.</paragraph>
+<paragraph>
+<highlightMethod>convert_to_utf8()</highlightMethod> permits you to take text that’s encoded according to another standard
+and convert it to UTF-8 for Haiku. <highlightMethod>convert_from_utf8()</highlightMethod> lets you convert text from UTF-8
+to other encodings for other venues (for example, to the encodings commonly used fro displaying text
+on the World Wide Web — this needs changing!).</paragraph>
+<paragraph>The first argument passed to these functions names the other encoding: the source encoding for
+<highlightMethod>convert_to_utf8()</highlightMethod> and the destination encoding for <highlightMethod>convert_from_utf8()</highlightMethod>. it can
+be any of the following constants:</paragraph>
+<paragraph>… …</paragraph>
+<paragraph>Most of these constants designate encoding schemes that are supported by the <literal classes="xref cpp cpp-class">BFont</literal>
+class in the Interface Kit and its <literal classes="xref cpp cpp-func">SetEncoding()</literal> function. They parallel the
+constants that are passed to that function. For example, <literal classes="xref cpp cpp-enum">B_IOS1_CONVERSION</literal> (for these
+functions) and <literal classes="xref cpp cpp-enum">B_ISO_8859_1</literal> (for <literal classes="xref cpp cpp-func">SetEncoding()</literal>) both designate the
+extended ASCII encoding defined in part one of ISO 8859 (Latin 1). Similarly,
+<literal classes="xref cpp cpp-enum">B_ISO2_CONVERSION</literal> matches <literal classes="xref cpp cpp-enum">B_ISO_8859_2</literal>,<literal classes="xref cpp cpp-enum">B_ISO3_CONVERSION</literal>
+matches <literal classes="xref cpp cpp-enum">B_ISO_8859_3</literal>, and so on. <literal classes="xref cpp cpp-enum">B_MAC_ROMAN_CONVERSION</literal> matches
+<literal classes="xref cpp cpp-enum">B_MACINTOSH_ROMAN</literal>. (<literal classes="xref cpp cpp-enum">B_ISO10_CONVERSION</literal> is not implemented in this release.)
+– Need to check</paragraph>
+<paragraph>
+<literal classes="xref cpp cpp-enum">B_SJIS_CONVERSION</literal> stands for the Shift-JIS (Japanese Industrial Standard) encoding of
+Japanese and <literal classes="xref cpp cpp-enum">B_EUC_CONVERSION</literal> stands for the EUC (Extended UNIX Code) encoding of
+Japanese in packed format.</paragraph>
+</abigroup>
+</section>
+</document>
