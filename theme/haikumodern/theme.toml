@@ -1,8 +1,10 @@
 [theme]
 inherit = "basic"
 stylesheet = "haiku.css"
-pygments_style = "autumn"
 sidebars = "localtoc.html"
+
+[theme.pygments_style]
+default = "autumn"
 
 [options]
 full_logo         = false
