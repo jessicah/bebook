@@ -354,28 +354,28 @@ to the mask. See {ref}`modifiers()` for a list of modifier keys.
 when the user types the shortcut. The {hclass}`BWindow` takes ownership of
 the {hparam}`message` object and adds a {hparam}`when` field to it:
 
-  :::{list-table}
----
-header-rows: 1
-align: left
-widths: auto
----
--
-	- Field name
+	:::{list-table}
+	---
+	header-rows: 1
+	align: left
+	widths: auto
+	---
+	-
+		- Field name
 
-	- Type code
+		- Type code
 
-	- Description
+		- Description
 
--
-	- {hparam}`when`
+	-
+		- {hparam}`when`
 
-	- {cpp:enumerator}`B_INT64_TYPE`
+		- {cpp:enumerator}`B_INT64_TYPE`
 
-	- The time of the key-down, in microseconds since 01/01/70.
+		- The time of the key-down, in microseconds since 01/01/70.
 
 
-:::
+	:::
 
 - {hparam}`handler` must be in the window's handler list (or the message
 won't be sent). If you exclude the argument, this {hclass}`BWindow` handles
