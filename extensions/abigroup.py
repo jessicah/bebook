@@ -52,7 +52,7 @@ class AbiGroupDirective(Directive):
             descriptor.ismethod = descriptor.attributes['desctype'] != 'member' and descriptor.attributes['desctype'] != 'enumerator' and descriptor.attributes['desctype'] != 'var'
             descriptor.isenum = descriptor.attributes['desctype'] == 'enumerator'
             name = self.search(descriptor, addnodes.desc_name)
-            
+
             assert name, 'abi-group: unable to find a function/member'
             ix = name.first_child_matching_class(addnodes.desc_sig_name)
             title = ''
@@ -91,7 +91,7 @@ class CustomHTMLTranslator(HTML5Translator):
     def __init__(self, document: nodes.document, builder: Builder) -> None:
         super().__init__(document, builder)
         self.in_abi_group = False
-    
+
     def visit_document(self, node):
         path = node.attributes['source']
         if path == '<partial node>':
@@ -144,13 +144,13 @@ class CustomHTMLTranslator(HTML5Translator):
             self.body.pop()
             self.body.append('<br />')
         else:
-            self.body.append('<pre style="background: #f3f3f3; line-height: 2em">')
+            self.body.append('<p class="pre" style="background: #f3f3f3; line-height: 2em">')
 
     def depart_desc(self, node):
         if 'cpp' in node.attributes['classes'] and 'class' in node.attributes['classes']:
             return
 
-        self.body.append('</pre>')
+        self.body.append('</p>')
 
     def visit_desc_signature(self, node: Element) -> None:
         if not self.in_abi_group:
@@ -158,7 +158,7 @@ class CustomHTMLTranslator(HTML5Translator):
 
     def depart_desc_signature(self, node):
         if not self.in_abi_group:
-            super().depart_desc_signature(node)        
+            super().depart_desc_signature(node)
 
     def visit_desc_signature_line(self, node):
         if not self.in_abi_group:
@@ -167,6 +167,10 @@ class CustomHTMLTranslator(HTML5Translator):
     def depart_desc_signature_line(self, node):
         if not self.in_abi_group:
             super().depart_desc_signature_line(node)
+
+    # potentially visit_desc_parameterlist
+    # or visit_desc_type_parameter_list,
+    # so can wrap parameters into a non-wrapping span
 
     def visit_desc_content(self, node):
         if not self.in_abi_group:
