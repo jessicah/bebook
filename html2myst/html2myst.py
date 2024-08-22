@@ -256,6 +256,10 @@ class Document:
 				ordered_list += list_item
 			return ordered_list
 
+		if element.name == 'div' and has_class(element, 'informaltable'):
+			for child in element.children:
+				return self.process_block(child)
+
 		classes = [
 			'mediaobject',
 			'orderedlist',

@@ -188,12 +188,27 @@ class ListItem(BlockContainer):
 	def __str__(self):
 		self.content = ''
 		for index, block in enumerate(self.blocks):
-			wrapped = fit_to_lines(str(block), '  ')
-			if index == 0:
-				self.content += f'{self.prefix} {wrapped[2:]}\n'
+			if isinstance(block, Block):
+				self.content += self.wrap(block)
 			else:
-				self.content += f'{wrapped}\n'
+				wrapped = fit_to_lines(str(block), '  ')
+				if index == 0:
+					self.content += f'{self.prefix} {wrapped[2:]}\n'
+				else:
+					self.content += f'{wrapped}\n'
 		return super().wrap_content()
+
+	def wrap(self, block):
+		lines = str(block).split('\n')
+		content = ''
+		for index, line in enumerate(lines):
+			if index == 0 and len(line) == 0:
+				content += f'{self.prefix}\n'
+			elif index == 0:
+				content += f'{self.prefix} {line}\n'
+			else:
+				content += f'  {line}\n'
+		return content
 
 	def walk(self, depth):
 		print(f'{indent(depth)} List Item:')
@@ -207,11 +222,14 @@ class ListItem(BlockContainer):
 		self.prefix = prefix
 		self.content = ''
 		for index, block in enumerate(self.blocks):
-			wrapped = fit_to_lines(str(block), '  ')
-			if index == 0:
-				self.content += f'{self.prefix} {wrapped[2:]}\n\n'
+			if isinstance(block, Block):
+				self.content += self.wrap(block)
 			else:
-				self.content += f'{wrapped}\n\n'
+				wrapped = fit_to_lines(str(block), '  ')
+				if index == 0:
+					self.content += f'{self.prefix} {wrapped[2:]}\n\n'
+				else:
+					self.content += f'{wrapped}\n\n'
 		return super().wrap_content()
 
 class UnorderedList(BlockContainer):
