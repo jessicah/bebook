@@ -354,11 +354,28 @@ Notes on the arguments:
   when the user types the shortcut. The {hclass}`BWindow` takes ownership
   of the {hparam}`message` object and adds a {hparam}`when` field to it:
 
-  :::{list-table} --- header-rows: 1 align: left widths: auto --- - 	-
-  Field name  	- Type code  	- Description  - 	- {hparam}`when`  	-
-  {cpp:enumerator}`B_INT64_TYPE`  	- The time of the key-down, in
-  microseconds since 01/01/70.   :::
-
+- :::{list-table}
+  ---
+  header-rows: 1
+  align: left
+  widths: auto
+  ---
+  -
+  	- Field name
+  
+  	- Type code
+  
+  	- Description
+  
+  -
+  	- {hparam}`when`
+  
+  	- {cpp:enumerator}`B_INT64_TYPE`
+  
+  	- The time of the key-down, in microseconds since 01/01/70.
+  
+  
+  :::
 - {hparam}`handler` must be in the window's handler list (or the message
   won't be sent). If you exclude the argument, this {hclass}`BWindow`
   handles the message. If handler is (literally) {cpp:expr}`NULL`, the
