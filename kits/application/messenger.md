@@ -175,10 +175,12 @@ The target can respond to the message:
   and freeing {hparam}`reply`. {hparam}`message` and {hparam}`reply` can be
   the same object.
 
-  :::{admonition} Warning :class: warning Use caution when requesting a
-  synchronous reply: If you call {hmethod}`SendMessage()` from the target
-  looper's thread, you'll deadlock (or, at best, time out). :::
-
+- :::{admonition} Warning
+  :class: warning
+  Use caution when requesting a synchronous reply: If you call
+  {hmethod}`SendMessage()` from the target looper's thread, you'll deadlock
+  (or, at best, time out).
+  :::
 - If you supply a reply target ({hparam}`replyMessenger` or
   {hparam}`replyHandler`), the response is asynchronous, and is sent to the
   reply target.

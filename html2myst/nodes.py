@@ -199,7 +199,9 @@ class ListItem(BlockContainer):
 		return super().wrap_content()
 
 	def wrap(self, block):
-		lines = str(block).split('\n')
+		# a block (pre) can contain explicit line breaks using '\r',
+		# so use `splitlines()` instead of `split('\n')`
+		lines = str(block).splitlines()
 		content = ''
 		for index, line in enumerate(lines):
 			if index == 0 and len(line) == 0:

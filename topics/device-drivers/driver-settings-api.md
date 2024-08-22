@@ -46,10 +46,11 @@ The settings file is formatted like this:
 - Parameters can have values and subparameters. A parameter has the
   following form in the settings file:
 
-  :::{code} sh name [value]* [{
-[parameter]*
-}] ['n',','] :::
-
+- :::{code} sh
+  name [value]* [{
+  [parameter]*
+  }] ['n',',']
+  :::
   Where [ … ] indicates an optional part, and [ … ]* indicates an optional
   repeated part.
 

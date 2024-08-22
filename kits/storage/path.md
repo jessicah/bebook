@@ -263,9 +263,10 @@ Other details…
 
 - Destructive setting is safe:
 
-  :::{code} cpp /* This works... */
-path.SetTo(path.Path(), ...); :::
-
+- :::{code} cpp
+  /* This works... */
+  path.SetTo(path.Path(), ...);
+  :::
 - Currently, {hmethod}`SetTo()` only checks pathname and filename length if
   it has to normalize.
 

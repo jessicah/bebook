@@ -22,6 +22,7 @@ function_re = re.compile(r'([a-zA-Z0-9_~]+)\(')
 operator_re = re.compile(r'(operator([+\-*\/%^&|~!=<>,()[\]]{1,3}|\s+new|\s+delete))\(')
 reference_re = re.compile(r'#([^_]+)_([^_]+)$')
 enum_re = re.compile(r'^([A-Z0-9_]+)$')
+global_function_re = re.compile(r'([a-z]+_?)+')
 
 def text_content(element, clean=True):
 	if clean:
@@ -402,9 +403,12 @@ class Document:
 					content += f'_{result}_'
 
 			elif child.name == 'acronym':
-				# no acronym support in markdown...
-				print(fg.li_yellow, 'WARNING: missing acronym support in markdown', reset)
+				# these aren't actually treated as acronyms in the source HTML,
+				# just a stylistic convention; will treat as plaintext, as no
+				# benefit to explain widely understood terms:
+				#   AIFF, API, ASCII, ATAPI, AVI, BFS, CPU, DAC, DMA, GIF, GUI, IEC, I/O, IP, ISO, MIDI, MIME, MPEG, MUX, NTSC, PAL, PCI, PCMCIA, PNG, POP, RGB, RS-232, SCSI, SMTP, TCP, TLS, TV, UDP, URL, USB, UTF-8, VBL, WAVE
 				content += text_content(child)
+
 			elif child.name == 'br':
 				content += '\n\n'
 			else:
@@ -454,13 +458,31 @@ class Document:
 				ref_method = f'{ref_class}()'
 			if content_matches:
 				if '::' in content:
+					# a fully qualified reference to a class method
 					return f'{{cpp:func}}`{ref_class}::{ref_method}()`'
 				else:
+					# a reference to a class method, with class name hidden
 					return f'{{cpp:func}}`~{ref_class}::{ref_method}()`'
 			else:
-					return f'{{cpp:func}}`{content} <{ref_class}::{ref_method}>`'
+				# a reference with a name different to link
+				return f'{{cpp:func}}`{content} <{ref_class}::{ref_method}>`'
 		else:
-			if ref_type == 'ref':
+			ref = ''
+
+			if match:
+				ref = match.group(0)[1:]
+			enum_match = enum_re.match(ref)
+			function_match = global_function_re.match(ref)
+
+			if match and (enum_match or function_match):
+				if enum_match:
+					return f'{{cpp:enumerator}}`{ref}`'
+				elif function_match:
+					if ref == content.replace('()', '') or ref == content:
+						return f'{{cpp:func}}`{ref}()`'
+					else:
+						return f'{{cpp:func}}`{content} <{ref}>`'
+			elif ref_type == 'ref':
 				print(fg.li_red, 'WARNING:', reset, 'unable to parse reference:', reset, fg.li_green, element, reset)
 			return f'{{{ref_type}}}`{content}`'
 

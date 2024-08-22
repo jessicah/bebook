@@ -59,10 +59,10 @@ widths: auto
 Messages that don't fit the definition won't be sent to the object's filter
 function.
 
-The {hparam}`filter` argument is a pointer to a {cpp:func}`filter_hook`
+The {hparam}`filter` argument is a pointer to a {cpp:func}`filter_hook()`
 function. This is the function that's invoked when a message needs to be
-examined (see {cpp:func}`filter_hook` for the protocol). You don't have to
-supply a {cpp:func}`filter_hook` function; instead, you can implement
+examined (see {cpp:func}`filter_hook()` for the protocol). You don't have
+to supply a {cpp:func}`filter_hook()` function; instead, you can implement
 {hclass}`BMessageFilter`'s {cpp:func}`~BMessageFilter::Filter()` function
 in a subclass.
 
@@ -122,10 +122,10 @@ outside the message-passing mechanism), but keep in mind that it's the
 caller's responsibility to interpret the return value.
 
 Rather than implement the  function, you can supply the
-{hclass}`BMessageFilter` with a {cpp:func}`filter_hook` callback when you
-construct the object. If you do both, the {cpp:func}`filter_hook` (and not
-{hmethod}`Filter()`) will be invoked when the object is asked to examine a
-message.
+{hclass}`BMessageFilter` with a {cpp:func}`filter_hook()` callback when you
+construct the object. If you do both, the {cpp:func}`filter_hook()` (and
+not {hmethod}`Filter()`) will be invoked when the object is asked to
+examine a message.
 ::::
 
 ## Member Functions

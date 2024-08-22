@@ -126,8 +126,9 @@ parameters:
   {cpp:class}`BListItem`. All drawing calls you issue should be made
   through this BView. For example:
 
-  :::{code} cpp owner->DrawString(item_text); :::
-
+- :::{code} cpp
+  owner->DrawString(item_text);
+  :::
 - A {cpp:class}`BRect`, which is the rectangle in which the item should be
   drawn.
 

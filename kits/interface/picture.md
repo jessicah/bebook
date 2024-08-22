@@ -397,7 +397,9 @@ While many of these functions are similar to those found in
   radians, rather than in degrees. You can convert the value into degrees
   by using the forumla:
 
-  :::{code} cpp degrees = (rotation*180.0) / 3.14159265369); :::
+- :::{code} cpp
+  degrees = (rotation*180.0) / 3.14159265369);
+  :::
 ::::
 
 ## Static Functions

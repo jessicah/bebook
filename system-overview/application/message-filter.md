@@ -11,7 +11,7 @@ To define a message filter, you have to provide a message-filtering
 function. You do this by implementing the
 {cpp:func}`~BMessageFilter::Filter()` hook function in a
 {cpp:class}`BMessageFilter` subclass, or by supplying a
-{cpp:func}`filter_hook` function to the {cpp:class}`BMessageFilter`
+{cpp:func}`filter_hook()` function to the {cpp:class}`BMessageFilter`
 constructor. Only one filter function per object is called. If you
 implement {cpp:func}`~BMessageFilter::Filter()` and provide a filter_hook
 function, the filter_hook will win.
