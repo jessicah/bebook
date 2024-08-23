@@ -76,6 +76,12 @@ any area—even a corner or part of a side—in common with {hparam}`rect`, and
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 This function's results are unpredictable if either rectangle is invalid.
 :::
 

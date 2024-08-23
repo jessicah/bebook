@@ -33,15 +33,29 @@ window from the screen without interrupting the object's message loop, use
 quitting in particular) are handled as described in the
 {cpp:class}`BLooper` class.
 
-:::{admonition} Warning
+::::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 If you create a {cpp:class}`BWindow`-derived class that uses multiple
 inheritance, make sure the first class your mixin class inherits from is
 {cpp:class}`BWindow`; otherwise, you'll crash when you try to close the
 window. This happens because of an interaction between the window thread
 how C++ deletes objects of a multiply-inherited class. In other words:
 
+:::{code} cpp
+class myClass : public BWindow, public OtherClass
+:::
+
 is safe, while
 
-is not.
+:::{code} cpp
+class myClass : public OtherClass, public BWindow
 :::
+
+is not.
+::::

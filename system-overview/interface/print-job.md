@@ -216,6 +216,12 @@ of its output by calling the {cpp:func}`~BView::Draw()`
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Don't use the {cpp:func}`BView::Bounds()` function to determine the area to
 render. Instead, use the update rectangle passed to the
 {cpp:func}`BView::Draw()` function.

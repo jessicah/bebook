@@ -43,6 +43,12 @@ pointer-to-whatever-you-want that you used when registering the device
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The function's return value is ignored.
 :::
 
@@ -132,6 +138,12 @@ near).
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The return value is ignored.
 :::
 ::::
@@ -241,6 +253,12 @@ back upstream.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The functions don't let you un/register the same device definition twice,
 and {hmethod}`RegisterDevices()` won't register a device that doesn't have
 a name (although the name can be ""). However, the functions don't complain

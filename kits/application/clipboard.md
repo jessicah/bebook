@@ -111,6 +111,12 @@ and {cpp:expr}`false` if the {hclass}`BClipboard` object was deleted while
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 There's no way to tell {hmethod}`Lock()` to time out.
 :::
 

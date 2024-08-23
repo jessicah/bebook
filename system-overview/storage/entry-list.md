@@ -35,6 +35,12 @@ To get back to the top of an entry list, you call
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 {cpp:func}`~BEntryList::Rewind()` applies to {cpp:class}`BDirectory`s only.
 You can't rewind a {cpp:class}`BQuery`'s entry list.
 :::
@@ -215,6 +221,12 @@ it actually got.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Keep in mind that currently {cpp:func}`~BEntryList::GetNextDirents()` can
 only read one dirent at a time, regardless of the size of {hparam}`buf`, or
 the value of {hparam}`count`.

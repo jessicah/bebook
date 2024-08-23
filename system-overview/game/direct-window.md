@@ -14,6 +14,12 @@ rebuilding the object. A simple call to the
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 if you want your direct window to be full-screen but don't want exclusive
 mode, just resize the window to fill the entire screen; since full-screen
 exclusive mode (as set by calling
@@ -30,6 +36,21 @@ caveats:
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
+1. Don't draw into the direct window from its own thread; you should spawn
+  another thread for drawing into the direct window.
+
+2. And use the {cpp:func}`~BDirectWindow::DirectConnected()` function to
+  synchronize the interaction between  {cpp:class}`BDirectWindow` and your
+  drawing thread. Also, if you choose to use {cpp:class}`BWindow` or
+  {cpp:class}`BView` API inside a  {cpp:class}`BDirectWindow`, be sure you
+  don't block the {cpp:func}`~BDirectWindow::DirectConnected()` function.
+
 Don't draw into the direct window from its own thread; you should spawn
 another thread for drawing into the direct window.
 
@@ -225,6 +246,12 @@ the information later, you should make a copy of the fields you need.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 If your {cpp:func}`~BDirectWindow::DirectConnected()` implementation
 doesn't handle a request within three seconds, the Application Server will
 intentionally crash your application under the assumption that it's

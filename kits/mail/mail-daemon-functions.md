@@ -57,6 +57,12 @@ Returns the number of POP accounts that have been configured.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The mail daemon currently supports only one POP account, so this function
 will always return 1. You shouldn't assume there will only be one POP
 account, though, as this will probably change in the future.
@@ -81,6 +87,12 @@ This function returns the size of the output data that's been stored in the
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 You must be certain, in advance, that the output buffer is large enough to
 hold the decoded data, or this function will do bad things.
 :::
@@ -98,6 +110,12 @@ This function returns the size of the output data that's been stored in the
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 You must be certain, in advance, that the output buffer is large enough to
 hold the encoded data, or this function will do bad things.
 :::
@@ -260,6 +278,12 @@ daemon checks mail round-the-clock.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Eventually these functions will support multiple POP accounts; at this
 time, the Mail Kit only supports one POP account, so you must use an
 {hparam}`index` of 0. Any other {hparam}`index` will result in a

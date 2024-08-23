@@ -51,6 +51,12 @@ Deletes the {hclass}`BDeskbar` object.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 A view that's sitting on the Deskbar's shelf may not call any of these
 functions.
 :::
@@ -89,6 +95,12 @@ identified by {hparam}`for_nam`e.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The caller is responsible for freeing found_name.
 :::
 

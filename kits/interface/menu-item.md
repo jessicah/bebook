@@ -160,6 +160,12 @@ other distinction is used to distinguish disabled from enabled items,
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 If a derived class implements its own {hmethod}`DrawContent()` function,
 but still wants to draw a textual string, it should do so by assigning the
 string as the {hclass}`BMenuItem`'s label and calling the inherited version

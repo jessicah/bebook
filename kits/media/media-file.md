@@ -87,6 +87,12 @@ indicates the size of the data to write to the file.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The {hclass}`BMediaFile` class doesn't automatically perform any locking to
 prevent multiple writes to the file from occurring at the same time. If you
 have multiple threads writing into the same {hclass}`BMediaFile`, you must
@@ -135,6 +141,12 @@ copied, so the original belongs to you.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The {hclass}`BMediaFile` class doesn't automatically perform any locking to
 prevent multiple writes to the file from occurring at the same time. If you
 have multiple threads writing into the same {hclass}`BMediaFile`, you must
@@ -264,6 +276,12 @@ codec you want to use to encode the data into the track.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The {hparam}`mediaFormat` can't contain any wildcards; you have to specify
 the exact format that you're going to be providing. {hparam}`mediaFormat`
 must also be the same structure you passed to
@@ -445,6 +463,12 @@ If the {hclass}`BMediaFile` wasn't properly initialized, or the
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 You must call {cpp:func}`~BMediaFile::ReleaseTrack()` when you're finished
 with the track.
 :::

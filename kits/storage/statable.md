@@ -26,6 +26,12 @@
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Access time is currently unused.
 :::
 
@@ -35,6 +41,12 @@ seconds since (the beginning of ) January 1, 1970.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The time quanta that stat uses is seconds; the rest of the BeOS measures
 time in microseconds ({htype}`bigtime_t`).
 :::

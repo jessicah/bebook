@@ -81,7 +81,7 @@ The default port capacity (100), should be sufficient for most apps, but
 you can fiddle with it through the {hparam}`portCapacity` argument.
 ::::
 
-::::{abi-group}
+:::::{abi-group}
 :::{cpp:function} virtual BLooper::~BLooper()
 :::
 
@@ -94,19 +94,37 @@ In general, you should never delete your {hclass}`BLooper` objects: With
 the exception of the {cpp:class}`BApplication` object, {hclass}`BLooper`s
 are destroyed by the {cpp:func}`~BLooper::Quit()` function.
 
-:::{admonition} Warning
+::::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 If you create a {hclass}`BLooper`-derived class that uses multiple
 inheritance, make sure the first class your mixin class inherits from is
 {hclass}`BLooper`; otherwise, you'll crash when you try to close the
 window. This happens because of an interaction between the window thread
 how C++ deletes objects of a multiply-inherited class. In other words:
 
+:::{code} cpp
+class myClass : public BLooper, public OtherClass {
+   ...
+};
+:::
+
 is safe, whilst
 
-is not.
+:::{code} cpp
+class myClass : public OtherClass, public BLooper {
+   ...
+};
 :::
+
+is not.
 ::::
+:::::
 
 ## Hook Functions
 
@@ -219,6 +237,12 @@ can examine the list but you shouldn't modify or delete it.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 For all but {hmethod}`CommonFilterList()`, the {hclass}`BLooper` must be
 locked.
 :::
@@ -531,6 +555,12 @@ it unlocks the object before it returns. Keep in mind that a
 
 :::{admonition} Caution
 :class: caution
+
+
+
+
+
+
 Calling {hmethod}`Run()` on a {hclass}`BLooper` that's already running will
 dump you into the debugger.
 :::

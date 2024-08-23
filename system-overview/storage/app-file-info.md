@@ -9,6 +9,12 @@ executable is the progenitor of a running application, into the app roster
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Most apps won't ever need to create or use a {cpp:class}`BAppFileInfo`
 object. Setting an executable's info is best left to the file's creator,
 through the use of resource data that's compiled into the executable. Even
@@ -18,6 +24,12 @@ application.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 {cpp:class}`BAppFileInfo` objects should only be used to examine and set
 the characteristics of applications and add-ons. Using the object on a
 non-executable file could corrupt the file.

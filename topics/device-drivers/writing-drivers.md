@@ -12,6 +12,12 @@ applications to talk to it.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 We can't stress this enough: a bug in a device driver can bring down the
 entire system. Be very careful, and be sure to test your work well.
 :::
@@ -103,6 +109,12 @@ initialization succeeds, otherwise return an appropriate error code.
 
 :::{admonition} TODO
 :class: note
+
+
+
+
+
+
 what happens if this returns an error?
 :::
 ::::
@@ -307,6 +319,12 @@ drivers/Drivers.h.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The {hparam}`len` argument is only valid when ioctl() is called from user
 space; the kernel always sets it to 0.
 :::

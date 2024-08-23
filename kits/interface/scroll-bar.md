@@ -210,6 +210,12 @@ the default large step is 10.0, which is also probably too small.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Although the step values are specified using type {htype}`float`, only
 integral values should be specified; otherwise, the scroll bar won't behave
 as expected.

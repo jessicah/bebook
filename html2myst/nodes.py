@@ -30,6 +30,9 @@ def fit_to_lines(text, indent=''):
 
 class Item:
 	def __init__(self):
+		self.directive = None
+		self.depth = 0
+		self.extent = 0
 		pass
 
 	def __str__(self):
@@ -38,8 +41,15 @@ class Item:
 	def walk(self, depth):
 		print(f'{indent(depth)} Empty Item')
 
+	def outline(self, depth):
+		return depth, False
+
+	def fence(self):
+		return ':' * (self.extent - self.depth + 3)
+
 class Text(Item):
 	def __init__(self, content=''):
+		super().__init__()
 		# could we do some line wrapping here?
 		if isinstance(content, Text):
 			content = str(content)
@@ -54,14 +64,17 @@ class Text(Item):
 class Block(Text):
 	def __init__(self, directive=None):
 		super().__init__()
-		if isinstance(directive, tuple):
-			self.directive, self.colons = directive
-		elif isinstance(directive, str):
+		if isinstance(directive, str):
 			self.directive = directive
-			self.colons = ':::'
 		else:
 			self.directive = None
 		self.strip = True
+
+	def outline(self, depth):
+		if self.directive is not None:
+			self.depth = depth
+			self.extent = depth
+		return self.extent, self.directive is not None
 
 	def walk(self, depth):
 		print(f'{indent(depth)} Block')
@@ -76,22 +89,33 @@ class Block(Text):
 			self.content += content
 		return self
 
-	def set_directive(self, directive, colons=3):
-		self.directive, self.colons = directive, ':' * colons
+	def set_directive(self, directive):
+		self.directive = directive
 
 	def wrap_content(self):
 		if self.directive is None:
 			return self.content
 		else:
 			if len(self.content.strip()) == 0:
-				return f'{self.colons}{self.directive}\n{self.colons}'
+				return f'{self.fence()}{self.directive}\n{self.fence()}'
 			else:
-				return f'{self.colons}{self.directive}\n{self.content}\n{self.colons}'
+				return f'{self.fence()}{self.directive}\n{self.content}\n{self.fence()}'
 
 class BlockContainer(Block):
 	def __init__(self, directive=None):
 		super().__init__(directive)
 		self.blocks = []
+
+	def outline(self, depth):
+		self.depth = depth
+		self.extent = depth
+		new_depth = depth + 1 if self.directive is not None else depth
+		for block in self.blocks:
+			if not isinstance(block, str):
+				new_extent, has_directive = block.outline(new_depth)
+				if has_directive:
+					self.extent = max(self.extent, new_extent)
+		return self.extent, self.directive is not None
 
 	def walk(self, depth):
 		print(f'{indent(depth)} Block Container:')
@@ -140,7 +164,7 @@ class SectionContainer(BlockContainer):
 		else:
 			return body
 
-class TableRow(Item):
+class TableRow(BlockContainer):
 	def walk(self, depth):
 		print(f'{indent(depth)} Table Row')
 

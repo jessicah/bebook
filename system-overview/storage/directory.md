@@ -82,6 +82,12 @@ the end of this class description).
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The following description is a brief, directory-specific view into the Node
 Monitor. For the full story, see "{ref}`The Node Monitor`" section of this
 chapter.

@@ -108,6 +108,12 @@ If you want to erase the node's icon, pass {cpp:expr}`NULL` as the
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The icon attributes are stored as "BEOS: L:STD_ICON" (large icon) and
 "BEOS: M:STD_ICON" (small, or "mini" icon).
 :::
@@ -188,6 +194,12 @@ database for an app that can open the node's file type.
 :class: note
 
 
+
+
+
+
+
+
 The attribute that stores the preferred app is named "BEOS:PREF_APP".
 
 
@@ -234,6 +246,12 @@ or returned through {hparam}`type`, is a MIME string.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The attribute that stores the file type is named "BEOS:TYPE".
 :::
 

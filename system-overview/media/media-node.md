@@ -16,6 +16,12 @@ Inheritance <TheMediaKit::AboutMultipleVirtualInheritance>`".
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Applications shouldn't call a node's member functions directly; instead,
 you call the {cpp:class}`BMediaRoster` with a reference to the node and let
 the request come to the node through the control port. The only exception
@@ -84,6 +90,12 @@ locking down the image itself can help performance even further.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Standard BeOS system libraries are Be's responsibility. If it's appropriate
 for them to be locked, they're locked for you. Don't lock them yourself.
 Both libmedia.so and libroot.so have

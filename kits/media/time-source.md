@@ -281,6 +281,12 @@ lets you have time for setup prior to starting some operation.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Because {hparam}`performanceTime` is specified in performance time, and
 {hparam}`withLatency` is specified in real time, you can't just subtract
 {hparam}`withLatency` microseconds from {hparam}`performanceTime` and
@@ -331,6 +337,12 @@ filed in advance.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 A {hclass}`BTimeSource` measures start and stop times in real time, not in
 performance time, because {hclass}`BTimeSource`s are the objects used to
 perform the mapping between real time and performance time.
@@ -351,6 +363,12 @@ in advance.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 A {hclass}`BTimeSource` measures start and stop times in real time, not in
 performance time, because {hclass}`BTimeSource`s are the objects used to
 perform the mapping between real time and performance time.

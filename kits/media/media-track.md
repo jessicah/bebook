@@ -26,6 +26,12 @@ the existing copyright notice if one exists.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The {hclass}`BMediaTrack` class doesn't automatically perform any locking
 to prevent multiple writes to the track from occurring at the same time. If
 you have multiple threads writing into the same {hclass}`BMediaTrack`, you
@@ -68,6 +74,12 @@ this time).
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The {hclass}`BMediaTrack` class doesn't automatically perform any locking
 to prevent multiple writes to the track from occurring at the same time. If
 you have multiple threads writing into the same {hclass}`BMediaTrack`, you
@@ -551,6 +563,12 @@ is already encoded.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The {hclass}`BMediaTrack` class doesn't automatically perform any locking
 to prevent multiple writes to the track from occurring at the same time. If
 you have multiple threads writing into the same {hclass}`BMediaTrack`, you
@@ -597,6 +615,12 @@ key frame.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The {hclass}`BMediaTrack` class doesn't automatically perform any locking
 to prevent multiple writes to the track from occurring at the same time. If
 you have multiple threads writing into the same {hclass}`BMediaTrack`, you

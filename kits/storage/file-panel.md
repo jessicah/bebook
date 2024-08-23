@@ -16,6 +16,12 @@ it according to the arguments. The panel isn't displayed until you invoke
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 You may notice that some of the default arguments shown here don't jibe
 with the defaults listed in the section "{ref}`Constructing and Fine-tuning
 the Panel`". In particular, the {hparam}`node_flavors` argument was

@@ -113,6 +113,12 @@ attribute. The name is copied into the buffer, which should be at least
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 {hmethod}`GetNextAttrName()` does _not_ clear its argument if it returns an
 error. This will be corrected in a subsequent release.
 :::
@@ -271,6 +277,12 @@ that were written.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 If you want to use the attribute in a query, its type must be either
 {htype}`string`, {htype}`int32`, {htype}`uint32`, {htype}`int64`,
 {htype}`uint64`, {htype}`double`, or {htype}`float`. (In other words,
@@ -281,6 +293,12 @@ on.)
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The value of an indexed attribute must be no more than 255 bytes long.
 :::
 

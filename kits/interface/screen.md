@@ -20,6 +20,12 @@ screen.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Since multiple monitors aren't currently supported, there's no API for
 screen identifiers other than for the main screen.
 :::
@@ -85,6 +91,12 @@ typically used for highlighting.
 
 :::{admonition} Important
 :class: important
+
+
+
+
+
+
 The information gained through {hmethod}`IndexForColor()`,
 {hmethod}`ColorForIndex()`, and {hmethod}`InvertIndex()` can be retrieved
 more efficiently from the {htype}`color_map` structure. If you're
@@ -159,6 +171,12 @@ freeing {hparam}`mode_list`.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 There's no guarantee that the monitor can support all of the modes that
 {hmethod}`GetModeList()` retrieves.
 :::
@@ -408,6 +426,12 @@ diconnected and then reconnected.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Currently, this function always returns {cpp:enumerator}`B_MAIN_SCREEN_ID`,
 even if the {hclass}`BScreen` object is invalid.
 :::
@@ -440,6 +464,12 @@ screen size fields while holding the color space constant.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 This function was formerly called {hmethod}`ProposeDisplayMode()`.
 :::
 
@@ -512,6 +542,12 @@ color is set only for the current session.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The "Background Images" section tells you how to convince the desktop to
 display a bitmap image.
 :::

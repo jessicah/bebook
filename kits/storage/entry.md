@@ -325,6 +325,12 @@ are closed. This means that if you create {cpp:class}`BFile` based on a
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 {hmethod}`Remove()` does _not_ invalidate the {hclass}`BEntry`. It simply
 makes it abstract (see "{ref}`Abstract Entries`").
 :::
@@ -460,6 +466,12 @@ exist (yet). See "{ref}`Abstract Entries`" for more information.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Remember—successfully initializing a {hclass}`BEntry` consumes a file
 descriptor. When you re-initialize, the old file descriptor is closed.
 :::

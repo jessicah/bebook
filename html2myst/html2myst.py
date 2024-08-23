@@ -159,7 +159,7 @@ class Document:
 				section += self.process_block(child)
 
 		if needs_abi_group:
-			section.set_directive('{abi-group}', 4)
+			section.set_directive('{abi-group}')
 			section.output_title(False)
 
 		return section
@@ -499,6 +499,9 @@ class Document:
 if __name__ == '__main__':
 	document = Document(sys.argv[1], sys.argv[2], None)
 	document.process()
+	# outlining sets the correct level of block fences
+	# after building the tree
+	document.section.outline(0)
 	#print('document:', document)
 	with open(sys.argv[2], 'w') as file:
 		print(str(document).replace('\r','\n'), file=file)

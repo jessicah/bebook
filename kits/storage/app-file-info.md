@@ -124,6 +124,12 @@ argument to {hmethod}`SetIcon()`.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 To create a {cpp:class}`BBitmap` you must have a {cpp:var}`be_app` object ;
 the object needn't be running.
 :::
@@ -263,6 +269,12 @@ object represents.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 {hmethod}`SetSupportedTypes()` clobbers an executable's existing set of
 supported types. If you want to augment an executable's supported types,
 you should retrieve the existing set, add the new ones, and _then_ call
@@ -457,6 +469,12 @@ destroyed or reinitialized.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The {hclass}`BAppFileInfo` object doesn't check to make sure that the file
 that you pass in really is an executable. Passing in a non-executable (a
 plain file, a directory, etc.) could corrupt the file.

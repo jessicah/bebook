@@ -14,6 +14,12 @@ caches it until it's needed, then recycles the buffer.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 If you're writing a node, and receive a buffer with the
 {cpp:enumerator}`B_SMALL_BUFFER` flag set, you must recycle the buffer in
 your {cpp:func}`~BBufferConsumer::BufferReceived()` function.

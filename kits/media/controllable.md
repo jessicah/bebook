@@ -29,6 +29,12 @@ configuration.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The configuration of a parameter changes only when the range of possible
 values for the parameter changes. For example, if the parameter's value is
 a CD track number, the configuration would change (thus requiring a call to
@@ -122,6 +128,12 @@ and {hparam}`size` is the number of bytes of data in the value.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 It's possible that a single parameter may have several channels of values,
 if that parameter is a multi-channel parameter. For example, if the
 parameter is a two-channel slider (such as a stereo gain control, where the
@@ -311,6 +323,12 @@ format "node=%d" with the node ID in question as "%d".
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The above implementation suggestion (providing your control panel by
 launching the add-on as an application) is the default behavior of
 {hmethod}`StartControlPanel()`, so if that's how you implement your

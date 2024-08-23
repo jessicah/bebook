@@ -234,6 +234,12 @@ extension list.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 {hmethod}`SetFileExtensions()` clobbers the existing set of extensions. If
 you want to augment a type's extensions, you should retrieve the existing
 set, add the new ones, and then call {hmethod}`SetFileExtensions()`.
@@ -636,7 +642,7 @@ Returns the status of the most recent construction or
 See {cpp:func}`~BMimeType::SetTo()`.
 ::::
 
-::::{abi-group}
+:::::{abi-group}
 :::{cpp:function} status_t BMimeType::Install()
 :::
 
@@ -654,12 +660,23 @@ None of these functions affect the object's copy of the MIME type; for
 instance, deleting a MIME type from the database doesn't uninitialize the
 object.
 
-:::{admonition} Warning
+::::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Currently, {hmethod}`Install()` may return a random value if the object is
 already installed. To avoid confusion, you should call
 {hmethod}`IsInstalled()` first:
+
+:::{code} cpp
+if (!mime.IsInstalled())
+   mime.Install();
 :::
+::::
 
 :::{list-table}
 ---
@@ -680,7 +697,7 @@ widths: auto
 	- The object is uninitialized.
 
 :::
-::::
+:::::
 
 ::::{abi-group}
 :::{cpp:function} static bool BMimeType::IsValid(const char* MIME_string)

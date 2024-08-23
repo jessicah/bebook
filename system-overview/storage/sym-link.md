@@ -28,6 +28,12 @@ symlink, you use {cpp:class}`BDirectory`'s
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 {hclass}`BSymLink` objects are no smarter than the symlinks files
 themselves. For example, {hclass}`BSymLinks` can't resolve the fido/rover
 "problem".

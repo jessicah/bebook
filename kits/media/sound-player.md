@@ -63,6 +63,12 @@ widths: auto
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 If the callback handlers are members of a class, they must be static
 members.
 :::
@@ -378,6 +384,12 @@ SetSoundVolume() function.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The volume can range from 0.0 to 1.0, where 0.0 is silent and 1.0 is
 maximum loudness.
 :::
@@ -404,6 +416,12 @@ the {cpp:func}`~BSoundPlayer::SetSoundVolume()` function.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The possible range of volumes can be obtained by calling
 {cpp:func}`~BSoundPlayer::GetVolumeInfo()`.
 :::

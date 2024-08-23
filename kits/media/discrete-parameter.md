@@ -62,6 +62,12 @@ index, where index ranges from 0 to
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Selection values aren't necessarily in any sort of order, nor are they
 necessarily unique.
 :::
@@ -90,6 +96,12 @@ which allow the user to choose one of a number of inputs or outputs.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 It's important to note that the correct inputs and outputs must already be
 connected to the parameter when you call either of these functions,
 otherwise no items will be added, since the inputs and outputs aren't

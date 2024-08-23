@@ -2,6 +2,12 @@
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 You may not want to be here… The {hclass}`BResources` class was designed
 for a specific purpose: To provide a means to bundle application
 "resources" (icons, in particular) within the application executable

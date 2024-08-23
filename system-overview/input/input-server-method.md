@@ -16,6 +16,12 @@ events.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Writing an input method is an involved process, even though the
 {hclass}`BInputServerMethod` protocol is relatively simple. If you're
 working on an input method, please feel free to contact Be Developer

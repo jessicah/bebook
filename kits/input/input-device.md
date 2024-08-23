@@ -44,6 +44,12 @@ the requested value.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 In general, you only use this function to send custom messages to a
 (custom) device. You never use it to send messages to a Be-defined input
 device since the messages that these devices respond to are covered by
@@ -93,6 +99,12 @@ stop all devices of the given type.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The Input Server tells a device to start and stop without asking the device
 if the operation was successful. This means, for example, that
 {hmethod}`Start()` can return {cpp:enumerator}`B_OK` (and
@@ -227,6 +239,12 @@ messages that the Server may send are listed in Input Server Messages.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 watch_input_devices() is not currently implemented.
 :::
 ::::

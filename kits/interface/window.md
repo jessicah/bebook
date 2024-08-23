@@ -115,6 +115,12 @@ the window.
 
 :::{admonition} Important
 :class: important
+
+
+
+
+
+
 These hook functions are not invoked because of messages—don't go looking
 for a "menus beginning" or "menus ended" message.
 :::
@@ -243,11 +249,23 @@ activates the window.
 
 :::{admonition} Important
 :class: important
+
+
+
+
+
+
 You can't activate a hidden window.
 :::
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 You rarely call {hmethod}`Activate()` yourself. Deciding which window to
 make active is the user's choice.
 :::
@@ -336,6 +354,12 @@ added.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Don't use these functions to create and remove menu shortcuts; use
 {cpp:class}`BMenuItem` objects instead.
 :::
@@ -561,6 +585,12 @@ Implementation detail; see {cpp:func}`BLooper::DispatchMessage()`.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 You shouldn't override this function in a {hclass}`BWindow` subclass; if
 you want to augment the window's message-dispatching mechanism, override
 {cpp:func}`~BWindow::MessageReceived()`.
@@ -619,6 +649,12 @@ feel, respectively.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 A floating window can never be the frontmost window.
 :::
 ::::
@@ -708,6 +744,12 @@ and the {hclass}`BWindow` and its thread have been destroyed.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The window must be locked when you call {hmethod}`Quit()`.
 :::
 

@@ -71,6 +71,12 @@ the symlink itself lives.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Remember—a {hclass}`BSymLink` is a node, and nodes don't know what
 directory they live in. That's why you have to tell it here.
 :::

@@ -206,6 +206,12 @@ passed to it, or else it returns a negative (error) value.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Error codes returned by these functions can vary depending on the file
 system handling the operation. For this reason, specific error codes aren't
 listed here.
@@ -283,6 +289,12 @@ widths: auto
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 If you do a "before the beginning" seek, subsequent
 {cpp:func}`~BFile::Read()` and {cpp:func}`~BFile::Write()` calls do not
 fail. But they almost certainly aren't doing what you want (you shouldn't

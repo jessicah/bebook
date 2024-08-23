@@ -7,6 +7,12 @@ and in the background of individual Tracker folder windows.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Currently, Tracker only paints the background of a folder window when the
 window is in icon (or mini-icon) view mode.
 :::
@@ -163,6 +169,12 @@ backgrounds.AddInt32( B_BACKGROUND_WORKSPACES, ALL_WORKSPACES );
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The {cpp:enumerator}`B_BACKGROUND_INFO` attribute's contents might be
 extended in the future (but will remain compatible with the existing
 attribute data). Be prepared to preserve any data you don't recognize by

@@ -6,6 +6,12 @@ node are derived.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The word "parameter," in terms of the Media Kit, refers to a point at which
 the data manipulation performed by a {cpp:class}`BControllable` node can be
 configured, and doesn't actually refer to a user interface object.

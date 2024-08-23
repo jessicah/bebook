@@ -220,6 +220,12 @@ done with it; be sure to call it when you've finished your work.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 You only need to {hmethod}`Lock()` and {hmethod}`Unlock()` the
 {hclass}`BMediaFormats` object when you're using
 {cpp:func}`~BMediaFormats::RewindFormats()` and

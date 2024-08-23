@@ -101,6 +101,12 @@ many items can be stored in each array.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Both {hparam}`outWritableFormats` and {hparam}`outReadableFormats` can be
 {cpp:expr}`NULL`. Don't write into these arrays if the corresponding
 pointer is {cpp:expr}`NULL`.
@@ -117,6 +123,12 @@ specified as {cpp:expr}`NULL`.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Only implement this function if your node derives from
 {cpp:class}`BFileInterface`.
 :::
@@ -175,6 +187,12 @@ status_t MyMediaAddOn::GetFlavorAt(int32 n, const flavor_info** out_info)
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 If you allocate memory for the {htype}`flavor_info` structure, be sure to
 discard it before your add-on is unloaded (the destructor is a good place
 to do this). If you forget to discard the memory, you'll leak, and that can
@@ -268,6 +286,12 @@ your add-on can handle a file containing data of the MIME type specified by
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 If your node deals with both producers and consumers, you shouldn't
 implement {hmethod}`SniffType()`. Implement {hmethod}`SniffTypeKind()`
 instead. If {hmethod}`SniffTypeKind()` is implemented,
@@ -286,6 +310,12 @@ ID of the flavor that handles the data.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Don't implement these functions if your add-on doesn't support
 {cpp:class}`BFileInterface` nodes.
 :::

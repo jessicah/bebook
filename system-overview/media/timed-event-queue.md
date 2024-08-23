@@ -9,6 +9,12 @@ locating the next event that should be handled.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Although you shouldn't need to subclass {cpp:class}`BTimedEventQueue`,
 there's no reason you can't do it.
 :::

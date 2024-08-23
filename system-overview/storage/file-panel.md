@@ -159,6 +159,12 @@ widths: auto
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 This parameter applies to Open panels only.
 :::
 
@@ -452,6 +458,12 @@ clobber the file.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The file _isn't_ clobbered by the system; it's up to you (as the receiver
 of the save notification) to do the dirty work.
 :::

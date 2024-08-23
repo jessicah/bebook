@@ -72,6 +72,12 @@ group, and, by recursion, to the web itself.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 You can nest {cpp:class}`BParameterGroup`s if you want to; however,
 {cpp:class}`BParameter`s can't be shared among multiple groups.
 :::

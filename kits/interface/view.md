@@ -963,6 +963,12 @@ drawing to the screen.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 You should avoid calling this function from outside
 {cpp:func}`~BView::Draw()` and {cpp:func}`~BView::DrawAfterChildren()`;
 however, if you absolutely have to do it, lock the view first. Failure to
@@ -1048,6 +1054,12 @@ these functions merely alter its frame and bounds rectangles.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 If the view isn't attached to a window, its frame and bounds rectangles are
 adjusted, but its children, if any, don't get corresponding adjustments.
 :::
@@ -1376,6 +1388,12 @@ automatically freed when the message is dropped.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 1 bit-per-pixel bitmaps aren't supported; you should avoid using them.
 :::
 
@@ -1623,12 +1641,24 @@ widths: auto
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 To ask for an option without changing the event mask (or mouse event mask),
 pass 0 as the events argument.
 :::
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Both {hmethod}`SetEventMask()` and {hmethod}`SetMouseEventMask()` require
 that the view be attached to a window; they have no effect if the view
 isn't already attached.
@@ -1703,6 +1733,12 @@ clipping region.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 If the {hclass}`BView` isn't attached to a window, these functions will
 crash the application.
 :::
@@ -1810,6 +1846,12 @@ below.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The scaling ratio only affects subsequent drawing operations! Changing the
 scale doesn't affect the graphics already displayed in the view, the view's
 frame rectangle and clipping region, the placement and size of subviews,
@@ -1832,6 +1874,12 @@ bview->SetScale(0.5);
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The {hclass}`BView` must be attached to a window before you call this
 function.
 :::
@@ -2549,6 +2597,12 @@ font, but the pen still moves left-to-right:
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The BeOS draws text one pixel above the logical baseline to maintain
 compatibility with an earlier version of one of our most commonly-used font
 rasterizers. This affects both fonts and {cpp:class}`BShape`s representing
@@ -2716,6 +2770,12 @@ drawn for reference.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Currently, angle and span measurements in fractions of a degree are not
 supported.
 :::
@@ -3034,6 +3094,12 @@ nothing.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 If the {hclass}`BView` isn't attached to a window, {hmethod}`Sync()` will
 crash the application.
 :::
@@ -3182,6 +3248,12 @@ here.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 You can't use both a background bitmap and an overlay in the same view.
 :::
 

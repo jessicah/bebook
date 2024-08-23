@@ -30,6 +30,12 @@ and get handled specially to optimize performance.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 {cpp:class}`BBuffer` should never be subclassed, since they're mostly owned
 and managed by the Media Server. Even if you create your own
 {cpp:class}`BBuffer`, once you've called

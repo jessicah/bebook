@@ -224,6 +224,12 @@ that creates a window to contain the video display.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The VideoConsumer node will be available with R4.5; it's not provided in
 R4. In addition, there are no video producer nodes in R4; media add-ons for
 a variety of movie file formats will also be available beginning with R4.5.

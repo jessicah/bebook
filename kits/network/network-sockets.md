@@ -40,6 +40,12 @@ socket token).
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Socket tokens are not file descriptors (this violates the BSD tradition).
 :::
 
@@ -220,6 +226,12 @@ receiver (it can call {cpp:func}`recvfrom()`) or as a sender (it can call
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 To be complete, it should be mentioned that datagram sockets can also
 invoke {cpp:func}`connect()` and then pass messages through
 {cpp:func}`send()` and {cpp:func}`recv()`. The datagram use of these
@@ -305,6 +317,12 @@ this function description.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The 1-to-1 binding differs with the BSD socket implementation, which
 expects a socket to be able to bind to more than one interface. Consider it
 a bug that will be fixed in a subsequent release.
@@ -357,6 +375,12 @@ widths: auto
 
 		:::{admonition} Note
 		:class: note
+
+
+
+
+
+
 		Currently, there's no system-defined mechanism for allowing a client/sender
 		machine to ask a listener/receiver machine for its port numbers. Therefore,
 		when you create a networked application, you either have to hard-code the
@@ -376,6 +400,12 @@ widths: auto
 
 		:::{admonition} Warning
 		:class: warning
+
+
+
+
+
+
 		The BeOS does not currently implement global binding. When you bind to
 		{cpp:enumerator}`INADDR_ANY`, the bind() function binds to the first
 		available interface (where "availability" means the address/port
@@ -684,6 +714,12 @@ that loops over the accept() call.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Only stream listeners need to invoke listen() and accept(). None of the
 other socket types (enumerated in the {cpp:func}`socket()` description)
 need to call these functions.
@@ -828,6 +864,12 @@ widths: auto
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Currently, only {hparam}`read_bits` is implemented. You should pass
 {cpp:expr}`NULL` as the {hparam}`write_bits` and {hparam}`exception_bits`
 parameters.

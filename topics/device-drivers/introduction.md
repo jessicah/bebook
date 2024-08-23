@@ -272,6 +272,12 @@ driver's corresponding user-space code).
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Again, when you call release_sem_etc(), be sure to specify the
 {cpp:enumerator}`B_DO_NOT_RESCHEDULE` flag to avoid any chance of
 preemption.

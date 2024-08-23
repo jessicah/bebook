@@ -53,6 +53,12 @@ joystick and partly functions of the computer's hardware.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Typically you won't use these data members if you're using enhanced mode;
 they're provided primarily for backward compatibility.
 :::
@@ -171,6 +177,12 @@ The names returned by {hmethod}`GetDeviceName()` can be passed into the
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The {hclass}`BJoystick` doesn't need to have an open device before you use
 these functions; in fact, your application will typically use these to
 provide user interface allowing the user to choose the joystick device
@@ -424,6 +436,12 @@ to enable calibration; otherwise, specify {cpp:expr}`false`.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The Joysticks preference application lets the user calibrate the joystick.
 Calibration is enabled by default.
 :::
@@ -478,6 +496,12 @@ specify {cpp:expr}`false` if you don't want enhanced mode.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Even in enhanced mode, the classic {hclass}`BJoystick` data members are
 valid (for compatibility with older applications). However, they only give
 you access to the first two axes and buttons of the joystick.

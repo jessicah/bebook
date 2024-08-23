@@ -131,6 +131,12 @@ the target view's name to match the tab's label, if a target view exists.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 If the tab doesn't have a target view, {hmethod}`SetLabel()` does nothing.
 Make sure a target view has been set (by calling
 {cpp:func}`~BTab::SetView()`, {cpp:func}`BTabView::AddTab()` with a valid

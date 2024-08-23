@@ -18,9 +18,21 @@ is explained later). {cpp:func}`~BLooper::Quit()` deletes the
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 The {cpp:class}`BApplication` class, the most important
 {cpp:class}`BLooper` subclass, bends the above description in one of two
 ways:
+
+1. A {cpp:class}`BApplication` takes over the main thread, it doesn't spawn
+  a new one.
+
+2. You do have to delete {hparam}`be_app`; you can't just
+  {cpp:func}`~BLooper::Quit()` it.
 
 A {cpp:class}`BApplication` takes over the main thread, it doesn't spawn a
 new one.

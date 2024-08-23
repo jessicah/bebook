@@ -56,7 +56,7 @@ invocation code in these functions. They set up and tear down an
 {cpp:func}`InvokeNotify() <BInvoker::Invoke>` context.
 ::::
 
-::::{abi-group}
+:::::{abi-group}
 :::{cpp:function} virtual status_t BInvoker::Invoke(BMessage* message = NULL)
 :::
 
@@ -70,12 +70,26 @@ sent, otherwise the object sends its default message (i.e. the
 {cpp:func}`~BInvoker::SetMessage()`). The message is sent asynchronously
 with no time limit on the reply.
 
-:::{admonition} Note
+::::{admonition} Note
 :class: note
+
+
+
+
+
+
 Regarding the use of the default message vs the argument, a common practice
 is to reserve the default message as a template, and pass a fine-tuned copy
 to {hmethod}`Invoke()`
+
+:::{code} cpp
+/* Add the current system time to a copy of
+   the default message. */
+BMessage copy(invoker.Message());
+copy.AddInt64("when", system_time());
+invoker.Invoke(copy);
 :::
+::::
 
 The {hmethod}`InvokeNotify()` function sends the {hparam}`message` to the
 target, using the notification change code specified by {hparam}`kind`. If
@@ -151,7 +165,7 @@ widths: auto
 	- Forwarded from {cpp:func}`BMessenger::SendMessage()`.
 
 :::
-::::
+:::::
 
 ::::{abi-group}
 :::{cpp:function} uint32 BInvoker::InvokeKind(bool* notify = NULL)
@@ -312,6 +326,12 @@ widths: auto
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 {hmethod}`SetTarget()` doesn't detect invalid {cpp:class}`BLooper`s and
 {cpp:class}`BMessenger`s.
 :::

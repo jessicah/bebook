@@ -200,6 +200,12 @@ them.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 In versions of the BeOS before Release 4, the pointers used to belong to
 the operating system. Now they're yours to do with as you please. Please
 update your applications as necessary to avoid leaking memory.
@@ -930,6 +936,12 @@ thing. (It's currently not possible to alter the key map;
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 TODO: This function does not appear in the BeBook
 :::
 
@@ -937,5 +949,11 @@ TODO: This function does not appear in the BeBook
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 TODO: This function does not appear in the BeBook
 :::

@@ -114,6 +114,12 @@ still exists.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 This function doesn't tell you whether the looper is actually ready to
 receive messages, or whether the handler (if it was specified in the
 constructor) exists. In other words, a valid {hclass}`BMessenger` is no
@@ -130,6 +136,12 @@ guarantee that a message will actually get to the target.
 
 :::{admonition} Important
 :class: important
+
+
+
+
+
+
 These functions apply to local targets only.
 :::
 
@@ -177,6 +189,12 @@ The target can respond to the message:
 
 - :::{admonition} Warning
   :class: warning
+  
+  
+  
+  
+  
+  
   Use caution when requesting a synchronous reply: If you call
   {hmethod}`SendMessage()` from the target looper's thread, you'll deadlock
   (or, at best, time out).
@@ -222,6 +240,12 @@ widths: auto
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 If you specified a {hparam}`handler` when you constructed your
 {hclass}`BMessenger`, and if that handler has since changed loopers,
 {hmethod}`SendMessage()` won't deliver its message, but it doesn't complain

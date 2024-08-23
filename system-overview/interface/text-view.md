@@ -21,6 +21,12 @@ applies to the entire text.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The {cpp:class}`BTextView` class isn't multi-thread safe; don't issue
 {cpp:class}`BTextView` calls on a {cpp:class}`BTextView` object from
 multiple threads, or you may see unusual behavior; in general, only the

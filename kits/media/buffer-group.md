@@ -51,6 +51,12 @@ to release the original area you added.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Your node needs to delete the buffer group corresponding to any connection
 that is disconnected or whenever the node is deleted. Until your node does
 so, the other end of the connection will be blocked waiting for the buffer
@@ -74,6 +80,12 @@ no longer using it; the {hclass}`BBufferGroup` won't do it for you.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 You shouldn't pass the result of a {cpp:func}`BBuffer::CloneInfo()` call to
 this function, as doing so would create an "alias" buffer for the same
 memory area. This is probably not the effect you want.
@@ -244,6 +256,12 @@ away.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Before reclaiming your buffers, be sure to call
 `BBufferConsumer::SetOutputBuffersFor(output, NULL)` to let the Media Kit
 know your producer no longer has permission to use them. If you forget this
@@ -293,6 +311,12 @@ you can use.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 In BeOS Release 4.5, the timeout is ignored (unless you specify a negative
 value); {cpp:enumerator}`B_INFINITE_TIMEOUT` is always used, regardless of
 the value you specify.
@@ -311,6 +335,12 @@ error code. The second version returns an appropriate error code.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Don't call {hmethod}`RequestBuffer()` while an outstanding
 {cpp:func}`~BBufferGroup::ReclaimAllBuffers()` request is pending. To make
 sure that doesn't happen, a buffer producer should be designed to not know

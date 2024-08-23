@@ -397,6 +397,12 @@ the {hparam}`area` value is invalid as an area identifier.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 Currently, anybody can delete any area—the act isn't denied if, for
 example, the {htype}`area_id` argument was created by another application.
 This freedom will be rescinded in a later release. Until then, try to avoid

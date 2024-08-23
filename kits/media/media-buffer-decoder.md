@@ -31,6 +31,12 @@ structure, {hparam}`mci`, that determines which codec should be used.
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 If you use either the {cpp:func}`media_format <media::format>` or
 {cpp:any}`media_codec_info` form of the constructor, you must call
 {cpp:func}`~BMediaBufferDecoder::InitCheck()` to ensure that construction

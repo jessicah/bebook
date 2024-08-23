@@ -511,6 +511,12 @@ These are the possible parameter types, which are returned by the
 
 :::{admonition} Note
 :class: note
+
+
+
+
+
+
 Keep in mind that because these constants are members of the
 {hclass}`BParameter` class, if you need to reference them from outside a
 BParameter, you need to preface the reference with "BParameter::", such as

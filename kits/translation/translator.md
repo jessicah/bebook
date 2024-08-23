@@ -38,6 +38,12 @@ subclass. From outside the class, you call
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 {hmethod}`ReferenceCount()` Is For Debugging use only!
 :::
 
@@ -101,6 +107,12 @@ application requests a translation. Both functions should set
 
 :::{admonition} Important
 :class: important
+
+
+
+
+
+
 Unlike the analogous translator add-on format arrays, the arrays returned
 by these functions don't have to be terminated by an empty
 {htype}`translation_format` structure.

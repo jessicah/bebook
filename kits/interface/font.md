@@ -306,6 +306,12 @@ interesting text effects.
 
 :::{admonition} Warning
 :class: warning
+
+
+
+
+
+
 The {hparam}`glyphShapeArray` must contain already-allocated
 {cpp:class}`BShape` objects. They will be cleared by this function before
 the glyphs' shapes are constructed into them, but the objects must already
