@@ -205,8 +205,18 @@ class Document:
 
 			admonition = nodes.BlockContainer(f'{{admonition}} {title}\n:class: {kind}')
 			# what about other children?
-			for child in element.select(':scope p'):
-				admonition += self.process_block(child)
+			for child in element.select(':scope p, :scope pre, :scope div'):
+				if child.name == 'div':
+					print(fg.li_yellow, 'Admonition with unknown div child, skipping:', reset)
+					print(child)
+					pass
+				block = self.process_block(child)
+				admonition += block
+			for child in element.children:
+				if child.name == 'p' or child.name == 'pre' or child.name == 'div':
+					pass
+				else:
+					print(fg.li_red, 'Unhandled admonition child type:', fg.li_yellow, child.name, reset)
 			return admonition
 		if element.name == 'pre':
 			if has_class(element, 'cpp'):
