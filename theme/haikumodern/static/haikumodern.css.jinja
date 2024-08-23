@@ -446,3 +446,44 @@ div.viewcode-block:target {
 div.math p {
 	text-align: center;
 }
+
+/* collapsible sidebar */
+input#sidebar-checkbox {
+	position: absolute;
+	width: 0;
+	height: 0;
+	visibility: hidden;
+}
+
+input#sidebar-checkbox:checked~div#app nav.toc {
+	visibility: hidden;
+	min-width: 0;
+	max-width: 0;
+}
+
+input#sidebar-checkbox:checked~div#app {
+	/* zero for the second column collapses layout */
+	grid-template-columns: 1fr 0 minmax(0, 100ch) 1fr;
+}
+
+label#sidebar-label {
+	grid-column: 1;
+	max-height: 20px;
+	padding: 1px 1em;
+}
+
+nav.top > div {
+	grid-column: 3;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+nav.top > div > ul {
+	display: inline-flex;
+	grid-column: 2;
+	justify-self: right;
+	font-size: 13px;
+}
+nav.top svg {
+	fill: #dc3c01;
+	width: 16px;
+}
