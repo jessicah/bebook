@@ -202,6 +202,16 @@ class CustomHTMLTranslator(HTML5Translator):
     def depart_highlight(self, node):
         self.body.append('</span>')
 
+	# add a wrapper around tables, so that horizontal
+    # scrolling is possible (useful on mobile)
+    def visit_table(self, node):
+        self.body.append('<div class="table">')
+        super().visit_table(node)
+
+    def depart_table(self, node):
+        super().depart_table(node)
+        self.body.append('</div>')
+
 class highlight(Inline, TextElement): pass
 
 class highlightMethod(highlight):

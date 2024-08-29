@@ -37,6 +37,9 @@ body {
 	min-width: {{ theme_body_min_width|todim }};
 	max-width: {{ theme_body_max_width|todim }};
 	color: {{ theme_textcolor }};
+
+	/* seems to address weird scrolling behaviour on mobile */
+	position: fixed;
 }
 
 /* link colors and text decoration */
@@ -101,7 +104,7 @@ a.uplink {
 
 	display: grid;
 
-	grid-template-columns: 1fr min-content minmax(0, 100ch) 1fr;
+	grid-template-columns: 1fr min-content minmax(0, 100ch) 2fr;
 	/* header; nav; main; footer */
 	grid-template-rows: 85px 20px 1fr auto;
 	grid-template-areas:
@@ -109,6 +112,9 @@ a.uplink {
 		'topnav topnav topnav topnav'
 		'. toc main main'
 		'footer footer footer footer';
+	
+	/* this shouldn't be needed, but having weird issues... */
+	overflow: clip;
 }
 
 header {
@@ -226,6 +232,8 @@ main {
 	margin: 0;
 	padding-left: 1em;
 	padding-right: 1em;
+
+	font-size: 90%;
 }
 
 main > * {
@@ -297,6 +305,11 @@ table.index a:hover, table.index a:active {
 	color: {{ theme_hoverlinkcolor }};
 }
 
+/* wraps table elements to support horizontal
+   scrolling on mobile... */
+div.table {
+	overflow-x: auto;
+}
 
 /* Haiku User Guide styles and layout */
 
