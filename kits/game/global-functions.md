@@ -4,7 +4,9 @@
 
 Declared in: game/WindowScreen.h
 
-
+:::{code} cpp
+void set_mouse_position(int32 x, int32 y);
+:::
 
 Moves the cursor hot spot to ({hparam}`x`, {hparam}`y`) in the screen
 coordinate system, where {hparam}`x` is a left-to-right index to a pixel

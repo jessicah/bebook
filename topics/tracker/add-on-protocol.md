@@ -13,7 +13,9 @@ by the shortcut key to the filename of the add-on.
 
 Declared in:  add-ons/tracker/TrackerAddOn.h
 
-
+:::{code} c
+void process_refs(entry_ref dir_ref, BMessage* msg, void* reserved);
+:::
 
 The Tracker calls this function when the user invokes the add-on. The
 current directory is found in {hparam}`dir_ref`.{hparam}`msg` is a standard

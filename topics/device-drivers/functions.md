@@ -10,9 +10,13 @@ symbols in the current kernel when the driver is loaded.
 
 ## acquire_spinlock(), release_spinlock(), spinlock
 
+:::{code} c
+void acquire_spinlock(spinlock* lock);
+:::
 
-
-
+:::{code} c
+void release_spinlock(spinlock* lock);
+:::
 
 :::{code} c
 typedef vlong spinlock
@@ -57,9 +61,13 @@ number of CPUs in the system.
 
 ## add_timer(), cancel_timer(), timer_hook, qent, timer
 
+:::{code} c
+status_t add_timer(timer* theTimer, timer_hook hookFunction, bigtime_t period, int32 flags);
+:::
 
-
-
+:::{code} c
+bool cancel_timer(timer_t* theTimer);
+:::
 
 :::{code} c
 typedef int32 (*timer_hook)(timer*)
@@ -149,7 +157,9 @@ widths: auto
 
 ## call_all_cpus()
 
-
+:::{code} c
+void call_all_cpus(void (*func)(void* , int ), void* cookie));
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -158,9 +168,13 @@ Calls the function specified by {hparam}`func` on all CPUs. The
 
 ## disable_interrupts(), restore_interrupts(), cpu_status
 
+:::{code} c
+cpu_status disable_interrupts();
+:::
 
-
-
+:::{code} c
+void restore_interrupts(cpu_status status);
+:::
 
 :::{code} c
 typedef ulong cpu_status
@@ -187,11 +201,17 @@ See also: {cpp:func}`install_io_interrupt_handler()`
 
 ## dprintf(), set_dprintf_enabled(), panic()
 
+:::{code} c
+void dprintf(const char* format);
+:::
 
+:::{code} c
+bool set_dprintf_enabled(bool enabled);
+:::
 
-
-
-
+:::{code} c
+void panic(const char* format);
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -218,7 +238,9 @@ printing the message.
 
 ## get_memory_map(), physical_entry
 
-
+:::{code} c
+long get_memory_map(const void* address, ulong numBytes, physical_entry* table, long numEntries);
+:::
 
 :::{code} c
 typedef struct {
@@ -266,7 +288,9 @@ See also: {cpp:func}`lock_memory()`, start_isa_dma()
 
 ## has_signals_pending()
 
-
+:::{code} c
+int has_signals_pending(struct thread_rec* thr);
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -277,9 +301,13 @@ are pending.
 
 ## install_io_interrupt_handler(), remove_io_interrupt_handler()
 
+:::{code} c
+long install_io_interrupt_handler(long interrupt_number, interrupt_handler handler, void* data, ulong flags);
+:::
 
-
-
+:::{code} c
+long remove_io_interrupt_handler(long interrupt_number, interrupt_handler handler, void* data);
+:::
 
 Declared in:  drivers/KernelExport.h
 
@@ -348,17 +376,29 @@ and {cpp:enumerator}`B_ERROR` if not.
 
 ## kernel_debugger(), add_debugger_command(), remove_debugger_command(), load_driver_symbols(), kprintf(), parse_expression()
 
+:::{code} c
+void kernel_debugger(const char* string);
+:::
 
+:::{code} c
+int add_debugger_command(char* name, int (*func)(int , char** ), char* help);
+:::
 
+:::{code} c
+int remove_debugger_command(char * name, int (*func)(int , char** ));
+:::
 
+:::{code} c
+int load_driver_symbols(const char* driverName);
+:::
 
+:::{code} c
+void kprintf(const char* format);
+:::
 
-
-
-
-
-
-
+:::{code} c
+ulong parse_expression(const char* string);
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -401,9 +441,13 @@ debugger commands.
 
 ## lock_memory(), unlock_memory()
 
+:::{code} c
+long lock_memory(void* address, ulong numBytes, ulong flags);
+:::
 
-
-
+:::{code} c
+long unlock_memory(void* address, ulong numBytes, ulong flags);
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -433,7 +477,9 @@ fail is that you're attempting to lock more memory than can be paged in.
 
 ## map_physical_memory()
 
-
+:::{code} c
+area_id map_physical_memory(const char* areaName, void* physicalAddress, size_t numBytes, uint32 spec, uint32 protection, void** virtualAddress);
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -462,9 +508,13 @@ same as those for {cpp:func}`create_area()`.
 
 ## motherboard_version(), io_card_version()
 
+:::{code} c
+long motherboard_version();
+:::
 
-
-
+:::{code} c
+long io_card_version();
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -474,7 +524,9 @@ I/O card. These functions are only available on PowerPC-based systems
 
 ## platform()
 
-
+:::{code} c
+platform_type platform();
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -482,9 +534,13 @@ Returns the current platform, as defined in kernel/OS.h.
 
 ## register_kernel_daemon(), unregister_kernel_daemon()
 
+:::{code} c
+int register_kernel_daemon(void (*func(void* , int ), void* arg, int freq);
+:::
 
-
-
+:::{code} c
+int unregister_kernel_daemon(void (*func(void* , int ), void* arg);
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -496,7 +552,9 @@ function.
 
 ## send_signal_etc()
 
-
+:::{code} c
+int send_signal_etc(thread_id thid, uint sig, uint32 flags);
+:::
 
 Declared in: drivers/KernelExport.h
 
@@ -559,7 +617,9 @@ widths: auto
 
 ## spawn_kernel_thread()
 
-
+:::{code} c
+thread_id spawn_kernel_thread(thread_entry func, const char* name, long priority, void* data);
+:::
 
 Declared in:  drivers/KernelExport.h
 
@@ -570,7 +630,9 @@ space.
 
 ## spin()
 
-
+:::{code} c
+void spin(bigtime_t microseconds);
+:::
 
 Declared in:  drivers/KernelExport.h
 

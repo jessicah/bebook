@@ -223,7 +223,7 @@ class Document:
 			
 			self.process_admonition_block(admonition, element)
 			return admonition
-		if element.name == 'pre':
+		if element.name == 'pre' or (element.name == 'code' and has_class(element, 'methodsynopsis')):
 			if has_class(element, 'cpp'):
 				code = nodes.Block('{code} cpp')
 			elif has_class(element, 'c'):
@@ -233,7 +233,10 @@ class Document:
 			else:
 				print(fg.li_red, 'Unknown code listing:', fg.li_cyan, element['class'], reset)
 				code = nodes.Block('{code}')
-			code += text_content(element, clean=False).replace('\n', '\r')
+			if element.name == 'pre':
+				code += text_content(element, clean=False).replace('\n', '\r')
+			else:
+				code += text_content(element)
 			return code
 		if element.name == 'table':
 			num_headers = len(list(element.select(':scope > thead > tr')))

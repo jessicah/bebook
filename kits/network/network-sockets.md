@@ -30,9 +30,13 @@ creating (as explained in {cpp:func}`socket()`).
 
 ## socket(), closesocket()
 
+:::{code} c
+int socket(int family, int type, int protocol);
+:::
 
-
-
+:::{code} c
+int closesocket(int socket);
+:::
 
 The socket() function returns a token (a non-negative integer) that
 represents the local end of a connection to another machine (0 is a valid
@@ -257,7 +261,9 @@ closesocket() returns a negative value if its parameter is invalid.
 
 ## bind()
 
-
+:::{code} c
+int bind(int family, const struct sockaddr* interface, int size);
+:::
 
 The bind() function creates an association between a socket and an
 "interface," where an interface is a combination of an IP address and a
@@ -522,7 +528,9 @@ widths: auto
 
 ## connect()
 
-
+:::{code} c
+int connect(int socket, const struct sockaddr* remote_interface, int remote_size);
+:::
 
 The meaning of the connect() function depends on the type of socket that's
 passed as the first parameter:
@@ -605,9 +613,13 @@ widths: auto
 
 ## getpeername(), getsockname()
 
+:::{code} c
+int getpeername(int socket, struct sockaddr* interface, int* size);
+:::
 
-
-
+:::{code} c
+int getsockname(int socket, struct sockaddr* interface, int* size);
+:::
 
 getsockname() returns, by reference in {hparam}`interface`, a
 {htype}`sockaddr_in` structure that contains the interface information for
@@ -660,9 +672,13 @@ widths: auto
 
 ## listen(), accept()
 
+:::{code} c
+int listen(int socket, int acceptance_count);
+:::
 
-
-
+:::{code} c
+int accept(int socket, struct sockaddr* client_interface, int* client_size);
+:::
 
 After you've bound a stream listener socket to an interface (through
 {cpp:func}`bind()`), you then tell the socket to start listening for
@@ -759,7 +775,9 @@ widths: auto
 
 ## select()
 
-
+:::{code} c
+int select(int socket_range, struct fd_set* read_bits, struct fd_set* write_bits, struct fd_set* exception_bits, struct timeval* timeout);
+:::
 
 The select() function returns information about selected sockets. The
 {hparam}`socket_range` parameter tells the function how many sockets to
@@ -887,9 +905,13 @@ widths: auto
 
 ## send(), recv()
 
+:::{code} c
+ssize_t send(int socket, const void* buf, size_t size, int flags);
+:::
 
-
-
+:::{code} c
+ssize_t send(int socket, void* buf, size_t size, int flags);
+:::
 
 These functions are used to send data to a remote socket, and to receive
 data that was sent by a remote socket. send() and recv() calls must be
@@ -1006,9 +1028,13 @@ widths: auto
 
 ## sendto(), recvfrom()
 
+:::{code} c
+ssize_t sendto(int socket, const void* buf, size_t size, int flags, struct sockaddr* to, int toLen);
+:::
 
-
-
+:::{code} c
+ssize_t recvfrom(int socket, void* buf, size_t size, int flags, struct sockaddr* from, int* fromLen);
+:::
 
 These functions are used by datagram sockets (only) to send and receive
 messages. The functions encode all the information that's needed to find
@@ -1091,7 +1117,9 @@ widths: auto
 
 ## setsockopt()
 
-
+:::{code} c
+int setsockopt(int socket, int level, int option, const void* buf, uint size);
+:::
 
 setsockopt() lets you set certain options that are associated with a
 socket. Currently, the Network Kit only recognizes one option: It lets you

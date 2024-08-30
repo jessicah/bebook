@@ -11,9 +11,13 @@ In almost all cases, you need a valid (but not necessarily running)
 
 ## activate_workspace(), current_workspace()
 
+:::{code} c
+void activate_workspace(int32 workspace);
+:::
 
-
-
+:::{code} c
+int32 current_workspace();
+:::
 
 Declared in: interface/InterfaceDefs.h
 
@@ -25,7 +29,9 @@ See also: {cpp:func}`BWindow::WorkspaceActivated()`
 
 ## bitmaps_support_space()
 
-
+:::{code} c
+bool bitmaps_support_space(color_space space, uint32* supportFlags);
+:::
 
 Declared in:  interface/InterfaceDefs.h
 
@@ -60,7 +66,9 @@ widths: auto
 
 ## get_deskbar_frame()
 
-
+:::{code} c
+status_t get_deskbar_frame(color_space space, BRect* frame);
+:::
 
 Declared in:  interface/InterfaceDefs.h
 
@@ -70,13 +78,21 @@ appropriate error code on failure.
 
 ## get_font_family(), count_font_families(), get_font_style(), count_font_styles()
 
+:::{code} c
+status_t get_font_family(int32 index, font_family* family, uint32* flags = NULL);
+:::
 
+:::{code} c
+int32 count_font_families();
+:::
 
+:::{code} c
+status_t get_font_style(font_family family, int32 index, font_style* style, uint32* flags = NULL);
+:::
 
-
-
-
-
+:::{code} c
+int32 count_font_styles(font_family family);
+:::
 
 Declared in:  interface/Font.h
 
@@ -164,7 +180,9 @@ See also: {cpp:func}`update_font_families()`, {cpp:func}`BView::SetFont()`,
 
 ## get_pixel_size_for()
 
-
+:::{code} c
+status_t get_pixel_size_for(color_space space, size_t* pixelChunk, size_t* rowAlignment, size_t* pixelsPerChunk);
+:::
 
 Declared in:  interface/GraphicsDefs.h
 
@@ -173,7 +191,9 @@ alignment for that color space.
 
 ## idle_time()
 
-
+:::{code} c
+bigtime_t idle_time();
+:::
 
 Declared in:  interface/InterfaceDefs.h
 
@@ -186,7 +206,9 @@ any application, not just yours.
 
 Declared in: interface/InterfaceDefs.h
 
-
+:::{code} c
+rgb_color keyboard_navigation_color();
+:::
 
 Returns the color that should be used to mark the {cpp:class}`BView` that's
 currently in focus, when the user can change the focus from the keyboard.
@@ -195,9 +217,13 @@ control devices and to outline text fields where the user can type.
 
 ## run_add_printer_panel(), run_select_printer_panel()
 
+:::{code} c
+void run_add_printer_panel();
+:::
 
-
-
+:::{code} c
+void run_select_printer_panel();
+:::
 
 Declared in: interface/InterfaceDefs.h
 
@@ -211,9 +237,13 @@ See also: The {cpp:class}`BPrintJob` class
 
 ## set_menu_info(), get_menu_info()
 
+:::{code} c
+status_t set_menu_info(menu_info* info);
+:::
 
-
-
+:::{code} c
+status_t get_menu_info(menu_info* info);
+:::
 
 Declared in: interface/Menu.h
 
@@ -266,7 +296,9 @@ See also: The {cpp:class}`BMenu` class
 
 ## set_screen_space()
 
-
+:::{code} c
+status_t set_screen_space(int32 index, uint32 space, bool makeDefault = true);
+:::
 
 Declared in: interface/InterfaceDefs.h
 
@@ -361,9 +393,13 @@ See also: {cpp:func}`BWindow::ScreenChanged()`, {ref}`The Game Kit` chapter
 
 ## set_scroll_bar_info(), get_scroll_bar_info()
 
+:::{code} c
+status_t set_scroll_bar_info(scroll_bar_info* info);
+:::
 
-
-
+:::{code} c
+status_t get_scroll_bar_info(scroll_bar_info* info);
+:::
 
 Declared in: interface/InterfaceDefs.h
 
@@ -424,9 +460,13 @@ See also: The {cpp:class}`BScrollBar` class
 
 ## set_workspace_count(), count_workspaces()
 
+:::{code} c
+void set_workspace_count(int32 numWorkspaces);
+:::
 
-
-
+:::{code} c
+int32 count_workspaces();
+:::
 
 Declared in: interface/InterfaceDefs.h
 
@@ -439,7 +479,9 @@ See also: {cpp:func}`activate_workspace()`
 
 ## system_colors()
 
-
+:::{code} c
+const color_map* system_colors();
+:::
 
 Declared in: interface/InterfaceDefs.h
 
@@ -454,7 +496,9 @@ operating system.
 
 ## tint_color()
 
-
+:::{code} c
+rgb_color tint_color(rgb_color color, float tint);
+:::
 
 Declared in:  interface/InterfaceDefs.h
 
@@ -468,7 +512,9 @@ Various {hparam}`tint` constants are defined by the Interface Kit as seen
 
 ## ui_color()
 
-
+:::{code} c
+rgb_color ui_color(color_which which);
+:::
 
 Declared in:  interface/InterfaceDefs.h
 
@@ -478,7 +524,9 @@ the specified user interface element.
 
 ## update_font_families()
 
-
+:::{code} c
+bool update_font_families(bool update_font_families);
+:::
 
 Declared in:  interface/Font.h
 

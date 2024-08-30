@@ -2,7 +2,9 @@
 
 ## define_cursor()Index: 0
 
-
+:::{code} cpp
+int32 define_cursor(uchar* xorMask, uchar* andMask, int32 width, int32 height, int32 hotX, int32 hotY);
+:::
 
 Tells the driver to create a cursor image as defined by the arguments. The
 first two arguments, {hparam}`xorMask` and {hparam}`andMask`, are bit
@@ -69,7 +71,9 @@ display the cursor image.
 
 ## move_cursor()Index: 1
 
-
+:::{code} cpp
+int32 move_cursor(int32 screenX, int32 screenY);
+:::
 
 Tells the driver to move the cursor so the hot spot corresponds to
 ({hparam}`screenX`, {hparam}`screenY`). The arguments are display area
@@ -77,7 +81,9 @@ coordinates (not frame buffer coordinates).
 
 ## show_cursor()Index: 2
 
-
+:::{code} cpp
+int32 show_cursor(bool flag);
+:::
 
 If the {hparam}`flag` argument is {cpp:expr}`true`, the driver should show
 the cursor image on-screen; if it's {cpp:expr}`false`, it should remove the
@@ -88,7 +94,9 @@ If the driver is asked to show the cursor before
 
 ## draw_line_with_8_bit_depth()Index: 3
 
-
+:::{code} cpp
+int32 draw_line_with_8_bit_depth(int32 startX, int32 endX, int32 startY, int32 endY, uint8 colorIndex, bool clipToRect, int16 clipLeft, int16 clipTop, int16 clipRight, int16 clipBottom);
+:::
 
 Tells the driver to draw a straight, 8-bit color, minimally thin line.
 
@@ -117,7 +125,9 @@ Depth](./_static/images/draw_line_with_8_bit_depth.png)
 
 ## draw_line_with_32_bit_depth()Index: 4
 
-
+:::{code} cpp
+int32 draw_line_with_32_bit_depth(int32 startX, int32 endX, int32 startY, int32 endY, uint32 color, bool clipToRect, int16 clipLeft, int16 clipTop, int16 clipRight, int16 clipBottom);
+:::
 
 This is the same as {cpp:func}`draw_line_with_8_bit_depth()` except for the
 color argument. Here, {hparam}`color` is a 32-bit value with 8-bit red,
@@ -127,7 +137,9 @@ that the driver specified when it received the
 
 ## draw_rect_with_8_bit_depth()Index: 5
 
-
+:::{code} cpp
+int32 draw_rect_with_8_bit_depth(int32 left, int32 top, int32 right, int32 bottom, uint8 colorIndex);
+:::
 
 Tells the driver to fill a rectangle, specified by the first four
 arguments, with the color at {hparam}`colorIndex` in the 8-bit color table.
@@ -136,7 +148,9 @@ should be included in the area being filled.
 
 ## draw_rect_with_32_bit_depth()Index: 6
 
-
+:::{code} cpp
+int32 draw_rect_with_32_bit_depth(int32 left, int32 top, int32 right, int32 bottom, uint32 color);
+:::
 
 This is the same as {cpp:func}`draw_rect_with_8_bit_depth()` except for the
 {hparam}`color` argument. Here, {hparam}`color` is a 32-bit value with
@@ -146,7 +160,9 @@ in the order that the driver specified when it received the
 
 ## blit()Index: 7
 
-
+:::{code} cpp
+int32 blit(int32 sourceX, int32 sourceY, int32 destinationX, int32 destinationY, int32 width, int32 height);
+:::
 
 Tells the driver to copy pixel data from a source rectangle to a
 destination rectangle. All coordinates and sizes are in frame buffer space.
@@ -161,7 +177,9 @@ buffer.
 
 ## draw_array_with_8_bit_depth(), indexed_color_lineIndex: 8
 
-
+:::{code} cpp
+int32 draw_array_with_8_bit_depth(indexed_color_line* array, int32 numItems, bool clipToRect, int16 clipLeft, int16 clipTop, int16 clipRight, int16 clipBottom);
+:::
 
 Tells the driver to draw an array of lines in 8-bit depth. The line
 {hparam}`array` holds a total of {hparam}`numItems`. Each item is specified
@@ -208,7 +226,9 @@ The lines should be minimally thin, as described under
 
 ## draw_array_with_32_bit_depth(), rgb_color_lineIndex: 9
 
-
+:::{code} cpp
+int32 draw_array_with_32_bit_depth(rgb_color_line* array, int32 numItems, bool clipToRect, int16 clipLeft, int16 clipTop, int16 clipRight, int16 clipBottom);
+:::
 
 Except for the color specification, which is encoded in the
 {htype}`rgb_color_line` structure, this is the same as
@@ -246,7 +266,9 @@ widths: auto
 
 ## sync()Index: 10
 
-
+:::{code} cpp
+int32 sync();
+:::
 
 The driver should implement this function to block until all other
 currently-executing hook functions have finished. (More accurately, you
@@ -263,14 +285,18 @@ in-coming hook functions while sitting in sync().
 
 ## invert_rect()Index: 11
 
-
+:::{code} cpp
+int32 invert_rect(int32 left, int32 top, int32 right, int32 bottom);
+:::
 
 Tells the driver to invert the colors in the rectangle specified by the
 arguments. The sides of the rectangle are included in the inversion.
 
 ## draw_line_with_16_bit_depth()Index: 12
 
-
+:::{code} cpp
+int32 draw_line_with_16_bit_depth(int32 startX, int32 endX, int32 startY, int32 endY, uint16 color, bool clipToRect, int16 clipLeft, int16 clipTop, int16 clipRight, int16 clipBottom);
+:::
 
 This is the same as {cpp:func}`draw_line_with_8_bit_depth()` except for the
 color argument. Here, {hparam}`color` is a 16-bit value with red, green,
@@ -280,7 +306,9 @@ order that the driver specified when it received the
 
 ## draw_rect_with_16_bit_depth()Index: 13
 
-
+:::{code} cpp
+int32 draw_rect_with_16_bit_depth(int32 left, int32 top, int32 right, int32 bottom, uint16 color);
+:::
 
 This is the same as {cpp:func}`draw_rect_with_8_bit_depth()` except for the
 color argument. Here, {hparam}`color` is a 16-bit value with red, green,

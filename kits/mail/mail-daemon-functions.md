@@ -2,7 +2,9 @@
 
 ## check_for_mail()
 
-
+:::{code} c
+status_t check_for_mail(int32* incoming_count = NULL);
+:::
 
 Sends and retrieves mail. More specifically, this function asks the mail
 daemon to retrieve incoming messages from the POP server and send any
@@ -51,7 +53,9 @@ widths: auto
 
 ## count_pop_accounts()
 
-
+:::{code} c
+int32 count_pop_accounts();
+:::
 
 Returns the number of POP accounts that have been configured.
 
@@ -64,7 +68,9 @@ account, though, as this will probably change in the future.
 
 ## decode_base64()
 
-
+:::{code} c
+ssize_t decode_base64(char* out, char* in, off_t length, bool replace_cr = false);
+:::
 
 Decodes the base-64 data pointed to by {hparam}`in`, which is
 {hparam}`length` bytes long, and writes the decoded output into the buffer
@@ -87,7 +93,9 @@ hold the decoded data, or this function will do bad things.
 
 ## encode_base64()
 
-
+:::{code} c
+ssize_t encode_base64(char* out, char* in, off_t length);
+:::
 
 Encodes the data pointed to by {hparam}`in`, which is {hparam}`length`
 bytes long, and writes the base-64 encoded output into the buffer pointed
@@ -104,7 +112,9 @@ hold the encoded data, or this function will do bad things.
 
 ## forward_mail()
 
-
+:::{code} c
+status_t forward_mail(entry_ref* message_ref, const char* recipients, bool now = true);
+:::
 
 Forwards the mail message specified by {hparam}`message_ref` to the list of
 users given by {hparam}`recipients`. The list of user names specified in
@@ -142,9 +152,13 @@ widths: auto
 
 ## get_mail_notification(), set_mail_notification(), mail_notification
 
+:::{code} c
+status_t get_mail_notification(mail_notification* notification_settings);
+:::
 
-
-
+:::{code} c
+status_t set_mail_notification(mail_notification* notification_settings, bool save = true);
+:::
 
 get_mail_notification() fills the specified {htype}`mail_notification`
 structure with information describing how the user is currently being
@@ -194,9 +208,13 @@ widths: auto
 
 ## get_pop_account(), set_pop_account(), mail_pop_account
 
+:::{code} c
+status_t get_pop_account(mail_pop_account* account_info, int32 index = 0);
+:::
 
-
-
+:::{code} c
+status_t set_pop_account(mail_pop_account* account_info, int32 index = 0);
+:::
 
 Get and set the specified POP account's information. The
 {htype}`mail_pop_account` structure is defined as follows:
@@ -295,9 +313,13 @@ widths: auto
 
 ## get_smtp_host(), set_smtp_host()
 
+:::{code} c
+status_t get_smtp_host(char* smtp_host);
+:::
 
-
-
+:::{code} c
+status_t set_smtp_host(char* smtp_host, bool save = true);
+:::
 
 get_smtp_host() returns in the buffer pointed to by {hparam}`smtp_host` the
 name of the SMTP host as currently configured. The buffer should be at lest
@@ -330,7 +352,9 @@ widths: auto
 
 ## send_queued_mail()
 
-
+:::{code} c
+status_t send_queued_mail();
+:::
 
 Tells the mail daemon to send all pending outgoing mail.
 
