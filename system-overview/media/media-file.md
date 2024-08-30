@@ -28,12 +28,6 @@ media files, see "{ref}`Reading and Writing Media Files`"
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 As a general rule, you can't use wildcards in any structures used by
 {cpp:class}`BMediaFile` functions. You tell {cpp:class}`BMediaFile` what
 format you have, and {cpp:class}`BMediaFile` will simply tell you whether

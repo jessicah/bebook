@@ -17,12 +17,6 @@ the sound is as simple as calling {cpp:func}`~BGameSound::StartPlaying()`.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 In the current version of the BeOS, when you clone a
 {cpp:class}`BSimpleGameSound`, the sound data buffer is also cloned, so
 you'll have multiple copies of the sound effect in memory. Keep this in

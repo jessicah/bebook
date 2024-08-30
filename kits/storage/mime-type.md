@@ -234,12 +234,6 @@ extension list.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 {hmethod}`SetFileExtensions()` clobbers the existing set of extensions. If
 you want to augment a type's extensions, you should retrieve the existing
 set, add the new ones, and then call {hmethod}`SetFileExtensions()`.
@@ -662,12 +656,6 @@ object.
 
 ::::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 Currently, {hmethod}`Install()` may return a random value if the object is
 already installed. To avoid confusion, you should call
 {hmethod}`IsInstalled()` first:

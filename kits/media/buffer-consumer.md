@@ -15,12 +15,6 @@ accepts.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 In BeOS Release 4.5.2 and earlier {hparam}`consumerType` has a default
 value. It no longer does. You'll have to actually specify the media type
 from now on.
@@ -57,12 +51,6 @@ specified {hparam}`format` not to fail due to a format incompatibility.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 Don't try to ask the upstream producer about the format; it's waiting
 synchronously for your response, and doing so will cause deadlock.
 :::
@@ -94,12 +82,6 @@ obtained by calling {cpp:func}`BBuffer::Header()` on it.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 If you're writing a node, and receive a buffer with the
 {cpp:enumerator}`B_SMALL_BUFFER` flag set, you must recycle the buffer
 before returning.
@@ -125,12 +107,6 @@ create a new input to actually handle the data stream.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Since your {hclass}`BBufferConsumer` has already had the opportunity to
 reject the specified format, it's poor form to return an error from this
 function. You should only return an error if the resources needed to
@@ -227,12 +203,6 @@ inputs.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Whenever this function is called with a value of zero in cookie, you must
 start over with the first input.
 :::
@@ -481,12 +451,6 @@ fields in the specified format.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Because {hmethod}`FormatChanged()` is called by the producer, you don't
 need to (and shouldn't) ask it if the new format is acceptable.
 :::
@@ -589,12 +553,6 @@ memory.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Before reclaiming your buffers, be sure to call
 `SetOutputBuffersFor(output, NULL)` to let the Media Kit know your producer
 no longer has permission to use them. If you forget this step, the producer

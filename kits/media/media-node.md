@@ -45,12 +45,6 @@ returned; otherwise, a pointer to the node is returned.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Although you usually can't call node member functions directly from within
 an application, you can call {hmethod}`Acquire()` and {hmethod}`Release()`
 directly if the node is subclassed within the application itself (rather
@@ -72,12 +66,6 @@ For a complete list of kind values, see {cpp:any}`node_kind`.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 In general, you don't need to call this function. The base system classes
 call {hmethod}`AddNodeKind()` automatically to set up the node type flags;
 for example, a {cpp:class}`BBufferProducer` automatically calls
@@ -314,12 +302,6 @@ send for the current roll.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 This is especially important for nodes that can be run in
 {cpp:enumerator}`B_OFFLINE` mode.
 :::
@@ -426,12 +408,6 @@ begin the seek operation, may be in the future.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Your node is required to queue at least one each of start, stop, and seek
 requests, so that applications can establish, for example, both the start
 and stop time without having to monitor your node's progress. The actual
@@ -461,12 +437,6 @@ gets returned.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 The {cpp:class}`BTimeSource` object returned by {hmethod}`TimeSource()` is
 only valid until the next call to {cpp:func}`~BMediaNode::HandleMessage()`
 on that object. Therefore, if your node runs more than one thread, you need
@@ -492,12 +462,6 @@ start running, may be in the future.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Your node is required to queue at least one each of start, stop, and seek
 requests, so that applications can establish, for example, both the start
 and stop time without having to monitor your node's progress. The actual
@@ -525,12 +489,6 @@ and you promise not to send any more buffers until
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Your node is required to queue at least one each of start, stop, and seek
 requests, so that applications can establish, for example, both the start
 and stop time without having to monitor your node's progress. The actual

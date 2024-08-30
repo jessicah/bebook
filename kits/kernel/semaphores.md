@@ -68,12 +68,6 @@ semaphore more than once, and also provides a timeout facility:
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 The Kernel Kit defines two other semaphore-acquisition flag constants
 ({cpp:enumerator}`B_CAN_INTERRUPT` and
 {cpp:enumerator}`B_CHECK_PERMISSION`). These additional flags are used by
@@ -244,12 +238,6 @@ waiting in the semaphore's thread queue, they're immediately unblocked.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 This function may only be called from a thread that belongs to the
 semaphore's owner.
 :::
@@ -282,12 +270,6 @@ widths: auto
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 For amusement purposes only; never predicate your code on this function.
 :::
 
@@ -543,12 +525,6 @@ widths: auto
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 The {hparam}`lastest_holder` field is highly undependable; in some cases,
 the kernel doesn't even record the semaphore acquirer. Although you can use
 this field as a hint while debugging, you shouldn't take it too seriously.

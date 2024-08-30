@@ -141,12 +141,6 @@ those subitems and so forth.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 When {hparam}`oneLevelOnly` is {cpp:expr}`false`,
 {hmethod}`CountItemsUnder()` acts just like
 {cpp:func}`~BOutlineListView::FullListCountItems()`, except the first item
@@ -180,12 +174,6 @@ is returned by {hmethod}`EachItemUnder()`.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 When {hparam}`oneLevelOnly` is {cpp:expr}`false`,
 {hmethod}`EachItemUnder()` acts just like
 {cpp:func}`~BOutlineListView::FullListDoForEach()`, except the first item
@@ -280,12 +268,6 @@ recursively to locate the appropriate index.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 When {hparam}`oneLevelOnly` is {cpp:expr}`false`, {hmethod}`ItemUnderAt()`
 acts just like {cpp:func}`~BOutlineListView::FullListItemAt()`, except the
 first item in the list that's considered is {hparam}`underItem` instead of
@@ -325,12 +307,6 @@ that:
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 The {cpp:class}`BListView` versions of these functions will not produce
 reliable results when applied to a {hclass}`BOutlineListView`, even if the
 item being removed is in an expanded section of the list and is not a
@@ -357,12 +333,6 @@ for each superitem with {hparam}`oneLevelOnly` set to {cpp:expr}`true`.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 When {hparam}`oneLevelOnly` is {cpp:expr}`false`,
 {hmethod}`SortItemsUnder()` acts just like
 {cpp:func}`~BOutlineListView::FullListSortItems()`, except the first item

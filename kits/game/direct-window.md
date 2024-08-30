@@ -90,12 +90,6 @@ leave everything else to the drawing thread.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 {hmethod}`DirectConnected()` should only return when it can guarantee to
 the application server that the request specified by {hparam}`info` will be
 strictly obeyed.
@@ -107,12 +101,6 @@ that interests you.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 If your {hmethod}`DirectConnected()` implementation doesn't handle a
 request within three seconds, the Application Server will intentionally
 crash your application under the assumption that it's deadlocked. Be sure
@@ -143,12 +131,6 @@ if you need one.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 The {hmethod}`GetClippingRegion()` function can only be called from the
 {cpp:func}`~BDirectWindow::DirectConnected()` function; calling it from
 outside {cpp:func}`~BDirectWindow::DirectConnected()` will return invalid

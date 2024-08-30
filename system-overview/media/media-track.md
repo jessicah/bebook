@@ -31,12 +31,6 @@ tracks in media files, see "{ref}`Reading and Writing Media Files`"
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 As a general rule, you can't use wildcards in any structures used by
 {cpp:class}`BMediaTrack` functions. You tell {cpp:class}`BMediaTrack` what
 format you have, and {cpp:class}`BMediaTrack` will simply tell you whether

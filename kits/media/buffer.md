@@ -89,12 +89,6 @@ either the {cpp:func}`BBufferGroup::RequestBuffer()` call or the
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 Don't call both BroadcastBuffer() and {hmethod}`Recycle()` on the same
 buffer.
 :::

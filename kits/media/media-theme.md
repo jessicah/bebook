@@ -123,12 +123,6 @@ anything about.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Your {cpp:func}`~BMediaTheme::MakeControlFor()` implementation should
 always call {hmethod}`MakeFallbackViewFor()` if it's asked to create a
 {cpp:class}`BControl` for a {cpp:class}`BParameter` it doesn't understand.
@@ -220,12 +214,6 @@ user configure each control point.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 This function is the public interface for creating a view for configuring a
 node (the {cpp:func}`~BMediaTheme::MakeViewFor()` function is the hook you
 override if you're implementing your own theme).

@@ -24,12 +24,6 @@ television signal.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 In BeOS Release 4.5.2 and earlier, the {hparam}`producerType` has a default
 value; it no longer does, and you'll have to specify the media type
 yourself.
@@ -55,12 +49,6 @@ described.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The {hparam}`previousTag` may be {cpp:expr}`NULL`.
 :::
 
@@ -78,12 +66,6 @@ destination is immediately changing to the format specified by
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 You must never call {cpp:func}`~BBufferProducer::SendBuffer()` while this
 call is pending.
 :::
@@ -310,12 +292,6 @@ the {hparam}`_deprecated_` argument; it's no longer used.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 This call is issued synchronously by the destination, so you can't ask it
 if the format is acceptable. Fortunately, since the destination issued the
 request, you can safely assume that it's fine.
@@ -521,12 +497,6 @@ the name is, you can leave the {hparam}`outName` untouched.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Your {cpp:func}`~BBufferProducer::Connect()` function may return a
 different {htype}`media_source` value in {hparam}`outOutput`'s source field
 than the one specified as the {hparam}`source` argument to this function.

@@ -353,12 +353,6 @@ lives in the {hclass}`BDirectory` and returns it as a {cpp:class}`BEntry`,
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 Currently, {hmethod}`GetNextDirents()` only reads one {htype}`dirent` at a
 time, no matter how many you ask for.
 :::
@@ -379,12 +373,6 @@ and "..") in the directory.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 Never call {hmethod}`CountEntries()` while you're iterating through the
 directory. {hmethod}`CountEntries()` does a rewind, iterates through the
 entries, and then rewinds again.
@@ -641,12 +629,6 @@ Declared in: storage/FindDirectory.h
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The first version of this function can be used in either C or C++ code. The
 second version is for C++ code only.
 :::

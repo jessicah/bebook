@@ -69,11 +69,5 @@ call {cpp:func}`BWindow::AddToSubset()`.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Never change the object's look ({cpp:enumerator}`B_MODAL_WINDOW_LOOK`).
 :::

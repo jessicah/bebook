@@ -61,12 +61,6 @@ per object).
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The file descriptor limit will probably be lifted, or at least settable, in
 a subsequent release. But even then you should be frugal.
 :::
@@ -125,12 +119,6 @@ do with it:
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 This section describes situations and presents solutions to problems that
 are a bit esoteric. If you never create direct instances of BNode (and you
 never have to), then you should skip this and go to "{ref}`Node Locking`".
@@ -234,12 +222,6 @@ just long enough to ensure consistency.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 You shouldn't use locks to "privatize" data. Locking isn't meant to be used
 as a heightened permissions bit.
 :::

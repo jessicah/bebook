@@ -33,12 +33,6 @@ explained in {cpp:func}`~BShelf::AddReplicant()`.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 There's an archive-accepting version of the {hclass}`BShelf` constructor
 declared in Shelf.h. Don't use it.
 :::
@@ -179,12 +173,6 @@ Except in the case of a no-view archive, {hmethod}`AddReplicant()` returns
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 If you want the ensure that the replicant is unique within the container
 view, add a "be:unique_replicant" entry of type
 {cpp:enumerator}`B_BOOL_TYPE` to the archive with the value
@@ -199,12 +187,6 @@ yourself, although that's not its expected use.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 {hmethod}`Archive()` is currently a no-op that returns
 {cpp:enumerator}`B_ERROR`. You can't archive a {hclass}`BShelf`. If you
 want to archive something, archive the shelf's contents by calling
@@ -352,12 +334,6 @@ then it is rejected. Type enforcement is {cpp:expr}`false` by default.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 {hmethod}`Instantiate()` is currently a no-op that returns
 {cpp:expr}`NULL`. You can't archive a {hclass}`BShelf`. If you want to
 archive something, archive the shelf's contents by calling

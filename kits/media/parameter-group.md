@@ -117,12 +117,6 @@ flow.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 If you create your own kind, you won't break anything, but you should
 contact Be Developer Support for guidance, so we can standardize given your
 needs.

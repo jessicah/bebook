@@ -89,12 +89,6 @@ involved in a connection prior to disconnecting them.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 These functions will deadlock if called from a node's control thread or
 while the control thread is blocked.
 :::
@@ -147,12 +141,6 @@ query. In this case, you might want to resize your array and try again.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 These functions will deadlock if called from a node's control thread or
 while the control thread is blocked.
 :::
@@ -300,12 +288,6 @@ accepted media types your application supports.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Even though a node may report that a specific number of free inputs are
 available, it is possible that a node might create more inputs on demand.
 There is no way to know if this might happen, so
@@ -367,12 +349,6 @@ accepted media types your application supports.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Even though a node may report that a specific number of free outputs are
 available, it is possible that a node might create more outputs on demand.
 There is no way to know if this might happen, so
@@ -388,12 +364,6 @@ try again.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 These functions will deadlock if called from a node's control thread or
 while the control thread is blocked.
 :::
@@ -517,12 +487,6 @@ contain the actual number of formats returned, unless
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 This function will deadlock if called from a node's control thread or while
 the control thread is blocked.
 :::
@@ -681,12 +645,6 @@ If an error occurs, the value in {hparam}`outLatency` is unreliable.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 This function will deadlock if called from a node's control thread or while
 the control thread is blocked.
 :::
@@ -819,12 +777,6 @@ configuring nodes.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 This function will deadlock if called from a node's control thread or while
 the control thread is blocked.
 :::
@@ -975,12 +927,6 @@ If an error occurs, the value in {hparam}`outLatency` is unreliable.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 This function will deadlock if called from a node's control thread or while
 the control thread is blocked.
 :::
@@ -1217,12 +1163,6 @@ may improve real-time performance once the node is started.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 This function will deadlock if called from a node's control thread or while
 the control thread is blocked.
 :::
@@ -1423,12 +1363,6 @@ to perform the seek operation.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 If the node is a time source, and you want to operate on the time source
 aspect of the node (to seek all slaved nodes), you should call
 {cpp:func}`~BMediaRoster::SeekTimeSource()` instead.
@@ -1518,12 +1452,6 @@ default—only nodes defined by Media Kit add-ons can be system defaults).
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 In general, you shouldn't call these functions unless you're writing
 software that reimplements the functionality of the BeOS Audio or Video
 preference panels.
@@ -1573,12 +1501,6 @@ default—only nodes defined by Media Kit add-ons can be system defaults).
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 In general, you shouldn't call these functions unless you're writing
 software that reimplements the functionality of the BeOS Audio or Video
 preference panels.
@@ -1617,12 +1539,6 @@ The format of the data should be unchanged.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Nodes are not required to support this mechanism for controlling their data
 rate, so this call may have no effect.
 :::
@@ -1705,12 +1621,6 @@ the file's type, unless an error occurs.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 These functions will deadlock if called from a node's control thread or
 while the control thread is blocked.
 :::
@@ -1778,12 +1688,6 @@ whenever timeSource is stopped, and so forth.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 By default, nodes are slaved to the system time source, so you only need to
 call this function if you need to slave a node to a different time source.
 :::
@@ -1853,12 +1757,6 @@ more appropriate the node is for handling the media data in the file.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 These functions will deadlock if called from a node's control thread or
 while the control thread is blocked.
 :::
@@ -1901,12 +1799,6 @@ communicate with the control panel.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 These functions will deadlock if called from a node's control thread or
 while the control thread is blocked.
 :::
@@ -1960,12 +1852,6 @@ In either case, the requested change will occur at the time specified by
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 If the node is a time source, and you want to operate on the time source
 aspect of the node (to start or stop all slaved nodes), you should call
 {cpp:func}`~BMediaRoster::SeekTimeSource()` instead.
@@ -1978,12 +1864,6 @@ these functions.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 {hmethod}`StopNode()` will deadlock if called from a node's control thread
 or while the control thread is blocked.
 :::

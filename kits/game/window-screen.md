@@ -182,12 +182,6 @@ structure is defined in addons/graphics/GraphicsCard.h
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The information returned by this function is only valid when the
 {hclass}`BWindowScreen` is connected to the display.
 :::
@@ -229,12 +223,6 @@ defined in addons/graphics/GraphicsCard.h
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The information returned by this function is only valid if
 {cpp:func}`~BWindowScreen::SetFrameBuffer()` has been called.
 :::

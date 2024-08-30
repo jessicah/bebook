@@ -176,12 +176,6 @@ the status message.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 In the default implementation of this function, the limit labels are only
 drawn if both of them have been configured to a value other than
 {cpp:expr}`NULL`. If either of them is {cpp:expr}`NULL`, neither will be

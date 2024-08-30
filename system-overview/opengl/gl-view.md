@@ -22,12 +22,6 @@ is called to swap the two buffers and refresh the screen image.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The BGLView class currently only supports double-buffered OpenGL contexts.
 :::
 

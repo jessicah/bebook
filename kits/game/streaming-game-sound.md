@@ -22,12 +22,6 @@ By default, two audio buffers are used.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Currently, {hparam}`device` must always be {cpp:expr}`NULL` to indicate
 that the default playback device should be used.
 :::

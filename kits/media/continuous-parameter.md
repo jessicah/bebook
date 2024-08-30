@@ -43,12 +43,6 @@ SetResponse(B_POLYNOMIAL, 2.0, 1.0);
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The mapping specified by these functions is only used for controls that
 display the current value of the control. The default system theme doesn't
 currently display this information. Since this information is only used for

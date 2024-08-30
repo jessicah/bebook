@@ -44,12 +44,6 @@ other words). There's no support yet for multichannel sound.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 {cpp:class}`BSoundPlayer` can only play sounds in the native byte order.
 :::
 
@@ -141,12 +135,6 @@ the value is changing are kept in the cookie's fields.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The buffers your play buffer function receives are empty. Do with them as
 you please (or do nothing at all).
 :::

@@ -47,12 +47,6 @@ when the {hclass}`BMediaEventLooper` is
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 If you choose to reimplement this function, be very careful; it's very easy
 to cause Bad Things to happen.
 :::
@@ -96,12 +90,6 @@ function doesn't do that.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Events in the real-time queue are handled according to their real time,
 while events in the normal event queue are handled based on their
 performance time. So the values of the time stamps on events in these two

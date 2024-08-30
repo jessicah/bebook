@@ -218,12 +218,6 @@ The return value will be either {cpp:enumerator}`B_BW_PRINTER` or
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 In the current release of BeOS, this function always returns
 {cpp:enumerator}`B_COLOR_PRINTER`, since there's no printer driver API for
 determining the printer type yet.

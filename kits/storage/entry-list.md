@@ -13,12 +13,6 @@ Returns the number of entries that are in the entry list.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 For {cpp:class}`BQuery` this is a no-op. Also, {cpp:class}`BDirectory`'s
 implementation manipulates the entry list pointer; thus, you shouldn't call
 {hmethod}`CountEntries()` while you're iterating through the directory's
@@ -60,12 +54,6 @@ list.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 For {cpp:class}`BQuery` this is a no-op.
 :::
 ::::

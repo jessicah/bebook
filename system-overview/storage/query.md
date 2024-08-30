@@ -149,12 +149,6 @@ give you the result you expect.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 The value of an indexed attribute can be, at most, 255 bytes.
 :::
 

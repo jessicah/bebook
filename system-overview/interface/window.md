@@ -35,12 +35,6 @@ quitting in particular) are handled as described in the
 
 ::::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 If you create a {cpp:class}`BWindow`-derived class that uses multiple
 inheritance, make sure the first class your mixin class inherits from is
 {cpp:class}`BWindow`; otherwise, you'll crash when you try to close the

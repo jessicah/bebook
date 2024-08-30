@@ -100,12 +100,6 @@ the bottom-right corner of the buffer.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 If the source is larger than the destination, it's clipped at the bottom
 and right edges to fit; no scaling is performed Also, the OpenGL context
 and the {cpp:class}`BBitmap` must be in the same color space.
@@ -168,12 +162,6 @@ double-buffered, the embedded view will encompass the backbuffer.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 {hmethod}`EmbeddedView()` returns {cpp:expr}`NULL` if, for any reason,
 {cpp:class}`BView` functions can't be used in the GL buffer. Starting with
 BeOS R4, this function always returns {cpp:expr}`NULL`, as the new,

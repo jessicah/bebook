@@ -8,12 +8,6 @@ called upon by the Media Server to do so.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 It's important to note that the functions in the {cpp:class}`BMediaAddOn`
 class will typically only be called by the Media Kit (and from within the
 add-on itself). These functions aren't called by client applications.

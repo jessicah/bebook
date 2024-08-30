@@ -21,12 +21,6 @@ Draw into a Bitmap`").
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 The {hclass}`BBitmap` class insists that a {cpp:class}`BApplication` object
 be present (but not necessarily running).
 :::
@@ -66,12 +60,6 @@ sent to the newly add children.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 If {hparam}`aView` already has a parent, the application may crash. Be sure
 to remove the view from a previous parent before trying to add it to a
 bitmap.
@@ -270,12 +258,6 @@ made:
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 These are the only color conversions {hmethod}`SetBits()` understands; all
 other conversions must be performed manually.
 :::
@@ -296,12 +278,6 @@ aligned on a {htype}`int32` word boundary.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 {hmethod}`SetBits()` works only on {hclass}`BBitmap`s in
 {cpp:enumerator}`B_GRAY1`, {cpp:enumerator}`B_CMAP8`, and
 {cpp:enumerator}`B_RGB32` color spaces; all other conversions must be

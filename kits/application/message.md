@@ -352,12 +352,6 @@ only, item in the array.
 
 :::{admonition} Important
 :class: important
-
-
-
-
-
-
 In all cases except {hmethod}`FindData()` and {hmethod}`FindString()`, the
 data that's retrieved from the {hclass}`BMessage` is copied into the
 reference argument; the caller is responsible for freeing the copied data.

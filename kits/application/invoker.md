@@ -72,12 +72,6 @@ with no time limit on the reply.
 
 ::::{admonition} Note
 :class: note
-
-
-
-
-
-
 Regarding the use of the default message vs the argument, a common practice
 is to reserve the default message as a template, and pass a fine-tuned copy
 to {hmethod}`Invoke()`
@@ -326,12 +320,6 @@ widths: auto
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 {hmethod}`SetTarget()` doesn't detect invalid {cpp:class}`BLooper`s and
 {cpp:class}`BMessenger`s.
 :::

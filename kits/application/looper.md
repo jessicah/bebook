@@ -96,12 +96,6 @@ are destroyed by the {cpp:func}`~BLooper::Quit()` function.
 
 ::::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 If you create a {hclass}`BLooper`-derived class that uses multiple
 inheritance, make sure the first class your mixin class inherits from is
 {hclass}`BLooper`; otherwise, you'll crash when you try to close the
@@ -237,12 +231,6 @@ can examine the list but you shouldn't modify or delete it.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 For all but {hmethod}`CommonFilterList()`, the {hclass}`BLooper` must be
 locked.
 :::
@@ -555,12 +543,6 @@ it unlocks the object before it returns. Keep in mind that a
 
 :::{admonition} Caution
 :class: caution
-
-
-
-
-
-
 Calling {hmethod}`Run()` on a {hclass}`BLooper` that's already running will
 dump you into the debugger.
 :::

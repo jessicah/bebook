@@ -12,12 +12,6 @@ can live in some other application (a remote target).
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 For a local target, {cpp:func}`~BMessenger::SendMessage()` is roughly
 equivalent, in terms of efficiency, to posting a message directly to the
 {cpp:class}`BMessenger`'s target (i.e {cpp:func}`BLooper::PostMessage()`).

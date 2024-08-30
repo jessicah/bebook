@@ -83,12 +83,6 @@ message source.
 
 :::{admonition} Important
 :class: important
-
-
-
-
-
-
 Do not delete the argument message when you're done with. It doesn't belong
 to you.
 :::
@@ -500,12 +494,6 @@ to the observer, so both must be attached to a looper at the time
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The forms of {hmethod}`StartWatching()` and {hmethod}`StartWatchingAll()`
 that accept a {hclass}`BHandler` can be used to observe a handler that's
 not yet attached to a looper. However, these only work if the observer and

@@ -19,12 +19,6 @@ You can also ask to be notified when…
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Volume monitoring is also provided by the {cpp:class}`BVolumeRoster` class:
 {cpp:class}`BVolumeRoster` can talk to the Node Monitor for you. The
 {cpp:class}`BVolumeRoster` volume-watching API is more humane than that
@@ -75,12 +69,6 @@ watch_node() tells the Node Monitor to…
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 You can't tell the Node Monitor to send its notifications to another
 application. Currently, the {cpp:class}`BMessenger` that you specify must
 identify a target in the caller's team.
@@ -187,12 +175,6 @@ watch_node(&nref, B_STOP_WATCHING, be_app_messenger);
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 {cpp:enumerator}`B_STOP_WATCHING` does not apply to volume watching. The
 only way to stop monitoring volume un/mounts is to call stop_watching().
 :::
@@ -529,12 +511,6 @@ on.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Since this message is telling you that the node was removed, the "node"
 value will be invalid. The node number can be useful (and sometimes
 necessary) for comparison with cached node numbers (as demonstrated below).
@@ -719,12 +695,6 @@ file's old and new locations.)
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Moving a node _does not_ change its {htype}`ino_t` number.
 :::
 

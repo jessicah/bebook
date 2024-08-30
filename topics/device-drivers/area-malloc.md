@@ -10,12 +10,6 @@ a pool argument as their first input.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 These functions aren't safe to call from interrupt handlers; they may block
 on semaphores.
 :::

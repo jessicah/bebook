@@ -913,12 +913,6 @@ is fixed at around 256k.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 The two stack pointers are currently inverted such that
 {hparam}`stack_base` is _less_ than {hparam}`stack_end`. (In a
 stack-grows-down world, the base should be greater than the end.)
@@ -1030,12 +1024,6 @@ constants when asking for a suggested priority (see
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 These constants may not be used as actual thread priority values—do not
 pass one of these values as the priority argument to
 {cpp:func}`spawn_thread()`.

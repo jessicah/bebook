@@ -106,12 +106,6 @@ line arguments are used in launching the application from the shell, or if
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 This function isn't called if there were no command line arguments, or if
 {cpp:func}`BRoster::Launch()` was called without
 {hparam}`argv`/{hparam}`argc` values.

@@ -43,12 +43,6 @@ more than once: You have to {hmethod}`Clear()` before each
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 Don't use these functions. They're no-ops for the {hclass}`BQuery` class.
 :::
 
@@ -72,12 +66,6 @@ already fetched but haven' {cpp:func}`~BQuery::Clear()`'d since then.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 Every query must include at least one indexed attribute. If your predicate
 includes no indexed attributes, {hmethod}`Fetch()` will not balk—it returns
 {cpp:enumerator}`B_OK` (given that it doesn't otherwise fail). However, no
@@ -315,12 +303,6 @@ regardless of how it's created.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 {hmethod}`GetPredicate()` and {hmethod}`PredicateLength()` both clear the
 push stack. This is important, because it means that you can't build up a
 portion of your predicate, then call {hmethod}`GetPredicate()`, build a
@@ -369,12 +351,6 @@ volume that you want to look at.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 Currently, {hmethod}`SetVolume()` doesn't complain if volume is invalid.
 However, the subsequent {cpp:func}`~BQuery::Fetch()` will fail
 ({cpp:enumerator}`B_NO_INIT`).

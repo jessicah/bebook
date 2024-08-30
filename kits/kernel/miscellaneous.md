@@ -111,12 +111,6 @@ handler runs in the thread that set the alarm.
 
 :::{admonition} Warning
 :class: warning
-
-
-
-
-
-
 From within the SIGALRM handler, you mustn't call anything that would cause
 the kernel scheduler to run. Just about the only safe call you can make
 from your signal handler is {cpp:func}`release_sem()`.

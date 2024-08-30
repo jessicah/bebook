@@ -41,12 +41,6 @@ used for playing the sound; {cpp:expr}`NULL` uses the default sound player.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Currently, {hparam}`device` must always be {cpp:expr}`NULL`.
 :::
 

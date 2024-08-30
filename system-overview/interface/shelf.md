@@ -18,12 +18,6 @@ container.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 Attaching a shelf to a view is performed by the {cpp:class}`BShelf`
 constructor only. You can't create a {cpp:class}`BShelf` and then decide
 which view you want it to serve.

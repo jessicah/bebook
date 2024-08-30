@@ -91,12 +91,6 @@ current selection yourself.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 If possible, you should use {cpp:class}`BListView`'s versions of these
 functions (see {cpp:func}`BListView::Select()`. They update the view and
 manage the selection for you.
@@ -138,12 +132,6 @@ is not automatically redrawn; you must tell the
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 If possible, you should use {cpp:class}`BOutlineListView`'s
 {cpp:func}`~BOutlineListView::Expand()` and
 {cpp:func}`~BOutlineListView::Collapse()` functions instead of

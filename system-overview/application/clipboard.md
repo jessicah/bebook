@@ -28,12 +28,6 @@ transfer data through the system clipboard.
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 To access the system clipboard without creating a {cpp:class}`BApplication`
 object, construct a {cpp:class}`BClipboard` object with the name "system".
 The system clipboard is under the control of the user; you should only read

@@ -10,12 +10,6 @@ also inherits from {cpp:class}`BBufferProducer`).
 
 :::{admonition} Note
 :class: note
-
-
-
-
-
-
 The functions in this class aren't called by applications or by other
 nodes; they're called exclusively by the Media Kit to control and obtain
 information about a buffer consumer.

@@ -194,6 +194,22 @@ class Document:
 		else:
 			return nodes.Block(f'{{cpp:function}} {declaration}')
 
+	def process_admonition_block(self, container, element):
+		for child in element.children:
+			if has_class(child, 'title'):
+				continue
+			elif has_class(child, 'graphic'):
+				container += self.process_admonition_block(container, child)
+			elif child.name == 'div' and has_class(child, 'text'):
+				for grandchild in child.children:
+					container += self.process_block(grandchild)
+			elif child.name == 'img' and has_class(child, 'icon'):
+				continue
+			else:
+				print(fg.li_red, 'ADMONITION: UNKNOWN BLOCK')
+				print(child, reset)
+				continue
+		
 	# not 100% sure on the return type...
 	def process_block(self, element):
 		if element.name == 'p':
@@ -204,19 +220,8 @@ class Document:
 			kind = ''.join([cls for cls in element['class'] if cls != 'admonition'])
 
 			admonition = nodes.BlockContainer(f'{{admonition}} {title}\n:class: {kind}')
-			# what about other children?
-			for child in element.select(':scope p, :scope pre, :scope div'):
-				if child.name == 'div':
-					print(fg.li_yellow, 'Admonition with unknown div child, skipping:', reset)
-					print(child)
-					pass
-				block = self.process_block(child)
-				admonition += block
-			for child in element.children:
-				if child.name == 'p' or child.name == 'pre' or child.name == 'div':
-					pass
-				else:
-					print(fg.li_red, 'Unhandled admonition child type:', fg.li_yellow, child.name, reset)
+			
+			self.process_admonition_block(admonition, element)
 			return admonition
 		if element.name == 'pre':
 			if has_class(element, 'cpp'):
