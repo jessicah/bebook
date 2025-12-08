@@ -76,6 +76,12 @@ class Document:
 
 	def process(self):
 		main = self.soup.select_one('body > div.section')
+
+		if (main is None):
+			print(fg.li_red, '  failed to process file, no matches for selector "body > div.section"')
+			print(reset)
+			return
+
 		self.title = text_content(main.select_one(':scope > div.titlepage'))
 		self.is_class = False
 
