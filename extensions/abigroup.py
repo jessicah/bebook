@@ -100,7 +100,7 @@ class CustomHTMLTranslator(HTML5Translator):
             full_path = '_parsed_myst/' + os.path.relpath(path) + '.xml'
             dir_path = os.path.dirname(full_path)
             os.makedirs(dir_path, mode=0o777, exist_ok=True)
-            with open(full_path, 'w') as file:
+            with open(full_path, 'w', encoding='utf8') as file:
                 print(node, file=file)
 
     def visit_abigrouptitle(self, node):
