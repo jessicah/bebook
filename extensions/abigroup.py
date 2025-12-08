@@ -97,7 +97,7 @@ class CustomHTMLTranslator(HTML5Translator):
         if path == '<partial node>':
             return
         else:
-            full_path = '_parsed_myst/' + path.replace('/home/jessi/source/haiku/bebook/', '') + '.xml'
+            full_path = '_parsed_myst/' + os.path.relpath(path) + '.xml'
             dir_path = os.path.dirname(full_path)
             os.makedirs(dir_path, mode=0o777, exist_ok=True)
             with open(full_path, 'w') as file:
