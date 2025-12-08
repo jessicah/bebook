@@ -57,7 +57,7 @@ def contains_blocks(element):
 
 class Document:
 	def __init__(self, infile, outfile, debugfile):
-		with open(infile) as file:
+		with open(infile, encoding='utf8') as file:
 			print(f'Processing {infile} => {outfile}...')
 			self.soup = BeautifulSoup(file, 'lxml')
 		self.outfile = outfile
@@ -511,5 +511,5 @@ if __name__ == '__main__':
 	# after building the tree
 	document.section.outline(0)
 	#print('document:', document)
-	with open(sys.argv[2], 'w') as file:
-		print(str(document).replace('\r','\n'), file=file)
+	with open(sys.argv[2], 'w', encoding='utf8', newline='\n') as file:
+		print(str(document).replace("\r\n", "\n").replace('\r','\n'), file=file)
