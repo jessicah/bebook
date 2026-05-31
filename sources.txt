@@ -484,7 +484,6 @@ TheTracker.html topics/tracker/index.md
 TheTracker_Scripting.html topics/tracker/scripting.md
 
 # specialist pages
-index.html index.md
 ClassesAndMethod.html kits/classes-and-method.md
 SpecialTopics.html topics/index.md
 SystemOverview.html system-overview/index.md
